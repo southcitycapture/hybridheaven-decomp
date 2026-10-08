@@ -13,6 +13,8 @@ See [Research results](#research-results).
 
 ## Status
 
+[![decomp.dev progress](https://decomp.dev/southcitycapture/hybridheaven-decomp.svg?mode=shield&measure=code&label=Code)](https://decomp.dev/southcitycapture/hybridheaven-decomp)
+
 Live per-segment progress, the function map and worker stats come from the same objdiff report decomp.dev uses
 (`progress/report.json`). `make` currently rebuilds a ROM that matches the original SHA-1:
 
