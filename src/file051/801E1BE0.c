@@ -463,10 +463,18 @@ s32 func_801E4DB4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file051/801E1BE0/func_801E4FF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file051/801E1BE0/func_801E5004.s")
-
 
 extern s32 D_801E73AC;
+
+s32 func_801E5004(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x70EA40) != 0) {
+        D_801E73AC = 0;
+        return 4;
+    }
+    return 3;
+}
+
+
 
 s32 func_801E504C(s32 arg0, s32 arg1) {
     s32 temp;

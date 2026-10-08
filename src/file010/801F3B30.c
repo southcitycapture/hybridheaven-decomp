@@ -488,46 +488,7 @@ void func_801F57EC(struct func_801F57EC_Struct *arg0, s32 arg1) {
     func_800058DC(arg0, arg0->unkB0);
 }
 
-
-extern void func_8001F74C(void);
-extern void func_801473F4(void *p);
-extern void func_8014753C(void *p, s32 v);
-extern void func_801FA410(s32 v);
-extern s32 func_801FA600(s32 v);
-extern u8 D_80216DE0[];
-extern s16 D_8021B0C0;
-extern void func_801F5960(void);
-
-struct func_801F58AC_Sub {
-    u8 pad0[0x24];
-    s32 unk24;
-    u8 pad28[0xA8 - 0x28];
-    s32 unkA8;
-    u8 padAC;
-    u8 unkAD;
-};
-
-struct func_801F58AC_Obj {
-    u8 pad0[0xC];
-    struct func_801F58AC_Sub *unkC;
-    u8 pad10[0x3C - 0x10];
-    s16 unk3C;
-};
-
-void func_801F58AC(struct func_801F58AC_Obj *arg0, s32 arg1) {
-    s32 sp24;
-
-    sp24 = arg0->unkC->unkA8;
-    func_8001F74C();
-    arg0->unkC->unkAD = 1;
-    func_801473F4(arg0->unkC);
-    func_800062F8(arg0->unkC->unk24, 0x800002FE);
-    func_8014753C(arg0->unkC, (s32) D_80216DE0 | 0x40000000);
-    arg0->unk3C = func_801FA600(sp24) * 0x1E;
-    D_8021B0C0 = -0x800;
-    func_801FA410(sp24);
-    func_800058DC(arg0, (s32) func_801F5960);
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F58AC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F5960.s")
 
@@ -535,7 +496,33 @@ void func_801F58AC(struct func_801F58AC_Obj *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F5BAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F5EFC.s")
+
+struct func_801F5EFC_StructInner {
+    u8 pad0[0x24];
+    s32 unk24;
+    u8 pad1[0xA8 - 0x28];
+    s32 unkA8;
+    u8 unkAC;
+    u8 unkAD;
+};
+
+struct func_801F5EFC_StructOuter {
+    u8 pad0[0xC];
+    struct func_801F5EFC_StructInner *unkC;
+};
+
+void func_80005700(void *);
+void func_800062F8(s32, s32);
+void func_80147450(void *);
+void func_801FA570(s32);
+
+void func_801F5EFC(struct func_801F5EFC_StructOuter *arg0, s32 arg1) {
+    func_801FA570(arg0->unkC->unkA8);
+    func_800062F8(arg0->unkC->unk24, 0x80000900);
+    func_80147450(arg0->unkC);
+    arg0->unkC->unkAD = 0;
+    func_80005700(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F5F5C.s")
 

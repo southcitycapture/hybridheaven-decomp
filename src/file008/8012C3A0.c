@@ -265,37 +265,7 @@ s32 func_8012CF10(void *arg1, struct func_8012CF10_Struct *arg2, struct func_801
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8012C3A0/func_8012D40C.s")
 
-
-typedef struct func_8012D7A8_Node {
-    u8 pad[0x10];
-    struct func_8012D7A8_Node *unk10;
-} func_8012D7A8_Node;
-
-typedef struct func_8012D7A8_Struct {
-    u8 pad0[0x24];
-    func_8012D7A8_Node *unk24;
-    u8 pad1[0x4];
-    s32 unk2C;
-} func_8012D7A8_Struct;
-
-extern void func_8012D40C(void *, s32);
-
-void func_8012D7A8(func_8012D7A8_Struct *arg0) {
-    s32 var_s1;
-    func_8012D7A8_Node *var_s0;
-
-    var_s1 = 0;
-    if (arg0->unk2C & 2) {
-        var_s0 = arg0->unk24;
-        if (var_s0 != NULL) {
-            do {
-                func_8012D40C(arg0, var_s1 & 0xFF);
-                var_s0 = var_s0->unk10;
-                var_s1 = (var_s1 + 1) & 0xFF;
-            } while (var_s0 != NULL);
-        }
-    }
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012C3A0/func_8012D7A8.s")
 
 
 extern void func_8012D8C8(s32, s32, s32, f32, s32, s32);
@@ -388,7 +358,29 @@ void func_8012E584(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8012C3A0/func_8012E5B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012C3A0/func_8012E654.s")
+
+typedef struct func_8012E654_Struct {
+    u8 pad[0x24];
+    void *unk24;
+} func_8012E654_Struct;
+
+extern void func_8012B1E4(void *, s32);
+extern void func_8012BFA0(void *);
+extern void func_8012C9C0(void *);
+extern void func_8012CD28(void *);
+extern void func_8012CE10(void *);
+extern void func_8012D7A8();
+
+void func_8012E654(func_8012E654_Struct *arg0, s32 arg1) {
+    if (arg0->unk24 != NULL) {
+        func_8012D7A8();
+        func_8012CD28(arg0);
+        func_8012C9C0(arg0);
+        func_8012CE10(arg0);
+        func_8012B1E4(arg0, 1);
+        func_8012BFA0(arg0);
+    }
+}
 
 
 typedef struct func_8012E6BC_Struct {

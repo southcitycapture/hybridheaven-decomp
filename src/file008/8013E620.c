@@ -290,23 +290,7 @@ u8 func_80142240(u8 arg0) {
     return sp2B;
 }
 
-
-extern s32 func_80141A74(s32 a0, s32 a1);
-
-u8 func_801422E4(u8 arg0, s32 arg1) {
-    u8 var;
-    s32 sp20;
-    s32 temp;
-
-    sp20 = func_8001F430(0x100);
-    temp = func_800031EC(arg0, 0, 0, 0x100, sp20);
-    var = temp;
-    if (temp == 0) {
-        var = func_80141A74(arg1, sp20);
-    }
-    func_8001F540(sp20);
-    return var;
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_801422E4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_80142350.s")
 
@@ -328,5 +312,26 @@ u8 func_80142450(u8 arg0, u8 arg1) {
     return sp27;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_801424D0.s")
+
+extern s32 func_800031EC(u8 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern s32 func_8001F430(s32 size);
+extern void func_8001F540(s32 ptr);
+extern s32 func_8014217C(u8 arg0, s32 arg1);
+
+u8 func_801424D0(u8 arg0, u8 arg1, u8 arg2) {
+    u8 sp27;
+    s32 sp20;
+    s32 ret;
+
+    sp20 = func_8001F430(0xD00);
+    ret = func_800031EC(arg0, 0, ((arg1 * 0xD00) + 0x100) & 0xFFFF, 0xD00, sp20);
+    sp27 = ret;
+    if (ret == 0) {
+        sp27 = func_8014217C(arg2, sp20);
+    }
+    func_8001F540(sp20);
+    return sp27;
+}
+
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/_pad_16.s")
 

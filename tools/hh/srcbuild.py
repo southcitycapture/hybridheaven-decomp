@@ -151,11 +151,20 @@ def build_one(args):
         if not rej and not problem:
             open("src/%s.c" % fname, "w").write(text); return (fname, kept, {}, None)
         kept, rejected, text = {}, {}, None
-        for n in sorted(snips, key=lambda n: (prio.get(n, float("inf")), n)):
-            trial = dict(kept); trial[n] = snips[n]
+        order = sorted(snips, key=lambda n: (prio.get(n, float("inf")), n))
+        def try_add(group):
+            """Add `group` (in priority order) on top of `kept`; split on failure until the culprit is alone."""
+            nonlocal kept, text
+            trial = dict(kept); trial.update({n: snips[n] for n in group})
             k2, r2, t2, p2 = settle(seg, cfile, trial, td)
-            if not p2 and set(k2) == set(trial): kept, text = k2, t2
-            else: rejected[n] = r2.get(n) or "conflicts with earlier-registered functions in this file"
+            if not p2 and set(k2) == set(trial):
+                kept, text = k2, t2; return
+            if len(group) == 1:
+                rejected[group[0]] = r2.get(group[0]) or "conflicts with earlier-registered functions in this file"; return
+            half = len(group) // 2
+            try_add(group[:half]); try_add(group[half:])
+        for i in range(0, len(order), 16):
+            try_add(order[i:i + 16])
         if text is None:
             k2, r2, text, p2 = settle(seg, cfile, {}, td)
         open("src/%s.c" % fname, "w").write(text if text else render(seg, cfile, {})[0])
