@@ -1,0 +1,6 @@
+2026-10-08T18:42:45+00:00 start  usage-gate (brief, weekday): weekly 71% (max 60), 5-hour 34% (max 90), weekly resets 2026-10-12T23:00Z -> HOLD
+2026-10-08T18:42:45+00:00 usage  usage-gate (brief, weekday): weekly 71% (max 60), 5-hour 34% (max 90), weekly resets 2026-10-12T23:00Z -> HOLD
+2026-10-08T18:44:45+00:00 usage  usage-gate (brief, weekday): weekly 71% (max 60), 5-hour 34% (max 90), weekly resets 2026-10-12T23:00Z -> HOLD
+2026-10-08T18:46:45+00:00 usage  usage-gate (brief, weekday): weekly 71% (max 60), 5-hour 34% (max 90), weekly resets 2026-10-12T23:00Z -> HOLD
+2026-10-08T18:46:59+00:00 workers finished  usage-gate (brief, weekday): weekly 71% (max 60), 5-hour 34% (max 90), weekly resets 2026-10-12T23:00Z -> HOLD
+2026-10-08T18:48:07+00:00 integrated: ROM matches

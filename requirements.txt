@@ -1,0 +1,12 @@
+splat64[mips]>=0.50
+spimdisasm>=1.42
+rabbitizer
+pyelftools
+pycparser
+colorama
+watchdog
+python-Levenshtein
+cxxfilt
+toml
+Levenshtein
+pcpp

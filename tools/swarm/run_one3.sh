@@ -1,0 +1,44 @@
+#!/bin/bash
+# run_one.sh FUNC SEGMENT [MODEL]: run one worker, record the outcome and token usage
+FUNC=$1; SEG=$2; MODEL=${3:-${MODEL:-claude-haiku-5-5}}; HH="$(cd "$(dirname "$0")/../.." && pwd)"
+BATCH=${BATCH:-pilot}; W=$HH/queue/$BATCH/work/$FUNC
+# repair batches: start from the newest earlier attempt of this function
+if [ -n "$FIXMODE" ] && [ -z "$PREVIOUS" ]; then
+  PREVIOUS=$(ls -t "$HH"/queue/*/work/"$FUNC"/attempt.c 2>/dev/null | grep -v "/queue/$BATCH/" | head -1)
+fi
+export PREVIOUS
+rm -rf "$W"; "$HH/tools/swarm/prep2.sh" "$FUNC" "$SEG" "$W"
+cd "$W"
+start=$(date +%s)
+claude -p "$(cat prompt.md)" --model "$MODEL" --permission-mode acceptEdits \
+  --allowedTools "Read" "Write" "Edit" "Bash(./check)" "Bash(./check:*)" \
+  --output-format json > result.json 2> stderr.txt < /dev/null
+echo $? > exit.txt
+# API trouble (rate limit, overload, auth) is not a failed match: record ERROR so the runner retries it
+api_err=0
+if [ ! -s result.json ] || grep -qiE '"is_error": *true|rate.?limit|overloaded|429|5[0-9][0-9] |API Error' result.json stderr.txt 2>/dev/null; then
+  checks_used=$(cat .checks 2>/dev/null || echo 0)
+  [ "$checks_used" -eq 0 ] && api_err=1
+fi
+# verify independently: never trust the worker's own claim
+if [ "$api_err" = 1 ]; then v=ERROR
+elif [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" attempt.c --seg "$SEG" > verify.txt 2>&1 && grep -q '^MATCH' verify.txt; then
+  v=MATCH; else v=FAIL; fi
+[ "$v" = ERROR ] && sleep 30   # back off before the next launch
+"$HH/.venv/bin/python" - "$FUNC" "$SEG" "$MODEL" "$v" "$start" <<'PY'
+import json, sys, time, os
+f, seg, model, verdict, start = sys.argv[1:6]
+try: r = json.load(open("result.json"))
+except Exception as e: r = {"error": str(e)}
+u = r.get("usage", {})
+rec = dict(func=f, segment=seg, model=model, verified=verdict,
+           claimed=(r.get("result") or "").strip().splitlines()[-1:] or [""],
+           checks=int(open(".checks").read()) if os.path.exists(".checks") else 0,
+           turns=r.get("num_turns"), seconds=int(time.time()) - int(start),
+           input_tokens=u.get("input_tokens"), output_tokens=u.get("output_tokens"),
+           cache_read=u.get("cache_read_input_tokens"), cache_write=u.get("cache_creation_input_tokens"),
+           cost_usd_equiv=r.get("total_cost_usd"))
+rec["claimed"] = rec["claimed"][0]
+open(os.path.expanduser("$HH/queue/%s/results.jsonl" % os.environ.get("BATCH", "pilot")), "a").write(json.dumps(rec) + "\n")
+print(json.dumps(rec))
+PY

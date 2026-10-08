@@ -1,0 +1,11 @@
+#include "context.h"
+
+extern s32 func_801CC4D8(s32, s32, s32, s32, f32);
+
+s32 func_801E4324(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x013D6200) != 0) {
+        func_801CC4D8(1, 0x01B80040, 0, 0, 5.0f);
+        return 0xE;
+    }
+    return 0xD;
+}

@@ -1,0 +1,1640 @@
+name: Hybrid Heaven (USA), expanded image
+options:
+  basename: hybridheaven
+  target_path: build/expanded.bin
+  elf_path: build/hybridheaven.elf
+  base_path: .
+  platform: n64
+  compiler: IDO
+
+  asm_path: asm
+  src_path: src
+  build_path: build
+  # create_asm_dependencies: True
+
+  ld_script_path: hybridheaven.ld
+  ld_dependencies: True
+
+  find_file_boundaries: True
+  header_encoding: ASCII
+
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  mips_abi_float_regs: o32
+
+  # section_order: [".text", ".data", ".rodata", ".bss"]
+  # auto_link_sections: [".data", ".rodata", ".bss"]
+
+  symbol_addrs_path:
+    - symbol_addrs.txt
+  reloc_addrs_path:
+    - reloc_addrs.txt
+
+  # undefined_funcs_auto_path: undefined_funcs_auto.txt
+  # undefined_syms_auto_path: undefined_syms_auto.txt
+
+  extensions_path: tools/splat_ext
+
+  # string_encoding: ASCII
+  # data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+  # libultra_symbols: True
+  # hardware_regs: True
+  # gfx_ucode: # one of [f3d, f3db, f3dex, f3dexb, f3dex2]
+segments:
+  - name: header
+    type: header
+    start: 0x0
+
+  - name: ipl3
+    type: bin
+    start: 0x40
+
+  - name: entry
+    type: code
+    start: 0x1000
+    vram: 0x80000400
+    subsegments:
+      - [0x1000, hasm]
+
+  - name: main
+    type: code
+    start: 0x1060
+    vram: 0x80000460
+    follows_vram: entry
+    bss_size: 0x80DC0
+    subsegments:
+      - [0x1060, c, main/80000460]
+      - [0x1C60, c, main/80001060]
+      - [0x27C0, c, main/80001BC0]
+      - [0x2A70, c, main/80001E70]
+      - [0x2CB0, c, main/800020B0]
+      - [0x30D0, c, main/800024D0]
+      - [0x42D0, c, main/800036D0]
+      - [0x4F10, c, main/80004310]
+      - [0x5E70, c, main/80005270]
+      - [0x7390, c, main/80006790]
+      - [0x8350, c, main/80007750]
+      - [0x8770, c, main/80007B70]
+      - [0x87D0, c, main/80007BD0]
+      - [0x9D90, c, main/80009190]
+      - [0xBBE0, c, main/8000AFE0]
+      - [0xDD00, c, main/8000D100]
+      - [0xE9B0, c, main/8000DDB0]
+      - [0x12500, c, main/80011900]
+      - [0x152A0, c, main/800146A0]
+      - [0x1B090, c, main/8001A490]
+      - [0x1F6D0, c, main/8001EAD0]
+      - [0x1FD60, c, main/8001F160]
+      - [0x202D0, c, main/8001F6D0]
+      - [0x20420, c, main/8001F820]
+      - [0x20DD0, c, main/800201D0]
+      - [0x24FF0, c, main/800243F0]
+      - [0x26F00, c, main/80026300]
+      - [0x27050, c, main/80026450]
+      - [0x271F0, c, main/800265F0]
+      - [0x273F0, c, main/800267F0]
+      - [0x275F0, c, main/800269F0]
+      - [0x278E0, c, main/80026CE0]
+      - [0x279F0, c, main/80026DF0]
+      - [0x285B0, c, main/800279B0]
+      - [0x28690, c, main/80027A90]
+      - [0x28E60, c, main/80028260]
+      - [0x28FB0, c, main/800283B0]
+      - [0x29190, c, main/80028590]
+      - [0x293E0, c, main/800287E0]
+      - [0x29610, c, main/80028A10]
+      - [0x29690, c, main/80028A90]
+      - [0x29710, c, main/80028B10]
+      - [0x29AC0, c, main/80028EC0]
+      - [0x29AE0, c, main/80028EE0]
+      - [0x29BF0, c, main/80028FF0]
+      - [0x29E80, c, main/80029280]
+      - [0x2A0D0, c, main/800294D0]
+      - [0x2A180, c, main/80029580]
+      - [0x2A1D0, c, main/800295D0]
+      - [0x2A290, c, main/80029690]
+      - [0x2A700, c, main/80029B00]
+      - [0x2A930, c, main/80029D30]
+      - [0x2ABA0, c, main/80029FA0]
+      - [0x2AC10, c, main/8002A010]
+      - [0x2AF50, c, main/8002A350]
+      - [0x2B3D0, c, main/8002A7D0]
+      - [0x2B7A0, c, main/8002ABA0]
+      - [0x2B860, c, main/8002AC60]
+      - [0x2BAA0, c, main/8002AEA0]
+      - [0x2BF80, c, main/8002B380]
+      - [0x2C010, c, main/8002B410]
+      - [0x2CB90, c, main/8002BF90]
+      - [0x2CBA0, c, main/8002BFA0]
+      - [0x2CCB0, c, main/8002C0B0]
+      - [0x2CDD0, c, main/8002C1D0]
+      - [0x2D450, c, main/8002C850]
+      - [0x2DC00, c, main/8002D000]
+      - [0x2E9B0, c, main/8002DDB0]
+      - [0x2EAC0, c, main/8002DEC0]
+      - [0x2F740, c, main/8002EB40]
+      - [0x2FA40, c, main/8002EE40]
+      - [0x2FC10, c, main/8002F010]
+      - [0x30760, c, main/8002FB60]
+      - [0x30820, c, main/8002FC20]
+      - [0x30830, c, main/8002FC30]
+      - [0x31080, c, main/80030480]
+      - [0x310A0, c, main/800304A0]
+      - [0x310F0, c, main/800304F0]
+      - [0x311D0, c, main/800305D0]
+      - [0x31210, c, main/80030610]
+      - [0x31240, c, main/80030640]
+      - [0x312C0, c, main/800306C0]
+      - [0x31370, c, main/80030770]
+      - [0x31410, c, main/80030810]
+      - [0x31530, c, main/80030930]
+      - [0x315B0, c, main/800309B0]
+      - [0x315E0, c, main/800309E0]
+      - [0x31610, c, main/80030A10]
+      - [0x31860, c, main/80030C60]
+      - [0x319C0, c, main/80030DC0]
+      - [0x31D90, c, main/80031190]
+      - [0x31E20, c, main/80031220]
+      - [0x32270, c, main/80031670]
+      - [0x323C0, c, main/800317C0]
+      - [0x323D0, c, main/800317D0]
+      - [0x326E0, c, main/80031AE0]
+      - [0x32760, c, main/80031B60]
+      - [0x327C0, c, main/80031BC0]
+      - [0x32A30, c, main/80031E30]
+      - [0x32BF0, c, main/80031FF0]
+      - [0x32F60, c, main/80032360]
+      - [0x33260, c, main/80032660]
+      - [0x332F0, c, main/800326F0]
+      - [0x33320, c, main/80032720]
+      - [0x33490, c, main/80032890]
+      - [0x335F0, c, main/800329F0]
+      - [0x33660, c, main/80032A60]
+      - [0x337E0, c, main/80032BE0]
+      - [0x33940, c, main/80032D40]
+      - [0x339C0, c, main/80032DC0]
+      - [0x33BB0, c, main/80032FB0]
+      - [0x33EC0, c, main/800332C0]
+      - [0x34870, c, main/80033C70]
+      - [0x348D0, c, main/80033CD0]
+      - [0x34920, c, main/80033D20]
+      - [0x34A10, c, main/80033E10]
+      - [0x34C60, c, main/80034060]
+      - [0x34E90, c, main/80034290]
+      - [0x35000, c, main/80034400]
+      - [0x35160, c, main/80034560]
+      - [0x35240, c, main/80034640]
+      - [0x35290, c, main/80034690]
+      - [0x352A0, c, main/800346A0]
+      - [0x352C0, c, main/800346C0]
+      - [0x355D0, c, main/800349D0]
+      - [0x355E0, c, main/800349E0]
+      - [0x35610, c, main/80034A10]
+      - [0x35670, c, main/80034A70]
+      - [0x35680, c, main/80034A80]
+      - [0x35890, c, main/80034C90]
+      - [0x35A40, c, main/80034E40]
+      - [0x35AE0, c, main/80034EE0]
+      - [0x35B60, c, main/80034F60]
+      - [0x35B70, c, main/80034F70]
+      - [0x35C20, c, main/80035020]
+      - [0x35CD0, c, main/800350D0]
+      - [0x35D20, data]
+      - { type: bss, vram: 0x8004DBD0 }
+  - [0x4E7D0, bin, rom_4E7D0]   # music, sample banks, misc data (uncompressed)
+  - [0x4E5F40, bin, file001]   # vram 0x03000000, compressed
+  - name: file008
+    type: code
+    start: 0x4E6F40
+    vram: 0x80107830
+    exclusive_ram_id: slot80107830
+    bss_size: 0x2DC80
+    subsegments:
+      - [0x4E6F40, c, file008/80107830]
+      - [0x4E70C0, c, file008/801079B0]
+      - [0x4E7160, c, file008/80107A50]
+      - [0x4E7990, c, file008/80108280]
+      - [0x4ED400, c, file008/8010DCF0]
+      - [0x4EDD90, c, file008/8010E680]
+      - [0x4EEDF0, c, file008/8010F6E0]
+      - [0x4F2850, c, file008/80113140]
+      - [0x4F4D30, c, file008/80115620]
+      - [0x4F5620, c, file008/80115F10]
+      - [0x4F6590, c, file008/80116E80]
+      - [0x4F6D20, c, file008/80117610]
+      - [0x4F9330, c, file008/80119C20]
+      - [0x4FB330, c, file008/8011BC20]
+      - [0x4FC6A0, c, file008/8011CF90]
+      - [0x4FDB90, c, file008/8011E480]
+      - [0x500850, c, file008/80121140]
+      - [0x502980, c, file008/80123270]
+      - [0x502CE0, c, file008/801235D0]
+      - [0x5045E0, c, file008/80124ED0]
+      - [0x507480, c, file008/80127D70]
+      - [0x509330, c, file008/80129C20]
+      - [0x509800, c, file008/8012A0F0]
+      - [0x50BAB0, c, file008/8012C3A0]
+      - [0x50FA20, c, file008/80130310]
+      - [0x511410, c, file008/80131D00]
+      - [0x512E50, c, file008/80133740]
+      - [0x5131D0, c, file008/80133AC0]
+      - [0x515090, c, file008/80135980]
+      - [0x516520, c, file008/80136E10]
+      - [0x518670, c, file008/80138F60]
+      - [0x5189C0, c, file008/801392B0]
+      - [0x518AE0, c, file008/801393D0]
+      - [0x51A840, c, file008/8013B130]
+      - [0x51C000, c, file008/8013C8F0]
+      - [0x51CBB0, c, file008/8013D4A0]
+      - [0x51CD30, c, file008/8013D620]
+      - [0x51DD30, c, file008/8013E620]
+      - [0x521C80, c, file008/80142570]
+      - [0x5248D0, c, file008/801451C0]
+      - [0x527470, c, file008/80147D60]
+      - [0x52A370, c, file008/8014AC60]
+      - [0x52B9C0, c, file008/8014C2B0]
+      - [0x530480, c, file008/80150D70]
+      - [0x530F80, c, file008/80151870]
+      - [0x531240, c, file008/80151B30]
+      - [0x531940, c, file008/80152230]
+      - [0x531FA0, c, file008/80152890]
+      - [0x532780, data]
+      - { type: bss, vram: 0x80191520 }
+  - name: file009
+    type: code
+    start: 0x570C30
+    vram: 0x801BF1A0
+    exclusive_ram_id: slot801BF1A0
+    bss_size: 0xA90
+    subsegments:
+      - [0x570C30, c, file009/801BF1A0]
+      - [0x574010, c, file009/801C2580]
+      - [0x574B00, c, file009/801C3070]
+      - [0x5755A0, c, file009/801C3B10]
+      - [0x57EF90, c, file009/801CD500]
+      - [0x588560, c, file009/801D6AD0]
+      - [0x58C6C0, c, file009/801DAC30]
+      - [0x58CF10, c, file009/801DB480]
+      - [0x58DCE0, c, file009/801DC250]
+      - [0x591AD0, c, file009/801E0040]
+      - [0x5923F0, data]
+      - { type: bss, vram: 0x801E4010 }
+  - name: file010
+    type: code
+    start: 0x595AA0
+    vram: 0x801E4AA0
+    exclusive_ram_id: slot801E4AA0
+    bss_size: 0x1A0
+    subsegments:
+      - [0x595AA0, c, file010/801E4AA0]
+      - [0x595F60, c, file010/801E4F60]
+      - [0x5A29A0, c, file010/801F19A0]
+      - [0x5A4900, c, file010/801F3900]
+      - [0x5A4B30, c, file010/801F3B30]
+      - [0x5AB0B0, c, file010/801FA0B0]
+      - [0x5ACB20, c, file010/801FBB20]
+      - [0x5AD490, c, file010/801FC490]
+      - [0x5ADBE0, c, file010/801FCBE0]
+      - [0x5AFAE0, c, file010/801FEAE0]
+      - [0x5B0180, c, file010/801FF180]
+      - [0x5B4830, c, file010/80203830]
+      - [0x5B6720, c, file010/80205720]
+      - [0x5B7190, c, file010/80206190]
+      - [0x5C7B70, data]
+      - { type: bss, vram: 0x8021AFB0 }
+  - name: file011
+    type: code
+    start: 0x5CBFB0
+    vram: 0x8021B150
+    exclusive_ram_id: slot8021B150
+    bss_size: 0x1C0
+    subsegments:
+      - [0x5CBFB0, c, file011/8021B150]
+      - [0x5CE730, c, file011/8021D8D0]
+      - [0x5D4610, c, file011/802237B0]
+      - [0x5D77E0, c, file011/80226980]
+      - [0x5D9A80, c, file011/80228C20]
+      - [0x5DC4A0, c, file011/8022B640]
+      - [0x5E4290, c, file011/80233430]
+      - [0x5EB070, c, file011/8023A210]
+      - [0x5ED0B0, data]
+      - { type: bss, vram: 0x80240730 }
+  - name: file012
+    type: code
+    start: 0x5F1590
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x10
+    subsegments:
+      - [0x5F1590, c, file012/802408F0]
+      - [0x5F1CB0, c, file012/80241010]
+      - [0x5F2450, c, file012/802417B0]
+      - [0x5F4AF0, c, file012/80243E50]
+      - [0x5F52C0, data]
+      - { type: bss, vram: 0x80249500 }
+  - name: file013
+    type: code
+    start: 0x5FA1A0
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    subsegments:
+      - [0x5FA1A0, c, file013/802408F0]
+      - [0x5FC170, c, file013/802428C0]
+      - [0x5FC5B0, c, file013/80242D00]
+      - [0x5FC810, c, file013/80242F60]
+      - [0x5FD590, data]
+  - name: file014
+    type: code
+    start: 0x603420
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x10
+    subsegments:
+      - [0x603420, c, file014/802408F0]
+      - [0x603E50, c, file014/80241320]
+      - [0x603F50, c, file014/80241420]
+      - [0x6040B0, c, file014/80241580]
+      - [0x6053C0, c, file014/80242890]
+      - [0x609450, data]
+      - { type: bss, vram: 0x8024AB40 }
+  - name: file015
+    type: code
+    start: 0x60D670
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0xA0
+    subsegments:
+      - [0x60D670, c, file015/802408F0]
+      - [0x6116B0, c, file015/80244930]
+      - [0x611990, c, file015/80244C10]
+      - [0x614560, c, file015/802477E0]
+      - [0x6150C0, c, file015/80248340]
+      - [0x617E10, c, file015/8024B090]
+      - [0x619FB0, c, file015/8024D230]
+      - [0x61B140, c, file015/8024E3C0]
+      - [0x61ED80, data]
+      - { type: bss, vram: 0x8025A270 }
+  - name: file016
+    type: code
+    start: 0x626FF0
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x40
+    subsegments:
+      - [0x626FF0, c, file016/802408F0]
+      - [0x628780, c, file016/80242080]
+      - [0x62CF30, c, file016/80246830]
+      - [0x62D130, c, file016/80246A30]
+      - [0x62DAE0, c, file016/802473E0]
+      - [0x62FDA0, data]
+      - { type: bss, vram: 0x8024F4F0 }
+  - name: file017
+    type: code
+    start: 0x635BF0
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x90
+    subsegments:
+      - [0x635BF0, c, file017/802408F0]
+      - [0x639550, c, file017/80244250]
+      - [0x63A3B0, c, file017/802450B0]
+      - [0x63CD00, c, file017/80247A00]
+      - [0x63D920, c, file017/80248620]
+      - [0x63E470, c, file017/80249170]
+      - [0x63F910, c, file017/8024A610]
+      - [0x642330, c, file017/8024D030]
+      - [0x6447F0, c, file017/8024F4F0]
+      - [0x646B20, c, file017/80251820]
+      - [0x64D890, data]
+      - { type: bss, vram: 0x8025DDA0 }
+  - name: file018
+    type: code
+    start: 0x6530A0
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x110
+    subsegments:
+      - [0x6530A0, c, file018/802408F0]
+      - [0x654DD0, c, file018/80242620]
+      - [0x657260, c, file018/80244AB0]
+      - [0x65F8D0, data]
+      - { type: bss, vram: 0x8025C6E0 }
+  - name: file019
+    type: code
+    start: 0x66EE90
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    subsegments:
+      - [0x66EE90, c, file019/802408F0]
+      - [0x66F020, data]
+  - name: file020
+    type: code
+    start: 0x671030
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x20
+    subsegments:
+      - [0x671030, c, file020/802408F0]
+      - [0x6739A0, c, file020/80243260]
+      - [0x6749A0, data]
+      - { type: bss, vram: 0x80246C60 }
+  - name: file021
+    type: code
+    start: 0x6773A0
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x10
+    subsegments:
+      - [0x6773A0, c, file021/802408F0]
+      - [0x678CB0, c, file021/80242200]
+      - [0x67C490, data]
+      - { type: bss, vram: 0x80257150 }
+  - name: file022
+    type: code
+    start: 0x68DC00
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x80
+    subsegments:
+      - [0x68DC00, c, file022/802408F0]
+      - [0x68FCD0, c, file022/802429C0]
+      - [0x6917C0, c, file022/802444B0]
+      - [0x693CD0, data]
+      - { type: bss, vram: 0x802528A0 }
+  - [0x69FBB0, bin, file023]   # vram 0x802408F0, compressed
+  - name: file024
+    type: code
+    start: 0x6A1BC0
+    vram: 0x801BF1A0
+    exclusive_ram_id: slot801BF1A0
+    bss_size: 0x120
+    subsegments:
+      - [0x6A1BC0, c, file024/801BF1A0]
+      - [0x6A84D0, c, file024/801C5AB0]
+      - [0x6AC330, c, file024/801C9910]
+      - [0x6ACF50, c, file024/801CA530]
+      - [0x6AD060, c, file024/801CA640]
+      - [0x6ADFC0, c, file024/801CB5A0]
+      - [0x6AE7E0, c, file024/801CBDC0]
+      - [0x6AF200, data]
+      - { type: bss, vram: 0x801CFCF0 }
+  - name: file025
+    type: code
+    start: 0x6B2710
+    vram: 0x801BF1A0
+    exclusive_ram_id: slot801BF1A0
+    bss_size: 0x4570
+    subsegments:
+      - [0x6B2710, c, file025/801BF1A0]
+      - [0x6B3FA0, c, file025/801C0A30]
+      - [0x6B4930, c, file025/801C13C0]
+      - [0x6B4A90, c, file025/801C1520]
+      - [0x6B4DD0, c, file025/801C1860]
+      - [0x6B5540, c, file025/801C1FD0]
+      - [0x6B5990, c, file025/801C2420]
+      - [0x6B5EF0, c, file025/801C2980]
+      - [0x6BAE30, c, file025/801C78C0]
+      - [0x6BF780, c, file025/801CC210]
+      - [0x6C0290, c, file025/801CCD20]
+      - [0x6C1160, c, file025/801CDBF0]
+      - [0x6C13F0, c, file025/801CDE80]
+      - [0x6C1CD0, c, file025/801CE760]
+      - [0x6C3C00, c, file025/801D0690]
+      - [0x6C4240, c, file025/801D0CD0]
+      - [0x6C4990, c, file025/801D1420]
+      - [0x6C4CD0, c, file025/801D1760]
+      - [0x6C6210, c, file025/801D2CA0]
+      - [0x6C6540, c, file025/801D2FD0]
+      - [0x6C6870, c, file025/801D3300]
+      - [0x6C7C60, c, file025/801D46F0]
+      - [0x6C8200, c, file025/801D4C90]
+      - [0x6C8990, c, file025/801D5420]
+      - [0x6C9570, c, file025/801D6000]
+      - [0x6C9BC0, c, file025/801D6650]
+      - [0x6CA1F0, c, file025/801D6C80]
+      - [0x6CBC70, c, file025/801D8700]
+      - [0x6CC170, data]
+      - { type: bss, vram: 0x801DD670 }
+  - name: file026
+    type: code
+    start: 0x6D0BE0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0xA0
+    subsegments:
+      - [0x6D0BE0, c, file026/801E1BE0]
+      - [0x6E91F0, data]
+      - { type: bss, vram: 0x801FD420 }
+  - name: file027
+    type: code
+    start: 0x6EC420
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x20
+    subsegments:
+      - [0x6EC420, c, file027/801E1BE0]
+      - [0x6FC780, data]
+      - { type: bss, vram: 0x801F5A60 }
+  - name: file028
+    type: code
+    start: 0x7002A0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x30
+    subsegments:
+      - [0x7002A0, c, file028/801E1BE0]
+      - [0x7002C0, c, file028/801E1C00]
+      - [0x71F800, data]
+      - { type: bss, vram: 0x80208E10 }
+  - name: file029
+    type: code
+    start: 0x7274D0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x7274D0, c, file029/801E1BE0]
+      - [0x72B2C0, data]
+  - name: file030
+    type: code
+    start: 0x72C430
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x72C430, c, file030/801E1BE0]
+      - [0x733F10, data]
+  - name: file031
+    type: code
+    start: 0x736FD0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x736FD0, c, file031/801E1BE0]
+      - [0x737E20, data]
+  - name: file032
+    type: code
+    start: 0x738220
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x738220, c, file032/801E1BE0]
+      - [0x738230, c, file032/801E1BF0]
+      - [0x73FC80, data]
+  - name: file033
+    type: code
+    start: 0x742000
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x742000, c, file033/801E1BE0]
+      - [0x751C80, data]
+  - name: file034
+    type: code
+    start: 0x754F10
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x754F10, c, file034/801E1BE0]
+      - [0x75B790, data]
+  - name: file035
+    type: code
+    start: 0x75CA60
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x75CA60, c, file035/801E1BE0]
+      - [0x762D60, data]
+  - name: file036
+    type: code
+    start: 0x763BE0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x60
+    subsegments:
+      - [0x763BE0, c, file036/801E1BE0]
+      - [0x766B30, data]
+      - { type: bss, vram: 0x801E5200 }
+  - name: file037
+    type: code
+    start: 0x767200
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0xA0
+    subsegments:
+      - [0x767200, c, file037/801E1BE0]
+      - [0x76B270, data]
+      - { type: bss, vram: 0x801E6E10 }
+  - name: file038
+    type: code
+    start: 0x76C430
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x76C430, c, file038/801E1BE0]
+      - [0x771110, data]
+  - name: file039
+    type: code
+    start: 0x771B10
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x40
+    subsegments:
+      - [0x771B10, c, file039/801E1BE0]
+      - [0x779D20, data]
+      - { type: bss, vram: 0x801EB3D0 }
+  - name: file040
+    type: code
+    start: 0x77B300
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0xC0
+    subsegments:
+      - [0x77B300, c, file040/801E1BE0]
+      - [0x780C40, data]
+      - { type: bss, vram: 0x801E8910 }
+  - name: file041
+    type: code
+    start: 0x782030
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0xE0
+    subsegments:
+      - [0x782030, c, file041/801E1BE0]
+      - [0x7880C0, data]
+      - { type: bss, vram: 0x801E8960 }
+  - name: file042
+    type: code
+    start: 0x788DB0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x788DB0, c, file042/801E1BE0]
+      - [0x78B320, data]
+  - name: file043
+    type: code
+    start: 0x78C280
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x78C280, c, file043/801E1BE0]
+      - [0x78C2A0, c, file043/801E1C00]
+      - [0x793510, data]
+  - name: file044
+    type: code
+    start: 0x7948B0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x10
+    subsegments:
+      - [0x7948B0, c, file044/801E1BE0]
+      - [0x79ECF0, data]
+      - { type: bss, vram: 0x801EDEF0 }
+  - name: file045
+    type: code
+    start: 0x7A0BC0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x10
+    subsegments:
+      - [0x7A0BC0, c, file045/801E1BE0]
+      - [0x7A6770, data]
+      - { type: bss, vram: 0x801E8D10 }
+  - name: file046
+    type: code
+    start: 0x7A7CF0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    subsegments:
+      - [0x7A7CF0, c, file046/801E1BE0]
+      - [0x7AF580, data]
+  - name: file047
+    type: code
+    start: 0x7B14E0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x10
+    subsegments:
+      - [0x7B14E0, c, file047/801E1BE0]
+      - [0x7B34E0, data]
+      - { type: bss, vram: 0x801E3E50 }
+  - name: file048
+    type: code
+    start: 0x7B3750
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x10
+    subsegments:
+      - [0x7B3750, c, file048/801E1BE0]
+      - [0x7BB390, data]
+      - { type: bss, vram: 0x801EA5F0 }
+  - name: file049
+    type: code
+    start: 0x7BC160
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x30
+    subsegments:
+      - [0x7BC160, c, file049/801E1BE0]
+      - [0x7C0D90, data]
+      - { type: bss, vram: 0x801E7760 }
+  - name: file050
+    type: code
+    start: 0x7C1CE0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x70
+    subsegments:
+      - [0x7C1CE0, c, file050/801E1BE0]
+      - [0x7C3A90, data]
+      - { type: bss, vram: 0x801E3D90 }
+  - name: file051
+    type: code
+    start: 0x7C3E90
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x20
+    subsegments:
+      - [0x7C3E90, c, file051/801E1BE0]
+      - [0x7C9020, data]
+      - { type: bss, vram: 0x801E7950 }
+  - name: file052
+    type: code
+    start: 0x7C9C00
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x10
+    subsegments:
+      - [0x7C9C00, c, file052/801E1BE0]
+      - [0x7CCA90, data]
+      - { type: bss, vram: 0x801E5A80 }
+  - name: file053
+    type: code
+    start: 0x7CDAA0
+    vram: 0x801E1BE0
+    exclusive_ram_id: slot801E1BE0
+    bss_size: 0x10
+    subsegments:
+      - [0x7CDAA0, c, file053/801E1BE0]
+      - [0x7D3880, data]
+      - { type: bss, vram: 0x801E9990 }
+  - name: file054
+    type: code
+    start: 0x7D5850
+    vram: 0x802408F0
+    exclusive_ram_id: slot802408F0
+    bss_size: 0x10
+    subsegments:
+      - [0x7D5850, c, file054/802408F0]
+      - [0x7DB720, data]
+      - { type: bss, vram: 0x80248800 }
+  - name: file055
+    type: code
+    start: 0x7DD760
+    vram: 0x803837E0
+    exclusive_ram_id: slot803837E0
+    bss_size: 0x10
+    subsegments:
+      - [0x7DD760, c, file055/803837E0]
+      - [0x7DD920, c, file055/803839A0]
+      - [0x7DE2E0, data]
+      - { type: bss, vram: 0x8038DDC0 }
+  - name: file056
+    type: code
+    start: 0x7E7D40
+    vram: 0x803757E0
+    exclusive_ram_id: slot803757E0
+    bss_size: 0xAF0
+    subsegments:
+      - [0x7E7D40, c, file056/803757E0]
+      - [0x7EA8A0, c, file056/80378340]
+      - [0x7EBED0, c, file056/80379970]
+      - [0x7EE150, c, file056/8037BBF0]
+      - [0x7EF900, c, file056/8037D3A0]
+      - [0x7F33F0, c, file056/80380E90]
+      - [0x7F9F30, c, file056/803879D0]
+      - [0x7FA9F0, data]
+      - { type: bss, vram: 0x80389EE0 }
+  - name: file057
+    type: code
+    start: 0x7FC440
+    vram: 0x80358820
+    exclusive_ram_id: slot80358820
+    bss_size: 0x400
+    subsegments:
+      - [0x7FC440, c, file057/80358820]
+      - [0x807F60, c, file057/80364340]
+      - [0x80B3D0, c, file057/803677B0]
+      - [0x80D4F0, c, file057/803698D0]
+      - [0x812580, c, file057/8036E960]
+      - [0x8145F0, c, file057/803709D0]
+      - [0x8177D0, c, file057/80373BB0]
+      - [0x819180, c, file057/80375560]
+      - [0x819F20, c, file057/80376300]
+      - [0x81A930, c, file057/80376D10]
+      - [0x81CE50, c, file057/80379230]
+      - [0x823030, c, file057/8037F410]
+      - [0x823C10, c, file057/8037FFF0]
+      - [0x824F30, c, file057/80381310]
+      - [0x8290F0, data]
+      - { type: bss, vram: 0x8038CBC0 }
+  - name: file058
+    type: code
+    start: 0x8307E0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x8307E0, c, file058/8038CFC0]
+      - [0x831450, data]
+  - name: file059
+    type: code
+    start: 0x8314E0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x8314E0, c, file059/8038CFC0]
+      - [0x831E80, data]
+  - name: file060
+    type: code
+    start: 0x831F10
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x831F10, c, file060/8038CFC0]
+      - [0x832750, data]
+  - name: file061
+    type: code
+    start: 0x832810
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x832810, c, file061/8038CFC0]
+      - [0x833200, data]
+  - name: file062
+    type: code
+    start: 0x833290
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x833290, c, file062/8038CFC0]
+      - [0x833DA0, data]
+  - name: file063
+    type: code
+    start: 0x833E60
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x833E60, c, file063/8038CFC0]
+      - [0x834870, data]
+  - name: file064
+    type: code
+    start: 0x834900
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x834900, c, file064/8038CFC0]
+      - [0x835530, data]
+  - name: file065
+    type: code
+    start: 0x8355C0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x8355C0, c, file065/8038CFC0]
+      - [0x835D20, data]
+  - name: file066
+    type: code
+    start: 0x835DB0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x835DB0, c, file066/8038CFC0]
+      - [0x836910, data]
+  - name: file067
+    type: code
+    start: 0x836990
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x836990, c, file067/8038CFC0]
+      - [0x837680, data]
+  - name: file068
+    type: code
+    start: 0x837710
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x837710, c, file068/8038CFC0]
+      - [0x838410, data]
+  - name: file069
+    type: code
+    start: 0x8384A0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x8384A0, c, file069/8038CFC0]
+      - [0x838F10, data]
+  - name: file070
+    type: code
+    start: 0x838FB0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x838FB0, c, file070/8038CFC0]
+      - [0x839C60, data]
+  - name: file071
+    type: code
+    start: 0x839CF0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x839CF0, c, file071/8038CFC0]
+      - [0x83A750, data]
+  - name: file072
+    type: code
+    start: 0x83A7E0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    bss_size: 0x10
+    subsegments:
+      - [0x83A7E0, c, file072/8038CFC0]
+      - [0x83B250, data]
+      - { type: bss, vram: 0x8038DAC0 }
+  - name: file073
+    type: code
+    start: 0x83B2E0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x83B2E0, c, file073/8038CFC0]
+      - [0x83BF50, data]
+  - name: file074
+    type: code
+    start: 0x83BFD0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x83BFD0, c, file074/8038CFC0]
+      - [0x83CBD0, data]
+  - name: file075
+    type: code
+    start: 0x83CC60
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x83CC60, c, file075/8038CFC0]
+      - [0x83D690, data]
+  - name: file076
+    type: code
+    start: 0x83D730
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x83D730, c, file076/8038CFC0]
+      - [0x83E190, data]
+  - name: file077
+    type: code
+    start: 0x83E220
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x83E220, c, file077/8038CFC0]
+      - [0x83ECF0, data]
+  - name: file078
+    type: code
+    start: 0x83ED80
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x83ED80, c, file078/8038CFC0]
+      - [0x83F5C0, data]
+  - name: file079
+    type: code
+    start: 0x83F650
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x83F650, c, file079/8038CFC0]
+      - [0x840100, data]
+  - name: file080
+    type: code
+    start: 0x8401A0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x8401A0, c, file080/8038CFC0]
+      - [0x8409B0, data]
+  - name: file081
+    type: code
+    start: 0x840A40
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x840A40, c, file081/8038CFC0]
+      - [0x841270, data]
+  - name: file082
+    type: code
+    start: 0x841300
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x841300, c, file082/8038CFC0]
+      - [0x841CB0, data]
+  - name: file083
+    type: code
+    start: 0x841D50
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x841D50, c, file083/8038CFC0]
+      - [0x842670, data]
+  - name: file084
+    type: code
+    start: 0x842700
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x842700, c, file084/8038CFC0]
+      - [0x843350, data]
+  - name: file085
+    type: code
+    start: 0x8433D0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x8433D0, c, file085/8038CFC0]
+      - [0x843F50, data]
+  - name: file086
+    type: code
+    start: 0x843FE0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    bss_size: 0x10
+    subsegments:
+      - [0x843FE0, c, file086/8038CFC0]
+      - [0x844C40, data]
+      - { type: bss, vram: 0x8038DCB0 }
+  - name: file087
+    type: code
+    start: 0x844CD0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x844CD0, c, file087/8038CFC0]
+      - [0x845B30, data]
+  - name: file088
+    type: code
+    start: 0x845BD0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x845BD0, c, file088/8038CFC0]
+      - [0x846590, data]
+  - name: file089
+    type: code
+    start: 0x846620
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x846620, c, file089/8038CFC0]
+      - [0x847390, data]
+  - name: file090
+    type: code
+    start: 0x847440
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x847440, c, file090/8038CFC0]
+      - [0x847DF0, data]
+  - name: file091
+    type: code
+    start: 0x847E80
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x847E80, c, file091/8038CFC0]
+      - [0x848980, data]
+  - name: file092
+    type: code
+    start: 0x848A20
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x848A20, c, file092/8038CFC0]
+      - [0x8493B0, data]
+  - name: file093
+    type: code
+    start: 0x849470
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x849470, c, file093/8038CFC0]
+      - [0x84A4E0, data]
+  - name: file094
+    type: code
+    start: 0x84A5C0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x84A5C0, c, file094/8038CFC0]
+      - [0x84B690, data]
+  - name: file095
+    type: code
+    start: 0x84B720
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x84B720, c, file095/8038CFC0]
+      - [0x84C880, data]
+  - name: file096
+    type: code
+    start: 0x84C910
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x84C910, c, file096/8038CFC0]
+      - [0x84D510, data]
+  - name: file097
+    type: code
+    start: 0x84D5A0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x84D5A0, c, file097/8038CFC0]
+      - [0x84DC50, data]
+  - name: file098
+    type: code
+    start: 0x84DCF0
+    vram: 0x8038CFC0
+    exclusive_ram_id: slot8038CFC0
+    subsegments:
+      - [0x84DCF0, c, file098/8038CFC0]
+      - [0x84E9A0, data]
+  - [0x84EA40, bin, file099]   # vram 0x8038B7E0, compressed
+  - name: file100
+    type: code
+    start: 0x8505A0
+    vram: 0x8038B7E0
+    exclusive_ram_id: slot8038B7E0
+    bss_size: 0x440
+    subsegments:
+      - [0x8505A0, c, file100/8038B7E0]
+      - [0x851690, c, file100/8038C8D0]
+      - [0x851800, c, file100/8038CA40]
+      - [0x851FA0, c, file100/8038D1E0]
+      - [0x8525D0, data]
+      - { type: bss, vram: 0x8038DD60 }
+  - [0x852B20, bin, file101]   # vram 0x03000000, compressed
+  - [0x852B30, bin, file102]   # vram 0x03000000, compressed
+  - [0x8571B0, bin, file103]   # vram 0x03000000, compressed
+  - [0x85A0D0, bin, file104]   # vram 0x03000000, compressed
+  - [0x860F30, bin, file105]   # vram 0x03000000, compressed
+  - [0x8644E0, bin, file106]   # vram 0x04000000, compressed
+  - [0x8646E0, bin, file107]   # vram 0x04000000
+  - [0x866730, bin, file108]   # vram 0x04000000
+  - [0x867730, bin, file109]   # vram 0x04000000
+  - [0x867F70, bin, file110]   # vram 0x04000000
+  - [0x869EB0, bin, file111]   # vram 0x04000000
+  - [0x86A8D0, bin, file112]   # vram 0x04000000
+  - [0x86AD20, bin, file115]   # vram 0x03000000, compressed
+  - [0x86B080, bin, file116]   # vram 0x03000000, compressed
+  - [0x86BA90, bin, file117]   # vram 0x03000000, compressed
+  - [0x86CDB0, bin, file118]   # vram 0x03000000, compressed
+  - [0x86FC80, bin, file119]   # vram 0x03000000, compressed
+  - [0x870050, bin, file120]   # vram 0x03000000, compressed
+  - [0x8744D0, bin, file122]   # vram 0x03000000, compressed
+  - [0x874AA0, bin, file123]   # vram 0x08000000
+  - [0x8810D0, bin, file125]   # vram 0x08000000
+  - [0x886D80, bin, file126]   # vram 0x03000000, compressed
+  - [0x88A200, bin, file127]   # vram 0x03000000, compressed
+  - [0x88D000, bin, file128]   # vram 0x03000000, compressed
+  - [0x88FAE0, bin, file129]   # vram 0x03000000, compressed
+  - [0x892B40, bin, file130]   # vram 0x03000000, compressed
+  - [0x895A70, bin, file131]   # vram 0x03000000, compressed
+  - [0x899220, bin, file132]   # vram 0x03000000, compressed
+  - [0x89BE80, bin, file133]   # vram 0x03000000, compressed
+  - [0x89ED20, bin, file134]   # vram 0x03000000, compressed
+  - [0x8A2890, bin, file135]   # vram 0x03000000, compressed
+  - [0x8A57F0, bin, file136]   # vram 0x03000000, compressed
+  - [0x8A9BF0, bin, file137]   # vram 0x03000000, compressed
+  - [0x8AD720, bin, file138]   # vram 0x03000000, compressed
+  - [0x8AFD70, bin, file139]   # vram 0x03000000, compressed
+  - [0x8B23B0, bin, file140]   # vram 0x03000000, compressed
+  - [0x8B2770, bin, file141]   # vram 0x03000000, compressed
+  - [0x8B2B60, bin, file142]   # vram 0x08000000
+  - [0x8D8090, bin, file143]   # vram 0x0D000000, compressed
+  - [0x8D9E00, bin, file144]   # vram 0x08000000
+  - [0x8DDCB0, bin, file145]   # vram 0x03000000, compressed
+  - [0x8E07D0, bin, file146]   # vram 0x03000000, compressed
+  - [0x8E33D0, bin, file147]   # vram 0x03000000, compressed
+  - [0x8E63B0, bin, file148]   # vram 0x03000000, compressed
+  - [0x8E9130, bin, file149]   # vram 0x03000000, compressed
+  - [0x8EC250, bin, file150]   # vram 0x03000000, compressed
+  - [0x8EF060, bin, file151]   # vram 0x03000000, compressed
+  - [0x8F19C0, bin, file152]   # vram 0x03000000, compressed
+  - [0x8F6580, bin, file153]   # vram 0x03000000, compressed
+  - [0x8F95E0, bin, file154]   # vram 0x03000000, compressed
+  - [0x8FCA30, bin, file155]   # vram 0x03000000, compressed
+  - [0x8FF510, bin, file156]   # vram 0x03000000, compressed
+  - [0x9023B0, bin, file157]   # vram 0x03000000, compressed
+  - [0x904D30, bin, file158]   # vram 0x03000000, compressed
+  - [0x907D00, bin, file159]   # vram 0x08000000
+  - [0x94EC80, bin, file160]   # vram 0x03000000, compressed
+  - [0x94F4C0, bin, file161]   # vram 0x03000000, compressed
+  - [0x965150, bin, file162]   # vram 0x03000000, compressed
+  - [0x970A50, bin, file163]   # vram 0x03000000, compressed
+  - [0x9795D0, bin, file164]   # vram 0x03000000, compressed
+  - [0x98DE60, bin, file165]   # vram 0x03000000, compressed
+  - [0x9A4B50, bin, file166]   # vram 0x03000000, compressed
+  - [0x9BA5F0, bin, file167]   # vram 0x03000000, compressed
+  - [0x9BBEB0, bin, file168]   # vram 0x03000000, compressed
+  - [0x9BC280, bin, file169]   # vram 0x03000000, compressed
+  - [0x9BCA50, bin, file170]   # vram 0x03000000, compressed
+  - [0x9BCCB0, bin, file171]   # vram 0x03000000, compressed
+  - [0x9BD2F0, bin, file172]   # vram 0x03000000, compressed
+  - [0x9BD6D0, bin, file173]   # vram 0x03000000, compressed
+  - [0x9BE440, bin, file174]   # vram 0x03000000, compressed
+  - [0x9C16B0, bin, file175]   # vram 0x08000000
+  - [0x9D0290, bin, file177]   # vram 0x08000000
+  - [0x9D5510, bin, file178]   # vram 0x03000000, compressed
+  - [0x9D7C80, bin, file179]   # vram 0x03000000, compressed
+  - [0x9DA590, bin, file180]   # vram 0x03000000, compressed
+  - [0x9DA610, bin, file181]   # vram 0x03000000, compressed
+  - [0x9DA690, bin, file183]   # vram 0x03000000, compressed
+  - [0x9DAC70, bin, file184]   # vram 0x03000000, compressed
+  - [0x9DAD40, bin, file186]   # vram 0x03000000, compressed
+  - [0x9DAE10, bin, file188]   # vram 0x08000000
+  - [0x9DCF40, bin, file190]   # vram 0x08000000
+  - [0x9DD600, bin, file191]   # vram 0x03000000, compressed
+  - [0x9DD6D0, bin, file192]   # vram 0x03000000, compressed
+  - [0x9DEDD0, bin, file194]   # vram 0x03000000, compressed
+  - [0x9DEE90, bin, file195]   # vram 0x03000000, compressed
+  - [0x9E0420, bin, file196]   # vram 0x03000000, compressed
+  - [0x9E2A10, bin, file197]   # vram 0x03000000, compressed
+  - [0x9E4A40, bin, file198]   # vram 0x03000000, compressed
+  - [0x9E4DB0, bin, file199]   # vram 0x03000000, compressed
+  - [0x9E52F0, bin, file200]   # vram 0x03000000, compressed
+  - [0x9E5C00, bin, file201]   # vram 0x03000000, compressed
+  - [0x9E6020, bin, file202]   # vram 0x03000000, compressed
+  - [0x9E64A0, bin, file203]   # vram 0x03000000, compressed
+  - [0x9E8880, bin, file204]   # vram 0x03000000, compressed
+  - [0x9E8950, bin, file205]   # vram 0x03000000, compressed
+  - [0x9E91F0, bin, file206]   # vram 0x03000000, compressed
+  - [0x9E9B00, bin, file207]   # vram 0x03000000, compressed
+  - [0x9EA100, bin, file208]   # vram 0x03000000, compressed
+  - [0x9EA660, bin, file209]   # vram 0x03000000, compressed
+  - [0x9EAA00, bin, file210]   # vram 0x03000000, compressed
+  - [0x9EADA0, bin, file211]   # vram 0x03000000, compressed
+  - [0x9EB140, bin, file212]   # vram 0x03000000, compressed
+  - [0x9EBE70, bin, file213]   # vram 0x03000000, compressed
+  - [0x9EC7D0, bin, file214]   # vram 0x03000000, compressed
+  - [0x9ED130, bin, file215]   # vram 0x03000000, compressed
+  - [0x9ED6B0, bin, file216]   # vram 0x03000000, compressed
+  - [0x9EDA30, bin, file217]   # vram 0x03000000, compressed
+  - [0x9EDD00, bin, file218]   # vram 0x03000000, compressed
+  - [0x9EE700, bin, file219]   # vram 0x03000000, compressed
+  - [0x9EF100, bin, file220]   # vram 0x03000000, compressed
+  - [0x9EFB00, bin, file221]   # vram 0x03000000, compressed
+  - [0x9F0360, bin, file222]   # vram 0x03000000, compressed
+  - [0x9F1210, bin, file223]   # vram 0x08000000
+  - [0x9FF790, bin, file225]   # vram 0x08000000
+  - [0x9FFD30, bin, file226]   # vram 0x03000000, compressed
+  - [0xA02F90, bin, file227]   # vram 0x03000000, compressed
+  - [0xA05CD0, bin, file228]   # vram 0x03000000, compressed
+  - [0xA08490, bin, file229]   # vram 0x03000000, compressed
+  - [0xA0AA70, bin, file230]   # vram 0x03000000, compressed
+  - [0xA0DBA0, bin, file231]   # vram 0x03000000, compressed
+  - [0xA111B0, bin, file232]   # vram 0x03000000, compressed
+  - [0xA147E0, bin, file233]   # vram 0x03000000, compressed
+  - [0xA180B0, bin, file234]   # vram 0x03000000, compressed
+  - [0xA1AD60, bin, file235]   # vram 0x03000000, compressed
+  - [0xA1DC50, bin, file236]   # vram 0x03000000, compressed
+  - [0xA20710, bin, file237]   # vram 0x03000000, compressed
+  - [0xA233A0, bin, file238]   # vram 0x03000000, compressed
+  - [0xA25840, bin, file239]   # vram 0x03000000, compressed
+  - [0xA28420, bin, file240]   # vram 0x08000000
+  - [0xA66560, bin, file241]   # vram 0x03000000, compressed
+  - [0xA69120, bin, file242]   # vram 0x03000000, compressed
+  - [0xA6BA30, bin, file243]   # vram 0x03000000, compressed
+  - [0xA6F590, bin, file244]   # vram 0x03000000, compressed
+  - [0xA730D0, bin, file245]   # vram 0x03000000, compressed
+  - [0xA75E90, bin, file246]   # vram 0x03000000, compressed
+  - [0xA78FC0, bin, file247]   # vram 0x08000000
+  - [0xA8A720, bin, file248]   # vram 0x0D000000, compressed
+  - [0xA8B560, bin, file249]   # vram 0x08000000
+  - [0xA8FF80, bin, file250]   # vram 0x03000000, compressed
+  - [0xA946A0, bin, file251]   # vram 0x03000000, compressed
+  - [0xA98D50, bin, file252]   # vram 0x03000000, compressed
+  - [0xA9B670, bin, file253]   # vram 0x03000000, compressed
+  - [0xA9D870, bin, file254]   # vram 0x03000000, compressed
+  - [0xAA0140, bin, file255]   # vram 0x03000000, compressed
+  - [0xAA2760, bin, file256]   # vram 0x03000000, compressed
+  - [0xAA47D0, bin, file257]   # vram 0x03000000, compressed
+  - [0xAA7BF0, bin, file258]   # vram 0x03000000, compressed
+  - [0xAAAA10, bin, file259]   # vram 0x08000000
+  - [0xABE350, bin, file261]   # vram 0x08000000
+  - [0xAC1900, bin, file262]   # vram 0x03000000
+  - [0xAF27A0, bin, file263]   # vram 0x03000000
+  - [0xC542D0, bin, file264]   # vram 0x03000000
+  - [0xCD4870, bin, file265]   # vram 0x03000000
+  - [0xCFE0A0, bin, file266]   # vram 0x03000000
+  - [0xCFECC0, bin, file267]   # vram 0x03000000
+  - [0xD04B10, bin, file268]   # vram 0x03000000
+  - [0xD08350, bin, file269]   # vram 0x03000000
+  - [0xD084D0, bin, file270]   # vram 0x03000000, compressed
+  - [0xD085C0, bin, file276]   # vram 0x03000000, compressed
+  - [0xD0A340, bin, file277]   # vram 0x03000000, compressed
+  - [0xD0B8C0, bin, file278]   # vram 0x03000000, compressed
+  - [0xD0CF10, bin, file279]   # vram 0x03000000, compressed
+  - [0xD0E820, bin, file280]   # vram 0x03000000, compressed
+  - [0xD10430, bin, file281]   # vram 0x03000000, compressed
+  - [0xD129D0, bin, file282]   # vram 0x03000000, compressed
+  - [0xD15130, bin, file283]   # vram 0x03000000, compressed
+  - [0xD16C70, bin, file284]   # vram 0x03000000, compressed
+  - [0xD17F20, bin, file285]   # vram 0x03000000, compressed
+  - [0xD19380, bin, file286]   # vram 0x03000000, compressed
+  - [0xD1BB40, bin, file287]   # vram 0x03000000, compressed
+  - [0xD1D510, bin, file288]   # vram 0x03000000, compressed
+  - [0xD1EA90, bin, file293]   # vram 0x03000000, compressed
+  - [0xD1EB50, bin, file298]   # vram 0x03000000, compressed
+  - [0xD1EF80, bin, file299]   # vram 0x03000000, compressed
+  - [0xD1F1E0, bin, file300]   # vram 0x03000000, compressed
+  - [0xD1F490, bin, file301]   # vram 0x03000000, compressed
+  - [0xD23C00, bin, file302]   # vram 0x03000000, compressed
+  - [0xD24930, bin, file304]   # vram 0x08000000
+  - [0xD4A460, bin, file306]   # vram 0x08000000
+  - [0xD4AC40, bin, file307]   # vram 0x03000000, compressed
+  - [0xD56DD0, bin, file308]   # vram 0x03000000, compressed
+  - [0xD64590, bin, file309]   # vram 0x03000000, compressed
+  - [0xD71090, bin, file310]   # vram 0x03000000, compressed
+  - [0xD7C0F0, bin, file311]   # vram 0x03000000, compressed
+  - [0xD83AF0, bin, file312]   # vram 0x03000000, compressed
+  - [0xD96790, bin, file313]   # vram 0x03000000, compressed
+  - [0xDA46E0, bin, file314]   # vram 0x03000000, compressed
+  - [0xDB04F0, bin, file315]   # vram 0x03000000, compressed
+  - [0xDBD140, bin, file316]   # vram 0x03000000, compressed
+  - [0xDC66F0, bin, file317]   # vram 0x03000000, compressed
+  - [0xDC6B10, bin, file318]   # vram 0x03000000, compressed
+  - [0xDC7AA0, bin, file319]   # vram 0x03000000, compressed
+  - [0xDC86D0, bin, file320]   # vram 0x03000000, compressed
+  - [0xDC8CA0, bin, file321]   # vram 0x03000000, compressed
+  - [0xDC9250, bin, file322]   # vram 0x03000000, compressed
+  - [0xDC9760, bin, file323]   # vram 0x03000000, compressed
+  - [0xDC9AD0, bin, file324]   # vram 0x03000000, compressed
+  - [0xDC9DC0, bin, file325]   # vram 0x03000000, compressed
+  - [0xDC9E40, bin, file326]   # vram 0x03000000, compressed
+  - [0xDD04E0, bin, file327]   # vram 0x08000000
+  - [0xDDBB60, bin, file329]   # vram 0x08000000
+  - [0xDE44A0, bin, file330]   # vram 0x03000000, compressed
+  - [0xDE5DE0, bin, file331]   # vram 0x03000000, compressed
+  - [0xDE6420, bin, file333]   # vram 0x03000000, compressed
+  - [0xDE67E0, bin, file334]   # vram 0x03000000, compressed
+  - [0xDE6FD0, bin, file335]   # vram 0x03000000, compressed
+  - [0xDE7360, bin, file336]   # vram 0x03000000, compressed
+  - [0xDE7630, bin, file337]   # vram 0x03000000, compressed
+  - [0xDEBED0, bin, file338]   # vram 0x03000000, compressed
+  - [0xDEC890, bin, file339]   # vram 0x03000000, compressed
+  - [0xDECAE0, bin, file340]   # vram 0x03000000, compressed
+  - [0xDED5F0, bin, file341]   # vram 0x03000000, compressed
+  - [0xDEEDF0, bin, file342]   # vram 0x03000000, compressed
+  - [0xDEF760, bin, file343]   # vram 0x03000000, compressed
+  - [0xDF0650, bin, file344]   # vram 0x03000000, compressed
+  - [0xDF0740, bin, file345]   # vram 0x03000000, compressed
+  - [0xDF0810, bin, file346]   # vram 0x03000000, compressed
+  - [0xDF0950, bin, file347]   # vram 0x08000000
+  - [0xDF2950, bin, file349]   # vram 0x08000000
+  - [0xDF4C30, bin, file350]   # vram 0x03000000, compressed
+  - [0xDF50D0, bin, file351]   # vram 0x03000000, compressed
+  - [0xE062E0, bin, file352]   # vram 0x03000000, compressed
+  - [0xE126B0, bin, file353]   # vram 0x03000000, compressed
+  - [0xE12A40, bin, file354]   # vram 0x03000000, compressed
+  - [0xE25750, bin, file355]   # vram 0x03000000, compressed
+  - [0xE264A0, bin, file356]   # vram 0x03000000, compressed
+  - [0xE26570, bin, file357]   # vram 0x03000000, compressed
+  - [0xE2BDF0, bin, file358]   # vram 0x03000000, compressed
+  - [0xE380D0, bin, file359]   # vram 0x03000000, compressed
+  - [0xE52060, bin, file360]   # vram 0x03000000, compressed
+  - [0xE68050, bin, file361]   # vram 0x03000000, compressed
+  - [0xE68240, bin, file362]   # vram 0x03000000, compressed
+  - [0xE73170, bin, file363]   # vram 0x03000000, compressed
+  - [0xE7DA70, bin, file364]   # vram 0x03000000, compressed
+  - [0xE82790, bin, file365]   # vram 0x03000000, compressed
+  - [0xE83070, bin, file366]   # vram 0x03000000, compressed
+  - [0xE8AC10, bin, file367]   # vram 0x03000000, compressed
+  - [0xE8B540, bin, file368]   # vram 0x03000000, compressed
+  - [0xE8F5E0, bin, file369]   # vram 0x03000000, compressed
+  - [0xE911A0, bin, file370]   # vram 0x03000000, compressed
+  - [0xE91620, bin, file371]   # vram 0x03000000, compressed
+  - [0xE91A30, bin, file372]   # vram 0x03000000, compressed
+  - [0xE91E20, bin, file373]   # vram 0x03000000, compressed
+  - [0xE92450, bin, file374]   # vram 0x03000000, compressed
+  - [0xE92A70, bin, file375]   # vram 0x03000000, compressed
+  - [0xE92CA0, bin, file376]   # vram 0x08000000
+  - [0xEA3A70, bin, file378]   # vram 0x08000000
+  - [0xEA8FB0, bin, file379]   # vram 0x03000000
+  - [0xEF1B90, bin, file380]   # vram 0x03000000, compressed
+  - [0xEF2C40, bin, file381]   # vram 0x03000000, compressed
+  - [0xEF4080, bin, file382]   # vram 0x03000000, compressed
+  - [0xEF64D0, bin, file383]   # vram 0x03000000, compressed
+  - [0xEF8210, bin, file384]   # vram 0x03000000, compressed
+  - [0xEF8A00, bin, file385]   # vram 0x03000000, compressed
+  - [0xEF8DF0, bin, file386]   # vram 0x03000000, compressed
+  - [0xEF8F10, bin, file387]   # vram 0x03000000, compressed
+  - [0xEFD550, bin, file388]   # vram 0x03000000, compressed
+  - [0xEFF600, bin, file389]   # vram 0x03000000, compressed
+  - [0xEFF840, bin, file390]   # vram 0x03000000, compressed
+  - [0xF01D80, bin, file393]   # vram 0x08000000
+  - [0xF08FD0, bin, file395]   # vram 0x08000000
+  - [0xF0A7A0, bin, file396]   # vram 0x03000000, compressed
+  - [0xF16A90, bin, file397]   # vram 0x03000000, compressed
+  - [0xF22670, bin, file398]   # vram 0x03000000, compressed
+  - [0xF31CC0, bin, file399]   # vram 0x03000000, compressed
+  - [0xF3D120, bin, file400]   # vram 0x03000000, compressed
+  - [0xF4E7C0, bin, file401]   # vram 0x03000000, compressed
+  - [0xF56D50, bin, file402]   # vram 0x03000000, compressed
+  - [0xF62B80, bin, file403]   # vram 0x03000000, compressed
+  - [0xF6D100, bin, file404]   # vram 0x03000000, compressed
+  - [0xF74790, bin, file405]   # vram 0x03000000, compressed
+  - [0xF805C0, bin, file406]   # vram 0x03000000, compressed
+  - [0xF83FC0, bin, file407]   # vram 0x03000000, compressed
+  - [0xF84960, bin, file408]   # vram 0x03000000, compressed
+  - [0xF853D0, bin, file409]   # vram 0x03000000, compressed
+  - [0xF85650, bin, file410]   # vram 0x03000000, compressed
+  - [0xF86080, bin, file411]   # vram 0x03000000, compressed
+  - [0xF86710, bin, file412]   # vram 0x03000000, compressed
+  - [0xF86D00, bin, file413]   # vram 0x03000000, compressed
+  - [0xF873A0, bin, file414]   # vram 0x03000000, compressed
+  - [0xF87960, bin, file415]   # vram 0x03000000, compressed
+  - [0xF87F60, bin, file416]   # vram 0x03000000, compressed
+  - [0xF88300, bin, file417]   # vram 0x03000000, compressed
+  - [0xF88620, bin, file418]   # vram 0x03000000, compressed
+  - [0xF88940, bin, file419]   # vram 0x03000000, compressed
+  - [0xF88B20, bin, file420]   # vram 0x03000000, compressed
+  - [0xF88E50, bin, file421]   # vram 0x08000000
+  - [0xF8EB00, bin, file423]   # vram 0x08000000
+  - [0xF97550, bin, file424]   # vram 0x03000000
+  - [0xFBDB40, bin, file425]   # vram 0x03000000
+  - [0x100A990, bin, file426]   # vram 0x03000000, compressed
+  - [0x100AA60, bin, file427]   # vram 0x03000000, compressed
+  - [0x100AD20, bin, file429]   # vram 0x03000000, compressed
+  - [0x100ADE0, bin, file436]   # vram 0x03000000, compressed
+  - [0x100B070, bin, file437]   # vram 0x03000000, compressed
+  - [0x100B780, bin, file438]   # vram 0x03000000, compressed
+  - [0x100B9D0, bin, file440]   # vram 0x03000000, compressed
+  - [0x100BAA0, bin, file441]   # vram 0x08000000
+  - [0x100ED10, bin, file442]   # vram 0x03000000, compressed
+  - [0x102AED0, bin, file443]   # vram 0x03000000, compressed
+  - [0x103BBF0, bin, file444]   # vram 0x03000000, compressed
+  - [0x1056AD0, bin, file445]   # vram 0x03000000, compressed
+  - [0x105E2C0, bin, file446]   # vram 0x03000000, compressed
+  - [0x1073260, bin, file447]   # vram 0x03000000, compressed
+  - [0x10863F0, bin, file448]   # vram 0x03000000, compressed
+  - [0x10937B0, bin, file449]   # vram 0x03000000, compressed
+  - [0x10ABFC0, bin, file450]   # vram 0x03000000, compressed
+  - [0x10ACDF0, bin, file451]   # vram 0x03000000, compressed
+  - [0x10AD430, bin, file452]   # vram 0x03000000, compressed
+  - [0x10ADA70, bin, file453]   # vram 0x03000000, compressed
+  - [0x10ADC90, bin, file454]   # vram 0x03000000, compressed
+  - [0x10AE2D0, bin, file455]   # vram 0x03000000, compressed
+  - [0x10AEE30, bin, file456]   # vram 0x03000000, compressed
+  - [0x10B01E0, bin, file457]   # vram 0x03000000, compressed
+  - [0x10B0BB0, bin, file458]   # vram 0x03000000, compressed
+  - [0x10B2240, bin, file459]   # vram 0x03000000, compressed
+  - [0x10B4B30, bin, file460]   # vram 0x03000000, compressed
+  - [0x10B71E0, bin, file461]   # vram 0x08000000
+  - [0x10B89D0, bin, file463]   # vram 0x08000000
+  - [0x10C25A0, bin, file464]   # vram 0x03000000, compressed
+  - [0x10C2720, bin, file465]   # vram 0x03000000, compressed
+  - [0x10CB300, bin, file466]   # vram 0x03000000, compressed
+  - [0x10D4380, bin, file467]   # vram 0x03000000, compressed
+  - [0x10E3990, bin, file468]   # vram 0x03000000, compressed
+  - [0x10F21C0, bin, file469]   # vram 0x03000000, compressed
+  - [0x10F8070, bin, file470]   # vram 0x03000000, compressed
+  - [0x110B440, bin, file471]   # vram 0x03000000, compressed
+  - [0x110B940, bin, file472]   # vram 0x03000000, compressed
+  - [0x1110850, bin, file473]   # vram 0x03000000, compressed
+  - [0x1122040, bin, file474]   # vram 0x03000000, compressed
+  - [0x11372C0, bin, file475]   # vram 0x03000000, compressed
+  - [0x1137C30, bin, file476]   # vram 0x03000000, compressed
+  - [0x1137E40, bin, file477]   # vram 0x03000000, compressed
+  - [0x1138080, bin, file478]   # vram 0x03000000, compressed
+  - [0x11382E0, bin, file479]   # vram 0x03000000, compressed
+  - [0x1138950, bin, file480]   # vram 0x03000000, compressed
+  - [0x113C510, bin, file481]   # vram 0x03000000, compressed
+  - [0x1141040, bin, file482]   # vram 0x08000000
+  - [0x114CA60, bin, file484]   # vram 0x08000000
+  - [0x1156AF0, bin, file485]   # vram 0x03000000, compressed
+  - [0x1157D10, bin, file486]   # vram 0x03000000, compressed
+  - [0x115AC30, bin, file487]   # vram 0x03000000, compressed
+  - [0x115DD80, bin, file488]   # vram 0x03000000, compressed
+  - [0x11626B0, bin, file489]   # vram 0x03000000, compressed
+  - [0x1164F00, bin, file490]   # vram 0x03000000, compressed
+  - [0x1167090, bin, file491]   # vram 0x03000000, compressed
+  - [0x1167720, bin, file492]   # vram 0x03000000, compressed
+  - [0x1168790, bin, file493]   # vram 0x03000000, compressed
+  - [0x116A290, bin, file494]   # vram 0x03000000, compressed
+  - [0x116A660, bin, file495]   # vram 0x03000000, compressed
+  - [0x116A8A0, bin, file496]   # vram 0x08000000
+  - [0x116A8E0, bin, file498]   # vram 0x08000000
+  - [0x116A900, bin, file499]   # vram 0x03000000
+  - [0x119BDC0, bin, file500]   # vram 0x03000000, compressed
+  - [0x119C440, bin, file501]   # vram 0x03000000, compressed
+  - [0x11A5D10, bin, file502]   # vram 0x03000000, compressed
+  - [0x11A72A0, bin, file505]   # vram 0x03000000, compressed
+  - [0x11AACB0, bin, file506]   # vram 0x03000000, compressed
+  - [0x11AAD90, bin, file510]   # vram 0x03000000, compressed
+  - [0x11ADED0, bin, file511]   # vram 0x03000000, compressed
+  - [0x11AE370, bin, file512]   # vram 0x03000000, compressed
+  - [0x11AFF00, bin, file513]   # vram 0x03000000, compressed
+  - [0x11B2AC0, bin, file514]   # vram 0x03000000, compressed
+  - [0x11B3A20, bin, file516]   # vram 0x03000000, compressed
+  - [0x11B4C10, bin, file517]   # vram 0x08000000
+  - [0x11BAF90, bin, file519]   # vram 0x08000000
+  - [0x11BDFB0, bin, file520]   # vram 0x03000000, compressed
+  - [0x11BE0C0, bin, file522]   # vram 0x03000000, compressed
+  - [0x11C37C0, bin, file523]   # vram 0x03000000, compressed
+  - [0x11C46B0, bin, file524]   # vram 0x03000000, compressed
+  - [0x11C4B60, bin, file525]   # vram 0x03000000, compressed
+  - [0x11CA8D0, bin, file526]   # vram 0x03000000, compressed
+  - [0x11CB080, bin, file527]   # vram 0x03000000, compressed
+  - [0x11CB4D0, bin, file528]   # vram 0x03000000, compressed
+  - [0x11CB920, bin, file529]   # vram 0x03000000, compressed
+  - [0x11D3A70, bin, file533]   # vram 0x03000000, compressed
+  - [0x11D3B40, bin, file535]   # vram 0x03000000, compressed
+  - [0x11D90B0, bin, file541]   # vram 0x08000000
+  - [0x11E3DB0, bin, file543]   # vram 0x08000000
+  - [0x11E6BB0, bin, file544]   # vram 0x03000000, compressed
+  - [0x11EADE0, bin, file545]   # vram 0x03000000, compressed
+  - [0x11EB920, bin, file546]   # vram 0x08000000
+  - [0x11ECB10, bin, file548]   # vram 0x08000000
+  - [0x11ECEC0, bin, file549]   # vram 0x03000000, compressed
+  - [0x11ED220, bin, file551]   # vram 0x03000000, compressed
+  - [0x11ED2F0, bin, file553]   # vram 0x03000000, compressed
+  - [0x11ED760, bin, file554]   # vram 0x03000000, compressed
+  - [0x11EDD00, bin, file555]   # vram 0x03000000, compressed
+  - [0x11EE040, bin, file558]   # vram 0x08000000
+  - [0x11F46D0, bin, file559]   # vram 0x03000000, compressed
+  - [0x11F83F0, bin, file560]   # vram 0x03000000, compressed
+  - [0x11FAC90, bin, file561]   # vram 0x03000000, compressed
+  - [0x11FAE20, bin, file562]   # vram 0x08000000
+  - [0x11FD0D0, bin, file563]   # vram 0x03000000, compressed
+  - [0x1213940, bin, file564]   # vram 0x03000000, compressed
+  - [0x1216370, bin, file565]   # vram 0x03000000, compressed
+  - [0x121EA20, bin, file566]   # vram 0x03000000, compressed
+  - [0x122C100, bin, file567]   # vram 0x03000000, compressed
+  - [0x1239130, bin, file568]   # vram 0x03000000, compressed
+  - [0x124A150, bin, file569]   # vram 0x03000000, compressed
+  - [0x124D6B0, bin, file570]   # vram 0x03000000, compressed
+  - [0x1253830, bin, file571]   # vram 0x03000000, compressed
+  - [0x1253E60, bin, file572]   # vram 0x03000000, compressed
+  - [0x12541D0, bin, file573]   # vram 0x03000000, compressed
+  - [0x12545D0, bin, file574]   # vram 0x03000000, compressed
+  - [0x1257000, bin, file575]   # vram 0x08000000
+  - [0x1267120, bin, file577]   # vram 0x08000000
+  - [0x126E910, bin, file578]   # vram 0x03000000, compressed
+  - [0x127BF60, bin, file579]   # vram 0x03000000, compressed
+  - [0x128C200, bin, file580]   # vram 0x03000000, compressed
+  - [0x129CE00, bin, file581]   # vram 0x03000000, compressed
+  - [0x12B5700, bin, file582]   # vram 0x03000000, compressed
+  - [0x12B9460, bin, file583]   # vram 0x03000000, compressed
+  - [0x12C4890, bin, file584]   # vram 0x03000000, compressed
+  - [0x12C64B0, bin, file585]   # vram 0x03000000, compressed
+  - [0x12C6830, bin, file586]   # vram 0x03000000, compressed
+  - [0x12C72A0, bin, file587]   # vram 0x03000000, compressed
+  - [0x12C7D50, bin, file588]   # vram 0x03000000, compressed
+  - [0x12C83A0, bin, file589]   # vram 0x03000000, compressed
+  - [0x12C89D0, bin, file590]   # vram 0x03000000, compressed
+  - [0x12C8DD0, bin, file591]   # vram 0x03000000, compressed
+  - [0x12CBAD0, bin, file592]   # vram 0x08000000
+  - [0x12D1AF0, bin, file594]   # vram 0x08000000
+  - [0x12DD5A0, bin, file595]   # vram 0x03000000, compressed
+  - [0x12DD5E0, bin, file596]   # vram 0x03000000, compressed
+  - [0x12DD620, bin, file597]   # vram 0x03000000, compressed
+  - [0x12DD660, bin, file598]   # vram 0x03000000, compressed
+  - [0x12DD6A0, bin, file599]   # vram 0x03000000, compressed
+  - [0x12DD6E0, bin, file600]   # vram 0x03000000, compressed
+  - [0x12DD720, bin, file601]   # vram 0x03000000, compressed
+  - [0x12DD760, bin, file602]   # vram 0x03000000, compressed
+  - [0x12DD7A0, bin, file603]   # vram 0x03000000, compressed
+  - [0x12DD7E0, bin, file604]   # vram 0x03000000, compressed
+  - [0x12DD820, bin, file605]   # vram 0x03000000, compressed
+  - [0x12DD860, bin, file606]   # vram 0x03000000, compressed
+  - [0x12DD8A0, bin, file607]   # vram 0x03000000, compressed
+  - [0x12DD8E0, bin, file608]   # vram 0x03000000, compressed
+  - [0x12DD920, bin, file609]   # vram 0x03000000, compressed
+  - [0x12DD960, bin, file610]   # vram 0x03000000, compressed
+  - [0x12DD9A0, bin, file611]   # vram 0x03000000, compressed
+  - [0x12DD9E0, bin, file612]   # vram 0x03000000, compressed
+  - [0x12DDA20, bin, file613]   # vram 0x03000000, compressed
+  - [0x12DDA60, bin, file614]   # vram 0x03000000, compressed
+  - [0x12DDAA0, bin, file615]   # vram 0x03000000, compressed
+  - [0x12DDAE0, bin, file616]   # vram 0x03000000, compressed
+  - [0x12DDB20, bin, file617]   # vram 0x03000000, compressed
+  - [0x12DDB60, bin, file618]   # vram 0x03000000, compressed
+  - [0x12DDBA0, bin, file619]   # vram 0x03000000, compressed
+  - [0x12DDBE0, bin, file620]   # vram 0x03000000, compressed
+  - [0x12DDC20, bin, file621]   # vram 0x03000000, compressed
+  - [0x12DDC60, bin, file622]   # vram 0x03000000, compressed
+  - [0x12DDCA0, bin, file623]   # vram 0x03000000, compressed
+  - [0x12DDCE0, bin, file624]   # vram 0x03000000, compressed
+  - [0x12DDD20]

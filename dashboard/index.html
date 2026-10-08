@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hybrid Heaven decomp progress</title>
+<style>
+.viz-root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface-1: #fcfcfb; --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #898781;
+  --grid: #e1e0d9; --baseline: #c3c2b7; --border: rgba(11,11,11,0.10);
+  --accent: #2a78d6; --unmatched: #e9e8e3; --dup: #f3f2ee;
+  --s0: #e9e8e3; --s1: #cde2fb; --s2: #9ec5f4; --s3: #6da7ec; --s4: #3987e5; --s5: #256abf; --s6: #184f95;
+  --good: #006300; --bad: #d03b3b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root {
+    color-scheme: dark; --page: #0d0d0d; --surface-1: #1a1a19; --text-primary: #fff; --text-secondary: #c3c2b7;
+    --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10); --accent: #3987e5; --unmatched: #2c2c2a; --dup: #222221;
+    --s0: #2c2c2a; --s1: #104281; --s2: #184f95; --s3: #1c5cab; --s4: #2a78d6; --s5: #5598e7; --s6: #86b6ef; --good: #0ca30c;
+  }
+}
+:root[data-theme="dark"] .viz-root {
+  color-scheme: dark; --page: #0d0d0d; --surface-1: #1a1a19; --text-primary: #fff; --text-secondary: #c3c2b7;
+  --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10); --accent: #3987e5; --unmatched: #2c2c2a; --dup: #222221;
+  --s0: #2c2c2a; --s1: #104281; --s2: #184f95; --s3: #1c5cab; --s4: #2a78d6; --s5: #5598e7; --s6: #86b6ef; --good: #0ca30c;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.viz-root { background: var(--page); color: var(--text-primary); font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: 24px 20px 48px; min-height: 100vh; }
+.wrap { max-width: 1180px; margin: 0 auto; }
+header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+.sub { color: var(--text-secondary); font-size: 13px; margin: 0; }
+.toolbar { display: flex; gap: 8px; }
+button { font: inherit; font-size: 13px; color: var(--text-primary); background: var(--surface-1); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.tile, .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; }
+.tile { padding: 14px 16px; }
+.tile .label { font-size: 13px; color: var(--text-secondary); }
+.tile .value { font-size: 28px; font-weight: 600; margin-top: 4px; }
+.tile .note { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.meter { height: 6px; border-radius: 3px; background: var(--s1); margin-top: 10px; overflow: hidden; }
+.meter > i { display: block; height: 100%; background: var(--accent); border-radius: 3px; min-width: 2px; }
+.card { padding: 18px; margin-bottom: 16px; position: relative; }
+.card h2 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+.card .desc { font-size: 13px; color: var(--text-secondary); margin: 0 0 12px; line-height: 1.45; }
+.legend { display: flex; gap: 14px; align-items: center; font-size: 12px; color: var(--text-secondary); flex-wrap: wrap; margin-bottom: 10px; }
+.legend .ramp { display: inline-flex; gap: 2px; }
+.legend .ramp i, .sw { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+#treemap { position: relative; width: 100%; height: 420px; }
+.tm { position: absolute; border-radius: 4px; overflow: hidden; cursor: pointer; outline: 2px solid var(--surface-1); outline-offset: -1px; }
+.tm:hover { filter: brightness(0.92); }
+.tm.sel { box-shadow: inset 0 0 0 2px var(--text-primary); }
+.tm span { position: absolute; left: 6px; top: 4px; font-size: 11px; pointer-events: none; white-space: nowrap; }
+#funcgrid { display: flex; flex-wrap: wrap; gap: 2px; }
+#funcgrid i { width: 10px; height: 10px; border-radius: 2px; display: block; background: var(--unmatched); }
+#funcgrid i.m { background: var(--accent); }
+#funcgrid i.d { background: var(--dup); }
+#funcgrid i:hover { outline: 2px solid var(--text-primary); }
+.tip { position: fixed; pointer-events: none; background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 10px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.14); display: none; z-index: 10; max-width: 300px; }
+.tip b { display: block; font-size: 13px; margin-bottom: 2px; }
+.tip .m { color: var(--text-secondary); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+svg text { font-family: inherit; }
+.tick { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); }
+th { color: var(--text-secondary); font-weight: 600; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+.ok { color: var(--good); font-weight: 600; } .no { color: var(--text-muted); }
+.hidden { display: none; }
+.live { color: var(--good); font-weight: 600; margin-left: 4px; }
+.live.stale { color: var(--text-muted); }
+.tier { display: grid; grid-template-columns: 110px 1fr 170px 230px; gap: 14px; align-items: center; padding: 8px 0;
+  border-bottom: 1px solid var(--grid); font-size: 13px; }
+.tier:last-child { border-bottom: none; }
+.tier .nm b { display: block; font-size: 14px; } .tier .nm span { color: var(--text-muted); font-size: 12px; }
+.tier .track { height: 10px; border-radius: 5px; background: var(--s1); overflow: hidden; }
+.tier .track > i { display: block; height: 100%; background: var(--accent); border-radius: 0 5px 5px 0; }
+.tier .num { font-variant-numeric: tabular-nums; } .tier .share { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .tier { grid-template-columns: 90px 1fr; } .tier .share { grid-column: 1 / -1; } }
+.runlist { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.run { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+.run b { display: block; margin-bottom: 2px; }
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 9px; margin-left: 6px;
+  border: 1px solid var(--border); color: var(--text-secondary); vertical-align: 1px; }
+.badge::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; background: var(--mc); }
+.badge.haiku { --mc: #2a78d6; } .badge.sonnet { --mc: #eb6834; } .badge.opus { --mc: #1baf7a; } .badge.permuter { --mc: #898781; }
+.run .m { color: var(--text-secondary); font-size: 12px; }
+.dots { display: flex; gap: 3px; margin-top: 6px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--unmatched); display: block; }
+.dots i.u { background: var(--accent); }
+.foot { font-size: 12px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Hybrid Heaven (N64) decomp</h1>
+      <p class="sub">Matching decompilation · Opus lead + Haiku swarm · <span id="gen"></span> <span id="live" class="live">● live</span></p>
+    </div>
+    <div class="toolbar">
+      <button id="tableBtn" type="button">Show tables</button>
+      <button id="themeBtn" type="button">Toggle dark mode</button>
+    </div>
+  </header>
+
+  <div class="tiles" id="tiles"></div>
+
+  <div class="card" id="tierCard">
+    <h2>By difficulty</h2>
+    <p class="desc">Unique functions per difficulty tier (size, branches, calls, float ops and jump tables combined).
+      The bar shows functions matched; "share of code" is how much of the game's code each tier holds, so the hard tiers matter most for the overall percentage.</p>
+    <div id="tiers"></div>
+  </div>
+
+  <div class="card" id="runningCard">
+    <h2>Running now</h2>
+    <p class="desc" id="runningDesc"></p>
+    <div class="runlist" id="running"></div>
+  </div>
+
+  <div id="charts">
+    <div class="card">
+      <h2>Code segments</h2>
+      <p class="desc">Each block is one code segment (main, or an overlay file from the ROM's file table), sized by code bytes and
+        shaded by how much of it is matched C. Click a block to see its functions.</p>
+      <div class="legend"><span>Matched code</span><span class="ramp" id="ramp"></span><span>0% → 100%</span></div>
+      <div id="treemap"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="fgTitle">Functions</h2>
+      <p class="desc" id="fgDesc"></p>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--accent)"></i>Matched (C)</span>
+        <span><i class="sw" style="background:var(--unmatched)"></i>Still assembly</span>
+        <span><i class="sw" style="background:var(--dup)"></i>Duplicate of a function elsewhere</span>
+      </div>
+      <div id="funcgrid"></div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h2>Matched functions over time</h2>
+        <p class="desc">Functions matched as C, all segments (duplicates counted once per segment).</p>
+        <div id="history"></div>
+      </div>
+      <div class="card">
+        <h2>Haiku workers</h2>
+        <p class="desc">Every worker run, verified independently. API-equivalent cost as reported by Claude Code (runs use the subscription).</p>
+        <div id="swarm"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tables" class="hidden">
+    <div class="card"><h2>By difficulty</h2><table id="tierTable"></table></div>
+    <div class="card"><h2>Segments</h2><table id="segTable"></table></div>
+    <div class="card"><h2>Worker runs</h2><table id="runTable"></table></div>
+  </div>
+
+  <p class="foot">Progress data comes from objdiff (same report format decomp.dev uses). Regenerate with
+    <code>tools/hh/refresh_dashboard.sh</code>.</p>
+</div>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const tip = $("#tip");
+const fmt = n => n.toLocaleString("en-US");
+const pct = (a, b) => b ? (100 * a / b) : 0;
+const pctS = (a, b) => { const p = pct(a, b); return (p > 0 && p < 0.1 ? p.toFixed(3) : p < 10 ? p.toFixed(2) : p.toFixed(1)) + "%"; };
+const RAMP = ["--s0","--s1","--s2","--s3","--s4","--s5","--s6"];
+const shade = p => p <= 0 ? "var(--s0)" : `var(${RAMP[Math.min(6, 1 + Math.floor(p / 100 * 6 - 1e-9))]})`;
+function showTip(ev, html) {
+  tip.innerHTML = html; tip.style.display = "block";
+  const x = Math.min(ev.clientX + 14, innerWidth - 310), y = Math.min(ev.clientY + 14, innerHeight - 120);
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+const hideTip = () => tip.style.display = "none";
+
+// squarified treemap
+function squarify(items, x, y, w, h) {
+  const out = []; const total = items.reduce((s, i) => s + i.v, 0); if (!total) return out;
+  const scale = w * h / total; let rest = items.map(i => ({ ...i, a: i.v * scale }));
+  while (rest.length) {
+    const short = Math.min(w, h); let row = [rest[0]], best = worst(row, short), i = 1;
+    while (i < rest.length) { const r2 = row.concat(rest[i]); const w2 = worst(r2, short); if (w2 > best) break; row = r2; best = w2; i++; }
+    const sum = row.reduce((s, r) => s + r.a, 0), thick = sum / short; let off = 0;
+    for (const r of row) {
+      const len = r.a / thick;
+      out.push(w >= h ? { ...r, x, y: y + off, w: thick, h: len } : { ...r, x: x + off, y, w: len, h: thick }); off += len;
+    }
+    if (w >= h) { x += thick; w -= thick; } else { y += thick; h -= thick; }
+    rest = rest.slice(row.length);
+  }
+  return out;
+}
+function worst(row, side) {
+  const s = row.reduce((a, r) => a + r.a, 0), mx = Math.max(...row.map(r => r.a)), mn = Math.min(...row.map(r => r.a));
+  return Math.max(side * side * mx / (s * s), (s * s) / (side * side * mn));
+}
+
+let DATA, selected = null;
+function render() {
+  const d = DATA;
+  updateAge(); renderRunning(); renderTiers();
+  const runs = d.runs, ok = runs.filter(r => r.verified === "MATCH"), cost = runs.reduce((s, r) => s + (r.cost_usd_equiv || 0), 0);
+  const tiles = [
+    ["Code matched", pctS(d.matched_code, d.total_code), `${fmt(d.matched_code)} of ${fmt(d.total_code)} bytes`, pct(d.matched_code, d.total_code)],
+    ["Unique functions matched", fmt(d.unique_matched), `of ${fmt(d.unique_total)} unique (${pctS(d.unique_matched, d.unique_total)})`, pct(d.unique_matched, d.unique_total)],
+    ["All functions matched", fmt(d.matched_functions), `of ${fmt(d.total_functions)}, incl. duplicates`, pct(d.matched_functions, d.total_functions)],
+    ["Worker match rate", runs.length ? pctS(ok.length, runs.length) : "–", `${ok.length} of ${runs.length} runs (all models)`, pct(ok.length, runs.length)],
+    ["Cost per match", ok.length ? "$" + (cost / ok.length).toFixed(3) : "–", `$${cost.toFixed(2)} API-equivalent total`, null],
+  ];
+  $("#tiles").innerHTML = tiles.map(([l, v, n, p]) => `<div class="tile"><div class="label">${l}</div><div class="value">${v}</div>
+    <div class="note">${n}</div>${p == null ? "" : `<div class="meter"><i style="width:${Math.max(0.3, p)}%"></i></div>`}</div>`).join("");
+  $("#ramp").innerHTML = RAMP.map(v => `<i style="background:var(${v})"></i>`).join("");
+
+  // treemap
+  const tm = $("#treemap"); tm.innerHTML = "";
+  const W = tm.clientWidth, H = tm.clientHeight;
+  const items = d.units.filter(u => u.code > 0).map(u => ({ v: u.code, u })).sort((a, b) => b.v - a.v);
+  for (const r of squarify(items, 0, 0, W, H)) {
+    const u = r.u, p = pct(u.matched, u.code), el = document.createElement("div");
+    el.className = "tm" + (selected === u.name ? " sel" : "");
+    Object.assign(el.style, { left: r.x + "px", top: r.y + "px", width: r.w + "px", height: r.h + "px", background: shade(p) });
+    const nm = u.functions.filter(f => f[2]).length;
+    if (r.w > 52 && r.h > 18) el.innerHTML = `<span style="color:${p > 50 ? "#fff" : "var(--text-secondary)"}">${u.name}</span>`;
+    el.onmousemove = ev => showTip(ev, `<b>${u.name}</b><div class="m">RAM 0x${u.vram}</div>
+      <div>${pctS(u.matched, u.code)} of ${fmt(u.code)} bytes</div><div>${nm} / ${u.functions.length} functions matched</div>`);
+    el.onmouseleave = hideTip;
+    el.onclick = () => { selected = u.name; render(); };
+    tm.appendChild(el);
+  }
+  // function grid
+  const u = d.units.find(x => x.name === (selected || "file008")) || d.units[0];
+  $("#fgTitle").textContent = `Functions in ${u.name}`;
+  const nm = u.functions.filter(f => f[2]).length;
+  $("#fgDesc").textContent = `${nm} of ${u.functions.length} matched · loads at 0x${u.vram} · one square per function, in address order. Click a block above to switch segment.`;
+  const fg = $("#funcgrid"); fg.innerHTML = "";
+  for (const f of u.functions) {
+    const i = document.createElement("i"); i.className = f[2] ? "m" : f[4] ? "d" : "";
+    i.onmousemove = ev => showTip(ev, `<b>${f[0]}</b><div>${fmt(f[1])} bytes · difficulty ${f[3]}</div>
+      <div class="m">${f[2] ? "Matched as C" : "Still assembly"}${f[4] ? " · duplicate" : ""}</div>`);
+    i.onmouseleave = hideTip; fg.appendChild(i);
+  }
+  renderHistory(); renderSwarm(); renderTables();
+}
+
+function updateAge() {
+  if (!DATA) return;
+  const age = Math.max(0, Math.round(Date.now() / 1000 - (DATA.generated_ts || 0)));
+  $("#gen").textContent = "data updated " + (age < 90 ? age + "s ago" : Math.round(age / 60) + " min ago");
+  const live = age < 180 && !fetchFailed;
+  $("#live").className = "live" + (live ? "" : " stale");
+  $("#live").textContent = live ? "● live" : "○ not updating";
+}
+function renderTiers() {
+  const t = DATA.tiers || [], allBytes = t.reduce((a, x) => a + x.bytes, 0) || 1;
+  $("#tiers").innerHTML = t.map(x => {
+    const p = pct(x.matched, x.total);
+    return `<div class="tier" data-tip="${x.name}: ${fmt(x.matched)} of ${fmt(x.total)} functions · ${fmt(Math.round(x.matched_bytes / 1024))} of ${fmt(Math.round(x.bytes / 1024))} KB of code matched">
+      <div class="nm"><b>${x.name}</b><span>difficulty ${x.range}</span></div>
+      <div class="track"><i style="width:${Math.max(p > 0 ? 0.5 : 0, p)}%"></i></div>
+      <div class="num"><b>${fmt(x.matched)}</b> / ${fmt(x.total)} (${pctS(x.matched, x.total)})</div>
+      <div class="share">${pctS(x.bytes, allBytes)} of the code · ${pctS(x.matched_bytes, x.bytes)} of it matched</div></div>`;
+  }).join("");
+  document.querySelectorAll(".tier").forEach(el => { el.onmousemove = ev => showTip(ev, "<b>" + el.dataset.tip.replace(": ", "</b>")); el.onmouseleave = hideTip; });
+}
+function renderRunning() {
+  const r = DATA.running || [];
+  const cls = m => /haiku/.test(m) ? "haiku" : /sonnet/.test(m) ? "sonnet" : /opus/.test(m) ? "opus" : /permuter/.test(m) ? "permuter" : "";
+  const label = m => (m || "?").replace("claude-", "").replace(/-(\d+)-(\d+)$/, " $1.$2").replace(/^./, c => c.toUpperCase());
+  const by = {}; r.forEach(w => { const k = label(w.model); by[k] = (by[k] || 0) + 1; });
+  $("#runningDesc").textContent = r.length ? `${r.length} running: ` + Object.entries(by).map(([k, n]) => `${n} × ${k}`).join(", ") +
+    ". Each dot is one compile-and-compare check." : "No workers running right now.";
+  r.sort((a, b) => (a.model > b.model) - (a.model < b.model) || b.seconds - a.seconds);
+  $("#running").innerHTML = r.map(w => {
+    const lim = /sonnet/.test(w.model) ? 15 : 10, perm = w.checks < 0;
+    return `<div class="run"><b>${w.func}<span class="badge ${cls(w.model)}">${label(w.model)}</span></b>
+    <div class="m">${w.batch} · ${w.seconds < 90 ? w.seconds + "s" : Math.round(w.seconds / 60) + " min"}${perm ? "" : ` · ${w.checks}/${lim} checks`}</div>
+    <div class="m">${w.last ? (perm ? "" : "last check: ") + w.last.replace(/</g, "&lt;") : "reading the function…"}</div>
+    ${perm ? "" : `<div class="dots">${Array.from({length: lim}, (_, i) => `<i class="${i < w.checks ? "u" : ""}"></i>`).join("")}</div>`}</div>`;
+  }).join("");
+}
+
+function renderHistory() {
+  const h = DATA.history || []; const host = $("#history");
+  if (h.length < 2) { host.innerHTML = `<p class="desc">One data point so far (${h.length ? fmt(h[0].matched_functions) : 0} functions). The chart fills in as work lands.</p>`; return; }
+  const W = 520, Hh = 200, L = 44, B = 24, T = 10, R = 50;
+  const t0 = h[0].t, t1 = h[h.length - 1].t, ymax = Math.max(...h.map(p => p.matched_functions)) * 1.1 || 1;
+  const X = t => L + (t - t0) / Math.max(1, t1 - t0) * (W - L - R), Y = v => T + (1 - v / ymax) * (Hh - T - B);
+  const ticks = [0, ymax / 2, ymax].map(v => Math.round(v));
+  const path = h.map((p, i) => (i ? "L" : "M") + X(p.t).toFixed(1) + "," + Y(p.matched_functions).toFixed(1)).join("");
+  const last = h[h.length - 1];
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${Hh}" role="img" aria-label="matched functions over time">
+    ${ticks.map(v => `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text class="tick" x="${L - 6}" y="${Y(v) + 4}" text-anchor="end">${fmt(v)}</text>`).join("")}
+    <path d="${path} L${X(last.t)},${Y(0)} L${X(t0)},${Y(0)} Z" fill="var(--accent)" opacity="0.1"/>
+    <path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${X(last.t)}" cy="${Y(last.matched_functions)}" r="4" fill="var(--accent)" stroke="var(--surface-1)" stroke-width="2"/>
+    <text x="${X(last.t) + 8}" y="${Y(last.matched_functions) + 4}" font-size="12" fill="var(--text-primary)">${fmt(last.matched_functions)}</text>
+    <text class="tick" x="${L}" y="${Hh - 4}">${new Date(t0 * 1000).toLocaleDateString()}</text>
+    <text class="tick" x="${W - R}" y="${Hh - 4}" text-anchor="end">${new Date(t1 * 1000).toLocaleDateString()}</text></svg>`;
+}
+
+function renderSwarm() {
+  const by = {};
+  for (const r of DATA.runs) { const k = r.batch + " · " + (r.model || "").replace("claude-", ""); (by[k] = by[k] || []).push(r); }
+  const rows = Object.entries(by).map(([k, rs]) => {
+    const ok = rs.filter(r => r.verified === "MATCH"), c = rs.reduce((s, r) => s + (r.cost_usd_equiv || 0), 0);
+    const med = a => { const s = a.slice().sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : 0; };
+    return `<tr><td>${k}</td><td class="n">${rs.length}</td><td class="n">${ok.length} (${pctS(ok.length, rs.length)})</td>
+      <td class="n">$${c.toFixed(2)}</td><td class="n">$${ok.length ? (c / ok.length).toFixed(3) : "–"}</td><td class="n">${med(rs.map(r => r.seconds || 0))}s</td></tr>`;
+  });
+  $("#swarm").innerHTML = rows.length ? `<table><tr><th>Batch · model</th><th class="n">Runs</th><th class="n">Matched</th>
+    <th class="n">Cost</th><th class="n">Per match</th><th class="n">Median time</th></tr>${rows.join("")}</table>` : `<p class="desc">No worker runs yet.</p>`;
+}
+
+function renderTables() {
+  $("#tierTable").innerHTML = `<tr><th>Tier</th><th>Difficulty</th><th class="n">Matched</th><th class="n">Functions</th><th class="n">%</th><th class="n">Code KB</th><th class="n">Matched KB</th></tr>` +
+    (DATA.tiers || []).map(x => `<tr><td>${x.name}</td><td>${x.range}</td><td class="n">${fmt(x.matched)}</td><td class="n">${fmt(x.total)}</td>
+      <td class="n">${pctS(x.matched, x.total)}</td><td class="n">${fmt(Math.round(x.bytes / 1024))}</td><td class="n">${fmt(Math.round(x.matched_bytes / 1024))}</td></tr>`).join("");
+  $("#segTable").innerHTML = `<tr><th>Segment</th><th>RAM</th><th class="n">Code bytes</th><th class="n">Matched</th><th class="n">Functions</th></tr>` +
+    DATA.units.map(u => `<tr><td>${u.name}</td><td>0x${u.vram}</td><td class="n">${fmt(u.code)}</td><td class="n">${pctS(u.matched, u.code)}</td>
+      <td class="n">${u.functions.filter(f => f[2]).length} / ${u.functions.length}</td></tr>`).join("");
+  $("#runTable").innerHTML = `<tr><th>Function</th><th>Segment</th><th>Model</th><th>Result</th><th class="n">Checks</th><th class="n">Seconds</th><th class="n">Cost</th></tr>` +
+    DATA.runs.map(r => `<tr><td>${r.func}</td><td>${r.segment}</td><td>${(r.model || "").replace("claude-", "")}</td>
+      <td class="${r.verified === "MATCH" ? "ok" : "no"}">${r.verified === "MATCH" ? "✓ match" : "✗ no match"}</td>
+      <td class="n">${r.checks}</td><td class="n">${r.seconds}</td><td class="n">$${(r.cost_usd_equiv || 0).toFixed(4)}</td></tr>`).join("");
+}
+
+$("#tableBtn").onclick = e => {
+  const show = $("#tables").classList.contains("hidden");
+  $("#tables").classList.toggle("hidden", !show); $("#charts").classList.toggle("hidden", show);
+  e.target.textContent = show ? "Show charts" : "Show tables";
+};
+$("#themeBtn").onclick = () => {
+  const r = document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark";
+};
+addEventListener("resize", () => DATA && render());
+
+let fetchFailed = false;
+function load() {
+  Promise.all([fetch("data.json?" + Date.now()).then(r => r.json()),
+               fetch("history.jsonl?" + Date.now()).then(r => r.ok ? r.text() : "").catch(() => "")])
+    .then(([d, h]) => {
+      fetchFailed = false;
+      d.history = h.trim() ? h.trim().split("\n").map(l => JSON.parse(l)) : [];
+      const changed = !DATA || DATA.generated_ts !== d.generated_ts;
+      DATA = d; if (changed) render(); else updateAge();
+    })
+    .catch(() => { fetchFailed = true; updateAge(); });
+}
+load();
+setInterval(load, 30000);      // poll for new data every 30 s
+setInterval(updateAge, 5000);  // keep the "updated X ago" label current
+</script>
+</body>
+</html>
