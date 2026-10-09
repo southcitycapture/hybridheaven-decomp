@@ -143,7 +143,29 @@ s32 func_801E2BC4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file033/801E1BE0/func_801E2C14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file033/801E1BE0/func_801E2CE4.s")
+
+extern f32 D_801F4654;
+extern f32 D_801F4658;
+extern f32 D_801F465C;
+extern f32 D_801F4660;
+extern f32 D_801F4664;
+extern f32 D_801F4668;
+extern f32 D_801F466C;
+
+s32 func_801E2CE4(s32 arg0, s32 arg1)
+{
+  f32 c18;
+  f32 c4654;
+  f32 half;
+ do { half = 18.5f; } while (0);
+  c18 = half;
+  half = 0.5f;
+  c4654 = D_801F4654;
+ if (func_8038BEF8(0.0f, half, -10.7f, 33.8f, D_801F4658, D_801F465C, D_801F4660, D_801F4664, D_801F4668, c18, c4654, D_801F466C, c18, c4654) != 0) { func_8038BED4();
+    return 0x2E;
+  }
+  return 0x2D;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file033/801E1BE0/func_801E2DA8.s")
 
@@ -2143,7 +2165,23 @@ block_7:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file033/801E1BE0/func_801EDBE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file033/801E1BE0/func_801EDBF0.s")
+
+extern f32 D_801F4AD8;
+
+s32 func_801EDBF0(s32 arg0, s32 arg1)
+{
+  register struct func_801E6018_Obj **slot;
+  short new_var;
+  new_var = 0x24;
+  slot = (struct func_801E6018_Obj **) (func_801DAAF0 + new_var);
+  (*slot)->unk8->unk8->unk8->unk24->unk2C->unk4 = 35.0f;
+  (*slot)->unk8->unk8->unk8->unk24->unk2C->unk8 = 0.0f;
+  (*slot)->unk8->unk8->unk8->unk24->unk2C->unkC = D_801F4AD8;
+  (*slot)->unk8->unk8->unk8->unk24->unk2C->unk12 = 0x171C;
+  func_801CC470(2, 0x03200052, 0, 1, 1.0f);
+  func_801D58D0(0);
+  return 0x11;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file033/801E1BE0/func_801EDCD0.s")
 

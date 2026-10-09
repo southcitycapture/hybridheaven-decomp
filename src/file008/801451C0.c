@@ -344,7 +344,28 @@ void func_80147734(f32 *arg0, f32 *arg1, f32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_801477C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_801477F8.s")
+
+void func_801477F8(s32 arg0, s32 arg1, s32 arg2)
+{
+  u32 var_v0;
+  if (arg0 == 0)
+  {
+    var_v0 = 0;
+    do
+    {
+      var_v0 += 1;
+      if (!var_v0)
+      {
+      }
+    }
+    while (var_v0 != 3);
+    while (1)
+    {
+      var_v0 = var_v0 + 1;
+    }
+
+  }
+}
 
 
 extern u8 D_8017B768[];

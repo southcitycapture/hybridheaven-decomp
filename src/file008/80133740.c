@@ -16,7 +16,17 @@ void func_80133790(s32 arg0) {
     *temp_v0 &= ~temp_t4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_801337E4.s")
+
+s32 func_801337E4(s32 arg0)
+{
+  return (D_801BCD90[(arg0 / 8) & 0xFF] & ((unsigned char) (1 << ((arg0 % 8) & 0xFF)))) & 0xFF;
+  if ((arg0 && arg0) && arg0)
+  {
+    if (!arg0)
+    {
+    }
+  }
+}
 
 
 extern u8 D_801BCDF4[];

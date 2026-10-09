@@ -106,6 +106,8 @@ def run_one(args):
         rec.update(verified="FAIL", note="could not splice winner"); return rec
     new = orig[:os_[0]] + win[ws[0]:ws[1]] + orig[os_[1]:]
     dst = os.path.join(OUT, "work", func, "attempt.c"); open(dst, "w").write(new)
+    for h in ("context.h", "known.h"):   # the worker's C includes these; without them the exact check can't compile
+        if os.path.exists(os.path.join(os.path.dirname(src), h)): shutil.copy(os.path.join(os.path.dirname(src), h), d)
     rec["verified"] = "MATCH" if score(func, seg, dst) == 1.0 else "FAIL"
     if rec["verified"] == "FAIL": rec["note"] = "permuter win did not survive the exact check"
     return rec

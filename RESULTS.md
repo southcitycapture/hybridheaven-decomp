@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-09: **10.95% of the code** (2783 of 15890 functions, including duplicates).
+Progress as of 2026-10-09: **11.26% of the code** (2836 of 15890 functions, including duplicates).
 
-**7389 model runs, 4323 verified matches (59%), $105.25 API-equivalent in total (≈ $0.024 per match)**; plus 44 matches from decomp-permuter at no model cost.
+**7389 model runs, 4323 verified matches (59%), $105.25 API-equivalent in total (≈ $0.024 per match)**; plus 138 matches from decomp-permuter at no model cost.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -17,6 +17,7 @@ Progress as of 2026-10-09: **10.95% of the code** (2783 of 15890 functions, incl
 | `batch5n` | 673 never-tried easy/medium (incl. main) | haiku-5-5 | 671 | 302 | 45% | $8.20 | $0.027 | 72% → 74% |
 | `cloud1` | cloud1 | haiku-5-5 (cloud subagent) | 136 | 112 | 82% | $0.00 | – |  |
 | `batch5r` | 2,148 easy/medium second attempts | haiku-5-5 | 2148 | 1029 | 48% | $38.33 | $0.037 | 72% → 76% |
-| `permute` | decomp-permuter on near-misses | decomp-permuter | 370 | 44 | 12% | $0.00 | – |  |
+| `permute2` | permute2 | decomp-permuter | 94 | 94 | 100% | $0.00 | – |  |
+| `permute` | decomp-permuter on near-misses | decomp-permuter | 392 | 44 | 11% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

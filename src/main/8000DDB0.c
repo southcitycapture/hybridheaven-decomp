@@ -29,13 +29,65 @@ s64 func_8000E58C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000EB80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000EC64.s")
+
+extern void func_8000EB80(s32, s32, s32, s32);
+
+void func_8000EC64(s32 arg0, u16 arg1)
+{
+  int new_var2;
+  s32 new_var;
+  new_var = (s32) arg1;
+  new_var2 = new_var & 0xFFFF;
+  if (!new_var2)
+  {
+  }
+  func_8000EB80(arg0 + 0x10, (arg0 + 0x12) & 0xFFFFFFFFFFFFFFFFu, arg0 + 0x14, new_var2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000EC9C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000F174.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000F240.s")
+
+struct func_8000F240_StructB {
+    u8 pad0[0x64];
+    f32 unk64;
+};
+
+struct func_8000F240_StructA {
+    struct func_8000F240_StructA *unk0;
+    u8 pad4[0x4];
+    struct func_8000F240_StructA *unk8;
+    u8 padC[0x20];
+    struct func_8000F240_StructB *unk2C;
+};
+
+void func_8000F240(struct func_8000F240_StructA *arg0, f32 arg1, u8 arg2)
+{
+  struct func_8000F240_StructA *temp_a0;
+  struct func_8000F240_StructA *temp_v0;
+  s32 var_s1;
+  arg0 = arg0;
+  var_s1 = arg2;
+  loop_1:
+  arg0->unk2C->unk64 = arg1;
+
+  temp_a0 = arg0->unk8;
+  if (temp_a0 != 0)
+  {
+    func_8000F240(temp_a0, arg1, 1);
+  }
+  if (var_s1 != 0)
+  {
+    temp_v0 = arg0->unk0;
+    arg0 = temp_v0;
+    if (temp_v0 != 0)
+    {
+      var_s1 = 1;
+      goto loop_1;
+    }
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000F2B8.s")
 
@@ -191,7 +243,22 @@ s32 func_80011478(s32 *arg0, u16 *arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_800114D0.s")
+
+struct func_800114D0_Struct {
+    u8 pad[4];
+    u16 unk4;
+};
+
+s32 func_800114D0(struct func_800114D0_Struct *arg0)
+{
+  u16 temp_t6;
+  f64 temp_ft1;
+  u32 var_v0;
+  temp_t6 = arg0->unk4;
+  var_v0 = temp_t6 & 0xFFFFu;
+  temp_ft1 = var_v0;
+  return (u16) ((u32) temp_ft1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_80011590.s")
 

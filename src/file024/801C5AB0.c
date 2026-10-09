@@ -26,7 +26,16 @@ void func_801C5B70(u8 *arg0, u16 arg1, u16 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file024/801C5AB0/func_801C5BC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C5AB0/func_801C5C18.s")
+
+extern void func_8001B204(s32, s32, s32, void *);
+extern s32 D_801CF2A0;
+
+void func_801C5C18(void)
+{
+  s32 var_s0;
+  s32 *var_s1;
+ do { var_s0 = 0; var_s1 = &D_801CF2A0; do { func_8001B204(var_s0 & 0xFF, 0, 0, var_s1); var_s0 = (var_s0 + 1) & 0xFF; } while (var_s0 < 0xA); } while (0);
+}
 
 
 typedef struct func_801C5C70_Struct {
