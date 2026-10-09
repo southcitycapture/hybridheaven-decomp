@@ -58,8 +58,6 @@ typedef struct func_80358B50_StructArg {
     f32 unk74;
 } func_80358B50_StructArg;
 
-void func_800058DC(void *, void *);
-void func_80020718(s32);
 void func_801CE330(void *, s32, s32, s32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32);
 extern f32 D_80389ED0;
 void func_80358C2C(void);
@@ -82,7 +80,19 @@ void func_80358B50(func_80358B50_StructArg *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80358C6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80359044.s")
+void func_80005700(void);
+
+typedef struct func_80359044_Struct {
+    u8 pad[0x4C];
+    u16 unk4C;
+    u16 unk4E;
+} func_80359044_Struct;
+
+void func_80359044(func_80359044_Struct *arg0, s32 arg1) {
+    if ((s32) ((func_80359044_Struct *) D_8038CC10)->unk4C >= ((s32) arg0->unk4E + 0x8003)) {
+        func_80005700();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035908C.s")
 
@@ -99,7 +109,6 @@ struct func_80359520_Struct {
     u16 unk4E;
 };
 
-void func_80005700(void);
 
 void func_80359520(struct func_80359520_Struct *arg0, s32 arg1) {
     if (arg0->unk4C >= arg0->unk4E + 0x8002) {
@@ -225,7 +234,33 @@ s32 func_8035A434(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035A5B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035A734.s")
+extern s32 D_801BBCCC;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+void func_8013A334(void *, s32, s32, u16);
+
+typedef struct func_8035A734_StructTmp {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_8035A734_StructTmp;
+
+extern void func_8035A5B0(void *, s32, func_8035A734_StructTmp, s32);
+
+void func_8035A734(void *arg0, s32 arg1, u16 arg2) {
+    s32 sp34;
+    u8 *sp30;
+    func_8035A734_StructTmp sp24;
+
+    sp34 = *(s32 *)((u8 *)arg0 + 0x5C);
+    if (arg0 == (void *)D_801BBCCC) {
+        sp30 = D_801BC03C;
+    } else {
+        sp30 = D_801BC3D8;
+    }
+    func_8013A334(&sp24, arg1, sp34, arg2);
+    func_8035A5B0(arg0, arg1, sp24, func_8035A434(sp30));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035A7D4.s")
 
@@ -498,7 +533,6 @@ void *func_8035FF0C(u8 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035FFA8.s")
 
 
-extern void func_80020718(s32 arg0);
 
 typedef struct func_80360020_Struct0 {
     u8 pad[0x36];
@@ -547,7 +581,6 @@ typedef struct func_80360394_Quad {
 } func_80360394_Quad;
 
 extern func_80360394_Quad D_803863EC;
-void func_8013A334(void *, s32, s32, u16);
 
 void func_80360394(void *arg0, func_80360394_Struct *arg1, s32 arg2, u8 arg3) {
     s32 val;
@@ -589,7 +622,34 @@ void func_80360588(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80360D0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80360EF8.s")
+
+typedef struct func_80360EF8_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80360EF8_Struct;
+
+extern s32 func_80224F5C(s32, s32);
+extern void func_802256E4(func_80360EF8_Struct *, s32, s32);
+extern void func_8013A28C(s32, func_80360EF8_Struct);
+extern void func_80360F9C(void);
+
+void func_80360EF8(s32 arg0, s32 arg1) {
+    u8 *sp24;
+    func_80360EF8_Struct sp18;
+
+    if (arg0 == D_801BBCCC) {
+        sp24 = D_801BC03C;
+    } else {
+        sp24 = D_801BC3D8;
+    }
+    if (func_80224F5C(arg0, arg1) == 0) {
+        func_802256E4(&sp18, arg0, 0x1D);
+        func_8013A28C(arg1, sp18);
+        func_800058DC(arg0, func_80360F9C);
+    }
+    sp24[0x392] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80360F9C.s")
 
@@ -600,9 +660,6 @@ void func_80360588(s32 arg0, s32 arg1) {
 
 extern void func_8036153C(void);
 extern void func_8036CA40(void);
-extern s32 D_801BBCCC;
-extern u8 D_801BC03C[];
-extern u8 D_801BC3D8[];
 
 void func_803618B0(s32 arg0) {
     u8 *var_v0;
@@ -690,7 +747,6 @@ void func_803621A8(u8 *arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8036265C.s")
 
 
-void *func_8035FF0C(u8);
 
 u8 func_803626E0(s32 arg0) {
     u8 *var_v1;

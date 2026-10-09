@@ -173,7 +173,6 @@ typedef struct func_801512CC_Struct {
     func_801512CC_Mid *unk24;
 } func_801512CC_Struct;
 
-s32 func_801517CC(void);
 
 s32 func_801512CC(func_801512CC_Struct *arg0, f32 arg1, f32 arg2, f32 arg3) {
     if (func_801517CC() != 0) {
@@ -237,7 +236,6 @@ s32 func_80151430(func_80151430_Struct0 *arg0, u16 arg1) {
 }
 
 
-s32 func_801517CC();
 
 struct func_80151478_Struct2 {
     u8 pad[0x12];
@@ -277,7 +275,6 @@ typedef struct func_801514B0_Struct {
     func_801514B0_Struct24 *unk24;
 } func_801514B0_Struct;
 
-s32 func_801517CC();
 
 s32 func_801514B0(func_801514B0_Struct *arg0, s16 arg1)
 {
@@ -310,7 +307,6 @@ s32 func_80151504(func_80151504_Struct *arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 
-extern s32 func_801517CC();
 
 struct func_8015155C_Struct {
     u8 pad0[0x40];
@@ -363,7 +359,6 @@ u16 func_801516CC(func_801516CC_Struct0 *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80150D70/func_80151700.s")
 
 
-s32 func_801517CC();                                /* extern */
 
 typedef struct func_80151790_Struct {
     u8 pad[0x91];

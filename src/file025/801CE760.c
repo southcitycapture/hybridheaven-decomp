@@ -170,7 +170,6 @@ void func_801CF890(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801D0498.s")
 
 
-extern void func_80006214(s32 arg0);
 extern u8 D_8008DA88[];
 extern s32 D_801E12C0;
 

@@ -313,7 +313,18 @@ void func_8037F3B4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037FCF8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037FE88.s")
+extern void func_800058DC(void *a0, void (*a1)());
+extern s32 func_8037E118(void *, s32);
+extern s32 func_8037FED4;
+
+extern s32 func_80126A0C(void *a0, s32 a1, s32 a2);
+
+void func_8037FE88(void *arg0, s32 arg1) {
+    if (func_80126A0C(arg0, 0x123, 0) != 0) {
+        func_8037E118(arg0, arg1);
+        func_800058DC(arg0, (void (*)())&func_8037FED4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037FED4.s")
 
@@ -332,7 +343,6 @@ extern void func_80380584();
 extern s32 func_8037DD6C(void *a0, s32 a1, s32 a2, s32 a3);
 extern void func_8037E38C(void *a0, s32 a1);
 extern void func_801471DC(s32 a0);
-extern void func_800058DC(void *a0, void (*a1)());
 
 void func_803800C4(struct func_803800C4_Struct *arg0, s32 arg1) {
     arg0->unk3C = arg0->unk3C + 1;
@@ -360,8 +370,6 @@ typedef struct func_803804F0_Struct {
     s8 unk97;
 } func_803804F0_Struct;
 
-extern s32 func_8037E118(void *, s32);
-extern s32 func_8037FED4;
 
 void func_803804F0(func_803804F0_Struct *arg0, s32 arg1) {
     arg0->unk3C = arg0->unk3C + 1;

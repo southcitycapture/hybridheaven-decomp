@@ -15,7 +15,7 @@ done_list=$(python3 -c "import json;print(' '.join(r['func'] for r in map(json.l
 while read -r f seg rest; do [[ " $done_list " == *" $f "* ]] || echo "$f $seg"; done < $Q/functions.txt |
   xargs -P "$P" -L 1 bash -c '[ -f "queue/$BATCH/STOP" ] && exit 0; tools/swarm/${RUN_ONE:-run_one2.sh} "$0" "$1" > /dev/null 2>&1'
 echo "$(date -Is) workers finished  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
-.venv/bin/python tools/swarm/integrate.py "$BATCH" >> $Q/integrate.log 2>&1
+[ -n "$NO_INTEGRATE" ] || .venv/bin/python tools/swarm/integrate.py "$BATCH" >> $Q/integrate.log 2>&1
 echo "$(date -Is) integrated: $(tail -1 $Q/integrate.log)" >> $L
 touch $Q/DONE
 tools/hh/refresh_dashboard.sh > /dev/null 2>&1

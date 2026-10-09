@@ -296,7 +296,6 @@ struct func_80150970_Struct {
     s16 pad1;
 };
 
-extern void func_800058DC(s32 arg0, void *arg1);
 extern void func_801C2F0C(s32 arg0, struct func_80150970_Struct *arg1);
 extern s32 func_801C3044();
 extern void func_801509D8();

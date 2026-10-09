@@ -6,10 +6,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1FD0/func_801C1FE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1FD0/func_801C2000.s")
-
-
 extern s32 D_801D8DF0[];
+
+s32 func_801C2000(s32 arg0, s32 arg1) {
+    return ((s32 *)D_801D8DF0[arg0])[arg1] != 0;
+}
+
+
 extern s32 D_801DEF70;
 
 s32 func_801C2024(s32 arg0, s32 arg1) {

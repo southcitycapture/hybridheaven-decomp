@@ -40,12 +40,15 @@ u64 func_801C0C08(void) {
     return temp_ret - D_801D8D88;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C0A30/func_801C0C44.s")
+extern u32 D_801D8DA8;
+
+void func_801C0C44(void) {
+    D_801D8DA8 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C0A30/func_801C0C50.s")
 
 
-extern u32 D_801D8DA8;
 
 s32 func_801C0C68(u32 arg0) {
     return D_801D8DA8 >= arg0;

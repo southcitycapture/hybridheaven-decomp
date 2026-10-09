@@ -147,7 +147,6 @@ typedef struct func_80371D04_Struct {
 
 extern f32 D_8038B420;
 
-void func_800058DC(void *arg0, void *arg1);
 void func_801CE1C8(void *a0, s32 a1, f32 a2, f32 a3, f32 a4, s32 a5, s32 a6, s32 a7, s32 a8, s32 a9, s32 a10, s32 a11, s32 a12, s32 a13, s32 a14, s32 a15, s32 a16, s32 a17, s32 a18, s32 a19, s32 a20, s32 a21, s32 a22, f32 a23, f32 a24, f32 a25, f32 a26, s32 a27);
 
 void func_80371D04(func_80371D04_Struct *arg0, s32 arg1)

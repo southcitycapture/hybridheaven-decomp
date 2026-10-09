@@ -42,7 +42,6 @@ void func_80000934(func_80000934_Head *arg0, func_80000934_Struct *arg1, s32 arg
 }
 
 
-extern s32 func_800267F0();
 
 void func_80000984(u8 *arg0, s32 *arg1) {
     s32 *var_v1;

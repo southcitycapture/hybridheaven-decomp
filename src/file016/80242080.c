@@ -77,12 +77,26 @@ void func_802424E0(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/80242080/func_80242544.s")
-
-
+extern s32 func_80150584();
 extern s32 func_801C3D20(f32, f32, s32);
+void func_802425EC(s32 arg0, s32 arg1);
+void func_802428B0(s32 arg0, s32 arg1);
+
+extern f32 D_8024ED7C;
+extern f32 D_8024F4F0;
+
+void func_80242544(s32 arg0, s32 arg1) {
+    if ((func_801C3D20(230.0f, -235.0f, 0x41F00000) != 0) && (func_80150584() == 0)) {
+        D_8024F4F0 = -300.0f;
+        func_800058DC((void *)arg0, (void *)func_802425EC);
+    }
+    if ((func_801C3D20(D_8024ED7C, -235.0f, 0x41F00000) != 0) && (func_80150584() == 0)) {
+        func_800058DC((void *)arg0, (void *)func_802428B0);
+    }
+}
+
+
 extern s32 func_80133A24(s32);
-extern void func_800058DC(void *, void *);
 extern void func_802427D0();
 extern void func_802429F8();
 
@@ -96,14 +110,23 @@ void func_802425EC(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/80242080/func_80242660.s")
+extern s32 func_801C3DC8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 f0, f32 f1, f32 f2, f32 f3, f32 f4);
+
+extern f32 D_8024ED80;
+extern f32 D_8024ED84;
+void func_802426E4(void);
+
+void func_80242660(s32 arg0, s32 arg1) {
+    if (func_801C3DC8(arg0, 0x43D98000, 0x431A0000, 0x430A0000, D_8024ED80, 120.0f, 105.0f, D_8024ED84, 35.0f) == 0) {
+        func_800058DC((void *) arg0, (void *) func_802426E4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/80242080/func_802426E4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/80242080/func_802427D0.s")
 
 
-extern s32 func_801C3DC8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 f0, f32 f1, f32 f2, f32 f3, f32 f4);
 extern f32 D_8024ED94;
 extern f32 D_8024ED98;
 extern f32 D_8024ED9C;
@@ -178,7 +201,6 @@ struct func_80242F10_Outer {
 extern struct func_80242F10_Outer *D_801BBCD0;
 extern void func_80242F80();
 extern void func_80243124();
-extern s32 func_80150584();
 
 void func_80242F10(void *arg0, void *arg1) {
     if (func_80150584() == 0) {

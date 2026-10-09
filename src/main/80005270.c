@@ -164,7 +164,6 @@ s32 func_80005C24(void) {
 }
 
 
-s32 func_80005CB0();                                /* extern */
 
 s32 func_80005C70(void) {
     if (D_80043394 == 0x43781902) {

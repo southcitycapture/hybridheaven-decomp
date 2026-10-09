@@ -257,8 +257,6 @@ struct func_802429D8_StructArg {
 extern f32 D_80258600;
 extern u8 func_80242A54[];
 
-s32 func_800178E8();                                /* extern */
-void func_800058DC(void *, void *);                 /* extern */
 
 void func_802429D8(struct func_802429D8_StructArg *arg0, s32 arg1) {
     if (arg0->unk90 == 0) {

@@ -16,13 +16,38 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B28C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B2CC.s")
+void *func_8014B7CC(s32);
+
+s32 func_8014B2CC(s32 arg0) {
+    u8 *temp_v0;
+    s32 *temp_a;
+
+    temp_a = &arg0;
+    temp_v0 = func_8014B7CC(arg0 & 0xFFFF);
+    if (temp_v0 != NULL) {
+        return temp_v0[1];
+    }
+    return 0xFF00;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B2FC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B33C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B36C.s")
+
+
+s32 func_8014B36C(s32 arg0) {
+    u8 *temp_v0;
+    s32 *temp_a0;
+
+    temp_a0 = &arg0;
+    temp_v0 = func_8014B7CC(arg0 & 0xFFFF);
+    if (temp_v0 != NULL) {
+        *temp_v0 |= 0x10;
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B3B0.s")
 
@@ -77,11 +102,55 @@ void *func_8014B5E8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014BC78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014C068.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014C0A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014C0F0.s")
+s32 func_8014C068(s32 arg0) {
+    u8 *temp_v0;
+    s32 *arg_p;
+
+    arg_p = &arg0;
+    temp_v0 = func_8014B7CC(arg0 & 0xFFFF);
+    if ((temp_v0 != NULL) && (*temp_v0 & 2)) {
+        return 1;
+    }
+    return 0;
+}
+
+
+
+s32 func_8014C0A8(s32 arg0) {
+    u8 *temp_v0;
+    u8 temp_v1;
+    s32 *temp_a0;
+
+    temp_a0 = &arg0;
+    temp_v0 = func_8014B7CC(arg0 & 0xFFFF);
+    if (temp_v0 != NULL) {
+        temp_v1 = *temp_v0;
+        if ((temp_v1 & 2) && (temp_v1 & 4)) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+
+
+s32 func_8014C0F0(s32 arg0) {
+    u8 *temp_v0;
+    u8 temp_v1;
+    s32 *temp_a0;
+
+    temp_a0 = &arg0;
+    temp_v0 = func_8014B7CC(arg0 & 0xFFFF);
+    if (temp_v0 != NULL) {
+        temp_v1 = *temp_v0;
+        if ((temp_v1 & 2) && (temp_v1 & 8)) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014C138.s")
 
@@ -96,7 +165,6 @@ struct func_8014C1F0_Struct {
     u8 unk9;
 };
 
-void *func_8014B7CC(s32);
 
 s32 func_8014C1F0(s32 arg0) {
     struct func_8014C1F0_Struct *temp_v0;

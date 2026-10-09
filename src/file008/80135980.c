@@ -40,7 +40,6 @@ void func_80135DE4(func_80135DE4_Struct *arg0, s32 arg1) {
 
 extern s32 func_80135E60(void *, f32, s32, s32);
 extern s32 func_8013D4A0(s32, s32);
-extern void func_800058DC();
 extern void func_800179B0();
 extern void func_80020744();
 extern void func_801364B4();
@@ -94,7 +93,6 @@ typedef struct func_801362DC_StructBBBF0 {
 extern func_801362DC_StructBBBF0 D_801BBBF0;
 extern void func_80136354();
 s32 func_800178E8();
-void func_800058DC(void *arg0, void *arg1);
 
 void func_801362DC(u8 *arg0, void *arg1) {
     if (func_800178E8() != 0) {

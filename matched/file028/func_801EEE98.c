@@ -1,0 +1,12 @@
+#include "context.h"
+
+#define FUNC_801EEE98_NEXT(p) (*(u8 **)((u8 *)(p) + 0x8))
+#define FUNC_801EEE98_BASE (*(u8 **)(func_801DAAF0 + 0x24))
+#define FUNC_801EEE98_CHAIN FUNC_801EEE98_NEXT(FUNC_801EEE98_NEXT(FUNC_801EEE98_NEXT(FUNC_801EEE98_NEXT(FUNC_801EEE98_NEXT(FUNC_801EEE98_BASE)))))
+#define FUNC_801EEE98_G (*(u8 **)((u8 *)FUNC_801EEE98_CHAIN + 0x24))
+#define FUNC_801EEE98_H (*(u8 **)((u8 *)FUNC_801EEE98_G + 0x2C))
+
+s32 func_801EEE98(s32 arg0, s32 arg1) {
+    *(f32 *)((u8 *)FUNC_801EEE98_H + 0x4) = 5120.0f;
+    return 9;
+}

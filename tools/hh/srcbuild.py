@@ -26,6 +26,8 @@ ASFLAGS = "-EB -march=vr4300 -mabi=32 -G 0 -I include -I build/include".split()
 DECL = re.compile(r"^\s*extern\b[^;]*?\b((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*(?:\(|\[|;)")
 DEFN = re.compile(r"^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;]*$")
 TYPEDEF = re.compile(r"\btypedef\b.*?\b(\w+)\s*;\s*$|^\s*}\s*(\w+)\s*;\s*$")
+# a file-scope prototype without `extern` (`void func_800062F8(s32, s32);`); only used at brace depth 0
+PROTO = re.compile(r"^\s*(?!return\b|else\b|case\b|goto\b)(?:[A-Za-z_]\w*[\s\*]+)+\**\s*((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*\([^;{]*\)\s*;\s*(?://.*|/\*.*\*/)?$")
 
 def entries(seg, cfile):
     """Functions of one C file in address order: (name, asm path, rom offset, size)."""
@@ -65,13 +67,20 @@ def pad_asm(seg, cfile, nbytes):
 def is_stub(off, size):
     return size == 8 and IMG[off:off + 8] == b"\x03\xe0\x00\x08\x00\x00\x00\x00"
 
+def decl_name(line, depth):
+    """Name declared by a file-scope declaration line (extern or bare prototype), else None."""
+    if depth: return None
+    m = DECL.match(line) or PROTO.match(line)
+    return m.group(1) if m else None
+
 def snippet_lines(text, declared):
-    """Snippet body without #include and without externs for names already declared."""
-    keep = []
+    """Snippet body without #include and without declarations of names already declared."""
+    keep, depth = [], 0
     for line in text.splitlines():
         if line.lstrip().startswith("#include"): continue
-        m = DECL.match(line)
-        if m and m.group(1) in declared: continue
+        n = decl_name(line, depth)
+        depth += line.count("{") - line.count("}")
+        if n and n in declared: continue
         keep.append(line)
     return keep
 
@@ -82,9 +91,11 @@ def render(seg, cfile, snips, pad=0):
         if name in snips:
             body = snippet_lines(snips[name], declared)
             start = len(lines) + 1; lines += body + [""]; ranges[name] = (start, len(lines))
+            depth = 0
             for l in body:
-                m = DECL.match(l) or DEFN.match(l)
-                if m: declared.add(m.group(1))
+                n = decl_name(l, depth) or (DEFN.match(l).group(1) if depth == 0 and DEFN.match(l) else None)
+                if n: declared.add(n)
+                depth += l.count("{") - l.count("}")
                 t = TYPEDEF.search(l)
                 if t: declared.add(t.group(1) or t.group(2))
         elif is_stub(off, size):
@@ -258,5 +269,39 @@ def context_for(seg, func):
                       % (seg, cf), "   Use them as they are; do not redeclare these names differently. */"] + out) + "\n"
 
 
+def infile_check(seg, func, path):
+    """Build `func`'s real C file with every registered neighbour plus the attempt at `path`, the way
+    `add` would. Returns (ok, message). The neighbours' declarations come first and win, so a clash
+    shows up here exactly as it would at integration."""
+    cf = file_of(seg, func)
+    info = {e[0]: e for e in entries(seg, cf)}
+    snips = {n: t for (s, n), t in registry().items() if s == seg and n in info and n != func}
+    snips[func] = open(path).read()
+    with tempfile.TemporaryDirectory() as td:
+        text, ranges = render(seg, cf, snips)
+        obj, err = compile_file(text, td)
+        src = text.splitlines()
+        if obj is None:
+            out = []
+            for m in re.finditer(r"line (\d+): (.*)", err):
+                n = int(m.group(1)); who = next((k for k, (a, b) in ranges.items() if a <= n <= b), None)
+                where = "your function" if who == func else ("%s (already matched)" % who if who else "file")
+                out.append("  %s: %s\n      > %s" % (where, m.group(2).strip(), src[n - 1].strip() if n <= len(src) else ""))
+                if len(out) >= 8: break
+            return False, "IN-FILE FAIL: the file %s/%s.c does not compile with your function in it:\n%s" % (seg, cf, "\n".join(out) or err[-600:])
+        base = min(e[4] for e in info.values())
+        if not func_ok(obj, func, info[func][2], info[func][3], info[func][4], base):
+            return False, ("IN-FILE FAIL: your function compiles in %s/%s.c but no longer matches there. In the real file, "
+                           "names already declared (context.h) keep their declarations and your extern lines for them are "
+                           "dropped, so use exactly the types in context.h." % (seg, cf))
+        broken = [n for n in snips if n != func and not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base)]
+        if broken:
+            return False, "IN-FILE FAIL: your function breaks already-matched %s (a type or struct you define clashes)." % ", ".join(broken[:3])
+    return True, "IN-FILE MATCH: also matches inside %s/%s.c with its %d matched neighbours" % (seg, cf, len(snips) - 1)
+
+
 if __name__ == "__main__" and sys.argv[1] == "context":
     sys.stdout.write(context_for(sys.argv[2], sys.argv[3]))
+
+if __name__ == "__main__" and sys.argv[1] == "infile":       # srcbuild.py infile SEG FUNC ATTEMPT.c
+    ok, msg = infile_check(sys.argv[2], sys.argv[3], sys.argv[4]); print(msg); sys.exit(0 if ok else 1)

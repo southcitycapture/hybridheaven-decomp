@@ -77,12 +77,31 @@ s32 func_8038CD6C(s32 arg0) {
     D_801BBF42 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CD78.s")
+extern s32 D_8038DBA4;
+extern s32 D_8038DBB8;
+s32 func_8038CE58(void);
+s32 func_8038CF10(void);
+
+extern void *D_8038DB98[];
+extern s32 D_8038DBA8;
+extern s32 D_8038DBAC;
+extern s32 D_8038DBB0;
+extern s32 func_8038CE74(void);
+
+void func_8038CD78(s32 *arg0) {
+    D_8038DBA8 = arg0[2] / (arg0[1] - arg0[0] + 1);
+    D_8038DBAC = arg0[0];
+    D_8038DBB0 = arg0[1];
+    D_8038DB98[0] = func_8038CE58;
+    D_8038DB98[1] = func_8038CE74;
+    D_8038DB98[2] = func_8038CF10;
+    D_8038DBA4 = 0;
+    D_8038DBB8 = 0x22222;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CE20.s")
 
 
-extern s32 D_8038DBA4;
 extern s32 D_8038DBB4;
 
 s32 func_8038CE58(void) {
@@ -94,7 +113,6 @@ s32 func_8038CE58(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CE74.s")
 
 
-extern s32 D_8038DBB8;
 
 s32 func_8038CF10(void) {
     D_8038DBB8 = 0;
@@ -133,13 +151,29 @@ void func_8038CF3C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D020.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D044.s")
+extern s32 D_8038DBE0;
+extern s32 D_8038DBE4;
+s32 func_8038D0DC(void);
+
+extern void *D_8038DBD4[];
+extern s32 D_8038DBE8;
+extern s32 D_8038DBEC;
+extern void func_8038D10C(void);
+extern void func_8038D174(void);
+
+void func_8038D044(s32 *arg0) {
+    D_8038DBE4 = arg0[0];
+    D_8038DBE8 = arg0[1];
+    D_8038DBD4[0] = (void *)func_8038D0DC;
+    D_8038DBD4[1] = (void *)func_8038D10C;
+    D_8038DBD4[2] = (void *)func_8038D174;
+    D_8038DBE0 = 0;
+    D_8038DBEC = 0x22355;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D0A4.s")
 
 
-extern s32 D_8038DBE0;
-extern s32 D_8038DBE4;
 
 s32 func_8038D0DC(void) {
     func_8038CD6C(D_8038DBE4);

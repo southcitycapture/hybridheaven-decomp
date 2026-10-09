@@ -103,7 +103,6 @@ typedef struct func_801FF7DC_Struct {
 } func_801FF7DC_Struct;
 
 extern s32 func_801C3D90();
-extern void func_800058DC(void *, void *);
 extern void func_801FF83C();
 extern void (*D_8021793C[])();
 
