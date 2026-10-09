@@ -181,7 +181,31 @@ void func_80371D04(func_80371D04_Struct *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/func_803724C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/func_80372654.s")
+
+typedef struct func_80372654_StructVec {
+    f32 x;
+    f32 y;
+    f32 z;
+} func_80372654_StructVec;
+
+
+void func_80372654(f32 *arg0, void *arg1, void *arg2)
+{
+  s32 temp;
+  func_80372654_StructVec sp30;
+  func_80372654_StructVec sp24;
+  func_80372654_StructVec sp18;
+  temp = *((s32 *) (0x5C + ((u8 *) arg1)));
+  func_8013A334(&sp24, (s32) arg2, temp, 9);
+  func_8013A334(&sp18, (s32) arg2, temp, 0xC);
+  sp30.x = (sp24.x + sp18.x) / ((f32) 2);
+  if (arg0)
+  {
+  }
+  sp30.y = (sp24.y + sp18.y) / ((f32) 2);
+  sp30.z = (sp24.z + sp18.z) / ((f32) 2);
+  *((func_80372654_StructVec *) arg0) = sp30;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/func_80372708.s")
 
@@ -211,7 +235,6 @@ struct func_8037296C_StructC {
 };
 
 extern void func_80006214(void *);
-extern void func_80372654(f32 *, void *, void *);
 extern u8 D_8008DA88[];
 extern u8 func_803711C8[];
 

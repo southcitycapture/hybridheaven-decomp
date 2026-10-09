@@ -525,7 +525,22 @@ void func_8024458C(struct func_802433D4_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/802408F0/func_80244654.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/802408F0/func_8024470C.s")
+
+struct func_8024470C_Struct {
+    u8 pad[0x5C];
+    s32 unk5C;
+};
+
+
+void func_8024470C(struct func_8024470C_Struct *arg0, s32 arg1, s32 arg2)
+{
+  s32 temp;
+  if (!arg0->unk5C)
+  {
+  }
+  temp = arg0->unk5C;
+  func_80010550(arg1, temp, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/802408F0/func_80244734.s")
 

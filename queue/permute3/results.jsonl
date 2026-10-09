@@ -1,0 +1,8 @@
+{"func": "func_80372654", "segment": "file057", "model": "decomp-permuter", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "recovered: win re-verified with context.h"}
+{"func": "func_802256E4", "segment": "file011", "model": "decomp-permuter", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "recovered: win re-verified with context.h"}
+{"func": "func_801C2D78", "segment": "file024", "model": "decomp-permuter", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "recovered: win re-verified with context.h"}
+{"func": "func_801FB37C", "segment": "file028", "model": "decomp-permuter", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "recovered: win re-verified with context.h"}
+{"func": "func_80242E30", "segment": "file012", "model": "decomp-permuter", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "recovered: win re-verified with context.h"}
+{"func": "func_8000B83C", "segment": "main", "model": "decomp-permuter", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "recovered: win re-verified with context.h"}
+{"func": "func_801FAFD0", "segment": "file028", "model": "decomp-permuter", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "recovered: win re-verified with context.h"}
+{"func": "func_801D0164", "segment": "file009", "model": "decomp-permuter", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "recovered: win re-verified with context.h"}
