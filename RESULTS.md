@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-08: **7.16% of the code** (1872 of 15890 functions, including duplicates).
+Progress as of 2026-10-09: **10.95% of the code** (2783 of 15890 functions, including duplicates).
 
-**6201 model runs, 3752 verified matches (61%), $82.64 API-equivalent in total (≈ $0.022 per match)**; plus 43 matches from decomp-permuter at no model cost.
+**7389 model runs, 4323 verified matches (59%), $105.25 API-equivalent in total (≈ $0.024 per match)**; plus 44 matches from decomp-permuter at no model cost.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -14,8 +14,9 @@ Progress as of 2026-10-08: **7.16% of the code** (1872 of 15890 functions, inclu
 | `batch4` | 2,474 easy/medium (with context.h) | haiku-5-5 | 2474 | 1465 | 59% | $27.49 | $0.019 | 69% → 71% |
 | `exp0_h` | Hard tier, ladder stage 1 | haiku-5-5 | 40 | 11 | 28% | $0.79 | $0.072 | 71% → 71% |
 | `exp0_s` | Hard tier, ladder stage 3 (on Haiku's failures) | sonnet-5-5 | 29 | 11 | 38% | $11.37 | $1.034 | 71% → 72% |
-| `permute` | decomp-permuter on near-misses | decomp-permuter | 117 | 43 | 37% | $0.00 | – |  |
 | `batch5n` | 673 never-tried easy/medium (incl. main) | haiku-5-5 | 671 | 302 | 45% | $8.20 | $0.027 | 72% → 74% |
-| `batch5r` | 2,148 easy/medium second attempts | haiku-5-5 | 1096 | 570 | 52% | $15.72 | $0.028 | 72% → 74% |
+| `cloud1` | cloud1 | haiku-5-5 (cloud subagent) | 136 | 112 | 82% | $0.00 | – |  |
+| `batch5r` | 2,148 easy/medium second attempts | haiku-5-5 | 2148 | 1029 | 48% | $38.33 | $0.037 | 72% → 76% |
+| `permute` | decomp-permuter on near-misses | decomp-permuter | 370 | 44 | 12% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

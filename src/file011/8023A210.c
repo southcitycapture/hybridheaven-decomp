@@ -183,7 +183,13 @@ s32 func_8023B550(void) {
     return v;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023B57C.s")
+
+s32 func_8023B57C(u8 arg0) {
+    if (*((u8 **)&D_802408A0)[arg0] == 0) {
+        return 0;
+    }
+    return 1;
+}
 
 
 void func_8023B5B4(s32 arg0) {
@@ -196,7 +202,14 @@ void func_8023B5B4(s32 arg0) {
     base[off + 0x1B] = (s8) (arg0 - 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023B5D4.s")
+
+extern void func_80145310(s32, u8, s32);
+
+void func_8023B5D4(void) {
+    if (*(s32 *)&D_80240880 != 0) {
+        func_80145310(*(s32 *)&D_80240880, D_80240880.unk18, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023B608.s")
 

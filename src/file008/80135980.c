@@ -37,7 +37,49 @@ void func_80135DE4(func_80135DE4_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80135980/func_80136000.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80135980/func_801361C8.s")
+
+extern s32 func_80135E60(void *, f32, s32, s32);
+extern s32 func_8013D4A0(s32, s32);
+extern void func_800058DC();
+extern void func_800179B0();
+extern void func_80020744();
+extern void func_801364B4();
+extern void func_801363C8();
+extern void func_801362DC();
+extern s8 D_801BBC06;
+extern s16 D_801BBD82;
+extern u16 D_801BBD86;
+extern u8 D_80217F5C[];
+
+typedef struct func_801361C8_StructInner {
+    u8 pad0[0x10];
+    u32 unk10;
+} func_801361C8_StructInner;
+
+typedef struct func_801361C8_Struct {
+    u8 pad0[0x38];
+    func_801361C8_StructInner *unk38;
+} func_801361C8_Struct;
+
+void func_801361C8(func_801361C8_Struct *arg0, s32 arg1) {
+    if (func_80135E60(arg0, (f32) ((arg0->unk38->unk10 >> 16) & 0xFF), 1, 0x41000000) == 0) {
+        func_800058DC(arg0, &func_801364B4);
+        return;
+    }
+    if (D_801BBD86 == 1) {
+        if (func_8013D4A0(0x27, 0) == 0) {
+            D_801BBD82 = 1;
+            func_800179B0(&D_80217F5C);
+            func_80020744(0x3DB);
+            func_800058DC(arg0, &func_801363C8);
+            return;
+        }
+        func_800179B0(&D_80217F5C);
+        func_80020744(0x3DB);
+        D_801BBC06 = (arg0->unk38->unk10 >> 8) & 0xFF;
+        func_800058DC(arg0, &func_801362DC);
+    }
+}
 
 
 typedef struct func_801362DC_StructBBBF0 {
@@ -72,11 +114,7 @@ struct func_80136354_Struct {
     s16 unk90;
 };
 
-extern void func_800058DC(void *, void *);
-extern void func_800179B0(void *);
-extern void func_80020744(s32);
 extern u8 D_80217FB0[];
-extern void func_801363C8();
 
 void func_80136354(struct func_80136354_Struct *arg0, s32 arg1) {
     s16 var_v0;
@@ -110,7 +148,15 @@ void func_801363C8(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80135980/func_8013643C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80135980/func_801364B4.s")
+
+extern void func_80136000(void);
+
+void func_801364B4(s32 arg0, s32 arg1) {
+    *(u16 *)((u8 *)&D_801BBBF0 + 0x194) = 2;
+    if (*(u16 *)((u8 *)&D_801BBBF0 + 0x18E) == 0) {
+        func_800058DC((void *)arg0, (void *)func_80136000);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80135980/func_801364F4.s")
 

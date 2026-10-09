@@ -137,9 +137,68 @@ void func_80246598(void *arg0, s32 arg1) {
     func_8012D918(arg0, 0x2DD, D_802473F0[temp_v1 % 8], 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_802465F8.s")
+
+struct func_802465F8_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+};
+
+struct func_802465F8_Obj {
+    u8 pad[0x90];
+    f32 unk90;
+    f32 unk94;
+    f32 unk98;
+    f32 unk9C;
+};
+
+void *func_8012C4D0(s32, struct func_802465F8_Struct, s32); /* extern */
+extern s32 D_801BBC2C;
+extern struct func_802465F8_Struct D_802467E8;
+
+void func_802465F8(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+    struct func_802465F8_Obj *temp_v0;
+
+    temp_v0 = func_8012C4D0(D_801BBC2C, D_802467E8, 4);
+    if (temp_v0 != NULL) {
+        temp_v0->unk90 = arg0;
+        temp_v0->unk94 = arg1;
+        temp_v0->unk98 = arg2;
+        temp_v0->unk9C = arg3;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_80246694.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_80246730.s")
+
+struct func_80246730_Struct {
+    u8 pad0[4];
+    u16 unk4;
+    u8 pad6[0x34D - 6];
+    u8 unk34D;
+    u8 pad34E[0x3A6 - 0x34E];
+    u8 unk3A6;
+    u8 unk3A7;
+};
+
+extern void func_8012FE50(s32, u16, s32, s32, s32);
+extern struct func_80246730_Struct D_801BBBF0;
+
+void func_80246730(void) {
+    u16 var;
+    s32 five;
+
+    five = 2;
+    if (D_801BBBF0.unk34D == 0) {
+        D_801BBBF0.unk3A6 = 0xF;
+        D_801BBBF0.unk3A7 = 2;
+        D_801BBBF0.unk4 = 0x4B;
+        func_8012FE50(0xF, D_801BBBF0.unk4, 1, 6, five);
+        return;
+    }
+    D_801BBBF0.unk4 = 0xC2;
+    func_8012FE50(0xF, D_801BBBF0.unk4, 1, 6, 0);
+}
 

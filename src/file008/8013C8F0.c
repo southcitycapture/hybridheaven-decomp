@@ -8,7 +8,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013C8F0/func_8013D09C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013C8F0/func_8013D134.s")
+
+struct func_8013D134_Struct {
+    u8 pad[0x375];
+    u8 unk375;
+    u8 unk376;
+};
+
+void func_8013D134(struct func_8013D134_Struct *arg0) {
+    arg0->unk376 = arg0->unk375;
+}
 
 
 extern u8 D_8018E2FC[];

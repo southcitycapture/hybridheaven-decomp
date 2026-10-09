@@ -52,5 +52,10 @@ void func_80133830(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133AA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133AAC.s")
+
+extern s32 D_8017AA90;
+
+void func_80133AAC(s32 arg0) {
+    D_8017AA90 = arg0;
+}
 

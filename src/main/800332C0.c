@@ -6,4 +6,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800332C0/func_80033AC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800332C0/func_80033C60.s")
+
+s32 func_80033C60(void) {
+    return *(s32 *)0xA4500004;
+}
+

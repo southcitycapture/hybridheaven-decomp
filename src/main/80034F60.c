@@ -1,3 +1,7 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80034F60/func_80034F60.s")
+
+void func_80034F60(s32 *arg0) {
+    *arg0 = 0;
+}
+

@@ -1,10 +1,44 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037D3A0.s")
+
+f32 func_8037D3A0(u8 *arg0) {
+    f32 var_fv1;
+    u8 *var_v0;
+
+    var_fv1 = 0.0f;
+    var_v0 = arg0;
+    while (*var_v0 != 0) {
+        if (*var_v0 >= 0x20 && *var_v0 < 0x81) {
+            var_fv1 = (f32) ((f64) var_fv1 + 1.0);
+        } else {
+            var_v0 += 1;
+            var_fv1 = (f32) ((f64) var_fv1 + 0.5);
+        }
+        var_v0 += 1;
+    }
+    return var_fv1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037D418.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037D508.s")
+
+typedef struct func_8037D508_Struct {
+    s32 unk0[5];
+} func_8037D508_Struct;
+
+extern s32 func_8012C4D0(s32, func_8037D508_Struct, s32);
+extern s32 D_80388C60;
+extern func_8037D508_Struct D_80388C64;
+
+s32 func_8037D508(void) {
+    if (D_80388C60 == 0) {
+        D_80388C60 = func_8012C4D0(0, D_80388C64, 3);
+        if (D_80388C60 != 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037D598.s")
 
@@ -153,7 +187,26 @@ void func_8037EABC(struct func_8037EABC_Struct *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037EF2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037F0C8.s")
+
+struct func_8037F0C8_Sub {
+    u8 pad0[0x2];
+    s16 unk2;
+};
+
+struct func_8037F0C8_Inner {
+    u8 pad0[0x30];
+    struct func_8037F0C8_Sub *unk30;
+};
+
+struct func_8037F0C8_Struct {
+    u8 pad0[0x96];
+    s8 unk96;
+};
+
+void func_8037F0C8(struct func_8037F0C8_Struct *arg0) {
+    ((struct func_8037F0C8_Inner *) D_8038A9C0)->unk30->unk2 = (s16) ((arg0->unk96 * 0x14) + 0x4A);
+    func_801453CC(D_8038A9C0, 0x180, 0, 0x1A, 1, 3, 0x1A);
+}
 
 
 extern u8 D_801BBC06[];

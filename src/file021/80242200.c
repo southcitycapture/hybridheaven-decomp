@@ -29,7 +29,16 @@ void func_802427B4(s32 arg0, struct func_802427B4_Outer **arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_80242810.s")
+
+extern void func_8012D918(void *, s32, s32, s32, s32);
+
+void func_80242810(void *arg0) {
+    if (func_80133A24(0x1A1) != 0) {
+        func_8012D918(arg0, 0x500, 1, 0, 0);
+    } else {
+        func_8012D918(arg0, 0x500, 0, 0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_8024286C.s")
 
@@ -49,7 +58,29 @@ void func_80242A24(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_80242A6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_80242BE8.s")
+
+struct func_80242BE8_Struct {
+    u8 pad[0x90];
+    u16 unk90;
+};
+
+extern void func_8024286C(void *arg0);
+extern void func_80242C38(void);
+
+void func_80242BE8(void *arg0, s32 arg1)
+{
+    s32 temp_v0;
+    struct func_80242BE8_Struct *s;
+
+    s = arg0;
+    func_80242810(arg0);
+    temp_v0 = s->unk90;
+    s->unk90 = temp_v0 - 1;
+    if (temp_v0 == 0) {
+        func_8024286C(arg0);
+        func_800058DC((s32) arg0, (void *) func_80242C38);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_80242C38.s")
 
@@ -543,7 +574,39 @@ void func_80245680(func_80245680_Arg0 *arg0, func_80245680_StructA **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_8024580C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_8024593C.s")
+
+struct func_8024593C_Inner {
+    u8 pad0[0x10];
+    s16 unk10;
+};
+
+struct func_8024593C_Outer {
+    u8 pad0[0x30];
+    struct func_8024593C_Inner *unk30;
+};
+
+struct func_8024593C_Arg0 {
+    u8 pad0[0x90];
+    u16 unk90;
+};
+
+extern f64 D_80257148;
+extern void func_802459C8();
+
+void func_8024593C(struct func_8024593C_Arg0 *arg0, struct func_8024593C_Outer **arg1) {
+    struct func_8024593C_Inner *temp_v0;
+    s32 temp_v1;
+
+    if (func_80133A24(0x1AC) != 0) {
+        temp_v0 = (*arg1)->unk30;
+        temp_v0->unk10 = (s16) (s32) ((f64) temp_v0->unk10 + D_80257148);
+        temp_v1 = arg0->unk90;
+        arg0->unk90 = temp_v1 - 1;
+        if (temp_v1 == 0) {
+            func_800058DC((s32) arg0, func_802459C8);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_802459C8.s")
 

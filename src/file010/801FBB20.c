@@ -7,7 +7,10 @@ void func_801FBB20(void) {
     D_8021B0E4 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801FBB20/func_801FBB30.s")
+
+void func_801FBB30(void) {
+    D_8021B0E4 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801FBB20/func_801FBB3C.s")
 

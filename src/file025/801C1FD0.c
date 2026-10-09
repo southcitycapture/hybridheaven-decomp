@@ -16,7 +16,10 @@ s32 func_801C2024(s32 arg0, s32 arg1) {
     return ((s32 *)(((s32 *)D_801D8DF0[arg0])[arg1] + (D_801DEF70 << 5)))[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1FD0/func_801C2058.s")
+
+long long func_801C2058(s32 arg0, s32 arg1) {
+    return *(long long *)(((s32 *)D_801D8DF0[arg0])[arg1] + (D_801DEF70 << 5) + 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1FD0/func_801C2090.s")
 

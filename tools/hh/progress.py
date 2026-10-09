@@ -14,7 +14,7 @@ HEAD = '.include "macro.inc"\n.set noat\n.set noreorder\n.set gp=64\n.section .t
 units = []
 for src in sorted(glob.glob("src/*/*.c")):
     seg = os.path.relpath(src, "src")[:-2]                  # e.g. file057/80375560
-    funcs = sorted(glob.glob("asm/nonmatchings/%s/*.s" % seg))
+    funcs = sorted(f for f in glob.glob("asm/nonmatchings/%s/*.s" % seg) if not os.path.basename(f).startswith("_pad"))  # pad blocks are not functions
     if not funcs: continue
     os.makedirs(os.path.dirname("%s/target/%s.o" % (OUT, seg)), exist_ok=True)
     os.makedirs(os.path.dirname("%s/base/%s.o" % (OUT, seg)), exist_ok=True)

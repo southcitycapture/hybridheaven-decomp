@@ -71,7 +71,11 @@ void func_8038CD3C(void) {
     D_8038DB8C = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CD6C.s")
+
+
+s32 func_8038CD6C(s32 arg0) {
+    D_801BBF42 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CD78.s")
 
@@ -90,7 +94,6 @@ s32 func_8038CE58(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CE74.s")
 
 
-extern s32 func_8038CD6C(s32 arg);
 extern s32 D_8038DBB8;
 
 s32 func_8038CF10(void) {

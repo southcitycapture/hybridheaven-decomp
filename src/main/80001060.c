@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80001060/func_80001060.s")
+
+extern u16 D_80037758;
+
+u16 func_80001060(void) {
+    return D_80037758;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80001060/func_8000106C.s")
 
@@ -14,4 +19,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80001060/func_80001B30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80001060/func_80001BB0.s")
+
+void func_80001BB0(void) {
+}
+

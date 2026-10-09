@@ -405,9 +405,31 @@ s32 func_801C5B2C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C6294.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C63B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C640C.s")
+typedef struct func_801C63B4_Struct {
+    u8 pad[0x90];
+    u16 unk90;
+} func_801C63B4_Struct;
+
+extern void func_8001F540();
+extern void func_800058DC(void *, void *);
+extern s32 D_801DA50C;
+extern void func_801C640C();
+
+void func_801C63B4(func_801C63B4_Struct *arg0, void *arg1) {
+    if (arg0->unk90++ >= 7) {
+        func_8001F540(D_801DA50C);
+        func_800058DC(arg0, func_801C640C);
+    }
+}
+
+
+extern void func_80005700();
+
+void func_801C640C(s32 arg0, s32 arg1) {
+    D_801DA514 = arg0 * 0;
+    func_80005700();
+}
 
 
 extern void func_801C78C0();

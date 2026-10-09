@@ -105,7 +105,29 @@ void func_8013B83C(struct func_8013B83C_Outer *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013BD58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013BD84.s")
+
+s32 func_8013B19C(u16);
+
+struct func_8013BD84_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+
+struct func_8013BD84_Entry {
+    struct func_8013BD84_Struct *unk0;
+    u8 pad[0x1C];
+};
+
+extern struct func_8013BD84_Entry D_8017D478[];
+
+struct func_8013BD84_Struct *func_8013BD84(struct func_8013BD84_Struct *arg0, void *arg1) {
+    struct func_8013BD84_Struct *temp_v1;
+
+    temp_v1 = arg0;
+    *temp_v1 = *D_8017D478[func_8013B19C(((u16 *)arg1)[0x36 / 2])].unk0;
+    return temp_v1;
+}
 
 
 struct func_8013BDD8_Struct {
@@ -149,9 +171,54 @@ void func_8013BE20(u8 *arg0, s32 arg1) {
     func_8013B570(arg0, *(u16 *)(arg0 + 0x36), 2, var_v0 & 0xFF, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013BE9C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013BF04.s")
+struct func_8013BE9C_Struct {
+    u8 pad0[0x2C];
+    s32 unk2C;
+    u8 pad1[6];
+    u16 unk36;
+    u8 pad2[6];
+    u8 unk3E;
+    u8 pad3[0xD];
+    u8 unk4C;
+    u8 unk4D;
+    u8 unk4E;
+    u8 unk4F;
+    u8 pad4[4];
+    s32 unk54;
+};
+
+void func_8013BE9C(struct func_8013BE9C_Struct *arg0, s32 arg1) {
+    arg0->unk2C = 0x3E0;
+    arg0->unk4C = 0xA;
+    arg0->unk4D = 0x12;
+    arg0->unk4E = 0xA;
+    arg0->unk3E = 5;
+    arg0->unk4F = 1;
+    arg0->unk54 = arg0->unk54 | 0xE1;
+    func_8013B570(arg0, arg0->unk36, 2, 2, 0);
+}
+
+
+struct func_8013BF04_Struct {
+    u8 pad0[0x36];
+    u16 unk36;
+    u8 pad1[0x3E - 0x38];
+    u8 unk3E;
+    u8 pad2[0x4D - 0x3F];
+    u8 unk4D;
+    u8 pad3[0x4F - 0x4E];
+    u8 unk4F;
+};
+
+extern void func_8013BF54(void);
+
+void func_8013BF04(struct func_8013BF04_Struct *arg0, s32 arg1) {
+    arg0->unk4D = 0x12;
+    arg0->unk3E = 5;
+    arg0->unk4F = 1;
+    func_8013B570(arg0, arg0->unk36, 2, 0, (s32)func_8013BF54);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013BF54.s")
 

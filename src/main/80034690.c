@@ -1,3 +1,7 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80034690/func_80034690.s")
+
+void func_80034690(s32 arg0) {
+    *(s32 *)0xA4040010 = arg0;
+}
+

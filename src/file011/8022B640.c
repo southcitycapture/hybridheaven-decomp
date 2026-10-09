@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_8022B640.s")
+
+s32 func_8012C6B4(s32, s32);                        /* extern */
+
+s32 func_8022B640(u16 arg0) {
+    s32 temp_a1;
+
+    temp_a1 = arg0;
+    return func_8012C6B4(temp_a1, temp_a1) & 0xFFFF;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_8022B66C.s")
 
@@ -258,7 +266,39 @@ u8 func_802320E8(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_80232128.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_802321FC.s")
+
+struct func_802321FC_Inner {
+    u8 pad0[0xA];
+    u8 unkA;
+};
+
+struct func_802321FC_Struct {
+    u8 pad0[0x2D4];
+    struct func_802321FC_Inner *unk2D4;
+    u8 unk2D8;
+    u8 pad1[0x374 - 0x2D9];
+    s8 unk374;
+};
+
+void func_802321FC(struct func_802321FC_Struct *arg0) {
+    s32 temp_v0;
+    s32 var_v1;
+
+    temp_v0 = arg0->unk2D8;
+    if ((temp_v0 == 2) || ((temp_v0 >= 4) && (temp_v0 < 9))) {
+        temp_v0 = *(s16 *) ((u8 *) arg0 + arg0->unk2D4->unkA * 6 + 0xAA);
+        if (temp_v0 < 0) {
+            var_v1 = -temp_v0;
+        } else {
+            var_v1 = temp_v0;
+        }
+        arg0->unk374 = (s8) (var_v1 / 50);
+        return;
+    }
+    if (temp_v0 == 0x13) {
+        arg0->unk374 = 0;
+    }
+}
 
 
 struct func_80232278_Struct {
@@ -304,7 +344,29 @@ void func_80232278(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_80232FEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_80233288.s")
+
+typedef struct func_80233288_Struct {
+    u8 pad[4];
+    u8 count;
+    u8 pad2;
+} func_80233288_Struct;
+
+extern s32 func_80378CF0(s32);
+extern func_80233288_Struct D_80183CE0[];
+
+void func_80233288(u8 arg0) {
+    func_80233288_Struct *temp_v0;
+    s32 temp_a0;
+    s32 temp_v1;
+
+    temp_a0 = arg0;
+    temp_v0 = &D_80183CE0[temp_a0];
+    temp_v1 = temp_v0->count;
+    if (temp_v1 < 0xFF) {
+        temp_v0->count = temp_v1 + 1;
+        func_80378CF0(temp_a0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_802332D8.s")
 

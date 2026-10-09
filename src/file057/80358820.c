@@ -250,7 +250,49 @@ void func_8035A8F0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035ABAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035AF30.s")
+
+typedef struct func_8035AF30_Struct {
+    u8 pad0[0x4C];
+    u16 unk4C;
+    u16 unk4E;
+    u8 pad1[0x6C - 0x50];
+    s32 unk6C;
+    f32 unk70;
+    f32 unk74;
+    u8 pad2[0x7C - 0x78];
+    u8 unk7C;
+    u8 pad3[0x80 - 0x7D];
+    f32 unk80;
+    f32 unk84;
+    f32 unk88;
+    u8 pad4[0x90 - 0x8C];
+    void *unk90;
+} func_8035AF30_Struct;
+
+extern void func_80006214(void *);
+extern void func_8035A490(f32 *, void *, void *, s32, f32, f32);
+extern u8 D_8008DA88[];
+
+void func_8035AF30(func_8035AF30_Struct *arg0, s32 arg1) {
+    f32 sp2C[3];
+    extern void func_80005700();
+
+    if (arg0->unk4C >= arg0->unk4E) {
+        if ((void *) arg0 == (void *) D_8038CC10) {
+            D_8038CC10 = 0;
+        }
+        func_80005700(arg0);
+        return;
+    }
+    if (!arg0->unk7C) {
+        func_80006214(arg0->unk90);
+        func_8035A490(sp2C, arg0->unk90, D_8008DA88, arg0->unk6C, arg0->unk70, arg0->unk74);
+        func_80006214(arg0);
+        arg0->unk80 = sp2C[0];
+        arg0->unk84 = sp2C[1];
+        arg0->unk88 = sp2C[2];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035AFEC.s")
 
@@ -263,7 +305,6 @@ struct func_8035B234_Struct {
     u16 unk4E;
 };
 
-extern void func_80005700();
 extern s32 D_8038CC14;
 
 void func_8035B234(struct func_8035B234_Struct *arg0, s32 arg1) {
@@ -360,7 +401,13 @@ void func_8035B820(func_8035B820_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035FEC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035FF0C.s")
+
+void func_8035FEC8(u8 arg0, void *arg1);
+extern u8 D_80385E6C[];
+
+void *func_8035FF0C(u8 arg0) {
+    func_8035FEC8(arg0, D_80385E6C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035FF38.s")
 
@@ -431,7 +478,22 @@ void func_80360394(void *arg0, func_80360394_Struct *arg1, s32 arg2, u8 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8036048C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80360588.s")
+
+typedef struct func_80360588_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80360588_Struct;
+
+extern void func_80360400(func_80360588_Struct *arg0, s32 arg1, s32 arg2);
+extern void func_8036048C(s32 arg0, s32 arg1, func_80360588_Struct arg2);
+
+void func_80360588(s32 arg0, s32 arg1) {
+    func_80360588_Struct sp24;
+
+    func_80360400(&sp24, arg0, arg1);
+    func_8036048C(arg0, arg1, sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_803605E4.s")
 
@@ -573,7 +635,46 @@ u8 func_803626E0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80362A54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80362DF4.s")
+
+/* context.h declares D_801BC03C / D_801BC3D8 as u8 arrays, so access
+   their fields through offsets instead of a struct type. */
+extern u8 D_801BBBF0[];
+extern void func_8022C0A0(s32 arg0);
+extern void func_80231CEC(s32 arg0);
+extern void func_80360818(s32 arg0, s32 arg1);
+
+void func_80362DF4(s32 arg0, s32 arg1) {
+    u8 *var_v1;
+    u8 *var_v0;
+
+    if (arg0 == *(s32 *) &D_801BBBF0[0xDC]) {
+        var_v1 = D_801BC03C;
+    } else {
+        var_v1 = D_801BC3D8;
+    }
+    if (arg0 != *(s32 *) &D_801BBBF0[0xDC]) {
+        var_v0 = D_801BC03C;
+    } else {
+        var_v0 = D_801BC3D8;
+    }
+    var_v1[0x392] = 0;
+    if (var_v0[0x394] != 0) {
+        if (arg0 == *(s32 *) &D_801BBBF0[0xDC]) {
+            D_801BBBF0[0x1030] = 0;
+        } else {
+            D_801BBBF0[0x1030] = 1;
+        }
+        func_8022C0A0(arg0);
+        if (var_v1[0x2D9] < 0xE) {
+            var_v1[0x2D8] = 0;
+        } else {
+            var_v1[0x2D8] = 1;
+        }
+        var_v1[0x2DD] = 1;
+        func_80231CEC(arg0);
+        func_80360818(arg0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_80362EC8.s")
 

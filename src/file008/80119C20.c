@@ -148,7 +148,12 @@ void func_8011AA88(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80119C20/func_8011AAF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80119C20/func_8011B254.s")
+
+extern s8 D_801BBE8A;
+
+s8 func_8011B254(void) {
+    return D_801BBE8A;
+}
 
 
 s32 func_8011B260(void) {
