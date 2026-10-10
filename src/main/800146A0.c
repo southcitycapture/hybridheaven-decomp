@@ -435,7 +435,34 @@ loop_1:
     return var_s1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80017254.s")
+
+s32 func_80017480(u16, s32);
+
+s32 func_80017254(s32 arg0) {
+    u16 temp_s0;
+    u16 temp_v0;
+    s32 var_s1;
+    s32 var_s2;
+    s32 var_s4;
+
+    var_s1 = 0;
+    var_s2 = 0;
+    var_s4 = -1;
+loop_1:
+    if (func_80016F90() >= var_s1) {
+        temp_v0 = func_80017014(var_s1);
+        temp_s0 = temp_v0;
+        if (temp_v0 != 0) {
+            if (func_80017480(temp_s0, arg0) == var_s4) {
+                var_s2 = func_800170C8(temp_s0 & 0xFFFF);
+            } else {
+                var_s1 += 1;
+            }
+            goto loop_1;
+        }
+    }
+    return var_s2;
+}
 
 
 extern s32 func_800174CC(s32);
@@ -453,7 +480,17 @@ s32 func_800172F4(void) {
     return temp_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80017344.s")
+
+s32 func_80017344(s32 arg0) {
+    s32 temp_v0;
+
+    temp_v0 = func_800174CC(arg0);
+    if (temp_v0 == -1) {
+        return 0;
+    }
+    func_800173E4(temp_v0);
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80017384.s")
 

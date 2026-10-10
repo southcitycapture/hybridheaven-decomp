@@ -207,7 +207,22 @@ void func_80377140(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/803757E0/func_803771E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/803757E0/func_8037741C.s")
+
+extern void func_8014C138(u16);
+
+extern u8 D_80389EF2;
+extern void func_80377644(void);
+
+void func_8037741C(s32 arg0, s32 arg1) {
+    s32 cond;
+
+    cond = (s32) D_80389EF2 >= 0xB;
+    D_80389EF2 += 1;
+    if (cond) {
+        func_8014C138(D_801BBBF8);
+        func_800058DC((void *) arg0, (void *) func_80377644);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/803757E0/func_80377478.s")
 
@@ -221,8 +236,6 @@ typedef struct func_803775C0_Struct {
 } func_803775C0_Struct;
 
 extern void func_8014B4A0(u16, f32 *);
-extern void func_8014C138(u16);
-extern void func_80377644(void);
 
 void func_803775C0(s32 arg0, s32 arg1) {
     func_803775C0_Struct sp30;

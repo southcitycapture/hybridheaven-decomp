@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-10: **13.10% of the code** (3173 of 15890 functions, including duplicates).
+Progress as of 2026-10-10: **14.21% of the code** (3400 of 15890 functions, including duplicates).
 
-**9605 model runs, 4691 verified matches (49%), $190.32 API-equivalent in total (≈ $0.041 per match)**; plus 147 matches from decomp-permuter at no model cost.
+**9865 model runs, 4928 verified matches (50%), $190.32 API-equivalent in total (≈ $0.039 per match)**; plus 147 matches from decomp-permuter at no model cost.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -40,5 +40,7 @@ Progress as of 2026-10-10: **13.10% of the code** (3173 of 15890 functions, incl
 | `exp3t_n3` | exp3t_n3 | haiku-5-5 | 29 | 0 | 0% | $1.25 | – | 84% → 84% |
 | `exp3t_r3` | exp3t_r3 | haiku-5-5 | 28 | 0 | 0% | $1.09 | – | 84% → 84% |
 | `reconcile3` | reconcile3 | reconcile (no model) | 394 | 7 | 2% | $0.00 | – |  |
+| `cloud2` | cloud2 | haiku-5-5 (cloud subagent) | 230 | 207 | 90% | $0.00 | – |  |
+| `cloud2b` | cloud2b | haiku-5-5 (cloud subagent) | 30 | 30 | 100% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

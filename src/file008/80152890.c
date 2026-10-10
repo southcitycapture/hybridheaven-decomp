@@ -127,5 +127,22 @@ void func_80152F7C(void) {
     D_STRUCT.unk12 = D_STRUCT.unk18[D_STRUCT.unk22];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80152890/func_80153008.s")
+
+u16 func_80153008(void) {
+    s32 var_v1;
+    s32 stride;
+
+    var_v1 = 0;
+    stride = 0xC;
+    if ((u16)D_8017DD8E != *(u16 *)((u8 *)&D_80183AD0)) {
+        do {
+            var_v1 = (var_v1 + 1) & 0xFF;
+            stride = 0xC;
+            if ((u16)D_8017DD8E == *(u16 *)((u8 *)&D_80183AD0 + var_v1 * stride)) {
+                break;
+            }
+        } while (var_v1 < 0x29);
+    }
+    return *(u16 *)((u8 *)&D_80183AD0 + var_v1 * stride + 8);
+}
 

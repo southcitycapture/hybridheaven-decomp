@@ -156,7 +156,27 @@ void func_801264D4(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, u16 arg5) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_801266B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_80126744.s")
+struct func_80126794_Struct;
+extern struct func_80126794_Struct D_801BBBF0;
+
+void func_80126744(void) {
+    s32 base;
+
+    base = (s32)&D_801BBBF0;
+    if (*(u8 *)(base + 0x181) != 0) {
+        *(u8 *)(base + 0x182) = 1;
+    } else {
+        *(u8 *)(base + 0x182) = 0;
+    }
+    *(u8 *)(base + 0x181) = 0;
+    if (*(u8 *)(base + 0x186) != 0) {
+        *(u8 *)(base + 0x187) = 1;
+    } else {
+        *(u8 *)(base + 0x187) = 0;
+        *(u16 *)(base + 0x184) = 0;
+    }
+    *(u8 *)(base + 0x186) = 0;
+}
 
 
 typedef struct func_80126794_Struct {
@@ -169,7 +189,6 @@ typedef struct func_80126794_Struct {
     u32 unk188;
 } func_80126794_Struct;
 
-extern func_80126794_Struct D_801BBBF0;
 
 void func_80126794(void) {
     D_801BBBF0.unk181 = 0;

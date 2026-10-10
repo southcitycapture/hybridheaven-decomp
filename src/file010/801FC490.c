@@ -1,9 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801FC490/func_801FC490.s")
-
 
 extern u16 D_801BBE08[];
+extern void func_800058DC(s32 arg0, void *arg1);
+extern void func_801FC4C0();
+
+void func_801FC490(s32 arg0, s32 arg1) {
+    D_801BBE08[2] = 0;
+    func_800058DC(arg0, func_801FC4C0);
+}
+
+
 extern void (*D_80217120[])(void);
 
 typedef struct func_801FC4C0_Struct0 {

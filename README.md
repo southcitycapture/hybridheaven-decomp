@@ -91,9 +91,9 @@ The numbers below are generated from the run logs in `queue/*/results.jsonl` (se
 batch). Costs are API-equivalent figures as reported by Claude Code; the runs themselves used a Claude Max subscription,
 and the "weekly usage" column is the subscription's own usage meter.
 
-Progress as of 2026-10-10: **13.10% of the code** (3173 of 15890 functions, including duplicates).
+Progress as of 2026-10-10: **14.21% of the code** (3400 of 15890 functions, including duplicates).
 
-**9605 model runs, 4691 verified matches (49%), $190.32 API-equivalent in total (≈ $0.041 per match)**; plus 147 matches from decomp-permuter at no model cost.
+**9865 model runs, 4928 verified matches (50%), $190.32 API-equivalent in total (≈ $0.039 per match)**; plus 147 matches from decomp-permuter at no model cost.
 
 Per-batch table: [RESULTS.md](RESULTS.md).
 

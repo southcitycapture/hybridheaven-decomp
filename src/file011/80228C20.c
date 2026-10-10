@@ -1,6 +1,60 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_80228C20.s")
+extern struct func_8022B4A4_StructBase D_801BBBF0;
+
+typedef struct func_80228C20_StructPos {
+    u8 pad0[4];
+    f32 unk4;
+    u8 pad1[4];
+    f32 unkC;
+} func_80228C20_StructPos;
+
+typedef struct func_80228C20_StructObj {
+    u8 pad0[0x2C];
+    func_80228C20_StructPos *unk2C;
+} func_80228C20_StructObj;
+
+typedef struct func_80228C20_StructMid {
+    u8 pad0[0x24];
+    func_80228C20_StructObj *unk24;
+} func_80228C20_StructMid;
+
+typedef struct func_80228C20_StructGlobal {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    func_80228C20_StructObj *unkE0;
+    u8 pad1[0x448 - 0xE4];
+    func_80228C20_StructMid **unk448;
+} func_80228C20_StructGlobal;
+
+typedef struct func_80228C20_StructArgC {
+    u8 pad0[0xC];
+    s32 unkC;
+} func_80228C20_StructArgC;
+
+typedef struct func_80228C20_StructArg {
+    u8 pad0[0xC];
+    func_80228C20_StructArgC *unkC;
+} func_80228C20_StructArg;
+
+void func_8001EF38(f32, f32);
+
+s32 func_80228C20(arg0)
+func_80228C20_StructArg *arg0;
+{
+    func_80228C20_StructPos *temp_v0;
+    func_80228C20_StructPos *temp_v1;
+
+    if (arg0->unkC->unkC == ((func_80228C20_StructGlobal *)&D_801BBBF0)->unkDC) {
+        temp_v0 = (*((func_80228C20_StructGlobal *)&D_801BBBF0)->unk448)->unk24->unk2C;
+        temp_v1 = ((func_80228C20_StructGlobal *)&D_801BBBF0)->unkE0->unk2C;
+        func_8001EF38(temp_v0->unkC - temp_v1->unkC, temp_v0->unk4 - temp_v1->unk4);
+    } else {
+        temp_v1 = ((func_80228C20_StructGlobal *)&D_801BBBF0)->unkE0->unk2C;
+        temp_v0 = (*((func_80228C20_StructGlobal *)&D_801BBBF0)->unk448)->unk24->unk2C;
+        func_8001EF38(temp_v1->unkC - temp_v0->unkC, temp_v1->unk4 - temp_v0->unk4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_80228CC4.s")
 
@@ -22,7 +76,6 @@ typedef struct func_80228FD0_StructArg1 {
 
 f32 func_8001EAD0(s32);                             /* extern */
 f32 func_8001EB64(s32);                             /* extern */
-s32 func_80228C20();                                /* extern */
 extern s16 D_801BBE22;
 
 void func_80228FD0(func_80228FD0_Struct *arg0, func_80228FD0_StructArg1 *arg1, u8 arg2) {
@@ -88,7 +141,52 @@ s32 func_802291FC(void *arg0, void *arg1, void *arg2, u8 arg3)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_802292D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_80229404.s")
+
+/* Forward tags and externs matching context.h (no typedef copies, so no redeclaration). */
+struct func_8022B4A4_StructBase;
+struct func_8022B4A4_StructEntry;
+extern struct func_8022B4A4_StructEntry D_801BC03C;
+extern struct func_8022B4A4_StructEntry D_801BC3D8;
+
+typedef struct func_80229404_StructSub {
+    u8 pad0[0x7F];
+    u8 unk7F;
+    u8 unk80;
+    u8 unk81;
+    u8 unk82;
+} func_80229404_StructSub;
+
+typedef struct func_80229404_Struct {
+    u8 pad0[0x2D9];
+    u8 unk2D9;
+    u8 pad1[0x334 - 0x2DA];
+    func_80229404_StructSub *unk334;
+} func_80229404_Struct;
+
+s32 func_80376300();
+void func_80376BE4(void *);
+
+void func_80229404(func_80229404_Struct *arg0) {
+    u8 *var_v0;
+
+    if (arg0 == (func_80229404_Struct *) ((u8 *) &D_801BBBF0 + 0x44C)) {
+        var_v0 = (u8 *) &D_801BC3D8;
+    } else {
+        var_v0 = (u8 *) &D_801BC03C;
+    }
+    if ((((*(u32 *) (var_v0 + 0x30)) << 0xB) >> 0x1E) == 1) {
+        if (func_80376300() != 0) {
+            arg0->unk2D9 = arg0->unk334->unk81;
+        } else {
+            arg0->unk2D9 = arg0->unk334->unk7F;
+        }
+    } else if (func_80376300() != 0) {
+        arg0->unk2D9 = arg0->unk334->unk80;
+    } else {
+        arg0->unk2D9 = arg0->unk334->unk82;
+    }
+    func_80376BE4(arg0);
+}
 
 
 typedef struct func_802294BC_Struct {
@@ -213,9 +311,6 @@ typedef struct func_8022B4A4_StructEntry {
 } func_8022B4A4_StructEntry;
 
 void func_80005700(void);
-extern func_8022B4A4_StructBase D_801BBBF0;
-extern func_8022B4A4_StructEntry D_801BC03C;
-extern func_8022B4A4_StructEntry D_801BC3D8;
 
 void func_8022B4A4(func_8022B4A4_StructArg *arg0, s32 arg1) {
     func_8022B4A4_StructEntry *var_v0;

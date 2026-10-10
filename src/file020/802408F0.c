@@ -20,7 +20,42 @@ void func_8024092C(struct func_8024092C_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80240CF8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80240DF4.s")
+extern void func_801C2F0C(s32 arg0, struct func_80240EF8_Struct *arg1);
+extern void func_800058DC(void *arg0, void *arg1);
+
+struct func_80240DF4_Struct {
+    f32 a;
+    f32 b;
+    f32 c;
+    s16 d;
+    s32 e;
+    f32 f;
+    s16 g;
+    s16 h;
+    s16 i;
+};
+
+extern f32 D_80246A58;
+extern f32 D_80246A5C;
+extern void func_80240E8C(void);
+
+void func_80240DF4(void *arg0, void *arg1) {
+    struct func_80240DF4_Struct buf;
+
+    if (func_801C2FF8() != 0) {
+        buf.a = D_80246A58;
+        buf.b = D_80246A5C;
+        buf.c = 0.0f;
+        buf.d = 0x1100;
+        buf.e = 0x0168003E;
+        buf.f = 1.5f;
+        buf.g = 0;
+        buf.h = 0x5A;
+        buf.i = 0x15A2;
+        func_801C2F0C(6, (void *) &buf);
+        func_800058DC(arg0, func_80240E8C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80240E8C.s")
 
@@ -33,9 +68,7 @@ typedef struct func_80240EF8_Struct {
 } func_80240EF8_Struct;
 
 extern s32 func_801C3044(void);
-extern void func_801C2F0C(s32 arg0, func_80240EF8_Struct *arg1);
 extern void func_80020718(s32 arg0);
-extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80240F7C(void);
 
 void func_80240EF8(void *arg0, void *arg1) {

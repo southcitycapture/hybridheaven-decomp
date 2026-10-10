@@ -4,7 +4,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80240904.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80240918.s")
+
+typedef struct func_80240918_Struct {
+    u8 pad[0x92];
+    u16 unk92;
+} func_80240918_Struct;
+
+extern func_80240918_Struct *D_801BCCF4;
+
+void func_80240918(void) {
+    D_801BCCF4->unk92 = 0;
+}
 
 
 extern void *func_801505AC(s32);
@@ -64,7 +74,16 @@ void func_80240C44(func_80240C44_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80240C8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80240CE8.s")
+extern s32 D_801BCC78;
+extern void func_80240D34();
+
+void func_80240CE8(void *arg0, s32 arg1) {
+    if (func_80133A24(0x147) != 0) {
+        *(u16 *)((u8 *)arg0 + 0x92) = 8;
+        D_801BCC78 = 0;
+        func_800058DC((s32)arg0, (void *)func_80240D34);
+    }
+}
 
 
 typedef struct func_80240D34_Struct {
@@ -247,7 +266,6 @@ void func_80241A54(void *arg0, func_80241A54_Struct1 **arg1) {
 
 
 extern s32 func_8001E978(s32, s32, s32, s32, s32, s32, s32, s32);
-extern s32 D_801BCC78;
 
 void func_80241B70(void) {
     func_8001E978(D_801BCC78, 0, 0, 0, 0xF, 0, 2, 0);
@@ -338,7 +356,20 @@ void func_80241DE0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80241F48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80242048.s")
+extern void func_80242080();
+
+typedef struct func_80242048_Struct {
+    u8 pad[0x90];
+    u16 unk90;
+    u16 unk92;
+} func_80242048_Struct;
+
+void func_80242048(func_80242048_Struct *arg0, s32 arg1) {
+    if (arg0->unk90 != 0) {
+        arg0->unk92 = 8;
+        func_800058DC((s32)arg0, (void *)func_80242080);
+    }
+}
 
 
 extern s16 D_801BBBF6;
@@ -450,7 +481,13 @@ void func_802421D8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80242494.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80242524.s")
+extern void func_80242560();
+
+void func_80242524(s32 arg0, s32 arg1) {
+    if (func_80126944() == 1) {
+        func_800058DC(arg0, (void *) func_80242560);
+    }
+}
 
 
 typedef struct func_80242560_Struct {

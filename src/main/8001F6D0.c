@@ -8,9 +8,20 @@ void func_8001F6D0(void) {
     *p = *p;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F6D0/func_8001F6E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F6D0/func_8001F6FC.s")
+void func_8001F6E4(void) {
+    s32 *p;
+
+    p = (s32 *) ((u8 *) &D_800892B0 + 0x429C);
+    *p = *p | 1;
+}
+
+
+void func_8001F6FC(void) {
+    s32 *p;
+    p = (s32 *) ((u8 *) &D_800892B0 + 0x429C);
+    *p = *p & ~1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001F6D0/func_8001F718.s")
 

@@ -78,7 +78,25 @@ void func_8024D564(void *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/8024D230/func_8024D8A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/8024D230/func_8024DA04.s")
+/* context.h declaration lines this function uses, needed before the file's own declarations. */
+extern s32 D_8025A2E4;
+extern void func_8015115C(s32, void *);
+extern void func_801512CC(s32, s32, s32, s32);
+extern void func_8024DA8C();
+
+extern s32 func_801517CC(s32);
+extern void func_80151430(s32, s32);
+extern u8 D_80254208[];
+
+void func_8024DA04(void *arg0, s32 arg1) {
+    if (func_801517CC(D_8025A2E4) != 0) {
+        func_801512CC(D_8025A2E4, 0x4413B333, 0x43B90000, 0x42DD6666);
+        func_80151430(D_8025A2E4, 0x1000);
+        func_8015115C(D_8025A2E4, D_80254208);
+        *(s16 *)((u8 *)arg0 + 0x90) = 0;
+        func_800058DC(arg0, &func_8024DA8C);
+    }
+}
 
 
 struct func_8024DA8C_Struct {
@@ -88,10 +106,8 @@ struct func_8024DA8C_Struct {
 
 extern s32 func_80133A24(s32);
 extern void func_801511C4(s32, void *, s32);
-extern void func_801512CC(s32, s32, s32, s32);
 extern void func_8024DB10(void);
 extern u8 D_80254214[];
-extern s32 D_8025A2E4;
 
 void func_8024DA8C(struct func_8024DA8C_Struct *arg0, s32 arg1) {
     if (func_80133A24(0x73) != 0) {
@@ -115,7 +131,6 @@ struct func_8024DF34_Struct {
     u16 unk90;
 };
 
-extern void func_8015115C(s32, void *);
 extern void func_8024DFA4(void);
 extern u8 D_802545D4[];
 extern u8 D_8025422C[];

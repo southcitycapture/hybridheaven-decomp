@@ -108,11 +108,112 @@ void func_800058F4(struct func_800058F4_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_800059B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005A04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005ACC.s")
+struct func_80005A04_Struct {
+    struct func_80005A04_Struct *unk0;
+    struct func_80005A04_Struct *unk4;
+    struct func_80005A04_Struct *unk8;
+    struct func_80005A04_Struct *unkC;
+    u8 pad10[4];
+    u32 unk14;
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005B48.s")
+extern struct func_80005A04_Struct *D_8008D5D4;
+
+void func_80005A04(void *a0, void *a1) {
+    struct func_80005A04_Struct *arg1;
+    struct func_80005A04_Struct *temp_v1;
+    struct func_80005A04_Struct *temp_v0_2;
+    struct func_80005A04_Struct *temp_v0_3;
+    struct func_80005A04_Struct *temp_v0_4;
+    u32 temp_v0;
+
+    arg1 = a1;
+    temp_v0 = arg1->unk14;
+    if (((struct func_80005A04_Struct *) a0)->unk14 < temp_v0) {
+        arg1->unk0 = a0;
+        arg1->unk4 = ((struct func_80005A04_Struct *) a0)->unk4;
+        arg1->unkC = ((struct func_80005A04_Struct *) a0)->unkC;
+        ((struct func_80005A04_Struct *) a0)->unk4 = arg1;
+        temp_v0_2 = arg1->unk4;
+        if (temp_v0_2 != NULL) {
+            temp_v0_2->unk0 = arg1;
+        }
+        if (arg1->unkC != NULL) {
+            temp_v0_3 = ((struct func_80005A04_Struct *) a0)->unkC;
+            if (((struct func_80005A04_Struct *) a0) == temp_v0_3->unk8) {
+                temp_v0_3->unk8 = arg1;
+            }
+        }
+    } else {
+loop_6:
+        temp_v1 = ((struct func_80005A04_Struct *) a0)->unk0;
+        if (temp_v1 != NULL && temp_v1->unk14 >= temp_v0) {
+            a0 = temp_v1;
+            goto loop_6;
+        }
+        arg1->unk0 = temp_v1;
+        arg1->unk4 = a0;
+        arg1->unkC = ((struct func_80005A04_Struct *) a0)->unkC;
+        ((struct func_80005A04_Struct *) a0)->unk0 = arg1;
+        temp_v0_4 = arg1->unk0;
+        if (temp_v0_4 != NULL) {
+            temp_v0_4->unk4 = arg1;
+        }
+        if (((struct func_80005A04_Struct *) a0) == D_8008D5D4) {
+            *(struct func_80005A04_Struct **) &D_8008D5D0 = arg1;
+        }
+    }
+}
+
+struct func_80005CDC_Struct;
+extern struct func_80005CDC_Struct D_800892B0;
+extern void func_80006088(void *);
+
+void func_80005ACC(void *arg0) {
+    void *s0;
+
+    if ((s32) arg0 == D_8008D5D0) {
+        D_8008D5D0 = *(s32 *) arg0;
+    }
+    func_80005B48(arg0);
+    ((void **) arg0)[0] = *(void **) ((u8 *) &D_800892B0 + 0xAC);
+    *(void **) ((u8 *) &D_800892B0 + 0xAC) = arg0;
+    s0 = ((void **) arg0)[9];
+    if (s0 != NULL) {
+        do {
+            func_80006088(s0);
+            s0 = ((void **) arg0)[9];
+        } while (s0 != NULL);
+    }
+}
+
+
+struct func_80005B48_Struct {
+    struct func_80005B48_Struct *unk0;
+    struct func_80005B48_Struct *unk4;
+    struct func_80005B48_Struct *unk8;
+    struct func_80005B48_Struct *unkC;
+};
+
+void func_80005B48(void *arg0) {
+    struct func_80005B48_Struct *a;
+    struct func_80005B48_Struct *temp_v0;
+
+    a = (struct func_80005B48_Struct *) arg0;
+    temp_v0 = a->unk4;
+    if (temp_v0 != NULL) {
+        temp_v0->unk0 = a->unk0;
+    }
+    temp_v0 = a->unk0;
+    if (temp_v0 != NULL) {
+        temp_v0->unk4 = a->unk4;
+    }
+    temp_v0 = a->unkC;
+    if ((temp_v0 != NULL) && (a == temp_v0->unk8)) {
+        temp_v0->unk8 = a->unk0;
+    }
+}
 
 
 typedef struct func_80005B98_Struct {
@@ -204,7 +305,6 @@ struct func_80005CDC_Struct {
     u8 *unkC4;
 };
 
-extern struct func_80005CDC_Struct D_800892B0;
 
 s32 func_80005CDC(void) {
     s32 var_a0;
@@ -247,7 +347,6 @@ struct func_80005E44_Res {
 };
 
 extern s32 func_80005D9C(void *, u16);
-extern void func_80006088(void *);
 extern void func_80006370(s32, void *);
 extern void *func_800063BC(void *, u32);
 extern s32 func_800065EC(void *, void *);
@@ -301,11 +400,74 @@ void *func_80005ED8(s32 arg0, void *arg1, s32 arg2) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005F6C.s")
+
+void func_80005F6C(s32 arg0, struct func_80005E44_Struct *arg1) {
+    func_80005E44(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005F8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005FAC.s")
+
+typedef struct func_80005FAC_Node {
+    void *unk0;
+    s32 unk4;
+    s32 unk8;
+    void *unkC;
+    s32 unk10;
+    s32 unk14;
+    s32 unk18;
+} func_80005FAC_Node;
+
+typedef struct func_80005FAC_Pool {
+    u8 pad[0xB0];
+    func_80005FAC_Node *unkB0;
+} func_80005FAC_Pool;
+
+typedef struct func_80005FAC_Arg1 {
+    u8 pad[8];
+    func_80005FAC_Node *unk8;
+} func_80005FAC_Arg1;
+
+typedef struct func_80005FAC_Arg2 {
+    u8 pad4[4];
+    s32 unk4;
+    u8 pad8[2];
+    u16 unkA;
+} func_80005FAC_Arg2;
+
+func_80005FAC_Node *func_80005FAC(s32 arg0, func_80005FAC_Arg1 *arg1, func_80005FAC_Arg2 *arg2) {
+    func_80005FAC_Node *var_s0;
+    func_80005FAC_Node *temp_v0;
+
+    if (arg1->unk8 != NULL) {
+        var_s0 = (func_80005FAC_Node *) func_800063BC(arg1->unk8, arg2->unk4);
+    } else {
+        temp_v0 = ((func_80005FAC_Pool *) &D_800892B0)->unkB0;
+        if (temp_v0 != NULL) {
+            var_s0 = temp_v0;
+            ((func_80005FAC_Pool *) &D_800892B0)->unkB0 = temp_v0->unk0;
+            arg1->unk8 = temp_v0;
+            temp_v0->unk0 = NULL;
+            temp_v0->unk4 = 0;
+            temp_v0->unk8 = 0;
+            temp_v0->unkC = arg1;
+            temp_v0->unk18 = arg0;
+        } else {
+            var_s0 = NULL;
+        }
+    }
+    if (var_s0 != NULL) {
+        if (func_80005D9C(var_s0, arg2->unkA) == 0) {
+            return NULL;
+        }
+        func_80006370(arg0, var_s0);
+        if (func_800065EC(var_s0, arg2) != 0) {
+            func_80006088(var_s0);
+            return NULL;
+        }
+    }
+    return var_s0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80006088.s")
 
@@ -397,7 +559,67 @@ void func_80006414(struct func_80006414_Struct *arg0, struct func_80006414_Struc
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_800064C4.s")
+
+void func_8000659C(void);
+
+struct func_800064C4_Struct {
+    struct func_800064C4_Struct *unk0;
+    u8 pad4[0xC];
+    struct func_800064C4_Struct *unk10;
+    struct func_800064C4_Struct *unk14;
+    struct func_800064C4_Struct *unk18;
+    s32 unk1C;
+    u8 pad20[0x4];
+    void *unk24;
+    s32 unk28;
+    s32 unk2C;
+    s32 unk30;
+};
+
+struct func_800064C4_Globals {
+    u8 pad0[0xB0];
+    struct func_800064C4_Struct *unkB0;
+    u32 unkB4;
+    u32 unkB8;
+    u32 unkBC;
+    u8 *unkC0;
+    u8 *unkC4;
+};
+
+#define FUNC800064C4_G ((struct func_800064C4_Globals *) &D_800892B0)
+
+void func_800064C4(struct func_800064C4_Struct *arg0) {
+    struct func_800064C4_Struct *temp_v0;
+    struct func_800064C4_Struct *temp_v0_2;
+    s32 temp_v1;
+    s32 temp_v1_2;
+
+    func_8000659C();
+    temp_v0 = arg0->unk14;
+    if (temp_v0 != NULL) {
+        temp_v0->unk10 = arg0->unk10;
+    } else {
+        arg0->unk18->unk24 = arg0->unk10;
+    }
+    temp_v0_2 = arg0->unk10;
+    if (temp_v0_2 != NULL) {
+        temp_v0_2->unk14 = arg0->unk14;
+    }
+    arg0->unk0 = FUNC800064C4_G->unkB0;
+    FUNC800064C4_G->unkB0 = arg0;
+    temp_v1 = arg0->unk2C;
+    arg0->unk1C = 0;
+    if (temp_v1 != 0) {
+        *(u8 *) (((u32) (temp_v1 - FUNC800064C4_G->unkB8) / 184U) + (u32) FUNC800064C4_G->unkC0) = 0;
+    } else {
+        temp_v1_2 = arg0->unk30;
+        if (temp_v1_2 != 0) {
+            *(u8 *) (((u32) (temp_v1_2 - FUNC800064C4_G->unkBC) / 80U) + (u32) FUNC800064C4_G->unkC4) = 0;
+        }
+    }
+    arg0->unk2C = 0;
+    arg0->unk30 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_8000659C.s")
 

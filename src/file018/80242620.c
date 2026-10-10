@@ -237,7 +237,31 @@ void func_80244458(void *arg0, s32 *arg1)
 void func_802444D4(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_802444DC.s")
+void func_80005F6C(void *, void *);
+void func_80006214(void *);
+void func_8012C89C(void *, s32, s32, s32);
+void func_8012C2DC(s32);
+extern void func_802445BC();
+extern void func_8012C228(s32, s32, s32);
+
+extern u8 D_80164F40[];
+extern f32 D_8025BF78;
+
+void func_802444DC(void *arg0, void **arg1) {
+    if (func_80133A24(0x144) == 0) {
+        func_80005F6C(arg0, D_80164F40);
+        func_80006214(arg0);
+        func_8012C89C(arg0, 0, 0x3CB, 0xB);
+        func_8012C2DC(0);
+        *(f32 *) (*(u8 **) (*(u8 **) arg1 + 0x30) + 0x4) = D_8025BF78;
+        *(f32 *) (*(u8 **) (*(u8 **) arg1 + 0x30) + 0x8) = 200.0f;
+        *(f32 *) (*(u8 **) (*(u8 **) arg1 + 0x30) + 0xC) = -90.0f;
+        *(s16 *) (*(u8 **) (*(u8 **) arg1 + 0x30) + 0x12) = 0x800;
+        func_8012C228((s32) arg0, 0x3CB, 0xC);
+        *(s16 *) ((u8 *) arg0 + 0x90) = 0x80;
+        func_800058DC(arg0, func_802445BC);
+    }
+}
 
 
 struct func_802445BC_Struct1 {
@@ -288,11 +312,6 @@ struct func_80244600_Struct0 {
     s16 unk90;
 };
 
-void func_80005F6C(void *, void *);
-void func_80006214(void *);
-void func_8012C89C(void *, s32, s32, s32);
-void func_8012C2DC(s32);
-extern u8 D_80164F40[];
 extern f32 D_8025BF80;
 extern void func_802446CC();
 
@@ -347,7 +366,6 @@ void func_80244788(struct func_80244788_Struct *arg0, s32 arg1) {
 }
 
 
-extern void func_8012C228(s32, s32, s32);
 extern void func_802448BC(void);
 extern s32 D_8025C6F4;
 
@@ -371,7 +389,23 @@ void func_802447F0(s32 arg0, struct func_80244600_Struct1 **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_8024495C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_802449AC.s")
+
+/* The StructA typedef in context.h is declared after this function in the source file, so use a local struct. */
+struct func_802449AC_Struct {
+    u8 pad0[0x90];
+    u16 unk90;
+};
+
+extern void func_80020744(s16 arg0);
+extern void func_802449FC();
+
+void func_802449AC(struct func_802449AC_Struct *arg0, s32 arg1) {
+    if ((u8) D_8025C6FB == 4) {
+        arg0->unk90 = 4;
+        func_80020744(0x239);
+        func_800058DC(arg0, func_802449FC);
+    }
+}
 
 
 extern void func_80005700(void);

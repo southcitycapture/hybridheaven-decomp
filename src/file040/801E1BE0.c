@@ -363,7 +363,13 @@ s32 func_801E45BC(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file040/801E1BE0/func_801E4B84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file040/801E1BE0/func_801E4BC0.s")
+
+s32 func_801E4BC0(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x019D012B) != 0) {
+        return 0xB;
+    }
+    return 0xA;
+}
 
 
 extern s32 func_801C7F40();

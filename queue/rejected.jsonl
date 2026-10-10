@@ -2664,3 +2664,7 @@
 {"segment": "file028", "func": "func_801F6F28", "why": "compile error in file context", "was_registered": false}
 {"segment": "file028", "func": "func_801F6F28", "why": "compile error in file context", "was_registered": false}
 {"segment": "main", "func": "func_800179B0", "why": "compile error in file context", "was_registered": false}
+{"segment": "file020", "func": "func_80240E8C", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80024E0C", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80025694", "why": "compile error in file context", "was_registered": false}
+{"segment": "file013", "func": "func_80241FEC", "why": "compile error in file context", "was_registered": false}

@@ -36,7 +36,14 @@ void func_80131D00(struct func_80131D00_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80131D00/func_80131DD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80131D00/func_8013222C.s")
+
+extern void func_800058DC(s32, void (*)(void));
+extern void func_8013225C(void);
+
+void func_8013222C(void *arg0, s32 arg1) {
+    *(u16 *)((u8 *)arg0 + 0x90) = 0x23;
+    func_800058DC((s32)arg0, func_8013225C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80131D00/func_8013225C.s")
 
@@ -89,7 +96,6 @@ void func_80132D28(void *arg0, s32 arg1) {
 
 extern s16 D_80089356;
 extern void func_80132DB0(void);
-extern void func_800058DC(s32, void (*)(void));
 
 void func_80132D74(s32 arg0, s32 arg1) {
     D_801BBD54 = 0;

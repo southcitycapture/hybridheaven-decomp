@@ -200,15 +200,65 @@ s32 func_801E39D4(s32 arg0, s32 arg1) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E3A28.s")
+extern struct func_801E3BE0_Struct *func_801BF6B0(s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E3A98.s")
+s32 func_801E3A28(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x0200B1FE) != 0) {
+        D_801E8420 = 1;
+    }
+    if (*(s32 *)((u8 *)func_801BF6B0(0) + 0xC) >= 0x13) {
+        D_801E8414 = 0;
+        return 4;
+    }
+    func_801E375C();
+    return 3;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E3AEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E3B3C.s")
+s32 func_801E3A98(s32 arg0, s32 arg1) {
+    if (*(s32 *)((u8 *)func_801BF6B0(0) + 0xC) >= 0x16) {
+        D_801E8414 = 1;
+        return 5;
+    }
+    func_801E375C();
+    return 4;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E3B90.s")
+
+
+struct func_801E3AEC_Struct {
+    u8 pad[0xC];
+    s32 unkC;
+};
+
+s32 func_801E3AEC(s32 arg0, s32 arg1) {
+    if (((struct func_801E3AEC_Struct *)func_801BF6B0(0))->unkC >= 0x17) {
+        D_801E8414 = 0;
+        return 6;
+    }
+    func_801E375C();
+    return 5;
+}
+
+
+s32 func_801E3B3C(s32 arg0, s32 arg1) {
+    if (*(s32 *)((u8 *)func_801BF6B0(0) + 0xC) >= 0x19) {
+        D_801E8414 = 1;
+        return 7;
+    }
+    func_801E375C();
+    return 6;
+}
+
+
+s32 func_801E3B90(s32 arg0, s32 arg1) {
+    if (*(s32 *)((u8 *)func_801BF6B0(0) + 0xC) >= 0x1A) {
+        D_801E8414 = 0;
+        return 8;
+    }
+    func_801E375C();
+    return 7;
+}
 
 
 typedef struct func_801E3BE0_Struct {
@@ -216,7 +266,6 @@ typedef struct func_801E3BE0_Struct {
     s32 unkC;
 } func_801E3BE0_Struct;
 
-extern func_801E3BE0_Struct *func_801BF6B0(s32);
 
 s32 func_801E3BE0(s32 arg0, s32 arg1) {
     if (func_801BF6B0(0)->unkC >= 0x1D) {
@@ -288,7 +337,16 @@ s32 func_801E3C2C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E485C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E48A0.s")
+
+extern struct func_801E48F0_Struct1 *D_8038D8D0;
+
+s32 func_801E48A0(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x022E78BE) != 0) {
+        *(u8 *)(*(u8 **)((u8 *)D_8038D8D0 + 0xC) + 0x22) = 0;
+        return 2;
+    }
+    return 1;
+}
 
 
 struct func_801E48F0_Struct2 {
@@ -301,7 +359,6 @@ struct func_801E48F0_Struct1 {
     struct func_801E48F0_Struct2 *unkC;
 };
 
-extern struct func_801E48F0_Struct1 *D_8038D8D0;
 
 s32 func_801E48F0(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0x0279BF94) != 0) {
@@ -687,7 +744,14 @@ s32 func_801E5F84(s32 arg0, s32 arg1) {
     return 0x15;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E5FE8.s")
+
+s32 func_801E5FE8(s32 arg0, s32 arg1) {
+    if (func_801CE274() == 0) {
+        func_801CC470(0, 0x03480058, 0, 0, 5.0f);
+        return 0x17;
+    }
+    return 0x16;
+}
 
 
 
@@ -1104,7 +1168,17 @@ s32 func_801E7314(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E7380.s")
+
+extern s32 func_801D5DF8(s32);
+
+s32 func_801E7380(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x025C3F7E) != 0) {
+        func_801D5DF8(0);
+        func_801CC4D8(3, 0x02A8005F, 0, 0, 5.0f);
+        return 5;
+    }
+    return 4;
+}
 
 
 extern s32 func_801D5E40();
@@ -1139,7 +1213,32 @@ s32 func_801E73F0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E7508.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E754C.s")
+
+extern void func_801D04F8();
+
+#ifndef FN_GET
+#define FN_GET(p, off) (*(u8 **)((u8 *)(p) + (off)))
+#endif
+#ifndef FN_CHAIN5
+#define FN_CHAIN5(p) FN_GET(FN_GET(FN_GET(FN_GET(FN_GET(p, 8), 8), 8), 8), 8)
+#endif
+#define FN_OBJ_BASE FN_GET(FN_GET(FN_CHAIN5(D_801DAB14), 0x24), 0x2C)
+
+s32 func_801E754C(s32 arg0, s32 arg1) {
+    u8 *temp_v0;
+
+    temp_v0 = FN_GET(FN_CHAIN5(D_801DAB14), 0x24);
+    if (temp_v0 != NULL) {
+        *(f32 *)(FN_GET(temp_v0, 0x2C) + 4) = 5120.0f;
+        *(f32 *)(FN_OBJ_BASE + 8) = 0.0f;
+        *(f32 *)(FN_OBJ_BASE + 0xC) = -45.0f;
+        *(s16 *)(FN_OBJ_BASE + 0x12) = 0;
+        func_801D04F8();
+        func_801CC470(4, 0x03480090, 0, 1, 1.0f);
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E7654.s")
 

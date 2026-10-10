@@ -84,7 +84,18 @@ void func_80240924(void *arg0, struct func_80240924_Obj **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80241164.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80241714.s")
+
+extern void func_8024174C(void);
+
+void func_80241714(void *arg0, s16 arg1)
+{
+  func_8001F74C(arg0);
+  *((s16 *) (((u8 *) arg0) + 0x3C)) = 0;
+  if (!arg0)
+  {
+  }
+  func_800058DC(arg0, (void *) func_8024174C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_8024174C.s")
 

@@ -567,7 +567,14 @@ s32 func_801E4FC0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file048/801E1BE0/func_801E5260.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file048/801E1BE0/func_801E53B8.s")
+
+s32 func_801E53B8(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0xE1D480) != 0) {
+        func_801C1000(3, 4);
+        return 4;
+    }
+    return 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file048/801E1BE0/func_801E5404.s")
 
@@ -1292,10 +1299,18 @@ s32 func_801E8A50(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file048/801E1BE0/func_801E8C24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file048/801E1BE0/func_801E8C34.s")
-
 
 extern s32 D_801E9FFC;
+
+s32 func_801E8C34(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0xF4240) != 0) {
+        D_801E9FFC = 0;
+        return 0x2A;
+    }
+    return 0x29;
+}
+
+
 
 s32 func_801E8C7C(s32 arg0, s32 arg1) {
     if (D_801E9FFC >= 0x13) {
