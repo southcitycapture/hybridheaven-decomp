@@ -4595,7 +4595,43 @@ s32 func_801F6D28(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801F6DC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801F6F28.s")
+extern u8 D_801DB244[];
+extern void func_801D03E0(s32 a0);
+extern void func_801D03EC(s32 a0);
+extern void func_801D048C(s32 a0);
+extern void func_801D2704(s32 a0);
+extern void func_801D2710(s32 a0);
+extern u8 func_801DAEE8[];
+
+extern void func_801D0A68(s32 a0);
+extern void func_801D517C(s32 a0);
+extern void func_801D5188(s32 a0);
+extern u8 D_801DAFC4[];
+extern u8 D_801DB64C[];
+
+#define FUNC_801F6F28_NEXT(p) (*(u8 **)((u8 *)(p) + 0x8))
+#define FUNC_801F6F28_BASE_A ((u8 *)D_801DAB14)
+#define FUNC_801F6F28_BASE_B (*(u8 **)(func_801DAAF0 + 0x24))
+
+s32 func_801F6F28(s32 arg0, s32 arg1) {
+    func_80005670(FUNC_801F6F28_BASE_B, D_801DB300);
+    func_80005670(FUNC_801F6F28_NEXT(FUNC_801F6F28_BASE_A), D_801DB320);
+    func_80005670(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_BASE_B)), D_801DB340);
+    func_801D2704(0);
+    func_801D2710(0);
+    func_80005670(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_BASE_A))), D_801DB244);
+    func_801D048C(0);
+    func_801D03E0(0);
+    func_801D03EC(0);
+    func_80005670(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_BASE_B)))), func_801DAEE8 + 0x1C);
+    func_801D0A68(0);
+    func_80005670(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_BASE_A))))), D_801DAFC4);
+    func_801D517C(0);
+    func_801D5188(0);
+    func_80005670(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_NEXT(FUNC_801F6F28_BASE_B)))))), D_801DB64C);
+    func_801CC530();
+    return 2;
+}
 
 
 #define FUNC_801F7074_NEXT(p, off) (*(u8 **)((u8 *)(p) + (off)))
@@ -6521,13 +6557,6 @@ s32 func_801FFC84(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801FFDD0.s")
 
 
-extern void func_801D2704(s32 a0);
-extern void func_801D2710(s32 a0);
-extern void func_801D048C(s32 a0);
-extern void func_801D03E0(s32 a0);
-extern void func_801D03EC(s32 a0);
-extern u8 D_801DB244[];
-extern u8 func_801DAEE8[];
 
 #define func_801FFEF4_NEXT(p) (*(u8 **)((u8 *)(p) + 0x8))
 
