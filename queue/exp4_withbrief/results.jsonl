@@ -1,0 +1,9 @@
+{"func": "func_8037BEA4", "segment": "file057", "verified": "MATCH", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
+{"func": "func_8021F9C8", "segment": "file011", "verified": "ALONE", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
+{"func": "func_8001D588", "segment": "main", "verified": "MATCH", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
+{"func": "func_8038D7D0", "segment": "file092", "verified": "MATCH", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
+{"func": "func_80385208", "segment": "file057", "verified": "MATCH", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
+{"func": "func_80232A80", "segment": "file011", "verified": "MATCH", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
+{"func": "func_802387D4", "segment": "file011", "verified": "MATCH", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
+{"func": "func_800179B0", "segment": "main", "verified": "MATCH", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
+{"func": "func_801F6F28", "segment": "file028", "verified": "MATCH", "model": "claude-sonnet-5-5 (cloud, withbrief)"}
