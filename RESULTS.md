@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-09: **12.90% of the code** (3164 of 15890 functions, including duplicates).
+Progress as of 2026-10-10: **12.90% of the code** (3164 of 15890 functions, including duplicates).
 
-**8260 model runs, 4669 verified matches (57%), $155.43 API-equivalent in total (≈ $0.033 per match)**; plus 147 matches from decomp-permuter at no model cost.
+**8654 model runs, 4669 verified matches (54%), $155.43 API-equivalent in total (≈ $0.033 per match)**; plus 147 matches from decomp-permuter at no model cost.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -24,5 +24,6 @@ Progress as of 2026-10-09: **12.90% of the code** (3164 of 15890 functions, incl
 | `permute` | decomp-permuter on near-misses | decomp-permuter | 424 | 45 | 11% | $0.00 | – |  |
 | `reconcile1` | reconcile1 | reconcile (no model) | 695 | 320 | 46% | $0.00 | – |  |
 | `exp1_b` | exp1_b | sonnet-5-5 | 56 | 12 | 21% | $26.74 | $2.228 | 80% → 81% |
+| `reconcile2` | reconcile2 | reconcile (no model) | 394 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

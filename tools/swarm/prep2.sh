@@ -16,6 +16,12 @@ if [ \$n -gt ${CHECK_LIMIT:-10} ]; then echo "check limit reached (${CHECK_LIMIT
 [ -f attempt.c ] || { echo "write attempt.c first"; exit 2; }
 "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" $FUNC attempt.c --seg $SEG -v 2>&1 | head -30 | tee .lastcheck
 EOC
+# INFILE=1: a match also has to hold inside the function's real C file, next to its already-matched neighbours
+[ -n "$INFILE" ] && cat >> "$W/check" <<EOC
+if head -1 .lastcheck | grep -q '^MATCH'; then
+  "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" infile $SEG $FUNC \$PWD/attempt.c 2>&1 | head -30 | tee -a .lastcheck
+fi
+EOC
 chmod +x "$W/check"
 "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" context "$SEG" "$FUNC" > "$W/context.h"
 sed -i 's/^#include "common.h"/#include "context.h"/' "$W/draft.c"
