@@ -22,6 +22,12 @@ if head -1 .lastcheck | grep -q '^MATCH'; then
   "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" infile $SEG $FUNC \$PWD/attempt.c 2>&1 | head -30 | tee -a .lastcheck
 fi
 EOC
+# every check keeps a snapshot (.attempts/N.c + its first result line), and says which one was best so far
+cat >> "$W/check" <<'EOC'
+mkdir -p .attempts; cp attempt.c .attempts/$n.c; head -1 .lastcheck > .attempts/$n.res; grep -q '^IN-FILE' .lastcheck && grep '^IN-FILE' .lastcheck | head -1 >> .attempts/$n.res
+best=$(for f in .attempts/*.res; do k=${f%.res}; k=${k##*/}; l=$(head -1 $f); case "$l" in MATCH*) s=1000000;; score*) s=$(echo "$l" | sed -n 's/^score \([0-9]*\)\/\([0-9]*\).*/\1 \2/p' | awk '{printf "%d", ($2 ? 1000*$1/$2 : 0)}');; *) s=0;; esac; echo "$s $k"; done | sort -n | tail -1)
+[ -n "$best" ] && echo "(attempt $n saved as .attempts/$n.c; best so far: .attempts/${best##* }.c)"
+EOC
 chmod +x "$W/check"
 "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" context "$SEG" "$FUNC" > "$W/context.h"
 sed -i 's/^#include "common.h"/#include "context.h"/' "$W/draft.c"
@@ -35,3 +41,11 @@ fi
 if [ -n "$SIMILAR" ]; then "$HH/.venv/bin/python" "$HH/tools/hh/similar.py" "$SEG" "$FUNC" "$W" >> "$W/prompt.md" 2>/dev/null || true; fi
 # LEARNINGS=1: condensed IDO habits (tools/swarm/learnings_note.md, docs/IDO_LEARNINGS.md)
 if [ -n "$LEARNINGS" ]; then cat "$HH/tools/swarm/learnings_note.md" >> "$W/prompt.md"; fi
+# THEORY=1: one hypothesis, one change, per check (tools/swarm/theory_note.md)
+THEORY=${THEORY-1}; TWIN=${TWIN-1}     # defaults since exp7/exp8 (set THEORY= / TWIN= to turn off)
+if [ -n "$THEORY" ]; then cat "$HH/tools/swarm/theory_note.md" >> "$W/prompt.md"; fi
+# TWIN=1: start from an already-matched function whose asm is >= 90 % the same (its C, renamed), if there is one
+if [ -n "$TWIN" ] && [ ! -f "$W/previous.c" ]; then
+  if "$HH/.venv/bin/python" "$HH/tools/hh/similar.py" "$SEG" "$FUNC" --twin "$W/previous.c" --min 0.9 > /dev/null 2>&1 && [ -s "$W/previous.c" ]; then
+    cat "$HH/tools/swarm/twin_note.md" >> "$W/prompt.md"; fi
+fi

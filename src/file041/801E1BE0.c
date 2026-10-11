@@ -151,7 +151,42 @@ s32 func_801E2A14(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E2D6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E2D94.s")
+
+extern void D_8038BA70(void);
+extern s32 func_801C2420(s32 a0, void *a1);
+extern s32 func_801C2570(s32 a0, void *a1);
+extern void func_8038BA8C(void);
+extern u8 D_8038DD90[];
+extern u8 D_8038DDA8[];
+extern u8 D_8038DDC0[];
+extern u8 D_8038DDD8[];
+extern u8 D_8038DDF0[];
+extern u8 D_8038DE08[];
+extern u8 D_8038DF70[];
+
+s32 func_801E2D94(s32 arg0, s32 arg1) {
+    func_801C2420(0x263, D_8038DD90);
+    D_8038BA70();
+    func_801C2420(0x267, D_8038DDA8);
+    D_8038BA70();
+    func_801C2420(0x446, D_8038DDC0);
+    D_8038BA70();
+    func_801C2420(0x445, D_8038DDD8);
+    D_8038BA70();
+    func_801C2420(0x447, D_8038DDF0);
+    D_8038BA70();
+    func_801C2420(0xA7, D_8038DE08);
+    D_8038BA70();
+    *(s32 *)(D_8038DF70 + 4) = 0xE000;
+    if (func_801C2570(0x2DD, D_8038DF70) != 0) {
+        func_8038BA8C();
+    }
+    *(s32 *)(D_8038DF70 + 0x10) = 0x3000;
+    if (func_801C2570(0x43C, D_8038DF70 + 0xC) != 0) {
+        func_8038BA8C();
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E2E9C.s")
 
@@ -382,7 +417,14 @@ s32 func_801E3E00(s32 arg0, s32 arg1) {
     return 6;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E3E88.s")
+
+s32 func_801E3E88(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x27AC3F) != 0) {
+        func_801C7D0C(-48.0f, -28.0f, -12.0f, 267.0f, 102.0f, 308.0f, 5.0f, 5.0f, 20);
+        return 8;
+    }
+    return 7;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E3F18.s")
 
@@ -459,7 +501,14 @@ s32 func_801E4348(s32 arg0, s32 arg1) {
     return 0x10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E43CC.s")
+
+s32 func_801E43CC(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0xB10080) != 0) {
+        func_801C7D0C(25.0f, 72.0f, 37.0f, 0.0f, 270.0f, 0.0f, 5.0f, 5.0f, 20);
+        return 0x12;
+    }
+    return 0x11;
+}
 
 
 s32 func_801E4454(s32 arg0, s32 arg1) {
@@ -797,13 +846,57 @@ s32 func_801E5E30(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E5F40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E5F84.s")
+
+struct func_801E5F84_Float {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad1[2];
+    u16 unk12;
+};
+
+struct func_801E5F84_Obj {
+    u8 pad0[0x2C];
+    struct func_801E5F84_Float *unk2C;
+};
+
+struct func_801E5F84_Node {
+    u8 pad0[8];
+    struct func_801E5F84_Node *unk8;
+    u8 pad1[0x18];
+    struct func_801E5F84_Obj *unk24;
+};
+
+s32 func_801E5F84(s32 arg0, s32 arg1) {
+    struct func_801E5F84_Obj *temp_v0;
+
+    temp_v0 = ((struct func_801E5F84_Node *)D_801DAB14)->unk8->unk8->unk24;
+    if (temp_v0 != NULL) {
+        temp_v0->unk2C->unk4 = -55.0f;
+        ((struct func_801E5F84_Node *)D_801DAB14)->unk8->unk8->unk24->unk2C->unk8 = 0.0f;
+        ((struct func_801E5F84_Node *)D_801DAB14)->unk8->unk8->unk24->unk2C->unkC = 52.0f;
+        ((struct func_801E5F84_Node *)D_801DAB14)->unk8->unk8->unk24->unk2C->unk12 = 0xABC;
+        func_801CC470(1, 0x02A8003A, 0, 0x100, 10.0f);
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E605C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E606C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E607C.s")
+
+extern s32 D_801E8220;
+extern s32 func_801CED5C(s32);
+
+s32 func_801E607C(s32 arg0, s32 arg1) {
+    func_801CC4D8(1, 0x02A8003B, 0, 0, 5.0f);
+    D_801E8220 = 0;
+    func_801CED5C(1);
+    return 5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E60D4.s")
 
@@ -813,9 +906,7 @@ s32 func_801E5E30(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E62C4.s")
 
-extern s32 D_801E8220;
 
-extern s32 func_801CED5C(s32);
 
 s32 func_801E6318(s32 arg0, s32 arg1) {
     func_801CC4D8(1, 0x02A8003C, 0, 0, 30.0f);

@@ -72,9 +72,17 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("seg"); ap.add_argument("func"); ap.add_argument("workdir", nargs="?")
     ap.add_argument("--n", type=int, default=3); ap.add_argument("--min", type=float, default=0.45)
     ap.add_argument("--exclude", help="file of function names never to use as examples (e.g. a test set)")
+    ap.add_argument("--twin", help="write the best look-alike's C, renamed to FUNC, to this file (exit 1 if none)")
     a = ap.parse_args()
     ex = set(open(a.exclude).read().split()) if a.exclude else set()
     best = find(a.seg, a.func, a.n, a.min, ex)
+    if a.twin:
+        if not best: sys.exit(1)
+        r, s, f = best[0]
+        c = open("matched/%s/%s.c" % (s, f)).read().replace(f, a.func)
+        c = c.replace('#include "common.h"', '#include "context.h"')
+        open(a.twin, "w").write("/* starting point: %s (%s), whose assembly is %.0f%% the same as this function's */\n" % (f, s, 100 * r) + c)
+        sys.exit(0)
     if not a.workdir:
         for r, s, f in best: print("%.2f %s %s" % (r, s, f))
         sys.exit(0)

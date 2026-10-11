@@ -192,7 +192,15 @@ void func_80150314(struct func_80150314_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_8015032C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_80150584.s")
+
+extern u8 D_801BC025;
+
+s32 func_80150584(void) {
+    s32 ret;
+
+    ret = 0;
+    return (D_801BC025 & 1) ? 1 : ret;
+}
 
 
 struct func_801505AC_Struct {
@@ -217,7 +225,6 @@ s32 func_801505AC(s32 arg0) {
 }
 
 
-s32 func_80150584();
 extern u16 D_801BBDA0;
 
 s32 func_801505E4(void) {

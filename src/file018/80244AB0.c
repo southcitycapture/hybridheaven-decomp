@@ -75,7 +75,42 @@ void func_80245360(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_80246DA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_80246E60.s")
+
+typedef struct func_80246E60_StructGlobal {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80246E60_StructGlobal;
+
+typedef struct func_80246E60_StructInner {
+    u8 pad0[0x78];
+    s16 unk78;
+} func_80246E60_StructInner;
+
+extern func_80246E60_StructGlobal D_80258F48;
+extern u32 D_8025C708;
+extern void func_8024564C(void);
+extern s32 func_80244AB0(void *);
+extern s32 func_8012CE9C(s32, void *, func_80246E60_StructGlobal, s32);
+extern void func_8012A94C(void *, s32);
+extern s32 func_8012A564(void *, s32);
+
+void func_80246E60(void *arg0, s32 arg1) {
+    func_80246E60_StructInner *sp2C;
+
+    sp2C = *(func_80246E60_StructInner **)((u8 *)arg0 + 0x5C);
+    if (func_80244AB0(arg0) == 0) {
+        if (func_8012CE9C(arg1, sp2C, D_80258F48, 0xA) == 0) {
+            func_80010550(arg1, (s32)sp2C);
+            func_8012A94C(arg0, 0x80);
+            if (func_8012A564(arg0, 0x43220000) != 0) {
+                sp2C->unk78 = 1;
+                D_8025C708 = 1;
+                func_800058DC(arg0, (void *)func_8024564C);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_80246F24.s")
 
@@ -116,7 +151,6 @@ typedef struct func_80247FA8_Struct {
     s16 unk94;
 } func_80247FA8_Struct;
 
-extern void func_8024564C(void);
 
 void func_80247FA8(func_80247FA8_Struct *arg0, s32 arg1)
 {
@@ -224,7 +258,54 @@ void func_80248D10(struct func_80248D10_Struct *arg0) {
     D_8025C705 += 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_80248D34.s")
+
+extern void func_80020744(s32);
+extern u8 D_8025C7E8;
+
+typedef struct func_80248D34_Struct {
+    u8 pad[0x98];
+    u16 unk98;
+} func_80248D34_Struct;
+
+void func_80248D34(func_80248D34_Struct *arg0) {
+    if (D_8025C7E8 != 0) {
+        if (arg0->unk98 == 0) goto case0a;
+        if (arg0->unk98 == 1) goto case1a;
+        if (arg0->unk98 == 2) goto case2a;
+        if (arg0->unk98 != 3) return;
+        goto case3a;
+case0a:
+        func_80020744(0x5C8);
+        return;
+case1a:
+        func_80020744(0x5C9);
+        return;
+case2a:
+        func_80020744(0x5CA);
+        return;
+case3a:
+        func_80020744(0x5CB);
+        return;
+    } else {
+        if (arg0->unk98 == 0) goto case0b;
+        if (arg0->unk98 == 1) goto case1b;
+        if (arg0->unk98 == 2) goto case2b;
+        if (arg0->unk98 != 3) return;
+        goto case3b;
+case0b:
+        func_80020744(0x6CA);
+        return;
+case1b:
+        func_80020744(0x6CB);
+        return;
+case2b:
+        func_80020744(0x6CC);
+        return;
+case3b:
+        func_80020744(0x6CD);
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_80248E34.s")
 

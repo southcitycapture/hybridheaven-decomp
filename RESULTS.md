@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-11: **14.45% of the code** (3444 of 15890 functions, including duplicates).
+Progress as of 2026-10-11: **15.70% of the code** (3585 of 15890 functions, including duplicates).
 
-**10285 model runs, 5046 verified matches (49%), $197.91 API-equivalent in total (≈ $0.039 per match)**; plus 148 matches from decomp-permuter at no model cost.
+**10730 model runs, 5254 verified matches (49%), $204.35 API-equivalent in total (≈ $0.039 per match)**; plus 148 matches from decomp-permuter at no model cost.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -49,5 +49,12 @@ Progress as of 2026-10-11: **14.45% of the code** (3444 of 15890 functions, incl
 | `exp6_plain` | exp6_plain | haiku-5-5 | 100 | 14 | 14% | $2.03 | $0.145 | 85% → 86% |
 | `exp6_learn` | exp6_learn | haiku-5-5 | 100 | 15 | 15% | $2.24 | $0.149 | 85% → 86% |
 | `hand1` | hand1 | opus-5-5 (lead, by hand) | 1 | 1 | 100% | $0.00 | – |  |
+| `exp7_a` | exp7_a | haiku-5-5 | 100 | 18 | 18% | $2.02 | $0.112 | 86% → 87% |
+| `exp7_b` | exp7_b | haiku-5-5 | 100 | 24 | 24% | $2.94 | $0.122 | 86% → 87% |
+| `exp8_b` | exp8_b | haiku-5-5 | 60 | 46 | 77% | $0.62 | $0.013 | 87% → 87% |
+| `exp8_a` | exp8_a | haiku-5-5 | 60 | 38 | 63% | $0.86 | $0.023 | 87% → 87% |
+| `kit4_h1` | kit4_h1 | cloud kit4 h1 | 46 | 32 | 70% | $0.00 | – |  |
+| `kit4_h2` | kit4_h2 | cloud kit4 h2 | 31 | 17 | 55% | $0.00 | – |  |
+| `kit4_s` | kit4_s | cloud kit4 s | 48 | 33 | 69% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

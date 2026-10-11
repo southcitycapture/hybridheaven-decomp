@@ -24,6 +24,16 @@ fi
 if [ "$api_err" = 1 ]; then v=ERROR
 elif [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" attempt.c --seg "$SEG" > verify.txt 2>&1 && grep -q '^MATCH' verify.txt; then
   v=MATCH; else v=FAIL; fi
+# keep-best: a snapshot that matched counts even if the worker edited attempt.c afterwards (exact re-check here)
+if [ "$v" = FAIL ] && [ -d .attempts ]; then
+  for r in $(grep -l '^MATCH' .attempts/*.res 2>/dev/null | sort -t/ -k2 -n -r); do
+    c=${r%.res}.c
+    if "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" "$c" --seg "$SEG" 2>/dev/null | grep -q '^MATCH'; then
+      if [ -z "$INFILE" ] || "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" infile "$SEG" "$FUNC" "$PWD/$c" > /dev/null 2>&1; then
+        cp attempt.c attempt.final.c 2>/dev/null; cp "$c" attempt.c; v=MATCH; echo "matched in snapshot $c" > recovered.txt; break; fi
+    fi
+  done
+fi
 [ "$v" = ERROR ] && sleep 30   # back off before the next launch
 "$HH/.venv/bin/python" - "$FUNC" "$SEG" "$MODEL" "$v" "$start" <<'PY'
 import json, sys, time, os

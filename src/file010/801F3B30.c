@@ -449,7 +449,13 @@ void func_801F5230(struct func_801F5230_StructArg *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F5294.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F536C.s")
+
+extern s32 D_8008DA88;
+
+void func_801F536C(void) {
+    D_80216ED0.unk6 = 0;
+    func_8013A1B4((s32) &D_8008DA88, D_80216ED0, 0x1FFFFF);
+}
 
 
 typedef struct func_801F53C4_Struct {

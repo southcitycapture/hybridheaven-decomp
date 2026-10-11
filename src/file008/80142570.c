@@ -36,7 +36,23 @@ void func_801426B0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80142570/func_80142778.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80142570/func_80142840.s")
+
+extern u8 D_8018F20C[];
+extern u8 D_8018F230[];
+extern u8 D_8018F254[];
+extern u8 D_8018F27C[];
+extern u8 D_8018F2A4[];
+extern u8 D_8018F2CC[];
+
+void func_80142840(void) {
+    func_80142570();
+    func_8001B204(7, 0x7D0, 0x1C, D_8018F20C, 3);
+    func_8001B204(0xB, 0x26, 0x30, D_8018F230);
+    func_8001A804(6, D_8018F254, 0x20, 0x42, 0x7A, 0x5C, 1, 0x40, 0x40, 0x40, 0x80, 0x90, 0x90, 0x90, 0x80);
+    func_8001A804(7, D_8018F27C, 0xA6, 0x42, 0x7A, 0x5C, 1, 0x40, 0x40, 0x40, 0x80, 0x90, 0x90, 0x90, 0x80);
+    func_8001A804(0, D_8018F2A4, 0x20, 0xA6, 0x7A, 0x35, 1, 0x40, 0x40, 0x40, 0x80, 0xC0, 0xC0, 0xC0, 0xC0);
+    func_8001A804(8, D_8018F2CC, 0xA6, 0xA6, 0x7A, 0x35, 1, 0x40, 0x40, 0x40, 0x80, 0xC0, 0xC0, 0xC0, 0xC0);
+}
 
 
 
@@ -252,7 +268,42 @@ void func_801444B0(s32 a0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80142570/func_80144C40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80142570/func_80144E68.s")
+
+typedef struct { u8 b[0x9C]; u16 h; } func_80144E68_StructA;
+typedef struct { u8 b[7]; } func_80144E68_StructB;
+typedef struct { u8 a; u8 pad; u16 h; u8 c; u8 pad2; } func_80144E68_StructC;
+typedef struct { u8 pad[4]; u8 b; u8 pad2[3]; } func_80144E68_StructD;
+typedef struct { u8 pad[2]; u8 b; } func_80144E68_StructE;
+
+extern u8 D_8017DC40[];
+extern u8 D_8017DD7C[];
+extern func_80144E68_StructB D_8017DF14[];
+extern func_80144E68_StructD D_8017E004[];
+extern func_80144E68_StructC D_80183CE0[];
+
+void func_80144E68(u8 **arg0) {
+    u8 i;
+    u8 *p;
+
+    *(func_80144E68_StructA *)D_8017DC40 = *(func_80144E68_StructA *)*arg0;
+    *arg0 += 0x9E;
+    for (i = 0; i < 0x56; i++) {
+        D_80183CE0[i].a = *(*arg0)++;
+        D_80183CE0[i].h = *(*arg0)++;
+        D_80183CE0[i].c = *(*arg0)++;
+    }
+    for (i = 0; i < 0x2D; i++) {
+        D_8017E004[i].b = *(*arg0)++;
+    }
+    for (i = 0; i < 3; i++) {
+        D_8017DF14[i] =*(func_80144E68_StructB *)*arg0;
+        *arg0 += 7;
+    }
+    for (i = 0; i < 6; i++) {
+        p = D_8017DD7C + i;
+        p[2] = *(*arg0)++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80142570/func_80145014.s")
 

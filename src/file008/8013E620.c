@@ -106,10 +106,42 @@ void func_8013EA94(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8013EB2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8013ECE0.s")
 
+typedef struct func_8013ECE0_Struct190 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+} func_8013ECE0_Struct190;
+
+typedef struct func_8013ECE0_Struct30 {
+    u8 unk0[0x15C];
+    s32 unk15C;
+} func_8013ECE0_Struct30;
 
 extern void func_8001B204();
+extern func_8013ECE0_Struct190 D_801812F0;
+extern func_8013ECE0_Struct30 D_80181308;
+extern u8 D_8018ED1C[];
+extern u8 D_8018ED24[];
+extern u8 D_8018ED2C[];
+extern u8 D_8018ED34[];
+
+void func_8013ECE0(u8 arg0, u8 arg1) {
+    func_8013ECE0_Struct190 sp190;
+    func_8013ECE0_Struct30 sp30;
+
+    sp190 = D_801812F0;
+    sp30 = D_80181308;
+    func_8001B204(((u8 *) &sp190)[arg0 * 12], ((u8 *) &sp190)[arg0 * 12 + 1], ((u8 *) &sp190)[arg0 * 12 + 2], D_8018ED1C, 4, ((s32 *) ((u8 *) &sp30 + arg1 * 16))[0]);
+    func_8001B204(((u8 *) &sp190)[arg0 * 12 + 3], ((u8 *) &sp190)[arg0 * 12 + 4], ((u8 *) &sp190)[arg0 * 12 + 5], D_8018ED24, 4, ((s32 *) ((u8 *) &sp30 + arg1 * 16))[1]);
+    func_8001B204(((u8 *) &sp190)[arg0 * 12 + 6], ((u8 *) &sp190)[arg0 * 12 + 7], ((u8 *) &sp190)[arg0 * 12 + 8], D_8018ED2C, 4, ((s32 *) ((u8 *) &sp30 + arg1 * 16))[2]);
+    func_8001B204(((u8 *) &sp190)[arg0 * 12 + 9], ((u8 *) &sp190)[arg0 * 12 + 10], ((u8 *) &sp190)[arg0 * 12 + 11], D_8018ED34, 4, ((s32 *) ((u8 *) &sp30 + arg1 * 16))[3]);
+}
+
+
 extern u8 D_8018ED3C[];
 extern u8 D_8018ED44[];
 
@@ -248,7 +280,25 @@ s32 func_8014115C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8014168C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_80141934.s")
+
+s32 func_8014150C(u8, u8 *);
+
+s32 func_80141934(u8 arg0) {
+    s32 var_v0;
+    s32 var_v1;
+    u8 buf[25];
+
+    var_v0 = func_8014150C(arg0, buf);
+    var_v1 = var_v0 & 0xFF;
+    if (var_v0 == 2) {
+        var_v0 = func_8014150C(arg0, buf);
+        var_v1 = var_v0 & 0xFF;
+    }
+    if (((buf[0] + buf[8] + buf[16] + buf[24]) == 0) && (var_v0 == 0)) {
+        var_v1 = 0xFD;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_801419A4.s")
 
