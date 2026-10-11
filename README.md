@@ -42,9 +42,9 @@ make                                          # build, then check the SHA-1
 
 The details are in [docs/TECHNICAL.md](docs/TECHNICAL.md). In short:
 
-- **Compiler:** IDO 7.1, `-O2` (`-G 0 -non_shared -Xcpluscomm -mips2`). The game is built on NuSystem; Konami's
-  internal project name was `rz011`.
-- **Layout:** a ~220 KB uncompressed main segment (game engine + libultra) and a master file table of 624 files.
+- **Compiler:** IDO 7.1, `-O2` (`-G 0 -non_shared -Xcpluscomm -mips2`) for the game; libultra 2.0J was built with IDO 5.3. Konami's internal project name was `rz011`.
+  The engine sits directly on libultra 2.0J (no NuSystem).
+- **Layout:** a ~220 KB uncompressed main segment (game engine + libultra 2.0J) and a master file table of 624 files.
   91 of them are code overlays (core game, areas, enemies, cutscenes), almost all compressed.
 - **Compression:** a Konami LZ variant (LZKN-style). `tools/hh/lzkn.py` decodes it, and `tools/hh/lzkn_enc.py`
   re-encodes **all 482 compressed files byte-for-byte**, including the original encoder's quirks (31-byte literal cap,

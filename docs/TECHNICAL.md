@@ -4,7 +4,7 @@
 
 - Hybrid Heaven (USA), game code `NHVE`, revision 0, 16 MiB, big-endian `.z64`. SHA-1 `16dbc21620b52deab5c5abf8a309ac60adfbee85`.
 - Entry point `0x80000400` (ROM `0x1000`). The entry code clears BSS at `0x8004DBD0` (size `0x80DC0`) and jumps to `0x80001078`.
-- Main segment: text at ROM `0x1060`–`0x35D20` (≈ 800 functions: engine, NuSystem, libultra), then RSP ucode and data up to `0x4E7D0`.
+- Main segment: text at ROM `0x1060`–`0x35D20` (≈ 800 functions: engine and libultra 2.0J; no NuSystem), then RSP ucode and data up to `0x4E7D0`.
 - Debug strings name Konami's sources: `.../nu64/rz011_usa/main/game/source/<dir>/<file>.c`
   (`player/`, `enemy/`, `device/`, `ground/`, `titlescreen.c`, `democamera.c`, `expansionram.c`, ...).
 
