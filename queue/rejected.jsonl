@@ -2743,3 +2743,7 @@
 {"segment": "file026", "func": "func_801E1BE0", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
 {"segment": "file028", "func": "func_801E2540", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
 {"segment": "file028", "func": "func_801E3938", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file014", "func": "func_80245F30", "why": "compile error in file context", "was_registered": false}
+{"segment": "file015", "func": "func_80249854", "why": "compile error in file context", "was_registered": false}
+{"segment": "file015", "func": "func_802427E8", "why": "compile error in file context", "was_registered": false}
+{"segment": "file024", "func": "func_801C3940", "why": "compile error in file context", "was_registered": false}

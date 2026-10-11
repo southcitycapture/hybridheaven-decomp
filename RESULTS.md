@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-11: **16.38% of the code** (3700 of 15890 functions, including duplicates).
+Progress as of 2026-10-11: **16.70% of the code** (3727 of 15890 functions, including duplicates).
 
-**11034 model runs, 5337 verified matches (48%), $206.14 API-equivalent in total (≈ $0.039 per match)**; plus 148 matches from decomp-permuter at no model cost.
+**11071 model runs, 5369 verified matches (48%), $206.41 API-equivalent in total (≈ $0.038 per match)**; plus 148 matches from decomp-permuter at no model cost.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -58,5 +58,7 @@ Progress as of 2026-10-11: **16.38% of the code** (3700 of 15890 functions, incl
 | `kit4_s` | kit4_s | cloud kit4 s | 48 | 33 | 69% | $0.00 | – |  |
 | `twin1` | twin1 | haiku-5-5 | 132 | 83 | 63% | $1.79 | $0.022 | 87% → 87% |
 | `reconcile4` | reconcile4 | reconcile (no model) | 172 | 0 | 0% | $0.00 | – |  |
+| `twinfix` | twinfix | haiku-5-5 | 15 | 15 | 100% | $0.27 | $0.018 | 87% → 87% |
+| `kit5_s` | kit5_s | cloud kit5 sonnet+theory | 22 | 17 | 77% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

@@ -102,7 +102,19 @@ s32 func_801E2090(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E240C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E241C.s")
+extern void *func_801BF6B0(s32 arg0);
+
+typedef struct func_801E241C_Struct {
+    u8 pad[0xC];
+    s32 unkC;
+} func_801E241C_Struct;
+
+s32 func_801E241C(s32 arg0, s32 arg1) {
+    if ((((func_801E241C_Struct *) func_801BF6B0(7))->unkC < 0x42) || (func_801C1B1C() == 0)) {
+        return 0x19;
+    }
+    return 0x1A;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E2470.s")
 
@@ -224,7 +236,6 @@ s32 func_801E29D0(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E2A8C.s")
 
 
-extern void *func_801BF6B0(s32 arg0);
 extern s32 func_801C1B1C(void);
 
 struct func_801E2A9C_Struct {

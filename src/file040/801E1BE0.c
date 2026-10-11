@@ -207,10 +207,18 @@ s32 func_801E38E4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file040/801E1BE0/func_801E39E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file040/801E1BE0/func_801E3A38.s")
-
-
 extern void func_8038D28C(s32 a0);
+
+s32 func_801E3A38(s32 arg0, s32 arg1) {
+    if (func_801C0B8C((u64)0x014EAD16) != 0) {
+        func_8038D28C(0x242);
+        func_801C0D04(3, 1);
+        return 3;
+    }
+    return 2;
+}
+
+
 extern f64 D_801E87F8;
 extern f32 D_801E8800;
 
