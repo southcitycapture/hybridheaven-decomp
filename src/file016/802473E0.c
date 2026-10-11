@@ -268,7 +268,36 @@ void func_80248ED4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802473E0/func_80248F04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802473E0/func_80248F3C.s")
+
+struct func_80248F3C_Struct3 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+struct func_80248F3C_Struct2 {
+    u8 pad[0x78];
+    s16 unk78;
+};
+struct func_80248F3C_Struct1 {
+    u8 pad[0x5C];
+    struct func_80248F3C_Struct2 *unk5C;
+};
+
+extern void func_8013A28C(s32, struct func_80248F3C_Struct3);
+extern struct func_80248F3C_Struct3 D_80249D7C;
+extern s8 D_80249CB4;
+extern void func_80248FBC(void);
+
+void func_80248F3C(struct func_80248F3C_Struct1 *arg0, s32 arg1) {
+    struct func_80248F3C_Struct2 *temp_v0;
+
+    temp_v0 = arg0->unk5C;
+    temp_v0->unk78 = 1;
+    D_80249CB4 = 0;
+    func_8013A28C(arg1, D_80249D7C);
+    func_80010550(arg1, temp_v0);
+    func_800058DC((void *)arg0, (void *)func_80248FBC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802473E0/func_80248FBC.s")
 

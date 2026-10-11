@@ -9,3 +9,4 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801E0040/func_801E02DC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801E0040/func_801E0648.s")
+

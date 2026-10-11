@@ -748,7 +748,14 @@ s32 func_801E4F68(s32 arg0, s32 arg1) {
     return 0x2C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file043/801E1C00/func_801E4FB0.s")
+
+s32 func_801E4FB0(s32 arg0, s32 arg1) {
+    if (func_801CE274() == 0) {
+        func_801CC470(0, 0x0348004F, 0, 0, 5.0f);
+        return 0x2D;
+    }
+    return 0x2C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file043/801E1C00/func_801E5008.s")
 

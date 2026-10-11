@@ -10,6 +10,9 @@ progress report counts their functions as matched (the object is built straight 
 import json, os, sys
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 LIB = json.load(open("tools/hh/libultra.json"))
+# files whose ultralib object doesn't reproduce the ROM (and why): never put these back in libultra.json
+EXCLUDED = json.load(open("tools/hh/libultra_excluded.json")) if os.path.exists("tools/hh/libultra_excluded.json") else {}
+assert not set(LIB) & set(EXCLUDED), "libultra.json lists an excluded file: %s" % (set(LIB) & set(EXCLUDED))
 FLAGS = ("-c -Wab,-r4300_mul -G 0 -nostdinc -Xcpluscomm -woff 516,649,838,712 -D_MIPS_SZLONG=32 -DF3DEX_GBI_2 "
          "-DBUILD_VERSION=VERSION_J -DBUILD_VERSION_STRING=\\\"2.0J\\\" -non_shared -D_FINALROM")
 INC = "-I $(ULTRALIB_ABS)/include -I $(ULTRALIB_ABS)/include/compiler/ido -I $(ULTRALIB_ABS)/include/PR"
@@ -19,7 +22,10 @@ for unit, e in sorted(LIB.items()):
     src = "$(ULTRALIB)/" + e["src"]
     out += ["$(BUILD)/src/%s.o: %s tools/hh/libultra.json" % (unit, src), "\t@mkdir -p $(dir $@)",
             "\t@cd $(dir %s) && $(abspath $(IDO53)) %s %s %s $(notdir %s) %s -o $(abspath $@)"
-            % (src, FLAGS, e["mips"], e["opt"], src, INC), ""]
+            % (src, FLAGS, e["mips"], e["opt"], src, INC)]
+    if "-mips3" in e["mips"]:   # as ultralib does: mark the -mips3 object o32 again so it links with the rest
+        out.append("\t@$(PYTHON) $(ULTRALIB)/tools/set_o32abi_bit.py $@")
+    out.append("")
 os.makedirs("build", exist_ok=True); open("build/libultra.mk", "w").write("\n".join(out))
 if "--stubs" in sys.argv:
     for unit, e in LIB.items():

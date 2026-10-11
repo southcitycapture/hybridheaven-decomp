@@ -26,3 +26,4 @@ void func_80113140(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80113140/func_8011547C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80113140/func_801154A4.s")
+

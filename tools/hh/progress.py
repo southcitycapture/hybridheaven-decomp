@@ -11,6 +11,26 @@ OUT = "build/progress"; os.makedirs(OUT + "/target", exist_ok=True); os.makedirs
 AS = ["mips-linux-gnu-as", "-EB", "-march=vr4300", "-mabi=32", "-G", "0", "-I", "include"]
 CC = ["tools/ido/7.1/cc", "-c", "-G", "0", "-non_shared", "-Xcpluscomm", "-mips2", "-O2", "-I", "include", "-I", "src"]
 HEAD = '.include "macro.inc"\n.set noat\n.set noreorder\n.set gp=64\n.section .text, "ax"\n\n'
+def lib_base(seg, funcs):
+    """Copy of a library object (osSendMesg, ...) with each function renamed to the func_XXXXXXXX name the target
+    asm uses, matched by its offset in the file's .text, so objdiff can pair them."""
+    from elftools.elf.elffile import ELFFile
+    src, out = "build/src/%s.o" % seg, "%s/base/%s.o" % (OUT, seg)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    start = int(os.path.basename(seg), 16)
+    with open(src, "rb") as fh:
+        e = ELFFile(fh); ti = next(i for i, x in enumerate(e.iter_sections()) if x.name == ".text")
+        names = {x["st_value"]: x.name for x in e.get_section_by_name(".symtab").iter_symbols()
+                 if x["st_info"]["type"] == "STT_FUNC" and x["st_shndx"] == ti}
+    ren = []
+    for f in funcs:
+        n = os.path.basename(f)[:-2]
+        if not n.startswith("func_"): continue
+        off = int(n[5:], 16) - start
+        if off in names and names[off] != n: ren += ["--redefine-sym", "%s=%s" % (names[off], n)]
+    subprocess.run(["mips-linux-gnu-objcopy"] + ren + [src, out], check=True)
+    return out
+
 units = []
 LIBFILES = set(json.load(open("tools/hh/libultra.json"))) if os.path.exists("tools/hh/libultra.json") else set()
 for src in sorted(glob.glob("src/*/*.c")):
@@ -27,8 +47,8 @@ for src in sorted(glob.glob("src/*/*.c")):
             for f in funcs: o.write(open(f).read() + "\n")
         subprocess.run(AS + ["-o", tgt_o, tgt_s], check=True)
     unit = {"name": seg, "target_path": tgt_o}
-    if seg in LIBFILES:                        # built from library source: the real object is the base
-        unit["base_path"] = "build/src/%s.o" % seg
+    if seg in LIBFILES:                        # built from library source: the real object is the base,
+        unit["base_path"] = lib_base(seg, funcs)  # with its functions renamed to the address names objdiff pairs on
         unit["metadata"] = {"progress_categories": ["main"]}; units.append(unit); continue
     text = open(src).read()
     c_only = re.sub(r'#pragma GLOBAL_ASM\("[^"]+"\)\n', "", text)

@@ -1,0 +1,4 @@
+{
+ "main/80029D30": "src/gu/mtxutil.c: ultralib's function order differs from the ROM",
+ "main/800283B0": "src/io/contreaddata.c: ultralib's 2.0J object is 0x1E0 bytes, the ROM's file 0x110"
+}

@@ -8,4 +8,3 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80031220/func_80031498.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80031220/func_80031620.s")
