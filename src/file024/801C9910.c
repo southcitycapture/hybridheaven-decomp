@@ -88,7 +88,13 @@ void func_801C9C44(s32 arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file024/801C9910/func_801C9D0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C9910/func_801C9DEC.s")
+
+void func_801C9DEC(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file024/801C9910/func_801C9DF8.s")
 
@@ -176,5 +182,11 @@ void func_801CA4A4(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C9910/func_801CA520.s")
+
+void func_801CA520(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 

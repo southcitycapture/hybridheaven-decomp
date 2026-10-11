@@ -37,5 +37,11 @@ void func_802409A0(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file019/802408F0/func_802409DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file019/802408F0/func_80240A68.s")
+
+void func_80240A68(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 

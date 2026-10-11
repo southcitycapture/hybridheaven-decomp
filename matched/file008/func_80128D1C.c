@@ -1,7 +1,7 @@
 #include "context.h"
 
 /* unprototyped, compatible with context.h prototype; needed in-file before the later definition */
-void func_80128E0C();
+extern void func_80128E0C();
 
 extern u8 D_8017B558[];
 

@@ -1,6 +1,6 @@
 #include "context.h"
-extern void func_800058DC(void *, void *);
-extern void func_80241FEC(void);
+extern void func_800058DC(void *arg0, void *arg1);
+extern void func_80241FEC();
 
 struct func_80241F88_Sub {
     u8 pad0[0x12];

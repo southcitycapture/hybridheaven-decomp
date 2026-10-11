@@ -1,10 +1,5 @@
 #include "context.h"
 
-typedef struct func_8024AA38_Struct {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_8024AA38_Struct;
 
 s32 func_80133A24(s32);
 void func_8013A1B4(s32, func_8024AA38_Struct, s32);

@@ -6,7 +6,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803677B0/func_80367914.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803677B0/func_80367C24.s")
+
+void func_80367C24(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 
 typedef struct func_80367C30_Struct {

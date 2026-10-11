@@ -2,8 +2,8 @@
 
 extern void func_801C0D04(s32 a0, s32 a1);
 extern void func_8038CC28(void);
-extern void func_8038CCC4(void);
-extern void func_8038CD0C(void);
+extern s32 func_8038CCC4(void);
+extern s32 func_8038CD0C(void);
 extern void *D_8038E128[];
 extern s32 D_8038E134;
 extern s32 D_8038E138;

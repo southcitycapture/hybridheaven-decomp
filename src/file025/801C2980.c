@@ -196,9 +196,16 @@ s32 func_801C3718(u8 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6,
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C37F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C37FC.s")
+void func_801C37F0(void) {
+    D_801DA2B0 = 0;
+}
+
+
+
+s32 func_801C37FC(void) {
+    return D_801DA2B4;
+}
 
 
 s32 func_801C3808(u8 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6, u8 arg7, u16 arg8) {
@@ -428,7 +435,11 @@ s32 func_801C5B2C(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C5BD4.s")
+
+
+s32 func_801C5BD4(void) {
+    return D_801DA514 == 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C5BE4.s")
 
@@ -503,7 +514,10 @@ void func_801C645C(u32 arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C64E8.s")
+
+void func_801C64E8(void) {
+    D_801DA230 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C64F4.s")
 
@@ -551,9 +565,44 @@ void func_801C6C30(u32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C70A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C72B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C72D0.s")
+void func_801C72B0(s32 arg0, struct func_801C78C0_Struct *arg1) {
+    func_801C78C0(arg0, arg1);
+}
+
+
+typedef struct func_801C72D0_Struct {
+    f32 f0;
+    f32 f4;
+    s32 w8;
+    s32 wC;
+    f32 f10;
+    f32 f14;
+    s32 w18;
+    s32 w1C;
+} func_801C72D0_Struct;
+
+extern void func_801C7364(f32, f32, s32, s32, f32, f32, s32, s32);
+
+void func_801C72D0(u32 arg0, void *arg1) {
+    u32 var_s2;
+    func_801C72D0_Struct *var_s0;
+    func_801C72D0_Struct *var_s1;
+
+    if (arg0 != 0) {
+        var_s2 = 0;
+        if (arg0 != 0) {
+            var_s0 = arg1;
+            var_s1 = arg1;
+            do {
+                func_801C7364(var_s0->f0, var_s0->f4, var_s0->w8, var_s0->wC, var_s0->f10, var_s0->f14, var_s1->w18, var_s1->w1C);
+                var_s2 += 1;
+                var_s0++;
+                var_s1++;
+            } while (var_s2 < arg0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C7364.s")
 

@@ -21,7 +21,7 @@ extern void func_801C3B10(s32);
 extern void func_801C3B2C(s32);
 extern s32 func_801C3D20(f32, f32, f32);
 extern void func_801FBB30(void);
-extern void func_8024D384(void);
+extern void func_8024D384(s32 arg0, s32 arg1);
 extern struct func_8024D2A4_Top D_801BBBF0;
 extern u8 D_802541F4[];
 extern u8 D_802542B0[];

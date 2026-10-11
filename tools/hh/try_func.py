@@ -31,16 +31,33 @@ def compile_c(src, cc, opt, out):
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode: sys.exit("compile failed:\n" + r.stderr)
 
+_elf = {}
+_linked = {}     # one link per (object version, base, rodata, symbol defs): every function reads from it
+def _parsed(obj):
+    """Symbols, .text and relocations of an object, parsed once per file version (srcbuild checks every
+    function of a big file against the same object)."""
+    st = os.stat(obj); key = (obj, st.st_ino, st.st_mtime_ns, st.st_size)
+    if key not in _elf:
+        _elf.clear()
+        with open(obj, "rb") as fh:
+            e = ELFFile(fh); data = e.get_section_by_name(".text").data()
+            syms = {}; undef = []
+            for s in e.get_section_by_name(".symtab").iter_symbols():
+                if s.name and s.name not in syms: syms[s.name] = (s["st_value"], s["st_size"])
+                if s["st_shndx"] == "SHN_UNDEF" and s.name: undef.append(s.name)
+            relocs = {}
+            for sec in e.iter_sections():
+                if isinstance(sec, RelocationSection) and sec.name in (".rel.text", ".rela.text"):
+                    for r in sec.iter_relocations(): relocs[r["r_offset"]] = r["r_info_type"]
+        _elf[key] = (data, syms, undef, relocs)
+    return _elf[key]
+
 def func_bytes(obj, name):
-    with open(obj, "rb") as fh:
-        e = ELFFile(fh); text = e.get_section_by_name(".text"); data = text.data()
-        sym = next(s for s in e.get_section_by_name(".symtab").iter_symbols() if s.name == name)
-        start, size = sym["st_value"], sym["st_size"] or len(data) - sym["st_value"]
-        relocs = {}
-        for sec in e.iter_sections():
-            if isinstance(sec, RelocationSection) and sec.name in (".rel.text", ".rela.text"):
-                for r in sec.iter_relocations(): relocs[r["r_offset"]] = r["r_info_type"]
-        return data[start:start + size], {o - start: t for o, t in relocs.items() if start <= o < start + size}
+    data, syms, undef, relocs = _parsed(obj)
+    if name not in syms: raise StopIteration
+    v, sz = syms[name]
+    start, size = v, sz or len(data) - v
+    return data[start:start + size], {o - start: t for o, t in relocs.items() if start <= o < start + size}
 
 MASK = {2: 0, 4: 0xFC000000, 5: 0xFFFF0000, 6: 0xFFFF0000}   # R_MIPS_32, 26, HI16, LO16
 ADDR_NAME = re.compile(r"^(?:func_|D_|B_|jtbl_)([0-9A-F]{8})$|^\.L([0-9A-F]{8})$")
@@ -81,10 +98,9 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
     D_XXXXXXXX, ...) to the address in its name, and return the function's final bytes.
     Returns None if a referenced symbol has no address in its name (only the masked compare is possible)."""
     del UNRESOLVED[:]
-    with open(obj, "rb") as fh:
-        e = ELFFile(fh); st = e.get_section_by_name(".symtab")
-        size = next(x for x in st.iter_symbols() if x.name == name)["st_size"]
-        undef = [x.name for x in st.iter_symbols() if x["st_shndx"] == "SHN_UNDEF" and x.name]
+    _, syms, undef, _ = _parsed(obj)
+    if name not in syms: raise StopIteration
+    size = syms[name][1]
     defs = []
     for u in undef:
         m = ADDR_NAME.match(u)
@@ -94,14 +110,23 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
     out = obj + ".linked"
     def link(base):
         # .rodata (jump tables, float constants, strings) goes where the original's is, so references resolve
+        st = os.stat(obj); key = (obj, st.st_ino, st.st_mtime_ns, st.st_size, base, rodata, tuple(defs))
+        if key in _linked:
+            vals, addr, data, ro_b = _linked[key]
+            return (vals[name][0], addr, data, ro_b) if name in vals else None
         ro = ["--section-start=.rodata=0x%X" % rodata] if rodata is not None else []
         r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-Ttext=0x%X" % base, "-e", "0", "--no-check-sections",
                             "-z", "muldefs"] + ro + ["-o", out, obj] + defs, capture_output=True, text=True)
         if r.returncode: return None
         with open(out, "rb") as fh:
             e = ELFFile(fh); t = e.get_section_by_name(".text"); rs = e.get_section_by_name(".rodata")
-            v = next(x for x in e.get_section_by_name(".symtab").iter_symbols() if x.name == name)["st_value"]
-            return v, t["sh_addr"], t.data(), (rs.data() if rs is not None else b"")
+            vals = {}
+            for x in e.get_section_by_name(".symtab").iter_symbols():
+                if x.name and x.name not in vals: vals[x.name] = (x["st_value"],)
+            _linked.clear()
+            _linked[key] = (vals, t["sh_addr"], t.data(), (rs.data() if rs is not None else b""))
+        if name not in vals: return None
+        return (vals[name][0], t["sh_addr"], _linked[key][2], _linked[key][3])
     # The function's own address doesn't affect its bytes (branches are PC-relative, and jal / %hi / %lo
     # targets are absolute), so link near vram and just read it back by its symbol.
     got = link(base if base is not None else vram & ~0xF)   # base: where the object's .text really starts

@@ -59,7 +59,7 @@ extern void func_8012C89C(void *arg0, s32 arg1, u32 arg2, s32 arg3);
 extern s32 func_8000522C(u16 arg0, s32 arg1);
 extern u8 D_80164F40[];
 extern struct func_802473E0_Ent *D_80171CEC[];
-extern void func_80247634(void);
+extern void func_80247634();
 
 void func_802473E0(struct func_802473E0_Obj *arg0, struct func_802473E0_Node **arg1) {
     struct func_802473E0_Node **temp_s1;

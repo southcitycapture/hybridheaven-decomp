@@ -1,6 +1,6 @@
 """Model-free repair of rejected matches by unifying declarations across a C file (no model calls).
 
-  unify.py BATCH [--apply]     writes queue/BATCH/{functions.txt,results.jsonl,work/<func>/attempt.c,unify.jsonl}
+  unify.py BATCH [--apply] [--only OLDBATCH]   writes queue/BATCH/{functions.txt,results.jsonl,work/<func>/attempt.c,unify.jsonl}
 
 reconcile.py makes a rejected attempt adopt its neighbours' declarations. That fails when the neighbours
 are the ones that guessed wrong: an already-matched function wrote `extern void func_80151AE0(void);`
@@ -19,13 +19,14 @@ after another against the updated neighbours; files run in parallel.
 With --apply the repaired attempt and every rewritten neighbour are written into matched/; then run
 `srcbuild.py all` and `make` to confirm the ROM.
 """
-import glob, itertools, json, os, re, sys, tempfile
+import glob, itertools, json, os, re, sys, tempfile, time
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 _argv = sys.argv; sys.argv = ["srcbuild.py", "none"]
-sys.path.insert(0, "tools/hh"); import srcbuild as S, reconcile as R
+sys.path.insert(0, "tools/hh"); import srcbuild as S, reconcile as R, workdir
 sys.argv = _argv
 MAX_COMBOS = 48
+BUDGET_S = 600          # per function; big files (file026 has 608 functions) build slowly
 
 def decls_of(text):
     """name -> list of (line index, stripped line) for file-scope declarations; plus defined function heads."""
@@ -81,6 +82,22 @@ def file_ok(seg, cf, snips):
         kept, rej, text, problem = S.settle(seg, cf, snips, td)
     return not rej and problem is None and set(kept) == set(snips)
 
+def sources():
+    """(seg, func) -> newest verified attempt written by a model (not by reconcile/unify, whose outputs are
+    already rewritten and lack the worker's context.h), for rejected functions not in the registry."""
+    rej = {(r["segment"], r["func"]) for r in map(json.loads, open("queue/rejected.jsonl"))}
+    rej = {k for k in rej if not os.path.exists("matched/%s/%s.c" % k)}
+    out = {}
+    for res in sorted(glob.glob("queue/*/results.jsonl"), key=os.path.getmtime):
+        b = res.split("/")[1]
+        for l in open(res):
+            try: r = json.loads(l)
+            except ValueError: continue
+            k = (r.get("segment"), r.get("func")); p = k in rej and workdir.attempt(b, k[1], k[0])
+            if p and r.get("verified") == "MATCH" and "no model" not in r.get("model", ""):
+                out[k] = p
+    return out
+
 def fix_one(seg, cf, neigh, func, attempt):
     """Returns (how, new snips incl. func) or (None, None)."""
     snips = dict(neigh); snips[func] = attempt
@@ -90,9 +107,9 @@ def fix_one(seg, cf, neigh, func, attempt):
     if not conf:
         if ctxd and file_ok(seg, cf, dict(neigh, **{func: ctxd})): return "context declarations", dict(neigh, **{func: ctxd})
         return None, None
-    names = sorted(conf)
+    names = sorted(conf); t0 = time.time()
     for n_try, combo in enumerate(itertools.product(*[conf[n] for n in names])):
-        if n_try >= MAX_COMBOS: break
+        if n_try >= MAX_COMBOS or time.time() - t0 > BUDGET_S: break
         choice = dict(zip(names, combo))
         new = {n: rewrite(t, choice) for n, t in snips.items()}
         if file_ok(seg, cf, new):
@@ -188,7 +205,11 @@ def one_file(args):
 if __name__ == "__main__":
     B = sys.argv[1]; Q = "queue/" + B; apply = "--apply" in sys.argv
     os.makedirs(Q + "/work", exist_ok=True)
-    src = R.sources()
+    src = sources()
+    if "--only" in sys.argv:                         # just the functions another run already repaired
+        ok_in = {(r["segment"], r["func"]) for r in map(json.loads, open("queue/%s/results.jsonl" % sys.argv[sys.argv.index("--only") + 1]))
+                 if r["verified"] == "MATCH"}
+        src = {k: v for k, v in src.items() if k in ok_in}
     byfile = {}
     for (seg, func), p in sorted(src.items()):
         cf = S.file_of(seg, func)

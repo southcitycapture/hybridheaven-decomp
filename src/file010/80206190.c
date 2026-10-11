@@ -22,7 +22,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/func_80207654.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/func_80207808.s")
+
+void func_80207808(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/func_80207814.s")
 

@@ -12,6 +12,7 @@ can add them.
 import argparse, glob, json, os, re, shutil, signal, subprocess, sys, time
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
+sys.path.insert(0, os.path.join(HH, "tools/hh")); import workdir
 PERM = os.path.join(HH, "tools/decomp-permuter")
 OUT = os.path.join(HH, "queue/permute")
 PY = os.path.join(HH, ".venv/bin/python")
@@ -37,8 +38,8 @@ def candidates(min_score, batches=None):
             r = json.loads(l)
             f, seg = r["func"], r["segment"]
             if r["verified"] != "FAIL" or f in done or f in tried or f in seen: continue
-            src = "queue/%s/work/%s/attempt.c" % (batch, f)
-            if not os.path.exists(src): continue
+            src = workdir.attempt(batch, f, seg)
+            if not src: continue
             seen.add(f); out.append((f, seg, src))
     scored = [(score(f, seg, src), f, seg, src) for f, seg, src in out]
     return sorted([c for c in scored if c[0] >= min_score], reverse=True)

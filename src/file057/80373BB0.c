@@ -85,11 +85,27 @@ void func_803748C0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80374994.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80374B74.s")
+
+s32 func_80374994(u64 arg0);                          /* extern */
+void func_800058DC(s32 arg0, void *arg1);            /* extern */
+extern void func_80374BAC();
+
+void func_80374B74(u64 arg0) {
+    if (func_80374994(arg0) != 0) {
+        func_800058DC(*(s32 *)&arg0, &func_80374BAC);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80374BAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80374CB8.s")
+
+extern void func_80374254();
+extern void func_80005700(s32);
+
+void func_80374CB8(s32 arg0, s32 arg1) {
+    func_80374254();
+    func_80005700(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80374CE4.s")
 
@@ -106,9 +122,7 @@ struct func_80374D3C_StructXform {
 };
 
 extern u8 D_8038B604[];
-extern void func_80374BAC(void);
 extern s32 func_8011AAF4(void *, s32, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
-extern void func_800058DC(s32, void (*)(void));
 
 void func_80374D3C(s32 arg0, s32 arg1) {
     struct func_80374D3C_StructXform *xf;

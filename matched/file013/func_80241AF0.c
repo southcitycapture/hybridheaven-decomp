@@ -17,8 +17,8 @@ typedef struct func_80241AF0_StructBBBF0 {
     s32 unkF10;
 } func_80241AF0_StructBBBF0;
 
-extern func_80241AF0_StructBBBF0 D_801BBBF0;
-extern void func_800058DC(void *, void *);
+extern struct func_80241AF0_StructBBBF0 D_801BBBF0;
+extern void func_800058DC(void *arg0, void *arg1);
 extern f32 D_80249AD8;
 extern f32 D_80249ADC;
 extern void func_80241B88(void);

@@ -154,7 +154,32 @@ void func_801264D4(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, u16 arg5) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_80126570.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_801266B8.s")
+
+typedef struct func_801266B8_Struct {
+    s32 unk0;
+    s32 unk4;
+    u16 unk8;
+} func_801266B8_Struct;
+
+extern void func_80126570(s32, u16, ...);
+
+void func_801266B8(u16 arg0, u16 arg1) {
+    func_801266B8_Struct *temp_v0;
+    func_801266B8_Struct *sp24;
+    s32 sp1C;
+
+    temp_v0 = D_80175490[arg0];
+    if (temp_v0 != NULL) {
+        if (temp_v0->unk0 != 0) {
+            sp24 = temp_v0;
+            func_80126570(temp_v0->unk0, arg1);
+        }
+        if (temp_v0->unk8 != 0) {
+            sp1C = temp_v0->unk4 & 0xFFFFFF;
+            func_80126570(func_80005204(temp_v0->unk8) + sp1C, arg1, sp1C);
+        }
+    }
+}
 
 struct func_80126794_Struct;
 extern struct func_80126794_Struct D_801BBBF0;
@@ -235,7 +260,6 @@ typedef struct func_80126820_Struct {
     u16 unk1114;
 } func_80126820_Struct;
 
-void func_801266B8(u16 arg0, u16 arg1);
 
 s32 func_80126820(u16 arg0) {
     u16 temp_a1;
@@ -294,11 +318,25 @@ s32 func_80126930(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_80126944.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_80126950.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_8012695C.s")
+u8 func_80126944(void) {
+    return D_801BBF90;
+}
+
+
+extern u8 D_801BBD72;
+
+u8 func_80126950(void) {
+    return D_801BBD72;
+}
+
+
+extern u8 D_801BBD77;
+
+u8 func_8012695C(void) {
+    return D_801BBD77;
+}
 
 
 extern s16 func_80020EA0(s32);
@@ -464,18 +502,47 @@ void func_80126E88(s32 arg0) {
     func_8001769C(arg0 & 0xFFFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_80126EAC.s")
-
-
 extern void func_80005700(void *);
 extern s8 D_801BBD76;
-
 struct func_80126F4C_Struct {
     u8 pad0[0x36];
     u16 unk36;
     u8 pad1[0x90 - 0x38];
     s16 unk90;
 };
+
+/* The 20-byte D_80164E80 is passed BY VALUE to func_8012C4D0 (copied into a1..a3 and the
+   two stack arg slots), then the literal 3 goes in the next stack slot. */
+typedef struct func_80126EAC_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+} func_80126EAC_Struct;
+
+extern void *func_8012C4D0(void *, func_80126EAC_Struct, s32);
+extern func_80126EAC_Struct D_80164E80;
+
+void func_80126EAC(struct func_80126F4C_Struct *arg0, s32 arg1) {
+    s32 sp2C;
+    u16 sp2A;
+    struct func_80126F4C_Struct *temp_v0;
+
+    D_801BBD76 = 1;
+    sp2A = arg0->unk36;
+    func_80005700(arg0);
+    if (sp2A != 0) {
+        temp_v0 = func_8012C4D0(arg0, D_80164E80, 3);
+        if (temp_v0 != NULL) {
+            temp_v0->unk36 = sp2A;
+            temp_v0->unk90 = 5;
+        }
+    }
+}
+
+
+
 
 void func_80126F4C(struct func_80126F4C_Struct *arg0, struct func_80126F4C_Struct *arg1) {
     s16 temp_v0;
@@ -513,7 +580,13 @@ void func_80126F4C(struct func_80126F4C_Struct *arg0, struct func_80126F4C_Struc
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_801276CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/func_801277B0.s")
+
+void func_801277B0(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 
 extern s32 func_80005F6C(s32, void *);

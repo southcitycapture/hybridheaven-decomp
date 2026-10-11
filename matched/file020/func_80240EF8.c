@@ -8,7 +8,7 @@ typedef struct func_80240EF8_Struct {
 } func_80240EF8_Struct;
 
 extern s32 func_801C3044(void);
-extern void func_801C2F0C(s32 arg0, func_80240EF8_Struct *arg1);
+extern void func_801C2F0C(s32 arg0, struct func_80240EF8_Struct *arg1);
 extern void func_80020718(s32 arg0);
 extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80240F7C(void);

@@ -44,11 +44,24 @@ void func_80241340(func_80241340_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file012/80241010/func_80241378.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file012/80241010/func_802415B8.s")
+
+extern void func_80005700(s32 arg0, s32 arg1);
+
+void func_802415B8(s32 arg0, s32 arg1) {
+    s32 *p;
+    p = &arg1;
+    func_80005700(arg0, *p);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file012/80241010/func_802415D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file012/80241010/func_80241640.s")
+
+void func_80241640(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file012/80241010/func_8024164C.s")
 

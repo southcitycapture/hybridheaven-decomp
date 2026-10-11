@@ -1,9 +1,5 @@
 #include "common.h"
 
-struct func_802436C0_Struct {
-    u8 pad[0x3C];
-    s16 unk3C;
-};
 
 extern s32 func_80150584(void);
 extern s32 func_801C3D20(f32, f32, f32);

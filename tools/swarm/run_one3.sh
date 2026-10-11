@@ -1,10 +1,10 @@
 #!/bin/bash
 # run_one.sh FUNC SEGMENT [MODEL]: run one worker, record the outcome and token usage
 FUNC=$1; SEG=$2; MODEL=${3:-${MODEL:-claude-haiku-5-5}}; HH="$(cd "$(dirname "$0")/../.." && pwd)"
-BATCH=${BATCH:-pilot}; W=$HH/queue/$BATCH/work/$FUNC
+BATCH=${BATCH:-pilot}; W=$HH/$(python3 "$HH/tools/hh/workdir.py" dir "$BATCH" "$FUNC" "$SEG")
 # repair batches: start from the newest earlier attempt of this function
 if [ -n "$FIXMODE" ] && [ -z "$PREVIOUS" ]; then
-  PREVIOUS=$(ls -t "$HH"/queue/*/work/"$FUNC"/attempt.c 2>/dev/null | grep -v "/queue/$BATCH/" | head -1)
+  PREVIOUS=$(ls -t "$HH"/queue/*/work/"$FUNC"@"$SEG"/attempt.c "$HH"/queue/*/work/"$FUNC"/attempt.c 2>/dev/null | grep -v "/queue/$BATCH/" | head -1)
 fi
 export PREVIOUS
 rm -rf "$W"; "$HH/tools/swarm/prep2.sh" "$FUNC" "$SEG" "$W"

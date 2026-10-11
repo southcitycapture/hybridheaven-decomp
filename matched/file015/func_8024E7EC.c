@@ -2,8 +2,8 @@
 extern void func_800058DC(void *, void *);
 
 extern s32 func_801C2FF8(void);
-extern void func_801C2F0C(s32, f32 *);
-extern void func_8024E87C(void);
+extern void func_801C2F0C(s32, void *);
+extern void func_8024E87C(void *arg0, void *arg1);
 extern f32 D_8025A058;
 
 typedef struct func_8024E7EC_Struct {

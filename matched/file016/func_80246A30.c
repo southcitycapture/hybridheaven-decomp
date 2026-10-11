@@ -6,7 +6,7 @@ extern void func_8001F74C(s32 arg0);
 extern u8 D_80249B94[];
 extern f32 D_8024F128;
 extern f32 D_8024F500;
-extern void func_80246A84(void);
+extern void func_80246A84(s32 arg0, s32 arg1);
 
 void func_80246A30(s32 arg0, s32 arg1) {
     D_8024F500 = D_8024F128;

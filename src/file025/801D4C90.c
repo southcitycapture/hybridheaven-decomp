@@ -27,27 +27,85 @@ void func_801D4C90(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D4F1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D517C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D5188.s")
+extern s32 D_801DB67C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D5194.s")
+void func_801D517C(s32 arg0) {
+    D_801DB67C = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D51A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D51E4.s")
+extern s32 D_801DB680;
+
+void func_801D5188(s32 arg0) {
+    D_801DB680 = arg0;
+}
+
+
+
+s32 func_801D5194(void) {
+    return D_801DB664 != 0;
+}
+
+
+
+s32 func_801D51A4(void) {
+    if (D_801DB664 != 0) {
+        return 0;
+    }
+    if (D_801DB660 != 0) {
+        return 0;
+    }
+    return D_801DB684;
+}
+
+extern u8 D_801E1630;
+
+u8 *func_801D51E4(void) {
+    return &D_801E1630;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D51F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D5250.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D5288.s")
+struct func_801D5250_Struct {
+    s32 unk0;
+    u16 unk4;
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D5294.s")
+extern struct func_801D5250_Struct D_801E1640;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D52A0.s")
+s32 func_801D5250(s32 arg0, u16 arg1) {
+    if (arg0 != D_801E1640.unk0) {
+        return 0;
+    }
+    return D_801E1640.unk4 == arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D52AC.s")
+
+
+s32 func_801D5288(void) {
+    return D_801DB640;
+}
+
+
+extern s32 D_801DB644;
+
+s32 func_801D5294(void) {
+    return D_801DB644;
+}
+
+extern u8 D_801E1650;
+
+u8 *func_801D52A0(void) {
+    return &D_801E1650;
+}
+
+extern u8 D_801E1660;
+
+u8 *func_801D52AC(void) {
+    return &D_801E1660;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D52B8.s")
 

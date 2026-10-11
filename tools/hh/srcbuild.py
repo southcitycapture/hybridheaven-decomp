@@ -17,7 +17,7 @@ import glob, json, os, re, shutil, subprocess, sys, tempfile
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 sys.path.insert(0, os.path.join(HH, "tools/hh"))
-import try_func
+import try_func, workdir
 from elftools.elf.elffile import ELFFile
 IMG = open("build/expanded.bin", "rb").read()
 IDO = "tools/ido/7.1/cc"
@@ -472,7 +472,7 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
             for l in open("queue/%s/results.jsonl" % b):
                 r = json.loads(l); key = (r["segment"], r["func"])
                 if r["verified"] == "MATCH" and key not in reg:
-                    new[key] = open("queue/%s/work/%s/attempt.c" % (b, r["func"])).read()
+                    new[key] = open(workdir.attempt(b, r["func"], r["segment"])).read()
         cands = dict(reg); cands.update(new)
         kept, rejected = run(cands, set(new))
         added = 0

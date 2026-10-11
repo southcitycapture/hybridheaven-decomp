@@ -16,7 +16,7 @@ struct func_80240DF4_Struct {
 
 extern f32 D_80246A58;
 extern f32 D_80246A5C;
-extern void func_80240E8C(void);
+extern void func_80240E8C(void *arg0, s32 arg1);
 
 void func_80240DF4(void *arg0, void *arg1) {
     struct func_80240DF4_Struct buf;

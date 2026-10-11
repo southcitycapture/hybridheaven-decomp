@@ -9,18 +9,27 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_8002059C.s")
 
 
-extern s32 func_800207D0(s32, s32, s32);
+extern void func_800207D0(u16 arg0, s32 arg1, u8 arg2);
 
 void func_80020718(s32 arg0) {
     s32 *p = &arg0;
     func_800207D0(arg0 & 0xFFFF, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_80020744.s")
+
+
+void func_80020744(s32 arg0) {
+    s32 *p = &arg0;
+    func_800207D0(arg0 & 0xFFFF, 0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_80020770.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_800207A0.s")
+
+
+void func_800207A0(u16 arg0, u8 arg1) {
+    func_800207D0(arg0, 0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_800207D0.s")
 
@@ -214,7 +223,13 @@ void func_80022C44(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_80022C68.s")
+
+
+void func_80022C68(void) {
+    if (D_800CBACE != 0) {
+        D_800CBACD = 4;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_80022C8C.s")
 

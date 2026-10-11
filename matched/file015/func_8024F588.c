@@ -6,7 +6,7 @@ struct func_8024F588_Arg0 { u8 pad[0x5C]; s32 unk5C; };
 
 extern func_8024EF6C_Vec D_80254AD0;
 extern u8 D_80254F6C[];
-extern void func_8024F624(void);
+extern void func_8024F624();
 
 void func_8024F588(struct func_8024F588_Arg0 *arg0, void **arg1) {
     struct func_8024F588_StructB *temp_v0;

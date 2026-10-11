@@ -31,7 +31,7 @@ struct func_802476B0_StructArg0 {
 extern void func_80005E44(void *arg0, void *arg1);
 extern void func_80006214(void *arg0);
 extern void func_8012636C(void *arg0, s32 arg1);
-extern void func_8012C89C(void *arg0, s32 arg1, u32 arg2, u32 arg3);
+extern void func_8012C89C(void *arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void func_800062F8(void *arg0, u32 arg1);
 extern s32 func_8000C3B0(void *arg0);
 extern void func_802477BC(void);

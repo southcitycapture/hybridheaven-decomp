@@ -2,7 +2,7 @@
 
 extern s32 func_800058DC(s32, void *);
 extern s32 D_802170C0;
-extern s32 func_801FB13C(void);
+extern void func_801FB13C();
 
 s32 func_801FA5C4(void) {
     if (D_802170C0 != 0) {

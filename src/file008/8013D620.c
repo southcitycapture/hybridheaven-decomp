@@ -4,7 +4,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013D620/func_8013DA10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013D620/func_8013DC38.s")
+
+extern void func_800058DC(s32 arg0, void (*arg1)(void));
+extern void func_8013DC60(void);
+
+void func_8013DC38(s32 arg0, s32 arg1) {
+    func_800058DC(arg0, func_8013DC60);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013D620/func_8013DC60.s")
 

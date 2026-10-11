@@ -54,7 +54,11 @@ s32 func_801C1B1C(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1BDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1C84.s")
+
+
+s32 func_801C1C84(void) {
+    return D_801D8DC0;
+}
 
 
 /* Same signature as context.h's func_801BF680, spelled with the struct tag so it
@@ -94,21 +98,33 @@ s32 func_801C1CF0(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1D60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1D9C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1DA8.s")
+extern s32 D_801D8DD0;
+
+s32 func_801C1D9C(void) {
+    return D_801D8DD0;
+}
+
+
+
+s32 func_801C1DA8(u32 arg0) {
+    return D_801D8DD0 >= arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1DBC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1E00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1E20.s")
+
+extern s32 D_801D8DD4;
+
+s32 func_801C1E20(void) {
+    return D_801D8DD4;
+}
 
 
 s32 func_801C1E94();
 s32 func_801C1F4C();
-extern s32 D_801D8DD0;
-extern s32 D_801D8DD4;
 
 s32 func_801C1E2C(void) {
     s32 var_v1;

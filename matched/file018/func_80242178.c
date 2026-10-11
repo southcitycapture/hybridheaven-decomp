@@ -15,7 +15,7 @@ extern void func_8020394C();
 extern void func_800058DC(s32, void *);
 extern u8 D_80257618[];
 extern struct func_80242178_Struct D_801BBBF0;
-extern void func_802421D8();
+extern void func_802421D8(s32 arg0);
 
 void func_80242178(s32 arg0, s32 arg1) {
     func_8001F74C();

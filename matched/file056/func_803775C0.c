@@ -10,7 +10,7 @@ typedef struct func_803775C0_Struct {
 
 extern void func_8014B4A0(u16, f32 *);
 extern void func_8014C138(u16);
-extern void func_80377644(void);
+extern void func_80377644();
 
 void func_803775C0(s32 arg0, s32 arg1) {
     func_803775C0_Struct sp30;

@@ -473,7 +473,10 @@ void func_80231B28(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_80231CE4.s")
+
+void func_80231CE4(s32 arg0) {
+
+}
 
 
 void func_80231CEC(void) {
@@ -496,7 +499,10 @@ void func_80231CEC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_80232008.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_802320DC.s")
+
+s32 func_802320DC(s32 arg0) {
+    return 1;
+}
 
 
 

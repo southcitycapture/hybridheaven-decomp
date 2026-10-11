@@ -1,9 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013B130.s")
-
-
 extern u8 D_801BEB00[];
+
+extern void func_800279F0(void *a0, s32 a1);
+
+void func_8013B130(void) {
+    func_800279F0(&D_801BEB00, 0x14);
+}
+
+
 
 s32 func_8013B158(void) {
     s32 var_v1;
@@ -24,7 +29,6 @@ struct func_8013B208_Struct {
     u8 unk60;
 };
 
-extern void func_800279F0(void *, s32);
 extern u8 D_801BD980[];
 
 s32 func_8013B208(struct func_8013B208_Struct *arg0) {
@@ -292,5 +296,10 @@ void func_8013BFB8(struct func_8013BFB8_Struct *arg0, u16 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013C7F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013C8E0.s")
+
+extern u16 D_8017DCDC;
+
+u16 func_8013C8E0(void) {
+    return D_8017DCDC;
+}
 

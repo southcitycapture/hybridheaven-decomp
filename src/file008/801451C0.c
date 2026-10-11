@@ -96,13 +96,24 @@ void func_80145390(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_80146A9C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_80146AE4.s")
+extern u8 D_801819E4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_80146AF4.s")
+
+void func_80146AE4(s32 arg0) {
+    s32 *p = &arg0;
+    D_801819E4 = arg0;
+}
+
+extern u8 D_801819E0;
+
+
+void func_80146AF4(s32 arg0) {
+    s32 *p = &arg0;
+    D_801819E0 = arg0;
+}
 
 
 extern void func_80020744(s32 arg0);
-extern void func_80146AE4(s32 arg0);
 
 void func_80146B04(void) {
     func_80020744(0x648);
@@ -111,9 +122,6 @@ void func_80146B04(void) {
 
 extern u16 D_801BBC1C;
 
-extern u8 D_801819E0;
-extern u8 D_801819E4;
-extern void func_80146AF4(s32 arg0);
 extern s32 func_80126944(void);
 
 void func_80146B2C(u8 arg0) {

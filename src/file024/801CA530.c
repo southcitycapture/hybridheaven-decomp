@@ -38,9 +38,24 @@ u16 func_801CA590(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file024/801CA530/func_801CA5AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801CA530/func_801CA618.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801CA530/func_801CA624.s")
+extern u16 D_8017DCA6;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801CA530/func_801CA630.s")
+u16 func_801CA618(void) {
+    return D_8017DCA6;
+}
+
+
+extern u16 D_8017DCC2;
+
+u16 func_801CA624(void) {
+    return D_8017DCC2;
+}
+
+
+extern u8 D_8017DCC6;
+
+u8 func_801CA630(void) {
+    return D_8017DCC6;
+}
 

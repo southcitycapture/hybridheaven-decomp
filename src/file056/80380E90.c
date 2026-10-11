@@ -2,7 +2,7 @@
 
 
 extern void func_8001F74C(void);
-extern void func_80380EEC(void);
+extern void func_80380EEC();
 extern void *D_80388D84[];
 
 void func_80380E90(u8 *arg0, s32 arg1) {
@@ -16,11 +16,50 @@ void func_80380E90(u8 *arg0, s32 arg1) {
     func_800058DC(arg0, func_80380EEC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_80380EEC.s")
+
+struct func_80380EEC_Struct {
+    u8 pad0[0x40];
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    u8 pad1[0x44];
+    u8 unk90;
+    u8 pad2[0x3];
+    f32 unk94;
+    f32 unk98;
+    f32 unk9C;
+};
+
+extern void func_8001F75C(void *);
+extern u16 D_801BCAE0;
+extern s32 D_80388E0C[];
+
+void func_80380EEC(struct func_80380EEC_Struct *arg0, s32 arg1) {
+    void (*temp_v0)(void *, s32);
+
+    if (D_801BCAE0 & 0x10) {
+        func_8001F74C();
+    } else {
+        func_8001F75C(arg0);
+    }
+    temp_v0 = (void (*)(void *, s32)) D_80388E0C[arg0->unk90];
+    if (temp_v0 != NULL) {
+        temp_v0(arg0, arg1);
+    }
+    arg0->unk94 = arg0->unk94 + arg0->unk40;
+    arg0->unk98 = arg0->unk98 + arg0->unk44;
+    arg0->unk9C = arg0->unk9C + arg0->unk48;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_80380F94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_80381078.s")
+
+void func_80381078(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_80381084.s")
 
@@ -42,7 +81,13 @@ void func_80380E90(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_80381F30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_803820E0.s")
+
+void func_803820E0(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_803820EC.s")
 
@@ -232,7 +277,13 @@ void func_80386D54(struct func_80386D54_StructArg0 *arg0, struct func_80386D54_S
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_80386EE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_80386FD4.s")
+
+void func_80386FD4(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/func_80386FE0.s")
 

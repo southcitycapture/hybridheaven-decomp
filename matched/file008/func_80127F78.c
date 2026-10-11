@@ -13,7 +13,7 @@ extern void func_8012C89C(void *, s32, s32, s32);
 extern void func_8012D814(void *, s32, s32, s32, s32);
 extern void func_800058DC(void *, void *);
 extern s32 D_8017B3E0;
-extern void func_80128028(void);
+extern void func_80128028();
 
 void func_80127F78(func_80127F78_Struct *arg0, func_80127D70_StructC **arg1) {
     s32 temp_v0;

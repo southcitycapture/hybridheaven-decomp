@@ -5,13 +5,6 @@ extern void func_80020718(s32);
 extern void func_801C2F0C(s32, s16 *);
 extern void func_80241C88(void);
 
-typedef struct func_80241C1C_Struct {
-    s16 sp18;
-    s16 pad;
-    s32 sp1C;
-    f32 sp20;
-    s32 pad2[5];
-} func_80241C1C_Struct;
 
 void func_80241C1C(s32 arg0, s32 arg1) {
     func_80241C1C_Struct sp;

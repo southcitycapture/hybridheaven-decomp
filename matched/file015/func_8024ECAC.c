@@ -15,8 +15,8 @@ struct func_8024ECAC_Local {
     u8 pad[0x10];
 };
 
-extern s32 func_801339D0(s32);
-extern void func_8024ED2C(void);
+extern void func_801339D0(s32);
+extern void func_8024ED2C();
 
 void func_8024ECAC(struct func_8024ECAC_Struct *arg0, void *arg1) {
     struct func_8024ECAC_Local sp18;

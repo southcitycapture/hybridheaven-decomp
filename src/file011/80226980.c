@@ -14,16 +14,30 @@ s32 func_80226980(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80226980/func_802269B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80226980/func_802269C0.s")
+extern s8 D_8023C920;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80226980/func_802269CC.s")
+void func_802269B0(s32 arg0) {
+    s32 *p = &arg0;
+    D_8023C920 = arg0;
+}
+
+
+
+u8 func_802269C0(void) {
+    return D_8023C920;
+}
+
+
+extern u8 D_802407DA;
+
+u8 func_802269CC(void) {
+    return D_802407DA;
+}
 
 
 s32 func_80126944();                                /* extern */
 extern u16 D_801BBC1C;
-extern u8 D_802407DA;
 
 void func_802269D8(void) {
     if (func_80126944() == 1) {

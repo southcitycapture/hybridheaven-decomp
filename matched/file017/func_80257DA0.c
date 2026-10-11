@@ -9,7 +9,7 @@ typedef struct func_80257DA0_Struct {
 
 extern s32 func_80126944(void);
 extern s32 func_8012C97C(s32, s32);
-extern void func_80257E48(void);
+extern void func_80257E48();
 
 void func_80257DA0(func_80257DA0_Struct *arg0, s32 arg1) {
     if (func_80126944() == 1) {

@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_800058DC(void *arg0, void *arg1);
+extern s32 func_800058DC(void *, void *);
 extern void func_802459C8(void);
 
 void func_80245988(void *arg0, s32 arg1) {

@@ -1,7 +1,7 @@
 #!/bin/bash
 # run_one.sh FUNC SEGMENT [MODEL]: run one worker, record the outcome and token usage
 FUNC=$1; SEG=$2; MODEL=${3:-claude-haiku-5-5}; HH="$(cd "$(dirname "$0")/../.." && pwd)"
-BATCH=${BATCH:-pilot}; W=$HH/queue/$BATCH/work/$FUNC
+BATCH=${BATCH:-pilot}; W=$HH/$(python3 "$HH/tools/hh/workdir.py" dir "$BATCH" "$FUNC" "$SEG")
 rm -rf "$W"; "$HH/tools/swarm/prep.sh" "$FUNC" "$SEG" "$W"
 cd "$W"
 start=$(date +%s)

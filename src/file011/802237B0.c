@@ -411,14 +411,25 @@ void func_80226780(func_80226780_StructOuter *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/802237B0/func_802267E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/802237B0/func_8022693C.s")
+
+extern void func_80005700(s32 arg0, s32 arg1);
+
+void func_8022693C(s32 arg0, s32 arg1) {
+    s32 *p;
+    p = &arg1;
+    func_80005700(arg0, *p);
+}
 
 
 void func_8022695C(s32 arg0) {
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/802237B0/func_80226964.s")
+
+void func_80226964(s32 arg0) {
+
+}
+
 
 void func_8022696C(void) {
 }

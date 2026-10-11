@@ -19,13 +19,8 @@ struct func_80243290_StructArg {
     s16 unk90;
 };
 
-struct func_80243290_StructTriple {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 
-extern void func_800058DC(void *arg0, void *arg1);
+extern void func_800058DC(void *, void *);
 extern s32 func_8013A1B4(void **arg0, struct func_80243290_StructTriple arg1, s32 arg2);
 extern struct func_80243290_StructTriple D_8025211C;
 extern f32 D_80258638;

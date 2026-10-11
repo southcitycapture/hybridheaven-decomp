@@ -5,7 +5,7 @@ struct func_8024470C_Struct {
     s32 unk5C;
 };
 
-extern s32 func_80010550(s32 a0, s32 a1, s32 a2);
+extern s32 func_80010550(s32, s32, s32);
 
 void func_8024470C(struct func_8024470C_Struct *arg0, s32 arg1, s32 arg2)
 {

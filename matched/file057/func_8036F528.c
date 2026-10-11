@@ -9,11 +9,6 @@ typedef struct func_8036F528_Struct {
     u8 unk390;
 } func_8036F528_Struct;
 
-typedef struct func_8036F528_Vec {
-    s32 x;
-    s32 y;
-    f32 z;
-} func_8036F528_Vec;
 
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];

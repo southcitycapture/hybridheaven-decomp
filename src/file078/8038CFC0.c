@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file078/8038CFC0/func_8038CFC0.s")
+
+extern void *func_800058DC(void *, void *);
+extern s16 func_80228C20(void *);
+extern void func_80229500(void);
+extern void func_8038D000(void);
+
+void func_8038CFC0(void *arg0, void *arg1) {
+    func_80229500();
+    *(s16 *)((u8 *)arg0 + 0x96) = func_80228C20(arg0);
+    func_800058DC(arg0, func_8038D000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file078/8038CFC0/func_8038D000.s")
 
@@ -58,5 +68,9 @@ void func_8038D470(void *arg0, void *arg1, void *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file078/8038CFC0/func_8038D5BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file078/8038CFC0/func_8038D7D4.s")
+void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
+
+void func_8038D7D4(s32 arg0, struct func_8022A834_Struct *arg1) {
+    func_8022A834(arg0, arg1);
+}
 

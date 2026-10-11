@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_8038CD6C(s32);
+extern s32 func_8038CD6C(s32 arg0);
 extern s32 D_8038DBE0;
 extern s32 D_8038DBE4;
 

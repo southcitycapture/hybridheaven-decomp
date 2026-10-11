@@ -38,6 +38,7 @@ s32 func_802345B0(s32 arg0, s32 *arg1, u8 arg2, s16 arg3, s16 arg4, u8 arg5) {
     return arg1[sp3E];
 }
 
+
 void func_80234664(void) {
 }
 
@@ -233,6 +234,7 @@ void func_80234E30(struct func_80234E30_Struct *arg0, struct func_80234E30_Node 
     }
 }
 
+
 void func_80234ECC(void) {
 }
 
@@ -247,9 +249,15 @@ void func_80235AD4(s32 arg0) {
     func_80145310(arg0, 1, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80235AF8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80235B1C.s")
+void func_80235AF8(s32 arg0) {
+    func_80145310(arg0, 2, 4);
+}
+
+
+void func_80235B1C(s32 arg0) {
+    func_80145310(arg0, 2, 14);
+}
 
 
 typedef struct func_80235B40_Struct {
@@ -258,7 +266,6 @@ typedef struct func_80235B40_Struct {
     s8 unkA5;
 } func_80235B40_Struct;
 
-extern void func_80235AF8(s32);
 extern s32 D_8024086C;
 extern s32 D_80240870;
 
@@ -292,7 +299,6 @@ typedef struct func_80235C1C_Struct {
 } func_80235C1C_Struct;
 
 extern u8 D_802407E0[];
-extern void func_80235B1C(s32);
 
 void func_80235C1C(func_80235C1C_Struct *arg0) {
     s32 temp_s0;
@@ -532,13 +538,31 @@ s32 func_80236744(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80236788.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80236A3C.s")
+extern s8 D_8023E3B0;
+
+void func_80236A3C(void) {
+    D_8023E3B0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80236A48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80236BA4.s")
+extern void (*D_80216D10[])(void *, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80236BC8.s")
+extern u8 D_8023E3B4;
+
+s32 func_80236BA4(void) {
+    if (D_8023E3B4 != 0) {
+        return 1;
+    }
+    return 0;
+}
+
+
+
+void func_80236BC8(s32 arg0) {
+    s32 *p = &arg0;
+    D_8023E3B4 = arg0;
+}
 
 
 typedef struct func_80236BD8_Struct {
@@ -678,7 +702,6 @@ typedef struct func_80237694_Struct2 {
 } func_80237694_Struct2;
 
 extern s32 func_80236A48();
-extern void func_80236BC8(s32);
 extern s32 func_80236C9C(void);
 extern void func_80376CCC();
 extern void func_8023748C(void);

@@ -1,8 +1,36 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023A210.s")
+extern void (*D_80216D10[])(void *, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023A234.s")
+extern s32 D_8023E544;
+
+s32 func_8023A210(void) {
+    if (D_8023E544 != 0) {
+        return 1;
+    }
+    return 0;
+}
+
+
+typedef struct func_8023A234_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+} func_8023A234_Struct;
+
+s32 func_8012C4D0(s32, func_8023A234_Struct, s32); /* extern */
+extern s32 D_801BBC2C;
+extern func_8023A234_Struct D_8023E530;
+
+s32 func_8023A234(void) {
+    if (D_8023E544 == 0) {
+        D_8023E544 = func_8012C4D0(D_801BBC2C, D_8023E530, 8);
+        return 1;
+    }
+    return 0;
+}
 
 
 struct func_8023A2BC_Struct {
@@ -71,7 +99,19 @@ void func_8023A4AC(struct func_8023A4AC_Struct *arg0, u8 arg1) {
     func_8013C8F0(field, ((arg1 + 2) & 0xFF) % 5 & 0xFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023A4EC.s")
+
+extern u8 D_802408B8[];
+
+s32 func_8023A4EC(s32 arg0) {
+    s32 *p;
+
+    p = &arg0;
+    arg0 &= 0xFF;
+    if (D_802408B8[arg0] != 0) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023A51C.s")
 
@@ -142,7 +182,21 @@ void func_8023AB40(s32 a0) {
     func_80146178(a0, &buf[3],0x3A, 0x4D, 0xCC, 0x54, 2, 0, 0, 0, 0x66);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023AB94.s")
+extern void func_80145348(void *, s32, s32);
+
+extern s32 D_80240884;
+
+void func_8023AB94(s32 arg0) {
+    u8 sp47;
+    u8 sp46;
+
+    sp46 = func_80006214(arg0);
+    func_80146208((void *)arg0, &sp47, 0xE6, 0x2E, 0x70, 8, 8, 8, 0, 0xFF, 0x209, 6);
+    func_80145348((void *)arg0, 0x1A, 3);
+    func_80146208((void *)arg0, &sp47, 0x66, 0x10A, 0x70, 8, 8, 0, 0, 0xFF, 0x209, 6);
+    func_80145348((void *)arg0, 0x1A, 3);
+    D_80240884 = D_8008DA88[sp46];
+}
 
 extern s32 func_801453CC(s32, s32, s32, u8, s32, s32, s32);
 
@@ -515,7 +569,6 @@ typedef struct func_8023C084_Struct {
 } func_8023C084_Struct;
 
 extern void func_80116E80(s32);
-extern void func_80145348(void *, s32, s32);
 extern void func_8023C134(void);
 
 void func_8023C084(void *arg0, s32 arg1) {
@@ -549,7 +602,6 @@ struct func_8023C1A4_Struct {
 
 extern void func_801170DC(s32);
 extern void func_80005700(void *);
-extern s32 D_8023E544;
 
 void func_8023C1A4(struct func_8023C1A4_Struct *arg0, s32 arg1) {
     s16 sp2E;

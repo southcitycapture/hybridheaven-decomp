@@ -21,7 +21,7 @@ extern void func_8013B570(void *, u16, s32, s32, void *);
 extern void func_80127014(void);
 extern void func_8012E5B0(void);
 extern void func_8012E6BC(void);
-extern void func_802412A0(void);
+extern void func_802412A0(s32 arg0, s32 arg1);
 
 void func_8024120C(func_8024120C_Struct *arg0, s32 arg1) {
     if (func_80133A24(0x47) != 0) {

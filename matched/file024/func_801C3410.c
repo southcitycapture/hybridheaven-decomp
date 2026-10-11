@@ -1,9 +1,5 @@
 #include "context.h"
 
-struct func_801C3410_Struct {
-    u8 pad[0x90];
-    s8 unk90;
-};
 
 extern s32 func_801C1088(s32, s8);
 extern s32 D_801CC8A4;

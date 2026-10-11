@@ -4,12 +4,6 @@ extern void func_80005700(void *);
 extern u16 **D_80171CEC[];
 extern s8 D_801BBD76;
 
-struct func_80126F4C_Struct {
-    u8 pad0[0x36];
-    u16 unk36;
-    u8 pad1[0x90 - 0x38];
-    s16 unk90;
-};
 
 void func_80126F4C(struct func_80126F4C_Struct *arg0, struct func_80126F4C_Struct *arg1) {
     s16 temp_v0;

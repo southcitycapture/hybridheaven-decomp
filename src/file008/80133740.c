@@ -57,9 +57,34 @@ void func_80133830(void) {
     } while (D_801BCDF4 != &D_801BCD90[var_v1]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133860.s")
+extern u8 D_801BCDF8[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_801338B0.s")
+void func_80133860(s32 arg0)
+{
+  u8 *temp_v0;
+  u8 temp_t3;
+  u8 temp_t1;
+  s32 temp_t4;
+  temp_v0 = &D_801BCDF8[(arg0 / 8) & 0xFF];
+  temp_t3 = arg0 % 8;
+  temp_t1 = temp_t3;
+  temp_t4 = 1 << temp_t1;
+  temp_t1 = temp_t4;
+  *temp_v0 |= temp_t1;
+}
+
+
+
+void func_801338B0(s32 arg0) {
+    u8 *temp_v0;
+    s32 temp_t0;
+    u8 temp_t4;
+
+    temp_t0 = arg0 % 8;
+    temp_v0 = &D_801BCDF8[(arg0 / 8) & 0xFF];
+    temp_t4 = 1 << (temp_t0 & 0xFF);
+    *temp_v0 &= ~temp_t4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133904.s")
 
@@ -73,10 +98,14 @@ void func_80133830(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133A70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133AA0.s")
-
 
 extern s32 D_8017AA90;
+
+s32 func_80133AA0(void) {
+    return D_8017AA90;
+}
+
+
 
 void func_80133AAC(s32 arg0) {
     D_8017AA90 = arg0;

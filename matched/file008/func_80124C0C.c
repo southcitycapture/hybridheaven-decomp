@@ -1,14 +1,5 @@
 #include "common.h"
 
-typedef struct func_80124C0C_Struct {
-    u8 pad[0x164];
-    u8 unk164;
-    u8 pad2[0x3];
-    s16 unk168;
-    u8 pad3[0x13];
-    u8 unk17D;
-    u8 unk17E;
-} func_80124C0C_Struct;
 
 extern func_80124C0C_Struct D_801BBBF0;
 

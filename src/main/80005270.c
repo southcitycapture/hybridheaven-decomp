@@ -501,7 +501,12 @@ s32 func_80006214(struct func_80006214_Struct *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80006248.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_800062D4.s")
+
+void func_80006248(s32 a, void *p);
+
+void func_800062D4(s32 a) {
+    func_80006248(a, D_8008942C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_800062F8.s")
 

@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern f64 D_80249A98;
-extern void func_800058DC(void *, void *);
+extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80240DF4(void);
 
 struct func_80240D94_Inner {

@@ -28,6 +28,7 @@ void func_80379410(u8 *arg0, u8 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_803795D8.s")
 
+
 void func_803796C8(void) {
 }
 

@@ -2,8 +2,8 @@
 
 s32 func_80133A24(s32);
 s32 func_80126CC0(s32, void *);
-void func_800058DC(s32, void *);
-extern void func_80127014(void);
+extern void func_800058DC(s32, void *);
+extern u8 func_80127014[];
 extern void func_802409B4(void);
 
 void func_80240964(s32 arg0, s32 arg1) {

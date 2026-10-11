@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file058/8038CFC0/func_8038CFC0.s")
+
+extern s32 func_800058DC(s32, void *);
+extern s32 func_80229500();
+extern void func_8038CFF4();
+
+void func_8038CFC0(s32 arg0, s32 arg1) {
+    func_80229500();
+    func_800058DC(arg0, &func_8038CFF4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file058/8038CFC0/func_8038CFF4.s")
 
@@ -73,8 +81,6 @@ extern s32 D_801BBCCC;
 extern u8 D_801BC03C;
 extern u8 D_801BC3D8;
 extern void func_8038D9DC();
-extern void func_80229500(void *a, void *b, void *c);
-extern void func_800058DC(void *a, void *b);
 
 void func_8038D94C(func_8038D94C_Struct *arg0, void *arg1) {
     void *var_a1;

@@ -2,7 +2,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_80244C10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_802453F0.s")
+
+void func_802453F0(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_802453FC.s")
 
@@ -11,7 +17,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_80245758.s")
 
 
-extern void func_800058DC(void *arg0, void *arg1);
+extern s32 func_800058DC(void *, void *);
 extern void func_802459C8(void);
 
 void func_80245988(void *arg0, s32 arg1) {
@@ -75,7 +81,13 @@ void func_80245BCC(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_80246598.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_8024666C.s")
+void func_802466A4(void *arg0, void **arg1);
+
+extern void func_8013B570(s32, s32, s32, s32, void *);
+
+void func_8024666C(s32 arg0, s32 arg1) {
+    func_8013B570(arg0, 0x30, 0, 4, func_802466A4);
+}
 
 
 struct func_802466A4_Sub {
@@ -241,7 +253,12 @@ void func_80246CDC(struct func_80246CDC_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_802470E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_8024714C.s")
+void func_80247184(void *arg0, struct func_802466A4_Obj **arg1);
+
+
+void func_8024714C(s32 arg0, s32 arg1) {
+    func_8013B570(arg0, 0x2D, 0, 4, func_80247184);
+}
 
 
 struct func_80247184_Arg0 {
@@ -250,7 +267,7 @@ struct func_80247184_Arg0 {
 };
 
 extern struct func_802466A4_Vec D_802529AC;
-extern void func_8024723C(void);
+extern void func_8024723C(void *arg0, s32 arg1);
 
 void func_80247184(void *arg0, struct func_802466A4_Obj **arg1) {
     (*arg1)->unk2C->unk4 = -300.0f;
@@ -262,7 +279,15 @@ void func_80247184(void *arg0, struct func_802466A4_Obj **arg1) {
     func_800058DC(arg0, (void *)func_8024723C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_8024723C.s")
+void func_80247284(void *arg0, s32 arg1);
+
+
+void func_8024723C(void *arg0, s32 arg1) {
+    if (func_80133A24(0x77) != 0) {
+        func_801339D0(0x77);
+        func_800058DC(arg0, func_80247284);
+    }
+}
 
 
 extern s32 func_80010550(s32, s32);

@@ -8,7 +8,7 @@ extern s32 func_801516CC(s32 arg0);
 extern void func_801C4058(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern void func_8024CF18(s32 arg0, s32 arg1);
 extern void func_8024F0B0(void);
-extern void func_8024DEC4(void);
+extern void func_8024DEC4();
 extern s32 D_8025DDF0;
 extern s32 D_80259054;
 

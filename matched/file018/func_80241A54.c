@@ -1,6 +1,6 @@
 #include "context.h"
 extern struct func_80242178_Struct D_801BBBF0;
-void func_800058DC(s32, void *);
+extern void func_800058DC(s32, void *);
 
 typedef struct func_80241A54_Struct1 {
     u8 pad[0x30];

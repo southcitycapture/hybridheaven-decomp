@@ -139,5 +139,9 @@ void func_8038D7D0(struct func_8038D7D0_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file092/8038CFC0/func_8038D92C.s")
+void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
+
+void func_8038D92C(s32 arg0, struct func_8022A834_Struct *arg1) {
+    func_8022A834(arg0, arg1);
+}
 

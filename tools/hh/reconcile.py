@@ -16,7 +16,7 @@ import glob, json, os, re, subprocess, sys, tempfile
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 sys.argv, _argv = ["srcbuild.py", "none"], sys.argv            # import srcbuild without running a mode
-sys.path.insert(0, "tools/hh"); import srcbuild as S
+sys.path.insert(0, "tools/hh"); import srcbuild as S, workdir
 sys.argv = _argv
 PY = ".venv/bin/python"
 
@@ -29,8 +29,8 @@ def sources():
         b = res.split("/")[1]
         for l in open(res):
             r = json.loads(l); k = (r["segment"], r["func"])
-            p = "queue/%s/work/%s/attempt.c" % (b, r["func"])
-            if k in rej and r["verified"] == "MATCH" and os.path.exists(p): out[k] = p
+            p = workdir.attempt(b, r["func"], r["segment"])
+            if k in rej and r["verified"] == "MATCH" and p: out[k] = p
     return out
 
 def ctx_decls(ctx):

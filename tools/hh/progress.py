@@ -44,7 +44,11 @@ for src in sorted(glob.glob("src/*/*.c")):
     if not os.path.exists(tgt_o) or os.path.getmtime(tgt_o) < newest:
         with open(tgt_s, "w") as o:
             o.write(HEAD)
-            for f in funcs: o.write(open(f).read() + "\n")
+            for f in funcs:
+                # asm-processor directives (per-file rodata) mean nothing to plain `as`; every file returns to .text
+                t = re.sub(r"(?m)^\s*\.late_rodata_alignment\b.*$", "", open(f).read())
+                t = re.sub(r"(?m)^\s*\.late_rodata\s*$", ".section .rodata", t)
+                o.write(t + '\n.section .text, "ax"\n')
         subprocess.run(AS + ["-o", tgt_o, tgt_s], check=True)
     unit = {"name": seg, "target_path": tgt_o}
     if seg in LIBFILES:                        # built from library source: the real object is the base,

@@ -1,7 +1,7 @@
 #include "context.h"
 extern void func_8001F74C();
 s32 func_80126CC0(s32, void *);
-extern void func_80127014(void);
+extern u8 func_80127014[];
 
 typedef struct func_80241DE0_Struct1 {
     u8 pad0[2];
@@ -27,11 +27,11 @@ typedef struct func_80241DE0_Struct2 {
 
 extern func_80241DE0_Struct2 D_8024F768;
 extern s32 D_801BCCF0;
-extern void func_8012E5B0();
-extern void func_8012E6BC();
+extern void func_8012E5B0(void);
+extern void func_8012E6BC(void);
 extern void func_80241EB0();
 extern s32 func_8012C4D0(s32, func_80241DE0_Struct2, s32);
-extern void func_8013B570(s32, u16, s32, s32, void *);
+extern void func_8013B570(void *, u16, s32, s32, void *);
 
 void func_80241DE0(s32 arg0, s32 arg1) {
     func_80241DE0_Struct *self;

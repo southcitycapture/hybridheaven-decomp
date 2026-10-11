@@ -23,7 +23,7 @@ typedef struct func_8021CF50_StructGlobal {
 
 extern void func_8021D264();
 
-void func_80020744(s32);
+extern void func_80020744(s32);
 void func_801FA1C4();
 void func_80231D84(f32, f32, s32, s16, s32);
 void func_80232278();

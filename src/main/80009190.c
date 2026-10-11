@@ -9,7 +9,10 @@ void func_80009190(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80009190/func_80009F8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80009190/func_8000A060.s")
+
+void func_8000A060(u8 *arg0, s32 arg1) {
+    arg0[0x22] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80009190/func_8000A06C.s")
 

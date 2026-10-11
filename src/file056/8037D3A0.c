@@ -580,7 +580,15 @@ void func_80380908(struct func_80380908_Obj *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_80380C5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_80380E10.s")
+
+extern void func_80005670(s32, void *);
+extern u8 D_80181D64[];
+extern void func_80380E4C(s32 arg0, s32 arg1);
+
+void func_80380E10(s32 arg0, s32 arg1) {
+    func_80005670(arg0, D_80181D64);
+    func_800058DC(arg0, func_80380E4C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_80380E4C.s")
 

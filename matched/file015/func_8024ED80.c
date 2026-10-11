@@ -2,7 +2,7 @@
 
 extern void func_80020718(s32);
 struct func_8024EE04_Outer;
-void func_8024EE04(void *arg0, struct func_8024EE04_Outer **arg1);
+extern void func_8024EE04();
 
 typedef struct func_8024ED80_Struct {
     s16 unk0;

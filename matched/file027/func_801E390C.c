@@ -1,18 +1,7 @@
 #include "common.h"
 
-typedef struct func_801E390C_Struct3 {
-    u8 pad0[8];
-    f32 unk8;
-} func_801E390C_Struct3;
 
-typedef struct func_801E390C_Struct2 {
-    u8 pad0[0x30];
-    func_801E390C_Struct3 *unk30;
-} func_801E390C_Struct2;
 
-typedef struct func_801E390C_Struct1 {
-    func_801E390C_Struct2 *unk0;
-} func_801E390C_Struct1;
 
 s32 func_801C2F60(f32 *);
 void func_801C2F24(void);

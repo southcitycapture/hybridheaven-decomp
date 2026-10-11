@@ -66,9 +66,33 @@ void func_8002AC60(s32 arg0, void *arg1, void *arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002AC60/func_8002ADD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002AC60/func_8002AE20.s")
+extern void func_80026300(void *, s32, s32);
+extern u8 D_800CD4D0[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002AC60/func_8002AE64.s")
+void func_8002ADD0(void) {
+    D_8004AB40 = 1;
+    func_80030610(D_800CD4D8, D_800CD4D0, 1);
+    func_80026300(D_800CD4D8, 0, 0);
+}
+
+
+extern void func_800266B0(void *, void *, s32);
+
+void func_8002AE20(void) {
+    s32 sp1C;
+
+    if (D_8004AB40 == 0) {
+        func_8002ADD0();
+    }
+    func_800266B0(D_800CD4D8, &sp1C, 1);
+}
+
+
+
+void func_8002AE64(void) {
+    func_80026300(D_800CD4D8, 0, 0);
+}
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/8002AC60/_pad_16.s")
 

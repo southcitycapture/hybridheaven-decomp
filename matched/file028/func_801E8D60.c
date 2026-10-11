@@ -1,0 +1,16 @@
+#include "common.h"
+
+typedef struct func_801E8D60_Struct {
+    s32 w[9];
+} func_801E8D60_Struct;
+
+s32 func_801C18CC(s32 arg0, func_801E8D60_Struct *arg1);
+extern func_801E8D60_Struct D_80205CAC;
+
+s32 func_801E8D60(s32 arg0, s32 arg1) {
+    func_801E8D60_Struct sp1C;
+
+    sp1C = D_80205CAC;
+    func_801C18CC(3, &sp1C);
+    return 130;
+}

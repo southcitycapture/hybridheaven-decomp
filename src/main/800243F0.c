@@ -691,9 +691,17 @@ void func_800260E0(void) {
     func_800261C4(2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_80026100.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_80026120.s")
+
+void func_80026100(void) {
+    func_800261C4(3);
+}
+
+
+
+void func_80026120(void) {
+    func_800261C4(4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_80026140.s")
 
@@ -718,9 +726,21 @@ void func_8002622C(void) {
     ((struct func_8002622C_Struct *) D_800CBDA4)->unk4 = ((struct func_8002622C_Struct *) D_800CBDA4)->unk0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_800262AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_800262C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_800262DC.s")
+void func_800262AC(void) {
+    D_800CBDA0 += 1;
+}
+
+
+
+void func_800262C4(void) {
+    D_800CBDA0 += 2;
+}
+
+
+
+void func_800262DC(void) {
+    D_800CBDA0 += 3;
+}
 

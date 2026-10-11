@@ -218,10 +218,15 @@ void func_80148E44(s32 arg0) {
     func_80147218(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80147D60/func_80148E70.s")
-
-
 extern u8 D_80181D58;
+
+
+void func_80148E70(s32 arg0) {
+    s32 *p = &arg0;
+    D_80181D58 = arg0;
+}
+
+
 
 s32 func_80148E80(void) {
     if (D_80181D58 == 0) {
@@ -245,7 +250,6 @@ s32 func_80149014(void) {
 }
 
 
-extern void func_80148E70(s32);
 
 s32 func_80149040(void) {
     u8 sum;
@@ -276,11 +280,32 @@ s32 func_80149040(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80147D60/func_80149178.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80147D60/func_801491A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80147D60/func_801491D0.s")
+s32 func_80149178(void) {
+    if (func_80126E88(0x122) != 0) {
+        return 1;
+    }
+    return 0;
+}
+
+
+
+s32 func_801491A4(void) {
+    if (func_80126E88(0x123) != 0) {
+        return 1;
+    }
+    return 0;
+}
+
+
+
+s32 func_801491D0(void) {
+    if (func_80126E88(0x124) != 0) {
+        return 1;
+    }
+    return 0;
+}
 
 
 extern u16 D_801BBC1C;

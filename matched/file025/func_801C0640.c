@@ -1,10 +1,5 @@
 #include "context.h"
 
-typedef struct func_801C0640_Struct {
-    s32 unk0;
-    s16 unk4;
-    s32 unk8;
-} func_801C0640_Struct;
 
 extern s32 func_801BF7A0(s32, func_801C0640_Struct);
 

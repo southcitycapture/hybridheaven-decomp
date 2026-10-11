@@ -1,6 +1,12 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_802408F0.s")
+
+extern void func_800058DC(s32 arg0, void (*arg1)(void));
+extern void func_80240918(void);
+
+void func_802408F0(s32 arg0, s32 arg1) {
+    func_800058DC(arg0, func_80240918);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80240918.s")
 
@@ -41,7 +47,6 @@ struct func_80240924_Self {
 };
 
 extern s32 func_80126CC0(void *, void *);
-extern void func_800058DC(void *, void *);
 extern void func_80005E44(void *, void *);
 extern void func_80006214(void *);
 extern void func_8001F74C(void *);
@@ -99,7 +104,18 @@ void func_80241714(void *arg0, s16 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_8024174C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_802419C8.s")
+
+extern void func_80241A00(void);
+
+void func_802419C8(void *arg0, s16 arg1)
+{
+  func_8001F74C(arg0);
+  *((s16 *) (((u8 *) arg0) + 0x3C)) = 0;
+  if (!arg0)
+  {
+  }
+  func_800058DC(arg0, (void *) func_80241A00);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80241A00.s")
 

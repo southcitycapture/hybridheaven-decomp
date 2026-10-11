@@ -310,9 +310,21 @@ void func_8012C2DC(s32 arg0) {
     (*temp_v0)->unk30->unk4F = D_801BBBF0[0xF35];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/func_8012C360.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/func_8012C36C.s")
+void func_8012C360(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
+
+
+void func_8012C36C(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 
 extern void func_80005700(s32 arg0, s32 arg1);

@@ -1,25 +1,7 @@
 #include "context.h"
 
-struct func_802005CC_Struct3 {
-    u8 pad0[4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad1[2];
-    s16 unk12;
-};
 
-struct func_802005CC_Struct2 {
-    u8 pad0[0x2C];
-    struct func_802005CC_Struct3 *unk2C;
-};
 
-struct func_802005CC_Struct1 {
-    u8 pad0[8];
-    struct func_802005CC_Struct1 *unk8;
-    u8 pad1[0x18];
-    struct func_802005CC_Struct2 *unk24;
-};
 
 extern f32 D_80208E00;
 

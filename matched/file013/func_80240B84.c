@@ -9,7 +9,7 @@ extern s32 func_8012A564(void *, s32);
 extern void func_801FBB30(void);
 extern void func_801268F4(s32);
 extern void func_801339D0(s32);
-extern void func_800058DC(void *, void *);
+extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80240BE8(void);
 
 void func_80240B84(struct func_80240B84_Struct *arg0, s32 arg1) {

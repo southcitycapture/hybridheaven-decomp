@@ -6,9 +6,9 @@ typedef struct func_8038CF3C_Struct {
     void (*unk8)();
 } func_8038CF3C_Struct;
 
-extern void func_8038CD6C(s32 arg0);
+extern s32 func_8038CD6C(s32 arg0);
 extern void func_8038CFCC();
-extern void func_8038CFE8();
+extern s32 func_8038CFE8(void);
 extern void func_8038D020();
 extern func_8038CF3C_Struct D_8038DBBC;
 extern s32 D_8038DBC8;

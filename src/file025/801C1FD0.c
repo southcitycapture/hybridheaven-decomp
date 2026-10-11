@@ -1,10 +1,22 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1FD0/func_801C1FD0.s")
+extern s32 D_801DEF70;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1FD0/func_801C1FDC.s")
+void func_801C1FD0(void) {
+    D_801DEF70 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1FD0/func_801C1FE8.s")
+
+
+s32 func_801C1FDC(void) {
+    return D_801DEF70;
+}
+
+
+
+void func_801C1FE8(void) {
+    D_801DEF70 += 1;
+}
 
 extern s32 D_801D8DF0[];
 
@@ -13,7 +25,6 @@ s32 func_801C2000(s32 arg0, s32 arg1) {
 }
 
 
-extern s32 D_801DEF70;
 
 s32 func_801C2024(s32 arg0, s32 arg1) {
     return ((s32 *)(((s32 *)D_801D8DF0[arg0])[arg1] + (D_801DEF70 << 5)))[1];

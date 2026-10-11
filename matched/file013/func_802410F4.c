@@ -2,7 +2,7 @@
 
 extern s32 func_80133A24(s32);
 extern void func_80020744(s32);
-extern void func_800058DC(void *, void *);
+extern void func_800058DC(void *arg0, void *arg1);
 extern f32 D_80249AB0;
 extern struct func_80241AF0_StructBBBF0 D_801BBBF0;
 struct func_802411A8_Self;

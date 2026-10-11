@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file082/8038CFC0/func_8038CFC0.s")
+
+extern s32 func_800058DC(s32, void *);
+extern s32 func_80229500();
+extern void func_8038CFF4();
+
+void func_8038CFC0(s32 arg0, s32 arg1) {
+    func_80229500();
+    func_800058DC(arg0, &func_8038CFF4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file082/8038CFC0/func_8038CFF4.s")
 
@@ -63,8 +71,6 @@ struct func_8038D6DC_Struct {
     s16 unk98;
 };
 
-void func_800058DC(void *, void *);
-void func_80229500(void *, void *, void *);
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 func_8038D76C[];
@@ -91,5 +97,9 @@ void func_8038D6DC(struct func_8038D6DC_Struct *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file082/8038CFC0/func_8038D76C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file082/8038CFC0/func_8038D950.s")
+void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
+
+void func_8038D950(s32 arg0, struct func_8022A834_Struct *arg1) {
+    func_8022A834(arg0, arg1);
+}
 

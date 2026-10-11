@@ -12,7 +12,7 @@ struct func_8024C5B4_Struct {
 
 extern struct func_8024C5B4_Struct D_801BBBF0;
 extern f32 D_80259740;
-extern void func_800058DC(s32, void *);
+extern void func_800058DC(void *, void *);
 extern s32 func_801C3DC8(s32, s32, s32, s32, f32, f32, f32, f32, f32);
 extern void func_8024C630(void);
 

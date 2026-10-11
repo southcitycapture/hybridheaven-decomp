@@ -1,7 +1,7 @@
 #include "context.h"
 
 s32 func_801270C0(void *arg0);
-void func_80020744(s32 arg0);
+extern void func_80020744(s32 arg0);
 
 typedef struct func_802417D0_Struct {
     u8 pad[4];

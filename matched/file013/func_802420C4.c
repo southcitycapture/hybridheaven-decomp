@@ -23,7 +23,7 @@ struct func_802420C4_Obj {
     s16 unk94;
 };
 
-extern void func_800058DC(void *, void *);
+extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80242164(void);
 
 void func_802420C4(struct func_802420C4_Obj *arg0, struct func_802420C4_Pair *arg1) {

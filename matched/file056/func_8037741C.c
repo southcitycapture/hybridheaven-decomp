@@ -3,7 +3,7 @@
 extern void func_8014C138(u16);
 
 extern u8 D_80389EF2;
-extern void func_80377644(void);
+extern void func_80377644();
 
 void func_8037741C(s32 arg0, s32 arg1) {
     s32 cond;

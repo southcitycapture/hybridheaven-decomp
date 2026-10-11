@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern s32 func_80133A24(s32);
-extern void func_802412A8(void);
+extern void func_802412A8();
 
 struct func_80241264_Struct {
     u8 pad[0x90];

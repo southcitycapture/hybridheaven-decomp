@@ -1,12 +1,5 @@
 #include "common.h"
 
-struct func_8014C1F0_Struct {
-    u8 unk0;
-    u8 pad1[3];
-    s32 unk4;
-    u8 unk8;
-    u8 unk9;
-};
 
 void *func_8014B7CC(s32);
 

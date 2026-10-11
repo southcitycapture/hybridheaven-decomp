@@ -6,7 +6,7 @@ typedef struct func_80240C44_Struct {
 } func_80240C44_Struct;
 
 extern s32 func_80126B14(void *, void *, u16, s32);
-extern void func_80240C8C(void);
+extern void func_80240C8C();
 
 void func_80240C44(func_80240C44_Struct *arg0, s32 arg1) {
     if (func_80126B14(arg0, func_80127014, arg0->unk90, 0x2E) != 0) {

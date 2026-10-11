@@ -5,7 +5,7 @@ struct func_80022BE0_Struct {
     u16 unk2;
 };
 
-extern struct func_80022BE0_Struct D_800CBAC0;
+extern func_80022B6C_Struct D_800CBAC0;
 
 void func_80022BE0(void) {
     if (D_800CBAC0.unk2 == 0) {

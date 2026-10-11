@@ -3,7 +3,7 @@
 extern f32 D_80259774;
 extern f32 D_80259778;
 extern void func_800058DC(void *, void *);
-void func_8024C87C();
+extern void func_8024C87C();
 
 typedef struct func_8024C824_Inner {
     u8 pad[0x4];

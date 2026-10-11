@@ -207,5 +207,12 @@ void func_80367460(s32 arg0, void **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80364340/func_803676B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80364340/func_80367788.s")
+
+extern void func_80005700(s32 arg0, s32 arg1);
+
+void func_80367788(s32 arg0, s32 arg1) {
+    s32 *p;
+    p = &arg1;
+    func_80005700(arg0, *p);
+}
 

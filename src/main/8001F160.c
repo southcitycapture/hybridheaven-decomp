@@ -9,7 +9,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F290.s")
 
 
-extern void func_8001F290(void);
+extern s32 func_8001F290();
 extern s32 D_80047940;
 
 void func_8001F334(void) {
@@ -20,11 +20,35 @@ void func_8001F334(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F364.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F400.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F430.s")
+extern s32 func_8001F364();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F464.s")
+void func_8001F400(void) {
+    D_80047940 = 0xFFF;
+    func_8001F364();
+    D_80047940 = 7;
+}
+
+
+extern s32 func_8001F160(s32, s32);
+
+s32 func_8001F430(s32 arg0) {
+    s32 temp_v0;
+
+    temp_v0 = func_8001F290();
+    func_8001F160(temp_v0, arg0);
+    return temp_v0;
+}
+
+
+
+s32 func_8001F464(s32 arg0) {
+    s32 temp_v0;
+
+    temp_v0 = func_8001F364();
+    func_8001F160(temp_v0, arg0);
+    return temp_v0;
+}
 
 
 typedef struct func_8001F498_Struct {
@@ -71,7 +95,19 @@ loop_4:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F540.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F5D0.s")
+
+extern s32 func_8001703C(s32 arg0);
+
+s32 func_8001F5D0(s32 arg0) {
+    s32 i;
+
+    for (i = 0; i != 0x100; i++) {
+        if (func_8001703C(i) == arg0) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F630.s")
 

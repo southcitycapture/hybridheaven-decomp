@@ -121,7 +121,13 @@ void func_802424C0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/func_8024252C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/func_802426D0.s")
+
+void func_802426D0(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 
 typedef struct func_802426DC_Struct {

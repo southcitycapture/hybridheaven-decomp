@@ -1,24 +1,14 @@
 #include "common.h"
 
-struct func_8024A434_Sub {
-    u8 pad[0x40];
-    f32 unk40;
-    u8 pad2[4];
-    f32 unk48;
-};
 
 struct func_8024A434_Arg {
     u8 pad[0x3C];
     s16 unk3C;
 };
 
-struct func_8024A434_StructBBF0 {
-    u8 pad[0xDC];
-    struct func_8024A434_Sub *unkDC;
-};
 
 extern s32 func_80005670(void *, void *);
-extern void func_800058DC(void *, void *);
+extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80020718(s32);
 extern void func_80133980(s32);
 extern void func_801339D0(s32);

@@ -54,5 +54,9 @@ void func_8038D8B8(func_8038D8B8_Struct *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file064/8038CFC0/func_8038D948.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file064/8038CFC0/func_8038DBC4.s")
+void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
+
+void func_8038DBC4(s32 arg0, struct func_8022A834_Struct *arg1) {
+    func_8022A834(arg0, arg1);
+}
 

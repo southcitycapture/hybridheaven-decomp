@@ -11,7 +11,7 @@ typedef struct func_80242414_Outer {
 } func_80242414_Outer;
 
 extern s32 func_80133A24(s32);
-extern void func_8024247C(void);
+extern void func_8024247C();
 extern void func_800058DC(void *, void *);
 
 void func_80242414(func_80242414_Outer *arg0, void *arg1) {

@@ -4,31 +4,9 @@ extern f32 D_801EB9B0;
 extern f32 D_801EB9B4;
 void func_801CC470(s32 a0, s32 a1, s32 a2, s32 a3, f32 f12);
 
-struct func_801E6850_StructC {
-    u8 pad0[4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad1[2];
-    s16 unk12;
-};
 
-struct func_801E6850_StructB {
-    u8 pad0[0x2C];
-    struct func_801E6850_StructC *unk2C;
-};
 
-struct func_801E6850_StructA {
-    u8 pad0[8];
-    struct func_801E6850_StructA *unk8;
-    u8 pad1[0x18];
-    struct func_801E6850_StructB *unk24;
-};
 
-struct func_801E6850_StructRoot {
-    u8 pad0[0x24];
-    struct func_801E6850_StructA *unk24;
-};
 
 extern struct func_801E6850_StructRoot func_801DAAF0;
 

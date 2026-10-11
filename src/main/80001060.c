@@ -7,7 +7,12 @@ u16 func_80001060(void) {
     return D_80037758;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80001060/func_8000106C.s")
+
+extern u16 D_80037754;
+
+u16 func_8000106C(void) {
+    return D_80037754;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80001060/main.s")
 

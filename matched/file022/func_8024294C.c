@@ -1,7 +1,7 @@
 #include "context.h"
 
 u16 func_8012C6B4(s32 arg0, void *arg1, void *arg2);
-void func_800058DC(void *arg0, void *arg1);
+extern void func_800058DC(void *, void *);
 void func_802428B8(void);
 
 void func_8024294C(void *arg0, void *arg1) {

@@ -1,8 +1,8 @@
 #include "context.h"
 extern void func_800058DC(void *, void *);
-void func_80020744(s32 arg0);
+extern void func_80020744(s32 arg0);
 
-extern void func_80241484(void);
+extern void func_80241484();
 extern f64 D_80252530;
 
 typedef struct func_8024140C_Struct4 {

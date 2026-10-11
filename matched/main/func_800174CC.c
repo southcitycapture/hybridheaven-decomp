@@ -1,6 +1,6 @@
 #include "context.h"
 
-s32 func_8001703C(s32);
+extern s32 func_8001703C(s32 arg0);
 
 s32 func_800174CC(s32 arg0) {
     s32 i;

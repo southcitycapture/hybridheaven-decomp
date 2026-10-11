@@ -166,7 +166,12 @@ void func_8014FEE0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_8014FF14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_80150198.s")
+
+extern void func_801501C0(void);
+
+void func_80150198(s32 arg0, s32 arg1) {
+    func_800058DC(arg0, func_801501C0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_801501C0.s")
 

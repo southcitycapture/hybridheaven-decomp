@@ -158,7 +158,13 @@ void func_80241F30(struct func_80241F30_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_80245E94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_802460D0.s")
+
+void func_802460D0(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 
 extern s32 func_80130078(void);
@@ -180,7 +186,13 @@ void func_802460DC(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_80246160.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_802461AC.s")
+
+void func_802461AC(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_802461B8.s")
 

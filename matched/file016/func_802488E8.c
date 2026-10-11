@@ -1,15 +1,5 @@
 #include "common.h"
 
-struct func_802488E8_StructArg {
-    u8 pad0[0x2C];
-    u32 unk2C;
-    u8 pad1[0x40 - 0x30];
-    f32 unk40;
-    f32 unk44;
-    f32 unk48;
-    u8 pad2[0x54 - 0x4C];
-    s32 unk54;
-};
 
 struct func_802488E8_StructBBBF0 {
     u8 pad0[0x198];

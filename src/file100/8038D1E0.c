@@ -1,16 +1,58 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D1E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D224.s")
+extern void func_801BF6C4(s32 a0);
+extern void func_8038D7D4(s32 a0, s32 a1);
+extern s32 D_8038E150;
+extern s32 D_8038DBFC;
+extern s32 D_8038DC00;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D278.s")
+void func_8038D1E0(void) {
+    D_8038E150 = 0;
+    func_8038D7D4(D_8038DBFC, D_8038DC00);
+    func_801BF6C4(8);
+    D_8038E150 = 1;
+}
+
+
+extern s32 func_801BF968(void);
+extern void func_801BF850(void *a0, s32 a1, void *a2);
+extern void func_8038D7E4(void);
+extern u8 D_8038DBF0[];
+extern u8 D_8038E190[];
+
+void func_8038D224(void) {
+    if (func_801BF968() != 0) {
+        D_8038DBFC = 0;
+        D_8038DC00 = 0;
+        func_801BF850(D_8038DBF0, 8, D_8038E190);
+        func_8038D7E4();
+    }
+}
+
+
+
+s32 func_8038D278(void) {
+    return D_8038E150;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D284.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D28C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D2B0.s")
+extern void func_80020718(s32);
+
+void func_8038D28C(s32 arg0) {
+    s32 *p = &arg0;
+    func_80020718(arg0 & 0xFFFF);
+}
+
+
+extern void func_80020BF8(s32);
+
+void func_8038D2B0(s32 arg0) {
+    s32 *p = &arg0;
+    func_80020BF8(arg0 & 0xFFFF);
+}
 
 
 s32 func_80020DAC(s32);                             /* extern */
@@ -85,9 +127,27 @@ void func_8038D5F4(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D7E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D7EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D7F8.s")
+void func_8038D7EC(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D804.s")
+
+void func_8038D7F8(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
+
+
+void func_8038D804(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 

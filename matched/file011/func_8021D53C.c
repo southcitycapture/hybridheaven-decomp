@@ -1,5 +1,5 @@
 #include "context.h"
-extern void func_8021D624();
+extern void func_8021D624(s32 arg0, s32 arg1);
 
 void func_8021D53C(func_8021CDE8_Struct *arg0, s32 arg1) {
     if (arg0->unkB0++ >= 6) {

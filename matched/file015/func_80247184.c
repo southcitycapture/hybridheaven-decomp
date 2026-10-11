@@ -6,7 +6,7 @@ struct func_80247184_Arg0 {
 };
 
 extern struct func_802466A4_Vec D_802529AC;
-extern void func_8024723C(void);
+extern void func_8024723C(void *arg0, s32 arg1);
 
 void func_80247184(void *arg0, struct func_802466A4_Obj **arg1) {
     (*arg1)->unk2C->unk4 = -300.0f;

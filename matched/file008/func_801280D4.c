@@ -38,7 +38,7 @@ typedef struct func_801280D4_Arg0 {
 } func_801280D4_Arg0;
 
 extern s8 func_8012C6B4(s32);
-extern void func_80128208(void);
+extern void func_80128208();
 extern u8 D_8017B4F8[];
 
 void func_801280D4(func_801280D4_Arg0 *arg0, func_801280D4_StructR **arg1) {

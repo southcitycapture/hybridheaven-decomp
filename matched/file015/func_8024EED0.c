@@ -16,7 +16,7 @@ struct func_8024EED0_Pair {
 };
 
 extern s32 func_80133A24(s32);
-extern void func_800058DC(s32, void *);
+extern void func_800058DC(void *, void *);
 extern void func_8024EF28(void);
 
 void func_8024EED0(s32 arg0, struct func_8024EED0_Pair *arg1) {

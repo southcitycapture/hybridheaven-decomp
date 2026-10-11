@@ -33,7 +33,11 @@ void func_801CCDAC(s32 arg0, s32 arg1) {
     func_801CD8D0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CCE00.s")
+
+
+s32 func_801CCE00(void) {
+    return D_801E0C38;
+}
 
 
 extern s32 D_801DAB20;
@@ -148,7 +152,11 @@ void func_801CD074(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CD098.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CD354.s")
+
+
+void func_801CD354(void) {
+    func_801C0D04(1, 0x56D8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CD378.s")
 
@@ -160,11 +168,28 @@ void func_801CD074(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CD8D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CDB88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CDB94.s")
+void func_801CDB88(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CDBC8.s")
+
+void func_801CDB94(s32 arg0, s32 arg1) {
+    s32 temp = D_801DABB8;
+
+    func_800058DC(temp, (void *) func_801CCD60);
+}
+
+
+void func_801CDBC8(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 
 f32 func_801CDBD4(f32 arg0, f32 arg1, f32 arg2) {

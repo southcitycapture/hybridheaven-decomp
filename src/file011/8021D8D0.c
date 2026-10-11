@@ -334,7 +334,13 @@ void func_802218D4(struct func_802218D4_Obj *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_80222E84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_80222FCC.s")
+
+void func_80222FCC(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_80222FD8.s")
 
@@ -395,7 +401,13 @@ void func_8022321C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_80223260.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_802233A4.s")
+
+void func_802233A4(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_802233B0.s")
 

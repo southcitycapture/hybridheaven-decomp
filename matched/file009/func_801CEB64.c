@@ -13,18 +13,7 @@ typedef struct func_801CEB64_StructOuter {
     func_801CEB64_StructInner *unk30;
 } func_801CEB64_StructOuter;
 
-typedef struct func_801CEB64_StructC {
-    u8 pad0[0x4C];
-    u16 unk4C;
-} func_801CEB64_StructC;
 
-typedef struct func_801CEB64_StructArg0 {
-    u8 pad0[0x0C];
-    func_801CEB64_StructC *unkC;
-    u8 pad10[0x90 - 0x10];
-    u16 unk90;
-    u16 unk92;
-} func_801CEB64_StructArg0;
 
 extern void func_8012D7A8(void);
 extern void func_801CBD70(void);

@@ -50,7 +50,26 @@ void func_801FC504(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801FC490/func_801FC558.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801FC490/func_801FC6AC.s")
+
+struct func_801FC6AC_Struct {
+    u8 pad0[0x21C];
+    s16 unk21C;
+    u8 pad1[6];
+    s16 unk224;
+    s16 unk226;
+    u16 unk228;
+};
+
+extern u16 func_800208C4(u16);
+
+void func_801FC6AC(s32 arg0) {
+    D_801BBBF0.unk226 = D_801BBBF0.unk226 - 1;
+    if (D_801BBBF0.unk226 == 0) {
+        func_800208C4(D_801BBBF0.unk228);
+        D_801BBBF0.unk224 = 0;
+        D_801BBBF0.unk21C = 0;
+    }
+}
 
 
 void func_801FC700(void) {
@@ -105,7 +124,6 @@ void func_801FCAE0(f32 arg0, f32 arg1, f32 arg2, u16 arg3) {
 }
 
 
-void func_800208C4(u16);
 s32 func_80020DAC(u16);
 
 void func_801FCBA8(u16 arg0) {

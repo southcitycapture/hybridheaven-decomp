@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_8024CEA0(void);
+extern void func_8024CEA0();
 extern s32 func_80133A24(s32);
 extern s32 func_80126944(void);
 extern void func_801C3B2C(s32);

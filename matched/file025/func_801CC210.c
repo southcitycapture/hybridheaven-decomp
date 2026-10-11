@@ -5,7 +5,7 @@ extern void func_801BF6C4(s32);
 extern void func_801CC9FC(void);
 extern void func_801CCA44(void);
 extern void func_801CCAB0(void);
-extern void func_801CC278(void);
+extern void func_801CC278(s32 arg0, s32 arg1);
 extern s32 D_801DAABC;
 extern s32 D_801DAB14;
 extern s32 D_801DAB18;

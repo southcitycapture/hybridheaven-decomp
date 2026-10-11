@@ -9,11 +9,11 @@ typedef struct func_8021CDE8_Struct {
     s16 unkB0;
 } func_8021CDE8_Struct;
 
-extern void func_800058DC(void *, void *);
-extern void func_80020744();
+extern void func_800058DC(void *obj, void *fn);
+extern void func_80020744(s32);
 extern void func_80126E88(s32);
 extern s8 D_801BCC21;
-extern void func_8021D264(void);
+extern void func_8021D264();
 
 void func_8021CDE8(func_8021CDE8_Struct *arg0, s32 arg1) {
     func_8021CDE8_Struct *temp = arg0;

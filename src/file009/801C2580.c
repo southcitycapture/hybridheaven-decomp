@@ -74,5 +74,8 @@ s32 func_801C2FF8(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801C2580/func_801C3044.s")
+
+void func_801C3044(s32 arg0, struct func_801C3BBC_Struct *arg1) {
+    func_801C3BBC(arg0, arg1);
+}
 

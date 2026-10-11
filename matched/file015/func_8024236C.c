@@ -14,7 +14,7 @@ typedef struct func_8024236C_StructLocal {
     u8 pad2[0x12];
 } func_8024236C_StructLocal;
 
-extern void func_802423E0(void);
+extern void func_802423E0(s32 arg0, s32 arg1);
 
 void func_8024236C(func_8024236C_Struct *arg0, void *arg1) {
     func_8024236C_StructLocal sp18;

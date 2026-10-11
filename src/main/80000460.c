@@ -7,7 +7,10 @@ s32 func_800006F4(s32 arg0) {
     return arg0 + 8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80000460/func_800006FC.s")
+
+s32 func_800006FC(s32 arg0) {
+    return arg0 + 64;
+}
 
 
 s32 func_80000704(u8 *arg0) {

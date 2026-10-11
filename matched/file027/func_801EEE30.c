@@ -1,0 +1,6 @@
+#include "context.h"
+
+s32 func_801EEE30(s32 arg0, s32 arg1) {
+    func_801C1974();
+    return 0x37;
+}

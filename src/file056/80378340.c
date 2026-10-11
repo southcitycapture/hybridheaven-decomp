@@ -1,6 +1,15 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/80378340/func_80378340.s")
+
+extern s32 func_80005700(s32);
+extern s32 func_80149330(u8);
+extern u8 D_8038A90A;
+
+void func_80378340(s32 arg0, s32 arg1) {
+    if (func_80149330(D_8038A90A) != 0) {
+        func_80005700(arg0);
+    }
+}
 
 extern void func_800058DC(s32, void *);
 
@@ -50,7 +59,6 @@ typedef struct func_803790F0_Struct2 {
 
 extern s32 func_80010550(s32, s32);
 extern void func_8001B204(s32, s32, s32, void *);
-extern void func_80005700(s32);
 extern void func_80011140(s32, s32, func_803790F0_Struct2, s32);
 extern func_803790F0_Struct2 D_80216B90;
 extern s32 D_803894D0[];

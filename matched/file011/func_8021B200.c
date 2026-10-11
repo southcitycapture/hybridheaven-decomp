@@ -3,7 +3,7 @@
 extern void func_800172F4();
 extern void func_80016E40(s32);
 extern void func_800058DC(void *obj, void *fn);
-extern void func_8021B240();
+extern void func_8021B240(s32 arg0, s32 arg1);
 
 void func_8021B200(s32 arg0, s32 arg1) {
     func_800172F4();

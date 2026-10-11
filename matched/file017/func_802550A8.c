@@ -3,7 +3,7 @@
 extern void func_8025799C(void);
 extern s32 func_801C2FF8(void);
 extern void func_801C2F0C(s32, void *);
-extern void func_80255134(void);
+extern void func_80255134(func_802543F8_Obj *arg0);
 
 typedef struct func_802550A8_Struct {
     s16 unk0;

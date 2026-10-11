@@ -30,7 +30,11 @@ void func_8038C914(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038C8D0/func_8038C968.s")
+
+
+s32 func_8038C968(void) {
+    return D_8038DB6C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038C8D0/func_8038C974.s")
 
@@ -57,9 +61,27 @@ s32 func_8038C9D8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038C8D0/func_8038CA0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038C8D0/func_8038CA14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038C8D0/func_8038CA20.s")
+void func_8038CA14(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038C8D0/func_8038CA2C.s")
+
+void func_8038CA20(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
+
+
+void func_8038CA2C(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 

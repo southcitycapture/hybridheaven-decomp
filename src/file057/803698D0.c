@@ -148,7 +148,13 @@ void func_8036B0D4(void *arg0, s32 arg1) {
     func_80010550(arg1, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/func_8036B14C.s")
+
+void func_8036B14C(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/func_8036B158.s")
 

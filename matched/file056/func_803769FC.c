@@ -23,7 +23,7 @@ extern s32 func_803757E0(void *, s32, s32, s32);
 extern s32 func_8012A774(void *, s16, s32);
 extern s16 D_801BBD84;
 extern void func_800058DC(void *, void *);
-extern void func_80376A80(void);
+extern void func_80376A80();
 
 void func_803769FC(struct func_803769FC_Obj *arg0, s32 arg1) {
     struct func_803769FC_Obj2 *sp1C;
