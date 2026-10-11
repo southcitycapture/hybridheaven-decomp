@@ -119,7 +119,7 @@ def func_ok(obj, name, off, size, vram, base):
     while len(mine) > size and mine[-4:] == b"\0\0\0\0": mine = mine[:-4]
     if try_func.compare(mine, rel, orig)[2]: return False
     exact = try_func.linked_func_bytes(obj, name, vram, base)
-    if exact is None: return True                       # unresolvable symbol names: masked check only
+    if exact is None: return not try_func.UNRESOLVED    # an invented symbol name can't be placed: not a match
     while len(exact) > size and exact[-4:] == b"\0\0\0\0": exact = exact[:-4]
     return exact == orig
 
@@ -192,12 +192,15 @@ def file_of(seg, name):
     hits = glob.glob("asm/nonmatchings/%s/*/%s.s" % (seg, name))
     return hits[0].split("/")[3] if len(hits) == 1 else None
 
+LIBFILES = {tuple(k.split("/")) for k in json.load(open("tools/hh/libultra.json"))} if os.path.exists("tools/hh/libultra.json") else set()
+
 def run(cands, new_keys):
-    """cands: {(seg, name): text}. Builds every affected file; returns (kept keys, rejected {key: why})."""
+    """cands: {(seg, name): text}. Builds every affected file; returns (kept keys, rejected {key: why}).
+    Files built from library source (tools/hh/libultra.json) are left alone."""
     byfile = {}
     for (seg, name), text in cands.items():
         cf = file_of(seg, name)
-        if cf: byfile.setdefault((seg, cf), {})[name] = text
+        if cf and (seg, cf) not in LIBFILES: byfile.setdefault((seg, cf), {})[name] = text
     prio = {}
     for (seg, name) in cands:
         p = "matched/%s/%s.c" % (seg, name)

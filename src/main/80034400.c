@@ -1,3 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80034400/func_80034400.s")
+/* libultra 2.0J: built from ultralib's src/io/epirawwrite.c (tools/hh/libultra.json) */

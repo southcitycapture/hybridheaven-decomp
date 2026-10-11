@@ -12,6 +12,7 @@ AS = ["mips-linux-gnu-as", "-EB", "-march=vr4300", "-mabi=32", "-G", "0", "-I", 
 CC = ["tools/ido/7.1/cc", "-c", "-G", "0", "-non_shared", "-Xcpluscomm", "-mips2", "-O2", "-I", "include", "-I", "src"]
 HEAD = '.include "macro.inc"\n.set noat\n.set noreorder\n.set gp=64\n.section .text, "ax"\n\n'
 units = []
+LIBFILES = set(json.load(open("tools/hh/libultra.json"))) if os.path.exists("tools/hh/libultra.json") else set()
 for src in sorted(glob.glob("src/*/*.c")):
     seg = os.path.relpath(src, "src")[:-2]                  # e.g. file057/80375560
     funcs = sorted(f for f in glob.glob("asm/nonmatchings/%s/*.s" % seg) if not os.path.basename(f).startswith("_pad"))  # pad blocks are not functions
@@ -26,6 +27,9 @@ for src in sorted(glob.glob("src/*/*.c")):
             for f in funcs: o.write(open(f).read() + "\n")
         subprocess.run(AS + ["-o", tgt_o, tgt_s], check=True)
     unit = {"name": seg, "target_path": tgt_o}
+    if seg in LIBFILES:                        # built from library source: the real object is the base
+        unit["base_path"] = "build/src/%s.o" % seg
+        unit["metadata"] = {"progress_categories": ["main"]}; units.append(unit); continue
     text = open(src).read()
     c_only = re.sub(r'#pragma GLOBAL_ASM\("[^"]+"\)\n', "", text)
     if re.search(r"^\w[\w\s\*]*\bfunc_[0-9A-F]{8}\s*\([^;]*$", c_only, re.M):     # at least one C function body

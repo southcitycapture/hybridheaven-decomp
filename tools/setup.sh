@@ -8,6 +8,8 @@ cd tools
 for r in matt-kempster/m2c simonlindholm/asm-differ simonlindholm/decomp-permuter simonlindholm/asm-processor; do
   [ -d "$(basename $r)" ] || git clone -q --depth 1 "https://github.com/$r.git"
 done
+# libultra 2.0J objects are built from decompals/ultralib (tools/hh/libultra.json); pinned to the commit we verified
+[ -d ultralib ] || { git clone -q https://github.com/decompals/ultralib.git && git -C ultralib checkout -q e24c836796df4bf520ff8b11a5c9d2cea3a66cbd; }
 for v in 5.3 7.1; do
   [ -x "ido/$v/cc" ] || { mkdir -p ido/$v; curl -sL "https://github.com/decompals/ido-static-recomp/releases/download/v1.2/ido-$v-recomp-linux.tar.gz" | tar xz -C ido/$v; }
 done

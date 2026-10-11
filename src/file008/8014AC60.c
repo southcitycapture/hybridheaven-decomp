@@ -206,7 +206,10 @@ s32 func_8014C23C(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014C294.s")
+
+u8 *func_8014C294(void) {
+    return &D_801BED38;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014C2A0.s")
 

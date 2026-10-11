@@ -320,7 +320,19 @@ s32 func_80225BF0(func_80225BF0_Struct *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/802237B0/func_802264D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/802237B0/func_802266CC.s")
+
+extern void func_802264D0(s32 a0, u16 a1);
+
+void func_802266CC(s32 arg0, u16 arg1) {
+    s32 var_a0;
+
+    if (arg0 != D_801BBBF0.unkDC) {
+        var_a0 = D_801BBBF0.unkDC;
+    } else {
+        var_a0 = ((struct func_80224B64_Globals *)&D_801BBBF0)->unkEC;
+    }
+    func_802264D0(var_a0, arg1);
+}
 
 
 typedef struct func_80226710_StructVec {

@@ -38,6 +38,7 @@ options:
   # string_encoding: ASCII
   # data_string_encoding: ASCII
   rodata_string_guesser_level: 2
+  disassemble_all: True        # asm for already-matched functions too (srcbuild, progress and libultra need it)
   data_string_guesser_level: 2
   # libultra_symbols: True
   # hardware_regs: True

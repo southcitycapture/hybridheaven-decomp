@@ -1,11 +1,12 @@
 """Define every referenced-but-undefined address-named symbol (func_/D_/.L/jtbl_ + 8 hex
 digits) at its own address. Needed because overlays sharing a RAM slot cannot see each
 other's labels. Output: build/extern_syms.ld"""
-import re, glob, os
+import re, glob, os, json
 ref = set(); defined = set()
 name_re = re.compile(r'((?:\.L|func_|D_|jtbl_|B_)[0-9A-F]{8})\b')
 def_re = re.compile(r'^\s*(?:glabel|dlabel|jlabel|alabel|\.L[0-9A-F]{8}:|nonmatching)\s*([.\w]+)|^(\.L[0-9A-F]{8}):', re.M)
 local_missing = set()
+LIBUNITS = list(json.load(open("tools/hh/libultra.json"))) if os.path.exists("tools/hh/libultra.json") else []
 for p in glob.glob("asm/**/*.s", recursive=True):
     s = open(p).read()
     here = set()
@@ -15,6 +16,8 @@ for p in glob.glob("asm/**/*.s", recursive=True):
     used = set(name_re.findall(s))
     # .L labels are file-local: a reference to one defined in another file is still missing
     local_missing |= {n for n in used if n.startswith(".L") and n not in here}
+    if any("/nonmatchings/%s/" % u in p for u in LIBUNITS):
+        here = set()        # built from library source under real names: these get address definitions instead
     defined |= {n for n in here if not n.startswith(".L")}
     ref |= {n for n in used if not n.startswith(".L")}
 # C files can reference address-named symbols the asm never mentions

@@ -112,18 +112,40 @@ def run_one(args):
     if rec["verified"] == "FAIL": rec["note"] = "permuter win did not survive the exact check"
     return rec
 
+WB = os.path.expanduser("~/work/tools-ext/wb-venv/bin/decomp-workbench")
+FRIENDLY = {"allocation-mismatch", "schedule-mismatch", "commutative-order", "instruction-words-identical"}
+
+def triage(args):
+    """N64 Decomp Workbench verdict for a candidate attempt (tools/hh/wb_diag.sh), e.g. allocation-mismatch."""
+    f, seg, src = args
+    r = subprocess.run(["tools/hh/wb_diag.sh", f, seg, src], capture_output=True, text=True, timeout=300)
+    m = re.search(r"^verdict=(\S+)", r.stdout, re.M)
+    return m.group(1) if m else "unknown"
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--min", type=float, default=0.8); ap.add_argument("--minutes", type=int, default=15)
     ap.add_argument("--jobs", type=int, default=2); ap.add_argument("--parallel", type=int, default=3)
     ap.add_argument("--limit", type=int, default=0); ap.add_argument("--batches", default="")
+    ap.add_argument("--no-triage", action="store_true", help="don't classify with N64 Decomp Workbench")
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
     cands = candidates(a.min, set(a.batches.split(",")) if a.batches else None)
     if a.limit: cands = cands[:a.limit]
     print("%d near-misses at >= %.0f%%" % (len(cands), 100 * a.min), flush=True)
+    jobs = [(sc, f, seg, src, a.minutes, a.jobs) for sc, f, seg, src in cands]
+    if not a.no_triage and os.path.exists(WB):
+        # Triage by the workbench's verdict (queue/permute/TRIAGE.md: over 403 past runs the permuter won 68 % of
+        # register-allocation / scheduling mismatches but 22 % of structure and 26 % of wrong-symbol ones). The
+        # permuter-friendly kinds go first with twice the time; the rest get a short try (a model is the better bet).
+        with Pool(a.parallel * 2) as p:
+            verdicts = p.map(triage, [(f, seg, src) for sc, f, seg, src in cands])
+        jobs = sorted(((sc, f, seg, src, (2 * a.minutes if v in FRIENDLY else max(3, a.minutes // 3)), a.jobs, v)
+                       for (sc, f, seg, src), v in zip(cands, verdicts)), key=lambda j: (j[6] not in FRIENDLY, -j[0]))
+        print("triage:", {v: verdicts.count(v) for v in set(verdicts)}, flush=True)
+        jobs = [j[:6] for j in jobs]
     with Pool(a.parallel) as p:
-        for rec in p.imap_unordered(run_one, [(sc, f, seg, src, a.minutes, a.jobs) for sc, f, seg, src in cands]):
+        for rec in p.imap_unordered(run_one, jobs):
             open(OUT + "/results.jsonl", "a").write(json.dumps(rec) + "\n")
             print("%s %s (start %.0f%%, %ss) %s" % (rec["verified"], rec["func"], 100 * rec.get("start_score", 0),
                                                    rec.get("seconds", "?"), rec.get("note", "")), flush=True)

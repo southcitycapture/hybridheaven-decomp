@@ -1,3 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002C0B0/func_8002C0B0.s")
+/* libultra 2.0J: built from ultralib's src/os/getmemsize.c (tools/hh/libultra.json) */

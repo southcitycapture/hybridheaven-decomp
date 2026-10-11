@@ -10,7 +10,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801E1D48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801E1D58.s")
+
+extern void D_801CCF48(s32, s32);
+extern s32 D_801DABB8;
+extern s32 D_801DABBC;
+
+s32 func_801E1D58(s32 arg0, s32 arg1) {
+    D_801CCF48(D_801DABB8, D_801DABBC);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801E1D90.s")
 
@@ -305,9 +313,6 @@ s32 func_801E33C4(s32 arg0, s32 arg1) {
 
 
 extern s32 func_801CD044();
-extern void D_801CCF48(s32, s32);
-extern s32 D_801DABB8;
-extern s32 D_801DABBC;
 
 s32 func_801E34B4(s32 arg0, s32 arg1) {
     func_801CD044();

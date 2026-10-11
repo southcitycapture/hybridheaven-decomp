@@ -45,10 +45,25 @@ def func_bytes(obj, name):
 MASK = {2: 0, 4: 0xFC000000, 5: 0xFFFF0000, 6: 0xFFFF0000}   # R_MIPS_32, 26, HI16, LO16
 ADDR_NAME = re.compile(r"^(?:func_|D_|B_|jtbl_)([0-9A-F]{8})$|^\.L([0-9A-F]{8})$")
 
+def _named_symbols():
+    """Symbols with a real name (not address-named) that the project defines: symbol_addrs.txt and splat's
+    undefined_*_auto.txt (`name = 0xADDR;`)."""
+    out = {}
+    for f in ("symbol_addrs.txt", "undefined_syms_auto.txt", "undefined_funcs_auto.txt"):
+        p = os.path.join(HH, f)
+        if not os.path.exists(p): continue
+        for l in open(p):
+            m = re.match(r"\s*([A-Za-z_]\w*)\s*=\s*(0x[0-9A-Fa-f]+)", l)
+            if m: out[m.group(1)] = int(m.group(2), 16)
+    return out
+NAMED = _named_symbols()
+UNRESOLVED = []   # names the last exact link couldn't place (an invented alias like func_800058DC_2arg)
+
 def linked_func_bytes(obj, name, vram, base=None):
     """Link obj so `name` sits at `vram`, resolving every address-named symbol (func_XXXXXXXX,
     D_XXXXXXXX, ...) to the address in its name, and return the function's final bytes.
     Returns None if a referenced symbol has no address in its name (only the masked compare is possible)."""
+    del UNRESOLVED[:]
     with open(obj, "rb") as fh:
         e = ELFFile(fh); st = e.get_section_by_name(".symtab")
         size = next(x for x in st.iter_symbols() if x.name == name)["st_size"]
@@ -56,8 +71,9 @@ def linked_func_bytes(obj, name, vram, base=None):
     defs = []
     for u in undef:
         m = ADDR_NAME.match(u)
-        if not m: return None
-        defs.append("--defsym=%s=0x%s" % (u, m.group(1) or m.group(2)))
+        if m: defs.append("--defsym=%s=0x%s" % (u, m.group(1) or m.group(2))); continue
+        if u in NAMED: defs.append("--defsym=%s=0x%X" % (u, NAMED[u])); continue
+        UNRESOLVED.append(u); return None
     out = obj + ".linked"
     def link(base):
         r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-Ttext=0x%X" % base, "-e", "0", "--no-check-sections",
@@ -100,6 +116,10 @@ def main():
     # IDO pads functions to 8 bytes with nops; ignore trailing padding differences
     while len(mine) > len(orig) and mine[-4:] == b"\0\0\0\0": mine = mine[:-4]
     good, n, diffs = compare(mine, rel, orig)
+    if not diffs and exact is None and UNRESOLVED:
+        print("score %d/%d: refers to %s, which isn't a real symbol (address-named like func_XXXXXXXX / D_XXXXXXXX, or "
+              "listed in symbol_addrs.txt): use the real name" % (good, n, ", ".join(sorted(set(UNRESOLVED)))))
+        return 1
     if not diffs and exact is not None:
         while len(exact) > len(orig) and exact[-4:] == b"\0\0\0\0": exact = exact[:-4]
         if exact != orig:

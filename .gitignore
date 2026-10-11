@@ -21,3 +21,4 @@ objdiff.json
 dashboard/data.json
 __pycache__/
 *.pyc
+tools/ultralib/

@@ -1,6 +1,36 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file013/802408F0/func_802408F0.s")
+extern s32 func_80133A24(s32);
+extern void func_80005700();
+extern void func_800058DC(void *, void *);
+extern s32 func_801267B8(s32, s32);
+extern void func_802409AC();
+extern void func_80240F0C();
+extern void *D_80171CEC[];
+extern struct func_80241AF0_StructBBBF0 D_801BBBF0;
+
+struct func_802408F0_Self {
+    u8 pad0[0x2C];
+    s32 unk2C;
+    u8 pad1[0x36 - 0x30];
+    u16 unk36;
+    u8 pad2[0x8C - 0x38];
+    void *unk8C;
+};
+
+void func_802408F0(struct func_802408F0_Self *arg0, s32 arg1) {
+    if (func_80133A24(3) != 0) {
+        func_80005700(arg0);
+    }
+    if (*(s32 *)((u8 *)&D_801BBBF0 + 0xE0) != 0) {
+        *((u8 *)&D_801BBBF0 + 0x181) = 1;
+        arg0->unk2C |= 0x8000;
+        arg0->unk8C = (void *)func_80240F0C;
+        if (func_801267B8((*(u16 *)*(void **)D_80171CEC[arg0->unk36] & 0x0FFFFFFF) & 0xFFFF, 0x3000) == 1) {
+            func_800058DC(arg0, (void *)func_802409AC);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file013/802408F0/func_802409AC.s")
 
@@ -14,7 +44,6 @@ extern s32 func_8012A564(void *, s32);
 extern void func_801FBB30(void);
 extern void func_801268F4(s32);
 extern void func_801339D0(s32);
-extern void func_800058DC(void *, void *);
 extern void func_80240BE8(void);
 
 void func_80240B84(struct func_80240B84_Struct *arg0, s32 arg1) {
@@ -148,10 +177,8 @@ void func_80240F0C(struct func_80240F0C_Self *arg0, struct func_80240F0C_Pair *a
 #pragma GLOBAL_ASM("asm/nonmatchings/file013/802408F0/func_80240FE8.s")
 
 
-extern s32 func_80133A24(s32);
 extern void func_80020744(s32);
 extern f32 D_80249AB0;
-extern struct func_80241AF0_StructBBBF0 D_801BBBF0;
 struct func_802411A8_Self;
 struct func_802411A8_Outer;
 void func_802411A8(struct func_802411A8_Self *arg0, struct func_802411A8_Outer **arg1);
@@ -244,7 +271,6 @@ void func_80241428(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file013/802408F0/func_802414F8.s")
 
-extern void func_80005700();
 
 void func_802415D8(s32 arg0, s32 arg1) {
     if (func_80150584() != 0) {

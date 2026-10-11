@@ -1,3 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002EE40/func_8002EE40.s")
+/* libultra 2.0J: built from ultralib's src/io/pfssearchfile.c (tools/hh/libultra.json) */

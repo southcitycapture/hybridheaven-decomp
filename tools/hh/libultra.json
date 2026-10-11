@@ -1,0 +1,152 @@
+{
+ "main/80026300": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/sendmesg.c"
+ },
+ "main/80026450": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/pfsfreeblocks.c"
+ },
+ "main/80026CE0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/destroythread.c"
+ },
+ "main/80028260": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/createthread.c"
+ },
+ "main/80028A10": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/virtualtophysical.c"
+ },
+ "main/80029B00": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/pfsgetstatus.c"
+ },
+ "main/8002A350": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/pfsallocatefile.c"
+ },
+ "main/8002B380": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/synsetpan.c"
+ },
+ "main/8002C0B0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/getmemsize.c"
+ },
+ "main/8002EE40": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/pfssearchfile.c"
+ },
+ "main/80030480": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/filter.c"
+ },
+ "main/800305D0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/heapinit.c"
+ },
+ "main/80030610": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/createmesgqueue.c"
+ },
+ "main/80030770": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/synsetfxmix.c"
+ },
+ "main/80030930": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/syngetfxref.c"
+ },
+ "main/80031190": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/gettime.c"
+ },
+ "main/80031670": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/aisetfreq.c"
+ },
+ "main/80031AE0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/copy.c"
+ },
+ "main/80031B60": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/resetglobalintmask.c"
+ },
+ "main/80031BC0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/pfsdeletefile.c"
+ },
+ "main/80032360": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/viswapcontext.c"
+ },
+ "main/80032890": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/visetspecial.c"
+ },
+ "main/80032D40": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/pfsselectbank.c"
+ },
+ "main/80033CD0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/yieldthread.c"
+ },
+ "main/80033E10": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/contramwrite.c"
+ },
+ "main/80034290": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/crc.c"
+ },
+ "main/80034400": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/epirawwrite.c"
+ },
+ "main/80034560": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/settimer.c"
+ },
+ "main/80034A10": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/heapalloc.c"
+ },
+ "main/80034EE0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/synstopvoice.c"
+ }
+}

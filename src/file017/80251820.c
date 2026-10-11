@@ -80,7 +80,35 @@ void func_802525FC(func_802525FC_Struct *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80251820/func_802538A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80251820/func_80253A80.s")
+
+typedef struct {
+    u8 pad[0x4C];
+    u8 unk4C;
+} func_80253A80_Inner;
+
+typedef struct {
+    u8 pad[0x30];
+    func_80253A80_Inner *unk30;
+} func_80253A80_Mid;
+
+typedef struct {
+    u8 pad[0x10];
+    func_80253A80_Mid *unk10;
+    func_80253A80_Mid *unk14;
+} func_80253A80_Arg1;
+
+typedef struct {
+    u8 pad[0x90];
+    u16 unk90;
+    u16 unk92;
+} func_80253A80_Arg0;
+
+void func_80253A80(func_80253A80_Arg0 *arg0, func_80253A80_Arg1 *arg1) {
+    arg1->unk10->unk30->unk4C = (u32)arg0->unk90 * 0.5;
+    arg1->unk14->unk30->unk4C = (u32)arg0->unk92 * 0.5;
+    arg0->unk90++;
+    arg0->unk92--;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80251820/func_80253C20.s")
 
@@ -334,7 +362,29 @@ void func_80256BC4(struct func_80256BC4_StructArg0 *arg0, struct func_80256BC4_S
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80251820/func_80256CB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80251820/func_80256EA8.s")
+
+struct func_80256EA8_Inner {
+    u8 pad[0x4B];
+    u8 unk4B;
+};
+
+struct func_80256EA8_Outer {
+    u8 pad[0x30];
+    struct func_80256EA8_Inner *unk30;
+};
+
+void func_80256EA8(s32 arg0, void **arg1) {
+    struct func_80256EA8_Inner *temp;
+    extern void func_80005700();
+
+    if (func_80133A24(0x13C) != 0) {
+        temp = ((struct func_80256EA8_Outer *) *arg1)->unk30;
+        temp->unk4B = (u8) (temp->unk4B - 0x28);
+        if ((s32) ((struct func_80256EA8_Outer *) *arg1)->unk30->unk4B < 0x28) {
+            func_80005700(arg0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80251820/func_80256F0C.s")
 

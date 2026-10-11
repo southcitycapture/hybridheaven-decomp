@@ -1,3 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80030610/func_80030610.s")
+/* libultra 2.0J: built from ultralib's src/os/createmesgqueue.c (tools/hh/libultra.json) */

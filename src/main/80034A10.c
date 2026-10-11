@@ -1,3 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80034A10/func_80034A10.s")
+/* libultra 2.0J: built from ultralib's src/audio/heapalloc.c (tools/hh/libultra.json) */

@@ -1,5 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002A350/func_8002A350.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002A350/func_8002A684.s")
+/* libultra 2.0J: built from ultralib's src/io/pfsallocatefile.c (tools/hh/libultra.json) */

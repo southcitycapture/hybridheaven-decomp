@@ -31,6 +31,7 @@ setup:
 	$(PYTHON) tools/hh/expand.py $(BASEROM) $(BUILD)
 	$(PYTHON) tools/hh/gen_splat.py
 	$(PYTHON) -m splat split hybridheaven.yaml
+	@if [ -d asm/matchings ]; then cp -rn asm/matchings/. asm/nonmatchings/ && rm -rf asm/matchings; fi
 	$(PYTHON) tools/hh/gen_pads.py
 
 expanded: $(BUILD)/expanded.out.bin
@@ -43,6 +44,16 @@ $(BUILD)/asm/%.o: asm/%.s
 pads:
 	@$(PYTHON) tools/hh/gen_pads.py
 
+# libultra 2.0J objects are built straight from ultralib's source (tools/hh/libultra.json, tools/hh/gen_libultra.py)
+ULTRALIB  ?= tools/ultralib
+IDO53     := tools/ido/5.3/cc
+$(BUILD)/libultra.mk: tools/hh/libultra.json tools/hh/gen_libultra.py
+	@$(PYTHON) tools/hh/gen_libultra.py > /dev/null
+-include $(BUILD)/libultra.mk
+LIB_O := $(patsubst %,$(BUILD)/src/%.o,$(shell $(PYTHON) -c "import json;print(' '.join(json.load(open('tools/hh/libultra.json'))))"))
+$(BUILD)/libultra_syms.ld: $(LIB_O) tools/hh/libultra_syms.py
+	@$(PYTHON) tools/hh/libultra_syms.py
+
 $(BUILD)/src/%.o: src/%.c $(shell find include -name '*.h') | pads
 	@mkdir -p $(dir $@)
 	@$(ASMPROC) $(IDO) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
@@ -54,8 +65,8 @@ $(BUILD)/assets/%.o: assets/%.bin
 $(BUILD)/extern_syms.ld: $(C_SRC)
 	@$(PYTHON) tools/hh/gen_extern_syms.py > /dev/null
 
-$(BUILD)/hybridheaven.elf: $(ASM_O) $(C_O) $(BIN_O) hybridheaven.ld $(BUILD)/extern_syms.ld
-	$(LD) -T hybridheaven.ld -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD)/extern_syms.ld \
+$(BUILD)/hybridheaven.elf: $(ASM_O) $(C_O) $(BIN_O) hybridheaven.ld $(BUILD)/extern_syms.ld $(BUILD)/libultra_syms.ld
+	$(LD) -T hybridheaven.ld -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD)/extern_syms.ld -T $(BUILD)/libultra_syms.ld \
 	      -Map $(BUILD)/hybridheaven.map --no-check-sections -z muldefs -o $@
 
 $(BUILD)/expanded.out.bin: $(BUILD)/hybridheaven.elf

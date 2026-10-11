@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-10: **14.26% of the code** (3403 of 15890 functions, including duplicates).
+Progress as of 2026-10-11: **14.45% of the code** (3444 of 15890 functions, including duplicates).
 
-**9884 model runs, 4946 verified matches (50%), $190.32 API-equivalent in total (≈ $0.038 per match)**; plus 147 matches from decomp-permuter at no model cost.
+**10285 model runs, 5046 verified matches (49%), $197.91 API-equivalent in total (≈ $0.039 per match)**; plus 148 matches from decomp-permuter at no model cost.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -21,7 +21,6 @@ Progress as of 2026-10-10: **14.26% of the code** (3403 of 15890 functions, incl
 | `permute3` | permute3 | decomp-permuter | 8 | 8 | 100% | $0.00 | – |  |
 | `exp1_a` | exp1_a | haiku-5-5 | 60 | 4 | 7% | $1.55 | $0.389 | 79% → 79% |
 | `exp1_c` | exp1_c | sonnet-5-5 | 60 | 10 | 17% | $21.89 | $2.189 | 79% → 80% |
-| `permute` | decomp-permuter on near-misses | decomp-permuter | 424 | 45 | 11% | $0.00 | – |  |
 | `reconcile1` | reconcile1 | reconcile (no model) | 695 | 320 | 46% | $0.00 | – |  |
 | `exp1_b` | exp1_b | sonnet-5-5 | 56 | 12 | 21% | $26.74 | $2.228 | 80% → 81% |
 | `reconcile2` | reconcile2 | reconcile (no model) | 394 | 0 | 0% | $0.00 | – |  |
@@ -44,5 +43,11 @@ Progress as of 2026-10-10: **14.26% of the code** (3403 of 15890 functions, incl
 | `cloud2b` | cloud2b | haiku-5-5 (cloud subagent) | 30 | 30 | 100% | $0.00 | – |  |
 | `exp4_base` | exp4_base | sonnet-5-5 (cloud, base) | 10 | 10 | 100% | $0.00 | – |  |
 | `exp4_withbrief` | exp4_withbrief | sonnet-5-5 (cloud, withbrief) | 9 | 8 | 89% | $0.00 | – |  |
+| `exp5_ref` | exp5_ref | haiku-5-5 | 100 | 36 | 36% | $1.65 | $0.046 | 85% → 85% |
+| `exp5_noref` | exp5_noref | haiku-5-5 | 100 | 34 | 34% | $1.68 | $0.050 | 85% → 85% |
+| `permute` | decomp-permuter on near-misses | decomp-permuter | 427 | 46 | 11% | $0.00 | – |  |
+| `exp6_plain` | exp6_plain | haiku-5-5 | 100 | 14 | 14% | $2.03 | $0.145 | 85% → 86% |
+| `exp6_learn` | exp6_learn | haiku-5-5 | 100 | 15 | 15% | $2.24 | $0.149 | 85% → 86% |
+| `hand1` | hand1 | opus-5-5 (lead, by hand) | 1 | 1 | 100% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

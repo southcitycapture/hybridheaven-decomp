@@ -518,7 +518,14 @@ void func_801C8F9C(void *arg0, void **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801C900C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801C904C.s")
+
+extern void func_80005700(s32 arg0);
+
+void func_801C904C(s32 arg0, s32 arg1) {
+    if (D_801DA614 == 0) {
+        func_80005700(arg0);
+    }
+}
 
 
 struct func_801C907C_Inner {
