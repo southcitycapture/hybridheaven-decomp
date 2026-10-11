@@ -4,6 +4,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000DDF4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/D_8004C790.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000DEC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000E264.s")

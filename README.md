@@ -93,7 +93,7 @@ and the "weekly usage" column is the subscription's own usage meter.
 
 Progress as of 2026-10-11: **16.70% of the code** (3727 of 15890 functions, including duplicates).
 
-**11071 model runs, 5369 verified matches (48%), $206.41 API-equivalent in total (≈ $0.038 per match)**; plus 148 matches from decomp-permuter at no model cost.
+**11378 model runs, 5489 verified matches (48%), $206.41 API-equivalent in total (≈ $0.038 per match)**; plus 148 matches from decomp-permuter at no model cost.
 
 Per-batch table: [RESULTS.md](RESULTS.md).
 

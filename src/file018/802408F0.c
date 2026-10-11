@@ -224,6 +224,7 @@ void func_802415DC(func_802415DC_Struct0 *arg0, func_802415DC_Struct3 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80241630.s")
 
+extern u8 D_801BCC25;
 
 struct func_802416A8_Struct0 {
     u8 pad[0x92];

@@ -97,6 +97,8 @@ s32 func_80020D6C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_800211B4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/D_8004D040.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_800213DC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_80021518.s")

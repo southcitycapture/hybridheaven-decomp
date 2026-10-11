@@ -35,5 +35,28 @@ for f in files:
     if te < len(b): L.append("      - [0x%X, data]" % (f["exp"] + te))
     if bss > 0: L.append("      - { type: bss, vram: 0x%08X }" % (f["vram"] + f["exp_len"]))
 L.append("  - [0x%X]" % len(img))
+# per-file .rodata subsegments (tools/hh/rodata_splits.json, from gen_rodata_splits.py), after each segment's data line
+import os, re
+RO = json.load(open("tools/hh/rodata_splits.json")) if os.path.exists("tools/hh/rodata_splits.json") else {}
+# segments whose .rodata is split per C file (tools/hh/rodata_segments.txt); the rest keep one data blob for now
+RO_SEGS = set(open("tools/hh/rodata_segments.txt").read().split()) if os.path.exists("tools/hh/rodata_segments.txt") else set()
+if os.environ.get("RODATA_SEGS"): RO_SEGS = set(os.environ["RODATA_SEGS"].split(","))
+out, cur = [], {}
+for line in "\n".join(L).split("\n"):
+    out.append(line)
+    m = re.match(r"  - name: (\w+)", line)
+    if m: cur = {"name": m.group(1)}; continue
+    m = re.match(r"    (start|vram): (0x[0-9A-F]+)", line)
+    if m: cur[m.group(1)] = int(m.group(2), 16); continue
+    m = re.match(r"      - \[0x([0-9A-F]+), data\]", line)
+    seg = cur.get("name")
+    if m and seg in RO and seg in RO_SEGS:
+        rom = lambda v: cur["start"] + int(v, 16) - cur["vram"]
+        r = RO[seg]; first = min(r["files"].values())
+        if int(r["start"], 16) < int(first, 16): out.append("      - [0x%X, rodata]" % rom(r["start"]))
+        ro = [(int(v, 16), "      - [0x%X, .rodata, %s/%s]" % (rom(v), seg, cf)) for cf, v in r["files"].items()]
+        ro += [(int(v, 16), "      - [0x%X, rodata]" % rom(v)) for v in r.get("orphans", [])]   # data-only objects
+        out += [l for v, l in sorted(ro)]
+L = out
 open("hybridheaven.yaml", "w").write("\n".join(L) + "\n")
 print("wrote hybridheaven.yaml")

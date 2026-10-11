@@ -8,6 +8,7 @@ def_re = re.compile(r'^\s*(?:glabel|dlabel|jlabel|alabel|\.L[0-9A-F]{8}:|nonmatc
 local_missing = set()
 LIBUNITS = list(json.load(open("tools/hh/libultra.json"))) if os.path.exists("tools/hh/libultra.json") else []
 for p in glob.glob("asm/**/*.s", recursive=True):
+    if p.endswith(".rodata.s"): continue      # per-file rodata splat also dumps to asm/data: not linked (the C file owns it)
     s = open(p).read()
     here = set()
     for m in def_re.finditer(s):
@@ -18,6 +19,9 @@ for p in glob.glob("asm/**/*.s", recursive=True):
     local_missing |= {n for n in used if n.startswith(".L") and n not in here}
     if any("/nonmatchings/%s/" % u in p for u in LIBUNITS):
         here = set()        # built from library source under real names: these get address definitions instead
+    if "/nonmatchings/" in p:
+        # rodata labels inside a function's GLOBAL_ASM aren't exported by asm-processor; C may still use them
+        here -= set(re.findall(r'^\s*dlabel\s+(\S+)', s, re.M))
     defined |= {n for n in here if not n.startswith(".L")}
     ref |= {n for n in used if not n.startswith(".L")}
 # C files can reference address-named symbols the asm never mentions

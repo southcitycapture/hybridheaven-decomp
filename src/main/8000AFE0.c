@@ -149,9 +149,7 @@ void func_8000BC5C(struct func_8000BC5C_Struct *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000AFE0/func_8000BC78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000AFE0/func_8000C3B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000AFE0/func_8000C4A8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/main/8000AFE0/_mrg_func_8000C3B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000AFE0/func_8000C768.s")
 

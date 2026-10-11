@@ -44,6 +44,16 @@ f32 func_8001EB64(s16 arg0) {
     return D_8003E930[arg0];
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CE60.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CF24.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CF2C.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CF30.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CF34.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/func_8001EBF8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/func_8001ED68.s")

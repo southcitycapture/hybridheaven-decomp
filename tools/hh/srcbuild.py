@@ -33,8 +33,9 @@ def entries(seg, cfile):
     """Functions of one C file in address order: (name, asm path, rom offset, size)."""
     out = []
     for p in glob.glob("asm/nonmatchings/%s/%s/*.s" % (seg, cfile)):
+        if os.path.basename(p).startswith(("_mrg_", "_ro_")): continue      # generated blocks, not functions
         s = open(p).read()
-        m = re.search(r"nonmatching (\S+), (0x[0-9A-F]+)\s+glabel \1\s+/\* ([0-9A-F]+) ([0-9A-F]+) ", s)
+        m = re.search(r"nonmatching (\S+), (0x[0-9A-F]+)\s+[gj]label \1\s+/\* ([0-9A-F]+) ([0-9A-F]+) ", s)   # jlabel: also a jump target
         if m: out.append((m.group(1), p, int(m.group(3), 16), int(m.group(2), 16), int(m.group(4), 16)))
     return sorted(out, key=lambda e: e[2])
 
@@ -47,6 +48,18 @@ def _text_ends():
         m = re.match(r"\s+- \[0x([0-9A-F]+), data\]", l)
         if m and cur: ends[cur] = int(m.group(1), 16); cur = None
     return ends
+def _file_rodata():
+    """(seg, cfile) -> vram of that C file's .rodata (per-file `.rodata` subsegments in hybridheaven.yaml)."""
+    out, cur = {}, {}
+    for l in open("hybridheaven.yaml"):
+        m = re.match(r"  - name: (\w+)", l)
+        if m: cur = {}; continue
+        m = re.match(r"    (start|vram): (0x[0-9A-F]+)", l)
+        if m: cur[m.group(1)] = int(m.group(2), 16); continue
+        m = re.match(r"\s+- \[0x([0-9A-F]+), \.rodata, (\w+)/(\w+)\]", l)
+        if m and "vram" in cur: out[(m.group(2), m.group(3))] = cur["vram"] + int(m.group(1), 16) - cur["start"]
+    return out
+FILE_RODATA = _file_rodata()
 SPLITS = {k: [int(x, 16) for x in v] for k, v in json.load(open("tools/hh/file_splits.json")).items()}
 TEXT_END = _text_ends()
 
@@ -84,12 +97,169 @@ def snippet_lines(text, declared):
         keep.append(line)
     return keep
 
-def render(seg, cfile, snips, pad=0):
+RO_LINE = re.compile(r"/\* [0-9A-F]+ ([0-9A-F]{8}) ")
+
+def rodata_min(path):
+    """Lowest vram of the rodata a function's asm carries (migrated by splat), else None."""
+    sect, lo = ".text", None
+    for l in open(path):
+        if l.startswith(".section"): sect = l.split()[1]; continue
+        if sect != ".text":
+            m = RO_LINE.search(l)
+            if m: v = int(m.group(1), 16); lo = v if lo is None else min(lo, v)
+    return lo
+
+def rodata_blocks(seg, cfile):
+    """Rodata splat could not migrate into one function (shared, or not referenced by code): (vram, path)."""
+    out = []
+    # labels splat already migrated into a function's own asm: a leftover block with the same label would duplicate it
+    owned = set()
+    for p in glob.glob("asm/nonmatchings/%s/%s/func_*.s" % (seg, cfile)):
+        owned |= set(re.findall(r"^\s*dlabel\s+(\S+)", open(p).read(), re.M))
+    for p in glob.glob("asm/nonmatchings/%s/%s/*.s" % (seg, cfile)):
+        b = os.path.basename(p)
+        if b.startswith(("func_", "_pad", "pad", "_ro_", "_mrg_")): continue
+        if set(re.findall(r"^\s*dlabel\s+(\S+)", open(p).read(), re.M)) & owned: continue
+        if not open(p).readline().startswith(".section .rodata") and ".section .late_rodata" not in open(p).read(200): continue
+        v = rodata_min(p)
+        if v is not None: out.append((v, p))
+    return sorted(out)
+
+def rodata_part(path):
+    """The non-.text sections of a function's asm (its migrated rodata), as text, or None."""
+    out, sect, any_ro = [], ".text", False
+    for l in open(path).read().split("\n"):
+        if l.startswith(".section"): sect = l.split()[1]
+        if sect != ".text": out.append(l); any_ro |= bool(l.strip()) and not l.startswith(".section")
+    return "\n".join(out) + "\n" if any_ro else None
+
+def c_makes_rodata(seg, name, snippet):
+    """Does this C function produce .rodata of its own (switch table, float/double literal, string)? Compiled
+    alone against its file's declarations, like a worker's attempt; cached by snippet hash."""
+    import hashlib
+    key = hashlib.sha1((seg + name + snippet).encode()).hexdigest()
+    cache = "build/c_rodata/%s" % key
+    if os.path.exists(cache): return open(cache).read() == "1"
+    with tempfile.TemporaryDirectory() as td:
+        open(os.path.join(td, "context.h"), "w").write(context_for(seg, name))
+        open(os.path.join(td, "known.h"), "w").write("")
+        c = os.path.join(td, "a.c"); o = os.path.join(td, "a.o")
+        open(c, "w").write(snippet if '#include "context.h"' in snippet else '#include "context.h"\n' + snippet)
+        r = subprocess.run([IDO, "-c"] + CFLAGS + ["-I", td, "-o", o, c], capture_output=True, text=True)
+        if r.returncode == 0: made = try_func.obj_rodata_size(o) > 0
+        else:   # can't compile alone (needs a neighbour's declaration): judge from the source, a wrong guess only rejects
+            made = bool(re.search(r"\bswitch\b|\"|\b\d+\.\d*(?:[eE][-+]?\d+)?f?\b", snippet))
+    os.makedirs("build/c_rodata", exist_ok=True); open(cache, "w").write("1" if made else "0")
+    return made
+
+def kept_rodata_block(seg, cfile, name, path, snippet):
+    """A C function that doesn't produce the original's rodata itself (it reads constants by name, or the original
+    had strings the C no longer needs) still needs that rodata in place: emit the function's own rodata as an asm
+    block before it. Returns the block's path or None."""
+    ro = rodata_part(path)
+    if not ro or c_makes_rodata(seg, name, snippet): return None
+    p = "asm/nonmatchings/%s/%s/_ro_%s.s" % (seg, cfile, name)
+    if not os.path.exists(p) or open(p).read() != ro: open(p, "w").write(ro)
+    return p
+
+LATE_ITEM = re.compile(r"dlabel (D_[0-9A-F]{8})\n\s*/\* [0-9A-F]+ [0-9A-F]{8} ([0-9A-F]{8,16}) \*/ \.(float|double)")
+
+def late_literals(path, snippet):
+    """Matched C written before per-file rodata read its float constants by name (`extern f32 D_...;`). They're the
+    function's own late rodata, which IDO emits itself from literals: replace each such name by its exact value."""
+    text = open(path).read()
+    if ".late_rodata" not in text: return snippet
+    late = text.split(".section .late_rodata", 1)[1].split(".section .text", 1)[0]
+    import struct
+    for name, hexv, kind in LATE_ITEM.findall(late):
+        m = re.search(r"^\s*extern\s+(f32|f64|float|double)\s+%s\s*;\s*$" % name, snippet, re.M)
+        if not m: continue
+        if kind == "float" and len(hexv) == 8:
+            v = struct.unpack(">f", bytes.fromhex(hexv))[0]; lit = repr(float("%.9g" % v))
+            if struct.unpack(">f", struct.pack(">f", float(lit)))[0] != v: continue
+            lit += "f"
+        elif kind == "double" and len(hexv) == 16:
+            v = struct.unpack(">d", bytes.fromhex(hexv))[0]; lit = repr(v)
+        else: continue
+        if "e" in lit or "inf" in lit or "nan" in lit: continue
+        if lit.startswith("-"): lit = "(" + lit + ")"
+        snippet = snippet[:m.start()] + snippet[m.end():]
+        snippet = re.sub(r"\b%s\b" % name, lit, snippet)
+    return snippet
+
+_DECLS = None
+def decl_index():
+    """name -> its most common single-line file-scope declaration across the registry (for names a function uses
+    but nothing before it in its C file declares, e.g. after a file was split)."""
+    global _DECLS
+    if _DECLS is None:
+        import collections
+        c = collections.defaultdict(collections.Counter)
+        for text in registry().values():
+            depth = 0
+            for l in text.splitlines():
+                n = decl_name(l, depth); depth += l.count("{") - l.count("}")
+                if n and re.match(r"(func|D)_[0-9A-F]{8}$", n): c[n][l.strip()] += 1
+        _DECLS = {n: cnt.most_common(1)[0][0] for n, cnt in c.items()}
+    return _DECLS
+
+def missing_decls(snippet, declared):
+    """Declaration lines for address-named symbols the snippet uses but neither it nor the file so far declares."""
+    own, depth = set(), 0
+    for l in snippet.splitlines():
+        n = decl_name(l, depth) or (DEFN.match(l).group(1) if depth == 0 and DEFN.match(l) else None)
+        if n: own.add(n)
+        depth += l.count("{") - l.count("}")
+    # data only: an undeclared D_ name is a compile error, while an undeclared function is an implicit declaration
+    # the original match may rely on (a prototype would change its argument handling)
+    used = set(re.findall(r"\b(D_[0-9A-F]{8})\b", snippet)) - own - declared
+    idx = decl_index()
+    basic = re.compile(r"^extern\s+(?:volatile\s+)?(?:unsigned\s+|signed\s+)?(?:[usf](?:8|16|32|64)|v[us](?:8|16|32)|char|short|int|long|float|double|void)\s*\**\s*D_[0-9A-F]{8}\s*(?:\[[0-9xA-Fa-f]*\]\s*)*;$")
+    return [idx[n] for n in sorted(used) if n in idx and basic.match(idx[n])
+            and not re.search(r"\bextern\b[^;]*\b%s\b" % n, snippet)]     # declared somewhere in the snippet itself
+
+INS_LINE = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]{8} [0-9A-F]{8} \*/\s+\S")
+
+def asm_weights(path):
+    """(instruction count, late-rodata words) of a function's asm block."""
+    text = late = 0; sect = ".text"
+    for l in open(path):
+        if l.startswith(".section"): sect = l.split()[1]; continue
+        if sect == ".text" and INS_LINE.match(l): text += 1
+        elif sect == ".late_rodata":
+            if ".double" in l: late += 2
+            elif re.search(r"\.(word|float)\b", l): late += 1
+    return text, late
+
+def merged_block(seg, cfile, paths):
+    """One GLOBAL_ASM block for several consecutive asm functions (asm-processor needs at least 3 instructions per
+    late-rodata word in a block; a function with a big jump table and little code gets its neighbours' code too)."""
+    if len(paths) == 1: return paths[0]
+    p = "asm/nonmatchings/%s/%s/_mrg_%s" % (seg, cfile, os.path.basename(paths[0]))
+    text = "".join(open(x).read() + "\n" for x in paths)
+    if not os.path.exists(p) or open(p).read() != text: open(p, "w").write(text)
+    return p
+
+def render(seg, cfile, snips, pad=0, keep_ro=True):
     """Return (text, line ranges per snippet function)."""
     lines = ['#include "common.h"', ""]; ranges = {}; declared = set()
+    group, gt, gl = [], 0, 0                  # consecutive asm functions waiting to be emitted as one block
+    def flush():
+        nonlocal group, gt, gl
+        if group: lines.extend(['#pragma GLOBAL_ASM("%s")' % merged_block(seg, cfile, group), ""])
+        group, gt, gl = [], 0, 0
+    pending = rodata_blocks(seg, cfile)        # emitted in rodata order, just before the first function whose rodata comes later
     for name, path, off, size, vram in entries(seg, cfile):
+        lo = rodata_min(path) if pending else None
+        if pending and lo is not None and pending[0][0] < lo: flush()
+        while pending and lo is not None and pending[0][0] < lo:
+            lines += ['#pragma GLOBAL_ASM("%s")' % pending.pop(0)[1], ""]
+        if name in snips or is_stub(off, size): flush()
         if name in snips:
-            body = snippet_lines(snips[name], declared)
+            snips = dict(snips); snips[name] = late_literals(path, snips[name])
+            kb = kept_rodata_block(seg, cfile, name, path, snips[name]) if keep_ro else None
+            if kb: lines += ['#pragma GLOBAL_ASM("%s")' % kb, ""]
+            body = missing_decls(snips[name], declared) + snippet_lines(snips[name], declared)
             start = len(lines) + 1; lines += body + [""]; ranges[name] = (start, len(lines))
             depth = 0
             for l in body:
@@ -101,7 +271,11 @@ def render(seg, cfile, snips, pad=0):
         elif is_stub(off, size):
             lines += ["void %s(void) {" % name, "}", ""]; declared.add(name)
         else:
-            lines += ['#pragma GLOBAL_ASM("%s")' % path, ""]
+            t, l = asm_weights(path)
+            group.append(path); gt += t; gl += l
+            if 3 * gl <= gt: flush()           # this block (with any merged predecessors) satisfies asm-processor
+    flush()
+    lines += sum((['#pragma GLOBAL_ASM("%s")' % p, ""] for _, p in pending), [])
     if pad: lines += ['#pragma GLOBAL_ASM("%s")' % pad_asm(seg, cfile, pad), ""]
     return "\n".join(lines) + "\n", ranges
 
@@ -111,14 +285,15 @@ def compile_file(text, td):
                        ["--", "-c"] + CFLAGS + ["-o", o, c], capture_output=True, text=True)
     return (o if r.returncode == 0 else None), r.stderr + r.stdout
 
-def func_ok(obj, name, off, size, vram, base):
-    """Instructions must match, and every address must resolve to the original's (exact link check)."""
+def func_ok(obj, name, off, size, vram, base, rodata=None):
+    """Instructions must match, and every address must resolve to the original's (exact link check).
+    `rodata`: where the file's .rodata really starts (its jump tables / constants must land there)."""
     try: mine, rel = try_func.func_bytes(obj, name)
     except StopIteration: return False
     orig = IMG[off:off + size]
     while len(mine) > size and mine[-4:] == b"\0\0\0\0": mine = mine[:-4]
     if try_func.compare(mine, rel, orig)[2]: return False
-    exact = try_func.linked_func_bytes(obj, name, vram, base)
+    exact = try_func.linked_func_bytes(obj, name, vram, base, rodata=rodata)
     if exact is None: return not try_func.UNRESOLVED    # an invented symbol name can't be placed: not a match
     while len(exact) > size and exact[-4:] == b"\0\0\0\0": exact = exact[:-4]
     return exact == orig
@@ -138,7 +313,8 @@ def settle(seg, cfile, snips, td):
             if bad is None: return {}, rejected, None, "file does not compile:\n" + err[-600:]
             rejected[bad] = "compile error in file context"; snips.pop(bad); continue
         base = min(e[4] for e in info.values())        # the C file's .text starts at its first function
-        wrong = [n for n in snips if not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base)]
+        ro = FILE_RODATA.get((seg, cfile))
+        wrong = [n for n in snips if not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro)]
         if not wrong:
             # the whole file must keep its original size, or everything after it shifts
             start, end = file_span(seg, cfile)
@@ -214,46 +390,13 @@ def run(cands, new_keys):
             if problem: print("PROBLEM", fname, problem)
     return kept, rejected
 
-if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
-    mode = sys.argv[1]
-    reg = registry()
-    if mode == "all":
-        kept, rejected = run(reg, set())
-        print("rebuilt from registry: %d functions in C, %d rejected" % (len(kept), len(rejected)))
-        os.makedirs("matched_rejected", exist_ok=True)
-        with open("queue/rejected.jsonl", "a") as fh:
-            for (seg, n), why in sorted(rejected.items()):
-                os.makedirs("matched_rejected/" + seg, exist_ok=True)
-                shutil.move("matched/%s/%s.c" % (seg, n), "matched_rejected/%s/%s.c" % (seg, n))
-                fh.write(json.dumps({"segment": seg, "func": n, "why": why, "was_registered": True}) + "\n")
-    elif mode == "add":
-        new = {}
-        for b in sys.argv[2:]:
-            for l in open("queue/%s/results.jsonl" % b):
-                r = json.loads(l); key = (r["segment"], r["func"])
-                if r["verified"] == "MATCH" and key not in reg:
-                    new[key] = open("queue/%s/work/%s/attempt.c" % (b, r["func"])).read()
-        cands = dict(reg); cands.update(new)
-        kept, rejected = run(cands, set(new))
-        added = 0
-        for key in new:
-            if key in kept:
-                os.makedirs("matched/" + key[0], exist_ok=True)
-                open("matched/%s/%s.c" % key, "w").write(new[key]); added += 1
-        log = "queue/rejected.jsonl"
-        with open(log, "a") as fh:
-            for key, why in rejected.items():
-                fh.write(json.dumps({"segment": key[0], "func": key[1], "why": why, "was_registered": key in reg}) + "\n")
-        print("added %d of %d new matches to the registry; %d rejected in context (see %s)" % (added, len(new), len(rejected), log))
-
-
 def context_for(seg, func):
     """Declarations already in force in `func`'s C file (excluding func's own snippet): every extern,
     typedef/struct, and a prototype for each C function defined there. Given to workers as context.h."""
     cf = file_of(seg, func)
     reg = {n: t for (s, n), t in registry().items() if s == seg and n != func}
     names = {e[0] for e in entries(seg, cf)}
-    text, _ = render(seg, cf, {n: t for n, t in reg.items() if n in names})
+    text, _ = render(seg, cf, {n: t for n, t in reg.items() if n in names}, keep_ro=False)   # declarations only
     out, lines, i = [], text.splitlines(), 0
     while i < len(lines):
         l = lines[i]
@@ -293,11 +436,12 @@ def infile_check(seg, func, path):
                 if len(out) >= 8: break
             return False, "IN-FILE FAIL: the file %s/%s.c does not compile with your function in it:\n%s" % (seg, cf, "\n".join(out) or err[-600:])
         base = min(e[4] for e in info.values())
-        if not func_ok(obj, func, info[func][2], info[func][3], info[func][4], base):
+        ro = FILE_RODATA.get((seg, cf))
+        if not func_ok(obj, func, info[func][2], info[func][3], info[func][4], base, ro):
             return False, ("IN-FILE FAIL: your function compiles in %s/%s.c but no longer matches there. In the real file, "
                            "names already declared (context.h) keep their declarations and your extern lines for them are "
                            "dropped, so use exactly the types in context.h." % (seg, cf))
-        broken = [n for n in snips if n != func and not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base)]
+        broken = [n for n in snips if n != func and not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro)]
         if broken:
             return False, "IN-FILE FAIL: your function breaks already-matched %s (a type or struct you define clashes)." % ", ".join(broken[:3])
     return True, "IN-FILE MATCH: also matches inside %s/%s.c with its %d matched neighbours" % (seg, cf, len(snips) - 1)
@@ -308,3 +452,36 @@ if __name__ == "__main__" and sys.argv[1] == "context":
 
 if __name__ == "__main__" and sys.argv[1] == "infile":       # srcbuild.py infile SEG FUNC ATTEMPT.c
     ok, msg = infile_check(sys.argv[2], sys.argv[3], sys.argv[4]); print(msg); sys.exit(0 if ok else 1)
+
+
+if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
+    mode = sys.argv[1]
+    reg = registry()
+    if mode == "all":
+        kept, rejected = run(reg, set())
+        print("rebuilt from registry: %d functions in C, %d rejected" % (len(kept), len(rejected)))
+        os.makedirs("matched_rejected", exist_ok=True)
+        with open("queue/rejected.jsonl", "a") as fh:
+            for (seg, n), why in sorted(rejected.items()):
+                os.makedirs("matched_rejected/" + seg, exist_ok=True)
+                shutil.move("matched/%s/%s.c" % (seg, n), "matched_rejected/%s/%s.c" % (seg, n))
+                fh.write(json.dumps({"segment": seg, "func": n, "why": why, "was_registered": True}) + "\n")
+    elif mode == "add":
+        new = {}
+        for b in sys.argv[2:]:
+            for l in open("queue/%s/results.jsonl" % b):
+                r = json.loads(l); key = (r["segment"], r["func"])
+                if r["verified"] == "MATCH" and key not in reg:
+                    new[key] = open("queue/%s/work/%s/attempt.c" % (b, r["func"])).read()
+        cands = dict(reg); cands.update(new)
+        kept, rejected = run(cands, set(new))
+        added = 0
+        for key in new:
+            if key in kept:
+                os.makedirs("matched/" + key[0], exist_ok=True)
+                open("matched/%s/%s.c" % key, "w").write(new[key]); added += 1
+        log = "queue/rejected.jsonl"
+        with open(log, "a") as fh:
+            for key, why in rejected.items():
+                fh.write(json.dumps({"segment": key[0], "func": key[1], "why": why, "was_registered": key in reg}) + "\n")
+        print("added %d of %d new matches to the registry; %d rejected in context (see %s)" % (added, len(new), len(rejected), log))

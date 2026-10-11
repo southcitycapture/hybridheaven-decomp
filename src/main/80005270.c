@@ -623,6 +623,14 @@ void func_800064C4(struct func_800064C4_Struct *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_8000659C.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BAE0.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BFD4.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BFDC.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BFE0.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_800065EC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_8000671C.s")

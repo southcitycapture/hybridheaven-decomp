@@ -35,7 +35,7 @@ units = []
 LIBFILES = set(json.load(open("tools/hh/libultra.json"))) if os.path.exists("tools/hh/libultra.json") else set()
 for src in sorted(glob.glob("src/*/*.c")):
     seg = os.path.relpath(src, "src")[:-2]                  # e.g. file057/80375560
-    funcs = sorted(f for f in glob.glob("asm/nonmatchings/%s/*.s" % seg) if not os.path.basename(f).startswith("_pad"))  # pad blocks are not functions
+    funcs = sorted(f for f in glob.glob("asm/nonmatchings/%s/*.s" % seg) if not os.path.basename(f).startswith(("_pad", "_mrg_", "_ro_")))  # pad blocks are not functions
     if not funcs: continue
     os.makedirs(os.path.dirname("%s/target/%s.o" % (OUT, seg)), exist_ok=True)
     os.makedirs(os.path.dirname("%s/base/%s.o" % (OUT, seg)), exist_ok=True)

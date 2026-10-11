@@ -19,7 +19,7 @@ C_SRC     := $(shell find src -name '*.c' 2>/dev/null)
 C_O       := $(patsubst src/%.c,$(BUILD)/src/%.o,$(C_SRC))
 IDO       := tools/ido/7.1/cc
 CFLAGS    := -G 0 -non_shared -Xcpluscomm -mips2 -O2 -I include -I src
-ASMPROC   := $(PYTHON) tools/asm-processor/build.py
+ASMPROC   := $(PYTHON) tools/asm-processor/build.py --input-enc utf-8 --output-enc euc-jp   # the game's strings are EUC-JP
 BIN_IN    := $(shell find assets -name '*.bin' 2>/dev/null)
 BIN_O     := $(patsubst assets/%.bin,$(BUILD)/assets/%.o,$(BIN_IN))
 
@@ -30,9 +30,11 @@ all: $(BUILD)/hybridheaven.z64
 setup:
 	$(PYTHON) tools/hh/expand.py $(BASEROM) $(BUILD)
 	$(PYTHON) tools/hh/gen_splat.py
+	rm -rf asm     # regenerated from scratch: stale per-file dirs would duplicate functions after a re-split
 	$(PYTHON) -m splat split hybridheaven.yaml
 	@if [ -d asm/matchings ]; then cp -rn asm/matchings/. asm/nonmatchings/ && rm -rf asm/matchings; fi
 	$(PYTHON) tools/hh/gen_pads.py
+	$(PYTHON) tools/hh/gen_blocks.py
 
 expanded: $(BUILD)/expanded.out.bin
 

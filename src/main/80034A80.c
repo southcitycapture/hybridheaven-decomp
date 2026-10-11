@@ -16,3 +16,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80034A80/func_80034C58.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/main/80034A80/D_8004D4E0.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/80034A80/D_8004D4E8.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/80034A80/D_8004D4F0.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/main/80034A80/D_8004D910.s")
+

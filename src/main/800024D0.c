@@ -148,6 +148,8 @@ s32 func_80002BAC(u8 arg0) {
     return 0;
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/D_8004B910.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_80002BE0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_80002D00.s")
