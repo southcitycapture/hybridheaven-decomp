@@ -3,9 +3,9 @@
 # by someone who has their own ROM, committed, and this workflow just uploads it as the `us_report` artifact.
 name: progress
 on:
+  # every push to main: a `paths:` filter only sees the first 300 changed files, so big updates were skipped
   push:
     branches: [main]
-    paths: [progress/report.json]
   workflow_dispatch:
 jobs:
   report:
