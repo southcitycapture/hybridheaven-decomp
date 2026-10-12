@@ -4,7 +4,7 @@
 extern void *func_800058DC(void *, void *);
 extern s16 func_80228C20(void *);
 extern void func_80229500(void);
-extern void func_8038D000(void);
+extern void func_8038D000();
 
 void func_8038CFC0(void *arg0, void *arg1) {
     func_80229500();
@@ -28,7 +28,7 @@ extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern void func_8038D948(void);
-extern void func_8038D77C(void *a, void *b, void *c);
+extern s32 func_8038D77C();
 
 void func_8038D8B8(func_8038D8B8_Struct *arg0, void *arg1) {
     void *var_a1;

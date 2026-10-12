@@ -16,7 +16,7 @@ struct func_802490A4_Struct {
 
 extern s32 func_801C3044();
 extern void func_801C2F0C();
-extern void func_800058DC();
+extern void func_800058DC(void *, void *);
 extern void func_802490EC();
 
 void func_802490A4(struct func_802490A4_Struct *arg0, s32 arg1) {
@@ -39,7 +39,7 @@ typedef struct func_802490EC_StructObj {
 } func_802490EC_StructObj;
 
 extern func_802490EC_StructGlobal *D_8025DDD0;
-extern void func_8024915C(void);
+extern void func_8024915C(s32 arg0, s32 arg1);
 extern s32 func_80126944(void);
 extern s32 func_80133A24(u16);
 
@@ -64,5 +64,11 @@ void func_802490EC(func_802490EC_StructObj *arg0, s32 arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80248620/func_8024915C.s")
+
+void func_8024915C(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 

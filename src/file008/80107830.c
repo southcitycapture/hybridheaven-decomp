@@ -14,7 +14,7 @@ void func_80107830(s32 arg0, s32 arg1) {
 extern void func_80016DF0(void);
 extern void func_80004310(void *);
 extern u8 D_80162DE4[];
-extern void func_801078A4(void);
+extern void func_801078A4();
 
 void func_80107864(s32 arg0, s32 arg1) {
     func_80016DF0();

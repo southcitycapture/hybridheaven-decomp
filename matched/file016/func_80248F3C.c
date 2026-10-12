@@ -17,7 +17,7 @@ struct func_80248F3C_Struct1 {
 extern void func_8013A28C(s32, struct func_80248F3C_Struct3);
 extern struct func_80248F3C_Struct3 D_80249D7C;
 extern s8 D_80249CB4;
-extern void func_80248FBC(void);
+extern void func_80248FBC();
 
 void func_80248F3C(struct func_80248F3C_Struct1 *arg0, s32 arg1) {
     struct func_80248F3C_Struct2 *temp_v0;

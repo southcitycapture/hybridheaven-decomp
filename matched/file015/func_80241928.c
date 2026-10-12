@@ -16,7 +16,7 @@ extern s32 func_801C3D20(f32, f32, s32);
 extern void func_801FBB30(void);
 extern func_80241928_StructOuter D_801BBBF0;
 extern f32 D_80258550;
-extern void func_802419BC(void);
+extern void func_802419BC();
 
 void func_80241928(func_80241928_StructArg *arg0, void *arg1) {
     if (func_801C3D20(-65.0f, D_80258550, 0x420C0000) != 0) {

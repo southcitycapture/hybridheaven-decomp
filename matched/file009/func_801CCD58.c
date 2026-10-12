@@ -18,7 +18,7 @@ struct func_801CCD58_Global {
 
 extern void func_800058DC(void *, void *);
 extern void func_801DB6B8(void *, s32, s32);
-extern void func_801CCDE4(void);
+extern void func_801CCDE4();
 extern u8 D_801BCC25;
 extern u8 D_801E4070[];
 extern struct func_801CCD58_Global *D_801E4080;

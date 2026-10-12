@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_8013643C(void);
+extern void func_8013643C();
 
 void func_801363C8(s32 arg0, s32 arg1) {
     if (func_800178E8() != 0) {

@@ -31,7 +31,7 @@ extern void func_8012C89C(s32, s32, s32, s32);
 extern void func_8012CF8C(s32, void *, s32, s32);
 extern struct func_80241420_Copy D_80164F40;
 extern u8 D_80248318[];
-extern void func_80241534(void);
+extern void func_80241534();
 
 void func_80241420(s32 arg0, struct func_80241420_Node **arg1) {
     struct func_80241420_Copy sp20;

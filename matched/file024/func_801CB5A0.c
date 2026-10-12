@@ -31,7 +31,7 @@ extern void func_80126930(s32);
 extern void func_80146208(void *, void *, s32, s16, s32, s32, s32, s32, s32, s32, s32, s32);
 extern void func_80006214(void *);
 extern u8 D_80044434[];
-extern void func_801CB788(void);
+extern void func_801CB788();
 extern void func_800058DC(void *, void *);
 extern void func_80005670(void *, void *);
 

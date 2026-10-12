@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern s32 D_802170B4;
-extern void func_801FA624(s32);
+extern s32 func_801FA624();
 
 struct func_801FB554_Inner {
     u8 pad0[0x9];

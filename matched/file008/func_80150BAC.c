@@ -30,7 +30,7 @@ f32 func_8001EAD0(s16);
 f32 func_8001EB64(s16);
 extern f32 D_801906F0;
 extern void *D_801BBCD0;
-extern void func_80150C8C(void);
+extern void func_80150C8C();
 
 void func_80150BAC(s32 arg0, s32 arg1) {
     func_80150BAC_StructC sp20;

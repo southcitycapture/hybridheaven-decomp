@@ -47,7 +47,7 @@ void func_8001A804();
 
 extern void func_80116E80(s32);
 extern u8 D_801CF3F4[];
-extern void func_801C9AB4(void);
+extern void func_801C9AB4();
 
 void func_801C9A24(s32 arg0, s32 arg1) {
     func_80116E80(0x100);
@@ -63,7 +63,7 @@ typedef struct func_801C9C44_Struct {
     u8 pad[0x28];
 } func_801C9C44_Struct;
 
-extern void func_801C9D0C(void);
+extern void func_801C9D0C();
 extern func_801C9C44_Struct D_801CD238;
 extern func_801C9C44_Struct *D_801CFDD4;
 extern f32 D_801CF614;
@@ -108,7 +108,7 @@ struct func_801CA284_Struct {
 
 extern u8 D_801CF5B4[];
 extern u8 D_801CF5DC[];
-extern void func_801CA358(void);
+extern void func_801CA358();
 
 void func_801CA284(struct func_801CA284_Struct *arg0, s32 arg1) {
     if (arg0->unk3C < 6) {

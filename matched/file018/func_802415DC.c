@@ -21,7 +21,7 @@ typedef struct func_802415DC_Struct3 {
 } func_802415DC_Struct3;
 
 extern void func_800058DC(s32, void *);
-extern void func_80241630(void);
+extern void func_80241630();
 
 void func_802415DC(func_802415DC_Struct0 *arg0, func_802415DC_Struct3 *arg1) {
     s32 temp_v0;

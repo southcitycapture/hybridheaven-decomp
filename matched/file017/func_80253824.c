@@ -12,7 +12,7 @@ struct func_80253824_Struct {
     struct func_80253824_StructInner *unk4;
 };
 
-extern void func_8025386C(void);
+extern void func_8025386C();
 
 void func_80253824(s32 arg0, struct func_80253824_Struct *arg1) {
     if (func_80133A24(0x138) != 0) {

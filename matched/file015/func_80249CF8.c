@@ -31,8 +31,8 @@ struct func_80249CF8_Bbf0 {
 };
 
 extern s32 func_80010550(s32, s32);
-extern s32 func_800178E8();
-extern void func_80249DD0(void);
+extern s32 func_800178E8(void);
+extern void func_80249DD0();
 extern func_8024AA38_Struct D_80253094;
 extern u8 D_802532B4[];
 

@@ -69,7 +69,7 @@ extern u8 D_8038BD88[];
 extern u8 D_8038BD8C[];
 extern u8 D_8038BD90[];
 extern u8 D_8038BD94[];
-extern void func_8021C934(void);
+extern void func_8021C934();
 
 void func_8037FEE4(struct func_8037FEE4_Struct *arg0, s32 arg1) {
     func_800023A8(0);

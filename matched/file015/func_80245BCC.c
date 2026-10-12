@@ -11,8 +11,8 @@ struct func_80245BCC_Struct {
 extern s32 func_801C3B5C();
 extern void func_801C2F0C(s32, void *);
 extern void func_80246598(void *, s32);
-extern void func_8024770C(void);
-extern void func_80245C60(void);
+extern void func_8024770C();
+extern void func_80245C60();
 extern void *D_8025A2A4;
 
 void func_80245BCC(void *arg0, s32 arg1) {

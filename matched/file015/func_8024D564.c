@@ -9,7 +9,7 @@ struct func_8024D564_Struct {
     struct func_8024D564_Inner *unk2C;
 };
 extern s16 func_801FD284(s16, s32, s32);
-extern void func_8024D5DC(void);
+extern void func_8024D5DC();
 extern struct func_8024D564_Struct *D_801BBCD0;
 
 void func_8024D564(void *arg0, void *arg1) {

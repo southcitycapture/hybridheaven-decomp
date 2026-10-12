@@ -47,7 +47,7 @@ typedef struct func_8024BE88_Struct {
 
 extern void func_801C3B10(s32);
 extern void func_801C3B2C(s32);
-extern void func_8024BEF0(void);
+extern void func_8024BEF0();
 
 void func_8024BE88(func_8024BE88_Struct *arg0, s32 arg1) {
     s32 flag;
@@ -75,7 +75,7 @@ typedef struct func_8024BF80_Struct {
 
 extern s32 func_801C3044(void);
 extern void func_801C2F0C(s32, func_8024BF80_Struct *);
-extern void func_8024BFEC(void);
+extern void func_8024BFEC();
 
 void func_8024BF80(s32 arg0, s32 arg1) {
     func_8024BF80_Struct sp18;
@@ -90,7 +90,14 @@ void func_8024BF80(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/8024B090/func_8024BFEC.s")
+
+extern void func_8024C028();
+
+void func_8024BFEC(s32 arg0, s32 arg1) {
+    if (func_80133A24(115) != 0) {
+        func_800058DC(arg0, func_8024C028);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/8024B090/func_8024C028.s")
 
@@ -119,7 +126,7 @@ extern s32 func_801517CC(s32);
 extern void func_801512CC(s32, s32, s32, s32);
 extern void func_80151430(s32, s32);
 extern void func_8015115C(s32, void *);
-extern void func_8024C3D8(void);
+extern void func_8024C3D8();
 extern u8 D_80253968[];
 
 typedef struct func_8024C350_Struct {
@@ -152,7 +159,7 @@ struct func_8024C5B4_Struct {
 
 extern f32 D_80259740;
 extern s32 func_801C3DC8(s32, s32, s32, s32, f32, f32, f32, f32, f32);
-extern void func_8024C630(void);
+extern void func_8024C630();
 
 void func_8024C5B4(s32 arg0, s32 arg1) {
     if (func_801C3DC8(arg0, D_801BBBF0.unk1E8, D_801BBBF0.unk1EC, D_801BBBF0.unk1F0, D_801BBBF0.unk1F4, D_801BBBF0.unk1F8, D_801BBBF0.unk1FC, D_80259740, 35.0f) == 0) {
@@ -199,7 +206,7 @@ typedef struct func_8024C87C_Struct {
 extern s32 func_800178E8(void);
 extern void func_8001E978(void *, s32, s32, s32, s32, s32, s32, s32);
 extern s16 D_80089354;
-extern void func_8024C8F0(void);
+extern void func_8024C8F0();
 
 void func_8024C87C(func_8024C87C_Struct *arg0, s32 arg1) {
     if (func_800178E8() != 0) {
@@ -227,7 +234,7 @@ typedef struct func_8024D134_Struct {
 } func_8024D134_Struct;
 
 extern u8 D_80253974[];
-extern void func_8024D19C(void);
+extern void func_8024D19C();
 extern void func_801514B0(s32, s32);
 extern s32 func_80151790(s32);
 

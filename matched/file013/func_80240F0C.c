@@ -19,7 +19,7 @@ struct func_80240F0C_Pair {
 };
 
 extern s8 D_801BBD76;
-extern void func_80240F4C(void);
+extern void func_80240F4C();
 
 void func_80240F0C(struct func_80240F0C_Self *arg0, struct func_80240F0C_Pair *arg1) {
     D_801BBD76 = 1;

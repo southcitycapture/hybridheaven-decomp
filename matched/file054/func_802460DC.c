@@ -4,7 +4,7 @@ extern s32 func_80130078(void);
 extern void func_8001E978(void *, s32, s32, s32, s32, s32, s32, s32);
 extern void func_80020718(s32);
 extern void func_800058DC(void *, void (*)(void));
-extern void func_80246160(void);
+extern void func_80246160();
 extern u16 D_80089474[];
 
 void func_802460DC(void *arg0, s32 arg1) {

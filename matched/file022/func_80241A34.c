@@ -6,7 +6,7 @@ extern s32 func_80133A24(s32);
 extern void func_80133980(s32);
 extern void func_8001F74C(s32);
 extern void func_80203830(s32, void *);
-extern void func_80241AB8(void);
+extern void func_80241AB8();
 extern u8 D_8024F414[];
 extern void *D_801BBCCC;
 

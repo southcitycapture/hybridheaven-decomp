@@ -3,7 +3,7 @@
 extern void func_8012D7A8(void);
 extern void func_801CD878(void *, void **);
 extern void func_801CD994(u8, u8, u8, u8);
-extern void func_80378034(void);
+extern void func_80378034();
 extern u16 D_8038A8F8;
 
 struct func_80378190_Glob {

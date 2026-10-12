@@ -14,9 +14,9 @@ extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern func_8036F528_Vec D_80387B7C;
-void func_8013A2E0(s32, func_8036F528_Vec);
+extern void func_8013A2E0();
 void func_800058DC(s32, void *);
-void func_8036F5E8(void);
+extern void func_8036F5E8();
 
 void func_8036F528(s32 arg0, s32 arg1) {
     func_8036F528_Struct *var_v0;

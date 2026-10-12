@@ -2,8 +2,8 @@
 
 extern void func_80020718(s32);
 extern void func_80370500(void *);
-extern void func_8037073C(void);
-extern void func_803709A8(void);
+extern void func_8037073C();
+extern void func_803709A8();
 
 void func_80370884(void *arg0, s32 arg1) {
     func_8036F898_StructB *a;

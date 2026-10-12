@@ -6,7 +6,7 @@ typedef struct func_80242D48_Struct {
 } func_80242D48_Struct;
 
 extern struct func_80243290_StructTriple D_802520E0;
-extern void func_80242DCC(void);
+extern void func_80242DCC();
 
 void func_80242D48(func_80242D48_Struct *arg0, s32 arg1) {
     if (arg0->unk90++ >= 0x1E) {

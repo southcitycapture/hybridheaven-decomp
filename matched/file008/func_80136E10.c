@@ -39,7 +39,7 @@ extern void func_8012C784(void *, s32, u32);
 extern u8 D_80164F40[];
 extern u8 D_8017AF38[];
 extern u8 D_801BBBF0[];
-extern void func_80136F30(void);
+extern void func_80136F30();
 
 void func_80136E10(struct func_80136E10_Struct0 *arg0, struct func_80136E10_Struct1 **arg1) {
     f32 temp_fv0;

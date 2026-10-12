@@ -2,12 +2,8 @@
 extern void func_800058DC(void *, void *);
 extern void func_80020718(s32);
 
-typedef struct func_802525FC_Struct {
-    u8 pad[0x3C];
-    u16 unk3C;
-} func_802525FC_Struct;
 
-extern void func_802538A4(void);
+extern void func_802538A4();
 extern void func_801C4058(void *, s32, s32, s32);
 extern void func_80133980(s32);
 extern s32 func_801516CC(s32);

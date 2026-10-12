@@ -16,7 +16,7 @@ struct func_802410C8_Struct {
 extern s32 func_800178E8(void);
 extern void func_800179B0(void *);
 extern void func_8015122C(s32, void *, s32);
-extern void func_80241128(void);
+extern void func_80241128();
 extern u8 D_802468D0[];
 extern u8 D_80246A30[];
 extern s32 D_80248804;
@@ -49,7 +49,7 @@ struct func_80241A88_Struct {
 };
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_801512CC(s32, f32, f32, f32);
-extern void func_80241B98(void);
+extern void func_80241B98();
 extern u8 D_802476B8[];
 extern u8 D_80246E10[];
 extern u8 D_802468F4[];
@@ -81,7 +81,7 @@ extern void func_8015115C(s32, void *);
 extern u8 D_80246918[];
 extern u8 D_80246930[];
 extern s32 D_80248800;
-extern void func_80241FD8(void);
+extern void func_80241FD8();
 
 struct func_80241F30_Struct {
     u8 pad[0x90];
@@ -170,7 +170,7 @@ void func_802460D0(s32 arg0, s32 arg1) {
 extern s32 func_80130078(void);
 extern void func_8001E978(void *, s32, s32, s32, s32, s32, s32, s32);
 extern void func_80020718(s32);
-extern void func_80246160(void);
+extern void func_80246160();
 extern u16 D_80089474[];
 
 void func_802460DC(void *arg0, s32 arg1) {
@@ -264,7 +264,7 @@ struct func_80246730_Struct {
     u8 unk3A7;
 };
 
-extern void func_8012FE50(s32, u16, s32, s32, s32);
+extern s32 func_8012FE50();
 extern struct func_80246730_Struct D_801BBBF0;
 
 void func_80246730(void) {

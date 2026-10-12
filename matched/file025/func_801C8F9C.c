@@ -1,6 +1,6 @@
 #include "context.h"
 extern func_801C7A74_Struct D_801E04C0;
-void func_800058DC(s32 arg0, void (*arg1)(void));
+extern void func_800058DC(s32 arg0, void (*arg1)(void));
 
 struct func_801C8F9C_Inner {
     u8 pad0[0x8];
@@ -14,7 +14,7 @@ struct func_801C8F9C_Outer {
     struct func_801C8F9C_Inner *unk30;
 };
 
-extern void func_801C8D28(void);
+extern void func_801C8D28();
 
 void func_801C8F9C(void *arg0, void **arg1) {
     struct func_801C8F9C_Inner *temp_v1;

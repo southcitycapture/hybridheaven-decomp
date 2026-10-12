@@ -420,7 +420,7 @@ void func_801493A0(void) {
 
 extern void func_80006088(s32);
 extern void func_800058DC(void *, void *);
-extern void func_80149708(void);
+extern void func_80149708();
 extern s16 D_801BBD58;
 
 struct func_80149684_Struct {
@@ -497,7 +497,7 @@ void func_80149764(struct func_80149764_Struct *arg0, s32 *arg1) {
 }
 
 
-extern void func_80149E84(void);
+extern void func_80149E84();
 
 typedef struct func_80149880_Inner {
     u8 pad[0x94];

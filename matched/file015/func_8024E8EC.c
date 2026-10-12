@@ -22,7 +22,7 @@ struct func_8024E8EC_Init {
 
 extern void func_801339D0(s32);
 extern void func_801C2F0C(s32, void *);
-extern void func_8024E9A8(void);
+extern void func_8024E9A8();
 extern f32 D_8025A05C;
 
 void func_8024E8EC(struct func_8024E8EC_Struct *arg0, s32 arg1) {

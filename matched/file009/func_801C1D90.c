@@ -24,7 +24,7 @@ typedef struct func_801C1D90_StructArg {
     func_801C1D90_StructInner *unk5C;
 } func_801C1D90_StructArg;
 
-extern void func_80010550();
+extern s32 func_80010550();
 extern void func_801C1E2C(void *arg0, s32 arg1);
 
 void func_801C1D90(func_801C1D90_StructArg *arg0, s32 arg1) {

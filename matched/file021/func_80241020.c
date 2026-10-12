@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80241070(void);
+extern void func_80241070();
 
 struct func_80241020_Struct {
     u8 pad0[0x192];

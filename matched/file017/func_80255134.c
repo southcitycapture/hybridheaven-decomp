@@ -1,9 +1,9 @@
 #include "context.h"
 
-extern void func_8025799C(void);
+extern void func_8025799C();
 extern s32 func_801C3044(void);
 extern void func_801C2F0C(s32, void *);
-extern void func_802551A0(void);
+extern void func_802551A0();
 
 typedef struct func_80255134_Struct {
     s16 unk0;

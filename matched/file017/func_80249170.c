@@ -56,7 +56,7 @@ extern void func_80005E44(void *, void *);
 extern void func_80006214(void *);
 extern void func_8012C784(void *, s32, s32);
 extern void func_8012CF8C(void *, void *, s32, s32);
-extern void func_80249960(void);
+extern void func_80249960();
 extern func_80249170_Copy D_80164F40;
 extern u8 D_80258C34[];
 extern u8 D_80258C48[];

@@ -2,9 +2,9 @@
 
 extern u8 D_801BBD54;
 extern void func_80142570();
-extern void func_801C0254();
+extern void func_801C0254(void);
 extern void func_800058DC(s32, void *);
-extern void func_801BF54C();
+extern void func_801BF54C(s32 arg0, s32 arg1);
 
 void func_801BF500(s32 arg0, s32 arg1) {
     if (D_801BBD54 == 0) {

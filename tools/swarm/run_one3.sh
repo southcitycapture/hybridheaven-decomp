@@ -17,7 +17,7 @@ echo $? > exit.txt
 # API trouble (rate limit, overload, auth) is not a failed match: record ERROR so the runner retries it
 api_err=0
 if [ ! -s result.json ] || grep -qiE '"is_error": *true|rate.?limit|overloaded|429|5[0-9][0-9] |API Error' result.json stderr.txt 2>/dev/null; then
-  checks_used=$(cat .checks 2>/dev/null || echo 0)
+  checks_used=$(cat .check_calls 2>/dev/null || cat .checks 2>/dev/null || echo 0)   # HARNESS2 doesn't count every call
   [ "$checks_used" -eq 0 ] && api_err=1
 fi
 # verify independently: never trust the worker's own claim

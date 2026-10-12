@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80005700(void);
+extern void func_80005700();
 
 struct func_80244E28_Sub38 {
     u8 pad0[0x14];

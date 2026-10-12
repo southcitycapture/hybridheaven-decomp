@@ -14,7 +14,7 @@ struct func_80240E30_Struct {
 
 extern struct func_80240E30_Struct D_801BBBF0;
 extern u8 D_80245DFC[];
-extern void func_80240E94(void);
+extern void func_80240E94(u64 arg0);
 void func_80203830(s32 arg0, void *arg1);
 
 void func_80240E30(s32 arg0, s32 arg1) {

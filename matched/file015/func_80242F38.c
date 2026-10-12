@@ -26,7 +26,7 @@ typedef struct func_80242F38_StructGlobal {
 extern s32 func_80011140(void **, s32, func_80242F38_StructGlobal, s32);
 extern func_80242F38_StructGlobal D_802520F8;
 extern u8 D_80252320[];
-extern void func_80242FE8(void);
+extern void func_80242FE8();
 
 void func_80242F38(func_80242F38_StructArg *arg0, void ** volatile arg1) {
     s32 temp;

@@ -8,7 +8,7 @@ extern void func_80005F6C(void *, void *);
 extern void func_80006214(void *);
 extern void func_800062F8(void *, u32);
 void func_8012C89C(void *, s32, s32, s32);
-void func_802427B4();
+extern void func_802427B4();
 
 extern u8 D_80251040[];
 

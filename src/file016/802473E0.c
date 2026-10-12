@@ -153,7 +153,7 @@ struct func_802476B0_StructArg0 {
     struct func_802476B0_StructObj *unk38;
 };
 
-extern void func_802477BC(void);
+extern void func_802477BC();
 extern s32 D_801BBCD0;
 
 void func_802476B0(void *arg0, void **arg1) {
@@ -200,7 +200,7 @@ struct func_802488E8_StructBBBF0 {
 };
 
 extern u8 D_80249CB8;
-extern void func_80248C04(void);
+extern void func_80248C04();
 
 void func_802488E8(struct func_802488E8_StructArg *arg0, s32 arg1) {
     D_801BBBF0.unkF0C = 0;
@@ -244,7 +244,7 @@ struct func_80248DE0_StructBBBF0 {
 };
 
 extern void func_80011140(s32, void *, func_80248DE0_StructCBC, s32);
-extern void func_80010550(s32, void *);
+extern s32 func_80010550();
 extern void func_801C4A5C(void *, s32);
 extern void func_801E5010(void);
 extern func_80248DE0_StructCBC D_80249CBC;
@@ -272,7 +272,7 @@ void func_80248DE0(void *arg0, s32 arg1) {
 
 
 extern s32 D_8024F510;
-void func_80248F04(void);
+extern void func_80248F04();
 
 void func_80248ED4(s32 arg0, s32 arg1) {
     D_8024F510 = arg0;
@@ -299,7 +299,7 @@ struct func_80248F3C_Struct1 {
 extern void func_8013A28C(s32, struct func_80248F3C_Struct3);
 extern struct func_80248F3C_Struct3 D_80249D7C;
 extern s8 D_80249CB4;
-extern void func_80248FBC(void);
+extern void func_80248FBC();
 
 void func_80248F3C(struct func_80248F3C_Struct1 *arg0, s32 arg1) {
     struct func_80248F3C_Struct2 *temp_v0;

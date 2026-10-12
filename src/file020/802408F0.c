@@ -90,7 +90,7 @@ typedef struct func_80240EF8_Struct {
 
 extern s32 func_801C3044(void);
 extern void func_80020718(s32 arg0);
-extern void func_80240F7C(void);
+extern void func_80240F7C();
 
 void func_80240EF8(void *arg0, void *arg1) {
     u8 pad[0x10];
@@ -147,7 +147,28 @@ void func_802413A0(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80241420.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_802414B8.s")
+extern void func_80241524();
+
+struct func_802414B8_Struct {
+    s16 a;
+    s32 b;
+    f32 c;
+    s16 d;
+    u8 pad[0x10];
+};
+
+void func_802414B8(void *arg0, s32 arg1) {
+    struct func_802414B8_Struct sp18;
+
+    if (func_801C3044() == 0) {
+        sp18.a = 0x1000;
+        sp18.b = 0x0168002D;
+        sp18.d = 0xF;
+        sp18.c = 3.0f;
+        func_801C2F0C(5, (void *) &sp18);
+        func_800058DC(arg0, (void *) func_80241524);
+    }
+}
 
 
 struct func_80241524_Struct {
@@ -157,7 +178,7 @@ struct func_80241524_Struct {
 
 extern void func_8012C89C(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern void func_8001E978(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);
-extern void func_802415B4(void);
+extern void func_802415B4();
 extern s16 D_80089354;
 
 void func_80241524(struct func_80241524_Struct *arg0, s32 arg1) {
@@ -189,7 +210,28 @@ void func_802418D4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80241AE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80241B80.s")
+extern void func_80241BEC();
+
+struct func_80241B80_Struct {
+    s16 a;
+    s32 b;
+    f32 c;
+    s16 d;
+    u8 pad[0x10];
+};
+
+void func_80241B80(void *arg0, s32 arg1) {
+    struct func_80241B80_Struct sp18;
+
+    if (func_801C3044() == 0) {
+        sp18.a = 0x1000;
+        sp18.b = 0x0168002D;
+        sp18.d = 0xF;
+        sp18.c = 3.0f;
+        func_801C2F0C(5, (void *) &sp18);
+        func_800058DC(arg0, (void *) func_80241BEC);
+    }
+}
 
 
 struct func_80241BEC_Struct {

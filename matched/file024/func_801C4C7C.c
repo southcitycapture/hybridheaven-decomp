@@ -14,7 +14,7 @@ extern u8 D_801CEF58[];
 extern u8 D_801CEF64[];
 extern u8 D_801CEF70[];
 extern u8 D_801CEF74[];
-extern void func_801C4E90(void);
+extern void func_801C4E90();
 
 void func_801C4C7C(s32 arg0, s32 arg1) {
     if (D_801BBC0D != 0) {

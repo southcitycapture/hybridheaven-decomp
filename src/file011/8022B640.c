@@ -134,7 +134,7 @@ s32 func_8022BA44(s32 arg0) {
 }
 
 
-extern void func_80232E94(void);
+extern void func_80232E94();
 
 s32 func_8022BB28(void) {
     u8 *var_v0;
@@ -412,7 +412,7 @@ struct func_80231B28_Struct {
 extern void func_80230318(struct func_80231B28_Struct *arg0, struct func_80231B28_Struct *arg1);
 extern void func_80230728(struct func_80231B28_Struct *arg0, struct func_80231B28_Struct *arg1);
 extern void func_80230930(struct func_80231B28_Struct *arg0, struct func_80231B28_Struct *arg1);
-extern void func_80230B58(struct func_80231B28_Struct *arg0, struct func_80231B28_Struct *arg1);
+extern s32 func_80230B58();
 
 void func_80231B28(void) {
     struct func_80231B28_Struct *var_a0;

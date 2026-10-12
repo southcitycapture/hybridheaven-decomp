@@ -3,10 +3,10 @@
 
 extern s32 func_80150584(void);
 extern s32 func_801C3D20(f32, f32, f32);
-extern void func_80133A24(s32);
+extern s32 func_80133A24();
 extern void func_800058DC(void *, void *);
 extern f32 D_80246BE8;
-extern void func_80243724(void);
+extern void func_80243724();
 
 void func_802436C0(struct func_802436C0_Struct *arg0, s32 arg1) {
     if (func_80150584() == 0) {

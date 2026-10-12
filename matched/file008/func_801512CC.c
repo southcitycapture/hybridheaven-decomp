@@ -17,7 +17,7 @@ typedef struct func_801512CC_Struct {
     func_801512CC_Mid *unk24;
 } func_801512CC_Struct;
 
-s32 func_801517CC(void);
+extern s32 func_801517CC();
 
 s32 func_801512CC(func_801512CC_Struct *arg0, f32 arg1, f32 arg2, f32 arg3) {
     if (func_801517CC() != 0) {

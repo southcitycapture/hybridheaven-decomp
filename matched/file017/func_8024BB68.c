@@ -7,7 +7,7 @@ extern void func_801C3B2C(s32);
 extern void func_801C3B10(s32);
 extern void func_801FBB30(void);
 extern void func_800058DC(s32, void *);
-extern void func_8024BBD4(void);
+extern void func_8024BBD4();
 
 void func_8024BB68(s32 arg0) {
     func_8024CEA0();

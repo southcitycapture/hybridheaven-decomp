@@ -4,7 +4,7 @@ typedef struct func_8024AA38_Struct {
     s32 unk4;
     s32 unk8;
 } func_8024AA38_Struct;
-void func_8013A1B4(s32, func_8024AA38_Struct, s32);
+extern void func_8013A1B4();
 
 typedef struct func_80249854_Sub {
     u8 pad[4];

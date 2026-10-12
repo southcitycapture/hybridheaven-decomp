@@ -19,7 +19,7 @@ extern void func_80005E44(void *, void *);
 extern void func_80006214(void *);
 extern void func_800058DC(void *, void *);
 extern u8 D_80164F40[];
-extern void func_8024276C(void);
+extern void func_8024276C(s32 arg0, s32 arg1);
 
 void func_802426DC(func_802426DC_Struct *arg0, s32 arg1) {
     if (func_80133A24(0x68) != 0) {

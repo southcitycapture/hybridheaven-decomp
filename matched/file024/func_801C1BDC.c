@@ -6,8 +6,8 @@ extern s32 D_801CFD08;
 extern s16 D_801CC8D0;
 extern void func_801C1040(s32, s32, s32);
 extern void func_801C125C(s32);
-extern void func_801C1C44(void);
-extern void func_801C28E4(void);
+extern void func_801C1C44();
+extern void func_801C28E4();
 
 void func_801C1BDC(s32 arg0, s32 arg1) {
     func_800058DC(D_801CC8A8, &func_801C28E4);

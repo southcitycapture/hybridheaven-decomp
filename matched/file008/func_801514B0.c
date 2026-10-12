@@ -15,7 +15,7 @@ typedef struct func_801514B0_Struct {
     func_801514B0_Struct24 *unk24;
 } func_801514B0_Struct;
 
-s32 func_801517CC();
+extern s32 func_801517CC();
 
 s32 func_801514B0(func_801514B0_Struct *arg0, s16 arg1)
 {

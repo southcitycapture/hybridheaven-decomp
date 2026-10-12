@@ -6,7 +6,7 @@ typedef struct func_801F908C_Struct {
 } func_801F908C_Struct;
 
 extern s32 func_801C3B3C(void);
-extern void func_801F9104(void);
+extern void func_801F9104();
 
 void func_801F908C(func_801F908C_Struct *arg0, s32 arg1) {
     if (func_801C3B3C() == 0) {

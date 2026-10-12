@@ -20,7 +20,7 @@ extern void func_8037DA84(void *, void *);
 extern void func_801498CC();
 extern void func_8014AB48();
 extern void func_80148E44(void *a0);
-extern void func_80148FC4(void *a0, void (*a1)(), s32 a2, s32 a3);
+extern s32 func_80148FC4();
 extern s32 func_8037FED4;
 extern void func_801471DC(s32 a0);
 extern s32 D_8038A9A0;

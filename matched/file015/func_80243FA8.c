@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern struct func_80243290_StructTriple D_80252400;
-extern void func_80244060(void);
+extern void func_80244060(void *arg0, s32 volatile arg1, s32 arg2);
 
 void func_80243FA8(void *arg0, void **arg1) {
     ((struct func_80243290_StructOuter *)*arg1)->unk2C->unk4 = -56.5f;

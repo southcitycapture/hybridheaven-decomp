@@ -1,5 +1,5 @@
 #include "context.h"
-extern void func_800179B0(void *arg0);
+extern void func_800179B0(void *);
 extern void func_801C2F0C(s32 arg0, void *arg1);
 
 typedef struct func_80249A84_Struct {
@@ -21,7 +21,7 @@ extern s32 func_80010550(s32, s32);
 void func_801C3C60(void *, s32);
 extern func_8024AA38_Struct D_8025307C;
 extern u8 D_802530C4[];
-extern void func_80249B54(void);
+extern void func_80249B54();
 
 void func_80249A84(func_80249A84_Struct *arg0, s32 arg1) {
     func_80249A84_Locals sp;

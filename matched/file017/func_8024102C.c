@@ -9,9 +9,9 @@ struct func_8024102C_Struct {
     s16 pad1;
 };
 
-extern void func_800058DC(s32 arg0, void *arg1);
-extern void func_801C2F0C(s32 arg0, struct func_8024102C_Struct *arg1);
-extern s32 func_801C3044();
+extern void func_800058DC(void *, void *);
+extern void func_801C2F0C(s32, void *);
+extern s32 func_801C3044(void);
 extern void func_80241094();
 
 void func_8024102C(s32 arg0, s32 arg1) {

@@ -28,7 +28,7 @@ extern s32 func_80133A24(s32);
 extern f32 D_8024A324;
 extern f32 D_8024A328;
 extern f32 D_8024A32C;
-extern void func_80240E38(void);
+extern void func_80240E38();
 
 void func_80240D74(func_80240D74_StructA *arg0, s32 arg1) {
     if (func_80133A24(0x47) != 0) {

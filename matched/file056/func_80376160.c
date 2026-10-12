@@ -20,7 +20,7 @@ extern void func_80126968(void);
 extern void func_8013B570(void *, u16, s32, s32, void *);
 extern void func_8012E5B0(void);
 extern void func_8012E6BC(void);
-extern void func_80376218(void);
+extern void func_80376218();
 
 void func_80376160(struct func_80376160_Struct *arg0, s32 arg1) {
     struct func_80376160_Inner *temp_v1;

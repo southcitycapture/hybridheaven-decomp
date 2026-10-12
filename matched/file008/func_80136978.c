@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_801364F4(void);
+extern void func_801364F4();
 
 void func_80136978(s32 arg0, s32 arg1) {
     *(u16 *)((u8 *)&D_801BBBF0 + 0x194) = 2;

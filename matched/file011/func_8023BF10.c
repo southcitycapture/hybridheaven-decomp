@@ -11,7 +11,7 @@ struct func_8023BF10_StructB {
 
 extern s8 func_80243E50(u8, s32, u8, u8);
 extern void func_80376BE4(void *);
-extern void func_8023A09C(void);
+extern void func_8023A09C();
 extern u8 D_801842A0[];
 
 void func_8023BF10(void *arg0, void *arg1) {

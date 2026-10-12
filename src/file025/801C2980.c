@@ -73,7 +73,37 @@ s32 func_801C2C90(f32 arg0, f32 arg1, f32 arg2, u8 arg3, u8 arg4, u8 arg5, u8 ar
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C2D38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C2E9C.s")
+extern void func_8012CF8C(void *arg0, u8 *arg1, s32 arg2, s32 arg3);
+
+extern void func_80005700();
+
+struct func_801C2E9C_Struct {
+    u8 pad0[0x30];
+    u8 *unk30;
+};
+
+struct func_801C2E9C_Struct2 {
+    u8 pad0[0x9C];
+    u16 unk9C;
+};
+
+void func_801C2E9C(struct func_801C2E9C_Struct2 *arg0, struct func_801C2E9C_Struct **arg1)
+{
+  u16 *temp_t8;
+  s32 temp_t9;
+  int new_var;
+  s32 temp_t0;
+  func_8012CF8C(arg0, (*arg1)->unk30 + 0x40, 0xAA, 0);
+  temp_t8 = &arg0->unk9C;
+  temp_t9 = (((((((((((*temp_t8) + 1) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & (0xFFFFFFFFu & 0xFFFFFFFFFFFFFFFFu)) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu;
+  new_var = 0xFFFF;
+  temp_t0 = temp_t9 & new_var;
+  *((0, temp_t8)) = temp_t9;
+  if (temp_t0 >= 4)
+  {
+    func_80005700(arg0);
+  }
+}
 
 
 extern void func_801C0D04(s32, s32);
@@ -246,7 +276,7 @@ typedef struct func_801C3940_Struct {
     u16 unk9C;
 } func_801C3940_Struct;
 
-extern void func_801C39E0(void);
+extern void func_801C39E0();
 
 void func_801C3940(func_801C3940_Struct *arg0, s32 arg1) {
     arg0->unk90 = D_801DF790;
@@ -324,7 +354,6 @@ struct func_801C4D3C_Struct2 {
     u16 unkB2;
 };
 
-extern void func_8012CF8C(void *arg0, u8 *arg1, s32 arg2, s32 arg3);
 extern s32 D_801DA37C[];
 
 void func_801C4D3C(struct func_801C4D3C_Struct2 *arg0, struct func_801C4D3C_Struct **arg1) {
@@ -455,7 +484,7 @@ typedef struct func_801C63B4_Struct {
 
 extern void func_8001F540();
 extern s32 D_801DA50C;
-extern void func_801C640C();
+extern void func_801C640C(s32 arg0, s32 arg1);
 
 void func_801C63B4(func_801C63B4_Struct *arg0, void *arg1) {
     if (arg0->unk90++ >= 7) {
@@ -465,7 +494,6 @@ void func_801C63B4(func_801C63B4_Struct *arg0, void *arg1) {
 }
 
 
-extern void func_80005700();
 
 void func_801C640C(s32 arg0, s32 arg1) {
     D_801DA514 = arg0 * 0;

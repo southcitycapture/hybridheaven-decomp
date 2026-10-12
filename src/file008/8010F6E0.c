@@ -8,7 +8,7 @@ extern void func_8011AA54(void *, void *);
 extern u8 D_801BBAE8[];
 extern u8 D_801BBAEA[];
 extern u8 D_801BBBF0[];
-extern void func_8010FABC(void);
+extern void func_8010FABC();
 
 void func_8010FA10(void *arg0, s32 arg1) {
     func_8011AA54(arg0, func_8010FABC);

@@ -25,10 +25,10 @@ struct func_802218D4_Obj {
 };
 
 extern s32 D_801BBCCC;
-extern void func_802219F8(void);
-extern void func_80221E9C(void);
-extern void func_80222708(void);
-extern void func_803628B8(s32, s32);
+extern void func_802219F8();
+extern void func_80221E9C();
+extern void func_80222708();
+extern s32 func_803628B8();
 
 void func_802218D4(struct func_802218D4_Obj *arg0, s32 arg1) {
     extern s32 func_80224F5C();

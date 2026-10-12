@@ -18,7 +18,7 @@ struct func_80246B38_StructA {
 };
 
 extern struct func_80246B38_StructA *D_801BBCD8;
-extern void func_80246C20(void);
+extern void func_80246C20();
 extern void func_80020718(s32);
 
 void func_80246B38(struct func_80246B38_Struct *arg0, s32 arg1) {

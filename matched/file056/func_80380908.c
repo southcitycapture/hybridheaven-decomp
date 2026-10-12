@@ -12,7 +12,7 @@ struct func_80380908_Obj {
 extern void func_801471DC(s32 a0);
 extern void func_80147DCC(s32 a0);
 extern void func_80148E44(void *a0);
-extern void func_80148FC4(void *a0, void (*a1)(), s32 a2, s32 a3);
+extern s32 func_80148FC4();
 extern void func_8014AB48();
 
 void func_80380908(struct func_80380908_Obj *arg0, s32 arg1) {

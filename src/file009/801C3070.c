@@ -27,7 +27,7 @@ struct func_801C3174_Global {
 };
 
 extern void func_800058DC(void *a, void *b);
-extern void func_801C31FC(void);
+extern void func_801C31FC();
 extern struct func_801C3174_Global D_801E0B20;
 
 void func_801C3174(struct func_801C3174_Obj *arg0, s32 arg1) {
@@ -73,7 +73,7 @@ struct func_801C32EC_Global {
     f32 unk8;
 };
 
-extern void func_801C3374(void);
+extern void func_801C3374();
 
 void func_801C32EC(struct func_801C32EC_Obj *arg0, s32 arg1) {
     struct func_801C32EC_Sub *temp_v1;

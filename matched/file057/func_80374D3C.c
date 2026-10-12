@@ -12,7 +12,7 @@ struct func_80374D3C_StructXform {
 };
 
 extern u8 D_8038B604[];
-extern void func_80374BAC(void);
+extern void func_80374BAC();
 extern s32 func_8011AAF4(void *, s32, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_800058DC(s32, void (*)(void));
 

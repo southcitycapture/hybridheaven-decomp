@@ -16,7 +16,7 @@ typedef struct func_80239A18_Struct2 {
     s8 unk2D9;
 } func_80239A18_Struct2;
 
-extern void func_8023A09C(void);
+extern void func_8023A09C();
 
 void func_80239A18(func_80239A18_Struct *arg0, s32 arg1) {
     func_80239A18_Struct2 *temp_v0;

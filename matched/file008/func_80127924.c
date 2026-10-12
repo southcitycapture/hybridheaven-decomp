@@ -13,8 +13,8 @@ typedef struct func_80127924_StructA {
 } func_80127924_StructA;
 
 extern s32 func_800058DC(s32, void *);
-extern void func_80005F6C(s32, void *);
-extern void func_80006214(s32);
+extern s32 func_80005F6C(s32, void *);
+extern s32 func_80006214(s32);
 extern u8 D_80164F40[];
 extern u8 D_8017B768[];
 extern u8 func_8012798C[];

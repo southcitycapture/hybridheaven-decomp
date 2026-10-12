@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80005700(void);
+extern void func_80005700();
 
 typedef struct func_801CE898_StructInner {
     u8 pad0[0x4C];

@@ -20,7 +20,7 @@ typedef struct func_80240A68_StructA {
 
 extern u8 D_801BBBF0[];
 extern void func_80240B24();
-extern void func_80240BE4(void);
+extern void func_80240BE4();
 
 void func_80240A68(func_80240A68_StructA *arg0, s32 arg1) {
     *(f32 *) (D_801BBBF0 + 0x390) = 0.0f;

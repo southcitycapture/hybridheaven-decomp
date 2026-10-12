@@ -13,7 +13,7 @@ extern void func_800058DC(void *, void *);
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C;
 extern u8 D_801BC3D8;
-extern void func_8038DA8C(void);
+extern void func_8038DA8C();
 
 void func_8038DA14(struct func_8038DA14_Struct *arg0, s32 arg1) {
     u8 *var_a1;

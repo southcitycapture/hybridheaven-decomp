@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void func_800058DC(s32, void *);
-extern void func_801C11BC(s32);
+extern s32 func_801C11BC();
 extern void func_801C1A30();
 extern void func_801C17C8();
 extern s32 D_801CC8A4;

@@ -17,8 +17,8 @@ extern void func_80006214(void *);
 extern void func_80002BAC(s32);
 extern u8 func_8022B640(s32);
 extern void func_80381310(void *, s8 *, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
-extern void func_8038150C(void);
-extern void func_80381D48(void);
+extern void func_8038150C();
+extern void func_80381D48();
 extern u8 D_801BC3D8[];
 
 void func_803813C0(struct func_803813C0_Struct *arg0, s32 arg1) {

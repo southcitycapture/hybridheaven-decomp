@@ -7,8 +7,8 @@ typedef struct func_8002CFB0_Struct {
 } func_8002CFB0_Struct;
 
 extern void func_80030480(void *, void *, void *, s32);
-extern void func_80030810(void);
-extern void func_8003089C(void);
+extern void func_80030810();
+extern void func_8003089C();
 
 void func_8002CFB0(func_8002CFB0_Struct *arg0) {
     func_80030480(arg0, &func_80030810, &func_8003089C, 3);

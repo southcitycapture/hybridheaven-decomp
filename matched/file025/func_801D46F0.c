@@ -7,7 +7,7 @@ extern s32 D_801DB5AC;
 extern s32 D_801DB5B4;
 extern s32 D_801DB5B8;
 extern s32 D_801E1600;
-extern void func_801D475C(void);
+extern void func_801D475C();
 
 void func_801D46F0(s32 arg0, s32 arg1) {
     D_801E1600 = arg0;

@@ -1985,7 +1985,17 @@ s32 func_801E8E2C(s32 arg0, s32 arg1) {
     return 50;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file048/801E1BE0/func_801E8E3C.s")
+
+
+s32 func_801E8E3C(s32 arg0, s32 arg1) {
+    s32 buf[0x7E];
+
+    func_801BF628(4, buf);
+    if (buf[3] >= 2) {
+        return 1;
+    }
+    return 0;
+}
 
 
 struct func_801E8E80_Struct4 {

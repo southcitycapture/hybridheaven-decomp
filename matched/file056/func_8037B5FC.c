@@ -9,7 +9,7 @@ s32 func_80010550(s32, s32, s32);
 void func_80020744(s32);
 void func_800058DC(void *, void *);
 extern s8 D_8038A93C;
-extern void func_8037B86C(void);
+extern void func_8037B86C();
 
 void func_8037B5FC(void *arg0, s32 arg1) {
     s32 temp;

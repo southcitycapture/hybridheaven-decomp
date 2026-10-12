@@ -13,7 +13,7 @@ struct func_8038D600_Struct {
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-extern void func_8038D4D4(void *, void *, void *);
+extern s32 func_8038D4D4();
 extern void func_800058DC(void *, void *);
 extern void func_8038D680(void);
 

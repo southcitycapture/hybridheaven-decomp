@@ -21,10 +21,10 @@ struct func_802466A4_Vec {
 };
 
 extern s32 func_800058DC(void *, void *);
-extern s32 func_8013A1B4(void **, struct func_802466A4_Vec, s32);
+extern s32 func_8013A1B4();
 extern struct func_802466A4_Vec D_8025294C;
 extern f32 D_80258BB0;
-extern void func_80246760(void);
+extern void func_80246760();
 
 void func_802466A4(void *arg0, void **arg1) {
     (*(struct func_802466A4_Obj **) arg1)->unk2C->unk4 = -278.0f;

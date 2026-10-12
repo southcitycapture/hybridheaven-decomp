@@ -24,7 +24,7 @@ struct func_80383490_StructOuter {
 };
 
 extern f64 D_80389B78;
-extern void func_80005700(void);
+extern void func_80005700();
 
 void func_80383490(struct func_80383490_StructArg0 *arg0, struct func_80383490_StructOuter **arg1) {
     struct func_80383490_StructInner *temp_v0;

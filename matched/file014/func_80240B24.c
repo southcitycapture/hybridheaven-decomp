@@ -22,7 +22,7 @@ typedef struct func_80240B24_StructA {
 } func_80240B24_StructA;
 
 extern u8 D_801BBBF0[];
-extern void func_80240BD8(void);
+extern void func_80240BD8(s32 arg0, s32 arg1);
 extern s32 func_8012AAE8(void *, s32, s32, s32, f32);
 
 void func_80240B24(func_80240B24_StructA *arg0, s32 arg1) {

@@ -30,7 +30,7 @@ struct func_802416A8_Globals {
 
 extern struct func_802416A8_Globals D_801BCC24;
 extern f64 D_8025BE40;
-extern void func_8024173C(void);
+extern void func_8024173C();
 
 void func_802416A8(struct func_802416A8_Struct0 *arg0, struct func_802416A8_Struct2 *arg1) {
     u32 temp_v0;

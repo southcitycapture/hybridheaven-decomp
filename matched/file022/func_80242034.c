@@ -24,7 +24,7 @@ extern void func_80005F6C(s32, void *);
 extern void func_80006214(s32);
 extern void func_800062F8(void *, s32);
 extern void func_8012C89C(s32, s32, s32, s32);
-extern void func_80242140(void);
+extern void func_80242140();
 extern u8 D_80164F40[];
 extern u8 D_8017AF38[];
 

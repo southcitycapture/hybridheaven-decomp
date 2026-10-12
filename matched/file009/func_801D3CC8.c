@@ -10,7 +10,7 @@ typedef struct func_801D3CC8_StructOuter {
     u8 unk94;
 } func_801D3CC8_StructOuter;
 
-extern void func_801D3D5C(void);
+extern void func_801D3D5C();
 
 void func_801D3CC8(func_801D3CC8_StructOuter *arg0, func_801D3CC8_StructInner **arg1) {
     s32 var_s0;

@@ -6,7 +6,7 @@ extern s32 D_801DB660;
 extern s32 D_801DB664;
 extern s32 D_801DB684;
 extern s32 D_801DB688;
-extern void func_801D4D48(void);
+extern void func_801D4D48();
 s32 func_801CC654(s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 void func_8013B570(s32, s32, s32, s32, void *);
 

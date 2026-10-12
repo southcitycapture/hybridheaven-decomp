@@ -8,8 +8,8 @@ typedef struct func_801FF4C8_Struct {
 } func_801FF4C8_Struct;
 
 extern u16 D_8021774C[];
-void func_801FF52C(void);
-void func_801FF588(void);
+extern void func_801FF52C();
+extern void func_801FF588();
 void func_800058DC(void *self, void *fn);
 
 void func_801FF4C8(func_801FF4C8_Struct *arg0, s32 arg1) {

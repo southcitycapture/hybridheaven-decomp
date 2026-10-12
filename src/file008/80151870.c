@@ -52,7 +52,7 @@ s32 func_80151990(u8 arg0) {
 
 
 extern s32 func_800058DC(s32, void *);
-extern void func_80151AE0(void);
+extern void func_80151AE0();
 
 void func_80151A88(s32 arg0, s32 arg1) {
     u8 var_s0;

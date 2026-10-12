@@ -7,7 +7,7 @@ struct func_801CDF50_Struct {
 
 extern void func_8012D844(void *, s32, s32);
 extern void func_800058DC(void *, void (*)(void));
-extern void func_801CDFAC(void);
+extern void func_801CDFAC();
 
 void func_801CDF50(struct func_801CDF50_Struct *arg0, s32 arg1) {
     if (arg0->unk24 != 0) {

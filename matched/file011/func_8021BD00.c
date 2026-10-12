@@ -7,7 +7,7 @@ void func_8021BDE0(u8 *arg0, s32 arg1);
 extern u64 func_80031190(void);
 extern u64 func_80026F58(u64, u64);
 extern u64 func_80026E58(u64, u64);
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern u64 func_80034AB8(f64);
 extern s32 func_80151BC4(void);
 extern void func_802332D8(void);

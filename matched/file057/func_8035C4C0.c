@@ -6,7 +6,7 @@ typedef struct func_8035C4C0_Struct {
     u16 unk4E;
 } func_8035C4C0_Struct;
 
-extern void func_80222708(void);
+extern void func_80222708();
 
 void func_8035C4C0(s32 arg0, s32 arg1) {
     u8 *v0;

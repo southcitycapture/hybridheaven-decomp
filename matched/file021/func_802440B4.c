@@ -11,7 +11,7 @@ struct func_802440B4_Outer {
     struct func_802440B4_Inner *unk8;
 };
 
-extern void func_80244110(void);
+extern void func_80244110();
 
 void func_802440B4(s32 arg0, struct func_802440B4_Outer *arg1) {
     if (func_80133A24(0x1A5) != 0) {

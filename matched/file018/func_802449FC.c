@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_80005700(void);
+extern void func_80005700();
 
 typedef struct func_802449FC_StructB {
     u8 pad0[0x8];

@@ -2,7 +2,7 @@
 
 
 extern void func_801BF6C4(s32 a0);
-extern void func_8038D7D4(s32 a0, s32 a1);
+extern s32 func_8038D7D4(s32 arg0, s32 arg1);
 extern s32 D_8038E150;
 extern s32 D_8038DBFC;
 extern s32 D_8038DC00;
@@ -123,7 +123,10 @@ void func_8038D5F4(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D660.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D7D4.s")
+
+s32 func_8038D7D4(s32 arg0, s32 arg1) {
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D7E4.s")
 

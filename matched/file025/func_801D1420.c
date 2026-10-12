@@ -4,7 +4,7 @@ extern void func_8013B570(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
 extern s32 D_801DB144;
 extern s32 D_801DB148;
 extern s32 D_801DB14C;
-extern void func_801D1474(void);
+extern void func_801D1474();
 
 void func_801D1420(s32 arg0, s32 arg1) {
     D_801DB144 = 0;

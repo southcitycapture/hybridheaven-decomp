@@ -214,7 +214,7 @@ struct func_8013BF04_Struct {
     u8 unk4F;
 };
 
-extern void func_8013BF54(void);
+extern void func_8013BF54();
 
 void func_8013BF04(struct func_8013BF04_Struct *arg0, s32 arg1) {
     arg0->unk4D = 0x12;

@@ -400,9 +400,9 @@ extern void func_8023B148(void *, s32);
 extern void func_8023B608(void *, void *);
 extern s32 func_8023639C();
 extern void func_80237630(void);
-extern void func_8023BA64(void);
-extern void func_8023BBDC(void);
-extern void func_8023BD7C(void);
+extern void func_8023BA64();
+extern void func_8023BBDC();
+extern void func_8023BD7C();
 extern void func_800058DC(void *, void *);
 extern s32 D_80240888;
 extern u8 D_802408A1;
@@ -481,7 +481,7 @@ struct func_8023BF10_StructB {
 
 extern s8 func_80243E50(u8, s32, u8, u8);
 extern void func_80376BE4(void *);
-extern void func_8023A09C(void);
+extern void func_8023A09C();
 extern u8 D_801842A0[];
 
 void func_8023BF10(void *arg0, void *arg1) {
@@ -569,7 +569,7 @@ typedef struct func_8023C084_Struct {
 } func_8023C084_Struct;
 
 extern void func_80116E80(s32);
-extern void func_8023C134(void);
+extern void func_8023C134();
 
 void func_8023C084(void *arg0, s32 arg1) {
     u8 sp47;

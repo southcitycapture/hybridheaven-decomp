@@ -124,7 +124,7 @@ extern void (*D_801CCB00)(void *, s32, u8, void **);
 extern u8 D_801CD0E4[];
 extern void *D_801CFDA0;
 extern u8 D_801CFDC0;
-extern void func_801C70E8(void);
+extern void func_801C70E8();
 
 void func_801C7264(s32 arg0, s32 arg1) {
     void func_800058DC();

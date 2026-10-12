@@ -6,11 +6,11 @@ struct func_8021E52C_Struct {
     s32 unk8;
 };
 
-extern s32 func_80224F5C(void);
+extern s32 func_80224F5C();
 extern void func_802256E4(struct func_8021E52C_Struct *arg0, s32 arg1, s32 arg2);
 extern void func_8013A28C(s32 arg0, struct func_8021E52C_Struct arg1);
 extern void func_800058DC(s32 arg0, void *arg1);
-extern void func_8021E59C(void);
+extern void func_8021E59C();
 
 void func_8021E52C(s32 arg0, s32 arg1) {
     struct func_8021E52C_Struct sp1C;

@@ -14,7 +14,7 @@ struct func_80023B48_Struct {
 extern void *D_800CBDA4;
 
 extern void func_80023BF4(void);
-extern void func_80023D04(void);
+extern s32 func_80023D04();
 extern void func_80024358(void);
 extern void func_80025150(void);
 extern void func_80025694(void);

@@ -8,7 +8,7 @@ struct func_801F6008_Struct {
     u8 unkAF;
 };
 
-extern void func_80010550();
+extern s32 func_80010550();
 extern s32 func_801C3B3C();
 extern s8 func_801F53E8(void *);
 extern void func_801F60D8();

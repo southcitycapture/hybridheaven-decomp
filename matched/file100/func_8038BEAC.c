@@ -10,7 +10,7 @@ struct func_8038BEAC_Outer {
     struct func_8038BEAC_Inner *unk2C;
 };
 
-extern struct func_8038BEAC_Outer *D_801BBCD8;
+extern struct func_8038BE98_Outer *D_801BBCD8;
 
 void func_8038BEAC(void) {
     D_801BBCD8->unk2C->unk1C = 33.0f;

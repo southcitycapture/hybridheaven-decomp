@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_801BF6C4(s32 arg0);
-void func_8038D1A0(s32 arg0, s32 arg1);
+extern s32 func_8038D1A0(s32 arg0, s32 arg1);
 extern s32 D_8038DB8C;
 extern s32 D_8038DB90;
 extern s32 D_8038DB94;

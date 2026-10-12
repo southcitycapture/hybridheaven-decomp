@@ -1,5 +1,5 @@
 #include "context.h"
-void func_800058DC(s32, void *);                    /* extern */
+extern void func_800058DC(s32, void *);                    /* extern */
 extern s32 func_80224F5C(s32, s32);
 s32 func_80369C7C(struct func_80369C7C_Obj1 *arg0);
 void func_80369F54(s32 *, s32, s32);                /* extern */

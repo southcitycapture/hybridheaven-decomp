@@ -20,14 +20,14 @@ typedef struct func_801F3900_Entry {
 } func_801F3900_Entry;
 
 extern s32 func_8000522C(u16, s32);
-extern void func_800058DC(void *, void *);
-extern void func_80005E44(void *, void *);
-extern void func_80006214(void *);
-extern void func_8012636C(void *, s32);
+extern void func_800058DC(s32, void *);
+extern void func_80005E44(s32, u8 *);
+extern void func_80006214(s32);
+extern void func_8012636C(s32, s32);
 extern void func_8012C784(void *, s32, s32);
 extern u8 D_80164F40[];
 extern func_801F3900_Entry *D_80171CEC[];
-extern void func_801F39A0(void);
+extern void func_801F39A0(s32 arg0, s32 arg1);
 
 void func_801F3900(func_801F3900_Struct *arg0, s32 arg1) {
     func_801F3900_Entry *temp_v0;

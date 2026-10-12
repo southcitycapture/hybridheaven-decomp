@@ -30,7 +30,7 @@ typedef struct func_80245680_Arg0 {
     func_80245680_Struct38 *unk38;
 } func_80245680_Arg0;
 
-extern void func_8001F74C(void);
+extern void func_8001F74C();
 extern void func_80005F6C(void *, void *);
 extern void func_80006214(void *);
 extern void func_8012636C(void *, s32);
@@ -38,7 +38,7 @@ extern void func_800062F8(void *, u32);
 extern void func_8012C784(void *, s32, u32);
 extern u8 D_80164F40[];
 extern u8 D_8017AF38[];
-extern void func_802457A8(void);
+extern void func_802457A8();
 
 void func_80245680(func_80245680_Arg0 *arg0, func_80245680_StructA **arg1) {
     f32 temp_fv0;

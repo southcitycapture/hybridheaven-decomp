@@ -29,10 +29,10 @@ typedef struct func_8038D770_StructC {
 } func_8038D770_StructC;
 
 extern func_8038D770_StructB D_801BBBF0;
-extern func_8038D770_StructC D_801BC03C;
-extern func_8038D770_StructC D_801BC3D8;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
 extern void func_8022B3E0();
-extern void func_8038D618();
+extern s32 func_8038D618();
 extern void func_800058DC();
 extern void func_8038D770();
 

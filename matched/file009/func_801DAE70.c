@@ -27,7 +27,7 @@ struct func_801DAE70_StructA {
 
 extern s8 D_801E4A90;
 extern void func_800058DC(s32, void *);
-extern void func_801DAEE8(void);
+extern void func_801DAEE8();
 
 void func_801DAE70(s32 a0, s32 a1) {
     struct func_801DAE70_StructA *a;

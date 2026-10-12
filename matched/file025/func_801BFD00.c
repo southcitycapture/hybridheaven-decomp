@@ -5,7 +5,7 @@ extern s32 func_801C2000(s32, s32);
 extern s64 func_801C2058(s32, s32);
 extern void func_801C233C(s32, s32, s32 *);
 extern void func_801C1FE8();
-extern void func_801BFE60();
+extern void func_801BFE60(void);
 extern void func_801BFF20(void);
 extern void func_801BFFAC(void);
 extern s32 D_801D8CE4;

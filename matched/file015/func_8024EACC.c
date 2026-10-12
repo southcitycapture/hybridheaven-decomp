@@ -36,7 +36,7 @@ extern s32 func_801C3044(void);
 extern s32 func_801505AC(s32);
 extern void *func_801C3B7C(s32);
 extern void func_801C2F0C(s32, void *);
-extern void func_8024EB90(void);
+extern void func_8024EB90();
 
 void func_8024EACC(struct func_8024EACC_Obj *arg0, s32 arg1) {
     struct func_8024EACC_Msg msg;

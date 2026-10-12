@@ -94,7 +94,20 @@ void func_80145390(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_80146894.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_80146A9C.s")
+
+extern f32 D_801BEC60[];
+
+f32 func_80146A9C(s16 *arg0, u8 arg1)
+{
+  f32 *temp_v0;
+  float new_var;
+  f32 temp_fa0;
+  temp_v0 = &D_801BEC60[arg1];
+  ;
+  new_var = ((f32) arg0[1]) - (*temp_v0);
+  *temp_v0 = (*temp_v0) + (new_var / (1.0f / 0.125f));
+  return *temp_v0;
+}
 
 extern u8 D_801819E4;
 
@@ -423,7 +436,60 @@ void func_80147450(struct func_80147450_Top *arg0)
   func_80147370(arg0, 0xFF, 0xFF, 0xFF, 0xFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_8014753C.s")
+
+struct func_8014753C_Inner {
+    u8 pad0[0x24];
+    s32 unk24;
+    u8 pad1[8];
+    s32 unk30;
+};
+
+struct func_8014753C_Node {
+    u8 pad0[0x10];
+    struct func_8014753C_Node *unk10;
+    u8 pad1[0x18];
+    struct func_8014753C_Inner *unk2C;
+};
+
+struct func_8014753C_Table {
+    u8 pad0[4];
+    s32 *unk4;
+};
+
+struct func_8014753C_Arg0 {
+    u8 pad0[0x24];
+    struct func_8014753C_Node *unk24;
+    u8 pad1[0x34];
+    struct func_8014753C_Table *unk5C;
+};
+
+void func_8014753C(struct func_8014753C_Arg0 *arg0, s32 arg1)
+{
+  struct func_8014753C_Node *var_a2;
+  int new_var;
+  struct func_8014753C_Table *temp_v0;
+  s32 *temp_v1;
+  u32 var_a3;
+  temp_v0 = arg0->unk5C;
+  temp_v1 = temp_v0->unk4;
+  var_a2 = arg0->unk24;
+  var_a3 = 0;
+  if (var_a2 != 0)
+  {
+    new_var = 0;
+    do
+    {
+      if (temp_v1[var_a3] >= new_var)
+      {
+        var_a2->unk2C->unk24 |= 0x100;
+        var_a2->unk2C->unk30 = arg1;
+      }
+      var_a2 = var_a2->unk10;
+      var_a3 = (var_a3 + 1) & 0xFF;
+    }
+    while (var_a2 != 0);
+  }
+}
 
 
 
@@ -673,7 +739,7 @@ extern void func_80005E44(void *a0, void *a1);
 extern void func_80006214(void *a0);
 extern u8 D_80164F40[];
 extern u8 D_801815F0[];
-extern void func_80147D48(void);
+extern void func_80147D48(s32 arg0, s32 arg1);
 
 struct func_80147C7C_Struct {
     s32 unk0;
@@ -712,5 +778,11 @@ void func_80147C7C(struct func_80147C7C_Arg0 *arg0, struct func_80147C7C_Arg1 *a
     func_800058DC(arg0, (void *) func_80147D48);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_80147D48.s")
+
+void func_80147D48(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 

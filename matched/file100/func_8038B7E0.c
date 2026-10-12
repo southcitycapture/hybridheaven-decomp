@@ -6,7 +6,7 @@ extern s32 D_8038DD60;
 
 void func_801BF6C4(s32 arg0);
 void func_800058DC(s32 arg0, void *arg1);
-void func_8038B838(void);
+extern void func_8038B838(s32 arg0, s32 arg1);
 void func_8038B8FC(void);
 
 void func_8038B7E0(s32 arg0, s32 arg1) {

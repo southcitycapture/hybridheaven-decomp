@@ -9,7 +9,7 @@ extern u8 D_801CE978[];
 extern u8 D_801CE994[];
 extern u8 D_801CE9B0[];
 extern u8 D_801CE9CC[];
-extern void func_801C1034(void);
+extern void func_801C1034();
 
 void func_801C0F98(func_801C0F98_Struct *arg0, s32 arg1) {
     arg0->unk90 = 150.0f;

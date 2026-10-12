@@ -15,7 +15,7 @@ typedef struct func_80151B30_Struct {
 
 extern func_80151B30_Struct D_801BBBF0;
 extern s32 func_80151B98(s32 arg0);
-extern void func_80151BD0(s32 arg0);
+extern s32 func_80151BD0(s32 arg0);
 
 void func_80151B30(void) {
     func_80151B98(1);

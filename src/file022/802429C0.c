@@ -65,7 +65,7 @@ void func_802432FC(s32 arg0, u16 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file022/802429C0/func_80244218.s")
 
 
-extern void func_80005700(void *, void *);
+extern s32 func_80005700();
 
 struct func_80244444_Struct {
     u8 pad[0xA0];

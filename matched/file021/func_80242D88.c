@@ -6,7 +6,7 @@ struct func_80242D88_Struct {
 };
 
 extern void func_8024286C(void *arg0);
-extern void func_80242C38(void);
+extern void func_80242C38();
 
 void func_80242D88(void *arg0, s32 arg1)
 {

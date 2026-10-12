@@ -3,7 +3,7 @@ extern void func_800058DC(s32, void *);
 
 extern void func_802169AC(void *, void *, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern void func_80145348(void *, s32, s32);
-extern void func_803784C0(void);
+extern void func_803784C0(s32 arg0, s32 arg1);
 
 void func_8037837C(void *arg0, s32 arg1) {
     u8 sp47[4];

@@ -30,8 +30,8 @@ struct func_8038DC8C_Struct {
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-extern void func_8038DA10(void *, void *, void *);
-extern void func_8038DD10(void);
+extern s32 func_8038DA10();
+extern void func_8038DD10();
 
 void func_8038DC8C(struct func_8038DC8C_Struct *arg0, s32 arg1) {
     void *var_a1;

@@ -33,11 +33,11 @@ typedef struct func_8035F544_Copy {
     s32 unk8;
 } func_8035F544_Copy;
 
-extern void func_802233B0(void *arg0, s32 arg1);
+extern s32 func_802233B0();
 extern void func_802237B0(void *arg0, s32 arg1);
-extern void func_8022397C(void *arg0);
+extern s32 func_8022397C();
 extern s32 func_80011140(s32, s32, func_8035F544_Copy, s32);
-extern void func_8035F6B4(void);
+extern void func_8035F6B4();
 extern func_8035F544_Copy D_80385680;
 
 void func_8035F544(func_8035F544_Obj *arg0, s32 arg1) {

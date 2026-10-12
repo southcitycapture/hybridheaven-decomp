@@ -2,7 +2,7 @@
 
 extern u64 func_801C0F18(s32 arg0, s32 arg1);
 extern s32 func_801C0EB0(s32 arg0, s32 arg1);
-extern f64 func_80034C24(u64 arg0);
+extern f64 func_80034C24();
 extern f32 D_801E846C;
 extern f64 D_801E8900;
 

@@ -2,7 +2,7 @@
 
 extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80133980(s32, void *);
-extern void func_80240F00(void);
+extern void func_80240F00(s32 arg0, s32 arg1);
 
 struct func_80240E7C_Struct2 {
     u8 pad[0x8];

@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_80005700(void *);
+extern s32 func_80005700();
 extern f64 D_8018CD20;
 extern f32 D_8018CD28;
 

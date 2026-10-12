@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80242D88();
+extern void func_80242D88(void *arg0, s32 arg1);
 
 struct func_80242D08_Inner {
     u8 pad0[0x8];

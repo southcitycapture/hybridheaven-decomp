@@ -1,10 +1,10 @@
 #include "context.h"
 
 extern void func_800208C4(u16);
-extern u16 D_801BBBFE;
-extern u16 D_801BBC00;
-extern u16 D_801BBC02;
-extern u16 D_801BBC04;
+extern s16 D_801BBBFE;
+extern s16 D_801BBC00;
+extern s16 D_801BBC02;
+extern s16 D_801BBC04;
 
 s32 func_801269C0(void) {
     func_800208C4(D_801BBBFE);

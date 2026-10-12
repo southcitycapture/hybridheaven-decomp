@@ -3,7 +3,7 @@
 extern void func_800058DC(s32, void *);
 extern void func_801170DC(s32);
 extern void func_801C12B0(void);
-extern void func_801BF2DC(void);
+extern void func_801BF2DC();
 
 typedef struct func_801BF288_Struct {
     u8 pad[0x92];

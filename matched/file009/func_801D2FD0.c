@@ -5,7 +5,7 @@ typedef struct func_801D2FD0_Struct {
     u8 unk94;
 } func_801D2FD0_Struct;
 
-extern void func_801CF758(void);
+extern void func_801CF758();
 
 void func_801D2FD0(func_801D2FD0_Struct *arg0, s32 arg1) {
     s8 sp1F;

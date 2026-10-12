@@ -71,8 +71,8 @@ struct func_800058F4_Struct {
     s32 unk14;
 };
 
-extern void func_80005A04(void *, void *);
-extern void func_80005B48(void *);
+extern void func_80005A04(void *a0, void *a1);
+extern void func_80005B48(void *arg0);
 extern s32 D_8008D5D0;
 
 void func_800058F4(struct func_800058F4_Struct *arg0, s32 arg1) {
@@ -255,7 +255,7 @@ u16 func_80005BF8(void) {
 }
 
 
-s32 func_80005CB0();                                /* extern */
+extern s32 func_80005CB0(void);
 
 s32 func_80005C24(void) {
     if (D_80043394 == 0x43781902) {
@@ -565,7 +565,7 @@ void func_80006414(struct func_80006414_Struct *arg0, struct func_80006414_Struc
 }
 
 
-void func_8000659C(void);
+extern void func_8000659C();
 
 struct func_800064C4_Struct {
     struct func_800064C4_Struct *unk0;
@@ -626,7 +626,32 @@ void func_800064C4(struct func_800064C4_Struct *arg0) {
     arg0->unk30 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_8000659C.s")
+
+struct func_8000659C_Struct {
+    struct func_8000659C_Struct *unk0;
+    struct func_8000659C_Struct *unk4;
+    struct func_8000659C_Struct *unk8;
+    struct func_8000659C_Struct *unkC;
+};
+
+void func_8000659C(void *arg0) {
+    struct func_8000659C_Struct *a;
+    struct func_8000659C_Struct *temp_v0;
+
+    a = (struct func_8000659C_Struct *) arg0;
+    temp_v0 = a->unk4;
+    if (temp_v0 != NULL) {
+        temp_v0->unk0 = a->unk0;
+    }
+    temp_v0 = a->unk0;
+    if (temp_v0 != NULL) {
+        temp_v0->unk4 = a->unk4;
+    }
+    temp_v0 = a->unkC;
+    if ((temp_v0 != NULL) && (a == temp_v0->unk8)) {
+        temp_v0->unk8 = a->unk0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BAE0.s")
 
@@ -638,7 +663,25 @@ void func_800064C4(struct func_800064C4_Struct *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_800065EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_8000671C.s")
+
+extern u32 D_8008D5C8[];
+extern u32 D_8008D5CC;
+
+u32 func_8000671C(void)
+{
+  int new_var;
+  u32 limit;
+  u32 temp_v1;
+  limit = D_8008D5CC;
+  ;
+  if (D_8008D5C8[0] < D_8008D5CC)
+  {
+ new_var = D_8008D5C8[0] ^ 0; do { } while (0);
+    D_8008D5C8[0] += 0x40;
+    return new_var;
+  }
+  return D_8008D5C8[0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80006754.s")
 

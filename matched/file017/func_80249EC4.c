@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80249EF8(void);
+extern void func_80249EF8();
 extern s32 D_801BBCCC;
 
 void func_80249EC4(void *arg0, s32 arg1) {

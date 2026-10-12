@@ -22,7 +22,7 @@ void func_80107A50(s32 arg0, s32 arg1) {
 extern void func_80002364(s32, s32, s32, s32);
 extern void func_80005670(void *, void *);
 extern void func_800058DC(void *, void *);
-extern void func_80107B60(void);
+extern void func_80107B60();
 extern u8 D_80044090[];
 extern u8 D_80044220[];
 extern u8 D_80044420[];

@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void func_80011198(s32 arg0, void *arg1);
-extern void func_80367050(void);
+extern void func_80367050();
 extern u8 D_803868C8[];
 extern u8 D_803868D8[];
 

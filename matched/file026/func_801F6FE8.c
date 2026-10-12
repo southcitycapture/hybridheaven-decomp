@@ -16,7 +16,7 @@ struct func_801F6FE8_Struct1 {
     struct func_801F6FE8_Struct2 *unk14;
 };
 
-f64 func_80034C24(u64);                             /* extern */
+extern f64 func_80034C24();
 u64 func_801C0B2C();                                /* extern */
 extern f64 D_801FD390;
 extern f64 D_801FD398;

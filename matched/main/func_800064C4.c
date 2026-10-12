@@ -1,6 +1,6 @@
 #include "context.h"
 
-void func_8000659C(void);
+extern void func_8000659C();
 
 struct func_800064C4_Struct {
     struct func_800064C4_Struct *unk0;

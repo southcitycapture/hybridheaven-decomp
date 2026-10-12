@@ -17,7 +17,7 @@ typedef struct func_8022B4A4_StructEntry {
     u32 unk30;
 } func_8022B4A4_StructEntry;
 
-void func_80005700(void);
+extern void func_80005700();
 extern func_8022B4A4_StructBase D_801BBBF0;
 extern func_8022B4A4_StructEntry D_801BC03C;
 extern func_8022B4A4_StructEntry D_801BC3D8;

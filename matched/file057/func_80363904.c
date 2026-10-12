@@ -5,8 +5,8 @@ typedef struct func_80363904_Struct {
     u8 *unk5C;
 } func_80363904_Struct;
 
-extern void func_803639F0(void);
-extern void func_80363D5C(void);
+extern void func_803639F0();
+extern void func_80363D5C();
 
 void func_80363904(func_80363904_Struct *arg0) {
     u8 *var_a1;

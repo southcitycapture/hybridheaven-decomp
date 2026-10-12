@@ -20,7 +20,7 @@ struct func_801F57EC_Struct {
 };
 
 void func_801F4AA0();                               /* extern */
-void func_80005670(void *, void *);                 /* extern */
+extern s32 func_80005670();
 void func_800058DC(void *, s32);                    /* extern */
 s32 func_801F5490(void *);                          /* extern */
 s32 func_801F5524(void *);                          /* extern */

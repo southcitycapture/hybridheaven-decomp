@@ -20,7 +20,7 @@ typedef struct func_802414B0_StructLocal {
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern s32 func_801C2FF8(void);
-extern void func_80241574(void);
+extern void func_80241574();
 
 void func_802414B0(void *arg0, void *arg1) {
     register func_802414B0_Struct *obj;

@@ -614,7 +614,7 @@ s32 func_801C8940(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801C8D28.s")
 
-void func_800058DC(s32 arg0, void (*arg1)(void));
+extern void func_800058DC(s32 arg0, void (*arg1)(void));
 
 struct func_801C8F9C_Inner {
     u8 pad0[0x8];
@@ -628,7 +628,7 @@ struct func_801C8F9C_Outer {
     struct func_801C8F9C_Inner *unk30;
 };
 
-extern void func_801C8D28(void);
+extern void func_801C8D28();
 
 void func_801C8F9C(void *arg0, void **arg1) {
     struct func_801C8F9C_Inner *temp_v1;
@@ -646,7 +646,16 @@ void func_801C8F9C(void *arg0, void **arg1) {
     temp_v1->unk4B = temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801C900C.s")
+
+extern s32 func_80005E44(s32, void *);
+extern u8 D_801DA778[];
+extern void func_801C904C(s32 arg0, s32 arg1);
+
+void func_801C900C(s32 arg0, s32 arg1) {
+    if (func_80005E44(arg0, D_801DA778) != 0) {
+        func_800058DC(arg0, func_801C904C);
+    }
+}
 
 
 extern void func_80005700(s32 arg0);
@@ -672,11 +681,10 @@ extern s32 D_801DA788;
 extern s32 D_801D94A8;
 extern s32 D_801D9528;
 extern s32 D_801D95A8;
-void func_80005E44(s32 arg0, s32 *arg1);
 void func_80006214(s32 arg0);
 s32 func_80001060(void);
 s32 func_801302CC(void);
-void func_801C9140(void);
+extern void func_801C9140();
 
 void func_801C907C(s32 arg0, struct func_801C907C_Outer **arg1) {
     func_80005E44(arg0, &D_801DA788);
@@ -709,7 +717,31 @@ void func_801C907C(s32 arg0, struct func_801C907C_Outer **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801C9FF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801CA1EC.s")
+
+struct func_801CA1EC_Inner {
+    u8 pad0[0x30];
+    u8 *unk30;
+};
+
+extern void func_8012CF8C(void *, u8 *, s32, s32);
+extern s32 D_801DA850[];
+
+void func_801CA1EC(u8 *arg0, struct func_801CA1EC_Inner **arg1)
+{
+  s32 temp_v0;
+  u8 idx;
+  u32 slot;
+  temp_v0 = arg0[0xB3];
+  arg0[0xB3] = temp_v0 + 1;
+  slot = temp_v0 % 40U;
+  temp_v0 = 0x2DD;
+  func_8012CF8C(arg0, (*arg1)->unk30 + 0x40, temp_v0, D_801DA850[slot]);
+  idx = arg0[0xB0];
+  if (D_801E05D0[idx] == 0)
+  {
+    func_80005700(arg0);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801CA274.s")
 

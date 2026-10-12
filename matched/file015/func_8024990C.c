@@ -17,7 +17,7 @@ typedef struct func_8024990C_Obj {
 
 extern s32 func_80010550(s32, s32);
 extern void func_800058DC(void *arg0, void *arg1);
-extern void func_80249970(void);
+extern void func_80249970();
 
 void func_8024990C(func_8024990C_Obj *arg0, func_8024990C_Inner **arg1) {
     void *tmp;

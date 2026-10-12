@@ -1,10 +1,10 @@
 #include "context.h"
 
-extern void func_800058DC(s32, void *);
+extern void func_800058DC(void *, void *);
 extern void func_800179B0(void *);
 extern s32 func_8011AAF4(void *, s32, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_80133980(s32);
-extern void func_80242390(void);
+extern void func_80242390();
 extern u8 D_80248404[];
 extern u8 D_8024A468[];
 

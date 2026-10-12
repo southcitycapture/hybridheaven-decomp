@@ -1,10 +1,10 @@
 #include "context.h"
 
-extern void func_800058DC(s32, void *);
+extern void func_800058DC(s32, void *);                    /* extern */
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-extern void func_8036DF48(void);
+extern void func_8036DF48();
 
 void func_8036DD08(s32 arg0, s32 arg1) {
     u8 *var_v0;

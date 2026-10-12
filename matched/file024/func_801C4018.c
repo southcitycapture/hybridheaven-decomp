@@ -7,7 +7,7 @@ struct func_801C4018_Struct {
 
 extern void func_800058DC(void *, void *);
 extern s32 func_801C1334(void);
-extern void func_801C4074(void);
+extern void func_801C4074();
 
 void func_801C4018(struct func_801C4018_Struct *arg0, s32 arg1) {
     s32 temp_v0;

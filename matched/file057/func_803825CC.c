@@ -5,7 +5,7 @@ void func_803821B0(void *, s32, s32, s32, s32, s32, s32, s8 *);
 extern struct func_80385208_Globals D_801BBBF0;
 extern u8 D_8038CA64[];
 extern u8 D_8038CA6C[];
-extern void func_80382744(void);
+extern void func_80382744();
 
 typedef struct func_803825CC_Struct {
     u8 pad0[0xB0];

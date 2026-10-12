@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void func_8001A804(s32, void *, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
-extern void func_8001B204();
+extern s32 func_8001B204();
 extern u8 D_8018F0F0[];
 extern u8 D_8018F0F4[];
 extern u8 D_8018F11C[];

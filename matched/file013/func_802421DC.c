@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_8024224C(void);
+extern void func_8024224C();
 extern u8 D_80245AD0[];
 
 void func_802421DC(struct func_80242064_Struct *arg0, s32 arg1) {

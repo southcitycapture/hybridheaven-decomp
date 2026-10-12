@@ -8,7 +8,7 @@ typedef struct func_8024A0D4_Struct {
 extern s32 func_800058DC(void *, void *);
 extern s32 func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern s32 func_801C2F0C(s32, s32);
-extern void func_8024A418(void);
+extern void func_8024A418();
 extern u8 D_8025CBE0[];
 extern f32 D_8025CD48;
 extern f32 D_8025CD4C;

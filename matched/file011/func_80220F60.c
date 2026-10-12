@@ -12,7 +12,7 @@ struct func_80220F60_Struct {
 extern struct func_80220F60_Struct D_801BBBF0;
 extern void func_800058DC(s32, void *);
 extern void func_80359560(s32);
-extern void func_80220FC0(void);
+extern void func_80220FC0();
 
 void func_80220F60(s32 arg0) {
     s32 sp1C;

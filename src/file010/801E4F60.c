@@ -92,7 +92,7 @@ s32 func_800058DC(void *arg0, void *arg1);
 s32 func_80011198(void *arg0, s32 arg1, void *arg2, void *arg3);
 extern u8 D_801BBE1A[];
 extern s16 D_80216C10;
-extern void func_801EFC50(void);
+extern void func_801EFC50();
 
 void func_801EFBEC(func_801EFBEC_Struct *arg0, void *arg1) {
     s32 temp;

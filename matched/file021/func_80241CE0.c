@@ -22,7 +22,7 @@ typedef struct func_80241CE0_Struct4 {
 
 extern f64 D_80256FC0;
 extern void func_80020744(s32);
-extern void func_80241D58(void);
+extern void func_80241D58();
 
 void func_80241CE0(func_80241CE0_Struct1 *arg0, func_80241CE0_Struct4 *arg1) {
     s32 temp_v0;

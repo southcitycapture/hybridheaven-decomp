@@ -16,7 +16,7 @@ typedef struct func_801C3940_Struct {
     u16 unk9C;
 } func_801C3940_Struct;
 
-extern void func_801C39E0(void);
+extern void func_801C39E0();
 
 void func_801C3940(func_801C3940_Struct *arg0, s32 arg1) {
     arg0->unk90 = D_801DF790;

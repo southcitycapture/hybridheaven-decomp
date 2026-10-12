@@ -4,7 +4,7 @@ extern void func_800058DC(void *, void *);
 extern void func_80020718(s32);
 extern void func_801518D4(s32, s32, s32);
 extern u16 D_801BBBF4;
-extern void func_801F34FC(void);
+extern void func_801F34FC();
 
 void func_801F3430(void *arg0, void *arg1) {
     if (D_801BBBF4 == 0xD) {

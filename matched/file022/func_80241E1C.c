@@ -16,7 +16,7 @@ typedef struct func_80241E1C_Struct {
 
 extern void func_801268F4(s32);
 extern void func_80203830(s32, void *);
-extern void func_80241EF4(void);
+extern void func_80241EF4();
 extern u8 D_80250054[];
 extern f32 D_8025256C;
 extern f32 D_80252570;

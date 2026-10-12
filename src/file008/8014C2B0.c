@@ -96,7 +96,7 @@ void func_8014D204(void *arg0, s32 arg1) {
 }
 
 
-extern void func_8014F400(void);
+extern void func_8014F400();
 extern s32 D_801BF180;
 
 struct func_8014D254_Struct {
@@ -157,7 +157,7 @@ s32 func_8014F330(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_8014FB38.s")
 
 
-extern void func_8014FF14(void);
+extern void func_8014FF14();
 
 void func_8014FEE0(s32 arg0, s32 arg1) {
     D_801BF180 = 1;
@@ -167,7 +167,7 @@ void func_8014FEE0(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_8014FF14.s")
 
 
-extern void func_801501C0(void);
+extern void func_801501C0();
 
 void func_80150198(s32 arg0, s32 arg1) {
     func_800058DC(arg0, func_801501C0);
@@ -359,7 +359,7 @@ struct func_801509D8_StructLocal {
 
 extern void *D_801BBCD0;
 extern s16 func_801FD284(s16, s16, s32, void *);
-extern void func_80150AB4(void);
+extern void func_80150AB4();
 
 void func_801509D8(struct func_801509D8_Struct *arg0, s32 arg1) {
     struct func_801509D8_StructLocal sp20;
@@ -385,7 +385,7 @@ void func_801509D8(struct func_801509D8_Struct *arg0, s32 arg1) {
 
 extern void func_80020718(s32);
 extern u8 D_80182734[];
-extern void func_80150B74(void);
+extern void func_80150B74();
 
 void func_80150B30(s32 arg0, s32 arg1) {
     func_80020718(0x3DD);
@@ -393,7 +393,15 @@ void func_80150B30(s32 arg0, s32 arg1) {
     func_800058DC(arg0, func_80150B74);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_80150B74.s")
+
+s32 func_800178E8(u64 arg0);                          /* extern */
+extern void func_80150BAC();
+
+void func_80150B74(u64 arg0) {
+    if (func_800178E8(arg0) != 0) {
+        func_800058DC(*(s32 *)&arg0, &func_80150BAC);
+    }
+}
 
 
 typedef struct func_80150BAC_StructB {
@@ -425,7 +433,7 @@ typedef struct func_80150BAC_StructC {
 f32 func_8001EAD0(s16);
 f32 func_8001EB64(s16);
 extern f32 D_801906F0;
-extern void func_80150C8C(void);
+extern void func_80150C8C();
 
 void func_80150BAC(s32 arg0, s32 arg1) {
     func_80150BAC_StructC sp20;

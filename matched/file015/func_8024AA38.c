@@ -2,8 +2,8 @@
 
 
 s32 func_80133A24(s32);
-void func_8013A1B4(s32, func_8024AA38_Struct, s32);
-void func_8024AAC4(void);
+extern void func_8013A1B4();
+extern void func_8024AAC4();
 
 extern func_8024AA38_Struct D_802534A0;
 extern u8 D_80253524[];

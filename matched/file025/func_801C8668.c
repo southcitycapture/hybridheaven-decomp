@@ -16,7 +16,7 @@ struct func_801C8668_Struct {
 
 extern void *func_80005670(s32, void *);
 extern u8 D_801DA6F0[];
-extern void *D_8038D8CC;
+extern s32 D_8038D8CC;
 
 s32 func_801C8668(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, u16 arg5) {
     struct func_801C8668_Struct *temp_v0;

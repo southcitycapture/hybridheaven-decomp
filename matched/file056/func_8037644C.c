@@ -3,7 +3,7 @@
 extern void func_800058DC(void *, void *);
 extern s32 func_803757E0(void *, s32, s32, s32);
 extern s32 func_8012A94C(void *, s32);
-extern void func_803764BC(void);
+extern void func_803764BC();
 
 struct func_8037644C_Sub {
     u8 pad[0x10];

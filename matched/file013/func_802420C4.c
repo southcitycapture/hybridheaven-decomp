@@ -24,7 +24,7 @@ struct func_802420C4_Obj {
 };
 
 extern void func_800058DC(void *arg0, void *arg1);
-extern void func_80242164(void);
+extern void func_80242164();
 
 void func_802420C4(struct func_802420C4_Obj *arg0, struct func_802420C4_Pair *arg1) {
     struct func_802420C4_Sub *temp_v0;

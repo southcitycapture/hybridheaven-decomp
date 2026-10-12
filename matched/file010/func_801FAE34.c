@@ -2,7 +2,7 @@
 
 extern s32 D_802170BC;
 extern void func_80005700(s32);
-extern void func_801FA624(s32);
+extern s32 func_801FA624();
 
 void func_801FAE34(s32 arg0, s32 arg1) {
     D_802170BC = 0;

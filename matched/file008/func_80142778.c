@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern void func_80142570(void);
-extern void func_8001B204();
+extern s32 func_8001B204();
 extern void func_8001A804(s32, void *, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 
 extern u8 D_8018F1BC[];

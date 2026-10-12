@@ -16,7 +16,7 @@ extern func_803828F0_Struct D_80389BCC;
 extern func_803828F0_Struct D_80389BD4;
 
 void *func_800058DC(void *, void *);
-void func_80382A24(void);
+extern void func_80382A24();
 void func_803821B0(void *, s32, s32, s32, s32, s32, s32, s8 *);
 void func_803822F0(void *, s32, s32, s32, s32, s32, s32, s8 *);
 

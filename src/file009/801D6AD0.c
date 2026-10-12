@@ -857,7 +857,13 @@ void func_801D7EE4(func_801D7EE4_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801D6AD0/func_801DA304.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801D6AD0/func_801DA758.s")
+
+
+void func_801DA758(u8 *arg0, s32 arg1) {
+    if (arg0[0x92] == 2) {
+        func_801FC720(0x69D, 1, 0);
+    }
+}
 
 
 
@@ -867,7 +873,13 @@ void func_801DA790(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801D6AD0/func_801DA7C8.s")
+
+
+void func_801DA7C8(u8 *arg0, s32 arg1) {
+    if (arg0[0x92] == 2) {
+        func_801FC720(0x69D, 1, 0);
+    }
+}
 
 
 

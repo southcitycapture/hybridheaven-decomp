@@ -9,7 +9,7 @@ extern s32 func_801CCE00();
 extern s32 func_801CDD14();
 extern void func_801C0A30();
 extern void func_801C0C44();
-void func_801BF388(void);
+extern void func_801BF388();
 
 void func_801BF2AC(s32 arg0, s32 arg1) {
     s32 ok;

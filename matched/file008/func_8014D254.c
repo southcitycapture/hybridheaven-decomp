@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_8014F400(void);
+extern void func_8014F400();
 extern s32 D_801BF180;
 
 struct func_8014D254_Struct {

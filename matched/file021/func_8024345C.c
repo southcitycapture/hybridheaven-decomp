@@ -19,10 +19,10 @@ typedef struct func_8024345C_Inner2 {
     u8 unk22;
 } func_8024345C_Inner2;
 
-s32 func_80133A24(s32);
+extern s32 func_80133A24(s32 arg0);
 void func_800058DC(s32, void *);
 extern func_8024345C_Struct D_801BBBF0;
-void func_802434C4(void);
+extern void func_802434C4();
 
 void func_8024345C(s32 arg0, s32 arg1) {
     if (func_80133A24(0x1A2) != 0) {

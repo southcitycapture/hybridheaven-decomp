@@ -9,8 +9,8 @@ struct func_80246874_Obj {
 
 extern s32 func_80133A24(s32);
 extern void func_801339D0(s32);
-extern void func_80246920(void);
-extern void func_802469F8(void);
+extern void func_80246920();
+extern void func_802469F8();
 extern struct func_802466A4_Vec D_8025297C;
 
 void func_80246874(void *arg0, s32 arg1) {

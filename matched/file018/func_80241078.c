@@ -6,7 +6,7 @@ typedef struct func_80241078_Struct {
     u8 unk94;
 } func_80241078_Struct;
 
-extern void func_802410BC(void);
+extern void func_802410BC();
 
 void func_80241078(func_80241078_Struct *arg0, s32 arg1) {
     arg0->unk94 = arg0->unk94 + 1;

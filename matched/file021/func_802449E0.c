@@ -2,7 +2,7 @@
 
 extern f64 D_80257120;
 extern f64 D_80257128;
-extern void func_80244A54(void);
+extern void func_80244A54();
 
 typedef struct func_802449E0_Inner {
     u8 pad0[0x8];

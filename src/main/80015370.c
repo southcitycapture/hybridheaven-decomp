@@ -285,7 +285,33 @@ s32 func_800168C8(s32 arg0, s32 arg1, s32 arg2) {
     return (D_8008DFB0[temp_v1 / 2] & 0xF0) >> 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80016950.s")
+
+
+void func_80016950(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+{
+  unsigned short new_var;
+  s32 temp_a1;
+  s32 temp_v1;
+  u8 *temp_v0;
+  u8 *temp_v0_2;
+  temp_v1 = (D_8008DC94 + 1) & (~1);
+  new_var = arg3;
+  if ((((arg1 >= 0) && (arg1 < D_8008DC94)) && (arg2 >= 0)) && (D_8008DC98 >= arg2))
+  {
+    temp_a1 = (temp_v1 * arg2) + arg1;
+    if (temp_a1 & 1)
+    {
+      temp_v0 = (temp_a1 / 2) + D_8008DFB0;
+      *temp_v0 |= new_var;
+    }
+    else
+    {
+      temp_v0_2 = (temp_a1 / 2) + D_8008DFB0;
+      *temp_v0_2 |= new_var * 0x10;
+    }
+    func_80016B40(D_8008DFB4, temp_a1);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80016A24.s")
 
@@ -579,7 +605,7 @@ loop_1:
 
 
 extern s32 func_800174CC(s32 arg0);
-extern void func_8001F540(s32);
+extern s32 func_8001F540();
 
 s32 func_800172F4(void) {
     s32 temp_s0;
@@ -818,7 +844,7 @@ void func_800179B0(s32 arg0) {
 
 
 extern s32 func_800058DC(s32, void *);
-extern void func_80017BB8(void);
+extern void func_80017BB8();
 
 void func_80017B80(s32 arg0, s32 arg1) {
     func_800179B0(0);

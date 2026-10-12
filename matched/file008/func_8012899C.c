@@ -42,7 +42,7 @@ extern void func_8012C89C(void *, s32, s32, s32);
 extern void func_8012D844(void *, s32, s32);
 extern s32 func_8000C3B0(void *);
 extern void func_800058DC(void *, void *);
-extern void func_80128A90(void);
+extern void func_80128A90();
 
 void func_8012899C(func_8012899C_Arg0 *arg0, func_8012899C_StructW **arg1) {
     arg0->unk90 = 0xF8;

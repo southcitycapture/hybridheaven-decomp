@@ -13,7 +13,7 @@ typedef struct func_80360EF8_Struct {
 extern s32 func_80224F5C(s32, s32);
 extern void func_802256E4(func_80360EF8_Struct *, s32, s32);
 extern void func_8013A28C(s32, func_80360EF8_Struct);
-extern void func_80360F9C(void);
+extern void func_80360F9C();
 
 void func_80360EF8(s32 arg0, s32 arg1) {
     u8 *sp24;

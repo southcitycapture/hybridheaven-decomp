@@ -1,8 +1,8 @@
 #include "context.h"
 
 extern void func_801C0760();
-extern void func_801C07A8();
-extern void func_801C0834();
+extern void func_801C07A8(void);
+extern void func_801C0834(void);
 
 void func_801C0058(void) {
     if (func_801C02FC() != 0) {

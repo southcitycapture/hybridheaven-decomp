@@ -13,7 +13,7 @@ typedef struct func_801D5FE0_StructOuter {
 } func_801D5FE0_StructOuter;
 
 extern void func_800058DC(void *arg0, void *arg1);
-extern void func_801D6024(void);
+extern void func_801D6024();
 
 void func_801D5FE0(func_801D5FE0_StructOuter *arg0, s32 arg1) {
     func_801D5FE0_StructInner *temp_v0;

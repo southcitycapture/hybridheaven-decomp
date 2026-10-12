@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_80232E94(void);
+extern void func_80232E94();
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern u8 D_801BCC20;

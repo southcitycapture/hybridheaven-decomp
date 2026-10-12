@@ -23,7 +23,7 @@ struct func_801CFCA0_Outer {
     struct func_801CFCA0_Inner *unk30;
 };
 
-extern void func_801CFD44(void);
+extern void func_801CFD44();
 extern f64 D_801E35A8;
 
 void func_801CFCA0(struct func_801CFCA0_Struct *arg0, struct func_801CFCA0_Outer **arg1) {

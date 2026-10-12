@@ -14,7 +14,7 @@ typedef struct func_801D0164_Struct {
 } func_801D0164_Struct;
 
 extern void func_801CBD70(void);
-extern void func_801D01DC(void);
+extern void func_801D01DC();
 
 void func_801D0164(func_801D0164_Struct *arg0, s32 arg1)
 {

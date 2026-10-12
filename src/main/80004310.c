@@ -113,7 +113,7 @@ s32 func_800044FC(s32 arg0) {
 
 
 extern s32 func_8000469C(s32, s32);
-extern void func_80016EAC(u16);
+extern void func_80016EAC();
 
 s32 func_80004664(s32 arg0, s32 arg1) {
     func_80016EAC((u16) arg0);
@@ -149,7 +149,23 @@ s32 func_80005144(u16 arg0) {
     return D_80038FF0[arg0] & 0x7FFFFFFF & 0x7FFFFFFF;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80004310/func_80005170.s")
+
+extern s32 D_80037C5C[];
+
+s32 func_80005170(s32 arg0)
+{
+  unsigned int new_var;
+  int new_var2;
+  s32 *temp_v1;
+  new_var = arg0;
+  if (new_var == 0)
+  {
+    return 0;
+  }
+  new_var2 = 2 * arg0;
+  temp_v1 = (s32 *) (((new_var2 * 4) - 8) + ((s32) D_80037C5C));
+  return temp_v1[1] - temp_v1[0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80004310/func_800051A4.s")
 

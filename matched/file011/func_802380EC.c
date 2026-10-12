@@ -25,7 +25,7 @@ typedef struct func_802380EC_Table {
     s32 unk4;
 } func_802380EC_Table;
 
-extern s32 func_80235EB4(void);
+extern s32 func_80235EB4();
 extern void func_80020744(s32);
 extern void func_80236700(func_802380EC_Struct *, s32);
 extern void func_80234724(func_802380EC_Struct *, s32, s32);
@@ -33,8 +33,8 @@ extern void func_80235394(func_802380EC_Struct *, s32, s32);
 extern void func_8001B204(s32, s16, s16, void *, s32, s32, s32);
 extern u8 D_80240578[];
 extern u8 D_80240828[];
-extern void func_80237EC8(void);
-extern void func_80239DFC(void);
+extern void func_80237EC8();
+extern void func_80239DFC();
 
 void func_802380EC(func_802380EC_Struct *arg0, s32 arg1) {
     func_802380EC_Part *temp_v1;

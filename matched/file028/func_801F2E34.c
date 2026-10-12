@@ -2,7 +2,7 @@
 
 extern struct func_801FCB44_Struct *D_8038D8D0;
 extern u64 func_801C0F18(s32, s32);
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern f64 D_80208A28;
 extern f64 D_80208A30;
 extern f64 D_80208A38;

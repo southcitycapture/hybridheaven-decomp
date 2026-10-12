@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80359F54(void);
+extern void func_80359F54();
 
 void func_80359F08(void *arg0, s32 arg1) {
     func_80358964_StructA *temp_v0;

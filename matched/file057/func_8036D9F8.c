@@ -19,7 +19,7 @@ struct func_8036D9F8_Obj {
 
 extern func_8036D9F8_Struct3 D_80387AFC;
 extern func_8036D9F8_Struct6 D_80387B08;
-extern void func_8036DB90(void);
+extern void func_8036DB90();
 extern void func_802237B0(void *, s32);
 extern void func_80226710(void *, s32, s32);
 extern s32 func_80011140(s32, s32, func_8036D9F8_Struct3, s32);

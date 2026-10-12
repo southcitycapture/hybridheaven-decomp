@@ -23,10 +23,10 @@ typedef struct func_8024167C_Obj {
 
 extern s32 func_80126CC0(void *arg0, void *arg1);
 extern void func_8013B570(void *arg0, u16 arg1, s32 arg2, s32 arg3, void *arg4);
-extern void func_80127014(void);
+extern void func_80127014();
 extern void func_8012E5B0(void);
 extern void func_8012E6BC(void);
-extern void func_80241708(void);
+extern void func_80241708();
 
 void func_8024167C(void *arg0, s32 arg1) {
     func_8024167C_Glob *g = (func_8024167C_Glob *)&D_801BBBF0;

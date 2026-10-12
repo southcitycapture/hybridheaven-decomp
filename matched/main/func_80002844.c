@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80029784(void *, s32, s32, s32, s32, s32);
+extern s32 func_80029784();
 extern u8 D_8005CE70[];
 
 void func_80002844(u8 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {

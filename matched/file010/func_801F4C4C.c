@@ -33,11 +33,11 @@ typedef struct func_801F4C4C_Global {
     s32 unk8;
 } func_801F4C4C_Global;
 
-extern s32 func_8013A1B4(s32, func_801F4C4C_Global, s32);
+extern s32 func_8013A1B4();
 extern void func_801F3B5C(s32);
-extern s16 func_801F3F70(void);
+extern s16 func_801F3F70();
 extern func_801F4C4C_Global D_80216ED0;
-extern void func_801F9974(void);
+extern void func_801F9974();
 
 void func_801F4C4C(func_801F4C4C_Struct *arg0, s32 arg1) {
     arg0->unk92 = func_801F3F70();

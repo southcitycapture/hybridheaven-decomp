@@ -310,7 +310,7 @@ typedef struct func_8022B4A4_StructEntry {
     u32 unk30;
 } func_8022B4A4_StructEntry;
 
-void func_80005700(void);
+extern void func_80005700();
 
 void func_8022B4A4(func_8022B4A4_StructArg *arg0, s32 arg1) {
     func_8022B4A4_StructEntry *var_v0;
@@ -332,7 +332,7 @@ typedef struct func_8022B518_Struct {
 } func_8022B518_Struct;
 
 void func_800058DC(void *arg0, void *arg1);
-void func_8022B544(void);
+extern void func_8022B544();
 
 void func_8022B518(func_8022B518_Struct *arg0, s32 arg1) {
     arg0->unk90 = 0;

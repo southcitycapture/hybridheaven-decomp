@@ -12,7 +12,7 @@ typedef struct func_801F5F5C_Struct {
     u8 unkAF;
 } func_801F5F5C_Struct;
 
-s32 func_801270C0(void);
+extern s32 func_801270C0();
 void func_801F5574(void *, s32);
 void func_801F55E0(s32);
 void func_80020744(s32);

@@ -5,7 +5,7 @@ extern void func_8013B570(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
 extern s32 D_801DB144;
 extern s32 D_801DB148;
 extern s32 D_801DB14C;
-extern void func_801D1474(void);
+extern void func_801D1474();
 
 void func_801D1420(s32 arg0, s32 arg1) {
     D_801DB144 = 0;
@@ -14,7 +14,24 @@ void func_801D1420(s32 arg0, s32 arg1) {
     func_8013B570(arg0, 0x2A, 0, 4, &func_801D1474);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D1420/func_801D1474.s")
+
+struct func_801D1474_Struct {
+    u8 pad[0x24];
+    s32 unk24;
+};
+
+extern void func_8012D844(void *, s32, s32);
+extern void func_800058DC(void *, void (*)(void));
+extern void func_801D14D0();
+
+void func_801D1474(struct func_801D1474_Struct *arg0, s32 arg1) {
+    if (arg0->unk24 != 0) {
+        func_8012D844(arg0, 0x28, 0);
+        func_800058DC(arg0, func_801D14D0);
+        return;
+    }
+    func_800058DC(arg0, func_801D1474);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D1420/func_801D14D0.s")
 

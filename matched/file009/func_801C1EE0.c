@@ -21,7 +21,7 @@ typedef struct func_801C1EE0_StructBBBF0 {
 
 
 extern void func_800058DC();
-extern void func_801C1F40(void);
+extern void func_801C1F40();
 extern func_801C1EE0_StructBBBF0 D_801BBBF0;
 extern func_801C1EE0_StructB00 D_801E0B00;
 

@@ -2,7 +2,7 @@
 
 
 extern s32 func_8013B570(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
-extern void func_801CE7D4(void);
+extern void func_801CE7D4();
 extern s32 D_801DAD10;
 extern s32 D_801DAD28;
 extern s32 D_801DAD2C;
@@ -22,7 +22,24 @@ void func_801CE760(s32 arg0, s32 arg1) {
     func_8013B570(arg0, 0x2D, 0, 4, func_801CE7D4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CE7D4.s")
+
+struct func_801CE7D4_Struct {
+    u8 pad[0x24];
+    s32 unk24;
+};
+
+extern void func_8012D844(void *, s32, s32);
+extern void func_800058DC(void *, void (*)(void));
+extern void func_801CE830();
+
+void func_801CE7D4(struct func_801CE7D4_Struct *arg0, s32 arg1) {
+    if (arg0->unk24 != 0) {
+        func_8012D844(arg0, 0x2D, 0);
+        func_800058DC(arg0, func_801CE830);
+        return;
+    }
+    func_800058DC(arg0, func_801CE7D4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CE830.s")
 
@@ -90,8 +107,8 @@ void func_801CEE68(s32 arg0) {
 }
 
 
-void func_80006214(s32 arg0);
-void func_801C3370(s32 arg0, s32 arg1, s32 arg2, u8 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);
+extern void func_80006214();
+extern void func_801C3370(s32, s32, s32, u8, s32, s32, s32, s32);
 
 void func_801CEE74(s32 arg0, s32 arg1, s32 arg2, u8 arg3, u8 arg4, s32 arg5, s32 arg6) {
     if (arg0 != 0) {
@@ -126,10 +143,16 @@ void func_801CEF10(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CEF20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CF080.s")
+
+extern s32 func_801C354C(s32);
+
+void func_801CF080(s32 arg0) {
+    func_80006214();
+    D_801DAD3C = func_801C354C(arg0) == 0;
+}
 
 
-extern void func_801CF124(void);
+extern void func_801CF124();
 extern s32 D_801DADE0;
 extern s32 D_801DADFC;
 extern s32 D_801DAE00;
@@ -149,7 +172,22 @@ void func_801CF0B0(s32 arg0, s32 arg1) {
     func_8013B570(arg0, 0x30, 0, 4, func_801CF124);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CF124.s")
+
+struct func_801CF124_Struct {
+    u8 pad[0x24];
+    s32 unk24;
+};
+
+extern void func_801CF180();
+
+void func_801CF124(struct func_801CF124_Struct *arg0, s32 arg1) {
+    if (arg0->unk24 != 0) {
+        func_8012D844(arg0, 0x30, 0);
+        func_800058DC(arg0, func_801CF180);
+        return;
+    }
+    func_800058DC(arg0, func_801CF124);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CF180.s")
 
@@ -218,7 +256,12 @@ s32 func_801CF590(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CF700.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CF860.s")
+
+
+void func_801CF860(s32 arg0) {
+    func_80006214();
+    D_801DAE0C = func_801C354C(arg0) == 0;
+}
 
 
 extern s32 D_801DAEB0;
@@ -226,7 +269,7 @@ extern s32 D_801DAECC;
 extern s32 D_801DAED0;
 extern s32 D_801DAEF0;
 extern s32 D_801DAEF4;
-extern void func_801CF8F4(void);
+extern void func_801CF8F4();
 
 void func_801CF890(s32 arg0, s32 arg1) {
     D_801DAEB0 = arg0;
@@ -237,7 +280,22 @@ void func_801CF890(s32 arg0, s32 arg1) {
     func_8013B570(arg0, 0x11C, 0, 4, func_801CF8F4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CF8F4.s")
+
+struct func_801CF8F4_Struct {
+    u8 pad[0x24];
+    s32 unk24;
+};
+
+extern void func_801CF950();
+
+void func_801CF8F4(struct func_801CF8F4_Struct *arg0, s32 arg1) {
+    if (arg0->unk24 != 0) {
+        func_8012D844(arg0, 0x118, 0);
+        func_800058DC(arg0, func_801CF950);
+        return;
+    }
+    func_800058DC(arg0, func_801CF8F4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CF950.s")
 
@@ -339,7 +397,12 @@ u8 *func_801CFE84(void) {
     return &D_801E12B0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/func_801CFE90.s")
+
+
+void func_801CFE90(s32 arg0) {
+    func_80006214();
+    D_801DAEF4 = func_801C354C(arg0) == 0;
+}
 
 
 extern s32 D_801E12C0;
@@ -347,7 +410,7 @@ extern s32 D_801DAF18;
 extern s32 D_801DAF1C;
 extern s32 D_801DAF40;
 extern s32 D_801DAF00;
-extern void func_801CFF24(void);
+extern void func_801CFF24();
 
 void func_801CFEC0(s32 arg0, s32 arg1) {
     D_801E12C0 = arg0;

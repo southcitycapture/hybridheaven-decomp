@@ -1,7 +1,7 @@
 #include "context.h"
 extern s32 D_8038D870;
 
-extern void func_801C2608(s32, void *);
+extern void func_801C2608(s32 arg0, void *arg1);
 extern void func_801C26C4(s32, void *);
 extern s32 D_8038D874;
 extern u8 D_8038DD90[];

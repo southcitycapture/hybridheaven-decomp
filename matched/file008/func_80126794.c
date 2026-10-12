@@ -10,7 +10,7 @@ typedef struct func_80126794_Struct {
     u32 unk188;
 } func_80126794_Struct;
 
-extern func_80126794_Struct D_801BBBF0;
+extern struct func_80126794_Struct D_801BBBF0;
 
 void func_80126794(void) {
     D_801BBBF0.unk181 = 0;

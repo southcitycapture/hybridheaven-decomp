@@ -7,7 +7,7 @@ typedef struct func_80244240_Struct {
     s16 unk90;
 } func_80244240_Struct;
 
-extern void func_802442A0(void);
+extern void func_802442A0();
 
 void func_80244240(func_80244240_Struct *arg0, s32 arg1) {
     s32 tmp;

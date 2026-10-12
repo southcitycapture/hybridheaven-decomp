@@ -20,9 +20,9 @@ typedef struct func_8024EF6C_Vec {
     s32 z;
 } func_8024EF6C_Vec;
 
-extern void func_8013A1B4(void **, func_8024EF6C_Vec, s32);
+extern void func_8013A1B4();
 extern func_8024EF6C_Vec D_80254AB8;
-extern void func_8024F024(void);
+extern void func_8024F024();
 
 void func_8024EF6C(void *arg0, func_8024EF6C_Outer **arg1) {
     (*arg1)->unk2C->unk4 = 27.0f;

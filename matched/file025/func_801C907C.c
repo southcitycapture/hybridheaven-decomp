@@ -14,12 +14,12 @@ extern s32 D_801DA788;
 extern s32 D_801D94A8;
 extern s32 D_801D9528;
 extern s32 D_801D95A8;
-void func_80005E44(s32 arg0, s32 *arg1);
+extern s32 func_80005E44(s32, void *);
 void func_80006214(s32 arg0);
 s32 func_80001060(void);
 s32 func_801302CC(void);
-void func_800058DC(s32 arg0, void (*arg1)(void));
-void func_801C9140(void);
+extern void func_800058DC(s32 arg0, void (*arg1)(void));
+extern void func_801C9140();
 
 void func_801C907C(s32 arg0, struct func_801C907C_Outer **arg1) {
     func_80005E44(arg0, &D_801DA788);

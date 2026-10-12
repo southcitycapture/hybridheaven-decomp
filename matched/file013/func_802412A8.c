@@ -5,7 +5,7 @@ struct func_802412A8_Struct {
     s16 unk90;
 };
 
-extern void func_802412FC(void);
+extern void func_802412FC();
 
 void func_802412A8(struct func_802412A8_Struct *arg0, s32 arg1) {
     s16 temp_v0;

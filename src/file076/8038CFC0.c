@@ -20,7 +20,7 @@ struct func_8038D708_Struct {
     s32 unkC;
 };
 
-extern void func_8038D5D8(void *, void *, void *);
+extern s32 func_8038D5D8();
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];

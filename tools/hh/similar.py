@@ -16,9 +16,11 @@ IMM = re.compile(r"(-?0x[0-9A-Fa-f]+|-?\b\d+\b)")
 def tokens(path):
     out = []
     for l in open(path):
+        if l.startswith("endlabel"): break                # per-file rodata (.word/.double) can follow the function
         m = INS.match(l)
         if not m: continue
         op, args = m.group(1), m.group(2)
+        if op.startswith("."): continue                    # data directives are not instructions
         if op in ("jal", "j") and "func_" in args: out.append(op + ":" + args.split()[-1]); continue
         if op.startswith("b") and ".L" in args: out.append(op); continue
         imms = [x for x in IMM.findall(re.sub(r"%(hi|lo)\([^)]*\)", "", args)) if abs(int(x, 0)) < 0x1000]

@@ -17,7 +17,7 @@ typedef struct func_801D18BC_Struct {
     s16 unk98;
 } func_801D18BC_Struct;
 
-extern void func_801D1918(void);
+extern void func_801D1918();
 
 void func_801D18BC(func_801D18BC_Struct *arg0, func_801D18BC_StructOuter **arg1) {
     func_801D18BC_StructInner *inner;

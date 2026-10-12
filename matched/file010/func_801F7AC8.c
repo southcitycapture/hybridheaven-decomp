@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_801F7B2C(void);
+extern void func_801F7B2C();
 
 typedef struct func_801F7AC8_Struct {
     u8 pad0[0x3C];

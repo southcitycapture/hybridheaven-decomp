@@ -1,10 +1,10 @@
 #include "common.h"
 
-extern void func_801C0438();
-extern void func_801C088C();
-extern void func_801C08B0();
-extern void func_801C08F0();
-extern void func_801C0914();
+extern void func_801C0438(void);
+extern void func_801C088C(void);
+extern void func_801C08B0(void);
+extern void func_801C08F0(void);
+extern void func_801C0914(void);
 extern s32 D_801D8CFC;
 
 void func_801C0834(void) {

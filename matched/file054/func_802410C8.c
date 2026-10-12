@@ -9,7 +9,7 @@ struct func_802410C8_Struct {
 extern s32 func_800178E8(void);
 extern void func_800179B0(void *);
 extern void func_8015122C(s32, void *, s32);
-extern void func_80241128(void);
+extern void func_80241128();
 extern u8 D_802468D0[];
 extern u8 D_80246A30[];
 extern s32 D_80248804;

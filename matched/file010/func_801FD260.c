@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_801FD0F0(void);
+extern void func_801FD0F0();
 
 struct func_801FD260_Struct {
     u8 pad0[0x2C];

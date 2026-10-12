@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern void func_800058DC(void *, void *);
-extern void func_8024EE60(void);
+extern void func_8024EE60();
 
 typedef struct func_8024EE04_Inner {
     u8 pad[0x4B];

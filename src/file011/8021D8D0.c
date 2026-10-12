@@ -17,11 +17,11 @@ struct func_8021E52C_Struct {
     s32 unk8;
 };
 
-extern s32 func_80224F5C(void);
+extern s32 func_80224F5C();
 extern void func_802256E4(struct func_8021E52C_Struct *arg0, s32 arg1, s32 arg2);
 extern void func_8013A28C(s32 arg0, struct func_8021E52C_Struct arg1);
 extern void func_800058DC(s32 arg0, void *arg1);
-extern void func_8021E59C(void);
+extern void func_8021E59C();
 
 void func_8021E52C(s32 arg0, s32 arg1) {
     struct func_8021E52C_Struct sp1C;
@@ -74,8 +74,8 @@ extern struct func_80220F60_Struct D_801BBBF0;
 extern struct func_8021F9C8_Struct D_801BC03C;
 extern struct func_8021F9C8_Struct D_801BC3D8;
 extern s32 func_80010550(s32, s32);
-extern void func_802233B0(s32, s32);
-extern void func_8022397C(s32);
+extern s32 func_802233B0();
+extern s32 func_8022397C();
 extern void func_802237B0(s32, s32);
 
 void func_8021F9C8(s32 arg0, s32 arg1) {
@@ -132,7 +132,7 @@ struct func_80220F60_Struct {
 };
 
 extern void func_80359560(s32);
-extern void func_80220FC0(void);
+extern void func_80220FC0();
 
 void func_80220F60(s32 arg0) {
     s32 sp1C;
@@ -151,7 +151,7 @@ void func_80220F60(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_80220FC0.s")
 
 
-extern void func_8035C048(void);
+extern void func_8035C048();
 extern u8 D_801BCC21;
 
 void func_80221040(void) {
@@ -164,10 +164,10 @@ void func_80221040(void) {
 
 
 extern s32 func_80224AC4(s32, s32);
-extern void func_802219F8(void);
-extern void func_80221E9C(void);
-extern void func_80222708(void);
-extern void func_803628B8(s32, s32);
+extern void func_802219F8();
+extern void func_80221E9C();
+extern void func_80222708();
+extern s32 func_803628B8();
 struct func_802218D4_Obj;
 void func_802218D4(struct func_802218D4_Obj *arg0, s32 arg1);
 extern void func_80224BEC(s32, s32);
@@ -347,7 +347,7 @@ void func_80222FCC(s32 arg0, s32 arg1) {
 
 extern u8 func_80386420[];
 extern void func_80011198(s32 arg0, void *arg1);
-extern void func_80223260(void);
+extern void func_80223260();
 void func_8022321C(s32 arg0, s32 arg1);
 
 struct func_8022310C_Var {

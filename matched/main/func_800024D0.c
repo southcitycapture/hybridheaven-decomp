@@ -1,6 +1,6 @@
 #include "context.h"
 
-s32 func_80032FB0(void *, void *, s32);
+extern s32 func_80032FB0();
 extern u8 D_8005CE20[];
 extern u8 D_8005CE70[];
 

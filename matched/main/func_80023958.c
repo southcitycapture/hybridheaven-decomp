@@ -7,7 +7,7 @@ extern void func_80023BF4(void);
 extern void func_8002430C(void);
 extern void func_800242C8(void);
 extern void func_80024358(void);
-extern void func_80023D04(void);
+extern s32 func_80023D04();
 extern void func_80023A74(void);
 
 typedef struct func_80023958_Struct {

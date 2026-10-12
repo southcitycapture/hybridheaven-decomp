@@ -11,7 +11,7 @@ typedef struct func_80247978_StructObj {
 } func_80247978_StructObj;
 
 extern func_80247978_StructGlobal *D_8025DDC0;
-extern void func_802479E8(void);
+extern void func_802479E8(s32 arg0, s32 arg1);
 extern void func_800058DC(void *, void *);
 extern s32 func_80126944(void);
 extern s32 func_80133A24(u16);

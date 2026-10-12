@@ -8,12 +8,12 @@ struct func_80376C24_Struct {
 };
 
 extern void func_800058DC(void *, void *);
-extern void func_80010550(s32, s32);
+extern s32 func_80010550();
 extern void func_80011198(s32, s32);
 extern void func_80011258(s32, s32);
 extern s32 func_8014C0A8(u16);
 extern u16 D_801BBBF8;
-extern void func_80376CA8(void);
+extern void func_80376CA8();
 
 void func_80376C24(struct func_80376C24_Struct *arg0, s32 arg1) {
     s32 temp_a1;

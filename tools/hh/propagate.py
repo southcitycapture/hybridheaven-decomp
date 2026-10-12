@@ -13,7 +13,7 @@ survivors are built in their real files with `srcbuild.run`, which needs every f
 to match exactly after linking and the file to keep its size; anything else is dropped.
 With --apply the kept functions are written to matched/; then run `srcbuild.py all` and `make`.
 """
-import collections, csv, json, os, re, subprocess, sys, tempfile
+import collections, csv, itertools, json, os, re, subprocess, sys, tempfile
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 _argv = sys.argv; sys.argv = ["srcbuild.py", "none"]
@@ -116,12 +116,50 @@ def self_contained(sseg, sfunc, dctx):
     k = max([j + 1 for j, l in enumerate(lines) if l.startswith("#include")] or [0])
     return "\n".join(lines[:k] + [t for _, t in sorted(keep)] + lines[k:]) + "\n"
 
+MAX_SUBSETS = 32
+
+def const_subsets(text, func, cm):
+    """Versions of text where only some occurrences (inside func's body) of each changed constant are rewritten:
+    a literal can mean two things, e.g. f(3, buf) and buf[3], and only one of them differs in the copy."""
+    start = text.find(func + "(")
+    occ = [g for g in LIT.finditer(text)
+           if g.start() > start and int(g.group(2), 0) * (-1 if g.group(1) else 1) in cm]
+    if not occ or len(occ) > 12: return
+    n = 0
+    for k in range(1, len(occ)):
+        for combo in itertools.combinations(range(len(occ)), k):
+            t = text
+            for i in sorted(combo, reverse=True):
+                g = occ[i]; new = cm[int(g.group(2), 0) * (-1 if g.group(1) else 1)]
+                body = ("0x%X" % abs(new)) if g.group(2).lower().startswith("0x") else str(abs(new))
+                t = t[:g.start()] + ("-" if new < 0 else "") + body + t[g.end():]
+            yield t; n += 1
+            if n >= MAX_SUBSETS: return
+
+def try_alone(func, seg, t, ctx):
+    with tempfile.TemporaryDirectory() as td:
+        p = os.path.join(td, "attempt.c"); open(p, "w").write(t)
+        open(os.path.join(td, "context.h"), "w").write(ctx)
+        open(os.path.join(td, "known.h"), "w").write("")
+        r = subprocess.run([PY, "tools/hh/try_func.py", func, p, "--seg", seg], capture_output=True, text=True)
+    return r.stdout
+
+def drop_known_types(text, ctx):
+    """Remove the snippet's struct/typedef definitions that the target file's context already defines."""
+    known = set()
+    for names, t in top_items(ctx):
+        if "{" in t or "typedef" in t: known |= names
+    out = text
+    for names, t in top_items(text):
+        if ("{" in t or "typedef" in t) and names & known: out = out.replace(t + "\n", "", 1)
+    return out if out != text else None
+
 def alone(args):
     """args: (dst_seg, dst, [(src_seg, src)]) -> (dst_seg, dst, text, src) for the first source that matches."""
     seg, func, sources = args
     cf = S.file_of(seg, func)
-    if not cf or (seg, cf) in S.LIBFILES: return seg, func, None, "no C file"
-    why = "no clean symbol map"
+    if not cf or (seg, cf) in S.LIBFILES: return seg, func, None, "no C file", None
+    why, clash = "no clean symbol map", None
     for sseg, sfunc in sources:
         m = symbol_map(sseg, sfunc, seg, func)
         if not m: continue
@@ -132,16 +170,80 @@ def alone(args):
         full = with_consts(translate(self_contained(sseg, sfunc, ctx), m), cm)
         tries = [full, R.with_context_decls(full, ctx, func)]
         if plain != full: tries += [plain, R.with_context_decls(plain, ctx, func)]
+        for t in list(tries):            # the snippet may define a type the file already has
+            d = t and drop_known_types(t, ctx)
+            if d: tries += [d, R.with_context_decls(d, ctx, func)]
         for t in tries:   # as copied, then with the file's declarations
             if not t: continue
-            with tempfile.TemporaryDirectory() as td:
-                p = os.path.join(td, "attempt.c"); open(p, "w").write(t)
-                open(os.path.join(td, "context.h"), "w").write(ctx)
-                open(os.path.join(td, "known.h"), "w").write("")
-                r = subprocess.run([PY, "tools/hh/try_func.py", func, p, "--seg", seg], capture_output=True, text=True)
-            if r.stdout.startswith("MATCH"): return seg, func, t, "%s/%s" % (sseg, sfunc)
-            why = "alone: " + (r.stdout.strip().splitlines() or ["compile error"])[0][:80]
-    return seg, func, None, why
+            out = try_alone(func, seg, t, ctx)
+            if out.startswith("MATCH"): return seg, func, t, "%s/%s" % (sseg, sfunc), None
+            why = "alone: " + (out.strip().splitlines() or ["compile error"])[0][:80]
+            if why.startswith("alone: compile") and clash is None: clash = tries[-1] if len(tries) > 2 else t
+        if cm and why.startswith("alone: score"):      # a literal that means two things: rewrite only some uses
+            base = translate(self_contained(sseg, sfunc, ctx), m)
+            for b0 in (base, drop_known_types(base, ctx)):
+                if not b0: continue
+                for t in const_subsets(b0, func, cm):
+                    for tt in (t, R.with_context_decls(t, ctx, func)):
+                        if tt and try_alone(func, seg, tt, ctx).startswith("MATCH"):
+                            return seg, func, tt, "%s/%s (some constants)" % (sseg, sfunc), None
+    return seg, func, None, why, clash
+
+def file_ok(seg, cf, snips, must):
+    """Build the file with snips; returns the subset of snips kept, or None if any `must` name dropped out."""
+    with tempfile.TemporaryDirectory() as td:
+        kept, rej, text, problem = S.settle(seg, cf, snips, td)
+    if problem or not must <= set(kept): return None
+    return set(kept)
+
+def fit(seg, cf, base, new):
+    """Largest set of `new` that builds with every `base` function still matching (bisects on failure)."""
+    if not new: return {}
+    kept = file_ok(seg, cf, dict(base, **new), set(base))
+    if kept is not None: return {n: new[n] for n in new if n in kept}
+    if len(new) == 1: return {}
+    names = sorted(new); half = len(names) // 2
+    a = fit(seg, cf, base, {n: new[n] for n in names[:half]})
+    b = fit(seg, cf, dict(base, **a), {n: new[n] for n in names[half:]})
+    return dict(a, **b)
+
+CLASH_LOG = "queue/propagate_clash_failed.jsonl"     # unify failures: (seg, func, candidate, file state) hashes
+
+def clash_key(seg, n, text, neigh):
+    import hashlib
+    h = hashlib.sha1(text.encode())
+    for m in sorted(neigh): h.update(m.encode()); h.update(neigh[m].encode())
+    return "%s/%s/%s" % (seg, n, h.hexdigest()[:16])
+
+def known_failures():
+    if not os.path.exists(CLASH_LOG): return set()
+    return {json.loads(l)["key"] for l in open(CLASH_LOG)}
+
+def one_file(item):
+    (seg, cf), (new, clash) = item
+    failed_before = known_failures()
+    import unify
+    reg = S.registry(); names = {e[0] for e in S.entries(seg, cf)}
+    base = {n: t for (s, n), t in reg.items() if s == seg and n in names}
+    added = fit(seg, cf, base, new)
+    dropped = {n: "does not fit in its file" for n in new if n not in added}
+    how = {n: "copy" for n in added}
+    neigh = dict(base, **added); edits = {}
+    fails = []
+    for n in sorted(clash):                       # declaration clashes: unify's file-wide repair
+        key = clash_key(seg, n, clash[n], neigh)
+        if key in failed_before: dropped[n] = "clash: unify failed before on this file state"; continue
+        try: h, snips = unify.fix_one(seg, cf, neigh, n, clash[n])
+        except Exception as e: h, snips = None, None
+        if not h: dropped[n] = "clash unify could not repair"; fails.append(key); continue
+        for m, t in snips.items():
+            if m != n and t != neigh.get(m):
+                if m in base: edits[m] = t
+                else: added[m] = t
+        neigh = snips; added[n] = snips[n]; how[n] = h
+    with open(CLASH_LOG, "a") as fh:              # one short line per failure; appends from parallel workers are safe
+        for k in fails: fh.write(json.dumps({"key": k}) + "\n")
+    return (seg, cf), added, how, edits, dropped
 
 if __name__ == "__main__":
     OUT = "queue/" + sys.argv[1]; apply = "--apply" in sys.argv
@@ -163,41 +265,41 @@ if __name__ == "__main__":
             jobs.append((k[0], k[1], src))
     jobs.sort(); jobs = jobs[:limit] if limit else jobs
     print(len(jobs), "unmatched copies of matched functions", flush=True)
-    cands, log = {}, open(OUT + "/propagate.jsonl", "a" if "--resume" in sys.argv else "w")
+    cands, clashes, log = {}, {}, open(OUT + "/propagate.jsonl", "a" if "--resume" in sys.argv else "w")
     if "--resume" in sys.argv:          # reuse the alone-stage results of an interrupted run
-        cands = {tuple(k.split("/")): t for k, t in json.load(open(OUT + "/alone.json")).items()}
-        cands = {k: t for k, t in cands.items() if k not in reg}; jobs = []
+        saved = json.load(open(OUT + "/alone.json"))
+        cands = {tuple(k.split("/")): t for k, t in saved.get("match", saved).items()}
+        clashes = {tuple(k.split("/")): t for k, t in saved.get("clash", {}).items()}
+        cands = {k: t for k, t in cands.items() if k not in reg}; clashes = {k: t for k, t in clashes.items() if k not in reg}
+        jobs = []
     with Pool(max(1, os.cpu_count() - 4)) as p:
-        for i, (seg, func, text, how) in enumerate(p.imap_unordered(alone, jobs, chunksize=8)):
+        for i, (seg, func, text, how, clash) in enumerate(p.imap_unordered(alone, jobs, chunksize=8)):
             if text: cands[(seg, func)] = text
+            elif clash: clashes[(seg, func)] = clash
             log.write(json.dumps(dict(segment=seg, func=func, alone=bool(text), how=how)) + "\n")
             if i % 500 == 0: print(i, "checked,", len(cands), "match alone", flush=True)
-    json.dump({"%s/%s" % k: t for k, t in cands.items()}, open(OUT + "/alone.json", "w"))   # for --resume
-    print(len(cands), "of", len(jobs), "match alone; building their files", flush=True)
-    fileof = lambda k: (k[0], S.file_of(*k))
-    allc = dict(reg); allc.update(cands)
-    kept, rejected = S.run(allc, set(cands))
-    for _ in range(3):
-        # a file where a registered function dropped out keeps none of its new copies: rebuild it without them
-        lost = [k for k in reg if k not in kept and fileof(k)[1] and fileof(k) not in S.LIBFILES]
-        if not lost: break
-        bad = {fileof(k) for k in lost}
-        print("rebuilding", len(bad), "files without their new copies:", sorted(bad)[:6], flush=True)
-        for k in [k for k in cands if fileof(k) in bad]:
-            cands.pop(k); rejected[k] = "dropped: its file lost a registered function"
-        redo = {k: t for k, t in reg.items() if fileof(k) in bad}
-        k2, r2 = S.run(redo, set())
-        kept = {k for k in kept if fileof(k) not in bad} | k2
-    lost = [k for k in reg if k not in kept and fileof(k)[1] and fileof(k) not in S.LIBFILES]
-    new = [k for k in cands if k in kept]
-    for k, why in rejected.items():
-        if k not in reg: log.write(json.dumps(dict(segment=k[0], func=k[1], alone=True, infile=False, why=why)) + "\n")
-    summary = "%d copies, %d match alone, %d match in their files; %d registered functions lost (must be 0)" % (
-        len(jobs), len(cands), len(new), len(lost))
+    json.dump({"match": {"%s/%s" % k: t for k, t in cands.items()},
+               "clash": {"%s/%s" % k: t for k, t in clashes.items()}}, open(OUT + "/alone.json", "w"))   # for --resume
+    byfile = collections.defaultdict(lambda: ({}, {}))
+    for k, t in cands.items(): byfile[(k[0], S.file_of(*k))][0][k[1]] = t
+    for k, t in clashes.items(): byfile[(k[0], S.file_of(*k))][1][k[1]] = t
+    print(len(cands), "of", len(jobs) or len(cands), "match alone,", len(clashes), "only clash; building",
+          len(byfile), "files", flush=True)
+    results = {}
+    with Pool(max(1, os.cpu_count() - 2)) as p:
+        for i, (key, added, how, edits, dropped) in enumerate(p.imap_unordered(one_file, sorted(byfile.items()))):
+            results[key] = (added, how, edits)
+            for n, why in dropped.items():
+                log.write(json.dumps(dict(segment=key[0], func=n, infile=False, why=why)) + "\n")
+            if i % 20 == 0: print(i, "files built", flush=True)
+    new = sum(len(a) for a, _, _ in results.values())
+    viaunify = sum(1 for _, h, _ in results.values() for v in h.values() if v != "copy")
+    nedit = sum(len(e) for _, _, e in results.values())
+    summary = "%d copies, %d match alone, %d match in their files (%d via unify, %d neighbours rewritten); 0 registered functions lost" % (
+        len(jobs) or len(cands) + len(clashes), len(cands), new, viaunify, nedit)
     print(summary); open(OUT + "/summary.txt", "w").write(summary + "\n")
-    if lost: print("NOT applying: registered functions would drop out:", lost[:10]); sys.exit(1)
     if apply:
-        for seg, func in new:
+        for (seg, cf), (added, how, edits) in results.items():
             os.makedirs("matched/" + seg, exist_ok=True)
-            open("matched/%s/%s.c" % (seg, func), "w").write(cands[(seg, func)])
-        print("wrote", len(new), "functions to matched/")
+            for n, t in list(added.items()) + list(edits.items()): open("matched/%s/%s.c" % (seg, n), "w").write(t)
+        print("wrote", new, "functions and", nedit, "rewritten neighbours to matched/")

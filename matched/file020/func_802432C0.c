@@ -3,7 +3,7 @@
 extern void func_800058DC(void *, void *);
 extern void func_80020718(s32);
 extern s32 func_801C3D20(f32, f32, f32);
-extern void func_8024332C(void);
+extern void func_8024332C();
 
 void func_802432C0(void *arg0, void *arg1) {
     if (func_801C3D20(410.0f, 660.0f, 40.0f) != 0) {

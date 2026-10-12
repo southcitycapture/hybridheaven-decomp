@@ -15,7 +15,7 @@ typedef struct func_80025768_Struct {
     u8 unk8C;
 } func_80025768_Struct;
 
-extern void func_80025460(void);
+extern s32 func_80025460();
 
 void func_80025768(void) {
     if (((func_80025768_Struct *) D_800CBDA4)->unk8C == 0) {

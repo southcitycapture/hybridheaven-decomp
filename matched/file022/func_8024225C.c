@@ -15,7 +15,7 @@ typedef struct func_8024225C_Struct {
     func_8024225C_Inner *unk24;
 } func_8024225C_Struct;
 
-extern void func_802422C8(void);
+extern void func_802422C8();
 extern void func_800058DC(void *, void *);
 
 void func_8024225C(void *arg0, void *arg1) {

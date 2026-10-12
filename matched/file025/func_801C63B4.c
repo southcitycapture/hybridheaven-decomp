@@ -8,7 +8,7 @@ typedef struct func_801C63B4_Struct {
 extern void func_8001F540();
 extern void func_800058DC(void *, void *);
 extern s32 D_801DA50C;
-extern void func_801C640C();
+extern void func_801C640C(s32 arg0, s32 arg1);
 
 void func_801C63B4(func_801C63B4_Struct *arg0, void *arg1) {
     if (arg0->unk90++ >= 7) {

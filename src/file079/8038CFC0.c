@@ -23,7 +23,7 @@ struct func_8038D7B8_Struct {
     u8 unk93;
 };
 
-extern void func_8038D638(void *, void *, void *);
+extern s32 func_8038D638();
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C;
 extern u8 D_801BC3D8;

@@ -57,7 +57,7 @@ extern void func_80005E44(void *, void *);
 extern void func_80006214(void *);
 extern void func_8012C784(void *, s32, s32);
 extern void func_8012CF8C(void *, void *, s32, s32);
-extern void func_80249960(void);
+extern void func_80249960();
 extern func_80249170_Copy D_80164F40;
 extern u8 D_80258C34[];
 extern u8 D_80258C48[];
@@ -206,7 +206,7 @@ void func_80249170(func_80249170_Ctx *arg0, func_80249170_Args *arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80249170/func_80249960.s")
 
 
-extern void func_80249EF8(void);
+extern void func_80249EF8();
 extern s32 D_801BBCCC;
 
 void func_80249EC4(void *arg0, s32 arg1) {
@@ -228,7 +228,7 @@ typedef struct func_8024A0D4_Struct {
 extern s32 func_800058DC(void *, void *);
 extern s32 func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern s32 func_801C2F0C(s32, s32);
-extern void func_8024A418(void);
+extern void func_8024A418();
 extern u8 D_8025CBE0[];
 extern f32 D_8025CD48;
 extern f32 D_8025CD4C;

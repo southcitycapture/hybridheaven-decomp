@@ -5,8 +5,8 @@ extern s32 D_801D8D00;
 
 void func_801BF9B0(s32 arg0);
 void func_801C0058(void);
-void func_801BF388(void);
-void func_801BF604(void);
+extern void func_801BF388();
+extern void func_801BF604(s32 arg0, s32 arg1);
 
 void func_801BF598(s32 arg0, s32 arg1) {
     if (D_801D8CF8 != 0) {

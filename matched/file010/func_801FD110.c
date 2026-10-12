@@ -11,7 +11,7 @@ struct func_801FD110_Struct {
 };
 
 extern void func_8013E5C4(s32, s32, s32, s32, s32);
-extern void func_800058DC(void *, void *);
+extern void func_800058DC();
 extern u8 func_80126EAC[];
 
 void func_801FD110(struct func_801FD110_Struct *volatile arg0, s32 *arg1) {

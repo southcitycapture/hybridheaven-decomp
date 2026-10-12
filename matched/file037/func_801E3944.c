@@ -16,7 +16,7 @@ struct func_801E3944_Struct3 {
 extern s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
 extern void func_801C0EB0(s32 arg0, s32 arg1);
 extern u64 func_801C0F18(s32 arg0, s32 arg1);
-extern f64 func_80034C24(u64 arg0);
+extern f64 func_80034C24();
 extern f64 D_801E6D80;
 
 s32 func_801E3944(s32 arg0, s32 arg1) {

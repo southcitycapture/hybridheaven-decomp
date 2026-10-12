@@ -1,6 +1,6 @@
 #include "context.h"
 void D_8038BD88(f32, f32, f32);
-f64 func_80034C24(u64);                             /* extern */
+extern f64 func_80034C24();
 u64 func_801C0B2C();                                /* extern */
 s32 func_801C0B8C(u64 time);
 void func_8038BD50(f32, f32, f32);

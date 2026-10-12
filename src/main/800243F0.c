@@ -423,7 +423,41 @@ void func_80025448(void) {
     D_800CBDA0 += 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_80025460.s")
+
+struct func_80025460_Struct {
+    u8 pad0[0x18];
+    u16 unk18;
+    u8 pad1[0x28 - 0x1A];
+    s32 unk28;
+    u8 pad2[0x7D - 0x2C];
+    u8 unk7D;
+    u8 pad3[0x80 - 0x7E];
+    s32 unk80;
+    s32 unk84;
+};
+
+void func_80025460(void)
+{
+  struct func_80025460_Struct *p;
+  s32 divisor;
+  s32 temp_a0;
+  s32 temp_a1;
+  p = (struct func_80025460_Struct *) D_800CBDA4;
+  divisor = (s32) (((((u32) (((struct func_80025460_Struct *) D_800CBDA4)->unk7D << 0x10)) / ((struct func_80025460_Struct *) D_800CBDA4)->unk18) + 1) & 0xFFFF);
+  temp_a0 = ((struct func_80025460_Struct *) D_800CBDA4)->unk80 - ((struct func_80025460_Struct *) D_800CBDA4)->unk28;
+  ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = temp_a0 / divisor;
+  p = (struct func_80025460_Struct *) D_800CBDA4;
+  ;
+  if (((struct func_80025460_Struct *) D_800CBDA4)->unk84 == 0)
+  {
+    if (temp_a0 < 0)
+    {
+      ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 - 1;
+      return;
+    }
+    ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 + 1;
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_80025500.s")
 
@@ -506,7 +540,6 @@ typedef struct func_80025768_Struct {
     u8 unk8C;
 } func_80025768_Struct;
 
-extern void func_80025460(void);
 
 void func_80025768(void) {
     if (((func_80025768_Struct *) D_800CBDA4)->unk8C == 0) {
@@ -705,7 +738,22 @@ void func_80026120(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_80026140.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_800261C4.s")
+
+void func_800261C4(s32 arg0)
+{
+  u8 temp_a1;
+  u8 temp_a2;
+  u8 temp_a3;
+  s16 temp_s16;
+  temp_a1 = D_800CBDA0[0];
+  D_800CBDA0 = D_800CBDA0 + 1;
+  temp_a2 = D_800CBDA0[0];
+  D_800CBDA0 = D_800CBDA0 + 1;
+  temp_a3 = D_800CBDA0[(arg0 & 0xFF) * 0];
+  temp_s16 = (s16) (((s8) (temp_a3 & 0xFF)) << 8);
+  D_800CBDA0 = D_800CBDA0 + 1;
+  func_80026140(arg0 & 0xFF, temp_a1, temp_a2, temp_s16);
+}
 
 
 struct func_8002622C_Struct {

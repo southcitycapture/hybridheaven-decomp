@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80241F18(void);
+extern void func_80241F18();
 
 struct func_80241E64_Self {
     u8 pad[0x94];

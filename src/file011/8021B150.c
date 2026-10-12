@@ -56,7 +56,7 @@ void func_8021BDE0(u8 *arg0, s32 arg1);
 extern u64 func_80031190(void);
 extern u64 func_80026F58(u64, u64);
 extern u64 func_80026E58(u64, u64);
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern u64 func_80034AB8(f64);
 extern s32 func_80151BC4(void);
 extern void func_802332D8(void);
@@ -117,7 +117,7 @@ void func_8021C928(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021B150/func_8021CC30.s")
 
 
-extern void func_8021BF74(void);
+extern void func_8021BF74();
 
 typedef struct func_8021CD9C_Struct {
     u8 pad[0xB0];
@@ -363,7 +363,7 @@ void func_8021D664(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021B150/func_8021D6A4.s")
 
 
-extern void func_80005670(s32, void *);
+extern s32 func_80005670();
 extern u8 D_80044090[];
 extern void func_8021D768(s32 arg0, s32 arg1);
 
@@ -389,7 +389,7 @@ void func_8021D768(s32 arg0, s32 arg1) {
 
 
 extern s32 func_8013EB2C(void);
-extern void func_8021D84C(void);
+extern void func_8021D84C();
 
 void func_8021D808(s32 arg0, s32 arg1) {
     if (func_8013EB2C() != 0) {

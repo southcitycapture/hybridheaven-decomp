@@ -45,7 +45,7 @@ extern void func_8012D918(void *, s32, s32, s32, s32);
 extern struct func_80240924_Copy D_80164F40;
 extern s32 D_80249708[];
 extern void func_80126EAC(void);
-extern void func_80240A6C(void);
+extern void func_80240A6C();
 
 void func_80240924(void *arg0, struct func_80240924_Obj **arg1) {
     struct func_80240924_Copy sp28;

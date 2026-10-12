@@ -23,7 +23,7 @@ struct func_80241CC8_Struct_Self {
 extern s32 func_8012C89C(void *, s32, s32, s32);
 extern s16 D_801BBD84;
 extern f64 D_80249AF0;
-extern void func_80241D7C(void);
+extern void func_80241D7C();
 
 void func_80241CC8(struct func_80241CC8_Struct_Self *arg0, struct func_80241CC8_Struct_A *arg1) {
     s16 temp_v1;

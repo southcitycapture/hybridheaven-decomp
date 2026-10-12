@@ -9,7 +9,7 @@ void func_800058DC(void *arg0, void *arg1);
 void func_8001A804();
 extern u8 D_801CF5B4[];
 extern u8 D_801CF5DC[];
-extern void func_801CA358(void);
+extern void func_801CA358();
 
 void func_801CA284(struct func_801CA284_Struct *arg0, s32 arg1) {
     if (arg0->unk3C < 6) {

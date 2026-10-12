@@ -10,7 +10,7 @@ struct func_80246730_Struct {
     u8 unk3A7;
 };
 
-extern void func_8012FE50(s32, u16, s32, s32, s32);
+extern s32 func_8012FE50();
 extern struct func_80246730_Struct D_801BBBF0;
 
 void func_80246730(void) {

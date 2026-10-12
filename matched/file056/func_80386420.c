@@ -20,7 +20,7 @@ struct func_80386420_StructArg0 {
 };
 
 extern f64 D_80389CE8;
-void func_80005700(void);
+extern void func_80005700();
 
 void func_80386420(struct func_80386420_StructArg0 *arg0, struct func_80386420_StructOuter **arg1) {
     u16 temp_a2;

@@ -15,11 +15,11 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80376300/func_80376900.s")
 
 
-extern void func_803763D4(void);
+extern void func_803763D4();
 extern void func_803764CC(void *);
-extern void func_803765D4(void);
-extern void func_80376708(void);
-extern void func_803767F4(void);
+extern void func_803765D4();
+extern void func_80376708();
+extern void func_803767F4();
 extern void func_80376900(void *);
 extern u8 D_801BBBF0;
 extern u8 D_801BC03C;

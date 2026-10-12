@@ -17,10 +17,10 @@ typedef struct func_8036F898_StructB {
     u8 unk392;
 } func_8036F898_StructB;
 extern func_8036F898_StructA D_801BBBF0;
-extern void func_802233B0(void *, s32);
-extern void func_8022397C(void *, s32);
+extern s32 func_802233B0();
+extern s32 func_8022397C();
 extern s32 func_80010550(s32, s32, void *);
-extern void func_8021E59C(void);
+extern void func_8021E59C();
 
 void func_8036F898(void *arg0, s32 arg1) {
     func_8036F898_StructB *v;

@@ -15,7 +15,7 @@ struct func_801E3F24_StructC {
     struct func_801E3F24_StructA *unkC;
 };
 
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern u64 func_801C0B2C(void);
 extern f64 D_801F5818;
 

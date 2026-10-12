@@ -8,7 +8,7 @@ struct func_80242EEC_Struct {
 extern void func_800058DC(void *, void *);
 extern void func_80020718(s32);
 extern void func_80243CC0(void *, s32);
-extern void func_80242F50(void);
+extern void func_80242F50();
 
 void func_80242EEC(struct func_80242EEC_Struct *arg0, s32 arg1)
 {

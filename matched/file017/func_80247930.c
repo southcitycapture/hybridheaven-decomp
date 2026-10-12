@@ -7,7 +7,7 @@ struct func_80247930_Struct {
 
 extern s32 func_801C3044();
 extern void func_801C2F0C();
-extern void func_800058DC();
+extern void func_800058DC(void *, void *);
 extern void func_80247978();
 
 void func_80247930(struct func_80247930_Struct *arg0, s32 arg1) {

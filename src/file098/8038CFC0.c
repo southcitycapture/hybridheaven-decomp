@@ -26,7 +26,7 @@ extern s32 D_801BBCCC;
 extern u8 D_801BC03C;
 extern u8 D_801BC3D8;
 extern void func_8038DA0C();
-extern void func_8038D800(void *a, void *b, void *c);
+extern s32 func_8038D800();
 
 void func_8038D97C(func_8038D97C_Struct *arg0, void *arg1) {
     void *var_a1;

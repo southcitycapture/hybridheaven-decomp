@@ -3,8 +3,8 @@
 extern s32 func_80010550(s32, s32);
 extern s32 func_800178E8(void);
 extern void func_800179B0(void *);
-extern void func_800058DC(void *, void *);
-extern void func_80249FC4(void);
+extern void func_800058DC(void *arg0, void *arg1);
+extern void func_80249FC4();
 extern func_8024AA38_Struct D_802530A0;
 extern u8 D_80253410[];
 

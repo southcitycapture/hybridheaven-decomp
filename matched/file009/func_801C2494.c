@@ -29,11 +29,11 @@ typedef struct func_801C2494_Struct388500 {
     s32 unk8;
 } func_801C2494_Struct388500;
 
-extern void func_801C1B38(void);
+extern void func_801C1B38();
 extern void func_8012AAE8(void *, s32, s32, s32, f32);
 extern s32 func_8012CE9C(s32, void *, func_801C2494_Struct388500, s32);
 extern s32 func_8012A7F4(void *, s32, s32, s32);
-extern void func_80010550();
+extern s32 func_80010550();
 extern func_801C2494_Struct388500 D_80388500;
 
 void func_801C2494(func_801C1EE0_StructArg *arg0, s32 arg1) {

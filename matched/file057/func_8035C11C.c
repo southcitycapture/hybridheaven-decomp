@@ -15,7 +15,7 @@ typedef struct func_8035C11C_Obj {
 } func_8035C11C_Obj;
 
 extern void func_8013AE20(void *, s32, s32, void *);
-extern void func_8035C230(void);
+extern void func_8035C230();
 extern u8 D_80385630[];
 extern u8 D_80385640[];
 

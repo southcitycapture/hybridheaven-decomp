@@ -33,7 +33,7 @@ extern void func_800058DC(void *, void *);
 extern void func_8012C89C(void *, s32, s32, s32);
 extern void func_8012D814(void *, s32, s32, s32, s32);
 extern s32 func_8012F41C(void *, s32, s32, s32, s32);
-extern void func_80127E3C(void);
+extern void func_80127E3C();
 
 void func_80127D70(func_80127D70_StructArg *arg0, func_80127D70_StructC **arg1) {
     arg0->unk90 = 0xF8;

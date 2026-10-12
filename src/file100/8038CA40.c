@@ -2,7 +2,7 @@
 
 
 void func_801BF6C4(s32 arg0);
-void func_8038D1A0(s32 arg0, s32 arg1);
+extern s32 func_8038D1A0(s32 arg0, s32 arg1);
 extern s32 D_8038DB8C;
 extern s32 D_8038DB90;
 extern s32 D_8038DB94;
@@ -166,7 +166,7 @@ typedef struct func_8038CF3C_Struct {
     void (*unk8)();
 } func_8038CF3C_Struct;
 
-extern void func_8038CFCC();
+extern s32 func_8038CFCC(void);
 extern s32 func_8038CFE8(void);
 extern void func_8038D020();
 extern func_8038CF3C_Struct D_8038DBBC;
@@ -184,10 +184,16 @@ void func_8038CF3C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CF94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CFCC.s")
-
 
 extern s32 D_8038DBCC;
+
+s32 func_8038CFCC(void) {
+    D_8038DBCC = 0;
+    D_8038DBC8 = 1;
+    return 0;
+}
+
+
 
 s32 func_8038CFE8(void) {
     if (D_8038DBD0 < D_8038DBCC) {
@@ -236,7 +242,10 @@ s32 func_8038D0DC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D174.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D1A0.s")
+
+s32 func_8038D1A0(s32 arg0, s32 arg1) {
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D1B0.s")
 

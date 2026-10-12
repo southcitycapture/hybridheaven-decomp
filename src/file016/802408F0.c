@@ -1,14 +1,20 @@
 #include "common.h"
 
 
-extern void func_800058DC(s32 arg0, void (*arg1)(void));
-extern void func_80240918(void);
+extern void func_800058DC(void *, void *);
+extern void func_80240918(s32 arg0, s32 arg1);
 
 void func_802408F0(s32 arg0, s32 arg1) {
     func_800058DC(arg0, func_80240918);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80240918.s")
+
+void func_80240918(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 
 struct func_80240924_Copy {
@@ -55,7 +61,7 @@ extern void func_8012D918(void *, s32, s32, s32, s32);
 extern struct func_80240924_Copy D_80164F40;
 extern s32 D_80249708[];
 extern void func_80126EAC(void);
-extern void func_80240A6C(void);
+extern void func_80240A6C();
 
 void func_80240924(void *arg0, struct func_80240924_Obj **arg1) {
     struct func_80240924_Copy sp28;
@@ -90,7 +96,7 @@ void func_80240924(void *arg0, struct func_80240924_Obj **arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80241164.s")
 
 
-extern void func_8024174C(void);
+extern void func_8024174C();
 
 void func_80241714(void *arg0, s16 arg1)
 {
@@ -105,7 +111,7 @@ void func_80241714(void *arg0, s16 arg1)
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_8024174C.s")
 
 
-extern void func_80241A00(void);
+extern void func_80241A00();
 
 void func_802419C8(void *arg0, s16 arg1)
 {

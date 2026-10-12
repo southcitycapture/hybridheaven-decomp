@@ -16,9 +16,9 @@ typedef struct func_80241F50_StructB {
 
 extern s32 func_80126CC0(void *, void *);
 extern void func_8013B570(void *, u16, s32, s32, void *);
-extern u8 func_80127014[];
-extern u8 func_8012E5B0[];
-extern u8 func_8012E6BC[];
+extern void func_80127014();
+extern void func_8012E5B0(void);
+extern void func_8012E6BC(void);
 extern u8 func_80241FBC[];
 
 void func_80241F50(func_80241F50_Struct *arg0, s32 arg1) {

@@ -26,7 +26,7 @@ struct func_802415DC_StructD {
     f32 unk8;
 };
 
-extern void func_8024168C(void);
+extern void func_8024168C();
 
 void func_802415DC(struct func_802415DC_StructC *arg0, void *arg1) {
     u8 pad[0x14];

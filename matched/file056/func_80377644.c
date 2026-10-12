@@ -8,7 +8,7 @@ struct func_80377644_Struct {
 extern s32 func_8014C0A8(u16);
 extern void func_800058DC(void *, void *);
 extern u16 D_801BBBF8;
-extern void func_8037769C(void);
+extern void func_8037769C();
 
 void func_80377644(struct func_80377644_Struct *arg0, s32 arg1) {
     volatile void *home;

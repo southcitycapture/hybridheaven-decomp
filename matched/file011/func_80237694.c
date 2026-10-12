@@ -26,8 +26,8 @@ extern void func_80236BC8(s32);
 extern s32 func_80236C9C(void);
 extern void func_80376CCC();
 extern u8 D_8038CD70[];
-extern void func_8023748C(void);
-extern void func_80237768(void);
+extern void func_8023748C();
+extern void func_80237768();
 extern void func_8023B86C(void);
 
 void func_80237694(func_80237694_Struct *arg0, s32 arg1) {

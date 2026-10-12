@@ -11,8 +11,8 @@ typedef struct func_80360AA8_Struct {
     u8 unk392;
 } func_80360AA8_Struct;
 
-extern void func_80224AC4(void *arg0, s32 arg1);
-extern void func_80360BDC(void);
+extern s32 func_80224AC4();
+extern void func_80360BDC();
 
 void func_80360AA8(void *arg0, s32 arg1) {
     extern void func_802256E4();

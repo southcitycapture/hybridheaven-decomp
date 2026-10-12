@@ -19,7 +19,7 @@ typedef struct func_8038D810_Struct {
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-extern void func_8038D8A0(void);
+extern void func_8038D8A0();
 extern void func_8038D744(void *a, void *b, void *c);
 
 void func_8038D810(func_8038D810_Struct *arg0, void *arg1) {

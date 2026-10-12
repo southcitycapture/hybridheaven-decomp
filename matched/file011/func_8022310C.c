@@ -3,7 +3,7 @@
 extern s32 D_801BBCCC;
 extern u8 func_80386420[];
 extern void func_80011198(s32 arg0, void *arg1);
-extern void func_80223260(void);
+extern void func_80223260();
 void func_8022321C(s32 arg0, s32 arg1);
 
 struct func_8022310C_Var {

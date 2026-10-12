@@ -8,12 +8,12 @@ typedef struct func_803790F0_Struct2 {
 
 extern s32 func_80010550(s32, s32);
 extern void func_8001B204(s32, s32, s32, void *);
-extern void func_80005700(s32);
+extern s32 func_80005700(s32);
 extern void func_80011140(s32, s32, func_803790F0_Struct2, s32);
 extern func_803790F0_Struct2 D_80216B90;
 extern s32 D_803894D0[];
 extern s32 D_8038A90C;
-extern void func_80379190(void);
+extern void func_80379190();
 
 void func_803790F0(s32 arg0, s32 arg1) {
     s32 temp_a1;

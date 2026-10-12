@@ -1,7 +1,7 @@
 #include "context.h"
 
-extern void func_800058DC(void *, void (*)(void), s32);
-extern void func_801FE700(void);
+extern void func_800058DC();
+extern void func_801FE700();
 
 struct func_801FE5F0_Struct {
     u8 pad0[0xAB];

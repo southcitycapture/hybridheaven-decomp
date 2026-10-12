@@ -211,7 +211,21 @@ void func_80022C08(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_80022C2C.s")
+
+
+void func_80022C2C(void)
+{
+  s16 *new_var;
+  volatile s16 *p;
+  new_var = &D_800CBACA;
+  new_var = &D_800CBACA;
+  p = new_var;
+  new_var[0] = 0;
+  D_800CBACC = 0;
+  if (!new_var)
+  {
+  }
+}
 
 
 extern s8 D_800CBACD;
@@ -249,7 +263,7 @@ extern void func_80023BF4(void);
 extern void func_8002430C(void);
 extern void func_800242C8(void);
 extern void func_80024358(void);
-extern void func_80023D04(void);
+extern s32 func_80023D04();
 extern void func_80023A74(void);
 
 typedef struct func_80023958_Struct {

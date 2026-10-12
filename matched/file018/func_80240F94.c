@@ -18,7 +18,7 @@ typedef struct func_80240F94_Struct0 {
 } func_80240F94_Struct0;
 
 extern f32 D_8025BE00;
-extern void func_80240FFC(void);
+extern void func_80240FFC();
 
 void func_80240F94(func_80240F94_Struct0 *arg0, func_80240F94_Struct1 **arg1) {
     if (arg0->unk92 != 0) {

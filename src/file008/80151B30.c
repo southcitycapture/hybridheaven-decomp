@@ -16,7 +16,7 @@ typedef struct func_80151B30_Struct {
 
 extern func_80151B30_Struct D_801BBBF0;
 extern s32 func_80151B98(s32 arg0);
-extern void func_80151BD0(s32 arg0);
+extern s32 func_80151BD0(s32 arg0);
 
 void func_80151B30(void) {
     func_80151B98(1);
@@ -60,7 +60,19 @@ u8 func_80151BC4(void) {
     return D_801BBD5B;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80151B30/func_80151BD0.s")
+
+
+s32 func_80151BD0(s32 arg0) {
+    s32 *p;
+
+    p = &arg0;
+    arg0 = arg0 & 0xFF;
+    if (arg0 < 5) {
+        D_801BBD5B = arg0;
+        return 1;
+    }
+    return 0;
+}
 
 
 extern u8 D_801BBD5C;

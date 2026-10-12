@@ -2,7 +2,7 @@
 
 extern void func_800173E4(s32);
 extern s32 func_800174CC(s32 arg0);
-extern void func_8001F540(s32);
+extern s32 func_8001F540();
 extern s32 D_801BBC10;
 
 s32 func_800172F4(void) {

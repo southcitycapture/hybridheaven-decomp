@@ -17,7 +17,7 @@ typedef struct func_802439EC_StackLocals {
 extern s32 func_800178E8();
 extern s32 func_80133A24(s32);
 extern void func_801339D0(s32);
-extern void func_80243A78(void);
+extern void func_80243A78();
 
 void func_802439EC(func_802439EC_Struct *arg0, s32 arg1) {
     func_802439EC_StackLocals loc;

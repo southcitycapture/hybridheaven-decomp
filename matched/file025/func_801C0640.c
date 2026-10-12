@@ -1,7 +1,7 @@
 #include "context.h"
 
 
-extern s32 func_801BF7A0(s32, func_801C0640_Struct);
+extern s32 func_801BF7A0();
 
 s32 func_801C0640(s32 arg0, u8 *arg1) {
     s32 temp_v1;

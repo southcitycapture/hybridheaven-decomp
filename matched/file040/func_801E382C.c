@@ -13,7 +13,7 @@ struct func_801E382C_Struct_A {
 extern s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
 extern void func_801C0EB0(s32 arg0, s32 arg1);
 extern u64 func_801C0F18(s32 arg0, s32 arg1);
-extern f64 func_80034C24(u64 time);
+extern f64 func_80034C24();
 extern f64 D_801E87E8;
 
 s32 func_801E382C(s32 arg0, s32 arg1) {

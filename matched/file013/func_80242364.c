@@ -6,7 +6,7 @@ struct func_80242364_Struct {
 };
 
 extern u8 D_801BCAE0[];
-extern void func_802423C0(void);
+extern void func_802423C0();
 
 void func_80242364(struct func_80242364_Struct *arg0, s32 arg1) {
     if (func_800178E8() != 0) {

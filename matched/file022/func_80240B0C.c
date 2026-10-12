@@ -21,7 +21,7 @@ typedef struct func_80240B0C_StructOuter {
 
 extern s32 func_802039B0();
 extern void func_801269C0(void *arg0);
-extern void func_80240BB8(void);
+extern void func_80240BB8();
 
 void func_80240B0C(func_80240B0C_StructOuter *arg0) {
     s32 *g;

@@ -32,7 +32,7 @@ extern s32 func_80126CC0(void *, void *);
 extern void func_8001F74C(void *);
 extern s32 func_8013B570(void *, s32, s32, s32, void *);
 extern void func_802429C0(void);
-extern void func_80243F08(void);
+extern void func_80243F08();
 extern u8 D_801BBC0D;
 extern s32 D_8025C6E0;
 extern s32 D_8025C6E4;
@@ -110,7 +110,7 @@ extern struct func_80242C60_Cfg D_80258D8C;
 extern s32 D_80258DF8[];
 extern void func_80242D98();
 s32 func_8012CE9C(s32, void *, struct func_80242C60_Cfg, s32);
-void func_80010550(s32, void *);
+extern s32 func_80010550();
 
 struct func_80242C60_Body {
     u8 pad0[0x12];
@@ -375,7 +375,7 @@ void func_80244788(struct func_80244788_Struct *arg0, s32 arg1) {
 }
 
 
-extern void func_802448BC(void);
+extern void func_802448BC();
 extern s32 D_8025C6F4;
 
 void func_802447F0(s32 arg0, struct func_80244600_Struct1 **arg1) {
@@ -417,7 +417,7 @@ void func_802449AC(struct func_802449AC_Struct *arg0, s32 arg1) {
 }
 
 
-extern void func_80005700(void);
+extern void func_80005700();
 
 typedef struct func_802449FC_StructB {
     u8 pad0[0x8];

@@ -2,7 +2,7 @@
 
 extern void func_800058DC(void *obj, void *fn);
 extern s8 D_801BCC21;
-extern void func_8021BF74(void);
+extern void func_8021BF74();
 
 typedef struct func_8021CD9C_Struct {
     u8 pad[0xB0];

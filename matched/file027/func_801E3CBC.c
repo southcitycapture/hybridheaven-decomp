@@ -16,7 +16,7 @@ typedef struct func_801E3CBC_StructA {
 } func_801E3CBC_StructA;
 
 extern u64 func_801C0B2C();
-extern f64 func_80034C24(u64 time);
+extern f64 func_80034C24();
 extern f64 D_801F5810;
 
 s32 func_801E3CBC(s32 arg0, s32 arg1) {

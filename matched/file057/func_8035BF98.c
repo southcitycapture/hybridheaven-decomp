@@ -10,8 +10,8 @@ struct func_8035BF98_Struct1 {
     u8 unk31;
 };
 
-extern void func_8012C6B4(s32);
-extern void func_8035BD6C(void);
+extern s32 func_8012C6B4();
+extern void func_8035BD6C();
 
 void func_8035BF98(struct func_8035BF98_Struct0 *arg0, s32 arg1)
 {

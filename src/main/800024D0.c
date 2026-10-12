@@ -1,7 +1,7 @@
 #include "common.h"
 
 
-s32 func_80032FB0(void *, void *, s32);
+extern s32 func_80032FB0();
 extern u8 D_8005CE20[];
 extern u8 D_8005CE70[];
 
@@ -41,21 +41,21 @@ void func_800025C8(s32 arg0) {
 }
 
 
-extern void func_8002A350(void *, u16, s32, void *, void *, s32, s32);
+extern s32 func_8002A350();
 
 void func_8000260C(u8 arg0, u8 *arg1, s32 arg2, s32 arg3) {
     func_8002A350(D_8005CE70 + arg0 * 0x68, *(u16 *)(arg1 + 8), *(s32 *)(arg1 + 4), arg1 + 0xE, arg1 + 0xA, arg2, arg3);
 }
 
 
-extern void func_80031BC0(void *, u16, s32, void *, void *);
+extern s32 func_80031BC0();
 
 void func_80002684(u8 arg0, u8 *arg1) {
     func_80031BC0(D_8005CE70 + arg0 * 0x68, *(u16 *)(arg1 + 0x8), *(s32 *)(arg1 + 0x4), arg1 + 0xE, arg1 + 0xA);
 }
 
 
-extern void func_8002EE40(void *, u16, s32, void *, void *, s32);
+extern s32 func_8002EE40();
 
 void func_800026E4(u8 arg0, u8 *arg1, s32 arg2) {
     func_8002EE40(D_8005CE70 + arg0 * 0x68, *(u16 *)(arg1 + 0x8), *(s32 *)(arg1 + 0x4), arg1 + 0xE, arg1 + 0xA, arg2);
@@ -65,7 +65,25 @@ void func_800026E4(u8 arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_80002794.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_800027D8.s")
+
+extern void func_80026450();
+
+void func_800027D8(s32 arg0)
+{
+  u32 temp_a2;
+  int new_var3;
+  s32 *new_var;
+  int new_var2;
+  temp_a2 = arg0 & 0xFF;
+  new_var2 = ((0xFFFFFFFF & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF;
+  temp_a2 = arg0 & 0xFF;
+  new_var = (new_var = &arg0);
+  new_var3 = 0xFFFFFFFFFFFFFFFF;
+  if (((temp_a2 && temp_a2) & ((((((new_var2 & new_var3) & new_var3) & new_var3) & new_var3) & new_var3) & new_var3)) && temp_a2)
+  {
+  }
+  func_80026450(&D_8005CE70[temp_a2 * 0x68]);
+}
 
 
 extern void func_8002A7D0(void *arg0, s32 arg1);
@@ -75,7 +93,7 @@ void func_8000281C(s32 arg0) {
 }
 
 
-extern void func_80029784(void *, s32, s32, s32, s32, s32);
+extern s32 func_80029784();
 
 void func_80002844(u8 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     func_80029784((void *)(D_8005CE70 + arg0 * 0x68), arg1, 0, arg2, arg3, arg4);

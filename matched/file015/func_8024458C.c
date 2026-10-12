@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void func_8012FE50(s32, s32, s32, s32, s32);
-extern void func_80244610(void);
+extern void func_80244610(s32 arg0, s32 arg1);
 
 void func_8024458C(struct func_802433D4_Struct *arg0, s32 arg1) {
     s32 temp;

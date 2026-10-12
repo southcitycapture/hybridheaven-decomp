@@ -18,7 +18,7 @@ typedef struct func_80243688_StructE {
 void func_80242F80(void *, void *);
 extern f64 D_80249B48;
 extern u8 D_80246C64[];
-extern void func_8024373C(void);
+extern void func_8024373C();
 
 void func_80243688(func_80243688_Struct *arg0, s32 arg1) {
     func_80243688_StructE *sp1C;

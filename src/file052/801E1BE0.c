@@ -430,7 +430,17 @@ s32 func_801E4074(s32 arg0, s32 arg1) {
     return 10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file052/801E1BE0/func_801E4084.s")
+
+
+s32 func_801E4084(s32 arg0, s32 arg1) {
+    s32 buf[0x7E];
+
+    func_801BF628(4, buf);
+    if (buf[3] >= 2) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file052/801E1BE0/func_801E40C8.s")
 
@@ -516,7 +526,17 @@ s32 func_801E459C(s32 arg0, s32 arg1) {
     return 10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file052/801E1BE0/func_801E45AC.s")
+
+
+s32 func_801E45AC(s32 arg0, s32 arg1) {
+    s32 buf[0x7E];
+
+    func_801BF628(4, buf);
+    if (buf[3] >= 2) {
+        return 1;
+    }
+    return 0;
+}
 
 
 extern f32 D_801E5A70;

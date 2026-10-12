@@ -2,7 +2,7 @@
 extern void func_800058DC(void *, void *);
 
 extern f64 D_80252510;
-extern void func_80240ED0(void);
+extern void func_80240ED0();
 
 typedef struct func_80240E54_Struct {
     u8 pad0[0x18];

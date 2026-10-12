@@ -15,7 +15,7 @@ struct func_802488E8_StructBBBF0 {
 extern void func_800058DC(void *arg0, void *arg1);
 extern struct func_802488E8_StructBBBF0 D_801BBBF0;
 extern u8 D_80249CB8;
-extern void func_80248C04(void);
+extern void func_80248C04();
 
 void func_802488E8(struct func_802488E8_StructArg *arg0, s32 arg1) {
     D_801BBBF0.unkF0C = 0;

@@ -11,11 +11,11 @@ struct func_801FD7B4_Struct {
     f32 unkA0;
 };
 
-extern s32 func_800058DC(void *, void (*)(void));
+extern void func_800058DC();
 extern void func_80129FB8(f32, f32, s32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
 extern void func_801FC830(f32, f32, s32, s32, s32);
 extern f32 D_8021922C;
-extern void func_801FD884(void);
+extern void func_801FD884();
 
 void func_801FD7B4(struct func_801FD7B4_Struct *arg0, s32 arg1) {
     f32 zero = 0.0f;

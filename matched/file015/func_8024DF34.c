@@ -6,7 +6,7 @@ struct func_8024DF34_Struct {
 };
 
 extern void func_8015115C(s32, void *);
-extern void func_8024DFA4(void);
+extern void func_8024DFA4();
 extern u8 D_802545D4[];
 extern u8 D_8025422C[];
 

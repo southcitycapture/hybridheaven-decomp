@@ -31,7 +31,7 @@ typedef struct func_80244E9C_StructOuter {
 } func_80244E9C_StructOuter;
 
 extern u8 D_80250F40[];
-extern void func_80244FCC(void);
+extern void func_80244FCC(s32 arg0, s32 arg1);
 
 void func_80244E9C(s32 arg0, func_80244E9C_StructOuter **arg1) {
     func_80244E9C_StructInner *temp_v0;

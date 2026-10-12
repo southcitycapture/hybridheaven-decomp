@@ -14,8 +14,8 @@ struct func_800058F4_Struct {
     s32 unk14;
 };
 
-extern void func_80005A04(void *, void *);
-extern void func_80005B48(void *);
+extern void func_80005A04(void *a0, void *a1);
+extern void func_80005B48(void *arg0);
 extern u8 D_80089378[];
 extern s32 D_8008D5D0;
 

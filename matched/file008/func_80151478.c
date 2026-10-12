@@ -1,6 +1,6 @@
 #include "common.h"
 
-s32 func_801517CC();
+extern s32 func_801517CC();
 
 struct func_80151478_Struct2 {
     u8 pad[0x12];

@@ -12,7 +12,7 @@ extern struct func_80242C60_Cfg D_80258D8C;
 extern s32 D_80258DF8[];
 extern void func_80242D98();
 s32 func_8012CE9C(s32, void *, struct func_80242C60_Cfg, s32);
-void func_80010550(s32, void *);
+extern s32 func_80010550();
 
 struct func_80242C60_Body {
     u8 pad0[0x12];

@@ -15,7 +15,7 @@ extern u8 D_80244430[];
 extern u8 D_8024443C[];
 extern u8 D_80244448[];
 extern s32 D_80246C70;
-extern void func_802439B4(void);
+extern void func_802439B4();
 
 void func_802438F8(func_802438F8_Struct *arg0, s32 arg1) {
     s32 temp_v0;

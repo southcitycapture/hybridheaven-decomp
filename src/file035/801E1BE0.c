@@ -1256,7 +1256,17 @@ s32 func_801E64A0(s32 arg0, s32 arg1) {
     return 40;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E64B0.s")
+
+
+s32 func_801E64B0(s32 arg0, s32 arg1) {
+    s32 buf[0x7E];
+
+    func_801BF628(4, buf);
+    if (buf[3] >= 2) {
+        return 1;
+    }
+    return 0;
+}
 
 
 typedef struct func_801E64F4_Struct5 {
@@ -1481,7 +1491,17 @@ s32 func_801E6A78(s32 arg0, s32 arg1) {
     return 30;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E6A88.s")
+
+
+s32 func_801E6A88(s32 arg0, s32 arg1) {
+    s32 buf[0x7E];
+
+    func_801BF628(4, buf);
+    if (buf[3] >= 2) {
+        return 1;
+    }
+    return 0;
+}
 
 
 typedef struct func_801E6ACC_Struct {
@@ -1630,7 +1650,17 @@ s32 func_801E71C4(s32 arg0, s32 arg1) {
     return 20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E71D4.s")
+
+
+s32 func_801E71D4(s32 arg0, s32 arg1) {
+    s32 buf[0x7E];
+
+    func_801BF628(4, buf);
+    if (buf[3] >= 2) {
+        return 1;
+    }
+    return 0;
+}
 
 
 extern f32 D_801E8D50;
@@ -1746,7 +1776,17 @@ s32 func_801E74F8(s32 arg0, s32 arg1) {
     return 15;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E7508.s")
+
+
+s32 func_801E7508(s32 arg0, s32 arg1) {
+    s32 buf[0x7E];
+
+    func_801BF628(4, buf);
+    if (buf[3] >= 2) {
+        return 1;
+    }
+    return 0;
+}
 
 
 extern void func_801D04F8();

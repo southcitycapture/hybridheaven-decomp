@@ -9,7 +9,7 @@ struct func_8002430C_Struct {
     u16 unk4C;
 };
 
-extern void func_80023D04(void);
+extern s32 func_80023D04();
 
 void func_8002430C(void) {
     ((struct func_8002430C_Struct *)D_800CBDA4)->unkF = 1;

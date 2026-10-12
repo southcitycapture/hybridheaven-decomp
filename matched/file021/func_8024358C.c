@@ -38,7 +38,7 @@ struct func_8024358C_StructArg1 {
 
 void func_8012C89C(void *, s32, s32, s32);
 void func_8012D918(void *, s32, s32, s32, s32);
-void func_802436A8(void);
+extern void func_802436A8();
 
 extern u8 D_8017AF38[];
 

@@ -21,7 +21,7 @@ struct func_80248DE0_StructBBBF0 {
 };
 
 extern void func_80011140(s32, void *, func_80248DE0_StructCBC, s32);
-extern void func_80010550(s32, void *);
+extern s32 func_80010550();
 extern void func_801C4A5C(void *, s32);
 extern void func_801E5010(void);
 extern func_80248DE0_StructCBC D_80249CBC;

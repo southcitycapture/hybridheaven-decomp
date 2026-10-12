@@ -6,7 +6,7 @@ void func_8024A434(struct func_8024A434_Arg *arg0, s32 arg1);
 
 extern s32 func_80126CC0(void *, void *);
 extern void func_80126EAC(void);
-extern void func_8024A984(void);
+extern void func_8024A984(s32 arg0, s32 arg1);
 
 void func_8024A3C0(struct func_8024A434_Arg *arg0, s32 arg1) {
     if (func_80126CC0(arg0, (void *)func_80126EAC) != 0) {

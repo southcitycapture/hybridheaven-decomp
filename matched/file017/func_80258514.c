@@ -29,7 +29,7 @@ typedef struct func_80258514_Struct_Arg0 {
     s32 unk74;
 } func_80258514_Struct_Arg0;
 
-extern u8 func_80258580[];
+extern void func_80258580(s32 arg0, s32 arg1);
 
 void func_80258514(func_80258514_Struct_Arg0 *arg0, func_80258514_Struct_Arg1 **arg1) {
     func_80258514_Struct_Global *g = (func_80258514_Struct_Global *) D_801BBBF0;

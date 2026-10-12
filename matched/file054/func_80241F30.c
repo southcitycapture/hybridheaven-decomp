@@ -6,7 +6,7 @@ extern u8 D_80246918[];
 extern u8 D_80246930[];
 extern s32 D_80248800;
 extern s32 D_80248804;
-extern void func_80241FD8(void);
+extern void func_80241FD8();
 
 struct func_80241F30_Struct {
     u8 pad[0x90];

@@ -1,5 +1,5 @@
 #include "context.h"
-extern void func_80005700(void *);
+extern s32 func_80005700();
 
 typedef struct func_80128028_StructArg {
     u8 pad0[0x30];

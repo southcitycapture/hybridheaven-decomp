@@ -7,7 +7,7 @@ typedef struct func_80241A54_Struct1 {
     u8 *unk30;
 } func_80241A54_Struct1;
 
-extern void func_80241AD4(void);
+extern void func_80241AD4();
 
 void func_80241A54(void *arg0, func_80241A54_Struct1 **arg1) {
     u8 *temp_v0;

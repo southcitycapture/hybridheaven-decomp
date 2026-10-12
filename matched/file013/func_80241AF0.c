@@ -21,7 +21,7 @@ extern struct func_80241AF0_StructBBBF0 D_801BBBF0;
 extern void func_800058DC(void *arg0, void *arg1);
 extern f32 D_80249AD8;
 extern f32 D_80249ADC;
-extern void func_80241B88(void);
+extern void func_80241B88();
 
 void func_80241AF0(u8 *arg0, s32 arg1) {
     s16 temp_v0;

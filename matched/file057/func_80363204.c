@@ -1,8 +1,8 @@
 #include "context.h"
 
 extern void func_8022310C(void *arg0, s32 arg1);
-extern void func_80224AC4(void *arg0, s32 arg1);
-extern void func_80222708(void);
+extern s32 func_80224AC4();
+extern void func_80222708();
 
 typedef struct func_80363204_Obj {
     u8 pad0[0x5C];

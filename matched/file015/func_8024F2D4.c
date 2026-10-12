@@ -12,7 +12,7 @@ typedef struct func_8024F2D4_Obj {
 
 extern s32 func_80010550(void **, s32, void **);
 extern void func_800179B0(void *);
-extern void func_8024F334(void);
+extern void func_8024F334();
 extern u8 D_80254E1C[];
 
 void func_8024F2D4(void *arg0, func_8024F2D4_Obj **arg1) {

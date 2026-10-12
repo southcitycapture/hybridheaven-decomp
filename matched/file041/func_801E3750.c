@@ -19,7 +19,7 @@ extern struct func_801E3750_Struct0 *D_8038D8D0;
 extern f64 D_801E8860;
 extern f32 D_801E8868;
 
-f64 func_80034C24(u64 arg);
+extern f64 func_80034C24();
 s32 func_801C0DE4(s32 arg0, s32 arg1, f32 arg2);
 void func_801C0EB0(s32 arg0, s32 arg1);
 u64 func_801C0F18(s32 arg0, s32 arg1);

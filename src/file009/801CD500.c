@@ -147,7 +147,7 @@ typedef struct func_801CE760_Struct {
     u8 unk94;
 } func_801CE760_Struct;
 
-extern void func_801CE7A8(void);
+extern void func_801CE7A8();
 
 void func_801CE760(func_801CE760_Struct *arg0, s32 arg1) {
     s8 sp1F;
@@ -162,7 +162,7 @@ void func_801CE760(func_801CE760_Struct *arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/func_801CE7A8.s")
 
 
-extern void func_80005700(void);
+extern void func_80005700();
 
 typedef struct func_801CE898_StructInner {
     u8 pad0[0x4C];
@@ -200,7 +200,7 @@ typedef struct func_801CE8C8_Struct {
     u8 unk94;
 } func_801CE8C8_Struct;
 
-extern void func_801CE9DC(void);
+extern void func_801CE9DC();
 
 void func_801CE8C8(func_801CE8C8_Struct *arg0, void **arg1) {
     s32 var_a1;
@@ -346,7 +346,7 @@ typedef struct func_801CEC10_StructOuter {
     u8 unk94;
 } func_801CEC10_StructOuter;
 
-extern void func_801CECA4(void);
+extern void func_801CECA4();
 
 void func_801CEC10(func_801CEC10_StructOuter *arg0, func_801CEC10_StructInner **arg1) {
     s32 var_s0;
@@ -378,7 +378,7 @@ typedef struct func_801CEEF0_StructOuter {
     u8 unk94;
 } func_801CEEF0_StructOuter;
 
-extern void func_801CEF84(void);
+extern void func_801CEF84();
 
 void func_801CEEF0(func_801CEEF0_StructOuter *arg0, func_801CEEF0_StructInner **arg1) {
     s32 var_s0;
@@ -408,7 +408,7 @@ void func_801CEEF0(func_801CEEF0_StructOuter *arg0, func_801CEEF0_StructInner **
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/func_801CF758.s")
 
 
-extern void func_801CF894(void);
+extern void func_801CF894();
 
 void func_801CF824(void *arg0, void **arg1) {
     s32 i;
@@ -456,7 +456,7 @@ struct func_801CFCA0_Outer {
     struct func_801CFCA0_Inner *unk30;
 };
 
-extern void func_801CFD44(void);
+extern void func_801CFD44();
 extern f64 D_801E35A8;
 
 void func_801CFCA0(struct func_801CFCA0_Struct *arg0, struct func_801CFCA0_Outer **arg1) {
@@ -505,7 +505,7 @@ typedef struct func_801CFF50_Struct {
 } func_801CFF50_Struct;
 
 extern f64 D_801E35B8;
-extern void func_801CFFF4(void);
+extern void func_801CFFF4();
 
 void func_801CFF50(func_801CFF50_Struct *arg0, func_801CFF50_StructOuter **arg1) {
     func_801CFF50_StructInner *temp_v0;
@@ -542,7 +542,7 @@ typedef struct func_801D0164_Struct {
     u16 unk92;
 } func_801D0164_Struct;
 
-extern void func_801D01DC(void);
+extern void func_801D01DC();
 
 void func_801D0164(func_801D0164_Struct *arg0, s32 arg1)
 {
@@ -584,7 +584,7 @@ typedef struct func_801D0DE4_Struct {
     u8 unk94;
 } func_801D0DE4_Struct;
 
-extern void func_801D0E2C(void);
+extern void func_801D0E2C();
 
 void func_801D0DE4(func_801D0DE4_Struct *arg0, s32 arg1) {
     s8 sp1F;
@@ -693,7 +693,7 @@ typedef struct func_801D18BC_Struct {
     s16 unk98;
 } func_801D18BC_Struct;
 
-extern void func_801D1918(void);
+extern void func_801D1918();
 
 void func_801D18BC(func_801D18BC_Struct *arg0, func_801D18BC_StructOuter **arg1) {
     func_801D18BC_StructInner *inner;
@@ -751,7 +751,7 @@ typedef struct func_801D2BC4_Struct {
     u8 unk94;
 } func_801D2BC4_Struct;
 
-extern void func_801D2C28(void);
+extern void func_801D2C28();
 
 void func_801D2BC4(func_801D2BC4_Struct *arg0, s32 arg1) {
     s8 sp1F;
@@ -800,7 +800,7 @@ typedef struct func_801D2FD0_Struct {
     u8 unk94;
 } func_801D2FD0_Struct;
 
-extern void func_801CF758(void);
+extern void func_801CF758();
 
 void func_801D2FD0(func_801D2FD0_Struct *arg0, s32 arg1) {
     s8 sp1F;
@@ -845,7 +845,7 @@ typedef struct func_801D3950_Struct {
     u8 unk94;
 } func_801D3950_Struct;
 
-extern void func_801D3998(void);
+extern void func_801D3998();
 
 void func_801D3950(func_801D3950_Struct *arg0, s32 arg1) {
     s8 sp1F;
@@ -872,7 +872,7 @@ typedef struct func_801D3CC8_StructOuter {
     u8 unk94;
 } func_801D3CC8_StructOuter;
 
-extern void func_801D3D5C(void);
+extern void func_801D3D5C();
 
 void func_801D3CC8(func_801D3CC8_StructOuter *arg0, func_801D3CC8_StructInner **arg1) {
     s32 var_s0;
@@ -915,7 +915,7 @@ typedef struct func_801D51C0_Struct {
     u8 unk94;
 } func_801D51C0_Struct;
 
-extern void func_801D5208(void);
+extern void func_801D5208();
 
 void func_801D51C0(func_801D51C0_Struct *arg0, s32 arg1) {
     s8 sp1F;
@@ -958,7 +958,7 @@ typedef struct func_801D5FE0_StructOuter {
     func_801D5FE0_StructInner *unkC;
 } func_801D5FE0_StructOuter;
 
-extern void func_801D6024(void);
+extern void func_801D6024();
 
 void func_801D5FE0(func_801D5FE0_StructOuter *arg0, s32 arg1) {
     func_801D5FE0_StructInner *temp_v0;

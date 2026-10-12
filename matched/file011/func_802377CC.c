@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void func_80146178(s32, u8 *, s32, s32, s32, s32, s32, s32, s32, s32, s32);
-extern void func_80237834(void);
+extern void func_80237834();
 
 void func_802377CC(s32 arg0, s32 arg1) {
     u8 sp3F;

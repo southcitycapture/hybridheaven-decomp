@@ -1,7 +1,7 @@
 #include "common.h"
 
-extern void func_8036153C(void);
-extern void func_8036CA40(void);
+extern void func_8036153C();
+extern void func_8036CA40();
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];

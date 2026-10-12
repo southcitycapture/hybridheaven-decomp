@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern void func_800058DC(void *, void *);
-extern void func_802426D8(void);
+extern void func_802426D8();
 
 void func_80242690(u8 *arg0, void **arg1) {
     u8 *temp_v0;

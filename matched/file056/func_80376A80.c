@@ -18,7 +18,7 @@ struct func_80376A80_Struct {
 };
 
 extern s32 func_803757E0(void *, s32, s32, s32);
-extern void func_803762E0(void);
+extern void func_803762E0();
 
 void func_80376A80(struct func_80376A80_Struct *arg0, s32 arg1) {
     struct func_80376A80_Sub *sp1C;

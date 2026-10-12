@@ -10,7 +10,7 @@ extern s32 func_80126944(void);
 extern void func_801C3B10(s32);
 extern void func_801C3B2C(s32);
 extern void func_800058DC(void *, void *);
-extern void func_80240B10(void);
+extern void func_80240B10();
 
 void func_80240AA8(struct func_80240AA8_Struct *arg0, void *arg1) {
     if (func_80133A24(*(u16 *)((u8 *)arg0 + 0xA2)) != 0) {

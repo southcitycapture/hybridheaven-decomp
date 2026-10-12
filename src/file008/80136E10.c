@@ -40,7 +40,7 @@ extern void func_8012C784(void *, s32, u32);
 extern u8 D_80164F40[];
 extern u8 D_8017AF38[];
 extern u8 D_801BBBF0[];
-extern void func_80136F30(void);
+extern void func_80136F30();
 
 void func_80136E10(struct func_80136E10_Struct0 *arg0, struct func_80136E10_Struct1 **arg1) {
     f32 temp_fv0;
@@ -84,7 +84,7 @@ typedef struct func_80137180_Struct {
 } func_80137180_Struct;
 
 extern s32 func_80133A24(u32);
-extern void func_801371E0(void);
+extern void func_801371E0();
 
 void func_80137180(void *arg0, void *arg1) {
     func_80137180_Struct *s;

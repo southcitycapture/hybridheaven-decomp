@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern s32 func_8013B570(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
-extern void func_801CE7D4(void);
+extern void func_801CE7D4();
 extern s32 D_801DAD10;
 extern s32 D_801DAD28;
 extern s32 D_801DAD2C;

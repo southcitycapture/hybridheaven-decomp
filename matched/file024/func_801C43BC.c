@@ -10,7 +10,7 @@ extern u8 D_801CEE50[];
 extern u8 D_801CEE5C[];
 extern u8 D_801CEE60[];
 extern u8 D_801CEE64[];
-extern void func_801C44C4(void);
+extern void func_801C44C4();
 
 void func_801C43BC(s32 arg0, s32 arg1) {
     D_801CC8C8 = 0;

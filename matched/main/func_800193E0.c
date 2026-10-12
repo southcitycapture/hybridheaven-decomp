@@ -2,7 +2,7 @@
 
 extern s32 func_800058DC(s32, void *);
 extern s8 D_8008EE83;
-extern void func_80017BB8(void);
+extern void func_80017BB8();
 
 void func_800193E0(s32 arg0, s32 arg1) {
     D_8008EE83 = 0;

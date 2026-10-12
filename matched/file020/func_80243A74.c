@@ -2,7 +2,7 @@
 
 extern u8 D_801BBF90[];
 extern struct func_80243D1C_Struct D_801BBBF0;
-extern void func_80243B04(void);
+extern void func_80243B04(s32 arg0, s32 arg1);
 extern void func_80126968(void);
 extern void func_801268CC(s32);
 extern s32 func_80020744(s32);

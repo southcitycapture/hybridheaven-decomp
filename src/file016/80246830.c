@@ -34,7 +34,7 @@ extern void func_8012C89C(void *, s32, s32, s32);
 extern struct func_80246830_StructCopy D_80164F40;
 extern s32 D_801BBCCC;
 extern u8 D_80249B28[];
-extern void func_80246914(void);
+extern void func_80246914();
 
 void func_80246830(struct func_80246830_StructArg0 *arg0, struct func_80246830_StructOuter **arg1) {
     struct func_80246830_StructCopy sp20;

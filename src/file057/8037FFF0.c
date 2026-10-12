@@ -1,7 +1,7 @@
 #include "common.h"
 
 
-extern void func_80005670(s32, void *);
+extern s32 func_80005670();
 extern u8 D_801BC3D8[];
 extern u8 D_803897CC[];
 extern s32 D_8038CFB0;
@@ -59,7 +59,7 @@ void func_8038005C(func_8038005C_Struct *arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/8037FFF0/func_8038092C.s")
 
 
-extern void func_80005700(void);
+extern void func_80005700();
 
 struct func_80380AF4_Struct {
     u8 pad[8];

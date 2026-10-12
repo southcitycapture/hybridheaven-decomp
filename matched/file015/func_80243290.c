@@ -21,11 +21,11 @@ struct func_80243290_StructArg {
 
 
 extern void func_800058DC(void *, void *);
-extern s32 func_8013A1B4(void **arg0, struct func_80243290_StructTriple arg1, s32 arg2);
+extern s32 func_8013A1B4();
 extern struct func_80243290_StructTriple D_8025211C;
 extern f32 D_80258638;
 extern f32 D_8025863C;
-extern void func_80243348(void);
+extern void func_80243348();
 
 void func_80243290(struct func_80243290_StructArg *arg0, void **arg1) {
     ((struct func_80243290_StructOuter *) *arg1)->unk2C->unk4 = D_80258638;

@@ -19,7 +19,7 @@ extern void func_801FBB30(void);
 extern struct func_8024A434_StructBBF0 D_801BBBF0;
 extern void *D_80253474;
 extern s32 D_8025A2C0;
-extern void func_8024A4EC(void);
+extern void func_8024A4EC();
 
 void func_8024A434(struct func_8024A434_Arg *arg0, s32 arg1) {
     if (func_801C3D20(-380.0f, -540.0f, 40.0f) != 0) {

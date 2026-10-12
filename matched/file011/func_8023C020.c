@@ -13,7 +13,7 @@ struct func_8023C020_Inner {
 
 extern void func_8013CD04(void *, s32, s32);
 extern u8 D_8024089F;
-extern void func_8023A09C(void);
+extern void func_8023A09C();
 
 void func_8023C020(struct func_8023C020_Struct *arg0, s32 arg1) {
     struct func_8023C020_Inner *temp_a0;

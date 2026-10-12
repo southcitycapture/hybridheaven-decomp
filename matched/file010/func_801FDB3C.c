@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80005700(void);
+extern void func_80005700();
 extern u8 D_801BBBF0[];
 extern u8 D_801BBC00[];
 

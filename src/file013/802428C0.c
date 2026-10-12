@@ -1,13 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file013/802428C0/func_802428C0.s")
+
+extern void func_800058DC(s32 arg0, void (*arg1)(void));
+extern void func_802428E8();
+
+void func_802428C0(s32 arg0, s32 arg1) {
+    func_800058DC(arg0, func_802428E8);
+}
 
 
 extern void func_80005700(s32 arg0);
 extern s32 func_80133A24(s32 arg0);
 extern s32 func_80126CC0(s32 arg0, void *arg1);
 extern void func_8013B570(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
-extern void func_80127014(void);
+extern void func_80127014();
 extern void func_80242958();
 
 void func_802428E8(s32 arg0, s32 arg1) {
@@ -21,8 +27,7 @@ void func_802428E8(s32 arg0, s32 arg1) {
 }
 
 
-extern void func_800058DC(void *, void *);
-extern void func_802429A8(void);
+extern void func_802429A8();
 
 typedef struct func_80242958_Struct04 {
     u8 pad0[0x4];

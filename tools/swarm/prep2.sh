@@ -14,7 +14,23 @@ cat > "$W/check" <<EOC
 n=\$(cat .checks 2>/dev/null || echo 0); n=\$((n+1)); echo \$n > .checks
 if [ \$n -gt ${CHECK_LIMIT:-10} ]; then echo "check limit reached (${CHECK_LIMIT:-10}). Stop and report your best result."; exit 2; fi
 [ -f attempt.c ] || { echo "write attempt.c first"; exit 2; }
+EOC
+# HARNESS2=1 (exp10): don't spend checks on repeats or compile errors, and stop runs that have stalled
+[ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
+echo $(( $(cat .check_calls 2>/dev/null || echo 0) + 1 )) > .check_calls     # every call, counted or not
+[ -f .stalled ] && { echo "Stopped: no improvement in 3 checks. Report your best result ($(cat .stalled))."; exit 2; }
+for f in .attempts/*.c; do
+  [ -f "$f" ] && cmp -s attempt.c "$f" && { echo $((n-1)) > .checks; echo "attempt.c is identical to $f ($(head -1 ${f%.c}.res)). Change something before checking again (this check was not counted)."; exit 2; }
+done
+EOC
+cat >> "$W/check" <<EOC
 "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" $FUNC attempt.c --seg $SEG -v 2>&1 | head -30 | tee .lastcheck
+EOC
+[ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
+if head -1 .lastcheck | grep -q '^compile failed'; then
+  c=$(( $(cat .compile_errors 2>/dev/null || echo 0) + 1 )); echo $c > .compile_errors
+  if [ $c -le 5 ]; then echo $((n-1)) > .checks; echo "(compile errors don't use up a check: $c of 5 free)"; exit 1; fi
+fi
 EOC
 # INFILE=1: a match also has to hold inside the function's real C file, next to its already-matched neighbours
 [ -n "$INFILE" ] && cat >> "$W/check" <<EOC
@@ -27,6 +43,14 @@ cat >> "$W/check" <<'EOC'
 mkdir -p .attempts; cp attempt.c .attempts/$n.c; head -1 .lastcheck > .attempts/$n.res; grep -q '^IN-FILE' .lastcheck && grep '^IN-FILE' .lastcheck | head -1 >> .attempts/$n.res
 best=$(for f in .attempts/*.res; do k=${f%.res}; k=${k##*/}; l=$(head -1 $f); case "$l" in MATCH*) s=1000000;; score*) s=$(echo "$l" | sed -n 's/^score \([0-9]*\)\/\([0-9]*\).*/\1 \2/p' | awk '{printf "%d", ($2 ? 1000*$1/$2 : 0)}');; *) s=0;; esac; echo "$s $k"; done | sort -n | tail -1)
 [ -n "$best" ] && echo "(attempt $n saved as .attempts/$n.c; best so far: .attempts/${best##* }.c)"
+EOC
+[ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
+# the first attempt that reached the best score (equal scores are not progress)
+bk=$(for f in .attempts/*.res; do k=${f%.res}; k=${k##*/}; l=$(head -1 $f); case "$l" in MATCH*) s=1000000;; score*) s=$(echo "$l" | sed -n 's/^score \([0-9]*\)\/\([0-9]*\).*/\1 \2/p' | awk '{printf "%d", ($2 ? 1000*$1/$2 : 0)}');; *) s=0;; esac; echo "$s $k"; done | sort -k1,1nr -k2,2n | head -1 | cut -d" " -f2)
+if [ -n "$bk" ] && [ $((n - bk)) -ge 3 ] && ! head -1 .lastcheck | grep -q '^MATCH'; then
+  echo ".attempts/$bk.c" > .stalled
+  echo "No improvement in the last 3 checks. Stop now and report your best result (.attempts/$bk.c)."
+fi
 EOC
 chmod +x "$W/check"
 "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" context "$SEG" "$FUNC" > "$W/context.h"

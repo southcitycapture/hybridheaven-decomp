@@ -14,13 +14,13 @@ struct func_80240C80_Struct {
     struct func_80240C80_Inner *unk38;
 };
 
-extern s32 func_80126CC0(void *arg0, void *arg1);
-extern void func_8001F74C(void *arg0);
-extern void func_8013B570(void *arg0, u16 arg1, s32 arg2, s32 arg3, void *arg4);
-extern void func_80127014(void);
+extern s32 func_80126CC0(void *, void *);
+extern void func_8001F74C();
+extern void func_8013B570(void *, u16, s32, s32, void *);
+extern void func_80127014();
 extern void func_8012E5B0(void);
 extern void func_8012E6BC(void);
-extern void func_80240CF8(void);
+extern void func_80240CF8();
 
 void func_80240C80(void *arg0, s32 arg1) {
     struct func_80240C80_Struct *s;

@@ -16,7 +16,7 @@ struct func_8024593C_Arg0 {
 };
 
 extern f64 D_80257148;
-extern void func_802459C8();
+extern void func_802459C8(s32 arg0, s32 arg1);
 
 void func_8024593C(struct func_8024593C_Arg0 *arg0, struct func_8024593C_Outer **arg1) {
     struct func_8024593C_Inner *temp_v0;

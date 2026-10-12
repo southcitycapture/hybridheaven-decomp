@@ -1,8 +1,8 @@
 #include "common.h"
 
 extern void func_80002364(u32 a0, s32 a1, s32 a2, s32 a3);
-extern void func_800058DC(void *obj, void *fn);
-extern void func_801FEA74(void);
+extern void func_800058DC();
+extern void func_801FEA74();
 
 typedef struct func_801FEA04_Struct {
     u8 pad0[0x90];

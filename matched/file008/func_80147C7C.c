@@ -6,7 +6,7 @@ extern void func_80006214(void *a0);
 extern u8 D_80164F40[];
 extern u8 D_8017B768[];
 extern u8 D_801815F0[];
-extern void func_80147D48(void);
+extern void func_80147D48(s32 arg0, s32 arg1);
 
 struct func_80147C7C_Struct {
     s32 unk0;

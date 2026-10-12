@@ -15,7 +15,7 @@ typedef struct func_8024A588_Obj {
 } func_8024A588_Obj;
 
 extern void func_800058DC(void *arg0, void *arg1);
-extern void func_800179B0(void *arg0);
+extern void func_800179B0(void *);
 extern void func_801C2F0C(s32 arg0, void *arg1);
 extern s32 func_801C3B5C(void);
 extern u8 D_802534DC[];

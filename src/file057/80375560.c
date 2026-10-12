@@ -10,7 +10,7 @@
 
 
 extern void func_800058DC(void *, void *);
-extern void func_803758FC(void);
+extern void func_803758FC();
 
 typedef struct func_803757B0_Struct {
     u8 pad[0x33];

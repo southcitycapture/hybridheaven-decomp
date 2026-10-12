@@ -2,7 +2,7 @@
 
 extern s32 func_801CE0E8(void *, s8 *);
 extern void func_800058DC(void *, void *);
-extern void func_801CF894(void);
+extern void func_801CF894();
 
 void func_801CF824(void *arg0, void **arg1) {
     s32 i;

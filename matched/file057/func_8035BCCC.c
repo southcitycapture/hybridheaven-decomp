@@ -7,7 +7,7 @@ struct func_8035BCCC_Struct {
     u16 unk4C;
 };
 
-extern void func_8035B9AC(void);
+extern void func_8035B9AC();
 
 void func_8035BCCC(struct func_8035BCCC_Struct *arg0, s32 arg1)
 {

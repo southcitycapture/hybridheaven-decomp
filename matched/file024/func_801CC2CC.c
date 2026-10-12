@@ -15,9 +15,9 @@ struct func_801CC2CC_Struct1 {
 };
 
 extern void func_8013A28C(s32, struct func_801CC2CC_Struct3);
-extern void func_80010550(s32, void *);
+extern s32 func_80010550();
 extern struct func_801CC2CC_Struct3 D_801CE688;
-extern void func_801CC344(void);
+extern void func_801CC344();
 
 void func_801CC2CC(struct func_801CC2CC_Struct1 *arg0, s32 arg1) {
     struct func_801CC2CC_Struct2 *temp_v0;

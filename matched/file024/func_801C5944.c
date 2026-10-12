@@ -3,7 +3,7 @@
 extern s32 func_8013EFF0();
 extern void func_80142570();
 extern void func_800179B0(s32);
-extern void func_8012FE50(s32, s32, s32, s32, s32);
+extern s32 func_8012FE50();
 extern void func_801C59F4();
 
 void func_801C5944(s32 arg0, s32 arg1) {

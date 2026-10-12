@@ -9,7 +9,7 @@ typedef struct func_80241340_Struct {
 } func_80241340_Struct;
 
 extern s32 func_800058DC(void *, void *);
-extern void func_80241378(void);
+extern void func_80241378();
 
 void func_80241340(func_80241340_Struct *arg0, s32 arg1) {
     arg0->unk34 = 0;

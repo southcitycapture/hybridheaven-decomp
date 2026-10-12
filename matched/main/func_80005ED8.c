@@ -13,7 +13,7 @@ struct func_80005ED8_Arg {
 extern s32 func_80005D9C(void *, u16);
 extern void func_80006088(void *);
 extern void func_80006370(s32, void *);
-extern void *func_800063BC(void *, s32);
+extern void *func_800063BC(void *, u32);
 extern s32 func_800065EC(void *, void *);
 extern u8 D_8008942C[];
 

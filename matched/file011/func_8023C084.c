@@ -16,7 +16,7 @@ extern void func_80116E80(s32);
 extern void func_80145348(void *, s32, s32);
 extern void func_80146208(void *, u8 *, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern void func_800058DC(void *, void *);
-extern void func_8023C134(void);
+extern void func_8023C134();
 
 void func_8023C084(void *arg0, s32 arg1) {
     u8 sp47;

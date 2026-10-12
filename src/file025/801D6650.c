@@ -34,7 +34,7 @@ typedef struct func_801D66D0_Struct {
 
 extern void func_8012D844(void *, s32, s32);
 extern void func_800058DC(void *, void *);
-extern void func_801D672C(void);
+extern void func_801D672C();
 
 void func_801D66D0(func_801D66D0_Struct *arg0, s32 arg1) {
     if (arg0->unk24 != 0) {

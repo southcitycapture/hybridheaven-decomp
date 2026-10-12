@@ -9,7 +9,7 @@ struct func_8024F624_Struct {
 
 extern s32 func_801505AC(s32);
 extern void *func_801C3B7C(s32);
-extern void func_8024F6C4(void);
+extern void func_8024F6C4();
 extern func_8024EF6C_Vec D_80254AE8;
 
 void func_8024F624(struct func_8024F624_Struct *arg0, void **arg1, void **arg2) {

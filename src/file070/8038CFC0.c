@@ -23,11 +23,11 @@ struct func_8038D918_Struct {
     u8 unk93;
 };
 
-extern void func_8038D7E8(void *, void *, void *);
+extern s32 func_8038D7E8();
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C;
 extern u8 D_801BC3D8;
-extern void func_8038D990(void);
+extern void func_8038D990();
 
 void func_8038D918(struct func_8038D918_Struct *arg0, s32 arg1) {
     u8 *var_a1;
@@ -52,8 +52,8 @@ void func_8038D918(struct func_8038D918_Struct *arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file070/8038CFC0/func_8038D990.s")
 
 
-extern void func_8022A824(s32 arg0);
-extern void func_8022A834(s32 arg0);
+extern void func_8022A824();
+extern void func_8022A834();
 
 void func_8038DC2C(s32 arg0, s16 *arg1) {
     if (arg1[3] >= 0x64) {

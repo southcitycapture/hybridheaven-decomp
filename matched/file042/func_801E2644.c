@@ -4,7 +4,7 @@ extern s32 func_801C0DE4(s32 a0, s32 a1, s32 a2);
 extern void func_801C0EB0(s32 a0, s32 a1);
 extern u64 func_801C0F18(s32 a0, s32 a1);
 extern void func_8038D28C(s32 a0);
-extern f64 func_80034C24(u64 time);
+extern f64 func_80034C24();
 extern f64 D_801E5010;
 
 typedef struct func_801E2644_Struct3 {

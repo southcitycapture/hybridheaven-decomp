@@ -13,7 +13,7 @@ typedef struct func_8038481C_Struct2 {
 } func_8038481C_Struct2;
 
 extern s32 func_8001B204(s32 arg0, s32 arg1, s32 arg2, void *arg3, s32 arg4, s32 arg5);
-extern void func_80384948(void);
+extern void func_80384948();
 extern func_8038481C_Struct2 D_801842A0[];
 extern u8 D_8038CB14[];
 

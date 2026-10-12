@@ -25,7 +25,7 @@ typedef struct func_80241484_Struct_Arg0 {
 
 extern func_80241484_Struct_Arg0 *D_801BCCA8;
 extern f64 D_80252538;
-extern void func_80241518(void);
+extern void func_80241518();
 
 void func_80241484(func_80241484_Struct_Arg0 *arg0, func_80241484_Struct_Arg1 *arg1) {
     s32 temp_v0;

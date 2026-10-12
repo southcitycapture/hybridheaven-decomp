@@ -2,7 +2,7 @@
 
 u16 func_8012C6B4(s32 arg0, void *arg1, void *arg2);
 extern void func_800058DC(void *, void *);
-void func_802428B8(void);
+extern void func_802428B8();
 
 void func_8024294C(void *arg0, void *arg1) {
     s32 temp_v0;

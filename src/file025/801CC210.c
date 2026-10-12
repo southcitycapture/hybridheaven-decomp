@@ -46,7 +46,11 @@ void func_801CC2C8(s32 arg0, s32 arg1) {
     func_801BF850(D_801DAAB0, 4, D_801E0BB0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC30C.s")
+
+
+s32 func_801CC30C(void) {
+    return D_801DAABC;
+}
 
 
 extern s32 D_801DAAC0;
@@ -55,7 +59,12 @@ s32 func_801CC318(void) {
     return (D_801DAAC0 = D_801DAAC0 + 1) < 0xA;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC334.s")
+
+extern s32 D_801DAAC4;
+
+s32 func_801CC334(void) {
+    return (D_801DAAC4 = D_801DAAC4 + 1) < 0xA;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC350.s")
 
@@ -88,16 +97,31 @@ s32 func_801CC470(s32 arg0, s32 arg1, u16 arg2, u16 arg3, f32 arg4) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC4C0.s")
+extern func_801CC470_Struct **D_801E0778[];
+
+s32 func_801CC4C0(s32 arg0, s32 arg1) {
+    D_801E0778[arg0] = (func_801CC470_Struct **) arg1;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC4D8.s")
+
 
 void func_801CC528(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC530.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC540.s")
+extern s32 D_801DAAC8;
+
+void func_801CC530(void) {
+    D_801DAAC8 = 1;
+}
+
+
+
+s32 func_801CC540(void) {
+    return D_801DAAC8 == 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC550.s")
 
@@ -195,7 +219,6 @@ s32 func_801CC654(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s3
 
 extern void func_801C2608(s32, void *);
 extern void func_801C26C4(s32, void *);
-extern s32 D_801DAAC4;
 extern u8 D_801E0A48[];
 extern u8 D_801E0B38[];
 
@@ -210,7 +233,13 @@ void func_801CC9FC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CCAB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CCCC8.s")
+
+void func_801CCCC8(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 
 
 void func_801CCCD4(s32 arg0, s32 arg1) {
@@ -219,5 +248,11 @@ void func_801CCCD4(s32 arg0, s32 arg1) {
     func_800058DC(temp, (void *) func_801CC278);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CCD08.s")
+
+void func_801CCD08(s32 arg0, s32 arg1) {
+    s32 *p0 = &arg0;
+    s32 *p1 = &arg1;
+    *p0 = arg0;
+    *p1 = arg1;
+}
 

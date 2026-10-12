@@ -2,7 +2,7 @@
 extern struct func_802441AC_Struct D_801BBBF0;
 
 extern void func_8012C89C(void *, s32, s32, s32);
-extern void func_80243828(void);
+extern void func_80243828();
 extern u8 D_8017AD28[];
 
 struct func_802436EC_Struct2 {

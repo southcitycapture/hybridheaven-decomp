@@ -154,7 +154,7 @@ extern s32 func_801C0DE4(s32 a0, s32 a1, s32 a2);
 extern void func_801C0EB0(s32 a0, s32 a1);
 extern u64 func_801C0F18(s32 a0, s32 a1);
 extern void func_8038D28C(s32 a0);
-extern f64 func_80034C24(u64 time);
+extern f64 func_80034C24();
 extern f64 D_801E5010;
 
 typedef struct func_801E2644_Struct3 {
@@ -524,7 +524,17 @@ s32 func_801E3860(s32 arg0, s32 arg1) {
     return 15;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file042/801E1BE0/func_801E3870.s")
+
+
+s32 func_801E3870(s32 arg0, s32 arg1) {
+    s32 buf[0x7E];
+
+    func_801BF628(4, buf);
+    if (buf[3] >= 2) {
+        return 1;
+    }
+    return 0;
+}
 
 
 
@@ -548,7 +558,15 @@ s32 func_801E38B4(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file042/801E1BE0/func_801E3990.s")
+
+
+s32 func_801E3990(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x7A120) != 0) {
+        func_801C0D04(4, 1);
+        return 3;
+    }
+    return 2;
+}
 
 
 extern f64 D_801E5080;

@@ -7,8 +7,8 @@ struct func_801FDE78_Struct {
 
 extern void func_80002BAC(s32);
 extern void func_80020718(s32);
-extern void func_800058DC(void *, void *);
-extern void func_801FDEDC(void);
+extern void func_800058DC();
+extern void func_801FDEDC();
 
 void func_801FDE78(struct func_801FDE78_Struct *arg0, void *arg1) {
     s32 var_s0;

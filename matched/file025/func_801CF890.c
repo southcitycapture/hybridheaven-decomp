@@ -5,7 +5,7 @@ extern s32 D_801DAECC;
 extern s32 D_801DAED0;
 extern s32 D_801DAEF0;
 extern s32 D_801DAEF4;
-extern void func_801CF8F4(void);
+extern void func_801CF8F4();
 
 void func_801CF890(s32 arg0, s32 arg1) {
     D_801DAEB0 = arg0;

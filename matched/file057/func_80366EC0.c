@@ -16,7 +16,7 @@ extern void func_80366F88(s32 arg0, s32 arg1);
 extern s32 D_801BBCCC;
 extern func_80366EC0_Struct D_801BC03C;
 extern func_80366EC0_Struct D_801BC3D8;
-extern void func_8036265C(void);
+extern void func_8036265C();
 
 void func_80366EC0(s32 arg0, s32 arg1) {
     func_80366EC0_Struct *var_v1;

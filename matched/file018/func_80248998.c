@@ -1,26 +1,6 @@
 #include "common.h"
 
-typedef struct func_80248998_StructInner {
-    u8 pad0[0x10];
-    s16 unk10;
-    u8 pad12[0x6];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    s32 unk24;
-    u8 pad28[0x8];
-    s32 unk30;
-    u8 pad34[0x14];
-    u8 unk48;
-    u8 unk49;
-    u8 unk4A;
-    u8 unk4B;
-} func_80248998_StructInner;
 
-typedef struct func_80248998_StructOuter {
-    u8 pad0[0x30];
-    func_80248998_StructInner *unk30;
-} func_80248998_StructOuter;
 
 extern s32 func_800058DC(void *, void *);
 extern s32 func_80005F6C(void *, void *);

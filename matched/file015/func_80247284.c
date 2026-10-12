@@ -3,7 +3,7 @@
 extern s32 func_80010550(s32, s32);
 extern s32 func_80011198(s32, s32);
 extern s32 func_800058DC(void *, void *);
-extern void func_802472D4(void);
+extern void func_802472D4();
 
 void func_80247284(void *arg0, s32 arg1) {
     s32 temp_a1;

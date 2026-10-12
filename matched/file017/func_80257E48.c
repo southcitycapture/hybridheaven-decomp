@@ -49,7 +49,7 @@ typedef struct func_80257E48_Ent {
     s32 unk74;
 } func_80257E48_Ent;
 
-extern void func_80257F34(void);
+extern void func_80257F34();
 
 void func_80257E48(func_80257E48_Obj *arg0, func_80257E48_Arg1 *arg1) {
     func_80257E48_Ent *temp_v0_2;

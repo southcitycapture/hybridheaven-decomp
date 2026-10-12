@@ -1,6 +1,6 @@
 #include "context.h"
 extern struct func_801E5060_StructC *D_8038D8D0;
-f64 func_80034C24(u64 arg0);
+extern f64 func_80034C24();
 s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
 s32 func_801C0EB0(s32 arg0, s32 arg1);
 u64 func_801C0F18(s32 arg0, s32 arg1);

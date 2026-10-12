@@ -24,7 +24,7 @@ typedef struct func_801CFF50_Struct {
 } func_801CFF50_Struct;
 
 extern f64 D_801E35B8;
-extern void func_801CFFF4(void);
+extern void func_801CFFF4();
 
 void func_801CFF50(func_801CFF50_Struct *arg0, func_801CFF50_StructOuter **arg1) {
     func_801CFF50_StructInner *temp_v0;

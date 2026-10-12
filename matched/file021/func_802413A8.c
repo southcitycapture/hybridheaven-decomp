@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_8012FE50(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4);
+extern void func_8012FE50(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern s16 D_801BBBF6;
 
 void func_802413A8(s32 arg0, s32 arg1) {

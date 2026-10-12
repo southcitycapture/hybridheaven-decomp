@@ -28,7 +28,7 @@ typedef struct func_803840A4_Obj {
 } func_803840A4_Obj;
 
 extern func_803840A4_Globals D_8017DC40;
-extern void func_80384514(void);
+extern void func_80384514();
 extern void func_80381F40(void *a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, u8 *a7);
 extern void func_80384228(void *, s32);
 extern s8 func_80376D48(void);

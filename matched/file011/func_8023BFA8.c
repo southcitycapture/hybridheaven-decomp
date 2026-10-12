@@ -5,7 +5,7 @@ extern void func_800058DC(void *, void *);
 extern s32 func_8023A3C4(s32);
 extern s8 func_8023A398(void *, s32);
 extern void func_80376BE4(void *);
-extern void func_8023A09C(void);
+extern void func_8023A09C();
 
 struct func_8023BFA8_Struct {
     u8 pad0[0x98];

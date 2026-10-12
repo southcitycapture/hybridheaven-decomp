@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_801471DC(s32 arg0);
+extern void func_801471DC(struct func_801471DC_Node *arg0);
 
 s32 func_80147218(void *arg0) {
     s32 temp_a1;

@@ -51,7 +51,7 @@ void func_800268E4(void) {
 }
 
 
-extern void func_8002C1D0(void);
+extern void func_8002C1D0();
 
 void func_8002691C(s32 arg0) {
     if (D_800498F0 == 0) {

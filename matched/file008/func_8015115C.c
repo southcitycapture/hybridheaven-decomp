@@ -1,6 +1,6 @@
 #include "context.h"
 
-s32 func_801517CC();
+extern s32 func_801517CC();
 
 typedef struct func_8015115C_Vec {
     s32 x;

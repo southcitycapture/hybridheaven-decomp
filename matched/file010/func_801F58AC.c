@@ -10,7 +10,7 @@ extern void func_801FA410(s32 v);
 extern s32 func_801FA600(s32 v);
 extern u8 D_80216DE0[];
 extern s16 D_8021B0C0;
-extern void func_801F5960(void);
+extern void func_801F5960();
 
 struct func_801F58AC_Sub {
     u8 pad0[0x24];

@@ -2,7 +2,7 @@
 
 
 extern void func_8013B570(s32 a0, s32 a1, s32 a2, s32 a3, void *a4);
-extern void func_801D0700(void);
+extern void func_801D0700();
 extern u8 D_801BC3D8[];
 extern s32 D_801DAFC0;
 extern s32 D_801DAFD8;

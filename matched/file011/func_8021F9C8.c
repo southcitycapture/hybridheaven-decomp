@@ -30,8 +30,8 @@ extern struct func_80220F60_Struct D_801BBBF0;
 extern struct func_8021F9C8_Struct D_801BC03C;
 extern struct func_8021F9C8_Struct D_801BC3D8;
 extern s32 func_80010550(s32, s32);
-extern void func_802233B0(s32, s32);
-extern void func_8022397C(s32);
+extern s32 func_802233B0();
+extern s32 func_8022397C();
 extern void func_802237B0(s32, s32);
 
 void func_8021F9C8(s32 arg0, s32 arg1) {

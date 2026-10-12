@@ -2,7 +2,7 @@
 
 extern void func_80006088(s32);
 extern void func_800058DC(void *, void *);
-extern void func_80149708(void);
+extern void func_80149708();
 extern s32 D_80181D5C;
 extern s32 D_80181D60;
 extern s16 D_801BBD58;

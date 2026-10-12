@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_801FAAB8(void);
+extern void func_801FAAB8();
 extern void func_801FAE08();
 
 struct func_801FA51C_Struct {

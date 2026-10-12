@@ -34,7 +34,7 @@ extern void func_800058DC(void *, void *);
 extern void func_8012C89C(void *, s32, s32, s32);
 extern void func_8012D814(void *, s32, s32, s32, s32);
 extern s32 func_8012F41C(void *, s32, s32, s32, s32);
-extern void func_80127E3C(void);
+extern void func_80127E3C();
 
 void func_80127D70(func_80127D70_StructArg *arg0, func_80127D70_StructC **arg1) {
     arg0->unk90 = 0xF8;
@@ -76,7 +76,7 @@ void func_80127F78(func_80127F78_Struct *arg0, func_80127D70_StructC **arg1) {
     }
 }
 
-extern void func_80005700(void *);
+extern s32 func_80005700();
 
 typedef struct func_80128028_StructArg {
     u8 pad0[0x30];
@@ -237,7 +237,7 @@ typedef struct func_80128630_StructArg {
 
 extern s32 func_8000C3B0(void *);
 extern void func_8012D844(void *, s32, s32);
-extern void func_80128714(void);
+extern void func_80128714();
 
 void func_80128630(func_80128630_StructArg *arg0, func_80128630_StructC **arg1) {
     s32 temp_v0;
@@ -300,7 +300,7 @@ typedef struct func_8012899C_Arg0 {
     u8 unk90;
 } func_8012899C_Arg0;
 
-extern void func_80128A90(void);
+extern void func_80128A90();
 
 void func_8012899C(func_8012899C_Arg0 *arg0, func_8012899C_StructW **arg1) {
     arg0->unk90 = 0xF8;

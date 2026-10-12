@@ -2,7 +2,7 @@
 
 extern s32 func_801C3B3C(void);
 extern void func_801F5210(void *);
-extern void func_801F83B8(void);
+extern void func_801F83B8();
 
 struct func_801F832C_Struct {
     u8 pad0[0xAE];

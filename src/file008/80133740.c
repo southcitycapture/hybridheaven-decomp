@@ -86,9 +86,33 @@ void func_801338B0(s32 arg0) {
     *temp_v0 &= ~temp_t4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133904.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133950.s")
+s32 func_80133904(s32 arg0)
+{
+  return (D_801BCDF8[(arg0 / 8) & 0xFF] & ((unsigned char) (1 << ((arg0 % 8) & 0xFF)))) & 0xFF;
+  if ((arg0 && arg0) && arg0)
+  {
+    if (!arg0)
+    {
+    }
+  }
+}
+
+
+extern u8 D_801BCE5C[];
+
+void func_80133950(void) {
+    s32 var_v1;
+
+    var_v1 = 0;
+    do {
+        var_v1 += 4;
+        D_801BCDF8[var_v1 - 3] = 0;
+        D_801BCDF8[var_v1 - 2] = 0;
+        D_801BCDF8[var_v1 - 1] = 0;
+        D_801BCDF8[var_v1 - 4] = 0;
+    } while (D_801BCE5C != &D_801BCDF8[var_v1]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133980.s")
 

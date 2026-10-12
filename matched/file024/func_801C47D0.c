@@ -7,7 +7,7 @@ extern u8 D_80044090[];
 extern s32 D_801CC8A8;
 extern s32 D_801CC8B8;
 extern s32 D_801CC8BC;
-extern void func_801C4840(void);
+extern void func_801C4840();
 
 void func_801C47D0(s32 arg0, s32 arg1) {
     func_80005700(D_801CC8A8);

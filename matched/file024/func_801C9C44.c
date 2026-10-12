@@ -6,7 +6,7 @@ typedef struct func_801C9C44_Struct {
 } func_801C9C44_Struct;
 
 extern void func_800058DC(s32, void (*)(void));
-extern void func_801C9D0C(void);
+extern void func_801C9D0C();
 extern func_801C9C44_Struct D_801CD238;
 extern func_801C9C44_Struct *D_801CFDD4;
 extern f32 D_801CF614;

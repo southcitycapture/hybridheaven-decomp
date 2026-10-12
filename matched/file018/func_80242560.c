@@ -8,7 +8,7 @@ typedef struct func_80242560_Struct {
 extern s32 func_80126944(void);
 extern void func_80020744(s32);
 extern void func_800058DC(s32, void *);
-extern void func_802425AC(void);
+extern void func_802425AC();
 
 void func_80242560(func_80242560_Struct *arg0, void *arg1) {
     if (func_80126944() == 0) {

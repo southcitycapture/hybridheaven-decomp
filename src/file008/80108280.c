@@ -45,7 +45,7 @@ void func_8010843C(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
 
 
 extern void func_8010A1AC(u8, f32, f32, f32, f32, f32, f32);
-extern void func_80108814(void);
+extern void func_80108814();
 
 void func_801085D4(u8 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
     D_801BBAD4 = func_80108814;

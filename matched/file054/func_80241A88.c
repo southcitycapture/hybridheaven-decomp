@@ -10,7 +10,7 @@ extern void func_800179B0(void *);
 extern void func_8015122C(s32, void *, s32);
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_801512CC(s32, f32, f32, f32);
-extern void func_80241B98(void);
+extern void func_80241B98();
 extern u8 D_802476B8[];
 extern u8 D_80246E10[];
 extern u8 D_802468F4[];

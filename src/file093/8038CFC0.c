@@ -30,7 +30,7 @@ extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern u8 func_8038DD54[];
 
-void func_8038DAFC();
+extern s32 func_8038DAFC();
 
 void func_8038DCD4(struct func_8038DCD4_Struct *arg0, s32 arg1) {
     u8 *var_a1;

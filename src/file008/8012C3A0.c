@@ -323,7 +323,7 @@ void func_8012D814(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4) {
 }
 
 
-extern void func_8012CF8C(void *arg0, void *arg1, u16 arg2, s32 arg3);
+extern s32 func_8012CF8C();
 
 void func_8012D844(void *arg0, u16 arg1, s32 arg2) {
     u8 *temp_v0;

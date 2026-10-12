@@ -32,7 +32,7 @@ struct func_8038D7D0_StructG {
 extern struct func_8038D7D0_StructG D_801BBBF0;
 extern struct func_8038D7D0_StructA D_801BC03C;
 extern struct func_8038D7D0_StructA D_801BC3D8;
-extern void func_8022B3E0(void);
+extern void func_8022B3E0();
 
 void func_8038D7D0(struct func_8038D7D0_Struct *arg0, s32 arg1) {
     struct func_8038D7D0_StructA *var_a1;

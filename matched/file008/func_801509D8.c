@@ -32,7 +32,7 @@ struct func_801509D8_StructLocal {
 
 extern void *D_801BBCD0;
 extern s16 func_801FD284(s16, s16, s32, void *);
-extern void func_80150AB4(void);
+extern void func_80150AB4();
 
 void func_801509D8(struct func_801509D8_Struct *arg0, s32 arg1) {
     struct func_801509D8_StructLocal sp20;

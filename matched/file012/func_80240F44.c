@@ -3,7 +3,7 @@
 extern void func_8037488C(s32 arg0, void *arg1);
 extern void func_800058DC(s32 arg0, void *arg1);
 extern u8 D_801BBBF0[];
-extern void func_80240FA0(void);
+extern void func_80240FA0();
 
 void func_80240F44(s32 arg0, s32 arg1) {
     u16 *temp_v0;

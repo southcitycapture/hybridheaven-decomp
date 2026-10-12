@@ -4,7 +4,7 @@ extern s32 func_801517CC(s32);
 extern void func_801512CC(s32, s32, s32, s32);
 extern void func_80151430(s32, s32);
 extern void func_8015115C(s32, void *);
-extern void func_8024C3D8(void);
+extern void func_8024C3D8();
 extern s32 D_8025A2D4;
 extern u8 D_80253968[];
 

@@ -17,7 +17,7 @@ typedef struct func_8024386C_Arg0 {
 
 extern f64 D_802570B8;
 extern f64 D_802570C0;
-extern void func_802438E0(void);
+extern void func_802438E0();
 
 void func_8024386C(func_8024386C_Arg0 *arg0, s32 arg1) {
     func_8024386C_Leaf *temp_v0;

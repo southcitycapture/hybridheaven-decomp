@@ -2,7 +2,7 @@
 
 extern void func_80020744(s32);
 extern f32 D_80257110;
-extern void func_8024495C(void);
+extern void func_8024495C();
 
 void func_80244904(void *arg0, void *arg1) {
     if (func_80133A24(0x1A7) != 0) {

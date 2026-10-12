@@ -10,7 +10,7 @@ typedef struct func_801CEEF0_StructOuter {
     u8 unk94;
 } func_801CEEF0_StructOuter;
 
-extern void func_801CEF84(void);
+extern void func_801CEF84();
 
 void func_801CEEF0(func_801CEEF0_StructOuter *arg0, func_801CEEF0_StructInner **arg1) {
     s32 var_s0;

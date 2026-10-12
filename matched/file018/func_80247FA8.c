@@ -12,7 +12,7 @@ typedef struct func_80247FA8_Struct {
     s16 unk94;
 } func_80247FA8_Struct;
 
-extern void func_8024564C(void);
+extern void func_8024564C();
 
 void func_80247FA8(func_80247FA8_Struct *arg0, s32 arg1)
 {

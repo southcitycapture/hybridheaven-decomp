@@ -9,7 +9,7 @@ extern s32 func_800178E8(void);
 extern void func_8001E978(void *, s32, s32, s32, s32, s32, s32, s32);
 extern void func_800058DC(void *, void *);
 extern s16 D_80089354;
-extern void func_8024C8F0(void);
+extern void func_8024C8F0();
 
 void func_8024C87C(func_8024C87C_Struct *arg0, s32 arg1) {
     if (func_800178E8() != 0) {

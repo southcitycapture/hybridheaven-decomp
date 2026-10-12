@@ -22,7 +22,7 @@ extern u8 D_80164F40[];
 extern s16 D_801CFE00;
 extern s8 D_801CFE02;
 extern s8 D_801CFE03;
-extern void func_801CBE88(void);
+extern void func_801CBE88();
 
 void func_801CBDC0(s32 arg0, struct func_801CBDC0_Struct1 **arg1) {
     func_80005E44(arg0, D_80164F40);

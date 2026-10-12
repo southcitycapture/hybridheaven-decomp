@@ -40,7 +40,7 @@ typedef struct func_80128630_StructArg {
 
 extern s32 func_8000C3B0(void *);
 extern void func_8012D844(void *, s32, s32);
-extern void func_80128714(void);
+extern void func_80128714();
 
 void func_80128630(func_80128630_StructArg *arg0, func_80128630_StructC **arg1) {
     s32 temp_v0;

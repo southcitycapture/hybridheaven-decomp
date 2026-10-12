@@ -7,9 +7,9 @@ typedef struct func_8024388C_StructD {
 } func_8024388C_StructD;
 
 extern void func_8012636C(void *, s32);
-extern void func_8013A1B4(s32, func_8024388C_StructD, s32);
+extern void func_8013A1B4();
 extern void func_800058DC(void *, void *);
-extern void func_80243930(void);
+extern void func_80243930();
 extern func_8024388C_StructD D_8017DC2C;
 
 void func_8024388C(u8 *arg0, s32 arg1) {

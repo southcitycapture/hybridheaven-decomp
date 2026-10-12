@@ -1,6 +1,6 @@
 #include "context.h"
 
-s32 func_801517CC();                                /* extern */
+extern s32 func_801517CC();
 
 typedef struct func_80151790_Struct {
     u8 pad[0x91];

@@ -17,7 +17,7 @@ typedef struct func_801CE8C8_Struct {
     u8 unk94;
 } func_801CE8C8_Struct;
 
-extern void func_801CE9DC(void);
+extern void func_801CE9DC();
 
 void func_801CE8C8(func_801CE8C8_Struct *arg0, void **arg1) {
     s32 var_a1;

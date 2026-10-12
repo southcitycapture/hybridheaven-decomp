@@ -4,8 +4,8 @@ extern void func_80005670(void *, void *);
 extern void func_800058DC(void *, void *);
 extern u8 D_8017DD93;
 extern u8 D_80044090[];
-extern void func_801CBC48(void);
-extern void func_801CBD54(void);
+extern void func_801CBC48(s32 arg0, s32 arg1);
+extern void func_801CBD54();
 
 void func_801CBBEC(void *arg0, void *arg1) {
     if (D_8017DD93 != 0) {

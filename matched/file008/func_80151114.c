@@ -5,7 +5,7 @@ typedef struct func_80151114_Struct {
     s16 unk3C;
 } func_80151114_Struct;
 
-s32 func_8001F7B0(void);
+extern s32 func_8001F7B0();
 void func_800058DC(void *arg0, void *arg1);
 extern u8 func_80150EA8[];
 

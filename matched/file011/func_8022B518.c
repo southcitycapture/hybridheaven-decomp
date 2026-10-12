@@ -6,7 +6,7 @@ typedef struct func_8022B518_Struct {
 } func_8022B518_Struct;
 
 void func_800058DC(void *arg0, void *arg1);
-void func_8022B544(void);
+extern void func_8022B544();
 
 void func_8022B518(func_8022B518_Struct *arg0, s32 arg1) {
     arg0->unk90 = 0;
