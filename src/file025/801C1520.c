@@ -41,7 +41,14 @@ loop_1:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1520/func_801C16F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1520/func_801C175C.s")
+
+
+s32 func_801C175C(void) {
+    s32 ret;
+
+    ret = 0;
+    return (D_801D8DB0 != 0) ? 1 : ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1520/func_801C1780.s")
 

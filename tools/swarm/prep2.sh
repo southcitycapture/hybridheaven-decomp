@@ -18,13 +18,16 @@ EOC
 # HARNESS2=1 (exp10): don't spend checks on repeats or compile errors, and stop runs that have stalled
 [ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
 echo $(( $(cat .check_calls 2>/dev/null || echo 0) + 1 )) > .check_calls     # every call, counted or not
+rm -f .aligned
 [ -f .stalled ] && { echo "Stopped: no improvement in 3 checks. Report your best result ($(cat .stalled))."; exit 2; }
 for f in .attempts/*.c; do
   [ -f "$f" ] && cmp -s attempt.c "$f" && { echo $((n-1)) > .checks; echo "attempt.c is identical to $f ($(head -1 ${f%.c}.res)). Change something before checking again (this check was not counted)."; exit 2; }
 done
 EOC
+ALIGNED_ARG=""; [ -n "$HARNESS2" ] && ALIGNED_ARG=" --aligned-out .aligned"     # HARNESS2's stall rule uses the aligned score
+[ -n "$DIAG" ] && ALIGNED_ARG="$ALIGNED_ARG --diagnose"     # DIAG=1: aligned verdict + frame map after a non-match (tools/hh/diagnose.py)
 cat >> "$W/check" <<EOC
-"$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" $FUNC attempt.c --seg $SEG -v 2>&1 | head -30 | tee .lastcheck
+"$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" $FUNC attempt.c --seg $SEG -v$ALIGNED_ARG 2>&1 | head -30 | tee .lastcheck
 EOC
 [ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
 if head -1 .lastcheck | grep -q '^compile failed'; then
@@ -45,8 +48,10 @@ best=$(for f in .attempts/*.res; do k=${f%.res}; k=${k##*/}; l=$(head -1 $f); ca
 [ -n "$best" ] && echo "(attempt $n saved as .attempts/$n.c; best so far: .attempts/${best##* }.c)"
 EOC
 [ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
-# the first attempt that reached the best score (equal scores are not progress)
-bk=$(for f in .attempts/*.res; do k=${f%.res}; k=${k##*/}; l=$(head -1 $f); case "$l" in MATCH*) s=1000000;; score*) s=$(echo "$l" | sed -n 's/^score \([0-9]*\)\/\([0-9]*\).*/\1 \2/p' | awk '{printf "%d", ($2 ? 1000*$1/$2 : 0)}');; *) s=0;; esac; echo "$s $k"; done | sort -k1,1nr -k2,2n | head -1 | cut -d" " -f2)
+# progress = the aligned score (an inserted instruction doesn't zero everything after it); the first attempt that
+# reached the best aligned score counts (equal scores are not progress)
+[ -f .aligned ] && cp .aligned .attempts/$n.ali || echo 0 > .attempts/$n.ali
+bk=$(for f in .attempts/*.ali; do k=${f%.ali}; k=${k##*/}; echo "$(cat $f) $k"; done | sort -k1,1nr -k2,2n | head -1 | cut -d" " -f2)
 if [ -n "$bk" ] && [ $((n - bk)) -ge 3 ] && ! head -1 .lastcheck | grep -q '^MATCH'; then
   echo ".attempts/$bk.c" > .stalled
   echo "No improvement in the last 3 checks. Stop now and report your best result (.attempts/$bk.c)."

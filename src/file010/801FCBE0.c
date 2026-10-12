@@ -16,7 +16,7 @@ extern s32 func_80005C70(void);
 extern void func_80005700();
 extern void func_800058DC();
 extern void func_8001F74C(void *);
-extern void func_801FCE0C(void);
+extern void func_801FCE0C();
 extern u8 D_801BBC0D;
 extern u8 D_80217434[];
 extern u8 D_80217150[];
@@ -60,7 +60,13 @@ void func_801FCF14(u8 *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801FCBE0/func_801FCF98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801FCBE0/func_801FD0F0.s")
+
+
+void func_801FD0F0(s32 arg0, s32 arg1) {
+    s32 *p;
+    p = &arg1;
+    func_80005700(arg0, *p);
+}
 
 
 struct func_801FD110_Inner {
@@ -147,7 +153,6 @@ void *func_801FD168(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, 
 }
 
 
-extern void func_801FD0F0();
 
 struct func_801FD260_Struct {
     u8 pad0[0x2C];

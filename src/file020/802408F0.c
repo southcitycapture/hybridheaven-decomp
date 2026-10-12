@@ -1,10 +1,24 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_802408F0.s")
+extern void func_800058DC(void *arg0, void *arg1);
+
+extern f32 D_80246A30;
+extern f32 D_80246C60;
+extern void func_8024092C();
+
+struct func_802408F0_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+};
+
+void func_802408F0(struct func_802408F0_Struct *arg0, s32 arg1) {
+    D_80246C60 = D_80246A30;
+    arg0->unk3C = 0;
+    func_800058DC(arg0, &func_8024092C);
+}
 
 
 extern f32 D_80246A34;
-extern f32 D_80246C60;
 
 struct func_8024092C_Struct {
     u8 pad[0x3C];
@@ -21,7 +35,6 @@ void func_8024092C(struct func_8024092C_Struct *arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80240CF8.s")
 
 extern void func_801C2F0C(s32 arg0, struct func_80240EF8_Struct *arg1);
-extern void func_800058DC(void *arg0, void *arg1);
 
 struct func_80240DF4_Struct {
     f32 a;

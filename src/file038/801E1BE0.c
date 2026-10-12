@@ -506,7 +506,37 @@ s32 func_801E3E94(s32 arg0, s32 arg1) {
     return 5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E3EA4.s")
+
+struct func_801E3EA4_Struct2 {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+};
+struct func_801E3EA4_Struct1 {
+    u8 pad0[0x22];
+    u8 unk22;
+    u8 pad23[0xD];
+    struct func_801E3EA4_Struct2 *unk30;
+};
+struct func_801E3EA4_Struct0 {
+    u8 pad0[0xC];
+    struct func_801E3EA4_Struct1 *unkC;
+};
+
+s32 func_801E3EA4(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x2DC6C0) != 0) {
+        ((struct func_801E3EA4_Struct0 *)D_8038D8D0)->unkC->unk30->unk4 = 49.0f;
+        ((struct func_801E3EA4_Struct0 *)D_8038D8D0)->unkC->unk30->unk8 = 158.0f;
+        ((struct func_801E3EA4_Struct0 *)D_8038D8D0)->unkC->unk30->unkC = 49.0f;
+        ((struct func_801E3EA4_Struct0 *)D_8038D8D0)->unkC->unk30->unk12 = 0x1800;
+        ((struct func_801E3EA4_Struct0 *)D_8038D8D0)->unkC->unk22 = 1;
+        return 6;
+    }
+    return 5;
+}
 
 
 s32 func_801E3F50(s32 arg0, s32 arg1) {
@@ -656,7 +686,32 @@ s32 func_801E46A0(s32 arg0, s32 arg1) {
     return 0x5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E46C8.s")
+
+extern u8 D_801E0A48[];
+extern u8 func_801DAC30[];
+extern u8 D_801DAD28[];
+extern u8 D_801DAD2C[];
+extern u8 D_801DB660[];
+extern u8 D_801DB664[];
+extern void func_801CC318();
+extern void func_801CC458(s32, void *);
+extern void func_801CC4C0(s32, void *);
+
+s32 func_801E46C8(s32 arg0, s32 arg1) {
+    func_801C2420(0x29, D_801E0A48);
+    func_801CC318();
+    func_801CC458(0, func_801DAC30 + 0x40);
+    func_801CC4C0(0, func_801DAC30 + 0x44);
+    func_801C2420(0x2D, D_801E0A48 + 0x18);
+    func_801CC318();
+    func_801CC458(1, D_801DAD28);
+    func_801CC4C0(1, D_801DAD2C);
+    func_801C2420(0x11B, D_801E0A48 + 0x30);
+    func_801CC318();
+    func_801CC458(2, D_801DB660);
+    func_801CC4C0(2, D_801DB664);
+    return 1;
+}
 
 
 extern void func_80005670(void *a0, void *a1);
@@ -667,7 +722,6 @@ extern void func_801D5188(s32 a0);
 extern void func_801CC530(void);
 extern u8 D_801DAD14[];
 extern u8 D_801DB64C[];
-extern u8 func_801DAC30[];
 
 struct func_801E4794_Struct1 {
     u8 pad0[0x8];

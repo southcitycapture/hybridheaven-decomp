@@ -5,14 +5,6 @@ struct func_80248F3C_Struct3 {
     s32 unk4;
     s32 unk8;
 };
-struct func_80248F3C_Struct2 {
-    u8 pad[0x78];
-    s16 unk78;
-};
-struct func_80248F3C_Struct1 {
-    u8 pad[0x5C];
-    struct func_80248F3C_Struct2 *unk5C;
-};
 
 extern void func_8013A28C(s32, struct func_80248F3C_Struct3);
 extern struct func_80248F3C_Struct3 D_80249D7C;

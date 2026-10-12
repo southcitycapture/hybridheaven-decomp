@@ -1,11 +1,6 @@
 #include "context.h"
 extern void func_80010550(s32, void *, void *, s32);
 extern void func_80020744(s32, void *, void *);
-struct func_80246828_Triple {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 extern s32 func_8012CE9C(s32, s32, struct func_80246828_Triple, s32);
 extern s32 func_801268F4(s32);
 extern void func_801FBB30();

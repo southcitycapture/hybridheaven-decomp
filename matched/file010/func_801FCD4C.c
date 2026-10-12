@@ -13,7 +13,7 @@ extern s32 func_80005C70(void);
 extern void func_80005700();
 extern void func_800058DC();
 extern void func_8001F74C(void *);
-extern void func_801FCE0C(void);
+extern void func_801FCE0C();
 extern u8 D_801BBC0D;
 extern u8 D_80217434[];
 extern u8 D_80217150[];

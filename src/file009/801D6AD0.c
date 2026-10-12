@@ -299,7 +299,13 @@ void func_801D7218(u8 *arg0, s32 arg1) {
     func_800208C4(0x22);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801D6AD0/func_801D725C.s")
+
+
+void func_801D725C(u8 *arg0, s32 arg1) {
+    if (arg0[0x92] == 2) {
+        func_801FC720(0x1F9, 3, 0);
+    }
+}
 
 
 

@@ -3,10 +3,12 @@
 A work-in-progress **matching decompilation** of *Hybrid Heaven* (Konami, 1999, USA release) for the Nintendo 64:
 C source that compiles back to a byte-identical copy of the original ROM.
 
-It is also a **research project**: almost all of the C so far was written by a swarm of small AI models
-(Claude Haiku 5.5, with Claude Sonnet 5.5 for harder functions), driven by an automated harness that verifies every
-function exactly. The point is to measure how far cheap models get on real decompilation work and what it costs.
-See [Research results](#research-results).
+It is also a **research project** on making AI-driven decompilation efficient. A swarm of small AI models
+(Claude Haiku 5.5, with Claude Sonnet 5.5 for harder functions) writes the C for new functions, driven by an automated
+harness that verifies every function exactly. Around it sits a set of **model-free tools** that multiply each match:
+**most of the functions in C were placed automatically**, by copying an AI worker's match onto identical-shape code
+elsewhere in the game (current numbers in [Research results](#research-results), generated from the run logs). The point is to measure how far
+cheap models plus good tooling get on real decompilation work, and what it costs. See [Research results](#research-results).
 
 > **No game data is in this repository.** You need your own legally obtained ROM. The repo contains only original
 > C code, tools, configuration and research logs; disassembly is regenerated locally from your ROM.
@@ -59,8 +61,8 @@ The details are in [docs/TECHNICAL.md](docs/TECHNICAL.md). In short:
 | `src/` | C sources. Unmatched functions are `#pragma GLOBAL_ASM(...)` of locally generated asm |
 | `matched/` | registry of every matched function's C, one file per function: the source of truth for `src/` |
 | `include/` | `common.h`, and `functions.h` for prototypes confirmed by matching (e.g. `func_801C0B8C(u64)`) |
-| `tools/hh/` | ROM expand/pack, LZ codec, splat config generator, `srcbuild.py`, `try_func.py`, progress report |
-| `tools/swarm/` | the AI worker harness: prompts, prep, batch runner, escalation ladder, permuter driver |
+| `tools/hh/` | ROM expand/pack, LZ codec, splat config generator, `srcbuild.py`, `try_func.py`, progress report, and the model-free tools below |
+| `tools/swarm/` | the AI worker harness: prompts, prep, batch runner, escalation ladder, permuter driver, experiments |
 | `queue/` | function list with difficulty scores, and per-batch results (`results.jsonl`) and reports |
 | `progress/report.json` | objdiff progress report, generated locally (`tools/hh/progress.py`) |
 | `dashboard/` | a small live dashboard (treemap, function map, workers), served from the build machine |
@@ -71,6 +73,8 @@ Each worker is a headless Claude Code session given **one function**: its assemb
 (declarations already used in that function's source file) and a `./check` command. `./check` compiles the C with IDO
 and compares the result with the original, **every instruction and every resolved address**: functions are linked so
 that symbol addresses must match too. Workers get a fixed number of checks (10 for Haiku, 15 for Sonnet).
+An experimental `HARNESS2` mode refuses repeated submissions, doesn't count compile errors, and stops a worker after
+three checks without improvement in an alignment-based score (being A/B tested).
 
 A worker's claim is never trusted. Every result is re-verified independently, then `tools/hh/srcbuild.py` places it in
 its real source file, rebuilds the file, verifies every function in context, and keeps the full ROM byte-identical.
@@ -78,12 +82,35 @@ its real source file, rebuilds the file, verifies every function in context, and
 The pipeline for harder functions is an **escalation ladder**:
 
 1. **Haiku** tries first.
-2. Near-misses (≥ 80 % of instructions matching) go to **[decomp-permuter](https://github.com/simonlindholm/decomp-permuter)**
-   (random C mutations against the real compiler; no model, CPU only).
+2. Near-misses go to **[decomp-permuter](https://github.com/simonlindholm/decomp-permuter)** (random C mutations
+   against the real compiler; no model, CPU only). Candidates are chosen by positional score (≥ 80 %) or by an
+   *aligned* score (≥ 95 % after diffing the instruction sequences), because one inserted instruction makes the
+   positional score of a nearly right attempt look terrible.
 3. What's left goes to **Sonnet**, starting from Haiku's best attempt.
 
 Confirmed facts flow back to every later worker: shared prototypes in `include/functions.h`, and the declarations of
 each source file through `context.h`.
+
+What to work on next is chosen by `tools/hh/pick.py`, which ranks unmatched functions by **expected matched bytes
+per dollar**: the measured success rate and cost for the function's difficulty (and whether it contains a loop, the
+strongest predictor of failure), times its size plus the copies a match would unlock through propagation.
+
+## Model-free tools
+
+These run without any model calls. Every result passes the same exact check as an AI match: the whole source file is
+rebuilt, every function in it must still match, and the ROM must stay byte-identical.
+
+| Tool | What it does |
+|---|---|
+| `tools/hh/propagate.py` | Overlays repeat a lot of code. When one copy of a function is matched, its C is copied onto every other copy of the same shape: the function name, called functions and globals are mapped instruction by instruction, and differing constants are rewritten (per occurrence when one literal means two things). Most of the functions in C came from this tool. |
+| `tools/hh/unify.py` | Repairs matches that compile alone but clash in their real file: a neighbour declared a function with a guessed prototype, or a declaration is only made later in the file. Rewrites the declaration file-wide and keeps the change only if every function still matches. |
+| `tools/hh/protofix.py` | Finds guessed declarations of still-unmatched functions that contradict the asm (too few arguments, or `void` when callers use the return value) and repairs them, so workers are not handed impossible prototypes. 475 repaired in the first run. |
+| `tools/hh/pick.py` | Chooses what to send to AI workers next (expected matched bytes per dollar, measured from all past runs). |
+| `tools/hh/features.py` | Per-function facts read from the asm: loops, jump tables, instructions C can't produce, argument count. |
+| `tools/swarm/permute.py` | Drives decomp-permuter on near-misses (see above). |
+
+Rodata: jump tables and float constants are placed per source file in the main segment. The overlays are in progress,
+so workers are currently asked not to write `switch` statements.
 
 ## Research results
 
@@ -91,9 +118,9 @@ The numbers below are generated from the run logs in `queue/*/results.jsonl` (se
 batch). Costs are API-equivalent figures as reported by Claude Code; the runs themselves used a Claude Max subscription,
 and the "weekly usage" column is the subscription's own usage meter.
 
-Progress as of 2026-10-12: **27.29% of the code** (11077 of 15833 functions, including duplicates).
+Progress as of 2026-10-12: **28.22% of the code** (11274 of 15833 functions, including duplicates).
 
-**11653 model runs, 5579 verified matches (48%), $206.41 API-equivalent in total (≈ $0.037 per match)**; plus 199 matches from decomp-permuter at no model cost.
+**11076 model runs, $408.89 API-equivalent in total** (local and cloud). Of the **11300 functions now in C**, **3801 were matched by AI workers** (≈ $0.108 per function, failures included), **7289 were placed by propagation** (a match copied onto identical-shape code), 139 came from decomp-permuter and 71 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 Per-batch table: [RESULTS.md](RESULTS.md).
 

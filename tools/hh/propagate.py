@@ -48,10 +48,19 @@ def symbol_map(src_seg, src, dst_seg, dst):
     return m
 
 def translate(text, m):
-    """Rename whole identifiers, and identifiers that start with a mapped function name (type names)."""
+    """Rename mapped identifiers. Type names built from a mapped function name (func_X_Struct) are renamed only when
+    the snippet itself defines them; a type it merely uses comes from the target file's context under its own name."""
+    own = set()
+    for names, t in top_items(text):
+        if "{" in t or "typedef" in t: own |= names
     keys = sorted(m, key=len, reverse=True)
-    pat = re.compile(r"\b(%s)(?=\b|_)" % "|".join(map(re.escape, keys)))
-    return pat.sub(lambda g: m[g.group(1)], text)
+    pat = re.compile(r"\b(%s)(\w*)\b" % "|".join(map(re.escape, keys)))
+    def sub(g):
+        base, rest = g.group(1), g.group(2)
+        if not rest: return m[base]                                   # the identifier itself
+        if rest.startswith("_") and base + rest in own: return m[base] + rest   # a type this snippet defines
+        return g.group(0)
+    return pat.sub(sub, text)
 
 ROW = {}                                    # (seg, func) -> functions.csv row, filled in main
 
@@ -96,19 +105,22 @@ def context(seg, cf, func):
     return _ctx[(seg, cf)]
 
 _sctx = {}
-def self_contained(sseg, sfunc, dctx):
+def self_contained(sseg, sfunc, dctx, m=None):
     """The source snippet plus what it used from its own file's declarations (it compiled with those in
     force), leaving out names the target file already declares."""
     text = open("matched/%s/%s.c" % (sseg, sfunc)).read()
     if (sseg, sfunc) not in _sctx: _sctx[(sseg, sfunc)] = top_items(S.context_for(sseg, sfunc))
-    have = set()
-    for names, _ in top_items(dctx) + top_items(text): have |= names
+    m = m or {}
+    have = set()                                   # names the copy will have: the target file's, and the snippet's
+    for names, _ in top_items(dctx): have |= names
+    for names, _ in top_items(text): have |= {m.get(x, x) for x in names}
     need, keep, used, changed = set(WORD.findall(text)), [], set(), True
     items = _sctx[(sseg, sfunc)]
     while changed:
         changed = False
         for i, (names, t) in enumerate(items):
-            if i in used or not (names & need) or names & (have | {sfunc}): continue
+            # compare after renaming: D_801BBAD4 in the source may be D_801BC0D4 in the copy
+            if i in used or not (names & need) or {m.get(x, x) for x in names} & (have | {m.get(sfunc, sfunc)}): continue
             if "{" in t: continue          # struct bodies would be repeated by every copy in one file
             used.add(i); keep.append((i, t)); need |= set(WORD.findall(t)); changed = True
     if not keep: return text
@@ -167,7 +179,7 @@ def alone(args):
         if cm is None: why = "differs beyond symbols and constants"; continue
         ctx = context(seg, cf, func)
         plain = with_consts(translate(open("matched/%s/%s.c" % (sseg, sfunc)).read(), m), cm)
-        full = with_consts(translate(self_contained(sseg, sfunc, ctx), m), cm)
+        full = with_consts(translate(self_contained(sseg, sfunc, ctx, m), m), cm)
         tries = [full, R.with_context_decls(full, ctx, func)]
         if plain != full: tries += [plain, R.with_context_decls(plain, ctx, func)]
         for t in list(tries):            # the snippet may define a type the file already has
@@ -180,7 +192,7 @@ def alone(args):
             why = "alone: " + (out.strip().splitlines() or ["compile error"])[0][:80]
             if why.startswith("alone: compile") and clash is None: clash = tries[-1] if len(tries) > 2 else t
         if cm and why.startswith("alone: score"):      # a literal that means two things: rewrite only some uses
-            base = translate(self_contained(sseg, sfunc, ctx), m)
+            base = translate(self_contained(sseg, sfunc, ctx, m), m)
             for b0 in (base, drop_known_types(base, ctx)):
                 if not b0: continue
                 for t in const_subsets(b0, func, cm):
@@ -226,7 +238,10 @@ def one_file(item):
     reg = S.registry(); names = {e[0] for e in S.entries(seg, cf)}
     base = {n: t for (s, n), t in reg.items() if s == seg and n in names}
     added = fit(seg, cf, base, new)
-    dropped = {n: "does not fit in its file" for n in new if n not in added}
+    dropped = {}
+    for n in new:                                 # matched alone but breaks a neighbour: a declaration clash,
+        if n not in added: clash.setdefault(n, new[n])   # so give it unify's file-wide repair below
+    clash = dict(clash)
     how = {n: "copy" for n in added}
     neigh = dict(base, **added); edits = {}
     fails = []
@@ -264,7 +279,25 @@ if __name__ == "__main__":
             src = sorted(done, key=lambda d: (d[0] != k[0], d))[:3]
             jobs.append((k[0], k[1], src))
     jobs.sort(); jobs = jobs[:limit] if limit else jobs
-    print(len(jobs), "unmatched copies of matched functions", flush=True)
+    # alone-stage memo: a copy that failed before is skipped while its sources, its file's registered C and this
+    # tool are unchanged (each loop cycle otherwise re-checks ~1,100 known failures)
+    import hashlib
+    ALONE_LOG = "queue/propagate_alone_failed.jsonl"
+    tool_v = hashlib.sha1(open(__file__, "rb").read()).hexdigest()[:12]
+    filesnips = collections.defaultdict(list)
+    for (sg, n), t in reg.items(): filesnips[(sg, S.file_of(sg, n))].append(n + "\0" + t)
+    filehash = {k: hashlib.sha1("\0".join(sorted(v)).encode()).hexdigest()[:16] for k, v in filesnips.items()}
+    def akey(job):
+        sg, fn, src = job
+        h = hashlib.sha1((tool_v + sg + fn + filehash.get((sg, S.file_of(sg, fn)), "")).encode())
+        for k in src: h.update(reg[k].encode())
+        return h.hexdigest()[:20]
+    failed_before = {json.loads(l)["key"] for l in open(ALONE_LOG)} if os.path.exists(ALONE_LOG) else set()
+    keys = {(j[0], j[1]): akey(j) for j in jobs}
+    skipped = [j for j in jobs if keys[(j[0], j[1])] in failed_before]
+    jobs = [j for j in jobs if keys[(j[0], j[1])] not in failed_before]
+    print(len(jobs) + len(skipped), "unmatched copies of matched functions;", len(skipped),
+          "skipped (failed before, nothing changed)", flush=True)
     cands, clashes, log = {}, {}, open(OUT + "/propagate.jsonl", "a" if "--resume" in sys.argv else "w")
     if "--resume" in sys.argv:          # reuse the alone-stage results of an interrupted run
         saved = json.load(open(OUT + "/alone.json"))
@@ -276,6 +309,8 @@ if __name__ == "__main__":
         for i, (seg, func, text, how, clash) in enumerate(p.imap_unordered(alone, jobs, chunksize=8)):
             if text: cands[(seg, func)] = text
             elif clash: clashes[(seg, func)] = clash
+            else:
+                with open(ALONE_LOG, "a") as fh: fh.write(json.dumps({"key": keys[(seg, func)]}) + "\n")
             log.write(json.dumps(dict(segment=seg, func=func, alone=bool(text), how=how)) + "\n")
             if i % 500 == 0: print(i, "checked,", len(cands), "match alone", flush=True)
     json.dump({"match": {"%s/%s" % k: t for k, t in cands.items()},

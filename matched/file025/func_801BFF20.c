@@ -1,9 +1,5 @@
 #include "context.h"
 
-typedef struct func_801BFF20_Struct {
-    u8 pad[8];
-    s32 unk8;
-} func_801BFF20_Struct;
 
 extern s32 func_80005700(s32);
 extern func_801BFF20_Struct *D_801D8D60;

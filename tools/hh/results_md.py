@@ -1,5 +1,6 @@
 """Write RESULTS.md (every batch) and print the short README table, from queue/*/results.jsonl."""
 import glob, json, os, re, sys, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 DESC = {"pilot": "Pilot: 50 small functions", "batch1": "300 easy/medium", "batch2": "1,000 easy/medium",
         "batch3": "300 easy/medium", "fix1": "Repair pass: declaration conflicts", "batch4": "2,474 easy/medium (with context.h)",
@@ -24,9 +25,15 @@ for b, d, mo, n, m, c, w in rows:
     T.append("| `%s` | %s | %s | %d | %d | %.0f%% | $%.2f | %s | %s |" % (b, d, mo, n, m, 100 * m / n, c, "$%.3f" % (c / m) if m and c else "–", w))
 tn = sum(r[3] for r in rows if "permuter" not in r[2]); tm = sum(r[4] for r in rows if "permuter" not in r[2])
 tc = sum(r[5] for r in rows)
-summary = ("**%d model runs, %d verified matches (%.0f%%), $%.2f API-equivalent in total (≈ $%.3f per match)**; "
-           "plus %d matches from decomp-permuter at no model cost." % (tn, tm, 100 * tm / max(1, tn), tc, tc / max(1, tm),
-           sum(r[4] for r in rows if "permuter" in r[2])))
+import ledger                      # one source for the headline numbers (also used by pick.py)
+L = ledger.summary(); by = L["by"]
+summary = ("**%d model runs, $%.2f API-equivalent in total** (local and cloud). Of the **%d functions now in C**, "
+           "**%d were matched by AI workers** (≈ $%.3f per function, failures included), **%d were placed by "
+           "propagation** (a match copied onto identical-shape code), %d came from decomp-permuter and %d from other "
+           "sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results "
+           "per batch, so a function matched in several experiments is counted in each."
+           % (L["model_runs"], L["cost"], L["functions"], by.get("agent", 0), L["cost_per_agent_function"],
+              by.get("propagate", 0), by.get("permuter", 0), by.get("repair", 0) + by.get("other", 0)))
 rep = json.load(open("build/progress/report.json"))["measures"]
 prog = "Progress as of %s: **%.2f%% of the code** (%s of %s functions, including duplicates)." % (
     time.strftime("%Y-%m-%d"), float(rep.get("matched_code_percent", 0)), rep.get("matched_functions", 0), rep.get("total_functions"))

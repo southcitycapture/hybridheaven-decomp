@@ -1,0 +1,16 @@
+#include "context.h"
+
+extern s32 func_801CCE0C(s32);
+extern s32 func_801CCE50(s32, s32, s32);
+extern s32 func_801CCE88(s32, s32, s32, s32);
+extern s32 func_801CCEC8(s32, s32, s32, s32);
+
+s32 func_801E1E08(s32 arg0, s32 arg1) {
+    func_801CCE0C(2);
+    func_801CCE88(0, 0xE5, 0x98, 0x70);
+    func_801CCEC8(0, 0x22, -0xC, 0x1F);
+    func_801CCE88(1, 0xB2, 0xFF, 0xFD);
+    func_801CCEC8(1, -0x29, 0x3C, -0x10);
+    func_801CCE50(0x35, 0x1D, 0xA);
+    return 2;
+}

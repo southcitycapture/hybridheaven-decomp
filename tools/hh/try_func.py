@@ -6,6 +6,7 @@ Prints MATCH, or a score (matching words / total) and the first differences.
 Relocated fields (jal targets, %hi/%lo immediates) are ignored in the comparison,
 since the linker fills those in."""
 import argparse, os, re, subprocess, sys, tempfile, glob
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from elftools.elf.elffile import ELFFile
 from elftools.elf.relocation import RelocationSection
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../.."))
@@ -153,11 +154,35 @@ def compare(mine, rel, orig):
         diffs.append((k, a, b))
     return good, n, diffs
 
+def aligned(mine, orig):
+    """Similarity of two instruction sequences after diffing them (difflib), in [0, 1]: one inserted or missing
+    instruction costs one instruction, not everything after it. Immediates and jump targets are masked (relocated or
+    not), so opcodes and registers decide."""
+    import difflib
+    def toks(b):
+        out = []
+        for i in range(0, len(b) - 3, 4):
+            w = int.from_bytes(b[i:i + 4], "big"); op = w >> 26
+            out.append(w & 0xFC000000 if op in (2, 3) else w & 0xFFFF0000 if op not in (0, 1, 0x10, 0x11) else w)
+        return out
+    return difflib.SequenceMatcher(None, toks(mine), toks(orig), autojunk=False).ratio()
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("func"); ap.add_argument("src")
     ap.add_argument("--cc", default="7.1"); ap.add_argument("--opt", default="-O2"); ap.add_argument("-v", action="store_true")
     ap.add_argument("--asm", help="the function's .s file (exact target)"); ap.add_argument("--seg", help="segment, e.g. file020")
+    ap.add_argument("--aligned-out", help="also write the aligned similarity (0-1000, 1000 = MATCH) to this file")
+    ap.add_argument("--diagnose", action="store_true", help="after a non-match, print an aligned verdict and frame map (tools/hh/diagnose.py)")
     a = ap.parse_args()
+    r = _main(a)
+    if a.diagnose and r != 0 and _LAST:
+        import diagnose
+        for line in diagnose.diagnose(_LAST[0], _LAST[1], _LAST[2] if len(_LAST) > 2 else 0): print(line)
+    if a.aligned_out and _LAST: open(a.aligned_out, "w").write("%d\n" % (1000 if r == 0 else min(999, int(1000 * aligned(*_LAST[:2])))))
+    return r
+
+_LAST = []
+def _main(a):
     off, size, vram, asm = find_func(a.func, a.asm, a.seg)
     img = open(IMG, "rb").read(); orig = img[off:off + size]
     ro_start = asm_rodata_start(asm); ro_ok = True
@@ -174,6 +199,7 @@ def main():
             exact = linked_func_bytes(o, a.func, vram)
     # IDO pads functions to 8 bytes with nops; ignore trailing padding differences
     while len(mine) > len(orig) and mine[-4:] == b"\0\0\0\0": mine = mine[:-4]
+    _LAST[:] = [mine, orig, vram]
     good, n, diffs = compare(mine, rel, orig)
     if not diffs and exact is None and UNRESOLVED:
         print("score %d/%d: refers to %s, which isn't a real symbol (address-named like func_XXXXXXXX / D_XXXXXXXX, or "

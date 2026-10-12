@@ -5,7 +5,7 @@ typedef struct func_802525FC_Struct {
     u8 pad[0x3C];
     u16 unk3C;
 } func_802525FC_Struct;
-extern void func_802538A4(void);
+extern void func_802538A4();
 extern void func_801C4058(void *, s32, s32, s32);
 void func_802525FC(func_802525FC_Struct *arg0);
 

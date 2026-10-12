@@ -50,7 +50,14 @@ s32 func_801C1B1C(void)
   return var_s2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1BB8.s")
+
+
+s32 func_801C1BB8(void) {
+    s32 ret;
+
+    ret = 0;
+    return (D_801D8DC0 != 0) ? 1 : ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1BDC.s")
 

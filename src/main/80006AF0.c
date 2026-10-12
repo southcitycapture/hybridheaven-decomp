@@ -23,7 +23,7 @@ struct func_8000736C_Struct3 {
     struct func_8000736C_Struct2 *unk2C;
 };
 
-extern void func_80007114(struct func_8000736C_Struct3 **, struct func_8000736C_Struct4);
+extern void func_80007114();
 
 void func_8000736C(struct func_8000736C_Struct3 **arg0)
 {

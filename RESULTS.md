@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-12: **27.29% of the code** (11077 of 15833 functions, including duplicates).
+Progress as of 2026-10-12: **28.22% of the code** (11274 of 15833 functions, including duplicates).
 
-**11653 model runs, 5579 verified matches (48%), $206.41 API-equivalent in total (≈ $0.037 per match)**; plus 199 matches from decomp-permuter at no model cost.
+**11076 model runs, $408.89 API-equivalent in total** (local and cloud). Of the **11300 functions now in C**, **3801 were matched by AI workers** (≈ $0.108 per function, failures included), **7289 were placed by propagation** (a match copied onto identical-shape code), 139 came from decomp-permuter and 71 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -64,6 +64,18 @@ Progress as of 2026-10-12: **27.29% of the code** (11077 of 15833 functions, inc
 | `unify3` | unify3 | unify (no model) | 77 | 52 | 68% | $0.00 | – |  |
 | `unify5` | unify5 | unify (no model) | 109 | 30 | 28% | $0.00 | – |  |
 | `unify6` | unify6 | unify (no model) | 89 | 8 | 9% | $0.00 | – |  |
-| `permute` | decomp-permuter on near-misses | decomp-permuter | 557 | 97 | 17% | $0.00 | – |  |
+| `exp9_easy` | exp9_easy | haiku-5-5 | 60 | 12 | 20% | $0.95 | $0.079 | 90% → 91% |
+| `exp9_ranked` | exp9_ranked | haiku-5-5 | 60 | 29 | 48% | $1.04 | $0.036 | 90% → 91% |
+| `exp10_b` | exp10_b | haiku-5-5 | 60 | 22 | 37% | $1.16 | $0.053 | 91% → 91% |
+| `exp10_a` | exp10_a | haiku-5-5 | 60 | 23 | 38% | $1.29 | $0.056 | 91% → 92% |
+| `loop0001` | loop0001 | haiku-5-5 | 60 | 50 | 83% | $0.87 | $0.017 | 92% → 92% |
+| `leantest_b` | leantest_b | haiku-5-5 | 1 | 0 | 0% | $0.02 | – |  |
+| `leantest_a` | leantest_a | haiku-5-5 | 1 | 0 | 0% | $0.03 | – |  |
+| `permute` | decomp-permuter on near-misses | decomp-permuter | 723 | 115 | 16% | $0.00 | – |  |
+| `unify_loop0001` | unify_loop0001 | unify (no model) | 92 | 34 | 37% | $0.00 | – |  |
+| `exp13_lp` | exp13_lp | haiku-5-5 | 60 | 13 | 22% | $0.83 | $0.064 | 92% → 93% |
+| `exp13_ld` | exp13_ld | haiku-5-5 | 60 | 14 | 23% | $0.89 | $0.064 | 92% → 93% |
+| `exp13_nd` | exp13_nd | haiku-5-5 | 60 | 10 | 17% | $1.29 | $0.129 | 92% → 93% |
+| `exp13_np` | exp13_np | haiku-5-5 | 60 | 11 | 18% | $1.20 | $0.109 | 92% → 93% |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

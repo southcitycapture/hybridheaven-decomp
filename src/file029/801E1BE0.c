@@ -710,7 +710,32 @@ s32 func_801E3668(s32 arg0, s32 arg1) {
     return 10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file029/801E1BE0/func_801E3678.s")
+
+extern u8 D_801E0A48[];
+extern u8 D_801DB660[];
+extern u8 D_801DB664[];
+extern u8 D_801DB314[];
+extern u8 D_801DB318[];
+extern u8 func_801DAC30[];
+extern void func_801CC318();
+extern void func_801CC458(s32, void *);
+extern void func_801CC4C0(s32, void *);
+
+s32 func_801E3678(s32 arg0, s32 arg1) {
+    func_801C2420(0x29, D_801E0A48);
+    func_801CC318();
+    func_801CC458(0, func_801DAC30 + 0x40);
+    func_801CC4C0(0, func_801DAC30 + 0x44);
+    func_801C2420(0x11B, D_801E0A48 + 0x18);
+    func_801CC318();
+    func_801CC458(1, D_801DB660);
+    func_801CC4C0(1, D_801DB664);
+    func_801C2420(0x2F, D_801E0A48 + 0x30);
+    func_801CC318();
+    func_801CC458(2, D_801DB314);
+    func_801CC4C0(2, D_801DB318);
+    return 1;
+}
 
 
 extern void func_80005670(void *a0, void *a1);
@@ -720,7 +745,6 @@ extern void func_801D5188(s32 a0);
 extern u8 D_801DB300[];
 extern u8 D_801DB64C[];
 extern u8 func_801DAAF0[];
-extern u8 func_801DAC30[];
 
 s32 func_801E3744(s32 arg0, s32 arg1) {
     func_80005670(*(void **)(func_801DAAF0 + 0x24), func_801DAC30 + 0x2C);
@@ -1471,7 +1495,15 @@ s32 func_801E4D68(s32 arg0, s32 arg1) {
     return 8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file029/801E1BE0/func_801E4DB4.s")
+
+s32 func_801E4DB4(s32 arg0, s32 arg1) {
+    if (D_801BBD54 != 0) {
+        return 9;
+    }
+    D_80089354 = 0;
+    D_8038C97C(D_801D8D60, 0, 0, 0, 0x12, 0, 2);
+    return 10;
+}
 
 
 
@@ -1536,7 +1568,15 @@ s32 func_801E4F58(s32 arg0, s32 arg1) {
     return 0x11;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file029/801E1BE0/func_801E4FA4.s")
+
+s32 func_801E4FA4(s32 arg0, s32 arg1) {
+    if (D_801BBD54 != 0) {
+        return 18;
+    }
+    D_80089354 = 0;
+    D_8038C97C(D_801D8D60, 0, 0, 0, 0x18, 0, 2);
+    return 19;
+}
 
 
 
@@ -1556,7 +1596,15 @@ s32 func_801E5040(s32 arg0, s32 arg1) {
     return 20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file029/801E1BE0/func_801E507C.s")
+
+s32 func_801E507C(s32 arg0, s32 arg1) {
+    if (D_801BBD54 != 0) {
+        return 21;
+    }
+    D_80089354 = 0;
+    D_8038C97C(D_801D8D60, 0, 0, 0, 0x12, 0, 1);
+    return 22;
+}
 
 
 

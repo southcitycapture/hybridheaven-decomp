@@ -1,10 +1,5 @@
 #include "context.h"
 
-typedef struct func_80246E60_StructGlobal {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_80246E60_StructGlobal;
 
 typedef struct func_80246E60_StructInner {
     u8 pad0[0x78];

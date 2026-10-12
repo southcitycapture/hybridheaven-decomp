@@ -2,7 +2,7 @@
 
 extern s32 func_801BF968(void);
 extern void func_801BF850(void *a0, s32 a1, void *a2);
-extern void func_8038CA0C(void);
+extern s32 func_8038CA0C(void);
 extern u8 D_8038DB60[];
 extern s32 D_8038DB70;
 extern s32 D_8038DB74;

@@ -1,6 +1,37 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E1BE0.s")
+extern void *func_801BF6B0(s32);
+extern void func_8038BEC8(f32);
+extern void func_8038BE98(f32);
+extern void func_8038BD50(f32, f32, f32);
+extern void D_8038BD88(f32, f32, f32);
+
+struct func_801E1BE0_Obj {
+    u8 pad0[0xC];
+    s32 unkC;
+};
+
+extern void func_801C1000(s32, s32);
+extern f32 D_801E8050;
+extern s32 D_801E8054;
+extern f32 D_801E8C30;
+extern f32 D_801E8C34;
+extern f32 D_801E8C38;
+extern f32 D_801E8C3C;
+
+s32 func_801E1BE0(s32 arg0, s32 arg1) {
+    func_8038BEC8(5.0f);
+    if (((struct func_801E1BE0_Obj *) func_801BF6B0(4))->unkC >= 9) {
+        D_801E8050 = 18.0f;
+        D_801E8054 = 0;
+        func_801C1000(0, 0);
+        return 1;
+    }
+    func_8038BE98(D_801E8C30);
+    func_8038BD50(D_801E8C34, D_801E8C38, 12.6f);
+    D_8038BD88(D_801E8C3C, 13.5f, -8.8f);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E1C94.s")
 
@@ -133,7 +164,56 @@ s32 func_801E2670(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E26A4.s")
+
+struct func_801E26A4_Data {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad1[0x2];
+    s16 unk12;
+    u8 pad2[0x4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    u8 pad3[0xC];
+    void *unk30;
+};
+
+struct func_801E26A4_Obj {
+    u8 pad0[0x2C];
+    struct func_801E26A4_Data *unk2C;
+};
+
+struct func_801E26A4_Node {
+    struct func_801E26A4_Obj *unk0;
+};
+
+extern u8 D_8038D840[];
+extern s32 D_8038D850;
+extern struct func_801E26A4_Node *D_8038D854;
+extern void func_80005E44(s32, void *);
+extern void func_80006214(s32);
+extern void func_8012C89C(s32, s32, s32, s32);
+extern s32 D_8017AE98;
+
+s32 func_801E26A4(s32 arg0, s32 arg1) {
+    struct func_801E26A4_Node **v;
+
+    func_80005E44(D_8038D850, D_8038D840);
+    func_80006214(D_8038D850);
+    func_8012C89C(D_8038D850, 0, 0x463, 0);
+    v = &D_8038D854;
+    (*v)->unk0->unk2C->unk4 = 0.0f;
+    (*v)->unk0->unk2C->unk8 = 0.0f;
+    (*v)->unk0->unk2C->unkC = 0.0f;
+    (*v)->unk0->unk2C->unk18 = 1.0f;
+    (*v)->unk0->unk2C->unk1C = 1.0f;
+    (*v)->unk0->unk2C->unk20 = 1.0f;
+    (*v)->unk0->unk2C->unk12 = 0;
+    (*v)->unk0->unk2C->unk30 = &D_8017AE98;
+    return 2;
+}
 
 
 s32 func_801E279C(s32 arg0, s32 arg1) {
@@ -509,7 +589,12 @@ s32 func_801E3698(s32 arg0, s32 arg1) {
     return 10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E36A8.s")
+
+s32 func_801E36A8(s32 arg0, s32 arg1) {
+    D_801DAB14->unk8->unk24->unk2C->unk4 = 5120.0f;
+    func_801CC470(0, 0x0168003F, 0, 0x1100, 1.0f);
+    return 0xB;
+}
 
 
 s32 func_801E3710(s32 arg0, s32 arg1) {
@@ -537,7 +622,6 @@ s32 func_801E3750(s32 arg0, s32 arg1) {
 }
 
 
-extern void *func_801BF6B0(s32);
 
 s32 func_801E3760(s32 arg0, s32 arg1) {
     s32 *ptr;
@@ -862,10 +946,6 @@ s32 func_801E3F60(s32 arg0, s32 arg1) {
 }
 
 
-extern void func_8038BEC8(f32);
-extern void func_8038BE98(f32);
-extern void func_8038BD50(f32, f32, f32);
-extern void D_8038BD88(f32, f32, f32);
 extern void func_8038D28C(s32);
 extern f32 D_801E8CA0;
 extern f32 D_801E8CA4;
@@ -1019,7 +1099,49 @@ s32 func_801E4770(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E47A4.s")
+
+struct func_801E47A4_Data {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad1[0x2];
+    s16 unk12;
+    u8 pad2[0x4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    u8 pad3[0xC];
+    void *unk30;
+};
+
+struct func_801E47A4_Obj {
+    u8 pad0[0x2C];
+    struct func_801E47A4_Data *unk2C;
+};
+
+struct func_801E47A4_Node {
+    struct func_801E47A4_Obj *unk0;
+};
+
+
+s32 func_801E47A4(s32 arg0, s32 arg1) {
+    struct func_801E47A4_Node **v;
+
+    func_80005E44(D_8038D850, D_8038D840);
+    func_80006214(D_8038D850);
+    func_8012C89C(D_8038D850, 0, 0x463, 0);
+    v = &D_8038D854;
+    (*v)->unk0->unk2C->unk4 = 0.0f;
+    (*v)->unk0->unk2C->unk8 = 0.0f;
+    (*v)->unk0->unk2C->unkC = 0.0f;
+    (*v)->unk0->unk2C->unk18 = 1.0f;
+    (*v)->unk0->unk2C->unk1C = 1.0f;
+    (*v)->unk0->unk2C->unk20 = 1.0f;
+    (*v)->unk0->unk2C->unk12 = 0;
+    (*v)->unk0->unk2C->unk30 = &D_8017AE98;
+    return 2;
+}
 
 
 s32 func_801E489C(s32 arg0, s32 arg1) {
@@ -1737,7 +1859,37 @@ s32 func_801E5EC0(s32 arg0, s32 arg1) {
     return 0xC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E5F20.s")
+
+s32 func_801E5F20(s32 arg0, s32 arg1) {
+    s32 state;
+
+    state = D_801E8500;
+    if (state == 0) {
+        goto case0;
+    }
+    if (state == 1) {
+        goto case1;
+    }
+    return 0xD;
+
+case0:
+    if (func_801D2C10() == 0) {
+        goto fail;
+    }
+    func_801CC4D8(2, 0x0320003A, 0, 0, 30.0f);
+    D_801E8500 = 1;
+    goto fail;
+
+case1:
+    if (func_801D2C00() != 0) {
+        goto fail;
+    }
+    func_801CC470(2, 0x0320003A, 0, 0x100, 7.0f);
+    return 0xE;
+
+fail:
+    return 0xD;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E5FDC.s")
 
@@ -1960,9 +2112,46 @@ s32 func_801E66B4(s32 arg0, s32 arg1) {
     return 0xC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E66FC.s")
+extern s32 D_801E8570;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E675C.s")
+s32 func_801E66FC(s32 arg0, s32 arg1) {
+    if (func_801D2F30() == 0) {
+        func_801CC470(3, 0x03200039, 0, 0, 3.0f);
+        D_801E8570 = 0;
+        return 0xD;
+    }
+    return 0xC;
+}
+
+
+extern s32 func_801D2F30();
+extern s32 func_801D2F40();
+
+s32 func_801E675C(s32 arg0, s32 arg1) {
+    if (D_801E8570 == 0) {
+        goto case0;
+    }
+    if (D_801E8570 == 1) {
+        goto case1;
+    }
+    return 0xD;
+
+case0:
+    if (func_801D2F40() != 0) {
+        func_801CC4D8(3, 0x0320001A, 0, 0, 30.0f);
+        D_801E8570 = 1;
+    }
+    goto done;
+
+case1:
+    if (func_801D2F30() == 0) {
+        func_801CC470(3, 0x0320001A, 0, 0x100, 7.0f);
+        return 0xE;
+    }
+
+done:
+    return 0xD;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E6818.s")
 

@@ -7,7 +7,7 @@ typedef struct func_8024DD24_Struct {
 
 extern void func_8001E978(void *, s32, s32, s32, s32, s32, s32, s32);
 extern s16 D_80089354;
-extern void func_8024DDA0(void);
+extern void func_8024DDA0();
 
 void func_8024DD24(func_8024DD24_Struct *arg0, s32 arg1)
 {

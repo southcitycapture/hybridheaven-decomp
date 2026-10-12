@@ -17,7 +17,7 @@ void func_8038D1E0(void) {
 
 extern s32 func_801BF968(void);
 extern void func_801BF850(void *a0, s32 a1, void *a2);
-extern void func_8038D7E4(void);
+extern s32 func_8038D7E4(void);
 extern u8 D_8038DBF0[];
 extern u8 D_8038E190[];
 
@@ -36,7 +36,10 @@ s32 func_8038D278(void) {
     return D_8038E150;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D284.s")
+
+s32 func_8038D284(void) {
+    return 0x1;
+}
 
 
 extern void func_80020718(s32);
@@ -128,7 +131,10 @@ s32 func_8038D7D4(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/func_8038D7E4.s")
+
+s32 func_8038D7E4(void) {
+    return 0x1;
+}
 
 
 void func_8038D7EC(s32 arg0, s32 arg1) {

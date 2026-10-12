@@ -10,7 +10,7 @@ export PREVIOUS
 rm -rf "$W"; "$HH/tools/swarm/prep2.sh" "$FUNC" "$SEG" "$W"
 cd "$W"
 start=$(date +%s)
-claude -p "$(cat prompt.md)" --model "$MODEL" --permission-mode acceptEdits \
+claude -p "$(cat prompt.md)" --model "$MODEL" --permission-mode acceptEdits $WORKER_FLAGS \
   --allowedTools "Read" "Write" "Edit" "Bash(./check)" "Bash(./check:*)" \
   --output-format json > result.json 2> stderr.txt < /dev/null
 echo $? > exit.txt

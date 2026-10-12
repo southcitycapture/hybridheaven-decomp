@@ -2,11 +2,6 @@
 void func_800058DC(void *, void (*)());
 s32 func_80133A24(s32);
 
-struct func_80242C60_Cfg {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 
 extern struct func_80242C60_Cfg D_80258D8C;
 extern s32 D_80258DF8[];

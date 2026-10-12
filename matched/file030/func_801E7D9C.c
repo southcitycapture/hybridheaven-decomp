@@ -1,0 +1,11 @@
+#include "context.h"
+
+s32 func_801E7D9C(s32 arg0, s32 arg1) {
+    func_801CCE0C(2);
+    func_801CCE88(0, 0xCC, 0x7F, 0x33);
+    func_801CCEC8(0, -0x69, -0x6F, 0xA);
+    func_801CCE88(1, 0x19, 0xB2, 0xE5);
+    func_801CCEC8(1, 0x11, 0x29, -0x51);
+    func_801CCE50(0x4E, 0x60, 0x49);
+    return 2;
+}

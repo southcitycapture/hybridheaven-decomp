@@ -1,6 +1,27 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file047/801E1BE0/func_801E1BE0.s")
+
+extern void func_8038BEC8(f32 arg0);
+extern void func_8038BE98(f32 arg0);
+extern void func_8038BD50(f32 arg0, f32 arg1, s32 arg2);
+extern void D_8038BD88(f32 arg0, f32 arg1, s32 arg2);
+extern void D_8038C158(void);
+extern f32 D_801E3E00;
+extern f32 D_801E3E04;
+extern f32 D_801E3E08;
+extern f32 D_801E3E0C;
+
+s32 func_801E1BE0(s32 arg0, s32 arg1) {
+    func_8038BEC8(5.0f);
+    if (func_801C0B8C(0x419CE0) != 0) {
+        D_8038C158();
+        return 1;
+    }
+    func_8038BE98(D_801E3E00);
+    func_8038BD50(D_801E3E04, D_801E3E08, 0xC2C1CCCD);
+    D_8038BD88(-212.0f, D_801E3E0C, 0x42893333);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file047/801E1BE0/func_801E1C78.s")
 
@@ -98,7 +119,53 @@ s32 func_801E25C8(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file047/801E1BE0/func_801E25FC.s")
+
+struct func_801E25FC_StructR {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    u8 pad24[0xC];
+    void *unk30;
+};
+
+struct func_801E25FC_StructQ {
+    u8 pad0[0x2C];
+    struct func_801E25FC_StructR *unk2C;
+};
+
+struct func_801E25FC_StructP {
+    struct func_801E25FC_StructQ *unk0;
+};
+
+extern void func_80005E44(s32, void *);
+extern void func_80006214(s32);
+extern void func_8012C89C(s32, s32, s32, s32);
+extern u8 func_8038D830[];
+extern s32 func_8038D850;
+extern struct func_801E25FC_StructP *func_8038D854;
+extern u8 D_8017AE98[];
+
+s32 func_801E25FC(s32 arg0, s32 arg1) {
+    func_80005E44(func_8038D850, func_8038D830);
+    func_80006214(func_8038D850);
+    func_8012C89C(func_8038D850, 0, 0x466, 0);
+    func_8038D854->unk0->unk2C->unk4 = 0.0f;
+    func_8038D854->unk0->unk2C->unk8 = 0.0f;
+    func_8038D854->unk0->unk2C->unkC = 0.0f;
+    func_8038D854->unk0->unk2C->unk18 = 1.0f;
+    func_8038D854->unk0->unk2C->unk1C = 1.0f;
+    func_8038D854->unk0->unk2C->unk20 = 1.0f;
+    func_8038D854->unk0->unk2C->unk12 = 0;
+    func_8038D854->unk0->unk2C->unk30 = D_8017AE98;
+    return 2;
+}
 
 
 s32 func_801E26F4(s32 arg0, s32 arg1) {

@@ -24,7 +24,7 @@ struct func_80246478_Obj {
     s16 unk94;
 };
 
-extern void func_800058DC(void *, void *);
+extern void func_800058DC();
 extern void func_80010550(s32, void *, void *, s32);
 extern void func_80020744(s32, void *, void *);
 extern void func_80246510();

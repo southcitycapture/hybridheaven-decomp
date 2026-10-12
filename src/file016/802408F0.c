@@ -91,7 +91,34 @@ void func_80240924(void *arg0, struct func_80240924_Obj **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80240A6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_8024101C.s")
+
+extern void func_80241164();
+
+void func_8024101C(struct func_80240924_Self *arg0, struct func_80240924_Obj **arg1) {
+    struct func_80240924_Copy sp28;
+
+    if (func_80126CC0(arg0, &func_80126EAC) != 0) {
+        sp28 = D_80164F40;
+        sp28.unk4 = 0x80000900;
+        func_80005E44(arg0, &sp28);
+        func_80006214(arg0);
+        func_8012C89C(arg0, 0, 0x39D, 3);
+        func_8012D918(arg0, 0x398, 0, 0, 0);
+        (*arg1)->unk30->unk24 |= 0x4100;
+        (*arg1)->unk30->unk30 = (s32) ((s32) D_80249708 | 0x40000000);
+        (*arg1)->unk30->unk4C = 0;
+        (*arg1)->unk30->unk4D = 0;
+        (*arg1)->unk30->unk4E = 0xFF;
+        (*arg1)->unk30->unk4F = 0xFF;
+        arg0->unk3C = 0;
+        arg0->unk90 = 0xA;
+        arg0->unk92 = 0x1E;
+        arg0->unk9D = 0;
+        arg0->unk94 = 0;
+        func_8001F74C(arg0);
+        func_800058DC(arg0, &func_80241164);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80241164.s")
 
@@ -125,9 +152,6 @@ void func_802419C8(void *arg0, s16 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80241A00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802408F0/func_80241F1C.s")
-
-
 typedef struct func_80241FD0_Struct {
     s32 unk0;
     s32 unk4;
@@ -135,9 +159,29 @@ typedef struct func_80241FD0_Struct {
     s32 unkC;
     s32 unk10;
 } func_80241FD0_Struct;
-
 void *func_8012C4D0(s32, func_80241FD0_Struct, s32); /* extern */
 extern s32 D_801BBC2C;
+
+extern func_80241FD0_Struct D_802496DC;
+
+void *func_80241F1C(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+    void *temp_v0;
+
+    temp_v0 = func_8012C4D0(D_801BBC2C, D_802496DC, 3);
+    if (temp_v0 != NULL) {
+        ((f32 *)temp_v0)[0x90 / 4] = arg0;
+        ((f32 *)temp_v0)[0x94 / 4] = arg1;
+        ((f32 *)temp_v0)[0x98 / 4] = arg2;
+        ((f32 *)temp_v0)[0x40 / 4] = arg3;
+        ((f32 *)temp_v0)[0x44 / 4] = arg4;
+        ((f32 *)temp_v0)[0x48 / 4] = arg5;
+        return temp_v0;
+    }
+    return NULL;
+}
+
+
+
 extern func_80241FD0_Struct D_802496F0;
 
 void *func_80241FD0(f32 arg0, f32 arg1, f32 arg2, u8 arg3) {

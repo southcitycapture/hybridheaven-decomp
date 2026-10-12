@@ -66,7 +66,7 @@ void func_800026E4(u8 arg0, u8 *arg1, s32 arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_80002794.s")
 
 
-extern void func_80026450();
+extern s32 func_80026450();
 
 void func_800027D8(s32 arg0)
 {

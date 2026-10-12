@@ -39,29 +39,7 @@ def load():
     reg = set(S.registry())
     return rows, by, reg
 
-def attempts():
-    """Every model attempt: (seg, func, model, ok, cost). Wins-only logs (cloud batches, whose failures are in
-    cloud_results.jsonl) are skipped; cloud_results.jsonl rows are read with stage s = Sonnet, h* = Haiku."""
-    out = []
-    for res in glob.glob("queue/*/results.jsonl"):
-        rs = []
-        for l in open(res):
-            try: rs.append(json.loads(l))
-            except ValueError: pass
-        if len(rs) >= 10 and not any(r.get("verified") == "FAIL" for r in rs): continue
-        for r in rs:
-            m = r.get("model", "")
-            if "no model" in m or "permuter" in m or r.get("verified") == "ERROR": continue
-            out.append((r.get("segment"), r.get("func"), m, r.get("verified") in ("MATCH", "ALONE"),
-                        float(r.get("cost_usd_equiv") or 0) or None))
-    for res in glob.glob("queue/*/cloud_results.jsonl"):
-        for l in open(res):
-            try: r = json.loads(l)
-            except ValueError: continue
-            m = "claude-sonnet (cloud)" if str(r.get("stage", "")).startswith("s") else "claude-haiku (cloud)"
-            out.append((r.get("segment"), r.get("func"), m, r.get("verified") in ("MATCH", "ALONE"),
-                        float(r.get("cost_usd") or 0) or None))
-    return out
+from ledger import attempts          # every model attempt, local + cloud (shared with the README)
 
 def model_stats(by, feats, model_filter="haiku"):
     """P(match) per (difficulty band, has loop), shrunk toward the band's rate; mean $ per try per band, for the
@@ -88,13 +66,14 @@ def model_stats(by, feats, model_filter="haiku"):
     return stats, fails
 
 def prop_rate():
-    """Share of propagation candidates that integrated in the latest full propagate run."""
+    """Share of a newly matched function's same-shape copies that propagation integrates. Measured on first-time
+    copies (the first full run, prop1); later runs mostly retry leftovers that failed before, so their rate (about
+    20 %) would undervalue fresh picks. exp9's ranked arm landed 70 % of its copies' bytes, consistent with this."""
     import re
-    best = None
     for p in sorted(glob.glob("queue/prop*/summary.txt"), key=os.path.getmtime):
         m = re.match(r"(\d+) copies, \d+ match alone, (\d+) match in their files", open(p).read())
-        if m and int(m.group(1)) >= 1000: best = int(m.group(2)) / int(m.group(1))
-    return best or 0.8
+        if m and int(m.group(1)) >= 5000: return int(m.group(2)) / int(m.group(1))
+    return 0.75
 
 if __name__ == "__main__":
     rows, by, reg = load()

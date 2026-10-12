@@ -1,14 +1,4 @@
 #include "context.h"
-struct func_8024A434_Sub {
-    u8 pad[0x40];
-    f32 unk40;
-    u8 pad2[4];
-    f32 unk48;
-};
-struct func_8024A434_StructBBF0 {
-    u8 pad[0xDC];
-    struct func_8024A434_Sub *unkDC;
-};
 extern struct func_8024A434_StructBBF0 D_801BBBF0;
 
 struct func_80249CF8_Obj {

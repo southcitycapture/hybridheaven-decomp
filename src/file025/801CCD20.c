@@ -126,7 +126,10 @@ void func_801CCEC8(s32 arg0, s8 arg1, s8 arg2, s8 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CCF48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CD03C.s")
+
+s32 func_801CD03C(void) {
+    return 0x1;
+}
 
 
 extern u8 D_801BBBF0[];

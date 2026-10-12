@@ -272,9 +272,65 @@ void func_8001DBC8(s32 arg0, u8 arg1, s8 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001E768.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001E830.s")
+extern struct func_8001EA48_Struct D_801BBBF0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001E87C.s")
+extern void func_80005700();
+extern void func_801170DC(s32 arg0);
+extern s16 D_80089354;
+extern s32 D_801BBD50;
+
+void func_8001E830(s32 arg0, s32 arg1) {
+    u8 *base;
+
+    D_80089354 = 2;
+    base = (u8 *)&D_801BBBF0;
+    base[0x15D] = 0;
+    base[0x164] = 0;
+    func_80005700(arg0);
+    D_801BBD50 = 0;
+    func_801170DC(4);
+}
+
+
+void func_80006214(s32);
+
+struct func_8001E87C_Sub {
+    u8 pad[0xB];
+    s8 unkB;
+    u8 pad2[4];
+    s16 unk10;
+};
+
+struct func_8001E87C_Struct {
+    u8 pad[0x22];
+    u8 unk22;
+    u8 pad2[0xD];
+    struct func_8001E87C_Sub *unk30;
+};
+
+void func_8001E87C(s32 arg0, struct func_8001E87C_Struct **arg1) {
+    s32 var_v0;
+
+    *(u16 *) ((u8 *) &D_801BBBF0 + 0x158) = (u16) (*(u16 *) ((u8 *) &D_801BBBF0 + 0x158) - 1);
+    D_80089354 = 0;
+    if (*(u16 *) ((u8 *) &D_801BBBF0 + 0x158) != 0) {
+        func_80006214(arg0);
+        (*arg1)->unk30->unk10 = 0x1002;
+        (*arg1)->unk30->unkB = (s8) ((s32) (*(u16 *) ((u8 *) &D_801BBBF0 + 0x158) * 0xFF) / (s32) *(u16 *) ((u8 *) &D_801BBBF0 + 0x154));
+        return;
+    }
+    (*arg1)->unk22 = 0;
+    *(u8 *) ((u8 *) &D_801BBBF0 + 0x164) = 0;
+    *(u8 *) ((u8 *) &D_801BBBF0 + 0x15D) = (u8) (*(u8 *) ((u8 *) &D_801BBBF0 + 0x15D) & 0xF);
+    func_80005700();
+    *(s32 *) ((u8 *) &D_801BBBF0 + 0x160) = 0;
+    if (*(u8 *) ((u8 *) &D_801BBBF0 + 0x15E) != 0) {
+        var_v0 = 0x80;
+    } else {
+        var_v0 = 4;
+    }
+    func_801170DC(var_v0 & 0xFFFF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001E978.s")
 
@@ -286,7 +342,6 @@ struct func_8001EA48_Struct {
     u8 unk15D;
 };
 
-extern struct func_8001EA48_Struct D_801BBBF0;
 
 void func_8001EA48(void) {
     if ((D_801BBBF0.unk15D & 0x70) == 0x80) {

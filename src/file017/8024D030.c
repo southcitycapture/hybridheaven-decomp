@@ -13,7 +13,7 @@
 extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80020718(s32 arg0);
 extern void func_801C4058(void *arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void func_8024F0B0(void);
+extern void func_8024F0B0();
 struct func_8024DDE4_Struct {
     u8 pad[0x3C];
     u16 unk3C;

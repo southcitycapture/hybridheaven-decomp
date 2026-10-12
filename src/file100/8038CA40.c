@@ -19,7 +19,7 @@ void func_8038CA40(void) {
 
 extern s32 func_801BF968(void);
 extern void func_801BF850(void *a0, s32 a1, void *a2);
-extern void func_8038D1B0(void);
+extern s32 func_8038D1B0(void);
 extern u8 D_8038DB80[];
 extern u8 D_8038E118[];
 
@@ -38,7 +38,10 @@ s32 func_8038CAE0(void) {
     return D_8038E110;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CAEC.s")
+
+s32 func_8038CAEC(void) {
+    return 0x1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CAF4.s")
 
@@ -247,7 +250,10 @@ s32 func_8038D1A0(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D1B0.s")
+
+s32 func_8038D1B0(void) {
+    return 0x1;
+}
 
 
 void func_8038D1B8(s32 arg0, s32 arg1) {

@@ -37,17 +37,23 @@ def index():
     """[(seg, func, tokens, grams)] for every registered function, cached against the registry's state."""
     reg = sorted(glob.glob("matched/*/*.c")); key = (len(reg), max(os.path.getmtime(p) for p in reg))
     cache = "build/similar_index.pkl"
-    if os.path.exists(cache):
-        k, idx = pickle.load(open(cache, "rb"))
-        if k == key: return idx
-    idx = []
-    for p in reg:
-        seg, func = p.split("/")[1], os.path.basename(p)[:-2]
-        a = asm_path(seg, func)
-        if a:
-            t = tokens(a)
-            if len(t) >= 6: idx.append((seg, func, t, grams(t)))
-    os.makedirs("build", exist_ok=True); pickle.dump((key, idx), open(cache, "wb"))
+    import fcntl
+    os.makedirs("build", exist_ok=True)
+    with open(cache + ".lock", "w") as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)            # parallel workers: one builds, the rest wait and reuse it
+        try:
+            k, idx = pickle.load(open(cache, "rb"))
+            if k == key: return idx
+        except Exception:
+            pass                                  # missing, stale or corrupt: rebuild
+        idx = []
+        for p in reg:
+            seg, func = p.split("/")[1], os.path.basename(p)[:-2]
+            a = asm_path(seg, func)
+            if a:
+                t = tokens(a)
+                if len(t) >= 6: idx.append((seg, func, t, grams(t)))
+        pickle.dump((key, idx), open(cache + ".tmp", "wb")); os.replace(cache + ".tmp", cache)   # atomic
     return idx
 
 def find(seg, func, n=3, min_ratio=0.45, exclude=()):

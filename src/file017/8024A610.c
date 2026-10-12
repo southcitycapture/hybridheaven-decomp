@@ -17,11 +17,11 @@ typedef struct func_8024B2A4_Struct {
     u16 unk3C;
 } func_8024B2A4_Struct;
 
-extern void func_8024CCC4(void);
+extern void func_8024CCC4();
 extern void func_80020718(s32);
 extern void func_801C4058(void *, u32, f32, s32);
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
-extern void func_8024B368(void);
+extern void func_8024B368();
 
 void func_8024B2A4(void *arg0)
 {

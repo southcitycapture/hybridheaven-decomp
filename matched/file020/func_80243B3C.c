@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void func_800058DC(void *, void *);
-extern void func_80243B88(void);
+extern void func_80243B88();
 
 typedef struct func_80243B3C_Struct {
     u8 pad[0x3C];
