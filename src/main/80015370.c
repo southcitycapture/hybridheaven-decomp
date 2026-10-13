@@ -790,7 +790,13 @@ void func_80017948(s32 arg0, s32 arg1) {
     func_80017990(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_8001796C.s")
+void func_800179B0(s32 arg0);
+
+
+void func_8001796C(s32 arg0, s32 arg1) {
+    D_80044118 = arg1;
+    func_800179B0(arg0);
+}
 
 
 

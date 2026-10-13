@@ -32,7 +32,14 @@ void func_801C5B70(u8 *arg0, u16 arg1, u16 arg2) {
     *(u32 *)(*(u8 **)(arg0 + 0x30) + 0x1C) = *(u32 *)(*(u8 **)(temp_v0[-1] + 4) + arg2 * 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C5AB0/func_801C5BC4.s")
+
+void func_801C5BC4(u8 *arg0, u16 arg1, u16 arg2) {
+    u32 *temp_v0;
+
+    temp_v0 = &D_80171CF0[arg1];
+    *(u16 *)(*(u8 **)(arg0 + 0x30) + 0x20) = *(u16 *)*(u8 **)temp_v0[-1];
+    *(u32 *)(*(u8 **)(arg0 + 0x30) + 0x24) = *(u32 *)(*(u8 **)(temp_v0[-1] + 4) + arg2 * 4);
+}
 
 
 extern void func_8001B204(s32, s32, s32, void *);

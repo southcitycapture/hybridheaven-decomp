@@ -219,7 +219,21 @@ void func_802418D4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_802418E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80241A68.s")
+
+extern void func_80241AE8();
+
+void func_80241A68(void *arg0, s32 arg1) {
+    if (func_80126944() == 0) {
+        if (func_801C3D20(-180.0f, 100.0f, 20.0f) != 0) {
+            if (func_801C3B20() == 0) {
+                func_801FBB30();
+                func_801C3B2C(2);
+                func_801C3B10(1);
+                func_800058DC(arg0, func_80241AE8);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file020/802408F0/func_80241AE8.s")
 

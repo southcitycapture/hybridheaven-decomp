@@ -1,7 +1,5 @@
 #include "common.h"
 
-
-extern void func_8013B570(s32 a0, s32 a1, s32 a2, s32 a3, void *a4);
 extern s32 D_801DB374;
 extern s32 D_801DB378;
 extern s32 D_801DB37C;
@@ -10,7 +8,14 @@ extern s32 D_801DB384;
 extern s32 D_801DB388;
 extern s32 D_801DB38C;
 extern s32 D_801E14A0;
+extern s32 func_801C354C(s32);
+extern u8 D_801E14A8;
+extern void func_80006214();
 extern void func_801D33A4();
+extern void func_801D4008(s32, s32);
+
+
+extern void func_8013B570(s32 a0, s32 a1, s32 a2, s32 a3, void *a4);
 
 void func_801D3300(s32 arg0, s32 arg1) {
     D_801E14A0 = arg0;
@@ -49,7 +54,6 @@ s32 func_801D3630(void) {
     return D_801DB37C;
 }
 
-extern u8 D_801E14A8;
 
 u8 *func_801D3670(void) {
     return &D_801E14A8;
@@ -62,7 +66,6 @@ void func_801D367C(s32 arg0) {
 }
 
 
-void func_80006214(s32 arg0);
 void func_801C3370(s32 arg0, s32 arg1, s32 arg2, u8 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);
 
 void func_801D3688(s32 arg0, s32 arg1, s32 arg2, u8 arg3, u8 arg4, s32 arg5, s32 arg6) {
@@ -97,7 +100,6 @@ s32 func_801D3718(s32 arg0, u16 arg1) {
 }
 
 
-void func_801D4008(s32, s32);
 
 void func_801D3750(s32 arg0) {
     if (arg0 != 0) {
@@ -110,7 +112,12 @@ void func_801D3750(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D3300/func_801D38B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D3300/func_801D3FD8.s")
+
+
+void func_801D3FD8(s32 arg0) {
+    func_80006214();
+    D_801DB384 = func_801C354C(arg0) == 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D3300/func_801D4008.s")
 

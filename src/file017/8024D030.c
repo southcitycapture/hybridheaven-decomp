@@ -1,6 +1,177 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/8024D030/func_8024D030.s")
+
+typedef struct { u8 pad0[4]; s32 b; u8 pad1[8]; } func_8024D030_V;
+
+typedef struct func_8024D030_Inner {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    u32 unk24;
+    u8 pad1[0x8];
+    u32 unk30;
+    u8 pad2[0x14];
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+    u8 unk4C;
+    u8 unk4D;
+    u8 unk4E;
+    u8 unk4F;
+} func_8024D030_Inner;
+
+typedef struct func_8024D030_Node {
+    u8 pad0[0x22];
+    u8 unk22;
+    u8 pad23[0xD];
+    func_8024D030_Inner *unk30;
+} func_8024D030_Node;
+
+typedef struct func_8024D030_Args {
+    func_8024D030_Node *unk0;
+    func_8024D030_Node *unk4;
+    func_8024D030_Node *unk8;
+    func_8024D030_Node *unkC;
+    func_8024D030_Node *unk10;
+    func_8024D030_Node *unk14;
+    func_8024D030_Node *unk18;
+    func_8024D030_Node *unk1C;
+} func_8024D030_Args;
+
+typedef struct func_8024D030_Ctx {
+    u8 pad0[0x2C];
+    s32 unk2C;
+    u8 pad30[0x44];
+    s32 unk74;
+    u8 pad78[0x18];
+    u16 unk90;
+    u16 unk92;
+} func_8024D030_Ctx;
+
+extern void func_800058DC(void *arg0, void *arg1);
+extern void func_8012C89C(void *, s32, s32, u16);
+extern void func_80005E44(void *, void *);
+extern void func_80006214(void *);
+extern void func_8001F74C(void *);
+extern void func_8012CF8C(void *, void *, s32, s32);
+extern s32 func_8012C97C(s32, s32);
+extern void func_8024D650();
+extern func_8024D030_V D_80164F40;
+extern u8 D_801BBBF0[];
+extern u8 D_8017AF38[];
+extern u8 D_8017AF90[];
+extern u8 D_80259070[];
+extern u8 D_80259110[];
+extern u8 D_802591B0[];
+extern u8 D_80259200[];
+
+void func_8024D030(func_8024D030_Ctx *arg0, func_8024D030_Args *arg1) {
+    s32 sp30[4];
+
+    *(func_8024D030_V *) sp30 = D_80164F40;
+    sp30[1] = 0x80000900;
+    func_80005E44(arg0, sp30);
+    sp30[1] = 0x80000900;
+    func_80005E44(arg0, sp30);
+    sp30[1] = 0x80000900;
+    func_80005E44(arg0, sp30);
+    sp30[1] = 0x80000900;
+    func_80005E44(arg0, sp30);
+    sp30[1] = 0x80000600;
+    func_80005E44(arg0, sp30);
+    sp30[1] = 0x80000600;
+    func_80005E44(arg0, sp30);
+    sp30[1] = 0x80000900;
+    func_80005E44(arg0, sp30);
+    sp30[1] = 0x80000300;
+    func_80005E44(arg0, sp30);
+    func_80006214(arg0);
+    func_8012C89C(arg0, 0, 0x302, 8);
+    arg1->unk0->unk30->unk24 = arg1->unk0->unk30->unk24 | 0x500;
+    arg1->unk0->unk30->unk30 = (s32) D_80259070 | 0x40000000;
+    arg1->unk0->unk30->unk4B = 0xFF;
+    arg1->unk0->unk30->unk4C = D_801BBBF0[0xF32];
+    arg1->unk0->unk30->unk4D = D_801BBBF0[0xF33];
+    arg1->unk0->unk30->unk4E = D_801BBBF0[0xF34];
+    arg1->unk0->unk30->unk4F = D_801BBBF0[0xF35];
+    func_8012C89C(arg0, 1, 0x302, 0xF);
+    arg1->unk4->unk30->unk24 = arg1->unk4->unk30->unk24 | 0x400;
+    arg1->unk4->unk30->unk30 = (s32) D_8017AF38 | 0x40000000;
+    arg1->unk4->unk30->unk4C = D_801BBBF0[0xF32];
+    arg1->unk4->unk30->unk4D = D_801BBBF0[0xF33];
+    arg1->unk4->unk30->unk4E = D_801BBBF0[0xF34];
+    arg1->unk4->unk30->unk4F = D_801BBBF0[0xF35];
+    arg1->unk4->unk22 = 0;
+    func_8012C89C(arg0, 2, 0x302, 0x15);
+    arg1->unk8->unk30->unk24 = arg1->unk8->unk30->unk24 | 0x400;
+    arg1->unk8->unk30->unk30 = (s32) D_8017AF90 | 0x40000000;
+    arg1->unk8->unk30->unk4C = D_801BBBF0[0xF32];
+    arg1->unk8->unk30->unk4D = D_801BBBF0[0xF33];
+    arg1->unk8->unk30->unk4E = D_801BBBF0[0xF34];
+    arg1->unk8->unk30->unk4F = D_801BBBF0[0xF35];
+    func_8012C89C(arg0, 3, 0x302, 0x27);
+    func_8012CF8C(arg0, (u8 *) arg1->unkC->unk30 + 0x40, 0x2F8, 0xC);
+    arg1->unkC->unk30->unk24 = arg1->unkC->unk30->unk24 | 0x4100;
+    arg1->unkC->unk30->unk30 = (s32) D_80259110 | 0x40000000;
+    arg1->unkC->unk30->unk4B = 0xFF;
+    arg1->unkC->unk30->unk4C = 0;
+    arg1->unkC->unk30->unk4D = 0;
+    arg1->unkC->unk30->unk4E = 0xFF;
+    arg1->unkC->unk30->unk4F = 0xFF;
+    func_8012C89C(arg0, 4, 0x302, 0x28);
+    func_8012CF8C(arg0, (u8 *) arg1->unk10->unk30 + 0x40, 0x2F8, 0xC);
+    arg1->unk10->unk30->unk24 = arg1->unk10->unk30->unk24 | 0x4100;
+    arg1->unk10->unk30->unk30 = (s32) D_80259110 | 0x40000000;
+    arg1->unk10->unk30->unk4B = 0xFF;
+    arg1->unk10->unk30->unk4C = 0;
+    arg1->unk10->unk30->unk4D = 0;
+    arg1->unk10->unk30->unk4E = 0xFF;
+    arg1->unk10->unk30->unk4F = 0xFF;
+    arg1->unk10->unk22 = 0;
+    func_8012C89C(arg0, 5, 0x302, 0x29);
+    func_8012CF8C(arg0, (u8 *) arg1->unk14->unk30 + 0x40, 0x2F8, 0xC);
+    arg1->unk14->unk30->unk24 = arg1->unk14->unk30->unk24 | 0x4100;
+    arg1->unk14->unk30->unk30 = (s32) D_80259110 | 0x40000000;
+    arg1->unk14->unk30->unk4B = 0x80;
+    arg1->unk14->unk30->unk4C = 0;
+    arg1->unk14->unk30->unk4D = 0;
+    arg1->unk14->unk30->unk4E = 0xFF;
+    arg1->unk14->unk30->unk4F = 0xFF;
+    arg1->unk14->unk22 = 0;
+    func_8012C89C(arg0, 6, 0x302, 0x2D);
+    arg1->unk18->unk30->unk24 = arg1->unk18->unk30->unk24 | 0x100;
+    arg1->unk18->unk30->unk30 = (s32) D_802591B0 | 0x40000000;
+    arg1->unk18->unk30->unk48 = 0;
+    arg1->unk18->unk30->unk49 = 0;
+    arg1->unk18->unk30->unk4A = 0;
+    arg1->unk18->unk30->unk4B = 0xFF;
+    arg1->unk18->unk30->unk12 = 0x800;
+    func_8012C89C(arg0, 7, 3, 1);
+    arg1->unk1C->unk30->unk24 = arg1->unk1C->unk30->unk24 | 0x60100;
+    arg1->unk1C->unk30->unk30 = (s32) D_80259200 | 0x40000000;
+    arg1->unk1C->unk30->unk18 = 10.0f;
+    arg1->unk1C->unk30->unk1C = 10.0f;
+    arg1->unk1C->unk30->unk20 = 10.0f;
+    arg1->unk1C->unk30->unk48 = 0xFF;
+    arg1->unk1C->unk30->unk49 = 0xFF;
+    arg1->unk1C->unk30->unk4A = 0xFF;
+    arg1->unk1C->unk30->unk4B = 0;
+    arg1->unk1C->unk22 = 0;
+    arg0->unk90 = 0;
+    arg0->unk92 = 0;
+    arg0->unk2C = 0x800;
+    arg0->unk74 = func_8012C97C(0x302, 9);
+    func_8001F74C(arg0);
+    func_800058DC(arg0, func_8024D650);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/8024D030/func_8024D650.s")
 
@@ -10,7 +181,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/8024D030/func_8024DB60.s")
 
-extern void func_800058DC(void *arg0, void *arg1);
 extern void func_80020718(s32 arg0);
 extern void func_801C4058(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern void func_8024F0B0();

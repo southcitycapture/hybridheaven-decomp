@@ -1,14 +1,6 @@
 #include "common.h"
 
-struct func_801E527C_Node {
-    u8 pad0[0x8];
-    struct func_801E527C_Node *unk8;
-};
 
-struct func_801E527C_Root {
-    u8 pad0[0x24];
-    struct func_801E527C_Node *unk24;
-};
 
 extern void func_80005670();
 extern void func_801CC530();

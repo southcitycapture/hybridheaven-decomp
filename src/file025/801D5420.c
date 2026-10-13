@@ -138,7 +138,23 @@ void func_801D5B60(s32 arg0, s32 arg1) {
     func_8013B570(arg0, 0x2D, 0, 4, func_801D5BBC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D5420/func_801D5BBC.s")
+
+struct func_801D5BBC_Struct {
+    u8 pad[0x24];
+    s32 unk24;
+};
+
+extern void func_801D5C18();
+extern u8 D_801D5BBC[];
+
+void func_801D5BBC(struct func_801D5BBC_Struct *arg0, s32 arg1) {
+    if (arg0->unk24 != 0) {
+        func_8012D844(arg0, 0x2D, 0);
+        func_800058DC(arg0, func_801D5C18);
+        return;
+    }
+    func_800058DC(arg0, (void (*)(void))D_801D5BBC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D5420/func_801D5C18.s")
 

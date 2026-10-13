@@ -1,9 +1,5 @@
 #include "context.h"
 
-struct func_801E27E0_Struct {
-    u8 pad0[0xC];
-    s32 unkC;
-};
 
 extern struct func_801E27E0_Struct *func_801BF6B0(s32);
 

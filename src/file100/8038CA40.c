@@ -216,7 +216,7 @@ extern void *D_8038DBD4[];
 extern s32 D_8038DBE8;
 extern s32 D_8038DBEC;
 extern void func_8038D10C(void);
-extern void func_8038D174(void);
+extern s32 func_8038D174(void);
 
 void func_8038D044(s32 *arg0) {
     D_8038DBE4 = arg0[0];
@@ -243,7 +243,13 @@ s32 func_8038D0DC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D10C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038D174.s")
+
+
+s32 func_8038D174(void) {
+    D_8038DBEC = 0;
+    func_8038CD6C(0);
+    return 1;
+}
 
 
 s32 func_8038D1A0(s32 arg0, s32 arg1) {

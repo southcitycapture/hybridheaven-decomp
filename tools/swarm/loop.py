@@ -12,7 +12,7 @@ Control (all in queue/loop/):
 
 Budget: the loop may spend `budget` (default 0.5) of the weekly usage meter, unlocked evenly over the week: by a given
 moment it may have spent budget x (elapsed share of the week). Spend is the meter's rise across each batch (others' use
-during a batch is counted too, which only makes it more careful), at least 0.3 % per API-equivalent dollar. It never
+during a batch is counted too, which only makes it more careful), at least 0.05 % per API-equivalent dollar. It never
 starts a batch at or above `hard_cap` total.
 """
 import datetime as dt, fcntl, json, os, re, subprocess, sys, time
@@ -129,7 +129,8 @@ def cycle(cfg, st):
         p = "queue/%s/results.jsonl" % b
         return sum(float(json.loads(l).get("cost_usd_equiv") or 0) for l in open(p)) if os.path.exists(p) else 0
     cost = batch_cost(B) + batch_cost(B + "b")
-    spent = max((w1 or 0) - (w0 or 0), 0.3 * cost)
+    # the meter's rise is the measure; the floor covers its integer rounding (bigpilot1: $43 of Opus = 2% of the meter)
+    spent = max((w1 or 0) - (w0 or 0), 0.05 * cost)
     st["spent"] = st.get("spent", 0) + spent
     wins = sum(1 for b in (B, B + "b") if os.path.exists("queue/%s/results.jsonl" % b)
                for l in open("queue/%s/results.jsonl" % b) if '"MATCH"' in l or '"ALONE"' in l)
@@ -167,7 +168,7 @@ def main():
             status(cfg, st, "paused: " + open(D + "/PAUSE").read().strip()[:300]); time.sleep(600); continue
         w, reset = usage()
         if w is None: status(cfg, st, "usage meter unreadable; waiting"); time.sleep(900); continue
-        if st.get("week_reset") != reset:                       # a new week: the budget starts again
+        if abs(reset - st.get("week_reset", 0)) > 86400:       # a new week (the meter's reset time jitters by a minute)
             st["week_reset"] = reset; st["spent"] = 0; save(D + "/state.json", st)
         if cfg["publish_hours"] and time.time() - st.get("last_publish", 0) >= 3600 * cfg["publish_hours"] and st.get("cycle"):
             if publish(cfg, st): st["last_publish"] = time.time(); save(D + "/state.json", st)

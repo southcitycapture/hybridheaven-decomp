@@ -20,12 +20,6 @@ typedef struct func_801C34C8_StructBBBF0 {
     s32 unkEFC;
 } func_801C34C8_StructBBBF0;
 
-typedef struct func_801C34C8_StructArg {
-    u8 pad0[0x54];
-    s32 unk54;
-    u8 pad1[0x4];
-    s32 unk5C;
-} func_801C34C8_StructArg;
 
 void func_801C34C8(func_801C34C8_StructArg *arg0, s32 arg1) {
     extern void func_801C3070();

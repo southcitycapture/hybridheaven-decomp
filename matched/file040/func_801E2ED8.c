@@ -1,5 +1,5 @@
 #include "context.h"
-extern s32 func_801E2DC4();
+extern void func_801E2DC4(void);
 
 s32 func_801E2ED8(s32 arg0, s32 arg1) {
     func_801E2DC4();

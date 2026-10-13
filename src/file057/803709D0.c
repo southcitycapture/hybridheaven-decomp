@@ -13,8 +13,8 @@ struct func_8037118C_Struct {
     u16 unk4E;
 };
 
-extern void func_800058DC(void *, void *);
-extern u8 func_803711C8[];
+extern void func_800058DC(void *a0, void *a1);
+extern void func_803711C8(s32 arg0, s32 arg1);
 
 void func_8037118C(struct func_8037118C_Struct *arg0, s32 arg1) {
     if ((s32) arg0->unk4C >= (s32) arg0->unk4E) {
@@ -22,7 +22,14 @@ void func_8037118C(struct func_8037118C_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/func_803711C8.s")
+
+extern void func_80005700(s32 arg0, s32 arg1);
+
+void func_803711C8(s32 arg0, s32 arg1) {
+    s32 *p;
+    p = &arg1;
+    func_80005700(arg0, *p);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/func_803711E8.s")
 

@@ -2,7 +2,7 @@
 s32 func_801C0D04(s32 arg0, s32 arg1);
 extern s32 D_801E8468;
 extern f32 D_801E846C;
-s32 func_801C0B8C(u64 time);
+extern s32 func_801C0B8C(u64 time);
 
 s32 func_801E6F6C(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0x14EAD16) != 0) {

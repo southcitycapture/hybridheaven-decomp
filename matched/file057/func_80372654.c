@@ -6,7 +6,7 @@ typedef struct func_80372654_StructVec {
     f32 z;
 } func_80372654_StructVec;
 
-extern void func_8013A334(void *a0, s32 a1, s32 a2, s32 a3);
+extern void func_8013A334(f32 *a0, s32 a1, s32 a2, s32 a3);
 
 void func_80372654(f32 *arg0, void *arg1, void *arg2)
 {

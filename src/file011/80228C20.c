@@ -1,5 +1,19 @@
 #include "common.h"
 
+extern f32 func_8001EAD0(s32);                             /* extern */
+extern f32 func_8001EB64(s32);                             /* extern */
+extern s16 D_801BBE22;
+extern s32 D_801BBCCC;
+extern s32 func_80228C20();                                /* extern */
+extern s32 func_8022B640(u8, void *);                      /* extern */
+extern s32 func_80376300();
+extern u8 D_801BCC21[];
+extern void func_80005700();
+extern void func_800058DC(void *arg0, void *arg1);
+extern void func_8001EF38(f32, f32);
+extern void func_8022B544();
+extern void func_80376BE4(void *);
+
 extern struct func_8022B4A4_StructBase D_801BBBF0;
 
 typedef struct func_80228C20_StructPos {
@@ -37,7 +51,6 @@ typedef struct func_80228C20_StructArg {
     func_80228C20_StructArgC *unkC;
 } func_80228C20_StructArg;
 
-void func_8001EF38(f32, f32);
 
 s32 func_80228C20(arg0)
 func_80228C20_StructArg *arg0;
@@ -74,9 +87,6 @@ typedef struct func_80228FD0_StructArg1 {
     s16 unk8;
 } func_80228FD0_StructArg1;
 
-f32 func_8001EAD0(s32);                             /* extern */
-f32 func_8001EB64(s32);                             /* extern */
-extern s16 D_801BBE22;
 
 void func_80228FD0(func_80228FD0_Struct *arg0, func_80228FD0_StructArg1 *arg1, u8 arg2) {
     s16 sp1E;
@@ -163,8 +173,6 @@ typedef struct func_80229404_Struct {
     func_80229404_StructSub *unk334;
 } func_80229404_Struct;
 
-s32 func_80376300();
-void func_80376BE4(void *);
 
 void func_80229404(func_80229404_Struct *arg0) {
     u8 *var_v0;
@@ -199,7 +207,6 @@ typedef struct func_802294BC_Struct {
     u8 unk38F;
 } func_802294BC_Struct;
 
-s32 func_8022B640(u8, void *);                      /* extern */
 
 void func_802294BC(func_802294BC_Struct *arg0) {
     s32 idx;
@@ -258,7 +265,6 @@ typedef struct func_8022B350_StructOuter {
 
 extern func_8022B350_Entry D_801BBC8C;
 extern func_8022B350_Entry D_801BBCAC;
-extern s32 D_801BBCCC;
 
 void func_8022B350(func_8022B350_StructOuter *arg0, s32 arg1) {
     func_8022B350_Entry *var_v0;
@@ -275,7 +281,6 @@ void func_8022B350(func_8022B350_StructOuter *arg0, s32 arg1) {
 }
 
 
-extern u8 D_801BCC21[];
 
 typedef struct func_8022B394_Struct {
     u8 pad[0x9C];
@@ -288,7 +293,13 @@ void func_8022B394(func_8022B394_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_8022B3C0.s")
+
+
+void func_8022B3C0(s32 arg0, s32 arg1) {
+    s32 *p;
+    p = &arg1;
+    func_80005700(arg0, *p);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_8022B3E0.s")
 
@@ -310,7 +321,6 @@ typedef struct func_8022B4A4_StructEntry {
     u32 unk30;
 } func_8022B4A4_StructEntry;
 
-extern void func_80005700();
 
 void func_8022B4A4(func_8022B4A4_StructArg *arg0, s32 arg1) {
     func_8022B4A4_StructEntry *var_v0;
@@ -331,8 +341,6 @@ typedef struct func_8022B518_Struct {
     u8 unk90;
 } func_8022B518_Struct;
 
-void func_800058DC(void *arg0, void *arg1);
-extern void func_8022B544();
 
 void func_8022B518(func_8022B518_Struct *arg0, s32 arg1) {
     arg0->unk90 = 0;

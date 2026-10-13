@@ -47,7 +47,42 @@ void func_800075B4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
     func_8002FC20((dx * dx) + (dy * dy) + (dz * dz), dz);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80006AF0/func_80007618.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80006AF0/func_800076B0.s")
+struct func_80007618_Struct {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+};
+
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+
+void func_80007618(struct func_80007618_Struct *arg0, s16 arg1) {
+    f32 sp24;
+    f32 sp20;
+
+    sp20 = func_8001EB64(arg1);
+    sp24 = (arg0->unk4 * sp20) - (func_8001EAD0(arg1) * arg0->unk8);
+    sp20 = func_8001EAD0(arg1);
+    arg0->unk8 = (func_8001EB64(arg1) * arg0->unk8) + (arg0->unk4 * sp20);
+    arg0->unk4 = sp24;
+}
+
+
+struct func_800076B0_Struct {
+    f32 unk0;
+    f32 unk4;
+};
+
+
+void func_800076B0(struct func_800076B0_Struct *arg0, s16 arg1) {
+    f32 sp24;
+    f32 sp20;
+
+    sp20 = func_8001EB64(arg1);
+    sp24 = (arg0->unk0 * sp20) - (func_8001EAD0(arg1) * arg0->unk4);
+    sp20 = func_8001EAD0(arg1);
+    arg0->unk4 = (func_8001EB64(arg1) * arg0->unk4) + (arg0->unk0 * sp20);
+    arg0->unk0 = sp24;
+}
 

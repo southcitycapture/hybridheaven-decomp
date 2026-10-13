@@ -10,7 +10,7 @@ typedef struct func_80371994_Struct {
 extern s32 func_801CE330(f32 a0, s32 a1, f32 a2, f32 a3, f32 a4, s32 a5, s32 a6, s32 a7, s32 a8, s32 a9, s32 a10, s32 a11, s32 a12, s32 a13, s32 a14, f32 a15, s32 a16);
 extern void func_800058DC(void *a0, void *a1);
 extern f32 D_8038B410;
-extern void func_8037118C(void);
+extern void func_8037118C(struct func_8037118C_Struct *arg0, s32 arg1);
 
 void func_80371994(func_80371994_Struct *arg0, s32 arg1) {
     f32 temp_fv0;

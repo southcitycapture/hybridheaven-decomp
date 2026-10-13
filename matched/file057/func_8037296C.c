@@ -22,14 +22,14 @@ struct func_8037296C_StructC {
     f32 unk8[3];
 };
 
-extern void *func_800058DC(void *, void *);
+extern void func_800058DC(void *a0, void *a1);
 extern void func_80006214(void *);
-extern void func_80372654(f32 *, void *, void *);
+extern void func_80372654(f32 *arg0, void *arg1, void *arg2);
 extern u8 D_8008DA88[];
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-extern u8 func_803711C8[];
+extern void func_803711C8(s32 arg0, s32 arg1);
 
 void func_8037296C(struct func_8037296C_Struct *arg0, s32 arg1)
 {

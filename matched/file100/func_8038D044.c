@@ -7,7 +7,7 @@ extern void *D_8038DBD4[];
 extern s32 D_8038DBE8;
 extern s32 D_8038DBEC;
 extern void func_8038D10C(void);
-extern void func_8038D174(void);
+extern s32 func_8038D174(void);
 
 void func_8038D044(s32 *arg0) {
     D_8038DBE4 = arg0[0];

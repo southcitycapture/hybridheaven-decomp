@@ -104,7 +104,21 @@ s32 func_801CC4C0(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC4D8.s")
+
+
+extern func_801CC470_Struct D_801E0700[];
+
+s32 func_801CC4D8(s32 arg0, s32 arg1, u16 arg2, u16 arg3, f32 arg4) {
+    func_801CC470_Struct *temp_v1;
+
+    temp_v1 = &D_801E0700[arg0];
+    temp_v1->unk0 = arg1;
+    temp_v1->unk4 = arg2;
+    temp_v1->unk6 = arg3;
+    temp_v1->unk8 = arg4;
+    *D_801E0778[arg0] = temp_v1;
+    return 1;
+}
 
 
 void func_801CC528(void) {
@@ -126,7 +140,6 @@ s32 func_801CC540(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC550.s")
 
 
-void func_801CC4D8(s32, s32, u16, u16, f32);
 extern u8 D_801DAACC[];
 
 s32 func_801CC564(s32 arg0, s32 (*arg1)(), s32 arg2, u16 arg3, u16 arg4, f32 arg5, s32 (*arg6)(), s32 arg7, u16 arg8, u16 arg9, f32 arg10) {

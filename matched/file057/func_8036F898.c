@@ -1,11 +1,5 @@
 #include "context.h"
 
-typedef struct func_8036F898_StructA {
-    u8 pad0[0xDC];
-    void *unkDC;
-    u8 pad1[0x1031 - 0xE0];
-    u8 unk1031;
-} func_8036F898_StructA;
 typedef struct func_8036F898_StructB {
     u8 pad0[2];
     s16 unk2;

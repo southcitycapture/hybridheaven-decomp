@@ -8,12 +8,14 @@ extern s32 func_8012CE9C();
 extern s32 func_80133A24(s32);
 extern s32 func_80242890();
 extern u8 D_801BBFAC[];
+extern u8 func_80127014[];
 extern void func_800058DC();
 extern void func_80010550();
 extern void func_80020744(s32, void *, void *);
 extern void func_8012A94C(void *, s32);
 extern void func_80133980(s32);
 extern void func_801339D0(s32);
+extern void func_8013E5C4(s32, s32, s32, s32, s32);
 extern void func_801FBB30();
 extern void func_80243510();
 extern void func_802435AC();
@@ -416,5 +418,25 @@ void func_80246828(struct func_80246828_Obj *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_802468BC.s")
+
+struct func_802468BC_Inner {
+    u8 pad0[0x2C];
+    s32 unk2C;
+};
+
+struct func_802468BC_Struct {
+    u8 pad0[0x24];
+    struct func_802468BC_Inner *unk24;
+};
+
+
+void func_802468BC(struct func_802468BC_Struct *volatile arg0, s32 *arg1) {
+    s32 temp_a0;
+    s32 temp_v0;
+
+    temp_a0 = *arg1;
+    temp_v0 = arg0->unk24->unk2C;
+    func_8013E5C4(temp_a0, 0, temp_v0 + 4, temp_v0 + 8, temp_v0 + 0xC);
+    func_800058DC(arg0, func_80127014);
+}
 

@@ -1,9 +1,23 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file037/801E1BE0/func_801E1BE0.s")
+extern void func_8038D28C();
+extern s32 func_801C0B8C(u64);
+s32 func_801C0B8C(u64 time);
 
-
+extern void func_8038BEC8(f32);
 extern void D_8038C158(void);
+
+s32 func_801E1BE0(s32 arg0, s32 arg1) {
+    func_8038BEC8(5.0f);
+    if (func_801C0B8C(0) != 0) {
+        func_8038D28C(0x76);
+        D_8038C158();
+        return 1;
+    }
+    return 0;
+}
+
+
 extern s32 D_8038C17C(f32 a0, f32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, f32 a7, f32 a8, f32 a9, f32 a10, f32 a11, f32 a12, f32 a13, f32 a14, f32 a15);
 extern f32 D_801E6B50;
 extern f32 D_801E6B54;
@@ -239,11 +253,119 @@ s32 func_801E3018(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file037/801E1BE0/func_801E30F0.s")
+
+typedef struct func_801E30F0_Struct2 {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    s32 unk24;
+    u8 pad28[8];
+    s32 unk30;
+    u8 pad34[0x14];
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+} func_801E30F0_Struct2;
+
+typedef struct func_801E30F0_Struct1 {
+    u8 pad0[0x30];
+    func_801E30F0_Struct2 *unk30;
+} func_801E30F0_Struct1;
+
+extern s32 D_8038D8CC;
+extern u8 D_801E6978[];
+extern u8 D_801D9040[];
+extern u8 D_801DA198[];
+extern void *D_8038D8D0;
+
+#define OBJ801E30F0 ((func_801E30F0_Struct1 **)D_8038D8D0)
+
+s32 func_801E30F0(s32 arg0, s32 arg1) {
+    s32 i;
+
+    for (i = 0; i != 7; i++) {
+        func_80005E44(D_8038D8CC, D_801E6978);
+    }
+    func_80006214(D_8038D8CC);
+    func_8012C89C(D_8038D8CC, 0, 0x444, 1);
+    func_8012C89C(D_8038D8CC, 1, 0x444, 2);
+    func_8012C89C(D_8038D8CC, 2, 0x263, 0);
+    func_8012C89C(D_8038D8CC, 3, 0x267, 0);
+    func_8012C89C(D_8038D8CC, 4, 0x263, 0);
+    func_8012C89C(D_8038D8CC, 5, 0x267, 0);
+    func_8012C89C(D_8038D8CC, 6, 0x444, 0);
+    OBJ801E30F0[0]->unk30->unk4 = -25.0f;
+    OBJ801E30F0[0]->unk30->unk8 = 5.0f;
+    OBJ801E30F0[0]->unk30->unkC = -77.0f;
+    OBJ801E30F0[0]->unk30->unk12 = 0;
+    OBJ801E30F0[0]->unk30->unk18 = 1.0f;
+    OBJ801E30F0[0]->unk30->unk1C = 1.0f;
+    OBJ801E30F0[0]->unk30->unk20 = 1.0f;
+    OBJ801E30F0[1]->unk30->unk4 = 40.0f;
+    OBJ801E30F0[1]->unk30->unk8 = 5.0f;
+    OBJ801E30F0[1]->unk30->unkC = -77.0f;
+    OBJ801E30F0[1]->unk30->unk12 = 0;
+    OBJ801E30F0[1]->unk30->unk18 = 1.0f;
+    OBJ801E30F0[1]->unk30->unk1C = 1.0f;
+    OBJ801E30F0[1]->unk30->unk20 = 1.0f;
+    OBJ801E30F0[2]->unk30->unk4 = -49.0f;
+    OBJ801E30F0[2]->unk30->unk8 = 9.0f;
+    OBJ801E30F0[2]->unk30->unkC = 49.0f;
+    OBJ801E30F0[2]->unk30->unk12 = 0x1000;
+    OBJ801E30F0[2]->unk30->unk18 = 1.0f;
+    OBJ801E30F0[2]->unk30->unk1C = 1.0f;
+    OBJ801E30F0[2]->unk30->unk20 = 1.0f;
+    OBJ801E30F0[3]->unk30->unk4 = -49.0f;
+    OBJ801E30F0[3]->unk30->unk8 = 9.0f;
+    OBJ801E30F0[3]->unk30->unkC = 49.0f;
+    OBJ801E30F0[3]->unk30->unk12 = 0x1000;
+    OBJ801E30F0[3]->unk30->unk30 = (s32)D_801D9040 | 0x40000000;
+    OBJ801E30F0[3]->unk30->unk24 = 0x100;
+    OBJ801E30F0[3]->unk30->unk48 = 0;
+    OBJ801E30F0[3]->unk30->unk49 = 0;
+    OBJ801E30F0[3]->unk30->unk4A = 0;
+    OBJ801E30F0[3]->unk30->unk4B = 0xFF;
+    OBJ801E30F0[4]->unk30->unk4 = -49.0f;
+    OBJ801E30F0[4]->unk30->unk8 = 97.0f;
+    OBJ801E30F0[4]->unk30->unkC = -49.0f;
+    OBJ801E30F0[4]->unk30->unk12 = 0x800;
+    OBJ801E30F0[4]->unk30->unk18 = 1.0f;
+    OBJ801E30F0[4]->unk30->unk1C = 1.0f;
+    OBJ801E30F0[4]->unk30->unk20 = 1.0f;
+    OBJ801E30F0[5]->unk30->unk4 = -49.0f;
+    OBJ801E30F0[5]->unk30->unk8 = 97.0f;
+    OBJ801E30F0[5]->unk30->unkC = -49.0f;
+    OBJ801E30F0[5]->unk30->unk12 = 0x800;
+    OBJ801E30F0[5]->unk30->unk30 = (s32)D_801D9040 | 0x40000000;
+    OBJ801E30F0[5]->unk30->unk24 = 0x100;
+    OBJ801E30F0[5]->unk30->unk48 = 0;
+    OBJ801E30F0[5]->unk30->unk49 = 0;
+    OBJ801E30F0[5]->unk30->unk4A = 0;
+    OBJ801E30F0[5]->unk30->unk4B = 0xFF;
+    OBJ801E30F0[6]->unk30->unk4 = 0.0f;
+    OBJ801E30F0[6]->unk30->unk8 = 0.0f;
+    OBJ801E30F0[6]->unk30->unkC = 0.0f;
+    OBJ801E30F0[6]->unk30->unk12 = 0;
+    OBJ801E30F0[6]->unk30->unk30 = (s32)D_801DA198 | 0x40000000;
+    OBJ801E30F0[6]->unk30->unk24 = 0x100;
+    OBJ801E30F0[6]->unk30->unk48 = 0;
+    OBJ801E30F0[6]->unk30->unk49 = 0;
+    OBJ801E30F0[6]->unk30->unk4A = 0;
+    OBJ801E30F0[6]->unk30->unk4B = 0xFF;
+    func_8038D28C(0x6B6);
+    return 2;
+}
 
 
 extern void func_801C0D04(s32 arg0, s32 arg1);
-extern void func_8038D28C(s32 arg0);
 
 s32 func_801E3624(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0) != 0) {
@@ -254,7 +376,6 @@ s32 func_801E3624(s32 arg0, s32 arg1) {
     return 2;
 }
 
-extern void *D_8038D8D0;
 extern f64 func_80034C24();
 extern s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
 extern void func_801C0EB0(s32 arg0, s32 arg1);
@@ -301,7 +422,6 @@ s32 func_801E3734(s32 arg0, s32 arg1) {
     return 0;
 }
 
-s32 func_801C0B8C(u64 time);
 
 s32 func_801E3778(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0) != 0) {
@@ -643,7 +763,26 @@ s32 func_801E4568(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file037/801E1BE0/func_801E4578.s")
+
+void func_801CC318(void);
+void func_801CC458(s32 arg0, void *arg1);
+void func_801CC4C0(s32 arg0, void *arg1);
+extern u8 D_801DAD28[];
+extern u8 D_801DAD2C[];
+extern u8 D_801E0A48[];
+extern u8 func_801DAC30[];
+
+s32 func_801E4578(s32 arg0, s32 arg1) {
+    func_801C2420(0x29, D_801E0A48);
+    func_801CC318();
+    func_801CC458(0, func_801DAC30 + 0x40);
+    func_801CC4C0(0, func_801DAC30 + 0x44);
+    func_801C2420(0x2D, D_801E0A48 + 0x18);
+    func_801CC318();
+    func_801CC458(1, D_801DAD28);
+    func_801CC4C0(1, D_801DAD2C);
+    return 1;
+}
 
 extern u8 func_801DAAF0[];
 
@@ -651,7 +790,6 @@ extern void func_80005670(void *a0, void *a1);
 extern void func_801CEDBC(s32 a0);
 extern void func_801CEDC8(s32 a0);
 extern void func_801CC530(void);
-extern u8 func_801DAC30[];
 extern u8 D_801DAD14[];
 
 s32 func_801E460C(s32 arg0, s32 arg1) {

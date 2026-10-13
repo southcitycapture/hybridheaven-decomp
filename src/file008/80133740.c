@@ -116,7 +116,19 @@ void func_80133950(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133980.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_801339D0.s")
+
+extern u8 D_8008DC20[];
+
+void func_801339D0(s32 arg0) {
+    u8 *temp_v0;
+    s32 temp_t0;
+    u8 temp_t4;
+
+    temp_t0 = arg0 % 8;
+    temp_v0 = &D_8008DC20[(arg0 / 8) & 0xFF];
+    temp_t4 = 1 << (temp_t0 & 0xFF);
+    *temp_v0 &= ~temp_t4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133A24.s")
 

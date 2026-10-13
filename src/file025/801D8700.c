@@ -1,13 +1,17 @@
 #include "common.h"
 
-extern s32 func_8013B570(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
-
-extern s32 D_801E1BB0;
 extern s32 D_801DBB74;
 extern s32 D_801DBB78;
 extern s32 D_801DBB7C;
 extern s32 D_801DBB80;
+extern s32 D_801E1BB0;
+extern s32 func_801C354C(s32);
+extern u8 D_801E1BB8;
+extern void func_80006214();
 extern void func_801D8764();
+
+extern s32 func_8013B570(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
+
 
 void func_801D8700(s32 arg0, s32 arg1) {
     D_801E1BB0 = arg0;
@@ -40,14 +44,12 @@ s32 func_801D89C8(void) {
     return D_801DBB7C;
 }
 
-extern u8 D_801E1BB8;
 
 u8 *func_801D8A08(void) {
     return &D_801E1BB8;
 }
 
 
-void func_80006214(s32 arg0);
 void func_801C3370(s32 arg0, s32 arg1, s32 arg2, u8 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);
 
 void func_801D8A14(s32 arg0, s32 arg1, s32 arg2, u8 arg3, u8 arg4, s32 arg5, s32 arg6) {
@@ -83,5 +85,10 @@ s32 func_801D8AA4(s32 arg0, u16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D8700/func_801D8ADC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D8700/func_801D8BD0.s")
+
+
+void func_801D8BD0(s32 arg0) {
+    func_80006214();
+    D_801DBB80 = func_801C354C(arg0) == 0;
+}
 

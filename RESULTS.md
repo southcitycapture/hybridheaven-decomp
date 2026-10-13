@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-13: **30.11% of the code** (11448 of 15833 functions, including duplicates).
+Progress as of 2026-10-13: **31.92% of the code** (11738 of 15833 functions, including duplicates).
 
-**11236 model runs, $554.03 API-equivalent in total** (local and cloud). Of the **11444 functions now in C**, **3882 were matched by AI workers** (≈ $0.143 per function, failures included), **7347 were placed by propagation** (a match copied onto identical-shape code), 144 came from decomp-permuter and 71 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**11526 model runs, $678.41 API-equivalent in total** (local and cloud). Of the **11734 functions now in C**, **4053 were matched by AI workers** (≈ $0.167 per function, failures included), **7460 were placed by propagation** (a match copied onto identical-shape code), 139 came from decomp-permuter and 82 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -71,7 +71,6 @@ Progress as of 2026-10-13: **30.11% of the code** (11448 of 15833 functions, inc
 | `loop0001` | loop0001 | haiku-5-5 | 60 | 50 | 83% | $0.87 | $0.017 | 92% → 92% |
 | `leantest_b` | leantest_b | haiku-5-5 | 1 | 0 | 0% | $0.02 | – |  |
 | `leantest_a` | leantest_a | haiku-5-5 | 1 | 0 | 0% | $0.03 | – |  |
-| `permute` | decomp-permuter on near-misses | decomp-permuter | 723 | 115 | 16% | $0.00 | – |  |
 | `unify_loop0001` | unify_loop0001 | unify (no model) | 92 | 34 | 37% | $0.00 | – |  |
 | `exp13_lp` | exp13_lp | haiku-5-5 | 60 | 13 | 22% | $0.83 | $0.064 | 92% → 93% |
 | `exp13_ld` | exp13_ld | haiku-5-5 | 60 | 14 | 23% | $0.89 | $0.064 | 92% → 93% |
@@ -85,5 +84,20 @@ Progress as of 2026-10-13: **30.11% of the code** (11448 of 15833 functions, inc
 | `loop0003` | loop0003 | haiku-5-5 | 60 | 58 | 97% | $0.41 | $0.007 | 0% → 0% |
 | `loop0003b` | loop0003b | opus-5-5 | 10 | 2 | 20% | $33.40 | $16.699 | 0% → 2% |
 | `unify_loop0003` | unify_loop0003 | unify (no model) | 58 | 10 | 17% | $0.00 | – |  |
+| `loop0004` | loop0004 | haiku-5-5 | 60 | 48 | 80% | $0.47 | $0.010 | 2% → 2% |
+| `loop0004b` | loop0004b | opus-5-5 | 10 | 5 | 50% | $21.38 | $4.275 | 2% → 3% |
+| `unify_loop0004` | unify_loop0004 | unify (no model) | 50 | 2 | 4% | $0.00 | – |  |
+| `loop0005` | loop0005 | haiku-5-5 | 60 | 55 | 92% | $0.43 | $0.008 | 3% → 3% |
+| `loop0005b` | loop0005b | opus-5-5 | 10 | 5 | 50% | $18.22 | $3.644 | 3% → 4% |
+| `unify_loop0005` | unify_loop0005 | unify (no model) | 48 | 1 | 2% | $0.00 | – |  |
+| `loop0006` | loop0006 | haiku-5-5 | 60 | 55 | 92% | $0.34 | $0.006 | 4% → 4% |
+| `loop0006b` | loop0006b | opus-5-5 | 10 | 4 | 40% | $25.26 | $6.315 | 4% → 5% |
+| `unify_loop0006` | unify_loop0006 | unify (no model) | 50 | 3 | 6% | $0.00 | – |  |
+| `loop0007` | loop0007 | haiku-5-5 | 60 | 55 | 92% | $0.38 | $0.007 | 5% → 5% |
+| `loop0007b` | loop0007b | opus-5-5 | 10 | 5 | 50% | $25.12 | $5.024 | 5% → 6% |
+| `unify_loop0007` | unify_loop0007 | unify (no model) | 51 | 4 | 8% | $0.00 | – |  |
+| `permute` | decomp-permuter on near-misses | decomp-permuter | 726 | 115 | 16% | $0.00 | – |  |
+| `loop0008` | loop0008 | haiku-5-5 | 60 | 60 | 100% | $0.33 | $0.005 | 6% → 6% |
+| `loop0008b` | loop0008b | opus-5-5 | 10 | 5 | 50% | $32.78 | $6.555 | 6% → 8% |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

@@ -1,11 +1,5 @@
 #include "context.h"
 
-typedef struct func_8013A7D4_Struct {
-    u32 x;
-    u16 unk4;
-    u16 unk6;
-    f32 unk8;
-} func_8013A7D4_Struct;
 
 typedef struct func_8013A7D4_Entry {
     u16 id;
