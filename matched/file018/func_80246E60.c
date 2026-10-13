@@ -9,7 +9,7 @@ typedef struct func_80246E60_StructInner {
 extern func_80246E60_StructGlobal D_80258F48;
 extern u32 D_8025C708;
 extern void func_8024564C();
-extern s32 func_80244AB0(void *);
+extern s32 func_80244AB0();
 extern s32 func_8012CE9C(s32, void *, func_80246E60_StructGlobal, s32);
 extern void func_8012A94C(void *, s32);
 extern s32 func_8012A564(void *, s32);

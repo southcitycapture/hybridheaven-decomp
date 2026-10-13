@@ -15,6 +15,15 @@ n=\$(cat .checks 2>/dev/null || echo 0); n=\$((n+1)); echo \$n > .checks
 if [ \$n -gt ${CHECK_LIMIT:-10} ]; then echo "check limit reached (${CHECK_LIMIT:-10}). Stop and report your best result."; exit 2; fi
 [ -f attempt.c ] || { echo "write attempt.c first"; exit 2; }
 EOC
+# DEADLINE_MIN=N: a time budget instead of a small check budget; ./check shows the time left and stops at the deadline
+if [ -n "$DEADLINE_MIN" ]; then
+  echo $(( $(date +%s) + 60 * DEADLINE_MIN )) > "$W/.deadline"
+  cat >> "$W/check" <<'EOC'
+left=$(( $(cat .deadline) - $(date +%s) ))
+if [ $left -le 0 ]; then echo "Time is up. Stop now and report your best result."; exit 2; fi
+echo "(time left: $((left / 60)) min $((left % 60)) s)"
+EOC
+fi
 # HARNESS2=1 (exp10): don't spend checks on repeats or compile errors, and stop runs that have stalled
 [ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
 echo $(( $(cat .check_calls 2>/dev/null || echo 0) + 1 )) > .check_calls     # every call, counted or not
@@ -61,6 +70,10 @@ chmod +x "$W/check"
 "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" context "$SEG" "$FUNC" > "$W/context.h"
 sed -i 's/^#include "common.h"/#include "context.h"/' "$W/draft.c"
 sed "s/{FUNC}/$FUNC/g; s/at most 10 runs/at most ${CHECK_LIMIT:-10} runs/" "$HH/tools/swarm/worker_prompt2.md" > "$W/prompt.md"
+# segments with per-file rodata (tools/hh/rodata_segments.txt) can hold jump tables: there `switch` is allowed
+if grep -qx "$SEG" "$HH/tools/hh/rodata_segments.txt" 2>/dev/null; then
+  sed -i 's/- Do not use `switch` statements, `asm`, or `#pragma`./- `switch` statements are allowed (this segment supports jump tables); write one where target.s uses a jump table (`jr` through a `jtbl_` table). Do not use `asm` or `#pragma`./' "$W/prompt.md"
+fi
 # repair mode: PREVIOUS=path to an earlier attempt
 if [ -n "$PREVIOUS" ] && [ -f "$PREVIOUS" ]; then
   sed 's/^#include "common.h"/#include "context.h"/' "$PREVIOUS" > "$W/previous.c"
@@ -70,6 +83,17 @@ fi
 if [ -n "$SIMILAR" ]; then "$HH/.venv/bin/python" "$HH/tools/hh/similar.py" "$SEG" "$FUNC" "$W" >> "$W/prompt.md" 2>/dev/null || true; fi
 # LEARNINGS=1: condensed IDO habits (tools/swarm/learnings_note.md, docs/IDO_LEARNINGS.md)
 if [ -n "$LEARNINGS" ]; then cat "$HH/tools/swarm/learnings_note.md" >> "$W/prompt.md"; fi
+# BIGFUNC=1: skeleton-then-fill method for large functions (with DEADLINE_MIN)
+if [ -n "$BIGFUNC" ]; then cat "$HH/tools/swarm/bigfunc_note.md" >> "$W/prompt.md"; fi
+# GROW=1: show the newest shared learnings (queue/learnings/live.md) and ask for new ones in learnings.txt
+if [ -n "$GROW" ]; then
+  "$HH/.venv/bin/python" - "$HH" >> "$W/prompt.md" <<'PY'
+import sys, os
+hh = sys.argv[1]; live = os.path.join(hh, "queue/learnings/live.md")
+lines = open(live).read().splitlines()[-60:] if os.path.exists(live) else []
+print(open(os.path.join(hh, "tools/swarm/grow_note.md")).read().replace("LEARNINGS_HERE", "\n".join(lines) or "(none yet)"))
+PY
+fi
 # THEORY=1: one hypothesis, one change, per check (tools/swarm/theory_note.md)
 THEORY=${THEORY-1}; TWIN=${TWIN-1}     # defaults since exp7/exp8 (set THEORY= / TWIN= to turn off)
 if [ -n "$THEORY" ]; then cat "$HH/tools/swarm/theory_note.md" >> "$W/prompt.md"; fi

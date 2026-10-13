@@ -31,6 +31,7 @@ def compile_c(src, cc, opt, out):
            "-I", os.path.join(HH, "include"), "-I", os.path.join(HH, "src")] + opt.split() + ["-o", out, src]
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode: sys.exit("compile failed:\n" + r.stderr)
+    import mulfix; mulfix.fix(out)      # the original build's VR4300 nop between consecutive float multiplies
 
 _elf = {}
 _linked = {}     # one link per (object version, base, rodata, symbol defs): every function reads from it

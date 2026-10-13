@@ -1,10 +1,5 @@
 #include "context.h"
 
-struct func_8021E52C_Struct {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 
 extern s32 func_80224F5C();
 extern void func_802256E4(struct func_8021E52C_Struct *arg0, s32 arg1, s32 arg2);

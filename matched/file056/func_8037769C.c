@@ -1,10 +1,5 @@
 #include "context.h"
 
-typedef struct func_8037769C_Glob {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_8037769C_Glob;
 
 typedef struct func_8037769C_Obj {
     s32 unk0;

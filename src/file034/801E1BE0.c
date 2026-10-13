@@ -2068,7 +2068,25 @@ s32 func_801E77EC(s32 arg0, s32 arg1) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E77FC.s")
+extern s32 func_801C18CC(s32 arg0, void *arg1);
+extern s32 D_801E8F80[];
+
+typedef struct func_801E77FC_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+} func_801E77FC_Struct;
+
+s32 func_801E77FC(s32 arg0, s32 arg1) {
+    func_801E77FC_Struct sp18;
+
+    sp18 = *(func_801E77FC_Struct *) D_801E8F80;
+    func_801C18CC(2, &sp18);
+    return 3;
+}
 
 
 
@@ -2105,7 +2123,26 @@ s32 func_801E78F8(s32 arg0, s32 arg1) {
     return 0x7;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E7920.s")
+
+
+typedef struct func_801E7920_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+} func_801E7920_Struct;
+
+extern func_801E7920_Struct D_801E8F98;
+
+s32 func_801E7920(s32 arg0, s32 arg1) {
+    func_801E7920_Struct sp18;
+
+    sp18 = D_801E8F98;
+    func_801C18CC(2, &sp18);
+    return 8;
+}
 
 
 
@@ -2173,7 +2210,25 @@ s32 func_801E7B6C(s32 arg0, s32 arg1) {
     return 0x12;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E7B94.s")
+
+typedef struct func_801E7B94_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+} func_801E7B94_Struct;
+
+extern func_801E7B94_Struct D_801E8FC8;
+
+s32 func_801E7B94(s32 arg0, s32 arg1) {
+    func_801E7B94_Struct sp18;
+
+    sp18 = D_801E8FC8;
+    func_801C18CC(2, (void *) &sp18);
+    return 0x13;
+}
 
 
 
@@ -2207,7 +2262,26 @@ s32 func_801E7C90(s32 arg0, s32 arg1) {
     return 0x17;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E7CB8.s")
+
+
+typedef struct func_801E7CB8_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+} func_801E7CB8_Struct;
+
+extern func_801E7CB8_Struct D_801E8FE0;
+
+s32 func_801E7CB8(s32 arg0, s32 arg1) {
+    func_801E7CB8_Struct sp18;
+
+    sp18 = D_801E8FE0;
+    func_801C18CC(2, &sp18);
+    return 0x18;
+}
 
 
 
@@ -2275,7 +2349,26 @@ s32 func_801E7F04(s32 arg0, s32 arg1) {
     return 0x22;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E7F2C.s")
+
+
+typedef struct func_801E7F2C_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+} func_801E7F2C_Struct;
+
+extern func_801E7F2C_Struct D_801E9010;
+
+s32 func_801E7F2C(s32 arg0, s32 arg1) {
+    func_801E7F2C_Struct sp18;
+
+    sp18 = D_801E9010;
+    func_801C18CC(2, &sp18);
+    return 0x23;
+}
 
 
 
@@ -2309,7 +2402,25 @@ s32 func_801E8028(s32 arg0, s32 arg1) {
     return 0x27;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E8050.s")
+
+struct func_801E8050_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+};
+
+extern struct func_801E8050_Struct D_801E9028;
+
+s32 func_801E8050(s32 arg0, s32 arg1) {
+    struct func_801E8050_Struct sp18;
+
+    sp18 = D_801E9028;
+    func_801C18CC(2, &sp18);
+    return 0x28;
+}
 
 
 
@@ -2326,7 +2437,25 @@ s32 func_801E80E8(s32 arg0, s32 arg1) {
     return 0x2A;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E8110.s")
+
+typedef struct func_801E8110_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+} func_801E8110_Struct;
+
+extern func_801E8110_Struct D_801E9040;
+
+s32 func_801E8110(s32 arg0, s32 arg1) {
+    func_801E8110_Struct sp18;
+
+    sp18 = D_801E9040;
+    func_801C18CC(2, &sp18);
+    return 0x2B;
+}
 
 
 
@@ -2360,7 +2489,25 @@ s32 func_801E820C(s32 arg0, s32 arg1) {
     return 0x2F;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E8234.s")
+
+typedef struct func_801E8234_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+} func_801E8234_Struct;
+
+extern func_801E8234_Struct D_801E9058;
+
+s32 func_801E8234(s32 arg0, s32 arg1) {
+    func_801E8234_Struct sp18;
+
+    sp18 = D_801E9058;
+    func_801C18CC(2, &sp18);
+    return 0x30;
+}
 
 
 

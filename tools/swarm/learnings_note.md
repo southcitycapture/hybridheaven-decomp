@@ -20,3 +20,5 @@ Types and data
 - `arr[i][0]` and `((s16 *)arr)[i * 2]` give different code: keep the spelling the target's multiply shape implies.
 Stack frame
 - Locals get stack slots top-down in declaration order; an unused or narrow local can be what makes the frame size right.
+Build
+- `nop`s between two consecutive `mul.s`/`mul.d` in target.s are added by the build after compiling (the VR4300 multiply fix): never try to produce them; write the multiplies back to back.

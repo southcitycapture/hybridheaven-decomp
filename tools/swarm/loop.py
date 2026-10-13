@@ -19,7 +19,7 @@ import datetime as dt, fcntl, json, os, re, subprocess, sys, time
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 D = "queue/loop"; os.makedirs(D, exist_ok=True)
 DEFAULTS = dict(budget=0.5, batch=60, parallel=10, publish_hours=6, hard_cap=95, harness2=False, diag=False,
-                worker_flags="",
+                worker_flags="", big_batch=10, big_minutes=40,
                 public_dir=os.path.expanduser("~/work/hybridheaven-decomp"), step_timeout_min=150)
 WEEK = 7 * 86400
 
@@ -56,7 +56,9 @@ def usage():
     return int(w.group(1)), dt.datetime.fromisoformat(r.group(1).replace("Z", "+00:00")).timestamp()
 
 def allowed(cfg, reset):
-    """Share of the week (in meter %) the loop may have spent by now."""
+    """Share of the week (in meter %) the loop may have spent by now: all of it at once with pace=false (front-loaded),
+    else unlocked evenly over the week."""
+    if not cfg.get("pace", True): return 100 * cfg["budget"]
     elapsed = min(1.0, max(0.0, (time.time() - (reset - WEEK)) / WEEK))
     return 100 * cfg["budget"] * elapsed
 
@@ -111,7 +113,7 @@ def cycle(cfg, st):
     n = st.get("cycle", 0) + 1; B = "loop%04d" % n
     before = dirty(); reg0 = registry()
     w0, _ = usage()
-    code, out = sh(".venv/bin/python tools/hh/pick.py %s -n %d --kind all" % (B, cfg["batch"]), 20)
+    code, out = sh(".venv/bin/python tools/hh/pick.py %s -n %d --kind all --allow-switch" % (B, cfg["batch"]), 20)
     if code: log("pick failed:", out[-400:]); return False
     log("cycle", n, "picked:", out.strip().splitlines()[2][:150] if len(out.strip().splitlines()) > 2 else "")
     extra = dict(NO_INTEGRATE=1, INFILE=1, MODEL="claude-haiku-5-5", RUN_ONE="run_one3.sh")
@@ -119,16 +121,22 @@ def cycle(cfg, st):
     if cfg["diag"]: extra["DIAG"] = 1                      # diagnosis-grade ./check (exp13)
     if cfg["worker_flags"]: extra["WORKER_FLAGS"] = cfg["worker_flags"]   # lean CLI worker (exp13: -31% cost)
     sh("tools/swarm/run_batch2.sh %s %d %d" % (B, cfg["parallel"], cfg["hard_cap"]), cfg["step_timeout_min"], **extra)
+    if cfg.get("big_batch"):                 # big-function tier: Opus with a time budget (bigpilot1: 10/20 at difficulty 500-700)
+        sh("tools/swarm/bigpilot.sh %sb %d %d 5 %d" % (B, cfg["big_batch"], cfg["big_minutes"], cfg["hard_cap"]),
+           cfg["step_timeout_min"])
     w1, _ = usage()
-    cost = sum(float(json.loads(l).get("cost_usd_equiv") or 0) for l in open("queue/%s/results.jsonl" % B)) \
-        if os.path.exists("queue/%s/results.jsonl" % B) else 0
+    def batch_cost(b):
+        p = "queue/%s/results.jsonl" % b
+        return sum(float(json.loads(l).get("cost_usd_equiv") or 0) for l in open(p)) if os.path.exists(p) else 0
+    cost = batch_cost(B) + batch_cost(B + "b")
     spent = max((w1 or 0) - (w0 or 0), 0.3 * cost)
     st["spent"] = st.get("spent", 0) + spent
-    wins = sum(1 for l in open("queue/%s/results.jsonl" % B) if '"MATCH"' in l or '"ALONE"' in l) \
-        if os.path.exists("queue/%s/results.jsonl" % B) else 0
+    wins = sum(1 for b in (B, B + "b") if os.path.exists("queue/%s/results.jsonl" % b)
+               for l in open("queue/%s/results.jsonl" % b) if '"MATCH"' in l or '"ALONE"' in l)
     log("batch %s: %d matches, $%.2f, meter %s%% -> %s%%" % (B, wins, cost, w0, w1))
     # model-free steps; each writes matched/ only after its own verification
-    recent = " ".join("loop%04d" % k for k in range(max(1, n - 3), n + 1) if os.path.exists("queue/loop%04d/results.jsonl" % k))
+    recent = " ".join("loop%04d%s" % (k, x) for k in range(max(1, n - 3), n + 1) for x in ("", "b")
+                      if os.path.exists("queue/loop%04d%s/results.jsonl" % (k, x)))
     _, o1 = sh(".venv/bin/python tools/swarm/integrate.py %s permute" % recent, 60)
     _, o2 = sh(".venv/bin/python tools/hh/propagate.py prop_%s --apply" % B, cfg["step_timeout_min"])
     _, o3 = sh(".venv/bin/python tools/hh/unify.py unify_%s --apply" % B, 90)

@@ -9,21 +9,8 @@ extern void func_800058DC(void *, void *);
 extern u8 D_80259720[];
 extern u8 func_80254470[];
 
-typedef struct func_802543F8_Struct_Inner {
-    u8 pad[0x22];
-    u8 unk22;
-} func_802543F8_Struct_Inner;
 
-typedef struct func_802543F8_Struct {
-    u8 pad[0x14];
-    func_802543F8_Struct_Inner *unk14;
-} func_802543F8_Struct;
 
-typedef struct func_802543F8_Obj {
-    u8 pad[0x90];
-    s16 unk90;
-    s16 unk92;
-} func_802543F8_Obj;
 
 void func_802543F8(func_802543F8_Obj *arg0, func_802543F8_Struct *arg1) {
     func_802577B4(arg0, arg1);

@@ -1,28 +1,8 @@
 #include "common.h"
 
-struct func_80246478_Child {
-    u8 pad0[0x78];
-    s16 unk78;
-};
 
-struct func_80246478_Sub {
-    u8 pad0[0x8];
-    f32 unk8;
-};
 
-struct func_80246478_Mid {
-    u8 pad0[0x2C];
-    struct func_80246478_Sub *unk2C;
-};
 
-struct func_80246478_Obj {
-    u8 pad0[0x24];
-    struct func_80246478_Mid *unk24;
-    u8 pad1[0x34];
-    struct func_80246478_Child *unk5C;
-    u8 pad2[0x34];
-    s16 unk94;
-};
 
 extern void func_800058DC();
 extern void func_80010550(s32, void *, void *, s32);

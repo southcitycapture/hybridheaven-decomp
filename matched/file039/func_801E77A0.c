@@ -1,11 +1,5 @@
 #include "common.h"
 
-struct func_801E77A0_A { u8 pad0[0x24]; struct func_801E77A0_B *unk24; };
-struct func_801E77A0_B { u8 pad0[0x8]; struct func_801E77A0_C *unk8; };
-struct func_801E77A0_C { u8 pad0[0x8]; struct func_801E77A0_D *unk8; };
-struct func_801E77A0_D { u8 pad0[0x24]; struct func_801E77A0_E *unk24; };
-struct func_801E77A0_E { u8 pad0[0x2C]; struct func_801E77A0_F *unk2C; };
-struct func_801E77A0_F { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; u8 pad10[2]; s16 unk12; };
 
 extern struct func_801E77A0_A func_801DAAF0;
 

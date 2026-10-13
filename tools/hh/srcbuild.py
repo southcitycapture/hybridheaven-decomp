@@ -240,9 +240,61 @@ def merged_block(seg, cfile, paths):
     if not os.path.exists(p) or open(p).read() != text: open(p, "w").write(text)
     return p
 
-def render(seg, cfile, snips, pad=0, keep_ro=True):
-    """Return (text, line ranges per snippet function)."""
+BASIC = {"extern", "void", "s8", "u8", "s16", "u16", "s32", "u32", "s64", "u64", "f32", "f64", "int", "char", "short",
+         "long", "unsigned", "signed", "float", "double", "const", "volatile"}
+_FEATS = None
+
+def hoisted_decls(seg, snips, unproto=False):
+    """One declaration per function/data name used in this file, to put at the top: a later neighbour's declaration
+    otherwise meets an earlier implicit `int f()` (after a file re-split, e.g. file017/802414B0.c). Only declarations
+    built from basic types (a struct type might be defined further down). When the file's snippets disagree on the
+    return type, the asm decides: callers that read $v0 after the call get the non-void one (features.py `v0`)."""
+    global _FEATS
+    if _FEATS is None:
+        import features; _FEATS = features.features()
+    forms = {}
+    for n, t in snips.items():
+        depth = 0
+        for l in t.splitlines():
+            name = decl_name(l, depth); depth += l.count("{") - l.count("}")
+            if not name: continue
+            words = set(re.findall(r"[A-Za-z_]\w*", re.sub(r"\b%s\b" % re.escape(name), "", l.split("(")[0] if "(" in l else l)))
+            words |= set(re.findall(r"[A-Za-z_]\w*", l.split("(", 1)[1])) - {"arg0", "arg1", "arg2", "arg3"} if "(" in l else set()
+            if not words <= BASIC: continue
+            forms.setdefault(name, []).append(l.strip() if l.strip().startswith("extern") else "extern " + l.strip())
+    v0 = set()
+    for n in snips: v0 |= set(_FEATS.get((seg, n), {}).get("v0", []))
+    if unproto:                                 # functions declared differently by different snippets: one old-style
+        allf = {}                               # declaration takes every call's arguments; return type from the asm
+        for n, t in snips.items():
+            depth = 0
+            for l in t.splitlines():
+                name = decl_name(l, depth); depth += l.count("{") - l.count("}")
+                if name and name.startswith("func_") and "(" in l: allf.setdefault(name, set()).add(re.sub(r"\s+", " ", l.strip()))
+        for name, fs in allf.items():
+            if len(fs) > 1 and name not in snips:
+                forms[name] = ["extern %s %s();" % ("s32" if name in v0_all(seg, snips) else "void", name)]
+    out = {}
+    for name, fs in forms.items():
+        nonvoid = [f for f in fs if not re.match(r"extern\s+void\s+(?!\*)", f)]
+        out[name] = (nonvoid[0] if name in v0 and nonvoid else
+                     next((f for f in fs if f not in nonvoid), fs[0]) if name not in v0 else fs[0])
+    return out
+
+def v0_all(seg, snips):
+    global _FEATS
+    if _FEATS is None:
+        import features; _FEATS = features.features()
+    v = set()
+    for n in snips: v |= set(_FEATS.get((seg, n), {}).get("v0", []))
+    return v
+
+def render(seg, cfile, snips, pad=0, keep_ro=True, hoist=False):
+    """Return (text, line ranges per snippet function). hoist=True puts one declaration per name at the top."""
     lines = ['#include "common.h"', ""]; ranges = {}; declared = set()
+    if hoist:
+        hd = hoisted_decls(seg, snips, unproto=(hoist == "unproto"))
+        lines += sorted(hd.values()) + [""]; declared |= set(hd)
     group, gt, gl = [], 0, 0                  # consecutive asm functions waiting to be emitted as one block
     def flush():
         nonlocal group, gt, gl
@@ -283,6 +335,8 @@ def compile_file(text, td):
     c = os.path.join(td, "f.c"); o = os.path.join(td, "f.o"); open(c, "w").write(text)
     r = subprocess.run([sys.executable, "tools/asm-processor/build.py", IDO, "--", "mips-linux-gnu-as"] + ASFLAGS +
                        ["--", "-c"] + CFLAGS + ["-o", o, c], capture_output=True, text=True)
+    if r.returncode == 0:
+        import mulfix; mulfix.fix(o)        # the original build's VR4300 nop between consecutive float multiplies
     return (o if r.returncode == 0 else None), r.stderr + r.stdout
 
 def func_ok(obj, name, off, size, vram, base, rodata=None):
@@ -299,11 +353,23 @@ def func_ok(obj, name, off, size, vram, base, rodata=None):
     return exact == orig
 
 def settle(seg, cfile, snips, td):
-    """Try to build one C file with `snips`. Drops snippets that break it. Returns (kept, rejected, text, problem)."""
+    """Try to build one C file with `snips`. Drops snippets that break it. Returns (kept, rejected, text, problem).
+    If the plain build loses functions to compile errors, the file is also built with hoisted declarations
+    (hoisted_decls) and the better of the two is kept, so hoisting can only add functions."""
+    r0 = _settle(seg, cfile, snips, td, False)
+    if not any(w.startswith("compile error") for w in r0[1].values()): return r0
+    good = lambda r: len(r[0]) if r[3] is None else -1
+    best = r0
+    for mode in (True, "unproto"):              # hoisted declarations; then also one old-style prototype per clash
+        r = _settle(seg, cfile, snips, td, mode)
+        if good(r) > good(best): best = r
+    return best
+
+def _settle(seg, cfile, snips, td, hoist):
     snips = dict(snips); rejected = {}; pad = 0
     info = {e[0]: e for e in entries(seg, cfile)}
-    for _ in range(len(snips) + 2):
-        text, ranges = render(seg, cfile, snips, pad)
+    for _ in range(len(snips) + 3):
+        text, ranges = render(seg, cfile, snips, pad, hoist=hoist)
         obj, err = compile_file(text, td)
         if obj is None:
             lines = [int(x) for x in re.findall(r"line (\d+)", err)]

@@ -1,28 +1,8 @@
 #include "common.h"
 
-typedef struct func_801E4428_StructTop {
-    u8 pad0[0x8];
-    struct func_801E4428_StructMid *unk8;
-} func_801E4428_StructTop;
 
-typedef struct func_801E4428_StructMid {
-    u8 pad0[0x24];
-    struct func_801E4428_StructLow *unk24;
-} func_801E4428_StructMid;
 
-typedef struct func_801E4428_StructLow {
-    u8 pad0[0x2C];
-    struct func_801E4428_StructFl *unk2C;
-} func_801E4428_StructLow;
 
-typedef struct func_801E4428_StructFl {
-    u8 pad0[0x4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad1[0x2];
-    s16 unk12;
-} func_801E4428_StructFl;
 
 extern func_801E4428_StructTop *D_801DAB14;
 extern void func_801CC470(s32, s32, s32, s32, f32);

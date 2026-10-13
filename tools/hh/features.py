@@ -8,20 +8,22 @@
 """
 import glob, json, os, re
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../.."))
-CACHE = os.path.join(HH, "build/features2.json")
+CACHE = os.path.join(HH, "build/features3.json")
 INSN = re.compile(r"^\s*/\* [0-9A-F]+ ([0-9A-F]{8}) [0-9A-F]{8} \*/\s+(\S+)\s*(.*)$")
 BR = re.compile(r"\.L([0-9A-F]{8})\b")
 NONC = {"mfc0", "mtc0", "cache", "eret", "tlbp", "tlbr", "tlbwi", "tlbwr", "ld", "sd", "dsll32", "dsra32", "dsrl32",
         "dsll", "dsrl", "dsra", "daddu", "dsubu", "ldl", "ldr", "sdl", "sdr", "sync"}
 
 def scan(path):
-    loop = jt = nonc = False; read, written = set(), set()
+    loop = jt = nonc = mulpad = False; read, written = set(), set(); prev = []
     v0_after, pending = [], None          # pending = [callee, instructions seen since the jal]
     for l in open(path):
         if l.startswith("endlabel"): break
         m = INSN.match(l)
         if not m: continue
         addr, op, args = int(m.group(1), 16), m.group(2), m.group(3)
+        if op in ("mul.s", "mul.d") and prev[-2:] and prev[-1] == "nop" and len(prev) >= 2 and prev[-2] in ("mul.s", "mul.d"): mulpad = True
+        prev.append(op)
         if pending:
             pending[1] += 1
             if pending[1] >= 2:                       # past the delay slot
@@ -45,7 +47,7 @@ def scan(path):
             for r in regs[1:] if dest else regs:
                 if r not in written: read.add(r)
             if dest: written.add(dest)
-    return dict(loop=loop, jtbl=jt, nonc=nonc, args=max([int(r[-1]) + 1 for r in read] or [0]), v0=v0_after)
+    return dict(loop=loop, jtbl=jt, nonc=nonc, args=max([int(r[-1]) + 1 for r in read] or [0]), v0=v0_after, mulpad=mulpad)
 
 def features():
     files = glob.glob(os.path.join(HH, "asm/nonmatchings/*/*/func_*.s"))

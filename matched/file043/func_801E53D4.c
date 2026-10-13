@@ -3,15 +3,7 @@ extern s32 D_801E9800;
 s32 func_801C0B8C(u64 time);
 extern void func_801CC470(s32, s32, s32, s32, f32);
 
-typedef struct func_801E53D4_StructA {
-    u8 pad0[0x8];
-    struct func_801E4428_StructTop *unk8;
-} func_801E53D4_StructA;
 
-typedef struct func_801E53D4_StructG {
-    func_801E53D4_StructA *unk0;
-    u8 pad0[0x20];
-} func_801E53D4_StructG;
 
 extern func_801E53D4_StructG func_801DAAF0[];
 extern f32 D_801EA204;

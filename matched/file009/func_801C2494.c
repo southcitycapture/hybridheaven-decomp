@@ -23,11 +23,6 @@ typedef struct func_801C2494_StructBBBF0 {
     s32 unkF18;
 } func_801C2494_StructBBBF0;
 
-typedef struct func_801C2494_Struct388500 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_801C2494_Struct388500;
 
 extern void func_801C1B38();
 extern void func_8012AAE8(void *, s32, s32, s32, f32);

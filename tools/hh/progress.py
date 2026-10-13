@@ -61,6 +61,8 @@ for src in sorted(glob.glob("src/*/*.c")):
         if not os.path.exists(base_o) or os.path.getmtime(base_o) < os.path.getmtime(src):
             open(base_c, "w").write(c_only)
             r = subprocess.run(CC + ["-o", base_o, base_c], capture_output=True, text=True)
+            if r.returncode == 0:
+                sys.path.insert(0, "tools/hh"); import mulfix; mulfix.fix(base_o)
             if r.returncode: print("base compile failed for", seg, r.stderr[:300]); base_o = None
         if base_o: unit["base_path"] = base_o
     unit["metadata"] = {"progress_categories": ["main" if seg.startswith("main/") else "overlays"]}

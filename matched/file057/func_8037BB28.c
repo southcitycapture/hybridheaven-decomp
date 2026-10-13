@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_80005700(void *);
+extern void func_80005700();
 extern s32 func_80236BA4(s32, void *);
 extern u8 *D_8008DA88;
 extern u8 D_801BCC21;

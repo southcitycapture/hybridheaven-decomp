@@ -1,6 +1,5 @@
 #include "context.h"
 
-typedef struct { u8 pad0[4]; s32 b; u8 pad1[8]; } func_80257B10_V;
 typedef struct { s32 a; s32 b; s32 c; s32 d; s32 e; } func_80257B10_V5;
 typedef struct {
     u8 pad[0x24];

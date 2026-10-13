@@ -10,24 +10,6 @@ void func_802218D4(struct func_802218D4_Obj *arg0, s32 arg1);
 extern void func_80224BEC(s32, s32);
 extern s32 func_80011140(s32, s32, struct func_8021E52C_Struct, s32);
 
-struct func_80221720_Struct {
-    u8 pad0[0x30];
-    union {
-        u32 w;
-        struct {
-            u8 b0;
-            u8 b1x : 1;
-            u8 f : 2;
-            u8 b1y : 5;
-        } b;
-    } u30;
-    u8 pad1[0x2D8 - 0x34];
-    u8 unk2D8;
-    u8 pad2[0x2F9 - 0x2D9];
-    u8 unk2F9;
-    u8 pad3[0x392 - 0x2FA];
-    u8 unk392;
-};
 
 struct func_80221720_Actor {
     u8 pad0[0x5C];

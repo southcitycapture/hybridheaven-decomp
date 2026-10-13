@@ -13,7 +13,7 @@ survivors are built in their real files with `srcbuild.run`, which needs every f
 to match exactly after linking and the file to keep its size; anything else is dropped.
 With --apply the kept functions are written to matched/; then run `srcbuild.py all` and `make`.
 """
-import collections, csv, itertools, json, os, re, subprocess, sys, tempfile
+import collections, csv, itertools, json, os, re, subprocess, sys, tempfile, time
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 _argv = sys.argv; sys.argv = ["srcbuild.py", "none"]
@@ -221,15 +221,21 @@ def fit(seg, cf, base, new):
 
 CLASH_LOG = "queue/propagate_clash_failed.jsonl"     # unify failures: (seg, func, candidate, file state) hashes
 
-def clash_key(seg, n, text, neigh):
+CLASH_RETRY_S = 24 * 3600         # a failed repair is retried at most once a day (files change every cycle)
+FILE_BUDGET_S = 20 * 60           # unify time per file per run; the rest waits for the next run
+
+def clash_key(seg, n, text, neigh=None):
     import hashlib
-    h = hashlib.sha1(text.encode())
-    for m in sorted(neigh): h.update(m.encode()); h.update(neigh[m].encode())
-    return "%s/%s/%s" % (seg, n, h.hexdigest()[:16])
+    return "%s/%s/%s" % (seg, n, hashlib.sha1(text.encode()).hexdigest()[:16])
 
 def known_failures():
+    """Keys of clash repairs that failed within CLASH_RETRY_S."""
     if not os.path.exists(CLASH_LOG): return set()
-    return {json.loads(l)["key"] for l in open(CLASH_LOG)}
+    now, out = time.time(), set()
+    for l in open(CLASH_LOG):
+        r = json.loads(l)
+        if now - r.get("t", 0) < CLASH_RETRY_S: out.add(r["key"])
+    return out
 
 def one_file(item):
     (seg, cf), (new, clash) = item
@@ -245,9 +251,12 @@ def one_file(item):
     how = {n: "copy" for n in added}
     neigh = dict(base, **added); edits = {}
     fails = []
+    t_file = time.time()
+    unify.BUDGET_S = 120                          # per function inside propagation (unify's own default is 600)
     for n in sorted(clash):                       # declaration clashes: unify's file-wide repair
         key = clash_key(seg, n, clash[n], neigh)
-        if key in failed_before: dropped[n] = "clash: unify failed before on this file state"; continue
+        if key in failed_before: dropped[n] = "clash: unify failed in the last day"; continue
+        if time.time() - t_file > FILE_BUDGET_S: dropped[n] = "clash: deferred (file time budget)"; continue
         try: h, snips = unify.fix_one(seg, cf, neigh, n, clash[n])
         except Exception as e: h, snips = None, None
         if not h: dropped[n] = "clash unify could not repair"; fails.append(key); continue
@@ -257,7 +266,7 @@ def one_file(item):
                 else: added[m] = t
         neigh = snips; added[n] = snips[n]; how[n] = h
     with open(CLASH_LOG, "a") as fh:              # one short line per failure; appends from parallel workers are safe
-        for k in fails: fh.write(json.dumps({"key": k}) + "\n")
+        for k in fails: fh.write(json.dumps({"key": k, "t": int(time.time())}) + "\n")
     return (seg, cf), added, how, edits, dropped
 
 if __name__ == "__main__":

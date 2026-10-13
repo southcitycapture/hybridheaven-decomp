@@ -52,3 +52,8 @@ rec["claimed"] = rec["claimed"][0]
 open(os.path.expanduser("$HH/queue/%s/results.jsonl" % os.environ.get("BATCH", "pilot")), "a").write(json.dumps(rec) + "\n")
 print(json.dumps(rec))
 PY
+# GROW=1: the worker's general IDO findings join the shared learnings (newest last; prep2 shows the last 60 lines)
+if [ -n "$GROW" ] && [ -s "$W/learnings.txt" ]; then
+  mkdir -p "$HH/queue/learnings"
+  ( flock 9; grep -v '^\s*$' "$W/learnings.txt" | head -3 | cut -c1-300 | sed "s/^[-* ]*/- ($FUNC, $v) /" >> "$HH/queue/learnings/live.md" ) 9>"$HH/queue/learnings/.lock"
+fi

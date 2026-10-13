@@ -1,16 +1,5 @@
 #include "context.h"
 
-struct func_8021F9C8_Struct {
-    u8 pad0[0x2];
-    s16 unk2;
-    u8 pad1[0x30 - 0x4];
-    u16 unk30;
-    u8 unk32;
-    u8 pad2[0x328 - 0x33];
-    u8 unk328;
-    u8 pad3[0x392 - 0x329];
-    u8 unk392;
-};
 
 struct func_8021F9C8_Actor {
     u8 pad0[0x5C];

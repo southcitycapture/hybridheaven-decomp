@@ -15,9 +15,9 @@ struct func_801E3C58_Struct0 {
     struct func_801E3C58_Struct2 *unk4;
 };
 
-extern s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
-extern void func_801C0EB0(s32 arg0, s32 arg1);
-extern u64 func_801C0F18(s32 arg0, s32 arg1);
+extern s32 func_801C0DE4(s32 a0, s32 a1, u32 a2);
+extern void func_801C0EB0(s32 a0, s32 a1);
+extern u64 func_801C0F18(s32 a0, s32 a1);
 extern f64 func_80034C24();
 extern f64 D_801E8810;
 

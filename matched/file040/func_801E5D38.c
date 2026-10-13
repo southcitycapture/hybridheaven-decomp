@@ -1,6 +1,6 @@
 /* starting point: func_801E60B4 (file039), whose assembly is 98% the same as this function's */
 #include "context.h"
-extern s32 func_801CC470(s32, s32, s32, s32, f32);
+extern s32 func_801CC470(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4);
 
 struct func_801E5D38_Struct_F {
     u8 pad[0x4];

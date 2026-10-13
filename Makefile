@@ -59,6 +59,7 @@ $(BUILD)/libultra_syms.ld: $(LIB_O) tools/hh/libultra_syms.py
 $(BUILD)/src/%.o: src/%.c $(shell find include -name '*.h') | pads
 	@mkdir -p $(dir $@)
 	@$(ASMPROC) $(IDO) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
+	@$(PYTHON) tools/hh/mulfix.py $@   # VR4300 nop between consecutive float multiplies (original build)
 
 $(BUILD)/assets/%.o: assets/%.bin
 	@mkdir -p $(dir $@)

@@ -50,7 +50,7 @@ def model_stats(by, feats, model_filter="haiku"):
     for seg, func, m, ok, c in attempts():
         k = (seg, func)
         if k not in by: continue
-        if not ok: fails[by[k]["fp"]] += 1
+        if not ok and not feats.get(k, {}).get("mulpad"): fails[by[k]["fp"]] += 1   # mulpad: impossible before mulfix.py
         if model_filter and model_filter not in m: continue
         b = min(int(by[k]["difficulty"]) // BAND, 12); lp = bool(feats.get(k, {}).get("loop"))
         att[(b, lp)] += 1; win[(b, lp)] += ok; att[b] += 1; win[b] += ok
@@ -97,10 +97,11 @@ if __name__ == "__main__":
     for (seg, f) in reg:
         r = by.get((seg, f))
         if r: near[(seg, r["file"])] += int(r["size"])
-    allow_jt = "--allow-switch" in sys.argv          # workers are told not to write `switch` (no overlay jtbls yet)
+    allow_jt = "--allow-switch" in sys.argv
+    RO_SEGS = set(open("tools/hh/rodata_segments.txt").read().split()) if os.path.exists("tools/hh/rodata_segments.txt") else set()          # workers are told not to write `switch` (no overlay jtbls yet)
     def buildable(r):
         f = feats.get((r["segment"], r["func"]), {})
-        if f.get("nonc") or (f.get("jtbl") and not (allow_jt and r["segment"] == "main")): return False
+        if f.get("nonc") or (f.get("jtbl") and not (allow_jt and r["segment"] in RO_SEGS)): return False
         return (r["segment"], r["file"]) not in S.LIBFILES and S.file_of(r["segment"], r["func"])
     picks = []
     for fp, g in groups.items():

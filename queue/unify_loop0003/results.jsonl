@@ -1,0 +1,58 @@
+{"func": "func_801478D4", "segment": "file008", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80151AE0", "segment": "file008", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_802487AC", "segment": "file018", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "as is"}
+{"func": "func_8014BC18", "segment": "file008", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_8024310C", "segment": "file013", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80145014", "segment": "file008", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80253C20", "segment": "file017", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "own context declarations; as is"}
+{"func": "func_80243488", "segment": "file014", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "own context declarations; as is"}
+{"func": "func_80243564", "segment": "file014", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "own context declarations; as is"}
+{"func": "func_802438E4", "segment": "file014", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "as is"}
+{"func": "func_801E5CD0", "segment": "file040", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "unified func_801C0DE4 -> extern s32 func_801C0DE4(s32 a0, s32 a1, u32 a2);, func_801C0EB0 -> extern void func_801C0EB0(s32 a0, s32 a1);, func_801C0F18 -> extern u64 func_801C0F18(s32 a0, s32 a1);, func_801CC470 -> extern s32 func_801CC470(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4);, func_801CC4D8 -> extern void func_801CC4D8(s32 a, s32 b, s32 c, s32 d, f32 scale);, func_801CE274 -> extern s32 func_801CE274();, func_801E3F28 -> extern void func_801E3F28(void);, func_8038BED4 -> extern s32 func_8038BED4();, func_8038D28C -> extern void func_8038D28C(s32 a0);; rewrote func_801E38E4, func_801E7158, func_801E5D38, func_801E3B48, func_801E5E4C, func_801E382C, func_801E3C58, func_801E2964, func_801E6024, func_801E3730, func_801E5EB4, func_801E415C, func_801E5F18, func_801E6A38, func_801E7338"}
+{"func": "func_801C70E8", "segment": "file024", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801E49A0", "segment": "file036", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801C61C4", "segment": "file025", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801C64F4", "segment": "file025", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801C6CC4", "segment": "file025", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_8022B3E0", "segment": "file011", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801E1BE0", "segment": "file037", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80242C38", "segment": "file021", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_8038D900", "segment": "file061", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_8038D744", "segment": "file091", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_800023A8", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801E3108", "segment": "file042", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "own context declarations; as is"}
+{"func": "func_800227EC", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801CFF24", "segment": "file025", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_8021D84C", "segment": "file011", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80150734", "segment": "file008", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "as is"}
+{"func": "func_80150AB4", "segment": "file008", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801E604C", "segment": "file039", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "own context declarations; as is"}
+{"func": "func_80148FC4", "segment": "file008", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801E560C", "segment": "file048", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80126570", "segment": "file008", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_8037F258", "segment": "file056", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_803803E4", "segment": "file056", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80241708", "segment": "file022", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801E3D5C", "segment": "file032", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80241200", "segment": "file013", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80241D7C", "segment": "file013", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801C12B0", "segment": "file024", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80024ADC", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80024E0C", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80381D48", "segment": "file057", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80383210", "segment": "file057", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80242730", "segment": "file015", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_802442A0", "segment": "file015", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801E4254", "segment": "file043", "model": "unify (no model)", "verified": "MATCH", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "own context declarations; as is"}
+{"func": "func_800161A0", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80016EAC", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80016F90", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_800173B8", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80017608", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80019CB4", "segment": "main", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_8035AFEC", "segment": "file057", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80240FFC", "segment": "file018", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80241630", "segment": "file018", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80241EB0", "segment": "file018", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80242240", "segment": "file018", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801EB5C4", "segment": "file026", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}

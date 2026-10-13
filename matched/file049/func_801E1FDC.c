@@ -1,0 +1,14 @@
+#include "context.h"
+
+extern f32 D_801E7674;
+extern f32 D_801E7678;
+extern f32 D_801E767C;
+extern f32 D_801E7680;
+extern f32 D_801E7684;
+
+s32 func_801E1FDC(s32 arg0, s32 arg1) {
+    func_8038BE98(D_801E7674);
+    func_8038BD50(D_801E7678, D_801E767C, 112.3000030517578125);
+    D_8038BD88(D_801E7680, D_801E7684, 83.8000030517578125);
+    return 0xA;
+}
