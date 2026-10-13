@@ -530,7 +530,14 @@ s32 func_801E39A0(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file040/801E1BE0/func_801E39E4.s")
+
+s32 func_801E39E4(s32 arg0, s32 arg1) {
+    if (func_801C0B8C(0x013A54C0) != 0) {
+        ((u8 **)D_8038D8D0)[1][0x22] = 1;
+        return 2;
+    }
+    return 1;
+}
 
 
 s32 func_801E3A38(s32 arg0, s32 arg1) {

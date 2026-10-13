@@ -518,7 +518,11 @@ void func_801C8794(f32 arg0, s32 arg1) {
     D_801DA720 = (8.0f * arg0) / (f32) (arg1 * arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801C87E0.s")
+
+
+f32 func_801C87E0(s32 arg0) {
+    return ((f32) arg0 * D_801DA71C) - (0.5f * (D_801DA720 * (f32) (arg0 * arg0)));
+}
 
 
 extern u8 D_801DA724[];

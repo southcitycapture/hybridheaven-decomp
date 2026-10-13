@@ -1,9 +1,5 @@
 #include "common.h"
 
-typedef struct func_801E2500_Struct {
-    u8 pad[0x3C];
-    s32 unk3C;
-} func_801E2500_Struct;
 
 extern func_801E2500_Struct *func_801BF6B0();
 extern void func_801CCE88();

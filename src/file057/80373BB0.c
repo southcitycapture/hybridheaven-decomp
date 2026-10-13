@@ -81,13 +81,18 @@ void func_803748C0(s32 arg0) {
     func_8037488C(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80374960.s")
+void func_800058DC(s32 arg0, void *arg1);            /* extern */
+void func_80374B74(u64 arg0);
+
+void func_80374960(s32 arg0, s32 arg1) {
+    func_803748C0(arg0);
+    func_800058DC(arg0, &func_80374B74);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80374994.s")
 
 
 s32 func_80374994(u64 arg0);                          /* extern */
-void func_800058DC(s32 arg0, void *arg1);            /* extern */
 extern void func_80374BAC();
 
 void func_80374B74(u64 arg0) {

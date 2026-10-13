@@ -436,6 +436,17 @@ def file_of(seg, name):
 
 LIBFILES = {tuple(k.split("/")) for k in json.load(open("tools/hh/libultra.json"))} if os.path.exists("tools/hh/libultra.json") else set()
 
+def added_times():
+    """{matched/SEG/FUNC.c: commit time it was first registered}. File mtimes can't order registrations: git
+    checkouts, the loop's revert and the repair tools' rewrites all reset them, so an old match could look newest
+    and lose a conflict to a new one (the likely cause of cycle 12 losing 2 registered functions; a replay did not reproduce it)."""
+    _, out = subprocess.getstatusoutput("git log --diff-filter=A --format=%ct --name-only -- matched")
+    t, first = None, {}
+    for line in out.splitlines():
+        if line.isdigit(): t = float(line)
+        elif line.strip() and t is not None: first[line.strip()] = min(t, first.get(line.strip(), t))
+    return first
+
 def run(cands, new_keys):
     """cands: {(seg, name): text}. Builds every affected file; returns (kept keys, rejected {key: why}).
     Files built from library source (tools/hh/libultra.json) are left alone."""
@@ -444,9 +455,11 @@ def run(cands, new_keys):
         cf = file_of(seg, name)
         if cf and (seg, cf) not in LIBFILES: byfile.setdefault((seg, cf), {})[name] = text
     prio = {}
+    added = added_times()
     for (seg, name) in cands:
         p = "matched/%s/%s.c" % (seg, name)
-        prio[(seg, name)] = os.path.getmtime(p) if os.path.exists(p) and (seg, name) not in new_keys else float("inf")
+        if (seg, name) in new_keys or not os.path.exists(p): prio[(seg, name)] = float("inf")
+        else: prio[(seg, name)] = added.get(p, os.path.getmtime(p))
     jobs = [(seg, cf, sn, {n: prio[(seg, n)] for n in sn}) for (seg, cf), sn in sorted(byfile.items())]
     kept, rejected = set(), {}
     with Pool(max(1, os.cpu_count() - 2)) as p:

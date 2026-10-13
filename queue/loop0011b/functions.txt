@@ -1,0 +1,10 @@
+func_801E5848 file026
+func_801F7DB4 file010
+func_80374260 file057
+func_80010884 main
+func_8024EA0C file017
+func_802408F0 file054
+func_80385114 file056
+func_8000D1CC main
+func_8021C4C0 file011
+func_8024569C file022

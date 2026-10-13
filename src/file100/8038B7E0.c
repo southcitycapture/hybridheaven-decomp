@@ -333,9 +333,38 @@ void func_8038BDC0(f32 arg0, f32 arg1, f32 arg2) {
     temp_v0->unk38 = temp_v0->unk38 + arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038B7E0/func_8038BE10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038B7E0/func_8038BE60.s")
+struct func_8038BE10_Inner {
+    u8 pad[0x3C];
+    f32 unk3C;
+    f32 unk40;
+    f32 unk44;
+};
+
+void func_8038BE10(f32 arg0, f32 arg1, f32 arg2) {
+    struct func_8038BE10_Inner *temp_v0;
+
+    temp_v0 = (struct func_8038BE10_Inner *) D_801BBBF0.unkE8->unk2C;
+    temp_v0->unk3C = temp_v0->unk3C + arg0;
+    temp_v0 = (struct func_8038BE10_Inner *) D_801BBBF0.unkE8->unk2C;
+    temp_v0->unk40 = temp_v0->unk40 + arg1;
+    temp_v0 = (struct func_8038BE10_Inner *) D_801BBBF0.unkE8->unk2C;
+    temp_v0->unk44 = temp_v0->unk44 + arg2;
+}
+
+
+struct func_8038BE60_Inner {
+    u8 pad[0x48];
+    f32 unk48;
+    f32 unk4C;
+    f32 unk50;
+};
+
+void func_8038BE60(f32 arg0, f32 arg1, f32 arg2) {
+    ((struct func_8038BE60_Inner *) D_801BBBF0.unkE8->unk2C)->unk48 = arg0;
+    ((struct func_8038BE60_Inner *) D_801BBBF0.unkE8->unk2C)->unk4C = arg1;
+    ((struct func_8038BE60_Inner *) D_801BBBF0.unkE8->unk2C)->unk50 = arg2;
+}
 
 
 struct func_8038BE98_Inner {

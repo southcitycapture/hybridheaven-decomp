@@ -350,7 +350,20 @@ void func_8037F300(u8 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037F338.s")
+/* starting point: func_8037F300 (file056), whose assembly is 100% the same as this function's */
+
+void func_8037F338(u8 arg0) {
+    s32 temp_v0;
+
+    temp_v0 = arg0;
+    if (temp_v0 == 1) {
+        D_801BBC06[6] = 1;
+        return;
+    }
+    if (temp_v0 == 2) {
+        D_801BBC06[6] = 0;
+    }
+}
 
 
 extern s32 D_80388BE8[];

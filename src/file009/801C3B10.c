@@ -307,7 +307,19 @@ s32 func_801C5A1C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801C3B10/func_801C7B18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801C3B10/func_801C7FEC.s")
+
+s32 func_8010843C(f32, f32, s32, s32, f32, f32);
+
+void func_801C7FEC(f32 arg0, f32 arg1, s32 arg2, void *arg3, void *arg4, void *arg5) {
+    s32 *p2;
+
+    p2 = &arg2;
+    if (func_8010843C(arg0, arg1, arg2, *(s32 *)arg3, *(f32 *)arg4, *(f32 *)arg5) == 1) {
+        *(f32 *)arg3 = *(f32 *)((u8 *)&D_801BBBF0 + 0x374);
+        *(f32 *)arg4 = *(f32 *)((u8 *)&D_801BBBF0 + 0x378);
+        *(f32 *)arg5 = *(f32 *)((u8 *)&D_801BBBF0 + 0x37C);
+    }
+}
 
 
 typedef struct func_801C8060_Struct {
@@ -327,7 +339,6 @@ typedef struct func_801C8060_Outer {
     func_801C8060_Mid *unk24;
 } func_801C8060_Outer;
 
-extern void func_801C7FEC(f32, f32, s32, void *, void *, void *);
 
 void func_801C8060(func_801C8060_Outer *arg0) {
     func_801C8060_Struct *temp_v0;

@@ -771,7 +771,20 @@ void func_801D7CEC(u8 *arg0, s32 arg1) {
     func_800208C4(0x4F);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801D6AD0/func_801D7D30.s")
+
+typedef struct {
+    u8 pad0[0x92];
+    u8 unk92;
+} func_801D7D30_Struct;
+
+void func_801D7D30(func_801D7D30_Struct *arg0, s32 arg1) {
+    if (arg0->unk92 == 1) {
+        func_80020718(0x6B9);
+        func_800208C4(0x53);
+        return;
+    }
+    func_800208C4(0x52);
+}
 
 
 void func_801D7D7C(u8 *arg0, s32 arg1) {

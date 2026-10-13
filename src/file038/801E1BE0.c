@@ -62,7 +62,13 @@ s32 func_801E22B4(s32 arg0, s32 arg1) {
     return 12;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E2308.s")
+
+s32 func_801E2308(s32 arg0, s32 arg1) {
+    if ((func_801BF6B0(7)->unkC < 7) || (func_801C1B1C() == 0)) {
+        return 12;
+    }
+    return 0xD;
+}
 
 
 extern void func_8038BE98(f32);
@@ -85,9 +91,27 @@ s32 func_801E23C0(s32 arg0, s32 arg1) {
     return 15;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E23D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E2424.s")
+typedef struct func_801E23D0_Struct {
+    u8 pad[0xC];
+    s32 unkC;
+} func_801E23D0_Struct;
+
+
+s32 func_801E23D0(s32 arg0, s32 arg1) {
+    if ((func_801BF6B0(7)->unkC < 0xC) || (func_801C1B1C() == 0)) {
+        return 0xF;
+    }
+    return 0x10;
+}
+
+
+s32 func_801E2424(s32 arg0, s32 arg1) {
+    if ((func_801BF6B0(7)->unkC < 0xF) || (func_801C1B1C() == 0)) {
+        return 16;
+    }
+    return 0x11;
+}
 
 
 s32 func_801E2478(s32 arg0, s32 arg1) {
@@ -97,7 +121,13 @@ s32 func_801E2478(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E24A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E2578.s")
+
+s32 func_801E2578(s32 arg0, s32 arg1) {
+    if ((func_801BF6B0(7)->unkC < 0x14) || (func_801C1B1C() == 0)) {
+        return 0x13;
+    }
+    return 0x14;
+}
 
 
 s32 func_801E25CC(s32 arg0, s32 arg1) {

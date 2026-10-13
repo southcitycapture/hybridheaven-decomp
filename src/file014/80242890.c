@@ -263,9 +263,6 @@ void func_80245244(struct func_80245244_Obj *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_802455D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_80245AFC.s")
-
-
 struct func_80245B2C_Sub {
     u8 pad0[0x4];
     f32 unk4;
@@ -292,6 +289,14 @@ struct func_80245B2C_Obj {
     u8 pad3[0x42];
     u16 unkA2;
 };
+void func_80245B2C(struct func_80245B2C_Obj *arg0, s32 arg1);
+
+void func_80245AFC(struct func_80245B2C_Obj *arg0, s32 arg1) {
+    arg0->unkA2 = 0x20;
+    func_800058DC(arg0, func_80245B2C);
+}
+
+
 
 
 void func_80245B2C(struct func_80245B2C_Obj *arg0, s32 arg1)

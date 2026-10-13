@@ -42,14 +42,6 @@ void func_801CBDC0(s32 arg0, struct func_801CBDC0_Struct1 **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file024/801CBDC0/func_801CBE88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801CBDC0/func_801CC294.s")
-
-
-struct func_801CC2CC_Struct3 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 struct func_801CC2CC_Struct2 {
     u8 pad[0x78];
     s16 unk78;
@@ -57,6 +49,20 @@ struct func_801CC2CC_Struct2 {
 struct func_801CC2CC_Struct1 {
     u8 pad[0x5C];
     struct func_801CC2CC_Struct2 *unk5C;
+};
+void func_801CC2CC(struct func_801CC2CC_Struct1 *arg0, s32 arg1);
+
+extern void func_8013B570(void *arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
+
+void func_801CC294(void *arg0, s32 arg1) {
+    func_8013B570(arg0, 0x50, 2, 3, func_801CC2CC);
+}
+
+
+struct func_801CC2CC_Struct3 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
 };
 
 extern void func_8013A28C(s32, struct func_801CC2CC_Struct3);

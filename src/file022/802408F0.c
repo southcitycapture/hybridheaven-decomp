@@ -9,6 +9,7 @@ extern f64 D_80252518;
 extern f64 D_80252530;
 extern f64 D_80252538;
 extern s16 D_80089354;
+extern s32 D_801BCC90;
 extern s32 D_801BCCF0;
 extern s32 func_8001E978();
 extern s32 func_80126B14(void *, void *, u16, s32);
@@ -26,7 +27,7 @@ extern u8 D_80250054[];
 extern u8 func_80126EAC[];
 extern u8 func_80240FC8[];
 extern void *D_801BBCCC;
-extern void func_800058DC(void *, void *);
+extern void func_800058DC();
 extern void func_80005F6C(s32, void *);
 extern void func_80006214(s32);
 extern void func_800062F8(void *, s32);
@@ -40,7 +41,7 @@ extern void func_8012E5B0(void);
 extern void func_8012E6BC(void);
 extern void func_8012FE50(s32, s32, s32, s32, s32);
 extern void func_80133980(s32);
-extern void func_8013B570(void *, u16, s32, s32, void *);
+extern void func_8013B570();
 extern void func_80203830(s32, void *);
 extern void func_80240B0C();
 extern void func_80240BB8();
@@ -607,7 +608,11 @@ void func_802419B4(s32 arg0, s32 arg1) {
     func_8012FE50(0x10, 0xF0, 0, 1, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file022/802408F0/func_802419EC.s")
+
+
+void func_802419EC(void) {
+    func_8001E978(D_801BCC90, 0, 0, 0, 0xF, 0, 2, 0);
+}
 
 
 

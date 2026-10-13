@@ -3079,3 +3079,153 @@
 {"segment": "file038", "func": "func_801E3C78", "why": "compile error in file context", "was_registered": true}
 {"segment": "file038", "func": "func_801E42C8", "why": "compile error in file context", "was_registered": true}
 {"segment": "file038", "func": "func_801E22B4", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file008", "func": "func_801478D4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_8014BC18", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file013", "func": "func_8024310C", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_800023A8", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file011", "func": "func_8021D84C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file013", "func": "func_80241D7C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file057", "func": "func_80383210", "why": "compile error in file context", "was_registered": false}
+{"segment": "file022", "func": "func_80241708", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C61C4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C6CC4", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80017608", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80019CB4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_80126880", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80127800", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126CC0", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126B14", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126570", "why": "compile error in file context", "was_registered": false}
+{"segment": "file048", "func": "func_801E2294", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "main", "func": "func_80024ADC", "why": "compile error in file context", "was_registered": false}
+{"segment": "file049", "func": "func_801E6050", "why": "compile error in file context", "was_registered": true}
+{"segment": "file049", "func": "func_801E1CF4", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file033", "func": "func_801E21A0", "why": "compile error in file context", "was_registered": false}
+{"segment": "file028", "func": "func_801E3014", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file008", "func": "func_801478D4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_8014BC18", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file013", "func": "func_8024310C", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_800023A8", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file011", "func": "func_8021D84C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file013", "func": "func_80241D7C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file057", "func": "func_80383210", "why": "compile error in file context", "was_registered": false}
+{"segment": "file022", "func": "func_80241708", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C61C4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C6CC4", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80017608", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80019CB4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_80126880", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80127800", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126CC0", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126B14", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126570", "why": "compile error in file context", "was_registered": false}
+{"segment": "file029", "func": "func_801E24E8", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "main", "func": "func_80024ADC", "why": "compile error in file context", "was_registered": false}
+{"segment": "file053", "func": "func_801E2088", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file053", "func": "func_801E2140", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file053", "func": "func_801E2194", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file053", "func": "func_801E2250", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file008", "func": "func_801478D4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_8014BC18", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file013", "func": "func_8024310C", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_800023A8", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file011", "func": "func_8021D84C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file013", "func": "func_80241D7C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file057", "func": "func_80383210", "why": "compile error in file context", "was_registered": false}
+{"segment": "file022", "func": "func_80241708", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C61C4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C6CC4", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80017608", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80019CB4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_80126880", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80127800", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126CC0", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126B14", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126570", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80024ADC", "why": "compile error in file context", "was_registered": false}
+{"segment": "file029", "func": "func_801E44B4", "why": "compile error in file context", "was_registered": true}
+{"segment": "file029", "func": "func_801E2650", "why": "compile error in file context", "was_registered": true}
+{"segment": "file029", "func": "func_801E2708", "why": "compile error in file context", "was_registered": true}
+{"segment": "file029", "func": "func_801E4460", "why": "compile error in file context", "was_registered": true}
+{"segment": "file029", "func": "func_801E4528", "why": "compile error in file context", "was_registered": true}
+{"segment": "file029", "func": "func_801E2014", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file008", "func": "func_801478D4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_8014BC18", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file013", "func": "func_8024310C", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_800023A8", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file011", "func": "func_8021D84C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file013", "func": "func_80241D7C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file057", "func": "func_80383210", "why": "compile error in file context", "was_registered": false}
+{"segment": "file022", "func": "func_80241708", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C61C4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C6CC4", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80017608", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80019CB4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_80126880", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80127800", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126CC0", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126B14", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126570", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80024ADC", "why": "compile error in file context", "was_registered": false}
+{"segment": "file008", "func": "func_8014BC18", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_801478D4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file024", "func": "func_801CC294", "why": "compile error in file context", "was_registered": false}
+{"segment": "file013", "func": "func_8024310C", "why": "compile error in file context", "was_registered": false}
+{"segment": "file011", "func": "func_8021D84C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "main", "func": "func_800023A8", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file057", "func": "func_80374960", "why": "compile error in file context", "was_registered": false}
+{"segment": "file013", "func": "func_80241D7C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file021", "func": "func_80243958", "why": "compile error in file context", "was_registered": false}
+{"segment": "file057", "func": "func_80383210", "why": "compile error in file context", "was_registered": false}
+{"segment": "file100", "func": "func_8038BD88", "why": "compile error in file context", "was_registered": false}
+{"segment": "file022", "func": "func_80241708", "why": "compile error in file context", "was_registered": false}
+{"segment": "file011", "func": "func_802387D4", "why": "does not match in file context (instructions or addresses)", "was_registered": true}
+{"segment": "file011", "func": "func_802398FC", "why": "compile error in file context", "was_registered": true}
+{"segment": "file025", "func": "func_801C61C4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C6CC4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file018", "func": "func_80242178", "why": "compile error in file context", "was_registered": true}
+{"segment": "file018", "func": "func_80241EB0", "why": "compile error in file context", "was_registered": false}
+{"segment": "file014", "func": "func_80245AFC", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80017608", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80019CB4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_80126880", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80127800", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126CC0", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126B14", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126570", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80024ADC", "why": "compile error in file context", "was_registered": false}
+{"segment": "file026", "func": "func_801ED118", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file028", "func": "func_801E4DD4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file011", "func": "func_802387D4", "why": "does not match in file context (instructions or addresses)", "was_registered": true}
+{"segment": "file011", "func": "func_802398FC", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_8014BC18", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_801478D4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file013", "func": "func_8024310C", "why": "compile error in file context", "was_registered": false}
+{"segment": "file011", "func": "func_8021D84C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "main", "func": "func_800023A8", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file013", "func": "func_80241D7C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file021", "func": "func_80243958", "why": "compile error in file context", "was_registered": false}
+{"segment": "file057", "func": "func_80374960", "why": "compile error in file context", "was_registered": false}
+{"segment": "file024", "func": "func_801CC344", "why": "compile error in file context", "was_registered": true}
+{"segment": "file024", "func": "func_801CC574", "why": "compile error in file context", "was_registered": true}
+{"segment": "file024", "func": "func_801CC618", "why": "compile error in file context", "was_registered": true}
+{"segment": "file024", "func": "func_801CC6B0", "why": "compile error in file context", "was_registered": true}
+{"segment": "file024", "func": "func_801CC294", "why": "compile error in file context", "was_registered": false}
+{"segment": "file057", "func": "func_80383210", "why": "compile error in file context", "was_registered": false}
+{"segment": "file022", "func": "func_80241708", "why": "compile error in file context", "was_registered": false}
+{"segment": "file100", "func": "func_8038BD88", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C61C4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file025", "func": "func_801C6CC4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file018", "func": "func_80242178", "why": "compile error in file context", "was_registered": true}
+{"segment": "file018", "func": "func_80241EB0", "why": "compile error in file context", "was_registered": false}
+{"segment": "file014", "func": "func_80245AFC", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80017608", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80019CB4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file008", "func": "func_80126880", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80127800", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126CC0", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126B14", "why": "compile error in file context", "was_registered": true}
+{"segment": "file008", "func": "func_80126570", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80024ADC", "why": "compile error in file context", "was_registered": false}
+{"segment": "file026", "func": "func_801ED118", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file028", "func": "func_801E4DD4", "why": "does not match in file context (instructions or addresses)", "was_registered": false}

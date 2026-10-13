@@ -185,7 +185,10 @@ void func_8038CF3C(s32 arg0, s32 arg1) {
     func_8038CD6C(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CF94.s")
+
+void func_8038CF94(void) {
+    ((void (*)(void))((void **)&D_8038DBBC)[D_8038DBC8])();
+}
 
 
 extern s32 D_8038DBCC;

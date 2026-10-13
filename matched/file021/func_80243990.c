@@ -3,20 +3,8 @@
 struct func_80243A00_Arg0;
 void func_80243A00(struct func_80243A00_Arg0 *arg0, s32 arg1);
 
-struct func_80243990_StructLeaf {
-    u8 pad0[0x8];
-    f32 unk8;
-};
 
-struct func_80243990_StructMid {
-    u8 pad0[0x30];
-    struct func_80243990_StructLeaf *unk30;
-};
 
-struct func_80243990_StructArg0 {
-    u8 pad0[0x24];
-    struct func_80243990_StructMid *unk24;
-};
 
 extern f64 D_802570D0;
 

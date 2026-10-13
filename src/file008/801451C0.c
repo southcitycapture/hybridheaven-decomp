@@ -596,7 +596,15 @@ void func_80147734(f32 *arg0, f32 *arg1, f32 *arg2) {
     arg2[2] = arg1[2] + arg0[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_80147768.s")
+
+void func_801475C8(f32);
+
+void func_80147768(void *arg0, f32 arg1) {
+    func_801475C8(arg1);
+    ((f32 *) arg0)[0] = ((f32 *) arg0)[0] * arg1;
+    ((f32 *) arg0)[1] = ((f32 *) arg0)[1] * arg1;
+    ((f32 *) arg0)[2] = ((f32 *) arg0)[2] * arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_801477C4.s")
 
