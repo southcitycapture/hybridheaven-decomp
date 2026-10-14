@@ -691,7 +691,49 @@ s32 func_801E3928(s32 arg0, s32 arg1) {
     return 8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E397C.s")
+
+typedef struct func_801E397C_Struct_C {
+    s32 pad0;
+    f32 unk4;
+    s32 pad8;
+    f32 unkC;
+} func_801E397C_Struct_C;
+
+typedef struct func_801E397C_Struct_B {
+    u8 pad0[0x30];
+    func_801E397C_Struct_C *unk30;
+} func_801E397C_Struct_B;
+
+typedef struct func_801E397C_Struct_A {
+    u8 pad0[0x8];
+    func_801E397C_Struct_B *unk8;
+} func_801E397C_Struct_A;
+
+extern func_801E397C_Struct_A *D_8038D8D0;
+extern f64 D_801E9548;
+extern f32 D_801E9550;
+extern f32 D_801E9554;
+extern f32 D_801E9558;
+extern u64 func_801C0F18(s32, s32);
+extern f64 func_80034C24();
+extern void func_801C0EB0(s32, s32);
+
+s32 func_801E397C(s32 arg0, s32 arg1) {
+    f32 temp_fv1;
+    u64 temp_ret;
+
+    temp_ret = func_801C0F18(3, 2);
+    temp_fv1 = (f32) ((func_80034C24(temp_ret) / D_801E9548) / 0.5);
+    D_8038D8D0->unk8->unk30->unk4 = (f32) ((10.5f * temp_fv1) + D_801E9550);
+    D_8038D8D0->unk8->unk30->unkC = (f32) ((10.0f * temp_fv1) + 280.0f);
+    if (func_801C0B8C(0xBEBC20) != 0) {
+        D_8038D8D0->unk8->unk30->unk4 = D_801E9554;
+        D_8038D8D0->unk8->unk30->unkC = D_801E9558;
+        func_801C0EB0(3, 2);
+        return 0xA;
+    }
+    return 9;
+}
 
 
 s32 func_801E3A90(s32 arg0, s32 arg1) {
@@ -1501,7 +1543,34 @@ s32 func_801E5764(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/func_801E57E8.s")
+
+extern f32 D_801E9670;
+extern f32 D_801E9674;
+extern f32 D_801E9678;
+s32 func_801CF418(s32 a0, s32 a1);
+
+typedef struct func_801E57E8_Struct {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+} func_801E57E8_Struct;
+
+s32 func_801E57E8(s32 arg0, s32 arg1) {
+    func_801E57E8_Struct *temp_v0;
+    func_801E57E8_Struct *temp_v0_2;
+
+    temp_v0 = (func_801E57E8_Struct *) *(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(func_801DAAF0 + 0x24) + 8) + 8) + 0x24) + 0x2C);
+    if ((temp_v0->unk4 < D_801E9670) || (D_801E9674 < temp_v0->unkC)) {
+        func_801CC4D8(1, 0x0410000F, 0, 0x1000, 6.0f);
+        return 5;
+    }
+    if ((func_801CF418(0x01B8001B, 0xC) != 0) || (func_801CF418(0x01B8001B, 0x1E) != 0)) {
+        temp_v0_2 = (func_801E57E8_Struct *) *(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(func_801DAAF0 + 0x24) + 8) + 8) + 0x24) + 0x2C);
+        func_8038D33C(temp_v0_2->unk4, temp_v0_2->unk8, *(s32 *)&temp_v0_2->unkC, 0x676, D_801E9678, 1.0f);
+    }
+    return 4;
+}
 
 
 struct func_801E58F0_StructA;

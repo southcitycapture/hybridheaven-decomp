@@ -138,7 +138,7 @@ def cycle(cfg, st):
     # model-free steps; each writes matched/ only after its own verification
     recent = " ".join("loop%04d%s" % (k, x) for k in range(max(1, n - 3), n + 1) for x in ("", "b")
                       if os.path.exists("queue/loop%04d%s/results.jsonl" % (k, x)))
-    _, o1 = sh(".venv/bin/python tools/swarm/integrate.py %s permute" % recent, 60)
+    _, o1 = sh(".venv/bin/python tools/swarm/integrate.py %s permute" % recent, 120)   # one 1600-function file can take 30 min
     _, o2 = sh(".venv/bin/python tools/hh/propagate.py prop_%s --apply" % B, cfg["step_timeout_min"])
     _, o3 = sh(".venv/bin/python tools/hh/unify.py unify_%s --apply" % B, 90)
     _, o4 = sh(".venv/bin/python tools/hh/protofix.py --apply", 30)

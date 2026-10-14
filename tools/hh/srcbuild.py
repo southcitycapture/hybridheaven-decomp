@@ -13,7 +13,7 @@ empty-stub C for `jr $ra; nop` functions). Snippets are combined like this:
   srcbuild.py add BATCH [BATCH..]  add each batch's verified matches to the registry, keeping only
                                    those that work in context; then run `make` to confirm the ROM
 """
-import glob, json, os, re, shutil, subprocess, sys, tempfile
+import glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 sys.path.insert(0, os.path.join(HH, "tools/hh"))
@@ -416,8 +416,13 @@ def build_one(args):
                 rejected[group[0]] = r2.get(group[0]) or "conflicts with earlier-registered functions in this file"; return
             half = len(group) // 2
             try_add(group[:half]); try_add(group[half:])
-        for i in range(0, len(order), 16):
-            try_add(order[i:i + 16])
+        # registered functions built together last time: one group first (try_add splits it only if that fails),
+        # instead of groups of 16 (a 500-function file took ~9 min that way); then the new ones
+        old = [n for n in order if prio.get(n, float("inf")) != float("inf")]
+        olds = set(old); rest = [n for n in order if n not in olds]
+        if old: try_add(old)
+        for i in range(0, len(rest), 16):
+            try_add(rest[i:i + 16])
         if text is None:
             k2, r2, text, p2 = settle(seg, cfile, {}, td)
         open("src/%s.c" % fname, "w").write(text if text else render(seg, cfile, {})[0])
@@ -430,9 +435,15 @@ def registry():
         reg[(seg, name)] = open(p).read()
     return reg
 
+_FILES = None
 def file_of(seg, name):
-    hits = glob.glob("asm/nonmatchings/%s/*/%s.s" % (seg, name))
-    return hits[0].split("/")[3] if len(hits) == 1 else None
+    global _FILES
+    if _FILES is None:                      # one glob instead of one per function
+        _FILES = {}
+        for h in glob.glob("asm/nonmatchings/*/*/*.s"):
+            _, _, sg, cf, fn = h.split("/"); _FILES.setdefault((sg, fn[:-2]), []).append(cf)
+    hits = _FILES.get((seg, name), [])
+    return hits[0] if len(hits) == 1 else None
 
 LIBFILES = {tuple(k.split("/")) for k in json.load(open("tools/hh/libultra.json"))} if os.path.exists("tools/hh/libultra.json") else set()
 
@@ -552,8 +563,23 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
                 r = json.loads(l); key = (r["segment"], r["func"])
                 if r["verified"] == "MATCH" and key not in reg:
                     new[key] = open(workdir.attempt(b, r["func"], r["segment"])).read()
+        # skip candidates rejected before with the same text while their file's registered functions were the same:
+        # the loop re-offers the last few batches every cycle, and each retried reject costs a one-at-a-time rebuild of
+        # its file (cycles 23-25 hit the 60 min integrate timeout that way)
+        MEMO = "queue/srcbuild_reject_memo.jsonl"
+        sha = lambda t: hashlib.sha1(t.encode()).hexdigest()[:16]
+        byfile = {}
+        for (seg, n), t in reg.items(): byfile.setdefault((seg, file_of(seg, n)), []).append(n + sha(t))
+        def memo_key(key, text):
+            return "%s %s %s %s" % (key[0], key[1], sha(text), sha("".join(sorted(byfile.get((key[0], file_of(*key)), [])))))
+        seen = {json.loads(l)["key"] for l in open(MEMO)} if os.path.exists(MEMO) else set()
+        skipped = {k for k, t in new.items() if memo_key(k, t) in seen}
+        for k in skipped: new.pop(k)
         cands = dict(reg); cands.update(new)
         kept, rejected = run(cands, set(new))
+        with open(MEMO, "a") as fh:
+            for key, why in rejected.items():
+                if key in new: fh.write(json.dumps({"key": memo_key(key, new[key]), "why": why}) + "\n")
         added = 0
         for key in new:
             if key in kept:
@@ -563,4 +589,4 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         with open(log, "a") as fh:
             for key, why in rejected.items():
                 fh.write(json.dumps({"segment": key[0], "func": key[1], "why": why, "was_registered": key in reg}) + "\n")
-        print("added %d of %d new matches to the registry; %d rejected in context (see %s)" % (added, len(new), len(rejected), log))
+        print("added %d of %d new matches to the registry; %d rejected in context (see %s); %d skipped (rejected before, nothing changed)" % (added, len(new), len(rejected), log, len(skipped)))
