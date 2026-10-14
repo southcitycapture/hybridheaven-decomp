@@ -51,8 +51,6 @@ void func_802433E0(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_802433EC.s")
-
 struct func_80246478_Child {
     u8 pad0[0x78];
     s16 unk78;
@@ -73,6 +71,33 @@ struct func_80246478_Obj {
     u8 pad2[0x34];
     s16 unk94;
 };
+void func_80243488(struct func_80246478_Obj *arg0, s32 arg1);
+struct func_802438E4_Table {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+struct func_80246828_Triple {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+extern struct func_80246828_Triple D_802484C4;
+
+void func_802433EC(struct func_80246478_Obj *arg0, s32 arg1) {
+    s32 temp_a1;
+
+    temp_a1 = (s32) arg0->unk5C;
+    if (func_8012CE9C(arg1, (void *) temp_a1, *(struct func_802438E4_Table *) &D_802484C4, 1) == 0) {
+        func_80010550(arg1, (void *) temp_a1);
+        if (func_80133A24(0x47) != 0) {
+            func_801FBB30();
+            arg0->unk94 = 0x12C;
+            func_800058DC(arg0, &func_80243488);
+        }
+    }
+}
+
 
 
 void func_80243488(struct func_80246478_Obj *arg0, s32 arg1) {
@@ -130,11 +155,6 @@ struct func_802438E4_Obj {
     u32 unk2C;
     u8 pad1[0x2C];
     struct func_802438E4_Child *unk5C;
-};
-struct func_802438E4_Table {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
 };
 
 extern struct func_802438E4_Table D_802484DC;
@@ -215,11 +235,6 @@ void func_80244F98(struct func_80244F98_Obj *arg0, void *arg1) {
     func_800058DC(arg0, &func_80244FDC);
 }
 
-struct func_80246828_Triple {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 
 struct func_80244FDC_Obj {
     u8 pad0[0x5C];
@@ -467,7 +482,6 @@ struct func_80245F30_Obj {
     u16 unkA4;
 };
 
-extern struct func_80246828_Triple D_802484C4;
 
 void func_80245F30(struct func_80245F30_Obj *arg0, s32 arg1) {
     s32 temp_a1;

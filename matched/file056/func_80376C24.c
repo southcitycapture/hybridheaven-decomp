@@ -1,11 +1,5 @@
 #include "common.h"
 
-struct func_80376C24_Struct {
-    u8 pad0[0x2C];
-    s32 unk2C;
-    u8 pad30[0x2C];
-    s32 unk5C;
-};
 
 extern void func_800058DC(void *, void *);
 extern s32 func_80010550();

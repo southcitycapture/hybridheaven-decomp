@@ -1,0 +1,8 @@
+2026-10-14T09:51:28+00:00 start  usage-gate (brief, weekday): weekly 31% (max 60), 5-hour 29% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T09:51:28+00:00 usage  usage-gate (brief, weekday): weekly 31% (max 60), 5-hour 29% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T09:53:29+00:00 usage  usage-gate (brief, weekday): weekly 31% (max 60), 5-hour 29% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T09:55:29+00:00 usage  usage-gate (brief, weekday): weekly 31% (max 60), 5-hour 29% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T09:57:29+00:00 usage  usage-gate (brief, weekday): weekly 31% (max 60), 5-hour 29% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T09:59:29+00:00 usage  usage-gate (brief, weekday): weekly 31% (max 60), 5-hour 29% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T09:59:34+00:00 workers finished  usage-gate (brief, weekday): weekly 31% (max 60), 5-hour 29% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T09:59:35+00:00 integrated: 

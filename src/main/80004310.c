@@ -83,7 +83,16 @@ join:
     D_8008946D = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80004310/func_80004484.s")
+extern s32 D_801BBC10;
+
+s32 func_80004484(s32 arg0, s32 arg1) {
+    s32 sp18[2];
+
+    arg1 = (D_801BBC10 + 7) & ~7;
+    sp18[0] = arg1;
+    func_8000469C(arg0, arg1);
+    return sp18[0];
+}
 
 
 extern s32 D_80089470;
@@ -100,7 +109,6 @@ s32 func_800044BC(s32 arg0) {
 
 
 s32 func_80004838(s32, s32);
-extern s32 D_801BBC10;
 
 s32 func_800044FC(s32 arg0) {
     s32 temp_v0;

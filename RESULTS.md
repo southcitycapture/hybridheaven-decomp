@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-14: **34.73% of the code** (12176 of 15833 functions, including duplicates).
+Progress as of 2026-10-14: **35.57% of the code** (12238 of 15833 functions, including duplicates).
 
-**12095 model runs, $964.84 API-equivalent in total** (local and cloud). Of the **12173 functions now in C**, **4433 were matched by AI workers** (≈ $0.218 per function, failures included), **7514 were placed by propagation** (a match copied onto identical-shape code), 141 came from decomp-permuter and 85 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**12515 model runs, $1122.22 API-equivalent in total** (local and cloud). Of the **12235 functions now in C**, **4494 were matched by AI workers** (≈ $0.250 per function, failures included), **7515 were placed by propagation** (a match copied onto identical-shape code), 141 came from decomp-permuter and 85 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -131,5 +131,23 @@ Progress as of 2026-10-14: **34.73% of the code** (12176 of 15833 functions, inc
 | `loop0018` | loop0018 | haiku-5-5 | 60 | 10 | 17% | $0.91 | $0.091 | 24% → 24% |
 | `loop0018b` | loop0018b | opus-5-5 | 10 | 2 | 20% | $26.94 | $13.470 | 24% → 25% |
 | `unify_loop0018` | unify_loop0018 | unify (no model) | 41 | 1 | 2% | $0.00 | – |  |
+| `loop0019` | loop0019 | haiku-5-5 | 60 | 13 | 22% | $0.92 | $0.071 | 25% → 25% |
+| `loop0019b` | loop0019b | opus-5-5 | 10 | 2 | 20% | $28.63 | $14.317 | 25% → 26% |
+| `unify_loop0019` | unify_loop0019 | unify (no model) | 43 | 3 | 7% | $0.00 | – |  |
+| `loop0020` | loop0020 | haiku-5-5 | 60 | 15 | 25% | $0.97 | $0.065 | 26% → 27% |
+| `loop0020b` | loop0020b | opus-5-5 | 10 | 3 | 30% | $27.01 | $9.003 | 27% → 28% |
+| `unify_loop0020` | unify_loop0020 | unify (no model) | 47 | 7 | 15% | $0.00 | – |  |
+| `loop0021` | loop0021 | haiku-5-5 | 60 | 15 | 25% | $0.99 | $0.066 | 28% → 28% |
+| `loop0021b` | loop0021b | opus-5-5 | 10 | 1 | 10% | $20.47 | $20.469 | 28% → 29% |
+| `unify_loop0021` | unify_loop0021 | unify (no model) | 44 | 4 | 9% | $0.00 | – |  |
+| `loop0022` | loop0022 | haiku-5-5 | 60 | 14 | 23% | $1.03 | $0.074 | 29% → 29% |
+| `loop0022b` | loop0022b | opus-5-5 | 10 | 3 | 30% | $28.66 | $9.552 | 29% → 30% |
+| `unify_loop0022` | unify_loop0022 | unify (no model) | 42 | 2 | 5% | $0.00 | – |  |
+| `loop0023` | loop0023 | haiku-5-5 | 60 | 19 | 32% | $0.99 | $0.052 | 30% → 30% |
+| `loop0023b` | loop0023b | opus-5-5 | 10 | 1 | 10% | $26.14 | $26.145 | 30% → 31% |
+| `unify_loop0023` | unify_loop0023 | unify (no model) | 40 | 0 | 0% | $0.00 | – |  |
+| `loop0024` | loop0024 | haiku-5-5 | 60 | 33 | 55% | $1.01 | $0.031 | 31% → 31% |
+| `loop0024b` | loop0024b | opus-5-5 | 10 | 4 | 40% | $20.55 | $5.138 | 31% → 32% |
+| `unify_loop0024` | unify_loop0024 | unify (no model) | 40 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

@@ -1,19 +1,7 @@
 #include "context.h"
 
-struct func_8024593C_Inner {
-    u8 pad0[0x10];
-    s16 unk10;
-};
 
-struct func_8024593C_Outer {
-    u8 pad0[0x30];
-    struct func_8024593C_Inner *unk30;
-};
 
-struct func_8024593C_Arg0 {
-    u8 pad0[0x90];
-    u16 unk90;
-};
 
 extern f64 D_80257148;
 extern void func_802459C8(s32 arg0, s32 arg1);

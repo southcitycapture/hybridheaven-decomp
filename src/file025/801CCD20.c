@@ -14,7 +14,18 @@ void func_801CCD20(s32 arg0) {
     func_800058DC(arg0, func_801CCD60);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CCD20/func_801CCD60.s")
+void func_801CCDAC(s32 arg0, s32 arg1);
+
+extern void func_801CD71C();
+extern s32 func_801BF968();
+
+void func_801CCD60(s32 arg0, s32 arg1) {
+    D_801E0C38 = 1;
+    func_801CD71C();
+    if (func_801BF968() != 0) {
+        func_800058DC(arg0, &func_801CCDAC);
+    }
+}
 
 
 extern void func_801BF850(void *a, s32 b, void *c);

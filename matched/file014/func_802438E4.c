@@ -10,11 +10,6 @@ struct func_802438E4_Obj {
     u8 pad1[0x2C];
     struct func_802438E4_Child *unk5C;
 };
-struct func_802438E4_Table {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 
 extern s32 func_80242890();
 extern s32 func_8012CE9C(s32, void *, struct func_802438E4_Table, s32);

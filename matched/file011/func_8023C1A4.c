@@ -1,19 +1,7 @@
 #include "context.h"
 
-struct func_8023C1A4_StructB {
-    u8 padB[0xB];
-    u8 unkB;
-};
 
-struct func_8023C1A4_StructA {
-    u8 padA[0x30];
-    struct func_8023C1A4_StructB *unk30;
-};
 
-struct func_8023C1A4_Struct {
-    u8 pad0[0x24];
-    struct func_8023C1A4_StructA *unk24;
-};
 
 extern void func_801170DC(s32);
 extern void func_80005700(void *);

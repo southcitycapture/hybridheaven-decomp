@@ -1,10 +1,5 @@
 #include "context.h"
 extern void func_8014B4A0(u16, f32 *);
-typedef struct func_8037769C_Glob {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_8037769C_Glob;
 extern func_8037769C_Glob D_80388778;
 extern void func_80011140(s32, void *, func_8037769C_Glob, s32);
 

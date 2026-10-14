@@ -118,9 +118,9 @@ The numbers below are generated from the run logs in `queue/*/results.jsonl` (se
 batch). Costs are API-equivalent figures as reported by Claude Code; the runs themselves used a Claude Max subscription,
 and the "weekly usage" column is the subscription's own usage meter.
 
-Progress as of 2026-10-14: **34.73% of the code** (12176 of 15833 functions, including duplicates).
+Progress as of 2026-10-14: **35.57% of the code** (12238 of 15833 functions, including duplicates).
 
-**12095 model runs, $964.84 API-equivalent in total** (local and cloud). Of the **12173 functions now in C**, **4433 were matched by AI workers** (≈ $0.218 per function, failures included), **7514 were placed by propagation** (a match copied onto identical-shape code), 141 came from decomp-permuter and 85 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**12515 model runs, $1122.22 API-equivalent in total** (local and cloud). Of the **12235 functions now in C**, **4494 were matched by AI workers** (≈ $0.250 per function, failures included), **7515 were placed by propagation** (a match copied onto identical-shape code), 141 came from decomp-permuter and 85 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 Per-batch table: [RESULTS.md](RESULTS.md).
 

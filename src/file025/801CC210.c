@@ -137,10 +137,13 @@ s32 func_801CC540(void) {
     return D_801DAAC8 == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CC210/func_801CC550.s")
-
-
 extern u8 D_801DAACC[];
+
+void func_801CC550(s32 arg0) {
+    ((s32 *)D_801DAACC)[arg0] = 0;
+}
+
+
 
 s32 func_801CC564(s32 arg0, s32 (*arg1)(), s32 arg2, u16 arg3, u16 arg4, f32 arg5, s32 (*arg6)(), s32 arg7, u16 arg8, u16 arg9, f32 arg10) {
     s32 *temp_v1;

@@ -11,15 +11,18 @@ void func_802408F0(void) {
     ((func_802408F0_Struct *)D_801BCCF0)->unk92 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/802408F0/func_80240904.s")
-
-
 typedef struct func_80240918_Struct {
     u8 pad[0x92];
     u16 unk92;
 } func_80240918_Struct;
-
 extern func_80240918_Struct *D_801BCCF4;
+
+void func_80240904(void) {
+    D_801BCCF4->unk92 = 1;
+}
+
+
+
 
 void func_80240918(void) {
     D_801BCCF4->unk92 = 0;

@@ -11,22 +11,8 @@ struct func_80241834_StructArg0 {
     f32 unk98;
 };
 
-struct func_80241834_StructObj2C {
-    u8 pad0[0xC];
-    f32 unkC;
-    u8 pad1[0x12 - 0x10];
-    u16 unk12;
-};
 
-struct func_80241834_StructObj1 {
-    u8 pad0[0x2C];
-    struct func_80241834_StructObj2C *unk2C;
-};
 
-struct func_80241834_StructBBBF0 {
-    u8 pad0[0xE0];
-    struct func_80241834_StructObj1 *unkE0;
-};
 
 extern struct func_80241834_StructBBBF0 D_801BBBF0;
 
