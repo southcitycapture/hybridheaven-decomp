@@ -164,6 +164,7 @@ def main():
     st = load(D + "/state.json", {})
     while True:
         cfg = dict(DEFAULTS, **load(D + "/config.json", {}))
+        st = load(D + "/state.json", st)     # re-read: a hand repair while paused must not be overwritten from memory
         if os.path.exists(D + "/PAUSE"):
             status(cfg, st, "paused: " + open(D + "/PAUSE").read().strip()[:300]); time.sleep(600); continue
         w, reset = usage()

@@ -365,9 +365,66 @@ s32 func_801E2914(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file049/801E1BE0/func_801E2968.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file049/801E1BE0/func_801E3814.s")
+typedef struct func_801E3A38_StructC {
+    u8 pad[0xC];
+    f32 unkC;
+} func_801E3A38_StructC;
+typedef struct func_801E3A38_StructB {
+    u8 pad[0x30];
+    func_801E3A38_StructC *unk30;
+} func_801E3A38_StructB;
+typedef struct func_801E3A38_StructA {
+    u8 pad[0xC];
+    func_801E3A38_StructB *unkC;
+} func_801E3A38_StructA;
+extern func_801E3A38_StructA *D_8038D8D0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file049/801E1BE0/func_801E3840.s")
+typedef struct func_801E3814_StructC {
+    u8 pad[0x12];
+    s16 unk12;
+} func_801E3814_StructC;
+
+typedef struct func_801E3814_StructB {
+    u8 pad[0x30];
+    func_801E3814_StructC *unk30;
+} func_801E3814_StructB;
+
+typedef struct func_801E3814_StructA {
+    u8 pad[0x18];
+    func_801E3814_StructB *unk18;
+} func_801E3814_StructA;
+
+s32 func_801E3814(s32 arg0, s32 arg1) {
+    func_801E3814_StructC *temp_v1;
+
+    temp_v1 = ((func_801E3814_StructA *) D_8038D8D0)->unk18->unk30;
+    temp_v1->unk12 = (s16) (temp_v1->unk12 + 0x22);
+    return 3;
+}
+
+
+typedef struct func_801E3840_StructC {
+    u8 pad[0x12];
+    s16 unk12;
+} func_801E3840_StructC;
+
+typedef struct func_801E3840_StructB {
+    u8 pad[0x30];
+    func_801E3840_StructC *unk30;
+} func_801E3840_StructB;
+
+typedef struct func_801E3840_StructA {
+    u8 pad[0x18];
+    func_801E3840_StructB *unk18;
+} func_801E3840_StructA;
+
+s32 func_801E3840(s32 arg0, s32 arg1) {
+    func_801E3840_StructC *temp_v1;
+
+    temp_v1 = ((func_801E3840_StructA *) D_8038D8D0)->unk18->unk30;
+    temp_v1->unk12 = (s16) (temp_v1->unk12 + 0x22);
+    return 4;
+}
 
 
 s32 func_801E386C(s32 arg0, s32 arg1) {
@@ -416,22 +473,9 @@ s32 func_801E39E0(s32 arg0, s32 arg1) {
 }
 
 
-typedef struct func_801E3A38_StructC {
-    u8 pad[0xC];
-    f32 unkC;
-} func_801E3A38_StructC;
 
-typedef struct func_801E3A38_StructB {
-    u8 pad[0x30];
-    func_801E3A38_StructC *unk30;
-} func_801E3A38_StructB;
 
-typedef struct func_801E3A38_StructA {
-    u8 pad[0xC];
-    func_801E3A38_StructB *unkC;
-} func_801E3A38_StructA;
 
-extern func_801E3A38_StructA *D_8038D8D0;
 extern s32 func_801C1134(s32 a0, s32 a1);
 
 s32 func_801E3A38(s32 arg0, s32 arg1) {

@@ -2,21 +2,12 @@
 extern u16 D_801BCAE0;
 s32 func_800058DC(void *arg0, void *arg1);
 
-typedef struct func_801EFD14_Struct {
-    u8 pad[0x5C];
-    void *unk5C;
-} func_801EFD14_Struct;
 
 typedef struct func_801EFD14_Obj {
     u8 pad[0x1C];
     s32 unk1C;
 } func_801EFD14_Obj;
 
-typedef struct func_801EFD14_Table {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_801EFD14_Table;
 
 extern s32 func_80010550(s32, void *);
 extern void func_80011140(s32, void *, func_801EFD14_Table, s32);

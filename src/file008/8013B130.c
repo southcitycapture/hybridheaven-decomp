@@ -107,7 +107,13 @@ void func_8013B83C(struct func_8013B83C_Outer *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013BCD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013BD58.s")
+
+extern void func_80005700(s32);
+
+void func_8013BD58(s32 arg0, s32 arg1) {
+    func_8013B208((struct func_8013B208_Struct *) arg0);
+    func_80005700(arg0);
+}
 
 
 s32 func_8013B19C(u16);

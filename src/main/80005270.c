@@ -405,7 +405,10 @@ void func_80005F6C(s32 arg0, struct func_80005E44_Struct *arg1) {
     func_80005E44(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005F8C.s")
+
+void func_80005F8C(s32 arg0, void *arg1, s32 arg2) {
+    func_80005ED8(arg0, arg1, arg2);
+}
 
 
 typedef struct func_80005FAC_Node {

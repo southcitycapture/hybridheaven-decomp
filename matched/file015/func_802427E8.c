@@ -1,9 +1,4 @@
 #include "context.h"
-struct func_80243290_StructTriple {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 extern s32 func_8013A1B4();
 extern s32 func_80010550(s32, s32, s32);
 

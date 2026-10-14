@@ -1,13 +1,5 @@
 #include "context.h"
 
-struct func_80246828_Obj {
-    u8 pad0[0x5C];
-    s32 unk5C;
-    u8 pad1[0x34];
-    u16 unk94;
-    u8 pad2[0xE];
-    u16 unkA4;
-};
 extern struct func_80246828_Triple D_802484C4;
 extern s32 func_8012CE9C(s32, s32, struct func_80246828_Triple, s32);
 extern s32 func_801268F4(s32);

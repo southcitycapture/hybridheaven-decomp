@@ -98,7 +98,15 @@ u8 func_801DFE00(s32 arg0) {
     return sp1F;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DFE28.s")
+
+
+u8 func_801DFE28(s32 arg0) {
+    u8 sp1F;
+    u8 sp1E;
+
+    func_801DFCAC(arg0, &sp1F, &sp1E);
+    return sp1E;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DFE50.s")
 

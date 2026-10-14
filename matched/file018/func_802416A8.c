@@ -1,26 +1,8 @@
 #include "context.h"
 
-struct func_802416A8_Struct0 {
-    u8 pad[0x92];
-    u16 unk92;
-};
 
-struct func_802416A8_Struct1 {
-    u8 pad0[0x18];
-    f32 unk18;
-    u8 pad1[0x4];
-    f32 unk20;
-};
 
-struct func_802416A8_Struct2 {
-    u8 pad0[0x14];
-    struct func_802416A8_Struct3 *unk14;
-};
 
-struct func_802416A8_Struct3 {
-    u8 pad0[0x30];
-    struct func_802416A8_Struct1 *unk30;
-};
 
 /* D_801BCC25 + 0x9B is 0x801BCCC0, so the pointer sits at +0x9C from D_801BCC24 (4-byte aligned) */
 struct func_802416A8_Globals {

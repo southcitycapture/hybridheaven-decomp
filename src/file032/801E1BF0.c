@@ -94,7 +94,7 @@ extern s32 func_801CD044();
 extern s32 func_801CE284(void);
 extern s32 func_801CEDE4(void);
 extern s32 func_801D11D4(void);
-extern s32 func_8038C9D8(void);
+extern s32 func_8038C9D8();
 extern s32 func_8038CBF0(void);
 extern s32 func_8038D850;
 extern u8 D_8017AE98[];
@@ -2584,7 +2584,17 @@ s32 func_801E6D14(s32 arg0, s32 arg1) {
     return 0xA;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E6DC0.s")
+
+
+s32 func_801E6DC0(s32 arg0, s32 arg1) {
+    if (func_8038C9D8() != 0) {
+        return 0xB;
+    }
+    if (func_801C37FC() != 0) {
+        return 0xB;
+    }
+    return 0xC;
+}
 
 
 

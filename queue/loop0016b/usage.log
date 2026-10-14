@@ -1,0 +1,15 @@
+2026-10-14T01:13:48+00:00 start: usage-gate (brief, weekday): weekly 21% (max 60), 5-hour 10% (max 90), weekly resets 2026-10-19T22:59Z -> GO
+2026-10-14T01:13:48+00:00 start  usage-gate (brief, weekday): weekly 21% (max 60), 5-hour 10% (max 90), weekly resets 2026-10-19T22:59Z -> GO
+2026-10-14T01:13:49+00:00 usage  usage-gate (brief, weekday): weekly 21% (max 60), 5-hour 10% (max 90), weekly resets 2026-10-19T22:59Z -> GO
+2026-10-14T01:15:49+00:00 usage  usage-gate (brief, weekday): weekly 21% (max 60), 5-hour 10% (max 90), weekly resets 2026-10-19T22:59Z -> GO
+2026-10-14T01:17:49+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 12% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T01:19:49+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 12% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T01:21:49+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 12% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T01:23:50+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 14% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T01:25:50+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 14% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T01:27:50+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 14% (max 90), weekly resets 2026-10-19T23:00Z -> GO
+2026-10-14T01:29:50+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 15% (max 90), weekly resets 2026-10-19T22:59Z -> GO
+2026-10-14T01:31:50+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 15% (max 90), weekly resets 2026-10-19T22:59Z -> GO
+2026-10-14T01:32:47+00:00 workers finished  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 15% (max 90), weekly resets 2026-10-19T22:59Z -> GO
+2026-10-14T01:32:47+00:00 integrated: 
+2026-10-14T01:32:49+00:00 done: usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 15% (max 90), weekly resets 2026-10-19T22:59Z -> GO

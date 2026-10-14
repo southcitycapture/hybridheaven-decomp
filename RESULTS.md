@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-13: **33.68% of the code** (12063 of 15833 functions, including duplicates).
+Progress as of 2026-10-14: **34.73% of the code** (12176 of 15833 functions, including duplicates).
 
-**11626 model runs, $790.05 API-equivalent in total** (local and cloud). Of the **12059 functions now in C**, **4332 were matched by AI workers** (≈ $0.182 per function, failures included), **7506 were placed by propagation** (a match copied onto identical-shape code), 139 came from decomp-permuter and 82 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**12095 model runs, $964.84 API-equivalent in total** (local and cloud). Of the **12173 functions now in C**, **4433 were matched by AI workers** (≈ $0.218 per function, failures included), **7514 were placed by propagation** (a match copied onto identical-shape code), 141 came from decomp-permuter and 85 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -109,9 +109,27 @@ Progress as of 2026-10-13: **33.68% of the code** (12063 of 15833 functions, inc
 | `loop0011` | loop0011 | haiku-5-5 | 60 | 60 | 100% | $0.36 | $0.006 | 10% → 10% |
 | `loop0011b` | loop0011b | opus-5-5 | 10 | 1 | 10% | $35.30 | $35.299 | 10% → 12% |
 | `unify_loop0011` | unify_loop0011 | unify (no model) | 47 | 0 | 0% | $0.00 | – |  |
-| `loop0012` | loop0012 | haiku-5-5 | 60 | 51 | 85% | $0.42 | $0.008 | 12% → 12% |
-| `loop0012b` | loop0012b | opus-5-5 | 10 | 3 | 30% | $25.39 | $8.464 | 12% → 13% |
-| `unify_loop0012` | unify_loop0012 | unify (no model) | 54 | 6 | 11% | $0.00 | – |  |
 | `unify_replay12` | unify_replay12 | unify (no model) | 54 | 6 | 11% | $0.00 | – |  |
+| `loop0012` | loop0012 | haiku-5-5 | 109 | 91 | 83% | $0.78 | $0.009 | 12% → 16% |
+| `loop0012b` | loop0012b | opus-5-5 | 10 | 3 | 30% | $25.39 | $8.464 | 12% → 16% |
+| `unify_loop0012` | unify_loop0012 | unify (no model) | 51 | 4 | 8% | $0.00 | – |  |
+| `loop0013` | loop0013 | haiku-5-5 | 60 | 14 | 23% | $0.85 | $0.061 | 16% → 16% |
+| `loop0013b` | loop0013b | opus-5-5 | 10 | 3 | 30% | $27.34 | $9.114 | 16% → 18% |
+| `unify_loop0013` | unify_loop0013 | unify (no model) | 49 | 2 | 4% | $0.00 | – |  |
+| `loop0014` | loop0014 | haiku-5-5 | 60 | 11 | 18% | $1.01 | $0.092 | 18% → 18% |
+| `loop0014b` | loop0014b | opus-5-5 | 10 | 1 | 10% | $35.39 | $35.390 | 18% → 20% |
+| `unify_loop0014` | unify_loop0014 | unify (no model) | 48 | 3 | 6% | $0.00 | – |  |
+| `loop0015` | loop0015 | haiku-5-5 | 60 | 10 | 17% | $0.96 | $0.096 | 20% → 20% |
+| `loop0015b` | loop0015b | opus-5-5 | 10 | 3 | 30% | $30.89 | $10.297 | 20% → 21% |
+| `unify_loop0015` | unify_loop0015 | unify (no model) | 45 | 0 | 0% | $0.00 | – |  |
+| `loop0016` | loop0016 | haiku-5-5 | 60 | 10 | 17% | $0.92 | $0.092 | 21% → 21% |
+| `loop0016b` | loop0016b | opus-5-5 | 10 | 4 | 40% | $22.24 | $5.561 | 21% → 22% |
+| `unify_loop0016` | unify_loop0016 | unify (no model) | 45 | 2 | 4% | $0.00 | – |  |
+| `loop0017` | loop0017 | haiku-5-5 | 60 | 8 | 13% | $0.90 | $0.112 | 23% → 23% |
+| `loop0017b` | loop0017b | opus-5-5 | 10 | 1 | 10% | $26.07 | $26.070 | 23% → 24% |
+| `unify_loop0017` | unify_loop0017 | unify (no model) | 44 | 3 | 7% | $0.00 | – |  |
+| `loop0018` | loop0018 | haiku-5-5 | 60 | 10 | 17% | $0.91 | $0.091 | 24% → 24% |
+| `loop0018b` | loop0018b | opus-5-5 | 10 | 2 | 20% | $26.94 | $13.470 | 24% → 25% |
+| `unify_loop0018` | unify_loop0018 | unify (no model) | 41 | 1 | 2% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

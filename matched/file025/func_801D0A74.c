@@ -1,11 +1,5 @@
 #include "context.h"
 
-struct func_801D0A74_Struct {
-    u8 pad0[0x24];
-    u8 *unk24;
-    u8 pad1[0x30 - 0x28];
-    u8 *unk30;
-};
 
 extern void func_80006214(s32);
 extern struct func_801D0A74_Struct D_8008DA88;

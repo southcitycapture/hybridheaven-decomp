@@ -1,5 +1,10 @@
 #include "common.h"
 
+extern f32 func_8001518C();                                /* extern */
+extern void func_80014B88(void *, s16, s16, s16);
+extern void func_80014E14(void *, void *, s32, s32, f32);
+extern void func_80029D30(void *, s32);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_800146A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80014798.s")
@@ -8,7 +13,6 @@
 
 
 void func_80014990(void *a0, f32 a1, f32 a2, f32 a3, s32 a4, s32 a5, s32 a6);
-void func_80029D30(void *a0, s32 a1);
 
 void func_80014B2C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s16 arg4, s16 arg5, s16 arg6) {
     s32 sp28[16];
@@ -25,11 +29,23 @@ void func_80014B2C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s16 arg4, s16 arg5, s
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80014F10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_8001500C.s")
+
+struct func_8001500C_Struct {
+    u8 pad[0x30];
+    f32 f30;
+    f32 f34;
+    f32 f38;
+};
+
+void func_8001500C(struct func_8001500C_Struct *arg0, s16 arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9) {
+    func_80014B88(arg0, arg1, arg2, arg3);
+    func_80014E14(arg0, arg0, arg4, arg5, arg6);
+    arg0->f30 = arg7;
+    arg0->f34 = arg8;
+    arg0->f38 = arg9;
+}
 
 
-extern void func_80014B88(void *, s16, s16, s16);
-extern void func_80014E14(void *, void *, s32, s32, f32);
 
 struct func_80015088_Struct {
     u8 pad[0x30];
@@ -88,7 +104,6 @@ void func_80015110(s32 arg0, struct func_80015110_Struct *arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_8001518C.s")
 
 
-f32 func_8001518C();                                /* extern */
 
 f32 func_80015214(f32 arg0) {
     if (((f64) arg0 < -180.0) || (180.0 <= (f64) arg0)) {

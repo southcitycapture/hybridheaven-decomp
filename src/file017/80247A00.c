@@ -39,7 +39,15 @@ void func_802482A0(func_802482A0_StructObj *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80247A00/func_80248334.s")
+
+extern void func_80241910(f32 a, f32 b, f32 c);
+
+void func_80248334(void) {
+    extern void func_80248538();
+
+    func_80248538();
+    func_80241910(0.0f, -200.0f, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80247A00/func_8024836C.s")
 

@@ -1,16 +1,6 @@
 #include "common.h"
 
-struct func_801C4848_Vec {
-    u8 pad0[4];
-    f32 x;
-    u8 pad1[4];
-    f32 y;
-};
 
-struct func_801C4848_Obj {
-    u8 pad0[0x2C];
-    struct func_801C4848_Vec *vec;
-};
 
 struct func_801C4848_Arg {
     u8 pad0[0x24];

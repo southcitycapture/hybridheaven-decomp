@@ -16,6 +16,7 @@ extern s8 D_801BCC21;
 extern s8 D_8023E3B0;
 extern s8 func_802242D0(s32);
 extern u8 D_80181D78[];
+extern u8 D_801BBC06[];
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern u8 D_8023E3A0;
@@ -778,7 +779,14 @@ s32 func_80236C60(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80236C9C.s")
+
+
+s32 func_80236C9C(void) {
+    if (D_801BBC06[4] != 0) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/80233430/func_80236CC0.s")
 

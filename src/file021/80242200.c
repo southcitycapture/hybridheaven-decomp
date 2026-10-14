@@ -246,7 +246,10 @@ void func_80242D88(void *arg0, s32 arg1)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_80242DD8.s")
+
+void func_80242DD8(void *arg0, s32 arg1) {
+    func_80242810(arg0);
+}
 
 
 
@@ -361,7 +364,10 @@ void func_8024358C(struct func_8024358C_StructArg0 *arg0, struct func_8024358C_S
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_802436A8.s")
+
+void func_802436A8(void *arg0, s32 arg1) {
+    func_80242810(arg0);
+}
 
 
 struct func_80243A00_Arg0;
@@ -807,7 +813,29 @@ void func_80244A54(struct func_80244A54_Arg0 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file021/80242200/func_80244AC4.s")
+/* starting point: func_80243A00 (file021), whose assembly is 100% the same as this function's */
+
+struct func_80244AC4_Inner {
+    u8 pad0[0x8];
+    f32 unk8;
+};
+
+struct func_80244AC4_Outer {
+    u8 pad0[0x30];
+    struct func_80244AC4_Inner *unk30;
+};
+
+struct func_80244AC4_Arg0 {
+    u8 pad0[0x24];
+    struct func_80244AC4_Outer *unk24;
+    u8 pad1[0x7C - 0x28];
+    f32 unk7C;
+};
+
+void func_80244AC4(struct func_80244AC4_Arg0 *arg0, s32 arg1) {
+    arg0->unk24->unk30->unk8 = -34.0f;
+    arg0->unk7C = arg0->unk24->unk30->unk8;
+}
 
 
 /* Declarations as they appear in context.h (used before this function's position in the file). */
