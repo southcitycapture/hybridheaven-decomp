@@ -1,17 +1,5 @@
 #include "context.h"
 
-typedef struct func_802474E4_StructNode {
-    u8 pad0[0x4];
-    f32 unk4;
-    u8 pad8[0x4];
-    f32 unkC;
-    u8 pad10[0x2];
-    s16 unk12;
-} func_802474E4_StructNode;
-typedef struct func_802474E4_StructMid {
-    u8 pad0[0x2C];
-    func_802474E4_StructNode *unk2C;
-} func_802474E4_StructMid;
 typedef struct func_802474E4_Struct {
     u8 pad0[0x24];
     func_802474E4_StructMid *unk24;

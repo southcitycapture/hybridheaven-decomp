@@ -3,11 +3,6 @@ typedef struct func_801EFD14_Struct {
     u8 pad[0x5C];
     void *unk5C;
 } func_801EFD14_Struct;
-typedef struct func_801EFD14_Table {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_801EFD14_Table;
 extern s32 func_80010550(s32, void *);
 extern void func_80011140(s32, void *, func_801EFD14_Table, s32);
 extern func_801EFD14_Table D_80216BCC;

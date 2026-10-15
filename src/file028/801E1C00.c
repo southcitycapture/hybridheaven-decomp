@@ -2191,7 +2191,35 @@ s32 func_801E6488(s32 arg0, s32 arg1) {
     return 8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801E64E0.s")
+extern void func_801C0D04(s32, s32);
+extern s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
+extern void func_801C0EB0(s32 arg0, s32 arg1);
+extern u64 func_801C0F18(s32, s32);
+extern f64 func_80034C24();
+
+extern f64 D_80208860;
+
+s32 func_801E64E0(s32 arg0, s32 arg1) {
+    if (D_80208E20 == 0) {
+        goto case0;
+    }
+    if (D_80208E20 == 1) {
+        goto case1;
+    }
+    return 8;
+case0:
+    func_801C0D04(4, 6);
+    D_80208E20 = 1;
+    goto end;
+case1:
+    if (func_801C0DE4(4, 6, 0x40000000) != 0) {
+        func_801C0EB0(4, 6);
+        return 9;
+    }
+    *(f32 *)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(func_801DAAF0 + 0x24) + 8) + 8) + 8) + 8) + 8) + 8) + 8) + 0x24) + 0x2C) + 4) = (f32) (((f32) (func_80034C24(func_801C0F18(4, 6)) / D_80208860) * 0.5f * 18.0f) + -9.0f);
+end:
+    return 8;
+}
 
 
 s32 func_801E65E4(s32 arg0, s32 arg1) {
@@ -5043,7 +5071,30 @@ s32 func_801EB418(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801EB470.s")
+
+extern f64 D_802089A0;
+
+s32 func_801EB470(s32 arg0, s32 arg1) {
+    if (D_802061E8 == 0) {
+        goto case0;
+    }
+    if (D_802061E8 == 1) {
+        goto case1;
+    }
+    return 3;
+case0:
+    func_801C0D04(3, 1);
+    D_802061E8 = 1;
+    goto end;
+case1:
+    if (func_801C0DE4(3, 1, 0x40400000) != 0) {
+        func_801C0EB0(3, 1);
+        return 4;
+    }
+    *(s16 *)(*(u8 **)(*(u8 **)((u8 *)D_8038D8D0 + 4) + 0x30) + 0x12) = (s16)(s32)((((f32)(func_80034C24(func_801C0F18(3, 1)) / D_802089A0) / 3.0f) * 180.0f * 2048.0f) / 90.0f);
+end:
+    return 3;
+}
 
 
 s32 func_801EB570(s32 arg0, s32 arg1) {
@@ -5307,7 +5358,6 @@ s32 func_801EBC64(s32 arg0, s32 arg1) {
 }
 
 
-extern void func_801C0D04(s32, s32);
 extern s32 D_80206298;
 
 s32 func_801EBD2C(s32 arg0, s32 arg1)
@@ -6672,8 +6722,6 @@ s32 func_801EF33C(s32 arg0, s32 arg1) {
 }
 
 
-extern s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
-extern void func_801C0EB0(s32 arg0, s32 arg1);
 
 s32 func_801EF394(s32 arg0, s32 arg1) {
     if (D_80206510 == 0) {
@@ -9107,8 +9155,6 @@ s32 func_801F2DE8(s32 arg0, s32 arg1) {
 }
 
 
-extern u64 func_801C0F18(s32, s32);
-extern f64 func_80034C24();
 extern f64 D_80208A28;
 extern f64 D_80208A30;
 extern f64 D_80208A38;

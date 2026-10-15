@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern f32 D_8025C584;
+extern f32 D_8025C588;
+extern f32 D_8025C58C;
 extern f32 D_8025C5CC;
 extern f32 D_8025C5DC;
 extern f32 D_8025C5E8;
@@ -29,6 +32,8 @@ extern u8 D_80164F40[];
 extern u8 D_8017B6C0[];
 extern u8 D_80258FE0[];
 extern u8 D_80259098[];
+extern u8 D_8025C000[];
+extern u8 D_8025C038[];
 extern u8 D_8025C338[];
 extern u8 D_8025C705;
 extern u8 D_8025C7E8;
@@ -60,9 +65,43 @@ extern void func_8024CA4C();
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_80244CEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_80244F28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_80245010.s")
+typedef struct func_80244F28_StructMid {
+    u8 pad0[0x2C];
+    u8 *unk2C;
+} func_80244F28_StructMid;
+
+
+s32 func_80244F28(s32 arg0) {
+    if (*(f32 *)((*(func_80244F28_StructMid **)(D_8025C000 - 0xA0330))->unk2C + 8) < 199.0f) {
+        func_8011AAF4(D_8025C000, 0x182, arg0, 0, 1, 4.0f, 37.0f, 352.0f, D_8025C584, 4294967296.0f, 28.0f, 324.0f, 346.0f, 0.0f, 35.0f, -1, -1);
+        return 1;
+    }
+    return 0;
+}
+
+typedef struct func_802474E4_StructNode {
+    u8 pad0[0x4];
+    f32 unk4;
+    u8 pad8[0x4];
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_802474E4_StructNode;
+typedef struct func_802474E4_StructMid {
+    u8 pad0[0x2C];
+    func_802474E4_StructNode *unk2C;
+} func_802474E4_StructMid;
+extern func_802474E4_StructMid *D_801BBCD0;
+
+
+s32 func_80245010(s32 arg0) {
+    if (*(f32 *)(*(u8 **)((u8 *)D_801BBCD0 + 0x2C) + 8) < 199.0f) {
+        func_8011AAF4(D_8025C038, 0x18D, (void *)arg0, 0, 1, 4.0f, -10.0f, D_8025C588, 250.0f, 4294967296.0f, -8.0f, 278.0f, D_8025C58C, 0.0f, 35.0f, -1, -1);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_802450F8.s")
 
@@ -334,18 +373,6 @@ void func_80247420(func_80247420_Struct *arg0, s32 arg1) {
 }
 
 
-typedef struct func_802474E4_StructNode {
-    u8 pad0[0x4];
-    f32 unk4;
-    u8 pad8[0x4];
-    f32 unkC;
-    u8 pad10[0x2];
-    s16 unk12;
-} func_802474E4_StructNode;
-typedef struct func_802474E4_StructMid {
-    u8 pad0[0x2C];
-    func_802474E4_StructNode *unk2C;
-} func_802474E4_StructMid;
 typedef struct func_802474E4_Struct {
     u8 pad0[0x24];
     func_802474E4_StructMid *unk24;
@@ -354,7 +381,6 @@ typedef struct func_802474E4_Struct {
 } func_802474E4_Struct;
 
 extern func_80246E60_StructGlobal D_80258F3C;
-extern func_802474E4_StructMid *D_801BBCD0;
 
 void func_802474E4(func_802474E4_Struct *arg0, s32 arg1) {
     s32 temp_v1_2;

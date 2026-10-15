@@ -56,14 +56,66 @@ s32 func_801E1D88(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E1F74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E2098.s")
+extern void func_801CC470(s32, s32, s32, s32, f32);
+extern struct func_801E64F4_Struct1 *D_801DAB14;
+typedef struct func_801E64F4_Struct5 {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad1[0x2];
+    s16 unk12;
+} func_801E64F4_Struct5;
+typedef struct func_801E64F4_Struct4 {
+    u8 pad0[0x2C];
+    func_801E64F4_Struct5 *unk2C;
+} func_801E64F4_Struct4;
+typedef struct func_801E64F4_Struct3 {
+    u8 pad0[0x24];
+    func_801E64F4_Struct4 *unk24;
+} func_801E64F4_Struct3;
+typedef struct func_801E64F4_Struct2 {
+    u8 pad0[0x8];
+    func_801E64F4_Struct3 *unk8;
+} func_801E64F4_Struct2;
+typedef struct func_801E64F4_Struct1 {
+    u8 pad0[0x8];
+    func_801E64F4_Struct2 *unk8;
+} func_801E64F4_Struct1;
+
+extern f32 D_801E8964;
+extern f32 D_801E8968;
+extern f32 D_801E896C;
+extern f32 D_801E8970;
+extern f32 D_801E8974;
+extern f32 D_801E8978;
+extern f32 D_801E897C;
+extern f32 D_801E8980;
+
+s32 func_801E2098(s32 arg0, s32 arg1) {
+    u8 **v;
+
+    if (func_801C0B8C(0xE975A0) != 0) {
+        func_8038BD50(D_801E8964, D_801E8968, 81.5f);
+        D_8038BD88(D_801E896C, D_801E8970, 0);
+        func_8038BE98(D_801E8974);
+        func_8038BED4();
+        v = (u8 **)&D_801DAB14;
+        *(f32 *)(*(u8 **)(*(u8 **)(*(u8 **)(*v + 8) + 0x24) + 0x2C) + 4) = D_801E8978;
+        *(f32 *)(*(u8 **)(*(u8 **)(*(u8 **)(*v + 8) + 0x24) + 0x2C) + 8) = D_801E897C;
+        *(f32 *)(*(u8 **)(*(u8 **)(*(u8 **)(*v + 8) + 0x24) + 0x2C) + 12) = D_801E8980;
+        *(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)(*v + 8) + 0x24) + 0x2C) + 0x12) = 0;
+        func_801CC470(0, 0x03480055, 0, 1, 1.0f);
+        return 7;
+    }
+    return 6;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E21B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E22D4.s")
 
 
-extern void func_801CC470(s32, s32, s32, s32, f32);
 extern f32 D_801E89CC;
 extern f32 D_801E89D0;
 extern f32 D_801E89D4;
@@ -109,7 +161,30 @@ s32 func_801E2764(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E2BD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E2CBC.s")
+
+extern s32 D_8038C17C(f32, f32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern s32 D_8038C158();
+extern f32 D_801E8B18;
+extern f32 D_801E8B1C;
+extern f32 D_801E8B20;
+extern f32 D_801E8B24;
+extern f32 D_801E8B28;
+extern f32 D_801E8B2C;
+extern f32 D_801E8B30;
+extern f32 D_801E8B34;
+extern f32 D_801E8B38;
+extern f32 D_801E8B3C;
+extern f32 D_801E8B40;
+extern f32 D_801E8B44;
+extern f32 D_801E8B48;
+
+s32 func_801E2CBC(s32 arg0, s32 arg1) {
+    if (D_8038C17C(0.0f, D_801E8B18, 0x40E00000, 0x411E6666, D_801E8B1C, D_801E8B20, D_801E8B24, D_801E8B28, D_801E8B2C, D_801E8B30, D_801E8B34, D_801E8B38, D_801E8B3C, D_801E8B40, D_801E8B44, D_801E8B48) != 0) {
+        D_8038C158();
+        return 0x15;
+    }
+    return 0x14;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E2DA4.s")
 
@@ -862,7 +937,6 @@ s32 func_801E5818(s32 arg0, s32 arg1) {
 
 extern void func_801CE3C4(s32);
 extern void func_801CE3D0(s32 arg0);
-extern struct func_801E64F4_Struct1 *D_801DAB14;
 
 typedef struct func_801E58F8_StructD {
     u8 pad0[4];
@@ -1287,34 +1361,10 @@ s32 func_801E64B0(s32 arg0, s32 arg1) {
 }
 
 
-typedef struct func_801E64F4_Struct5 {
-    u8 pad0[0x4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad1[0x2];
-    s16 unk12;
-} func_801E64F4_Struct5;
 
-typedef struct func_801E64F4_Struct4 {
-    u8 pad0[0x2C];
-    func_801E64F4_Struct5 *unk2C;
-} func_801E64F4_Struct4;
 
-typedef struct func_801E64F4_Struct3 {
-    u8 pad0[0x24];
-    func_801E64F4_Struct4 *unk24;
-} func_801E64F4_Struct3;
 
-typedef struct func_801E64F4_Struct2 {
-    u8 pad0[0x8];
-    func_801E64F4_Struct3 *unk8;
-} func_801E64F4_Struct2;
 
-typedef struct func_801E64F4_Struct1 {
-    u8 pad0[0x8];
-    func_801E64F4_Struct2 *unk8;
-} func_801E64F4_Struct1;
 
 extern f32 D_801E8D38;
 extern f32 D_801E8D3C;

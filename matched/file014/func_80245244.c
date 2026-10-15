@@ -5,14 +5,6 @@ struct func_80245244_Child {
     s16 unk78;
 };
 
-struct func_80245244_Obj {
-    u8 pad0[0x5C];
-    struct func_80246478_Child *unk5C;
-    u8 pad1[0x34];
-    s16 unk94;
-    u8 pad2[0xE];
-    u16 unkA4;
-};
 
 extern u8 D_801BBFAC[];
 extern void func_80245290();

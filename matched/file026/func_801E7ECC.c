@@ -1,21 +1,7 @@
 #include "common.h"
 
-struct func_801E7ECC_Struct3 {
-    u8 pad[0x30];
-    f32 unk30;
-    f32 unk34;
-    f32 unk38;
-};
 
-struct func_801E7ECC_Struct2 {
-    u8 pad[0x2C];
-    struct func_801E7ECC_Struct3 *unk2C;
-};
 
-struct func_801E7ECC_Struct1 {
-    u8 pad[0xE8];
-    struct func_801E7ECC_Struct2 *unkE8;
-};
 
 s32 func_801C0B8C(u64 time);
 void func_8038BD50(f32 arg0, f32 arg1, f32 arg2);

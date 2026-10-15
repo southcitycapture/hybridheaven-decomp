@@ -180,6 +180,8 @@ def main():
             status(cfg, st, "waiting for budget: spent %.1f%%, allowed %.1f%% so far" % (st.get("spent", 0), allowed(cfg, reset)))
             time.sleep(1800); continue
         if not subprocess.run(["pgrep", "-f", "tools/swarm/permute.py"], capture_output=True).stdout:
+            # no permute pass running: any permuter left is an orphan of a crashed pass; kill it (186 piled up once)
+            subprocess.run("pkill -9 -f 'decomp-permuter/permuter.py'", shell=True)
             subprocess.Popen("nice -n 15 .venv/bin/python tools/swarm/permute.py --min-aligned 0.95 --minutes 5 --parallel 3 "
                              ">> queue/permute/loop_permute.out 2>&1", shell=True, env=ENV, start_new_session=True)
         with open(D + "/cycle.lock", "w") as lk:

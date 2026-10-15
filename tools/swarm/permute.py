@@ -91,7 +91,27 @@ def setup(func, seg, src, d):
     os.chmod(d + "/compile.sh", 0o755)
     open(d + "/settings.toml", "w").write('func_name = "%s"\ncompiler_type = "ido"\n' % func)
 
+_PROC = None
+
+def _worker_init():
+    """A pool worker killed by Pool.terminate (the driver crashing or exiting) takes its permuter group with it.
+    Before this, every driver crash left the running permuters orphaned forever (186 were found running)."""
+    def stop(*_):
+        if _PROC is not None:
+            try: os.killpg(_PROC.pid, signal.SIGKILL)
+            except ProcessLookupError: pass
+        os._exit(1)
+    signal.signal(signal.SIGTERM, stop)
+
 def run_one(args):
+    """_run_one, but an exception becomes a FAIL record instead of crashing the whole pass."""
+    try: return _run_one(args)
+    except Exception as e:
+        return dict(func=args[1], segment=args[2], model="decomp-permuter", verified="FAIL", start_score=round(args[0], 3),
+                    seconds=0, checks=0, cost_usd_equiv=0.0, output_tokens=0, note="error: %r" % e)
+
+def _run_one(args):
+    global _PROC
     sc, func, seg, src, minutes, jobs = args
     d = os.path.join(HH, workdir.path("permute", func, seg))     # FUNC@SEG for names several segments share
     shutil.rmtree(d, ignore_errors=True)
@@ -111,6 +131,7 @@ def run_one(args):
     # own process group, so a timeout also kills the permuter's -j helper processes (they used to be orphaned)
     proc = subprocess.Popen(["nice", "-n", "19", PY, PERM + "/permuter.py", d, "-j", str(jobs), "--stop-on-zero", "--best-only"],
                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
+    _PROC = proc
     try: proc.wait(timeout=minutes * 60)
     except subprocess.TimeoutExpired: pass
     finally:
@@ -129,7 +150,7 @@ def run_one(args):
     if not ws or not os_:
         rec.update(verified="FAIL", note="could not splice winner"); return rec
     new = orig[:os_[0]] + win[ws[0]:ws[1]] + orig[os_[1]:]
-    dst = os.path.join(OUT, "work", func, "attempt.c"); open(dst, "w").write(new)
+    dst = os.path.join(d, "attempt.c"); open(dst, "w").write(new)     # d is FUNC@SEG for shared names (was work/FUNC: crashed)
     for h in ("context.h", "known.h"):   # the worker's C includes these; without them the exact check can't compile
         if os.path.exists(os.path.join(os.path.dirname(src), h)): shutil.copy(os.path.join(os.path.dirname(src), h), d)
     rec["verified"] = "MATCH" if score(func, seg, dst) == 1.0 else "FAIL"
@@ -172,7 +193,7 @@ if __name__ == "__main__":
                        for (sc, f, seg, src), v in zip(cands, verdicts)), key=lambda j: (j[6] not in FRIENDLY, -j[0]))
         print("triage:", {v: verdicts.count(v) for v in set(verdicts)}, flush=True)
         jobs = [j[:6] for j in jobs]
-    with Pool(a.parallel) as p:
+    with Pool(a.parallel, initializer=_worker_init) as p:
         for rec in p.imap_unordered(run_one, jobs):
             open(OUT + "/results.jsonl", "a").write(json.dumps(rec) + "\n")
             print("%s %s (start %.0f%%, %ss) %s" % (rec["verified"], rec["func"], 100 * rec.get("start_score", 0),

@@ -8,10 +8,6 @@ extern s32 D_80248800;
 extern s32 D_80248804;
 extern void func_80241FD8();
 
-struct func_80241F30_Struct {
-    u8 pad[0x90];
-    u8 unk90;
-};
 
 void func_80241F30(struct func_80241F30_Struct *arg0, s32 arg1) {
     if (func_80151790(D_80248804) == 0) {

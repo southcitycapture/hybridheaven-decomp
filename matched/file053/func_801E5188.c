@@ -1,29 +1,5 @@
 #include "context.h"
 
-struct func_801E5188_Struct4 {
-    u8 pad0[4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad10[2];
-    s16 unk12;
-};
-struct func_801E5188_Struct3 {
-    u8 pad0[0x2C];
-    struct func_801E5188_Struct4 *unk2C;
-};
-struct func_801E5188_Struct2 {
-    u8 pad0[0x24];
-    struct func_801E5188_Struct3 *unk24;
-};
-struct func_801E5188_Struct1 {
-    u8 pad0[8];
-    struct func_801E5188_Struct2 *unk8;
-};
-struct func_801E5188_Struct0 {
-    u8 pad0[8];
-    struct func_801E5188_Struct1 *unk8;
-};
 
 extern struct func_801E5188_Struct0 *D_801DAB14;
 extern f32 D_801E9978;

@@ -473,11 +473,27 @@ def run(cands, new_keys):
         else: prio[(seg, name)] = added.get(p, os.path.getmtime(p))
     jobs = [(seg, cf, sn, {n: prio[(seg, n)] for n in sn}) for (seg, cf), sn in sorted(byfile.items())]
     kept, rejected = set(), {}
+    byname = {"%s/%s" % (j[0], j[1]): j for j in jobs}
+    lost = lambda fname, rej: sorted(n for n in rej if (fname.split("/")[0], n) not in new_keys)
     with Pool(max(1, os.cpu_count() - 2)) as p:
-        for fname, snips, rej, problem in p.imap_unordered(build_one, jobs):
-            seg = fname.split("/")[0]
-            kept |= {(seg, n) for n in snips}; rejected.update({(seg, n): why for n, why in rej.items()})
-            if problem: print("PROBLEM", fname, problem)
+        results = list(p.imap_unordered(build_one, jobs))
+    for i, (fname, snips, rej, problem) in enumerate(results):
+        if lost(fname, rej):
+            # a registered function dropped out. Twice (cycles 12 and 28) a whole-registry rebuild dropped registered
+            # functions from a file whose inputs had not changed, and a rebuild of the same file kept them all:
+            # something transient. Build the file again and keep the better build; log it either way.
+            first = lost(fname, rej)
+            for _ in range(2):
+                r2 = build_one(byname[fname])
+                if len(lost(fname, r2[2])) < len(first) or _ == 1: break
+            with open("queue/srcbuild_flaky.jsonl", "a") as fh:
+                fh.write(json.dumps({"file": fname, "first": {n: rej[n] for n in first},
+                                     "retry": {n: r2[2][n] for n in lost(fname, r2[2])}}) + "\n")
+            results[i] = r2
+    for fname, snips, rej, problem in results:
+        seg = fname.split("/")[0]
+        kept |= {(seg, n) for n in snips}; rejected.update({(seg, n): why for n, why in rej.items()})
+        if problem: print("PROBLEM", fname, problem)
     return kept, rejected
 
 def context_for(seg, func):

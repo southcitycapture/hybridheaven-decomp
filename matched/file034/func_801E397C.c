@@ -1,21 +1,7 @@
 #include "context.h"
 
-typedef struct func_801E397C_Struct_C {
-    s32 pad0;
-    f32 unk4;
-    s32 pad8;
-    f32 unkC;
-} func_801E397C_Struct_C;
 
-typedef struct func_801E397C_Struct_B {
-    u8 pad0[0x30];
-    func_801E397C_Struct_C *unk30;
-} func_801E397C_Struct_B;
 
-typedef struct func_801E397C_Struct_A {
-    u8 pad0[0x8];
-    func_801E397C_Struct_B *unk8;
-} func_801E397C_Struct_A;
 
 extern func_801E397C_Struct_A *D_8038D8D0;
 extern f64 D_801E9548;
