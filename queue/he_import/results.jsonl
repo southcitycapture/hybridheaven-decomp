@@ -1,0 +1,17 @@
+{"func": "func_80000EC8", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_80002BE0", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_800058E4", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_800058EC", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_800069A8", "segment": "main", "model": "hybrid-engine", "verified": "FAIL"}
+{"func": "func_800073AC", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_800085A0", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_80008A0C", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_800183D0", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_800211B4", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_80029690", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_8002B8D0", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_8002EB40", "segment": "main", "model": "hybrid-engine", "verified": "FAIL"}
+{"func": "func_8003045C", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}
+{"func": "func_80031E30", "segment": "main", "model": "hybrid-engine", "verified": "FAIL"}
+{"func": "func_80001078", "segment": "main", "model": "hybrid-engine", "verified": "FAIL"}
+{"func": "func_80002794", "segment": "main", "model": "hybrid-engine", "verified": "MATCH"}

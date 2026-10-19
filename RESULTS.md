@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-15: **36.58% of the code** (12325 of 15833 functions, including duplicates).
+Progress as of 2026-10-19: **39.28% of the code** (12567 of 15833 functions, including duplicates).
 
-**12796 model runs, $1188.00 API-equivalent in total** (local and cloud). Of the **12322 functions now in C**, **4583 were matched by AI workers** (≈ $0.259 per function, failures included), **7515 were placed by propagation** (a match copied onto identical-shape code), 139 came from decomp-permuter and 85 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**14385 model runs, $1388.74 API-equivalent in total** (local and cloud). Of the **12568 functions now in C**, **4828 were matched by AI workers** (≈ $0.288 per function, failures included), **7515 were placed by propagation** (a match copied onto identical-shape code), 140 came from decomp-permuter and 85 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -157,9 +157,29 @@ Progress as of 2026-10-15: **36.58% of the code** (12325 of 15833 functions, inc
 | `loop0027` | loop0027 | haiku-5-5 | 60 | 40 | 67% | $0.82 | $0.020 | 39% → 39% |
 | `loop0027b` | loop0027b | opus-5-5 | 10 | 3 | 30% | $13.94 | $4.646 | 39% → 40% |
 | `unify_loop0027` | unify_loop0027 | unify (no model) | 68 | 22 | 32% | $0.00 | – |  |
-| `loop0028` | loop0028 | haiku-5-5 | 60 | 37 | 62% | $0.88 | $0.024 | 41% → 41% |
-| `loop0028b` | loop0028b | opus-5-5 | 10 | 4 | 40% | $20.09 | $5.023 | 41% → 42% |
-| `unify_loop0028` | unify_loop0028 | unify (no model) | 47 | 7 | 15% | $0.00 | – |  |
-| `permute` | decomp-permuter on near-misses | , decomp-permuter | 918 | 151 | 16% | $0.00 | – |  |
+| `loop0028` | loop0028 | haiku-5-5 | 78 | 46 | 59% | $1.13 | $0.025 | 41% → 47% |
+| `loop0028b` | loop0028b | opus-5-5 | 10 | 4 | 40% | $20.09 | $5.023 | 41% → 47% |
+| `permute` | decomp-permuter on near-misses | , decomp-permuter | 926 | 152 | 16% | $0.00 | – |  |
+| `unify_loop0028` | unify_loop0028 | unify (no model) | 54 | 15 | 28% | $0.00 | – |  |
+| `ocsmoke2` | ocsmoke2 | opencode/nemotron-3.5-super-vl-free | 1 | 1 | 100% | $0.00 | – |  |
+| `ocsmoke` | ocsmoke | opencode/deepseek-v4.1-flash-free | 1 | 1 | 100% | $0.00 | – |  |
+| `ocA_nemo` | ocA_nemo | opencode/nemotron-3.5-super-vl-free | 57 | 10 | 18% | $0.00 | – |  |
+| `ocA_dsf` | ocA_dsf | opencode/deepseek-v4.1-flash-free | 60 | 17 | 28% | $0.00 | – |  |
+| `ocL_nemo` | ocL_nemo | opencode/nemotron-3.5-super-vl-free | 15 | 7 | 47% | $0.00 | – |  |
+| `orpilot` | orpilot | openrouter/cohere/north-mini-code:free, openrouter/poolside/laguna-s-2.1:free | 4 | 0 | 0% | $0.00 | – |  |
+| `ocL_glm` | ocL_glm | opencode/glm-5.3-flash-free | 9 | 3 | 33% | $0.00 | – |  |
+| `gptA_sol` | gptA_sol | openai/gpt-6.1-sol | 10 | 5 | 50% | $0.00 | – |  |
+| `gptA_luna` | gptA_luna | openai/gpt-6-luna | 10 | 3 | 30% | $0.00 | – |  |
+| `cxA_sol` | cxA_sol | codex/gpt-6.1-sol | 10 | 5 | 50% | $0.00 | – |  |
+| `cxH_sol` | cxH_sol | codex/gpt-6.1-sol | 2 | 0 | 0% | $0.00 | – |  |
+| `gptL_sol` | gptL_sol | openai/gpt-6.1-sol | 116 | 70 | 60% | $0.00 | – |  |
+| `cmpH_ours` | cmpH_ours | haiku-5-5 | 29 | 4 | 14% | $0.79 | $0.196 | 83% → 83% |
+| `cmpS_ours` | cmpS_ours | sonnet-5-5 | 29 | 5 | 17% | $7.33 | $1.466 | 83% → 84% |
+| `gptM_sol` | gptM_sol | openai/gpt-6.1-sol | 249 | 110 | 44% | $0.00 | – |  |
+| `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 113 | 62 | 55% | $0.00 | – |  |
+| `he_import` | he_import | hybrid-engine | 17 | 13 | 76% | $0.00 | – |  |
+| `fp1` | fp1 | sonnet-5-5 | 450 | 179 | 40% | $107.25 | $0.599 | 86% → 92% |
+| `fp2` | fp2 | sonnet-5-5 | 349 | 125 | 36% | $85.12 | $0.681 | 93% → 98% |
+| `gptN_sol` | gptN_sol | openai/gpt-6.1-sol | 40 | 22 | 55% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

@@ -77,12 +77,15 @@ extern f32 D_801EB998;
 extern f32 D_801EB99C;
 extern f32 D_801EB9A0;
 extern f32 D_801EB9A4;
+extern f32 D_801EB9A8;
+extern f32 D_801EB9AC;
 extern f32 D_801EB9B0;
 extern f32 D_801EB9B4;
 extern s16 D_80089354;
 extern s32 D_801D8D60;
 extern s32 D_801DABB8;
 extern s32 D_801DABBC;
+extern s32 D_801EAC80;
 extern s32 D_801EADAC;
 extern s32 D_8038C9D8();
 extern s32 func_801C1974();
@@ -91,9 +94,13 @@ extern s32 func_801C3718(s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern s32 func_801C37FC();
 extern s32 func_801C3808(s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern s32 func_801CD044();
+extern s32 func_801CE274(void);
 extern s32 func_801CE284(void);
+extern s32 func_801CE2D0(s32, s32);
 extern s32 func_801CEDE4(void);
 extern s32 func_801D11D4(void);
+extern s32 func_801D2C00();
+extern s32 func_801D2C10();
 extern s32 func_8038C9D8();
 extern s32 func_8038CBF0(void);
 extern s32 func_8038D850;
@@ -144,12 +151,14 @@ extern void func_801C2420(s32 arg0, void *arg1);
 extern void func_801C37F0(void);
 extern void func_801CC318(void);
 extern void func_801CC470(s32, s32, s32, s32, f32);
+extern void func_801CC4D8(s32, s32, s32, s32, f32);
 extern void func_801CC530(void);
 extern void func_801CED5C(s32);
 extern void func_8038BD50(f32, f32, s32);
 extern void func_8038BED4();
 extern void func_8038CB60(f32 arg0, void *arg1);
 extern void func_8038D28C();
+extern void func_8038D33C(f32, f32, s32, s32, f32, f32);
 
 
 s32 func_801E1BF0(s32 arg0, s32 arg1) {
@@ -1264,7 +1273,36 @@ s32 func_801E3CA8(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E3D5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E3E2C.s")
+
+
+s32 func_801E3E2C(s32 arg0, s32 arg1) {
+    struct func_801E6850_StructC *c;
+
+    if (D_801EAC80 != 0) {
+        if (D_801EAC80 == 1) {
+            goto l1;
+        }
+        return 3;
+    }
+    if (func_801DAAF0.unk24->unk8->unk24->unk2C->unkC < -28.0f) {
+        func_801CC4D8(0, 0x01B8003C, 0, 0, 10.0f);
+        D_801EAC80 = 1;
+    }
+    if (func_801CE2D0(0x01B8001B, 0xC) != 0 || func_801CE2D0(0x01B8001B, 0x1E) != 0) {
+        c = func_801DAAF0.unk24->unk8->unk24->unk2C;
+        func_8038D33C(c->unk4, c->unk8, *(s32 *)&c->unkC, 0x678, D_801EB9A8, 1.0f);
+        return 3;
+    }
+    goto end;
+l1:
+    if (func_801CE274() == 0) {
+        c = func_801DAAF0.unk24->unk8->unk24->unk2C;
+        func_8038D33C(c->unk4, c->unk8, *(s32 *)&c->unkC, 0x678, D_801EB9AC, 1.0f);
+        return 4;
+    }
+end:
+    return 3;
+}
 
 
 s32 func_801E3F94(s32 arg0, s32 arg1) {
@@ -2076,7 +2114,38 @@ s32 func_801E58A8(s32 arg0, s32 arg1) {
     return 0x13;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E58C0.s")
+
+s32 func_801E58C0(s32 arg0, s32 arg1) {
+    s32 v = D_801EADAC;
+    if (v == 0) goto c0;
+    if (v == 1) goto c1;
+    if (v == 2) goto c2;
+    if (v == 3) goto c3;
+    return 0x13;
+c0:
+    func_801CC4D8(2, 0x03200027, 0, 0, 30.0f);
+    D_801EADAC = 1;
+    goto done;
+c1:
+    if (func_801D2C00() == 0) {
+        func_801CC470(2, 0x03200027, 0, 0, 6.0f);
+        D_801EADAC = 2;
+    }
+    goto done;
+c2:
+    if (func_801D2C10() != 0) {
+        func_801CC4D8(2, 0x0320001A, 0, 0, 30.0f);
+        D_801EADAC = 3;
+    }
+    goto done;
+c3:
+    if (func_801D2C00() == 0) {
+        func_801CC470(2, 0x0320001A, 0, 0x100, 10.0f);
+        return 0x14;
+    }
+done:
+    return 0x13;
+}
 
 
 struct func_801E5A00_Struct {
@@ -2203,7 +2272,38 @@ s32 func_801E5EE8(s32 arg0, s32 arg1) {
     return 0x23;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file032/801E1BF0/func_801E5F00.s")
+
+s32 func_801E5F00(s32 arg0, s32 arg1) {
+    s32 v = D_801EADAC;
+    if (v == 0) goto c0;
+    if (v == 1) goto c1;
+    if (v == 2) goto c2;
+    if (v == 3) goto c3;
+    return 0x23;
+c0:
+    func_801CC4D8(2, 0x03200021, 0, 0, 30.0f);
+    D_801EADAC = 1;
+    goto end;
+c1:
+    if (func_801D2C00() == 0) {
+        func_801CC470(2, 0x03200021, 0, 0, 10.0f);
+        D_801EADAC = 2;
+    }
+    goto end;
+c2:
+    if (func_801D2C10() != 0) {
+        func_801CC4D8(2, 0x0320001A, 0, 0, 30.0f);
+        D_801EADAC = 3;
+    }
+    goto end;
+c3:
+    if (func_801D2C00() == 0) {
+        func_801CC470(2, 0x0320001A, 0, 0x100, 10.0f);
+        return 0x24;
+    }
+end:
+    return 0x23;
+}
 
 
 typedef struct func_801E6040_Struct {

@@ -79,16 +79,61 @@ void func_801DE590(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DE5E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DE6F4.s")
+
+typedef struct func_801DE6F4_StructVec {
+    f32 x, y, z;
+} func_801DE6F4_StructVec;
+typedef struct func_801DE6F4_StructTable {
+    u16 values[2][2];
+} func_801DE6F4_StructTable;
+
+extern s32 func_801DC700(s32, void *);
+extern void func_801DC9C4(func_801DE6F4_StructVec, u16, f32);
+extern u8 D_801E1FD0[];
+extern func_801DE6F4_StructTable D_801E2008;
+
+u16 func_801DE6F4(s32 arg0, func_801DE6F4_StructVec arg1, f32 *arg4, u8 arg5) {
+    func_801DE6F4_StructTable table = D_801E2008;
+    u8 result;
+
+    result = func_801DC700(arg0, D_801E1FD0);
+    if (result == 0) {
+        return 0;
+    }
+    arg5 &= 1;
+    if (result == 3) {
+        func_801DC9C4(arg1, table.values[arg5][0], *arg4);
+    }
+    *arg4 = (f64)*arg4 * 1.5;
+    return table.values[arg5][result - 1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DE7EC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DFAA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DFCAC.s")
+
+extern s32 func_801C5A1C(f32, f32, f32, f32, f32, f32);
+
+void func_801DFCAC(s32 arg0, u8 *arg1, u8 *arg2) {
+    f32 *p;
+    u16 v;
+
+    p = *(f32 **)(*(s32 *)(arg0 + 0x24) + 0x2C);
+    *arg1 = 0;
+    *arg2 = 0;
+    if (func_801C5A1C(p[1], p[2] + 2.0, p[3], p[1], p[2] - 5.0, p[3]) != 0) {
+        v = *(u16 *)(D_801E15E0 + D_801E16A0[D_801BBBF0.unk4] * 16 + D_801BBBF0.unk35B * 2);
+        if (v == 0x677 || v == 0x67B || v == 0x676 || v == 0x67A || v == 0x66E || v == 0x672 || v == 0x66F || v == 0x673 || v == 0x661 || v == 0x67F) {
+            *arg1 = 1;
+        }
+        if (v == 0x67B || v == 0x67A || v == 0x67D || v == 0x67C || v == 0x67F || v == 0x67E) {
+            *arg2 = 1;
+        }
+    }
+}
 
 
-extern void func_801DFCAC(s32, u8 *, u8 *);
 
 u8 func_801DFE00(s32 arg0) {
     u8 sp1F;

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decomp Live</title>
+<style>
+:root {
+  --bg: #0b1222; --panel: #111a2e; --line: #22304c; --ink: #e6eefb; --muted: #8fa0bd; --accent: #9fd8ff;
+  --ok: #5fd39b; --warn: #f0b35a; --bad: #ff7a7a;
+  --sonnet: #c9a4ff; --haiku: #7ee0c3; --opus: #ffb38a; --sol: #9fd8ff; --ds: #f5d76e;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; padding: 16px; border-bottom: 1px solid var(--line); }
+h1 { margin: 0; font-size: 20px; letter-spacing: .06em; text-transform: uppercase; font-stretch: 70%; }
+h1 b { color: var(--accent); text-shadow: 0 0 10px #9fd8ff66; }
+.muted { color: var(--muted); }
+main { display: grid; gap: 14px; padding: 14px 16px 32px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-width: 0; }
+section.wide { grid-column: 1 / -1; }
+h2 { margin: 0 0 10px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.big { font-size: 30px; font-weight: 700; }
+.bar { height: 8px; background: #1b2740; border-radius: 4px; overflow: hidden; margin: 6px 0 2px; }
+.bar i { display: block; height: 100%; background: var(--accent); }
+.bar.warn i { background: var(--warn); } .bar.bad i { background: var(--bad); }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { color: var(--muted); font-weight: 500; font-size: 12px; }
+td.n, th.n { text-align: right; }
+.scroll { overflow-x: auto; }
+.lane { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 12px; font-weight: 600; color: #0b1222; background: var(--muted); }
+.l-Sonnet { background: var(--sonnet); } .l-Haiku { background: var(--haiku); } .l-Opus { background: var(--opus); }
+.l-GPT-6\.1.Sol { background: var(--sol); } .l-DeepSeek { background: var(--ds); }
+.match { color: var(--ok); font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: #1b2740; border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; font-size: 12px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+code { font: 12px ui-monospace, "SF Mono", Menlo, monospace; }
+.feed div { padding: 3px 0; border-bottom: 1px solid var(--line); display: flex; gap: 8px; align-items: center; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); display: inline-block; box-shadow: 0 0 8px var(--ok); }
+.stale .dot { background: var(--bad); box-shadow: none; }
+@media (max-width: 600px) { main { grid-template-columns: 1fr; padding: 12px 16px; } .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Hybrid Heaven <b>Live</b></h1>
+  <span id="live" class="muted"><span class="dot"></span> <span id="now">connecting…</span></span>
+  <span id="loopState" class="muted"></span>
+</header>
+<main>
+  <section>
+    <h2>Decomp progress</h2>
+    <div class="big" id="pct">–</div>
+    <div class="bar"><i id="pctBar" style="width:0"></i></div>
+    <div class="muted" id="pctText"></div>
+  </section>
+  <section>
+    <h2>Claude meters</h2>
+    <div class="grid2">
+      <div><div class="muted">Weekly</div><div class="big" id="weekly">–</div><div class="bar" id="weeklyBarWrap"><i id="weeklyBar"></i></div><div class="muted" id="reset"></div></div>
+      <div><div class="muted">5-hour window</div><div class="big" id="five">–</div><div class="bar" id="fiveBarWrap"><i id="fiveBar"></i></div></div>
+    </div>
+  </section>
+  <section>
+    <h2>Lanes now</h2>
+    <div class="chips" id="lanes"></div>
+    <h2 style="margin-top:12px">Cooldowns</h2>
+    <div class="chips" id="cooldowns"></div>
+  </section>
+  <section class="wide">
+    <h2>Workers running <span id="nWorkers" class="muted"></span></h2>
+    <div class="scroll"><table><thead><tr><th>Lane</th><th>Function</th><th>Batch</th><th class="n">Running</th><th class="n">Checks</th><th>Last check</th></tr></thead><tbody id="workers"></tbody></table></div>
+  </section>
+  <section class="wide">
+    <h2>Batches (last 24 h)</h2>
+    <div class="scroll"><table><thead><tr><th>Batch</th><th>Lane</th><th>State</th><th class="n">Matches</th><th class="n">Failed</th><th class="n">Retry</th><th class="n">Left</th><th class="n">Hit rate</th><th class="n">Updated</th></tr></thead><tbody id="batches"></tbody></table></div>
+  </section>
+  <section class="wide">
+    <h2>Latest matches</h2>
+    <div class="feed" id="recent"></div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const dur = (s) => s == null ? "" : s < 60 ? s + "s" : s < 3600 ? Math.floor(s / 60) + "m " + (s % 60) + "s" : Math.floor(s / 3600) + "h " + Math.floor(s % 3600 / 60) + "m";
+const lane = (l) => `<span class="lane l-${esc(String(l).split(" ")[0]).replace(/\./g, "\\.")} l-${esc(l).replace(/ /g, ".")}">${esc(l)}</span>`;
+function meter(id, v) {
+  $(id).textContent = v == null ? "–" : v + "%";
+  $(id + "Bar").style.width = (v || 0) + "%";
+  $(id + "BarWrap").className = "bar" + (v >= 90 ? " bad" : v >= 75 ? " warn" : "");
+}
+async function tick() {
+  try {
+    const r = await fetch("/api/status", { cache: "no-store" }); const s = await r.json();
+    document.body.classList.remove("stale"); $("now").textContent = "updated " + s.now;
+    const p = s.progress || {};
+    if (p.pct != null) { $("pct").textContent = p.pct.toFixed(3) + "%"; $("pctBar").style.width = p.pct + "%";
+      $("pctText").textContent = `${p.done.toLocaleString()} / ${p.total.toLocaleString()} functions`; }
+    meter("weekly", s.meters?.weekly); meter("five", s.meters?.five);
+    $("reset").textContent = s.meters?.reset ? "resets " + s.meters.reset.replace("T", " ") : "";
+    $("loopState").textContent = s.paused ? "· Claude loop paused" : (s.loop[0] ? "· " + s.loop.find((l) => /^(running|idle|waiting|paused)/i.test(l.replace(/^[#*\s-]+/, ""))) || "" : "");
+    const counts = {}; s.workers.forEach((w) => counts[w.lane] = (counts[w.lane] || 0) + 1);
+    $("lanes").innerHTML = Object.keys(counts).length ? Object.entries(counts).map(([l, n]) => `<span class="chip">${lane(l)} ${n} working</span>`).join("") : '<span class="muted">no workers running</span>';
+    $("cooldowns").innerHTML = s.cooldowns.length ? s.cooldowns.map((c) => `<span class="chip">${esc(c.model)} <span class="muted">since ${esc(c.since.slice(5, 16).replace("T", " "))}</span></span>`).join("") : '<span class="muted">none</span>';
+    $("nWorkers").textContent = s.workers.length ? "· " + s.workers.length : "";
+    $("workers").innerHTML = s.workers.map((w) => `<tr><td>${lane(w.lane)}</td><td><code>${esc(w.func)}</code> <span class="muted">${esc(w.seg)}</span></td><td class="muted">${esc(w.batch)}</td><td class="n">${dur(w.secs)}</td><td class="n">${w.checks || ""}</td><td>${w.last === "MATCH" ? '<span class="match">MATCH</span>' : esc(w.last || "")}</td></tr>`).join("") || '<tr><td colspan="6" class="muted">none right now</td></tr>';
+    $("batches").innerHTML = s.batches.map((b) => `<tr><td><code>${esc(b.batch)}</code></td><td>${lane(b.lane)}</td><td class="muted">${esc(b.state)}</td><td class="n match">${b.match}</td><td class="n">${b.fail}</td><td class="n muted">${b.error || ""}</td><td class="n">${Math.max(0, b.total - b.match - b.fail)}</td><td class="n">${b.rate == null ? "" : b.rate + "%"}</td><td class="n muted">${dur(b.updated)} ago</td></tr>`).join("");
+    $("recent").innerHTML = s.recent.map((m) => `<div>${lane(m.lane)}<code>${esc(m.func)}</code><span class="muted">${esc(m.seg)} · ${esc(m.batch)}${m.secs ? " · " + dur(m.secs) : ""}</span></div>`).join("");
+  } catch (e) { document.body.classList.add("stale"); $("now").textContent = "can't reach the box (retrying)"; }
+}
+tick(); setInterval(tick, 4000);
+</script>
+</body>
+</html>

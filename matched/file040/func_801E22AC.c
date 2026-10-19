@@ -1,0 +1,22 @@
+#include "context.h"
+
+extern f32 D_801E8610;
+extern f32 D_801E8614;
+extern f32 D_801E8618;
+extern f32 D_801E861C;
+extern f32 D_801E8620;
+extern f32 D_801E8624;
+extern f32 D_801E8628;
+extern f32 D_801E862C;
+extern f32 D_801E8630;
+extern f32 D_801E8634;
+extern f32 D_801E8638;
+extern f32 D_801E863C;
+extern f32 D_801E8640;
+
+s32 func_801E22AC(s32 arg0, s32 arg1) {
+    if (D_8038C17C(0.0f, D_801E8610, 0xC121999A, 0x410E6666, D_801E8614, D_801E8618, D_801E861C, D_801E8620, D_801E8624, D_801E8628, D_801E862C, D_801E8630, D_801E8634, D_801E8638, D_801E863C, D_801E8640) != 0) {
+        return 0xA;
+    }
+    return 9;
+}

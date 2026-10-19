@@ -232,7 +232,15 @@ void func_80229500(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_80229CE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_8022A824.s")
+
+typedef struct func_8022A824_Struct {
+    u8 pad[0xA5];
+    u8 unkA5;
+} func_8022A824_Struct;
+
+void func_8022A824(func_8022A824_Struct *arg0, s32 arg1) {
+    arg0->unkA5 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/80228C20/func_8022A834.s")
 

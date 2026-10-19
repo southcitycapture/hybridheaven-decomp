@@ -1,0 +1,16 @@
+2026-10-19T22:34:25+00:00 start  usage-gate (brief, weekend): weekly 93% (max 90), 5-hour 45% (max 90), weekly resets 2026-10-19T23:00Z -> HOLD
+2026-10-19T22:34:25+00:00 usage  usage-gate (brief, weekend): weekly 93% (max 90), 5-hour 45% (max 90), weekly resets 2026-10-19T23:00Z -> HOLD
+2026-10-19T22:36:25+00:00 usage  usage-gate (brief, weekend): weekly 93% (max 90), 5-hour 45% (max 90), weekly resets 2026-10-19T23:00Z -> HOLD
+2026-10-19T22:38:25+00:00 usage  usage-gate (brief, weekend): weekly 93% (max 90), 5-hour 45% (max 90), weekly resets 2026-10-19T23:00Z -> HOLD
+2026-10-19T22:40:25+00:00 usage  usage-gate (brief, weekend): weekly 94% (max 90), 5-hour 55% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:42:26+00:00 usage  usage-gate (brief, weekend): weekly 94% (max 90), 5-hour 55% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:44:26+00:00 usage  usage-gate (brief, weekend): weekly 94% (max 90), 5-hour 55% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:46:26+00:00 usage  usage-gate (brief, weekend): weekly 96% (max 90), 5-hour 64% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:48:26+00:00 usage  usage-gate (brief, weekend): weekly 96% (max 90), 5-hour 64% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:50:26+00:00 usage  usage-gate (brief, weekend): weekly 96% (max 90), 5-hour 64% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:52:26+00:00 usage  usage-gate (brief, weekend): weekly 98% (max 90), 5-hour 74% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:52:26+00:00 STOP weekly 98% >= cap 98%
+2026-10-19T22:54:26+00:00 usage  usage-gate (brief, weekend): weekly 98% (max 90), 5-hour 74% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:54:26+00:00 STOP weekly 98% >= cap 98%
+2026-10-19T22:55:51+00:00 workers finished  usage-gate (brief, weekend): weekly 98% (max 90), 5-hour 74% (max 90), weekly resets 2026-10-19T22:59Z -> HOLD
+2026-10-19T22:55:51+00:00 integrated: 

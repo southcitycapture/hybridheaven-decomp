@@ -1,11 +1,14 @@
 #include "common.h"
 
+extern f32 D_8025CFFC;
+extern f32 D_8025D000;
 extern s16 D_801BBF90[];
 extern s32 D_801BBC2C;
 extern s32 func_80126944(void);
 extern s32 func_8012C6B4(s32, void *);
 extern s32 func_8012C97C(s32, s32);
 extern s32 func_80133A24(s32);
+extern s32 func_801C3DC8(void *, s32, s32, s32, f32, f32, f32, f32, f32);
 extern u8 D_8017AF38[];
 extern u8 D_8017AF90[];
 extern u8 D_801BBBF0[];
@@ -28,12 +31,14 @@ extern void func_801339D0(s32);
 extern void func_801C3B10(s32);
 extern void func_801C3B2C(s32);
 extern void func_801C4058(void *, u32, f32, s32);
+extern void func_801C42DC(s32, s32, s32, u8, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, f32, f32, s32, f32);
 extern void func_801FBB30(void);
 extern void func_8024ABC0();
 extern void func_8024ACD8();
 extern void func_8024B368();
 extern void func_8024BB68(s32 arg0);
 extern void func_8024BBD4();
+extern void func_8024BD1C();
 extern void func_8024C5A8(s32 arg0, s32 arg1);
 extern void func_8024CCC4();
 extern void func_8024CEA0();
@@ -332,7 +337,18 @@ void func_8024BB68(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/8024A610/func_8024BBD4.s")
+
+typedef struct { u8 pad0[0x3C]; u16 unk3C; } func_8024BBD4_Struct;
+
+void func_8024BBD4(func_8024BBD4_Struct *arg0, void *arg1) {
+    func_8024CEA0((void *)arg0, arg1);
+    func_801C42DC(0xFF, 0xFF, 0xFF, D_801BBBF0[0xF23], D_801BBBF0[0xF24], D_801BBBF0[0xF25], (s8)D_801BBBF0[0xF26], (s8)D_801BBBF0[0xF27], (s8)D_801BBBF0[0xF28], D_801BBBF0[0xF29], D_801BBBF0[0xF2A], D_801BBBF0[0xF2B], (s8)D_801BBBF0[0xF2C], (s8)D_801BBBF0[0xF2D], (s8)D_801BBBF0[0xF2E], D_801BBBF0[0xF32], D_801BBBF0[0xF33], D_801BBBF0[0xF34], D_801BBBF0[0xF35], *(f32 *)&D_801BBBF0[0x29C], *(f32 *)&D_801BBBF0[0x2A0], 2, 0.0f);
+    if (func_801C3DC8(arg0, 0xC3280000, 0x42AC0000, 0x43340000, -78.0f, D_8025CFFC, -218.0f, D_8025D000, 35.0f) == 0) {
+        arg0->unk3C = 0;
+        func_80020718(0x150);
+        func_800058DC((s32)arg0, func_8024BD1C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/8024A610/func_8024BD1C.s")
 

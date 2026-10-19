@@ -156,7 +156,45 @@ void func_8036B14C(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/func_8036B158.s")
+extern void func_80011258(s32, s32);
+extern void func_80006214(void *);
+extern u8 D_8008DA88[];
+extern u8 D_8038CC62;
+typedef struct func_8036B158_Struct { u8 pad[0x5C]; s32 unk5C; } func_8036B158_Struct;
+
+void func_8036B158(func_8036B158_Struct *arg0, s32 arg1) {
+    func_8036B158_Struct *a2;
+    s32 v1;
+    s32 sp24;
+    s8 *v0;
+
+    if ((void *)arg0 != (void *)D_801BBBF0.unkDC) {
+        a2 = (func_8036B158_Struct *)D_801BBBF0.unkDC;
+    } else {
+        a2 = (func_8036B158_Struct *)D_801BBBF0.unkEC;
+    }
+    v1 = arg0->unk5C;
+    sp24 = a2->unk5C;
+    if ((void *)arg0 != (void *)D_801BBBF0.unkDC) {
+        v0 = (s8 *)D_801BC03C;
+    } else {
+        v0 = (s8 *)D_801BC3D8;
+    }
+    D_8038CC62 += 1;
+    v0[0x374] = v0[0x374] - 1;
+    if (v0[0x374] < 0) {
+        func_80011258(arg1, v1 + 0x22);
+        func_80006214(a2);
+        func_80011258((s32)D_8008DA88, sp24 + 0x22);
+        func_80006214(arg0);
+        v0[0x374] = 0;
+        return;
+    }
+    func_800111E0(arg1, v1 + 0x22);
+    func_80006214(a2);
+    func_800111E0((s32)D_8008DA88, sp24 + 0x22);
+    func_80006214(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/func_8036B264.s")
 
@@ -457,7 +495,45 @@ void func_8036D9F8(struct func_8036D9F8_Arg *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/func_8036DB90.s")
+
+extern func_8036D30C_Anim D_80387B20;
+extern void func_803602D4(void *, s32);
+extern void func_80366278(void);
+
+void func_8036DB90(struct func_8036D9F8_Arg *arg0, s32 arg1) {
+    s32 obj;
+    func_8036D30C_State *state;
+    func_8036D30C_Anim anim;
+
+    obj = arg0->unk5C;
+    if ((s32)arg0 == D_801BBCCC) {
+        state = (func_8036D30C_State *)D_801BC03C;
+    } else {
+        state = (func_8036D30C_State *)D_801BC3D8;
+    }
+    anim = D_80387B20;
+    func_802237B0(arg0, 1);
+    if (func_80010550(arg1, obj)) {
+        *((u8 *)state + 0x30) &= 0xFFFE;
+        state->b30_7 = 0;
+        state->b31_65 = 0;
+        state->b38_7 = 0;
+        state->b38_4 = 0;
+        *((u8 *)state + 0x2FA) = 0;
+        func_803602D4(arg0, arg1);
+        if (state->b31_43 == 2) {
+            state->b31_43 = 3;
+            anim.id = 0x0190001D;
+        }
+        if (state->b31_43 == 3) {
+            anim.id = 0x0190001D;
+        } else {
+            anim.id = 0x0190001B;
+        }
+        func_8013A28C((void *)arg1, anim);
+        func_800058DC((s32)arg0, func_80366278);
+    }
+}
 
 
 extern void func_8036DF48();

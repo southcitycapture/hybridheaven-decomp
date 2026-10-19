@@ -27,7 +27,10 @@ void func_803757B0(func_803757B0_Struct *arg0, s32 arg1) {
     func_800058DC(arg0, func_803758FC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80375560/func_803757E4.s")
+
+u8 func_803757E4(u8 arg0, u8 arg1, f32 arg2) {
+    return (f32)(u8)((arg0 + arg1) / 2) + (f32)(s8)((arg0 - arg1) / 2) * arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80375560/func_803758FC.s")
 

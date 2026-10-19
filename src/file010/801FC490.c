@@ -82,7 +82,10 @@ void func_801FC700(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801FC490/func_801FC720.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801FC490/func_801FC824.s")
+
+u16 func_801FC824(void) {
+    return D_801BBE08[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801FC490/func_801FC830.s")
 

@@ -214,7 +214,34 @@ s32 func_800162EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_800163BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_8001643C.s")
+
+typedef struct func_8001643C_Struct {
+    u8 pad[8];
+    s32 unk8;
+} func_8001643C_Struct;
+
+typedef struct func_8001643C_StructEntry {
+    s16 value;
+    s16 unk2;
+    s16 next;
+} func_8001643C_StructEntry;
+
+extern func_8001643C_StructEntry D_8008DCA8[];
+extern s32 D_8008DFA8;
+
+s32 func_8001643C(func_8001643C_Struct *arg0, s32 arg1) {
+    if (arg0->unk8 == 15) {
+        arg1 = ((arg1 >> 5) & 0x3FF) + ((arg1 & 0x1F) << 10);
+        D_8008DFA8 = D_8008DCA8[D_8008DFA8].next;
+        D_8008DCA8[D_8008DFA8].value = arg1;
+        return arg1 * 2;
+    } else {
+        arg1 = ((arg1 & 0xFFC0) >> 5) | ((arg1 & 0x3E) << 10) | (arg1 & 1);
+        D_8008DFA8 = D_8008DCA8[D_8008DFA8].next;
+        D_8008DCA8[D_8008DFA8].value = arg1;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80016500.s")
 
@@ -898,7 +925,38 @@ void func_80017B80(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_8001800C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_800183D0.s")
+
+extern u16 func_80002BE0(u8);
+extern u16 func_80002D00(u8);
+extern u16 func_80002DBC(u8, s32, u8 *);
+extern u16 func_8000303C(u8, u8);
+extern u16 func_80003118(u8, u8 *);
+extern void func_80141108(void);
+extern u16 func_801414B0(s32);
+extern u16 func_80141934(u8);
+extern u8 D_8008EBC5;
+extern u8 D_8008EBC7;
+
+void func_800183D0(u32 arg0) {
+    u8 sp1F;
+
+    switch ((arg0 >> 16) & 0xF) {
+    case 0: D_8008EBC4 = func_80002BE0(D_8008EBC5); break;
+    case 1: D_8008EBC4 = func_80002D00(D_8008EBC5); break;
+    case 2: D_8008EBC4 = func_801414B0(1); break;
+    case 3: D_8008EBC4 = func_8000303C(D_8008EBC5, D_8008EBC7); break;
+    case 4:
+        D_8008EBC4 = func_80003118(D_8008EBC5, &sp1F);
+        D_8008EBC6 = sp1F;
+        break;
+    case 5: func_80017820(D_8008EBC4); return;
+    case 6: func_80141108(); return;
+    case 7: func_801414B0(0); return;
+    case 8: D_8008EBC4 = func_801414B0(2); break;
+    case 9: D_8008EBC4 = func_80002DBC(D_8008EBC5, 0, &sp1F); break;
+    case 10: D_8008EBC4 = func_80141934(D_8008EBC5); break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80018518.s")
 

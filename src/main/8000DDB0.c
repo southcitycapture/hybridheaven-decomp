@@ -23,7 +23,20 @@ s64 func_8000E58C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000E5D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000E634.s")
+
+struct func_8000E634_Struct {
+    s32 unk0;
+    u8 pad4[4];
+    f32 unk8;
+};
+extern void func_8000E5D4(s32);
+extern u16 D_800631EA;
+
+u16 func_8000E634(struct func_8000E634_Struct *arg0) {
+    f64 k = 2.0 - 1.0;
+    func_8000E5D4(arg0->unk0);
+    return (u32)(((f64)((f32)(u32)(D_800631EA & 0xFFFF7FFF & 0xFFFF) * arg0->unk8) * k) + 0.5) - 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000E748.s")
 
@@ -412,7 +425,11 @@ s32 func_800114D0(struct func_800114D0_Struct *arg0)
   return (u16) ((u32) temp_ft1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_80011590.s")
+
+u16 func_80011590(u16 arg0) {
+    f64 one = 2.0 - 1.0;
+    return (u32)((f64)arg0 * one + 0.5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_80011678.s")
 

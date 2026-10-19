@@ -566,7 +566,60 @@ void func_802218D4(struct func_802218D4_Obj *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_802219F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_80221BA8.s")
+
+extern void func_80222B08();
+
+struct func_80221BA8_Struct {
+    u8 pad0[2];
+    s16 unk2;
+    u8 pad4[0x30 - 4];
+    union {
+        u32 w;
+        struct {
+            u32 a : 1;
+            u32 b : 2;
+            u32 pad : 6;
+            u32 c : 2;
+            u32 rest : 21;
+        } f;
+        struct {
+            u8 b0;
+            u8 top : 1;
+            u8 mode : 2;
+            u8 low : 5;
+        } b;
+    } flags;
+    u8 pad34[0x2F9 - 0x34];
+    u8 unk2F9;
+    u8 pad2FA[0x392 - 0x2FA];
+    u8 unk392;
+};
+
+void func_80221BA8(s32 arg0, s32 arg1) {
+    s32 temp;
+    struct func_80221BA8_Struct *p;
+
+    temp = ((struct func_8021F9C8_Actor *)arg0)->unk5C;
+    if (arg0 == D_801BBBF0.unkDC) {
+        p = (struct func_80221BA8_Struct *)&D_801BC03C;
+    } else {
+        p = (struct func_80221BA8_Struct *)&D_801BC3D8;
+    }
+    p->unk392 = 0;
+    if (D_801BBBF0.unk1031 != 0xF) {
+        func_802237B0(arg0, 1);
+        if (func_80010550(arg1, temp)) {
+            if (p->unk2 <= 0 || p->flags.f.b != 0) {
+                func_800058DC(arg0, func_80222B08);
+                return;
+            }
+            if (p->flags.f.c == 0) {
+                p->flags.b.mode = p->unk2F9 + 2;
+            }
+            func_800058DC(arg0, func_80222708);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_80221CA0.s")
 
@@ -667,7 +720,44 @@ void func_802233A4(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8021D8D0/func_802233B0.s")
+void func_802234F8(s32 arg0, s32 arg1);
+s32 func_802233B0(s32 arg0, s32 arg1) {
+    func_8021E59C_Struct3C *s;
+    func_8021E59C_Player *p0;
+    func_8021E59C_Player *p1;
+
+    s = A->unk5C;
+    if (arg0 == DEV->unkDC) {
+        p0 = (func_8021E59C_Player *)&D_801BC03C;
+    } else {
+        p0 = (func_8021E59C_Player *)&D_801BC3D8;
+    }
+    if (arg0 != DEV->unkDC) {
+        p1 = (func_8021E59C_Player *)&D_801BC03C;
+    } else {
+        p1 = (func_8021E59C_Player *)&D_801BC3D8;
+    }
+    if (DEV->unk1031 != 0xF) {
+        p0->unk30.b[0] = (u16)((p0->unk30.b[0] & 0xFF9F) | 0x20);
+        p0->unk30.b[0] = (u16)(p0->unk30.b[0] | 1);
+        p0->unk30.b[0] |= 0x80;
+        p0->unk30.b[2] &= 0xFF1F;
+        p1->unk30.b[0] = (u16)(p1->unk30.b[0] & 0xFFFE);
+        p1->unk30.b[0] |= 0x80;
+        if (s->unk9C == 1 || s->unk9C == 2) {
+            s->unk9C = 3;
+        }
+        func_802237B0(arg0, 1);
+        func_800113D0(arg1, (u8 *)s + 0x22, s);
+        func_8013C6FC(arg0, arg1, 0);
+        func_8013B808(arg0, arg1, 2);
+        if (A->unk36 == 0x11D) {
+            func_80366F88(arg0, arg1);
+            return;
+        }
+        func_800058DC(arg0, func_802234F8);
+    }
+}
 
 
 struct func_802234F8_Actor {

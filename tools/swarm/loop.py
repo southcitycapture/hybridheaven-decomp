@@ -15,11 +15,11 @@ moment it may have spent budget x (elapsed share of the week). Spend is the mete
 during a batch is counted too, which only makes it more careful), at least 0.05 % per API-equivalent dollar. It never
 starts a batch at or above `hard_cap` total.
 """
-import datetime as dt, fcntl, json, os, re, subprocess, sys, time
+import datetime as dt, fcntl, glob, json, os, re, subprocess, sys, time
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 D = "queue/loop"; os.makedirs(D, exist_ok=True)
 DEFAULTS = dict(budget=0.5, batch=60, parallel=10, publish_hours=6, hard_cap=95, harness2=False, diag=False,
-                worker_flags="", big_batch=10, big_minutes=40,
+                worker_flags="", big_batch=10, big_minutes=40, model="claude-haiku-5-5", five_cap=90,
                 public_dir=os.path.expanduser("~/work/hybridheaven-decomp"), step_timeout_min=150)
 WEEK = 7 * 86400
 
@@ -54,6 +54,28 @@ def usage():
     w = re.search(r"weekly (\d+)%", out); r = re.search(r"resets (\S+?Z)", out)
     if not (w and r): return None, None
     return int(w.group(1)), dt.datetime.fromisoformat(r.group(1).replace("Z", "+00:00")).timestamp()
+
+def five_hour():
+    """The 5-hour window's meter %, or None. A Sonnet run at 20 workers fills it in about an hour (2026-10-19)."""
+    _, out = sh(os.path.expanduser("~/bin/usage-gate") + " --brief")
+    m = re.search(r"5-hour (\d+)%", out)
+    return int(m.group(1)) if m else None
+
+def unclaimed(B, limit=None):
+    """Drop picks another lane already holds (an open queue's functions.txt: OpenCode free, ChatGPT Plus) or a strong
+    model already tried (Sonnet, Opus, gpt-6.1-sol): the picker doesn't know about either."""
+    held, tried = set(), set()
+    for q in glob.glob("queue/*/functions.txt"):
+        b = q.split("/")[1]
+        if b != B and not os.path.exists("queue/%s/DONE" % b) and not os.path.exists("queue/%s/STOP" % b):
+            held |= {l.split()[0] for l in open(q) if l.strip()}
+    for p in glob.glob("queue/*/results.jsonl"):
+        for l in open(p):
+            try: r = json.loads(l)
+            except ValueError: continue
+            if r.get("verified") != "ERROR" and re.search(r"sonnet|opus|gpt-6\.1-sol", str(r.get("model", ""))): tried.add(r.get("func"))
+    f = "queue/%s/functions.txt" % B; keep = [l for l in open(f) if l.split() and l.split()[0] not in held | tried][:limit]
+    open(f, "w").writelines(keep); return len(keep)
 
 def allowed(cfg, reset):
     """Share of the week (in meter %) the loop may have spent by now: all of it at once with pace=false (front-loaded),
@@ -113,14 +135,16 @@ def cycle(cfg, st):
     n = st.get("cycle", 0) + 1; B = "loop%04d" % n
     before = dirty(); reg0 = registry()
     w0, _ = usage()
-    code, out = sh(".venv/bin/python tools/hh/pick.py %s -n %d --kind all --allow-switch" % (B, cfg["batch"]), 20)
+    # pick from a wider pool: most top picks are held by another lane or already tried by a strong model (unclaimed)
+    code, out = sh(".venv/bin/python tools/hh/pick.py %s -n %d --kind all --allow-switch" % (B, 6 * cfg["batch"]), 20)
     if code: log("pick failed:", out[-400:]); return False
     log("cycle", n, "picked:", out.strip().splitlines()[2][:150] if len(out.strip().splitlines()) > 2 else "")
-    extra = dict(NO_INTEGRATE=1, INFILE=1, MODEL="claude-haiku-5-5", RUN_ONE="run_one3.sh")
+    log("cycle", n, "kept %d picks not held by another lane or tried by a strong model" % unclaimed(B, cfg["batch"]))
+    extra = dict(NO_INTEGRATE=1, INFILE=1, MODEL=cfg["model"], RUN_ONE="run_one3.sh", FIVE_CAP=cfg["five_cap"])
     if cfg["harness2"]: extra["HARNESS2"] = 1
     if cfg["diag"]: extra["DIAG"] = 1                      # diagnosis-grade ./check (exp13)
     if cfg["worker_flags"]: extra["WORKER_FLAGS"] = cfg["worker_flags"]   # lean CLI worker (exp13: -31% cost)
-    sh("tools/swarm/run_batch2.sh %s %d %d" % (B, cfg["parallel"], cfg["hard_cap"]), cfg["step_timeout_min"], **extra)
+    sh("tools/swarm/run_batch3.sh %s %d %d" % (B, cfg["parallel"], cfg["hard_cap"]), cfg["step_timeout_min"], **extra)
     if cfg.get("big_batch"):                 # big-function tier: Opus with a time budget (bigpilot1: 10/20 at difficulty 500-700)
         sh("tools/swarm/bigpilot.sh %sb %d %d 5 %d" % (B, cfg["big_batch"], cfg["big_minutes"], cfg["hard_cap"]),
            cfg["step_timeout_min"])
@@ -176,6 +200,10 @@ def main():
         if w >= cfg["hard_cap"]:
             status(cfg, st, "waiting: weekly meter %d%% is at or above the hard cap %d%%" % (w, cfg["hard_cap"]))
             time.sleep(1800); continue
+        f5 = five_hour()
+        if f5 is not None and f5 >= cfg["five_cap"]:
+            status(cfg, st, "waiting: 5-hour window at %d%% (cap %d%%)" % (f5, cfg["five_cap"]))
+            time.sleep(600); continue
         if st.get("spent", 0) >= allowed(cfg, reset):
             status(cfg, st, "waiting for budget: spent %.1f%%, allowed %.1f%% so far" % (st.get("spent", 0), allowed(cfg, reset)))
             time.sleep(1800); continue
