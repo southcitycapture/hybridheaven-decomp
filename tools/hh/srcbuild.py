@@ -394,12 +394,33 @@ def _settle(seg, cfile, snips, td, hoist):
         for n in wrong: rejected[n] = "does not match in file context (instructions or addresses)"; snips.pop(n)
     return {}, rejected, None, "gave up"
 
+def existing_ok(seg, cfile, snips, td):
+    """The current src file, if it already is a correct build of exactly these snippets: it compiles, its C function
+    definitions are exactly the registered ones, each matches at its address and the file keeps its size. A file built
+    up one match at a time can be right where a from-scratch render of the same snippets is not (declaration order
+    changes codegen: file045 lost 4 matches to every `srcbuild all`, which paused the loop 2026-10-15 and 10-20)."""
+    path = "src/%s/%s.c" % (seg, cfile)
+    if not os.path.exists(path): return False
+    text = open(path).read()
+    defined = set(re.findall(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*\{", text, re.M))
+    if defined != set(snips): return False
+    obj, err = compile_file(text, td)
+    if obj is None: return False
+    info = {e[0]: e for e in entries(seg, cfile)}
+    base = min(e[4] for e in info.values()); ro = FILE_RODATA.get((seg, cfile))
+    if not all(n in info and func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro) for n in snips): return False
+    start, end = file_span(seg, cfile)
+    with open(obj, "rb") as fh:
+        return ELFFile(fh).get_section_by_name(".text")["sh_size"] == end - start
+
 def build_one(args):
     """Build one C file. `prio` orders the snippets (lower = registered earlier); earlier work always wins a
     conflict: if the all-at-once build drops anything, rebuild by adding snippets one at a time in priority order."""
     seg, cfile, snips, prio = args
     fname = "%s/%s" % (seg, cfile)
     with tempfile.TemporaryDirectory() as td:
+        if snips and existing_ok(seg, cfile, snips, td):
+            return (fname, dict(snips), {}, None)   # already right: keep the file as it is
         kept, rej, text, problem = settle(seg, cfile, snips, td)
         if not rej and not problem:
             open("src/%s.c" % fname, "w").write(text); return (fname, kept, {}, None)
@@ -428,11 +449,19 @@ def build_one(args):
         open("src/%s.c" % fname, "w").write(text if text else render(seg, cfile, {})[0])
         return (fname, kept, rejected, None)
 
+LINK_BLOCKLIST = "queue/link_blocklist.txt"   # "seg func" per line: matches in-file but breaks the full link
+
+def link_blocked():
+    """Functions whose C passes every in-file check but breaks the whole-ROM link ("jump to a non-instruction-aligned
+    address", 2026-10-19/20): never built into src/, whatever step (unify, propagate, re-offers) puts them back."""
+    if not os.path.exists(LINK_BLOCKLIST): return set()
+    return {tuple(l.split()[:2]) for l in open(LINK_BLOCKLIST) if len(l.split()) >= 2 and not l.startswith("#")}
+
 def registry():
-    reg = {}
+    reg, blocked = {}, link_blocked()
     for p in glob.glob("matched/*/*.c"):
         seg, name = p.split("/")[1], os.path.basename(p)[:-2]
-        reg[(seg, name)] = open(p).read()
+        if (seg, name) not in blocked: reg[(seg, name)] = open(p).read()
     return reg
 
 _FILES = None

@@ -101,8 +101,25 @@ def registry():
     return set(glob.glob("matched/*/*.c"))
 
 def rom_ok():
-    code, out = sh(".venv/bin/python tools/hh/srcbuild.py all && make -j8 2>&1 | tail -3", 60)
-    return code == 0 and "hybridheaven.z64: OK" in out, out[-1500:]
+    """Rebuild src/ from the registry and check the ROM. A function that passed its in-file checks but breaks the
+    whole-ROM link is moved out of the registry onto the link blocklist and the build retried (up to 3 times),
+    instead of the whole cycle being reverted for it (cycle 28 lost 115 matches to one such function)."""
+    for _ in range(4):
+        code, out = sh(".venv/bin/python tools/hh/srcbuild.py all && make -j8 2>&1 | grep -B1 -A3 -E 'non-instruction-aligned|z64: OK|Error' | tail -12", 60)
+        if "hybridheaven.z64: OK" in out: return True, out[-1500:]
+        # "build/src/<seg>/<file>.o: in function `<name>':" then the error line; overlays share addresses, so the same
+        # name lives in several segments and only the one named in the error is taken out
+        bad = set(re.findall(r"build/src/(\w+)/\w+\.o: in function `(func_[0-9A-F]{8})'[^\n]*\n[^\n]*non-instruction-aligned", out))
+        moved = 0
+        for seg, name in bad:
+            p = "matched/%s/%s.c" % (seg, name)
+            if not os.path.exists(p): continue
+            os.makedirs("matched_rejected/" + seg, exist_ok=True)
+            os.replace(p, "matched_rejected/%s/%s.c" % (seg, name)); moved += 1
+            open("queue/link_blocklist.txt", "a").write("%s %s\n" % (seg, name))
+            log("  link repair: %s/%s breaks the whole-ROM link; moved out and blocklisted" % (seg, name))
+        if not moved: return False, out[-1500:]
+    return False, out[-1500:]
 
 def dirty():
     """Uncommitted paths under matched/ and src/ (modified or new)."""
@@ -200,6 +217,10 @@ def main():
         if w >= cfg["hard_cap"]:
             status(cfg, st, "waiting: weekly meter %d%% is at or above the hard cap %d%%" % (w, cfg["hard_cap"]))
             time.sleep(1800); continue
+        free_gb = __import__("shutil").disk_usage(HH if "HH" in globals() else ".").free / 1e9
+        if free_gb < cfg.get("min_free_gb", 1.5):     # a full disk breaks builds mid-cycle (2026-10-18: opencode temp files)
+            status(cfg, st, "waiting: only %.1f GB free on the container disk (min %.1f GB)" % (free_gb, cfg.get("min_free_gb", 1.5)))
+            time.sleep(600); continue
         f5 = five_hour()
         if f5 is not None and f5 >= cfg["five_cap"]:
             status(cfg, st, "waiting: 5-hour window at %d%% (cap %d%%)" % (f5, cfg["five_cap"]))
