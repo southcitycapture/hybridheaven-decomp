@@ -1,9 +1,5 @@
 #include "context.h"
 
-typedef struct func_80150E60_Struct {
-    u8 pad[0x91];
-    u8 unk91;
-} func_80150E60_Struct;
 
 extern s32 (*D_801832F0[])(void);
 

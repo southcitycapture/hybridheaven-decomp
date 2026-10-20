@@ -1,24 +1,8 @@
 #include "context.h"
 extern struct func_802253B8_Struct D_801BBBF0;
 
-struct func_80224B64_Inner {
-    u8 pad0[0x9C];
-    u8 unk9C;
-};
 
-struct func_80224B64_Outer {
-    u8 pad0[0x5C];
-    struct func_80224B64_Inner *unk5C;
-};
 
-struct func_80224B64_Globals {
-    u8 pad0[0xDC];
-    s32 unkDC;
-    u8 pad1[0xEC - 0xE0];
-    s32 unkEC;
-    u8 pad2[0xB98 - 0xF0];
-    s16 unkB98;
-};
 
 s32 func_802243B4(s32 arg0, s16 arg1);
 

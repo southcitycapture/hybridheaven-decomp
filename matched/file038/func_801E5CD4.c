@@ -1,6 +1,6 @@
 #include "common.h"
 
-s32 func_801CC4D8(s32 a, s32 b, s32 c, s32 d, f32 e);
+extern s32 func_801CC4D8(s32 a, s32 b, s32 c, s32 d, f32 e);
 s32 func_801D51F0(s32 a);
 extern s32 D_801E6C34;
 

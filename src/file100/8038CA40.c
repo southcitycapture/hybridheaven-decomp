@@ -43,7 +43,14 @@ s32 func_8038CAEC(void) {
     return 0x1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CAF4.s")
+
+void func_8038CAF4(u8 *arg0, u8 *arg1, s32 arg2) {
+    s32 i;
+
+    for (i = 0; i < arg2; i++) {
+        *arg0++ = *arg1++;
+    }
+}
 
 
 extern void func_801C0D04(s32 a0, s32 a1);
@@ -152,7 +159,21 @@ s32 func_8038CE58(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038CA40/func_8038CE74.s")
+
+s32 func_8038CE74(void) {
+    if (D_8038DBA8 < D_8038DBB4) {
+        D_8038DBAC++;
+        if (D_8038DBB0 < D_8038DBAC) {
+            D_8038DBA4 = 2;
+            return 0;
+        }
+        D_8038DBA4 = 0;
+    } else {
+        func_8038CD6C(D_8038DBAC);
+    }
+    D_8038DBB4++;
+    return 0;
+}
 
 
 

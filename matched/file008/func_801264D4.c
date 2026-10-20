@@ -1,19 +1,6 @@
 #include "context.h"
 
-typedef struct func_801264D4_Sub {
-    u8 pad[4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad2[2];
-    u16 unk12;
-} func_801264D4_Sub;
 
-typedef struct func_801264D4_Obj {
-    u8 pad[0x2C];
-    func_801264D4_Sub *unk2C;
-    func_801264D4_Sub *unk30;
-} func_801264D4_Obj;
 
 extern func_801264D4_Obj *D_8008DA88[];
 

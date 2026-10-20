@@ -1,11 +1,5 @@
 #include "common.h"
 
-struct func_802253B8_Struct {
-    u8 pad0[0x2C];
-    u16 unk2C;
-    u8 pad1[0xDC - 0x2E];
-    s32 unkDC;
-};
 
 extern struct func_802253B8_Struct D_801BBBF0;
 

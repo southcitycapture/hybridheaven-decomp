@@ -6,7 +6,7 @@ extern f32 D_80248718;
 extern f32 D_8024871C;
 extern f32 D_80248720;
 extern f32 D_80248724;
-extern void func_80245564(void);
+extern void func_80245564();
 
 void func_8024541C(func_80244874_Obj *arg0, s32 arg1) {
     arg0->unk3C = arg0->unk3C + 1;

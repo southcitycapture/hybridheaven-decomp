@@ -5,7 +5,7 @@ struct func_801E5080_Struct {
     s32 unkC;
 };
 
-extern struct func_801E5080_Struct *func_801BF6B0(s32);
+extern struct func_801E4E80_Struct *func_801BF6B0(s32 a0);
 
 s32 func_801E5080(s32 arg0, s32 arg1) {
     if (func_801BF6B0(0)->unkC >= 0x1A) {

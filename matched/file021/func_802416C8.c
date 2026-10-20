@@ -1,21 +1,7 @@
 #include "context.h"
 
-typedef struct func_802416C8_Struct2 {
-    u8 pad0[0x18];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-} func_802416C8_Struct2;
 
-typedef struct func_802416C8_Struct1 {
-    u8 pad0[0x2C];
-    func_802416C8_Struct2 *unk2C;
-} func_802416C8_Struct1;
 
-typedef struct func_802416C8_Struct0 {
-    u8 pad0[0x92];
-    u16 unk92;
-} func_802416C8_Struct0;
 
 extern f32 D_80256F98;
 extern void func_80241730();

@@ -1,5 +1,5 @@
 #include "context.h"
-void func_801C2420(s32 arg0, void *arg1);
+extern s32 func_801C2420(s32 arg0, void *arg1);
 
 extern u8 func_8038DD54[];
 

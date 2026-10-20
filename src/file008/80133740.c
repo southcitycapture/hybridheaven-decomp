@@ -114,7 +114,21 @@ void func_80133950(void) {
     } while (D_801BCE5C != &D_801BCDF8[var_v1]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133980.s")
+extern u8 D_8008DC18[];
+
+void func_80133980(s32 arg0)
+{
+  u8 *temp_v0;
+  u8 temp_t3;
+  u8 temp_t1;
+  s32 temp_t4;
+  temp_v0 = (u8 *)((u32)(D_8008DC18 + 8) + ((arg0 / 8) & 0xFF));
+  temp_t3 = arg0 % 8;
+  temp_t1 = temp_t3;
+  temp_t4 = 1 << temp_t1;
+  temp_t1 = temp_t4;
+  *temp_v0 |= temp_t1;
+}
 
 
 extern u8 D_8008DC20[];
@@ -130,7 +144,16 @@ void func_801339D0(s32 arg0) {
     *temp_v0 &= ~temp_t4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133740/func_80133A24.s")
+
+
+s32 func_80133A24(s32 arg0)
+{
+  int new_var;
+  unsigned short new_var2;
+  new_var = 8 + ((arg0 / 8) & 0xFF);
+  new_var2 = 1 << ((arg0 % 8) & 0xFF);
+  return (D_8008DC18[new_var] & new_var2) & 0xFF;
+}
 
 
 extern u8 D_8008DC84[];

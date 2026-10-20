@@ -26,7 +26,7 @@ extern void func_801FBB20(void);
 extern void func_80005670(s32, void *);
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_801C3B10(s32);
-extern void func_8021D8D0(void);
+extern void func_8021D8D0();
 extern u8 D_8018C734[];
 extern u8 D_8023C250[];
 extern s32 D_801BBCCC;

@@ -9,7 +9,7 @@ struct func_80246D34_Struct {
 
 extern struct func_802466A4_Vec D_80252994;
 extern s32 func_80011140(s32, s32, struct func_802466A4_Vec, s32);
-extern void func_80246E34(void);
+extern void func_80246E34();
 
 void func_80246D34(struct func_80246D34_Struct *arg0, s32 arg1) {
     s32 sp2C;

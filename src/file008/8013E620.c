@@ -279,7 +279,31 @@ void func_80140600(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_801406A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_80140E88.s")
+extern u8 D_800692B0[];
+extern void func_80143AC4(s32 a0, s32 a1, s32 a2, void *a3);
+
+void func_80140E88(u8 arg0, u8 arg1, s32 arg2) {
+    if ((*(u16 *)(D_800692B0 + 0x20000 + (arg0 << 5) + 0x1D0) & 0x800) && ((u8)D_801BEC05 > 0)) {
+        if ((u8)D_801BEC04 == 1) {
+            D_801BEC05 = (u8)D_801BEC05 - 1;
+            D_801BEC04 = 0;
+        } else {
+            D_801BEC05 = (u8)D_801BEC05 - 1;
+            func_80143AC4(0, 1, ((u8)D_801BEC05) * 8 + arg2, &D_801BEC05);
+            D_801BEC03 = 1;
+        }
+    }
+    if ((*(u16 *)(D_800692B0 + 0x20000 + (arg0 << 5) + 0x1D0) & 0x400) && ((u8)D_801BEC05 < arg1 - 1)) {
+        if ((u8)D_801BEC04 == 0) {
+            D_801BEC04 = 1;
+            D_801BEC05 = (u8)D_801BEC05 + 1;
+            return;
+        }
+        D_801BEC05 = (u8)D_801BEC05 + 1;
+        func_80143AC4(0, 0, ((u8)D_801BEC05) * 8 + arg2, &D_801BEC05);
+        D_801BEC03 = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_80140FC8.s")
 
@@ -328,15 +352,75 @@ s32 func_801411D0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_80141268.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_801414B0.s")
+
+u8 func_80142240(u8 arg0);
+
+u8 func_801414B0(u8 arg0) {
+    u8 r;
+    r = 0;
+    if (arg0 == 1) goto a;
+    if (arg0 != 2) goto d;
+    goto b;
+a:
+    return func_80142240(0);
+b:
+    return func_80142240(1);
+d:
+    return r;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8014150C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_80141568.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_801415C4.s")
+extern u8 func_80142350();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_80141628.s")
+u8 func_80141568(u8 arg0) {
+    u8 r;
+    r = 0;
+    if (arg0 == 1) goto a;
+    if (arg0 != 2) goto d;
+    goto b;
+a:
+    return func_80142350(0);
+b:
+    return func_80142350(1);
+d:
+    return r;
+}
+
+u8 func_801423C8(u8 arg0, u8 arg1);
+
+s32 func_801415C4(arg0, arg1)
+u8 arg0;
+u8 arg1;
+{
+    if (arg0 == 1) goto l1;
+    if (arg0 != 2) goto l3;
+    goto l2;
+l1:
+    return func_801423C8(0, arg1);
+l2:
+    return func_801423C8(1, arg1);
+l3:
+    return 0;
+}
+
+u8 func_80142450(u8 arg0, u8 arg1);
+
+s32 func_80141628(arg0, arg1)
+u8 arg0;
+u8 arg1;
+{
+    if (arg0 == 1) goto l1;
+    if (arg0 != 2) goto l3;
+    goto l2;
+l1:
+    return func_80142450(0, arg1);
+l2:
+    return func_80142450(1, arg1);
+l3:
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8014168C.s")
 

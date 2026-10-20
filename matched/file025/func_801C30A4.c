@@ -30,7 +30,7 @@ typedef struct func_801C30A4_StructA {
     func_801C30A4_StructB *unk30;
 } func_801C30A4_StructA;
 
-extern u8 func_801C3260[];
+extern void func_801C3260();
 
 void func_801C30A4(func_801C2FE0_Struct *arg0, func_801C30A4_StructA **arg1) {
     func_80005E44(arg0, D_8038D89C);

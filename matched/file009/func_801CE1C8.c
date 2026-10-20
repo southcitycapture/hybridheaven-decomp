@@ -6,30 +6,6 @@ typedef struct func_801CE1C8_StructA {
     u16 unk4E;
 } func_801CE1C8_StructA;
 
-typedef struct func_801CE1C8_StructB {
-    u8 pad0[0x2C];
-    s32 unk2C;
-    s32 unk30;
-    u8 pad34[0x18];
-    u16 unk4C;
-    u16 unk4E;
-    u8 pad50[0x10];
-    f32 unk60;
-    f32 unk64;
-    f32 unk68;
-    f32 unk6C;
-    f32 unk70;
-    f32 unk74;
-    u8 unk78[16];
-    f32 unk88;
-    s32 unk8C;
-    u16 unk90;
-    u16 unk92;
-    u8 unk94;
-    u8 unk95;
-    u8 unk96;
-    u8 unk97;
-} func_801CE1C8_StructB;
 
 typedef struct func_801CE1C8_StructC {
     s32 unk0;

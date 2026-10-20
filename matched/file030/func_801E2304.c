@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void *func_801BF6B0(s32 arg0);
-extern s32 func_801C1B1C(void);
+extern s32 func_801C1B1C();
 
 typedef struct func_801E2304_Struct {
     u8 pad[0xC];

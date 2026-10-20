@@ -2,7 +2,7 @@
 void func_801C0EB0(s32, s32);
 void func_8038D33C(f32, f32, s32, s32, f32, f32);
 extern u64 func_801C0F18(s32, s32);
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern f64 D_801E6AF0;
 extern f32 D_801E6AF8;
 extern f32 D_801E6AFC;

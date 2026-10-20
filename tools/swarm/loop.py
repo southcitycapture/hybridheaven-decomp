@@ -20,7 +20,8 @@ HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdi
 D = "queue/loop"; os.makedirs(D, exist_ok=True)
 DEFAULTS = dict(budget=0.5, batch=60, parallel=10, publish_hours=6, hard_cap=95, harness2=False, diag=False,
                 worker_flags="", big_batch=10, big_minutes=40, model="claude-haiku-5-5", five_cap=90,
-                public_dir=os.path.expanduser("~/work/hybridheaven-decomp"), step_timeout_min=150)
+                public_dir=os.path.expanduser("~/work/hybridheaven-decomp"), step_timeout_min=150,
+                permute_minutes=20, permute_min_aligned=0.90, min_picks=20, hold_hours=12)
 WEEK = 7 * 86400
 
 def log(*a): print(dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%MZ"), *a, flush=True)
@@ -61,21 +62,52 @@ def five_hour():
     m = re.search(r"5-hour (\d+)%", out)
     return int(m.group(1)) if m else None
 
-def unclaimed(B, limit=None):
-    """Drop picks another lane already holds (an open queue's functions.txt: OpenCode free, ChatGPT Plus) or a strong
-    model already tried (Sonnet, Opus, gpt-6.1-sol): the picker doesn't know about either."""
+def unclaimed(B, limit=None, hold_hours=12):
+    """Drop picks another lane holds (an open queue's functions.txt: OpenCode free, ChatGPT Plus) or a strong model
+    already tried (Sonnet, Opus, gpt-6.1-sol): the picker doesn't know about either. A queue holds its functions only
+    while it is open (no DONE/STOP) and active (touched in the last `hold_hours`): forgotten queues starved the picks
+    (cycle 29 kept 11 of 2,700). Keys are (func, seg): overlays share addresses, so the same name lives in several."""
     held, tried = set(), set()
     for q in glob.glob("queue/*/functions.txt"):
-        b = q.split("/")[1]
-        if b != B and not os.path.exists("queue/%s/DONE" % b) and not os.path.exists("queue/%s/STOP" % b):
-            held |= {l.split()[0] for l in open(q) if l.strip()}
+        b = q.split("/")[1]; d = "queue/" + b
+        if b == B or os.path.exists(d + "/DONE") or os.path.exists(d + "/STOP"): continue
+        last = max(os.path.getmtime(x) for x in glob.glob(d + "/*") if os.path.isfile(x))
+        if time.time() - last > 3600 * hold_hours: continue
+        held |= {tuple(l.split()[:2]) for l in open(q) if len(l.split()) >= 2}
     for p in glob.glob("queue/*/results.jsonl"):
         for l in open(p):
             try: r = json.loads(l)
             except ValueError: continue
-            if r.get("verified") != "ERROR" and re.search(r"sonnet|opus|gpt-6\.1-sol", str(r.get("model", ""))): tried.add(r.get("func"))
-    f = "queue/%s/functions.txt" % B; keep = [l for l in open(f) if l.split() and l.split()[0] not in held | tried][:limit]
+            if r.get("verified") != "ERROR" and re.search(r"sonnet|opus|gpt-6\.1-sol", str(r.get("model", ""))):
+                tried.add((r.get("func"), r.get("segment")))
+    f = "queue/%s/functions.txt" % B
+    keep = [l for l in open(f) if len(l.split()) >= 2 and tuple(l.split()[:2]) not in held | tried][:limit]
     open(f, "w").writelines(keep); return len(keep)
+
+def unintegrated():
+    """Batches holding a verified MATCH that is neither registered, link-blocked, nor rejected in context before, and
+    whose attempt still exists: offered to integration every cycle, whatever their name or age (a fixed window let
+    gptL_sol's last 22 and fp/cmp/weak batches go unintegrated)."""
+    sys.path.insert(0, "tools/hh"); import workdir
+    reg = {(p.split("/")[1], os.path.basename(p)[:-2]) for p in glob.glob("matched/*/*.c")}
+    done = set()
+    for f in ("queue/rejected.jsonl",):
+        if os.path.exists(f):
+            for l in open(f):
+                try: r = json.loads(l); done.add((r["segment"], r["func"]))
+                except (ValueError, KeyError): pass
+    if os.path.exists("queue/link_blocklist.txt"):
+        done |= {tuple(l.split()[:2]) for l in open("queue/link_blocklist.txt") if len(l.split()) >= 2 and l[0] != "#"}
+    out = []
+    for p in glob.glob("queue/*/results.jsonl"):
+        b = p.split("/")[1]
+        for l in open(p):
+            try: r = json.loads(l)
+            except ValueError: continue
+            k = (r.get("segment"), r.get("func"))
+            if r.get("verified") == "MATCH" and k not in reg and k not in done and workdir.attempt(b, k[1], k[0]):
+                out.append(b); break
+    return sorted(out)
 
 def allowed(cfg, reset):
     """Share of the week (in meter %) the loop may have spent by now: all of it at once with pace=false (front-loaded),
@@ -105,7 +137,7 @@ def rom_ok():
     whole-ROM link is moved out of the registry onto the link blocklist and the build retried (up to 3 times),
     instead of the whole cycle being reverted for it (cycle 28 lost 115 matches to one such function)."""
     for _ in range(4):
-        code, out = sh(".venv/bin/python tools/hh/srcbuild.py all && make -j8 2>&1 | grep -B1 -A3 -E 'non-instruction-aligned|z64: OK|Error' | tail -12", 60)
+        code, out = sh(".venv/bin/python tools/hh/srcbuild.py all && make -j8 2>&1 | grep -B1 -A3 -E 'non-instruction-aligned|z64: OK|Error' | tail -12", 120)
         if "hybridheaven.z64: OK" in out: return True, out[-1500:]
         # "build/src/<seg>/<file>.o: in function `<name>':" then the error line; overlays share addresses, so the same
         # name lives in several segments and only the one named in the error is taken out
@@ -126,14 +158,31 @@ def dirty():
     _, out = sh("git status --porcelain --untracked-files=all -- matched src")
     return {l[3:].strip() for l in out.splitlines() if l.strip()}
 
-def revert(reason, before=frozenset()):
-    """Throw away the registry/src changes this cycle made (paths that were already dirty before it are left alone)
-    and pause. The cycle's agent matches stay in its results.jsonl and are offered to integration again later."""
-    for path in sorted(dirty() - set(before)):
-        _, tracked = sh("git ls-files --error-unmatch -- '%s' >/dev/null 2>&1 && echo yes" % path)
-        sh(("git checkout -- '%s'" if tracked.strip() == "yes" else "rm -f -- '%s'") % path)
-    open(D + "/PAUSE", "w").write("Paused by the loop: %s\n" % reason)
+def revert(reason, st):
+    """Throw away this cycle's registry/src changes (a cycle starts from a clean matched/ and src/, see clean_start) and
+    carry on if the committed state still builds: the cycle's agent matches stay in results.jsonl and are offered to
+    integration again. Pause (needs a person) only if HEAD itself fails, or after 2 failed cycles in a row: every
+    pause so far cost hours to days (2026-10-15: 4.5 days; 2026-10-20: 8.5 h)."""
+    sh("git checkout HEAD -- matched src && git clean -fdq matched src")
+    st["fails"] = st.get("fails", 0) + 1
+    ok, out = rom_ok()
+    if ok and st["fails"] < 2:
+        log("REVERTED (continuing: HEAD builds; failure %d in a row):" % st["fails"], reason); return
+    open(D + "/PAUSE", "w").write("Paused by the loop: %s\n%s\n" % (reason, "" if ok else "HEAD does not build either:\n" + out))
     log("REVERTED and PAUSED:", reason)
+
+def clean_start():
+    """A cycle must start from committed matched/ and src/, or its revert can't tell its own changes from older ones
+    (cycle 28 left a half-reverted tree). Commit leftovers if the ROM matches with them, else drop them."""
+    if not dirty(): return
+    ok, out = rom_ok()
+    if ok:
+        sh("git add -A matched matched_rejected src queue/rejected.jsonl queue/srcbuild_reject_memo.jsonl queue/link_blocklist.txt"
+           " && git commit -qm 'Loop: commit leftovers before a cycle (ROM matches)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>'")
+        log("clean start: committed leftover matched/src changes (ROM matches)")
+    else:
+        sh("git checkout HEAD -- matched src && git clean -fdq matched src")
+        log("clean start: dropped leftover matched/src changes (ROM did not match with them)")
 
 def progress():
     _, out = sh(".venv/bin/python tools/hh/progress.py 2>&1 | tail -1 && python3 tools/hh/dashboard_data.py >/dev/null 2>&1", 40)
@@ -150,25 +199,35 @@ def publish(cfg, st):
 
 def cycle(cfg, st):
     n = st.get("cycle", 0) + 1; B = "loop%04d" % n
-    before = dirty(); reg0 = registry()
+    clean_start(); reg0 = registry()
     w0, _ = usage()
     # pick from a wider pool: most top picks are held by another lane or already tried by a strong model (unclaimed)
     code, out = sh(".venv/bin/python tools/hh/pick.py %s -n %d --kind all --allow-switch" % (B, 6 * cfg["batch"]), 20)
     if code: log("pick failed:", out[-400:]); return False
     log("cycle", n, "picked:", out.strip().splitlines()[2][:150] if len(out.strip().splitlines()) > 2 else "")
-    log("cycle", n, "kept %d picks not held by another lane or tried by a strong model" % unclaimed(B, cfg["batch"]))
+    kept = unclaimed(B, cfg["batch"], cfg["hold_hours"])
+    log("cycle", n, "kept %d picks not held by another lane or tried by a strong model" % kept)
+    if kept < cfg["min_picks"]:          # not worth a batch (and the integrate/rebuild steps around it): skip the agents
+        open("queue/%s/DONE" % B, "w").write("skipped: %d picks\n" % kept)
     extra = dict(NO_INTEGRATE=1, INFILE=1, MODEL=cfg["model"], RUN_ONE="run_one3.sh", FIVE_CAP=cfg["five_cap"])
     if cfg["harness2"]: extra["HARNESS2"] = 1
     if cfg["diag"]: extra["DIAG"] = 1                      # diagnosis-grade ./check (exp13)
     if cfg["worker_flags"]: extra["WORKER_FLAGS"] = cfg["worker_flags"]   # lean CLI worker (exp13: -31% cost)
-    sh("tools/swarm/run_batch3.sh %s %d %d" % (B, cfg["parallel"], cfg["hard_cap"]), cfg["step_timeout_min"], **extra)
+    if kept >= cfg["min_picks"]:
+        code, _ = sh("tools/swarm/run_batch3.sh %s %d %d" % (B, cfg["parallel"], cfg["hard_cap"]), cfg["step_timeout_min"], **extra)
+        if code == 124:                  # killed mid-batch: its picks must not stay held, and its results are kept
+            for f in ("STOP", "DONE"): open("queue/%s/%s" % (B, f), "w").write("step timeout\n")
+            log("batch %s: step timeout; marked STOP/DONE" % B)
     if cfg.get("big_batch"):                 # big-function tier: Opus with a time budget (bigpilot1: 10/20 at difficulty 500-700)
         sh("tools/swarm/bigpilot.sh %sb %d %d 5 %d" % (B, cfg["big_batch"], cfg["big_minutes"], cfg["hard_cap"]),
            cfg["step_timeout_min"])
     w1, _ = usage()
     def batch_cost(b):
-        p = "queue/%s/results.jsonl" % b
-        return sum(float(json.loads(l).get("cost_usd_equiv") or 0) for l in open(p)) if os.path.exists(p) else 0
+        p = "queue/%s/results.jsonl" % b; t = 0.0
+        for l in (open(p) if os.path.exists(p) else []):
+            try: t += float(json.loads(l).get("cost_usd_equiv") or 0)
+            except (ValueError, TypeError): pass
+        return t
     cost = batch_cost(B) + batch_cost(B + "b")
     # the meter's rise is the measure; the floor covers its integer rounding (bigpilot1: $43 of Opus = 2% of the meter)
     spent = max((w1 or 0) - (w0 or 0), 0.05 * cost)
@@ -177,25 +236,33 @@ def cycle(cfg, st):
                for l in open("queue/%s/results.jsonl" % b) if '"MATCH"' in l or '"ALONE"' in l)
     log("batch %s: %d matches, $%.2f, meter %s%% -> %s%%" % (B, wins, cost, w0, w1))
     # model-free steps; each writes matched/ only after its own verification
-    recent = " ".join("loop%04d%s" % (k, x) for k in range(max(1, n - 3), n + 1) for x in ("", "b")
-                      if os.path.exists("queue/loop%04d%s/results.jsonl" % (k, x)))
-    _, o1 = sh(".venv/bin/python tools/swarm/integrate.py %s permute" % recent, 120)   # one 1600-function file can take 30 min
+    # every batch with matches not yet registered, settled or blocked, from any lane (Sonnet loop, OpenCode free,
+    # ChatGPT Plus, manual batches): integrated here, under the cycle lock, so nothing integrates beside a cycle
+    pending = unintegrated()
+    c1, o1 = sh(".venv/bin/python tools/swarm/integrate.py %s" % " ".join(pending), 120) if pending else (0, "nothing pending")
+    if c1 != 0:                          # integrate.py exits non-zero when srcbuild crashes or the ROM doesn't match
+        log("  integrate FAILED (exit %s): %s" % (c1, o1.strip()[-300:]))
     _, o2 = sh(".venv/bin/python tools/hh/propagate.py prop_%s --apply" % B, cfg["step_timeout_min"])
     _, o3 = sh(".venv/bin/python tools/hh/unify.py unify_%s --apply" % B, 90)
     _, o4 = sh(".venv/bin/python tools/hh/protofix.py --apply", 30)
     for name, o in (("integrate", o1), ("propagate", o2), ("unify", o3), ("protofix", o4)):
         log("  %s: %s" % (name, " | ".join(o.strip().splitlines()[-2:])[:200]))
     ok, out = rom_ok()
-    if not ok: revert("ROM check failed after cycle %d:\n%s" % (n, out), before); return False
-    reg1 = registry(); lost = reg0 - reg1
+    if not ok: revert("ROM check failed after cycle %d:\n%s" % (n, out), st); return False
+    blocked = {"matched/%s/%s.c" % tuple(l.split()[:2]) for l in open("queue/link_blocklist.txt")
+               if len(l.split()) >= 2 and l[0] != "#"} if os.path.exists("queue/link_blocklist.txt") else set()
+    reg1 = registry(); lost = reg0 - reg1 - blocked
     if lost:                   # srcbuild all moves regressed functions out of the registry; the ROM still matches then
-        revert("cycle %d would lose %d registered functions (e.g. %s)" % (n, len(lost), ", ".join(sorted(lost)[:5])), before)
+        revert("cycle %d would lose %d registered functions (e.g. %s)" % (n, len(lost), ", ".join(sorted(lost)[:5])), st)
         return False
     st.setdefault("history", []).append(dict(cycle=n, batch=B, agent=wins, cost=round(cost, 3), registry=[len(reg0), len(reg1)],
                                              meter=[w0, w1]))
     st["progress"] = progress()
-    sh("git add -A matched src queue dashboard/history.jsonl && git commit -qm 'Loop cycle %d: %d agent matches; %s\n\n"
+    sh("git add -A matched matched_rejected src queue dashboard/history.jsonl && git commit -qm 'Loop cycle %d: %d agent matches; %s\n\n"
        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>'" % (n, wins, st["progress"]))
+    if dirty():                          # the commit didn't land (index.lock, hook): don't move on as if it had
+        log("cycle %d: commit did not land; matched/src still dirty, retrying next cycle" % n); return False
+    st["fails"] = 0
     st["cycle"] = n; st["last_cycle"] = "%s: %d agent matches, $%.2f, %s" % (B, wins, cost, st["progress"])
     log("cycle", n, "committed;", st["progress"])
     return True
@@ -231,8 +298,10 @@ def main():
         if not subprocess.run(["pgrep", "-f", "tools/swarm/permute.py"], capture_output=True).stdout:
             # no permute pass running: any permuter left is an orphan of a crashed pass; kill it (186 piled up once)
             subprocess.run("pkill -9 -f 'decomp-permuter/permuter.py'", shell=True)
-            subprocess.Popen("nice -n 15 .venv/bin/python tools/swarm/permute.py --min-aligned 0.95 --minutes 5 --parallel 3 "
-                             ">> queue/permute/loop_permute.out 2>&1", shell=True, env=ENV, start_new_session=True)
+            # near misses: 25% win at aligned >=.95, 16% at .90-.95, and runs that win mostly need 3-15 min (2026-10-20)
+            subprocess.Popen("nice -n 15 .venv/bin/python tools/swarm/permute.py --min-aligned %s --minutes %d --parallel 3 "
+                             ">> queue/permute/loop_permute.out 2>&1" % (cfg["permute_min_aligned"], cfg["permute_minutes"]),
+                             shell=True, env=ENV, start_new_session=True)
         with open(D + "/cycle.lock", "w") as lk:
             fcntl.flock(lk, fcntl.LOCK_EX)
             status(cfg, st, "running cycle %d" % (st.get("cycle", 0) + 1))
@@ -240,6 +309,8 @@ def main():
             save(D + "/state.json", st)
         status(cfg, st, ("idle after cycle %d" if ok else "cycle %d+1 failed (see loop.log); retrying in 30 min") % st.get("cycle", 0))
         if not ok: time.sleep(1800)
+        elif os.path.exists("queue/loop%04d/DONE" % st.get("cycle", 0)) and "skipped" in open("queue/loop%04d/DONE" % st.get("cycle", 0)).read():
+            time.sleep(1800)                 # no agent batch this cycle: don't spin on the model-free steps
 
 if __name__ == "__main__":
     main()

@@ -2,7 +2,7 @@
 
 extern func_8036D30C_Anim D_80387B20;
 extern void func_803602D4(void *, s32);
-extern void func_80366278(void);
+extern void func_80366278();
 
 void func_8036DB90(struct func_8036D9F8_Arg *arg0, s32 arg1) {
     s32 obj;

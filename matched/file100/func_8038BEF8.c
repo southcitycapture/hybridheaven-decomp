@@ -13,7 +13,7 @@ struct func_8038BEF8_StructG {
     struct func_8038BEF8_StructO *o;
 };
 
-extern f64 func_80034C24(u64 a);
+extern f64 func_80034C24();
 extern s32 func_801C0DE4(s32 a, s32 b, f32 c);
 extern void func_801C0EB0(s32 a, s32 b);
 extern u64 func_801C0F18(s32 a, s32 b);

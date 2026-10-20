@@ -180,7 +180,27 @@ void func_802476B0(void *arg0, void **arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802473E0/func_802477BC.s")
+
+void func_802477BC(void *arg0, struct func_802473E0_Node **arg1)
+{
+    u8 *b = (u8 *)&D_801BBBF0;
+
+    (*arg1)->unk30->unk4C = b[0xF32];
+    (*arg1)->unk30->unk4D = b[0xF33];
+    (*arg1)->unk30->unk4E = b[0xF34];
+    (*arg1)->unk30->unk4F = b[0xF35];
+    if (D_8024F518 >= 8) {
+        if ((*arg1)->unk30->unk8 >= 160.0) {
+            (*arg1)->unk30->unk8 = (*arg1)->unk30->unk8 - 200.0;
+            (*arg1)->unk30->unkC = (*arg1)->unk30->unkC + 200.0;
+        }
+        (*arg1)->unk30->unk8 = (*arg1)->unk30->unk8 + 1.0;
+        (*arg1)->unk30->unkC = (*arg1)->unk30->unkC - 1.0;
+    }
+    if (D_8024F518 >= 0xB) {
+        func_80005700(arg0);
+    }
+}
 
 /* starting point: func_802473E0 (file016), whose assembly is 96% the same as this function's */
 
@@ -455,7 +475,15 @@ void func_802491C8(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/802473E0/func_80249250.s")
+
+extern u8 D_8024F514;
+extern u8 D_8024F520;
+extern u8 D_8024F521;
+extern s16 D_8024F522;
+
+void func_80249250(void) {
+    D_8024F522 = D_8024F520 = D_8024F521 = D_8024F514 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file016/802473E0/func_80249284.s")
 

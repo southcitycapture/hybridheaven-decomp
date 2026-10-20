@@ -11,7 +11,7 @@ extern f32 D_803898F0;
 extern f32 D_803898F4;
 extern f32 D_803898F8;
 extern f32 D_803898FC;
-extern void func_8037D1DC(void);
+extern void func_8037D1DC();
 
 void func_8037D0F8(s32 arg0, s32 arg1) {
     if (func_8011AAF4(D_80389854, 0x21C, arg0, 0, 1, 1.0f, D_803898E8, D_803898EC, D_803898F0, 1.0f, D_803898F4, D_803898F8, D_803898FC, 0.0f, 35.0f, -1, -1) == 0) {

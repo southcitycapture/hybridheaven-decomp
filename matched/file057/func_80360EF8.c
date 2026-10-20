@@ -4,11 +4,6 @@ extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 void func_800058DC(void *arg0, void *arg1);
 
-typedef struct func_80360EF8_Struct {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_80360EF8_Struct;
 
 extern s32 func_80224F5C(s32, s32);
 extern void func_802256E4(func_80360EF8_Struct *, s32, s32);

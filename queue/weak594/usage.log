@@ -1,0 +1,267 @@
+2026-10-20T12:05:25+00:00 start  usage-gate (brief, weekday): weekly 14% (max 60), 5-hour 38% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:05:26+00:00 usage  usage-gate (brief, weekday): weekly 14% (max 60), 5-hour 38% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:07:26+00:00 usage  usage-gate (brief, weekday): weekly 14% (max 60), 5-hour 38% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:09:26+00:00 usage  usage-gate (brief, weekday): weekly 15% (max 60), 5-hour 46% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:11:26+00:00 usage  usage-gate (brief, weekday): weekly 15% (max 60), 5-hour 46% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:13:27+00:00 usage  usage-gate (brief, weekday): weekly 15% (max 60), 5-hour 46% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:15:27+00:00 usage  usage-gate (brief, weekday): weekly 16% (max 60), 5-hour 58% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:17:27+00:00 usage  usage-gate (brief, weekday): weekly 16% (max 60), 5-hour 58% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:19:27+00:00 usage  usage-gate (brief, weekday): weekly 16% (max 60), 5-hour 58% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:21:28+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:23:28+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:25:28+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:27:29+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:29:29+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:31:29+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:33:30+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:35:30+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:37:30+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:39:30+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:41:30+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:43:31+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:45:31+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:47:31+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:49:31+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:51:32+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:53:32+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:55:32+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T12:57:32+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T12:59:33+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T13:01:33+00:00 usage  usage-gate (brief, weekday): weekly 17% (max 60), 5-hour 65% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T13:03:33+00:00 usage  usage-gate (brief, weekday): weekly 18% (max 60), 5-hour 73% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T13:05:33+00:00 usage  usage-gate (brief, weekday): weekly 18% (max 60), 5-hour 73% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T13:07:33+00:00 usage  usage-gate (brief, weekday): weekly 18% (max 60), 5-hour 73% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T13:09:34+00:00 usage  usage-gate (brief, weekday): weekly 19% (max 60), 5-hour 86% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T13:11:34+00:00 usage  usage-gate (brief, weekday): weekly 19% (max 60), 5-hour 86% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T13:13:34+00:00 usage  usage-gate (brief, weekday): weekly 19% (max 60), 5-hour 86% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T13:15:34+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T13:15:34+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:17:34+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T13:17:35+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:19:35+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T13:19:35+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:21:35+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:21:35+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:23:35+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:23:35+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:25:36+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:25:36+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:27:36+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:27:36+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:29:36+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:29:36+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:31:36+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:31:36+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:33:36+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:33:36+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:35:37+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:35:37+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:37:37+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:37:37+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:39:37+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:39:37+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:41:37+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:41:38+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:43:38+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:43:38+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:45:38+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:45:38+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:47:38+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:47:38+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:49:38+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:49:38+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:51:38+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T13:51:39+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:53:39+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T13:53:39+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:55:39+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T13:55:39+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:57:39+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T13:57:39+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T13:59:40+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T13:59:40+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:01:40+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T14:01:40+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:03:40+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T14:03:40+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:05:40+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:05:40+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:07:41+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:07:41+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:09:41+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:09:41+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:11:41+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T14:11:41+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:13:41+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T14:13:41+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:15:41+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T14:15:41+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:17:42+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T14:17:42+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:19:42+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T14:19:42+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:21:42+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-20T14:21:42+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:23:43+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:23:43+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:25:43+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:25:43+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:27:43+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:27:43+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:29:43+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:29:43+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:31:43+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:31:43+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:33:43+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 91% (max 90), weekly resets 2026-10-26T22:59Z -> HOLD
+2026-10-20T14:33:44+00:00 STOP 5-hour 91% >= cap 90%
+2026-10-20T14:35:44+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 0% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T14:37:44+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 0% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T14:39:44+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 0% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T14:41:44+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 1% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T14:43:45+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 1% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T14:45:45+00:00 usage  usage-gate (brief, weekday): weekly 20% (max 60), 5-hour 1% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T14:47:45+00:00 usage  usage-gate (brief, weekday): weekly 21% (max 60), 5-hour 8% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T14:49:45+00:00 usage  usage-gate (brief, weekday): weekly 21% (max 60), 5-hour 8% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T14:51:46+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 18% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T14:53:46+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 18% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T14:55:46+00:00 usage  usage-gate (brief, weekday): weekly 22% (max 60), 5-hour 18% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T14:57:46+00:00 usage  usage-gate (brief, weekday): weekly 23% (max 60), 5-hour 26% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T14:59:46+00:00 usage  usage-gate (brief, weekday): weekly 23% (max 60), 5-hour 26% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T15:01:46+00:00 usage  usage-gate (brief, weekday): weekly 24% (max 60), 5-hour 35% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T15:03:47+00:00 usage  usage-gate (brief, weekday): weekly 24% (max 60), 5-hour 35% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T15:05:47+00:00 usage  usage-gate (brief, weekday): weekly 24% (max 60), 5-hour 35% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T15:07:47+00:00 usage  usage-gate: only 3.0 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:09:47+00:00 usage  usage-gate: only 3.0 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:11:47+00:00 usage  usage-gate: only 3.0 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:13:47+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:15:48+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:17:48+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:19:48+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:21:48+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:23:48+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:25:48+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:27:48+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:29:48+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:31:49+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:33:49+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:35:49+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:37:49+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:39:49+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:41:49+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:43:49+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:45:50+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:47:50+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:49:50+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:51:50+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:53:50+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:55:50+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:57:50+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T15:59:51+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:01:51+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:03:51+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:05:51+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:07:51+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:09:51+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:11:51+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:13:52+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:15:52+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:17:52+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:19:52+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:21:52+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:23:52+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:25:52+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:27:53+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:29:53+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:31:53+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:33:53+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:35:53+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:37:53+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:39:53+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:41:54+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:43:54+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:45:54+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:47:54+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:49:54+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:51:54+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:53:54+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:55:54+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:57:55+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T16:59:55+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:01:55+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:03:55+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:05:55+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:07:55+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:09:55+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:11:56+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:13:56+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:15:56+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:17:56+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:19:56+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:21:56+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:23:56+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:25:57+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:27:57+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:29:57+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:31:57+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:33:57+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:35:57+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:37:57+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:39:58+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:41:58+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:43:58+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:45:58+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:47:58+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:49:58+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:51:58+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:53:58+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:55:59+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:57:59+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T17:59:59+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:01:59+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:03:59+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:05:59+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:07:59+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:10:00+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:12:00+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:14:00+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:16:00+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:18:00+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:20:00+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:22:00+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:24:01+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:26:01+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:28:01+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:30:01+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:32:01+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:34:01+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:36:01+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:38:02+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:40:02+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:42:02+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:44:02+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:46:02+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:48:02+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:50:02+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:52:03+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:54:03+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:56:03+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T18:58:03+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:00:03+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:02:03+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:04:03+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:06:04+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:08:04+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:10:04+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:12:04+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:14:04+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:16:04+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:18:04+00:00 usage  usage-gate: only 2.9 GB free on the LXC disk (need 3) -> HOLD
+2026-10-20T19:18:47+00:00 start  usage-gate (brief, weekday): weekly 27% (max 60), 5-hour 57% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T19:18:47+00:00 usage  usage-gate (brief, weekday): weekly 27% (max 60), 5-hour 57% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T19:20:05+00:00 usage  usage-gate (brief, weekday): weekly 27% (max 60), 5-hour 57% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T19:20:48+00:00 usage  usage-gate (brief, weekday): weekly 27% (max 60), 5-hour 57% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T19:22:05+00:00 usage  usage-gate (brief, weekday): weekly 27% (max 60), 5-hour 57% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T19:22:49+00:00 usage  usage-gate (brief, weekday): weekly 27% (max 60), 5-hour 57% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-20T19:24:05+00:00 usage  usage-gate (brief, weekday): weekly 28% (max 60), 5-hour 66% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T19:24:22+00:00 workers finished  usage-gate (brief, weekday): weekly 28% (max 60), 5-hour 66% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-20T19:24:22+00:00 integrated: 

@@ -5,7 +5,7 @@ struct func_8038C17C_Outer { u8 pad[0x2C]; struct func_8038C17C_Struct *unk2C; }
 extern s32 func_801C0DE4(s32, s32, f32);
 extern void func_801C0EB0(s32, s32);
 extern u64 func_801C0F18(s32, s32);
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern f64 D_8038DD08;
 
 s32 func_8038C17C(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10, f32 arg11, f32 arg12, f32 arg13, f32 arg14, f32 arg15) {

@@ -1,6 +1,5 @@
 #include "context.h"
 
-typedef struct func_8024373C_V { s32 a; s32 b; s32 c; } func_8024373C_V;
 typedef struct func_8024373C_S {
     u8 pad0[0x24];
     func_80242FD0_StructC *unk24;

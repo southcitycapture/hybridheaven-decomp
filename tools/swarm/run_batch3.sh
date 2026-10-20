@@ -9,20 +9,24 @@ weekly() { $(command -v ~/bin/usage-gate || echo true) --brief 2>&1 | sed -n 's/
 five() { $(command -v ~/bin/usage-gate || echo true) --brief 2>&1 | sed -n 's/.*5-hour \([0-9]*\)%.*/\1/p'; }
 echo "$(date -Is) start  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
 # usage guard: every 2 minutes, log usage and set STOP once weekly >= CAP
-( while [ ! -f $Q/DONE ]; do w=$(weekly); echo "$(date -Is) usage  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
+( unread=0; while [ ! -f $Q/DONE ]; do w=$(weekly); echo "$(date -Is) usage  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
+    if [ -z "$w" ]; then unread=$((unread+1)); [ $unread -ge 3 ] && { touch $Q/STOP; echo "$(date -Is) STOP meter unreadable 3x" >> $L; }; else unread=0; fi
     [ -n "$w" ] && [ "$w" -ge "$CAP" ] && { touch $Q/STOP; echo "$(date -Is) STOP weekly ${w}% >= cap ${CAP}%" >> $L; }
     f=$(five); [ -n "$f" ] && [ "$f" -ge "${FIVE_CAP:-90}" ] && { touch $Q/STOP; echo "$(date -Is) STOP 5-hour ${f}% >= cap ${FIVE_CAP:-90}%" >> $L; }
     sleep 120; done ) &
 # retry anything that ended in an API error; skip real outcomes
-done_list=$(python3 -c "import json;print(' '.join(r['func'] for r in map(json.loads, open('$Q/results.jsonl')) if r['verified'] != 'ERROR'))" 2>/dev/null)
-while read -r f seg rest; do [[ " $done_list " == *" $f "* ]] || echo "$f $seg"; done < $Q/functions.txt |
+# keyed func@seg: overlays share addresses, so the same name can sit in several segments
+done_list=$(python3 -c "import json;print(' '.join(r['func']+'@'+str(r.get('segment')) for r in map(json.loads, open('$Q/results.jsonl')) if r['verified'] != 'ERROR'))" 2>/dev/null)
+while read -r f seg rest; do [[ " $done_list " == *" $f@$seg "* ]] || echo "$f $seg"; done < $Q/functions.txt |
   xargs -P "$P" -L 1 bash -c '[ -f "queue/$BATCH/STOP" ] && exit 0; tools/swarm/${RUN_ONE:-run_one2.sh} "$0" "$1" > /dev/null 2>&1'
 echo "$(date -Is) workers finished  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
 [ -n "$NO_INTEGRATE" ] || .venv/bin/python tools/swarm/integrate.py "$BATCH" >> $Q/integrate.log 2>&1
 echo "$(date -Is) integrated: $(tail -1 $Q/integrate.log)" >> $L
 touch $Q/DONE
 tools/hh/refresh_dashboard.sh > /dev/null 2>&1
-git add -A > /dev/null 2>&1; git commit -q -m "Batch $BATCH: $(tail -1 $Q/integrate.log)
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" > /dev/null 2>&1
+# only a batch that integrated itself commits, and only its own paths: a NO_INTEGRATE batch (the loop's, or one run
+# beside it) committing `git add -A` swept the loop's unverified mid-cycle changes into HEAD (audit 2026-10-20 #1)
+[ -n "$NO_INTEGRATE" ] || { git add -A matched src $Q > /dev/null 2>&1; git commit -q -m "Batch $BATCH: $(tail -1 $Q/integrate.log)
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" > /dev/null 2>&1; }
 $(command -v ~/bin/ping-me || echo true) "Hybrid Heaven batch $BATCH finished" "$(BATCH=$BATCH python3 tools/swarm/summary.py | head -2 | tr '\n' ' ') $(grep -E 'start|finished' $L | sed -n 's/.*weekly \([0-9]*%\).*/\1/p' | tr '\n' ' ' | sed 's/ $//; s/ / -> /')" success > /dev/null 2>&1
 exit; }

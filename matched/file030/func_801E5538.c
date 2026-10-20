@@ -1,9 +1,9 @@
 #include "common.h"
 
-s32 func_801CE284(void);
-s32 func_801CE2D0(s32 a0, s32 a1);
-void func_801CC4D8(s32 a0, s32 a1, s32 a2, s32 a3, f32 f);
-void func_8038D33C(f32 f0, f32 f1, s32 a2, s32 a3, f32 f4, f32 f5);
+extern s32 func_801CE284(void);
+extern s32 func_801CE2D0(s32 a0, s32 a1);
+extern void func_801CC4D8(s32 a0, s32 a1, s32 a2, s32 a3, f32 f);
+extern void func_8038D33C(f32, f32, s32, s32, f32, f32);
 extern f32 D_801EC710;
 extern u8 func_801DAAF0[];
 

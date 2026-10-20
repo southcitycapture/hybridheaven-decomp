@@ -186,7 +186,26 @@ s32 func_80005170(s32 arg0)
   return temp_v1[1] - temp_v1[0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80004310/func_800051A4.s")
+
+extern u16 D_80037A30[];
+
+u8 func_800051A4(u32 arg0) {
+    s32 i;
+
+    i = 0;
+    if (arg0 == 0) {
+        return i;
+    }
+    if (D_80037A30[0] != 0) {
+        do {
+            if (arg0 < D_80037A30[i]) {
+                return ((u8 *)&D_80037A30[i])[3];
+            }
+            i += 2;
+        } while (D_80037A30[i] != 0);
+    }
+    return 0xFF;
+}
 
 
 extern s32 func_8001703C(s32);

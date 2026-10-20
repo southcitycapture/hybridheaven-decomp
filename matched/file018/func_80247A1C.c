@@ -1,16 +1,6 @@
 #include "context.h"
 
-typedef struct func_80247A1C_StructObj {
-    u8 pad0[0x78];
-    s16 unk78;
-} func_80247A1C_StructObj;
 
-typedef struct func_80247A1C_StructArg0 {
-    u8 pad0[0x5C];
-    func_80247A1C_StructObj *unk5C;
-    u8 pad60[0x30];
-    s16 unk90;
-} func_80247A1C_StructArg0;
 
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern u8 D_8025C338[];

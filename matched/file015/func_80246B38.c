@@ -1,21 +1,7 @@
 #include "context.h"
 
-struct func_80246B38_Struct {
-    u8 pad0[0x5C];
-    s32 unk5C;
-    u8 pad1[0x30];
-    s16 unk90;
-};
 
-struct func_80246B38_StructB {
-    u8 pad0[0x38];
-    f32 unk38;
-};
 
-struct func_80246B38_StructA {
-    u8 pad0[0x2C];
-    struct func_80246B38_StructB *unk2C;
-};
 
 extern struct func_80246B38_StructA *D_801BBCD8;
 extern void func_80246C20();

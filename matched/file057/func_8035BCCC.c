@@ -1,11 +1,5 @@
 #include "context.h"
 
-struct func_8035BCCC_Struct {
-    u8 pad0[0x3E];
-    u16 unk3E;
-    u8 pad1[0xC];
-    u16 unk4C;
-};
 
 extern void func_8035B9AC();
 

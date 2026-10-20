@@ -363,7 +363,36 @@ s32 func_80005CDC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005D3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80005D9C.s")
+
+extern s32 func_80005D3C(void);
+
+struct func_80005D9C_Struct {
+    u8 pad[0x2A];
+    u16 unk2A;
+    s32 unk2C;
+    s32 unk30;
+};
+
+s32 func_80005D9C(void *arg0, u16 arg1) {
+    arg1 = arg1 & 0xFFFF;
+    switch (arg1) {
+    case 12:
+        ((struct func_80005D9C_Struct *)arg0)->unk30 = func_80005CDC();
+        ((struct func_80005D9C_Struct *)arg0)->unk2C = 0;
+        ((struct func_80005D9C_Struct *)arg0)->unk2A = arg1;
+        break;
+    case 13:
+        ((struct func_80005D9C_Struct *)arg0)->unk30 = func_80005CDC();
+        ((struct func_80005D9C_Struct *)arg0)->unk2C = 0;
+        ((struct func_80005D9C_Struct *)arg0)->unk2A = arg1;
+        break;
+    default:
+        ((struct func_80005D9C_Struct *)arg0)->unk2C = func_80005D3C();
+        ((struct func_80005D9C_Struct *)arg0)->unk30 = 0;
+        ((struct func_80005D9C_Struct *)arg0)->unk2A = arg1;
+        break;
+    }
+}
 
 
 struct func_80005E44_Struct {
@@ -378,7 +407,6 @@ struct func_80005E44_Res {
     s32 unkC;
 };
 
-extern s32 func_80005D9C(void *, u16);
 extern void func_80006370(s32, void *);
 extern void *func_800063BC(void *, u32);
 extern s32 func_800065EC(void *, void *);
@@ -628,7 +656,44 @@ void func_800062F8(struct func_800062F8_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_80006370.s")
+
+struct func_80006370_StructNode {
+    u8 pad[0x10];
+    struct func_80006370_StructNode *next;
+    struct func_80006370_StructNode *prev;
+    s32 owner;
+};
+
+struct func_80006370_StructOwner {
+    u8 pad[0x24];
+    struct func_80006370_StructNode *head;
+};
+
+void func_80006370(s32 arg0, void *arg1) {
+    struct func_80006370_StructNode **link;
+    struct func_80006370_StructNode *first;
+    struct func_80006370_StructNode *next;
+
+    first = ((struct func_80006370_StructOwner *)arg0)->head;
+    if (first != NULL) {
+        link = &((struct func_80006370_StructOwner *)arg0)->head;
+        if (first != NULL) {
+            next = *link;
+            do {
+                ((struct func_80006370_StructNode *)arg1)->prev = next;
+                link = (struct func_80006370_StructNode **)*link;
+                next = ((struct func_80006370_StructNode *)link)->next;
+                link = &((struct func_80006370_StructNode *)link)->next;
+            } while (next != NULL);
+        }
+        *link = arg1;
+    } else {
+        ((struct func_80006370_StructOwner *)arg0)->head = arg1;
+        ((struct func_80006370_StructNode *)arg1)->prev = NULL;
+    }
+    ((struct func_80006370_StructNode *)arg1)->next = NULL;
+    ((struct func_80006370_StructNode *)arg1)->owner = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/func_800063BC.s")
 

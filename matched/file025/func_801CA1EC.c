@@ -5,7 +5,7 @@ struct func_801CA1EC_Inner {
     u8 *unk30;
 };
 
-extern void func_80005700(void *);
+extern void func_80005700(s32 arg0);
 extern void func_8012CF8C(void *, u8 *, s32, s32);
 extern s32 D_801DA850[];
 extern s32 D_801E05D0[];

@@ -1,9 +1,5 @@
 #include "context.h"
 
-typedef struct func_8001643C_Struct {
-    u8 pad[8];
-    s32 unk8;
-} func_8001643C_Struct;
 
 typedef struct func_8001643C_StructEntry {
     s16 value;

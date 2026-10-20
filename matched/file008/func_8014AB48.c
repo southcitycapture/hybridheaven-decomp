@@ -9,9 +9,9 @@ struct func_8014AB48_Struct {
 
 extern void func_800023A8(s32);
 extern void func_80005700(s32);
-extern void func_8001F6FC();
+extern void func_8001F6FC(void);
 extern void func_80020744(s32);
-extern s32 func_80126944();
+extern s32 func_80126944(void);
 extern s32 func_80148044();
 extern void func_801FBB20();
 

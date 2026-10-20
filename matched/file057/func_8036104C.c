@@ -1,28 +1,11 @@
 #include "context.h"
 
-typedef struct func_8036104C_Node {
-    u8 pad0[6];
-    s16 unk6;
-    struct func_8036104C_Node *unk8;
-} func_8036104C_Node;
 
 typedef struct func_8036104C_Tbl {
     func_8036104C_Node *e[5][3];
 } func_8036104C_Tbl;
 
-typedef struct func_8036104C_Sub {
-    u8 pad0[0x7C];
-    func_8036104C_Node *unk7C;
-    s16 unk80;
-    u16 unk82;
-} func_8036104C_Sub;
 
-typedef struct func_8036104C_Arg {
-    u8 pad0[0x36];
-    u16 unk36;
-    u8 pad1[0x5C - 0x38];
-    func_8036104C_Sub *unk5C;
-} func_8036104C_Arg;
 
 typedef struct func_8036104C_Info {
     u8 pad0;

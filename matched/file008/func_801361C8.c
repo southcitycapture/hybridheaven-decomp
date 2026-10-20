@@ -13,15 +13,7 @@ extern s16 D_801BBD82;
 extern u16 D_801BBD86;
 extern u8 D_80217F5C[];
 
-typedef struct func_801361C8_StructInner {
-    u8 pad0[0x10];
-    u32 unk10;
-} func_801361C8_StructInner;
 
-typedef struct func_801361C8_Struct {
-    u8 pad0[0x38];
-    func_801361C8_StructInner *unk38;
-} func_801361C8_Struct;
 
 void func_801361C8(func_801361C8_Struct *arg0, s32 arg1) {
     if (func_80135E60(arg0, (f32) ((arg0->unk38->unk10 >> 16) & 0xFF), 1, 0x41000000) == 0) {

@@ -154,7 +154,17 @@ ok:
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80151B30/func_80151D80.s")
+
+s32 func_80151D80(void) {
+    s32 r;
+    s32 t = 1;
+    if (D_801BBD60 == 0) {
+        r = 0;
+    } else {
+        r = t;
+    }
+    return r;
+}
 
 
 typedef struct func_80151DA4_Struct {

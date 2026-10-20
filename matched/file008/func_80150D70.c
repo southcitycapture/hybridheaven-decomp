@@ -2,7 +2,7 @@
 
 s32 func_8001F74C(void);
 s32 func_8013B570(void *arg0, u16 arg1, s32 arg2, s32 arg3, void *arg4);
-extern u8 func_80150DB4[];
+extern void func_80150DB4();
 
 typedef struct func_80150D70_Struct {
     u8 pad[0x92];

@@ -14,10 +14,10 @@ struct func_80149764_Struct {
     void *unkA4;
 };
 
-extern s32 func_80126A0C(s32, u16, s32);
+extern s32 func_80126A0C(s32, u16, s32);                   /* extern */
 extern s32 func_80148044();
 extern void func_801FBB30();
-extern void func_80020744();
+extern void func_80020744(s32);
 extern void func_80116E80();
 extern void func_80146178();
 extern s32 func_80006214();

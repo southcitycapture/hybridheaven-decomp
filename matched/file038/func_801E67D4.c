@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern s32 func_801C18CC(s32 arg0, void *arg1);
+extern void func_801C18CC(s32, void *);
 
 typedef struct func_801E67D4_Struct {
     s32 unk0;

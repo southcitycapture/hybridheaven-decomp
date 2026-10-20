@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern s32 D_8038C97C();
+extern void D_8038C97C(s32, s32, s32, s32, s32, s32, s32);
 extern s16 D_80089354;
 extern u8 D_801BBD54;
 extern s32 D_801D8D60;

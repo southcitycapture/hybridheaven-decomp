@@ -1,6 +1,22 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803677B0/func_803677B0.s")
+
+extern u8 D_80387010;
+
+struct func_80369094_Struct *func_803677B0(arg0)
+u16 arg0;
+{
+    u8 *ptr;
+
+    ptr = &D_80387010;
+    while (*ptr != 0x57) {
+        if (arg0 == *ptr) {
+            return (struct func_80369094_Struct *)ptr;
+        }
+        ptr += 0x14;
+    }
+    return (struct func_80369094_Struct *)&D_80387010;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803677B0/func_8036780C.s")
 
@@ -109,7 +125,6 @@ extern s32 D_801BBCCC;
 extern func_80369094_Struct D_801BC03C;
 extern func_80369094_Struct D_801BC3D8;
 
-func_80369094_Struct *func_803677B0(u8);
 void func_80368E58(s32, s32, s16, s32);
 
 void func_80369094(s32 arg0, s32 arg1) {

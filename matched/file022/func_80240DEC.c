@@ -1,21 +1,7 @@
 #include "context.h"
 
-typedef struct func_80240DEC_Struct2 {
-    u8 pad0[0x18];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-} func_80240DEC_Struct2;
 
-typedef struct func_80240DEC_Struct1 {
-    u8 pad0[0x2C];
-    func_80240DEC_Struct2 *unk2C;
-} func_80240DEC_Struct1;
 
-typedef struct func_80240DEC_Struct0 {
-    u8 pad0[0x92];
-    u16 unk92;
-} func_80240DEC_Struct0;
 
 extern f32 D_8025250C;
 extern void func_80240E54();

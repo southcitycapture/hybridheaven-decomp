@@ -43,12 +43,6 @@ typedef struct func_8024C58C_StructArg0 {
     s16 unk96;
 } func_8024C58C_StructArg0;
 
-typedef struct func_8024C58C_StructGlobal {
-    u8 pad0[0x104];
-    u16 unk104;
-    u8 pad106[0xBA2 - 0x106];
-    u8 unkBA2;
-} func_8024C58C_StructGlobal;
 
 extern func_8024C58C_StructGlobal D_801BBBF0;
 extern void func_8024CA4C();

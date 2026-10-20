@@ -1,10 +1,5 @@
 #include "context.h"
 
-typedef struct func_80377140_Struct {
-    u8 pad[6];
-    u16 unk6;
-    u16 unk8;
-} func_80377140_Struct;
 
 extern func_80377140_Struct D_801BBBF0;
 extern u16 D_803787A4[];

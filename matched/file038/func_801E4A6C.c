@@ -2,9 +2,9 @@
 extern struct func_801E51CC_A *D_801DAB14;
 extern s32 D_801E6B48;
 extern s32 func_801CC470(s32, s32, s32, s32, f32);
-extern void func_8038D28C(s32 a0);
+extern void func_8038D28C(s32);
 
-extern s32 func_801CE284();
+extern s32 func_801CE284(void);
 extern s32 D_801E6B4C;
 
 struct func_801E4A6C_W {

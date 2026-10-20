@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern u64 func_801C0F18(s32, s32);
 extern s32 func_801D5250(s32, s32);
 extern void func_8038D33C(f32, f32, f32, s32, f32, f32);

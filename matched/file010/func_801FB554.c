@@ -3,28 +3,9 @@
 extern s32 D_802170B4;
 extern s32 func_801FA624();
 
-struct func_801FB554_Inner {
-    u8 pad0[0x9];
-    u8 unk9;
-    u8 unkA;
-};
 
-struct func_801FB554_Sub {
-    u8 pad0[0x22];
-    u8 unk22;
-    u8 pad23[0x30 - 0x23];
-    struct func_801FB554_Inner *unk30;
-};
 
-struct func_801FB554_Args {
-    struct func_801FB554_Sub *unk0;
-    struct func_801FB554_Sub *unk4;
-};
 
-struct func_801FB554_Obj {
-    u8 pad0[0x24];
-    void *unk24;
-};
 
 void func_801FB554(struct func_801FB554_Obj *arg0, struct func_801FB554_Args *arg1) {
     func_801FA29C((struct func_801FA29C_Struct *) arg0->unk24);

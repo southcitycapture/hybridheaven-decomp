@@ -1,9 +1,5 @@
 #include "context.h"
 
-typedef struct func_802438F8_Struct {
-    u8 pad[0x3C];
-    u16 unk3C;
-} func_802438F8_Struct;
 
 extern void func_800058DC(void *, void *);
 extern s32 func_800178E8(void);

@@ -1,9 +1,5 @@
 #include "context.h"
 
-struct func_801CFE28_Struct {
-    s32 unk0;
-    u16 unk4;
-};
 
 extern struct func_801CFE28_Struct D_801E1290;
 

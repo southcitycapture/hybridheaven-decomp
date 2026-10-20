@@ -3,12 +3,6 @@
 extern void func_800058DC();
 extern void func_801FE700();
 
-struct func_801FE5F0_Struct {
-    u8 pad0[0xAB];
-    u8 unkAB;
-    u8 pad1[0xB0 - 0xAC];
-    s16 unkB0;
-};
 
 struct func_801FE5F0_Sub {
     u8 pad0[0x8];

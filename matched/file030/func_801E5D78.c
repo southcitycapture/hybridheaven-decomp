@@ -1,8 +1,8 @@
 #include "common.h"
 
-extern s32 func_801CE284();
-extern s32 func_801CE2D0(s32, s32);
-extern s32 func_8038D28C(s32);
+extern s32 func_801CE284(void);
+extern s32 func_801CE2D0(s32 a0, s32 a1);
+extern void func_8038D28C(s32);
 
 s32 func_801E5D78(s32 arg0, s32 arg1) {
     if (func_801CE284() != 0) {

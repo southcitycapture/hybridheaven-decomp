@@ -10,10 +10,6 @@ typedef struct func_80379190_Arg {
     func_80379190_Struct *unk5C;
 } func_80379190_Arg;
 
-typedef struct func_80379190_Globals {
-    u8 pad0[0xEF0];
-    u16 unkEF0;
-} func_80379190_Globals;
 
 extern func_80379190_Globals D_801BBBF0;
 extern void func_8001F6FC();

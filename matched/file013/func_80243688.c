@@ -1,19 +1,7 @@
 #include "context.h"
 extern void func_800058DC(void *, void *);
 
-typedef struct func_80243688_Struct {
-    u8 pad0[0x24];
-    func_80242FD0_StructC *unk24;
-    u8 pad28[0x5C - 0x28];
-    void *unk5C;
-    u8 pad60[0xA0 - 0x60];
-    u16 unkA0;
-} func_80243688_Struct;
 
-typedef struct func_80243688_StructE {
-    u8 pad0[0x78];
-    u16 unk78;
-} func_80243688_StructE;
 
 void func_80242F80(void *, void *);
 extern f64 D_80249B48;

@@ -1,0 +1,201 @@
+#include "context.h"
+extern void func_8012CF8C(s32, s32, s32, s32);
+extern u8 D_801D9768[], D_801D9908[], D_801D9FE8[], D_801DA088[], D_801ECAD8[], D_801ECAF8[], func_801D9F00[];
+extern f32 D_801EDD08;
+struct func_801E38B4_Leaf {
+    s16 unk0; u8 pad2[2];
+    f32 unk4; f32 unk8; f32 unkC;
+    u8 pad10[2]; s16 unk12; u8 pad14[4];
+    f32 unk18; f32 unk1C; f32 unk20;
+    s32 unk24; void *unk28; s16 unk2C; u8 pad2E[2];
+    s32 unk30; u8 pad34[0x14];
+    u8 unk48; u8 unk49; u8 unk4A; u8 unk4B; u8 unk4C; u8 unk4D; u8 unk4E; u8 unk4F;
+};
+struct func_801E38B4_Mid {
+    u8 pad0[0x22]; u8 unk22; u8 pad23[0x30-0x23];
+    struct func_801E38B4_Leaf *l;
+};
+struct func_801E38B4_Obj {
+    struct func_801E38B4_Mid *m0, *m4, *m8, *mC, *m10, *m14, *m18, *m1C, *m20, *m24;
+};
+struct func_801E4EE0_Obj;
+extern struct func_801E4EE0_Obj *D_8038D8D0;
+#define R ((struct func_801E38B4_Obj *)D_8038D8D0)
+extern s32 D_8038D8CC;
+#define Q D_8038D8CC
+#define A (func_8038D830 + 0x5C)
+#define B (func_8038D830 + 0x6C)
+
+s32 func_801E38B4(s32 arg0, s32 arg1) {
+    s32 var_s0;
+    s32 var_s0_2;
+    s32 ta2;
+    u8 *temp_s1;
+
+    if (((struct func_801E1E48_Struct *)func_801BF6B0(2))->unkC < 2) {
+        return 1;
+    }
+    func_80005E44(Q, A);
+    func_80005E44(Q, B);
+    func_80005E44(Q, D_801ECAD8);
+    func_80005E44(Q, D_801ECAF8);
+    var_s0 = 0;
+    do {
+        func_80005E44(Q, A);
+        var_s0 += 1;
+    } while (var_s0 < 3);
+    var_s0 = 0;
+    do {
+        func_80005E44(Q, B);
+        var_s0 += 1;
+    } while (var_s0 != 3);
+    func_80006214(Q);
+    func_8012C89C(Q, 0, 0x463, 2);
+    func_8012C89C(Q, 1, 0x463, 3);
+    func_8012C89C(Q, 2, 0x463, 4);
+    func_8012C89C(Q, 3, 0x463, 5);
+    func_8012C89C(Q, 4, 0x464, 0);
+    func_8012C89C(Q, 5, 0x464, 1);
+    func_8012C89C(Q, 6, 0x464, 2);
+    R->m1C->l->unk30 = 0;
+    R->m1C->l->unk28 = 0;
+    R->m1C->l->unk0 = 0;
+    R->m1C->l->unk2C = 0;
+    func_8012CF8C(Q, (s32)R->m1C->l + 0x40, 0x375, 0); goto La; La:
+    R->m20->l->unk30 = 0;
+    R->m20->l->unk28 = 0;
+    R->m20->l->unk0 = 0;
+    R->m20->l->unk2C = 0;
+    func_8012CF8C(Q, (s32)R->m20->l + 0x40, 0x378, 0); goto Lb; Lb:
+    func_8012C89C(Q, 9, 0x465, 0); goto Lc; Lc:
+    R->m0->l->unk4 = 0.0f;
+    R->m0->l->unk8 = 0.0f;
+    R->m0->l->unkC = 0.0f;
+    R->m0->l->unk12 = 0;
+    R->m0->l->unk30 = (s32)D_801D9768 | 0x40000000;
+    R->m0->l->unk24 = 0x100;
+    R->m0->l->unk48 = 0xFF;
+    R->m0->l->unk49 = 0xFF;
+    R->m0->l->unk4A = 0xFF;
+    R->m0->l->unk4B = 0xFF;
+    R->m0->l->unk18 = 1.0f;
+    R->m0->l->unk1C = 1.0f;
+    R->m0->l->unk20 = 1.0f;
+    R->m4->l->unk4 = 0.0f;
+    R->m4->l->unk8 = 0.0f;
+    ta2 = (s32)D_801D9FE8 | 0x40000000;
+    R->m4->l->unkC = 0.0f;
+    R->m4->l->unk12 = 0;
+    R->m4->l->unk30 = ta2;
+    R->m4->l->unk24 = 0x300;
+    R->m4->l->unk48 = 0;
+    R->m4->l->unk49 = 0xFF;
+    R->m4->l->unk4A = 0xFF;
+    R->m4->l->unk4B = 0xFF;
+    R->m4->l->unk4C = 0xFF;
+    R->m4->l->unk4D = 0xFF;
+    R->m4->l->unk4E = 0xFF;
+    R->m4->l->unk4F = 0xFF;
+    R->m8->l->unk4 = 0.0f;
+    R->m8->l->unk8 = 0.0f;
+    R->m8->l->unkC = 0.0f;
+    R->m8->l->unk12 = 0;
+    R->m8->l->unk30 = ta2;
+    R->m8->l->unk24 = 0x300;
+    R->m8->l->unk48 = 0;
+    R->m8->l->unk49 = 0xFF;
+    R->m8->l->unk4A = 0xFF;
+    R->m8->l->unk4B = 0;
+    R->m8->l->unk4C = 0xFF;
+    R->m8->l->unk4D = 0xFF;
+    R->m8->l->unk4E = 0xFF;
+    R->m8->l->unk4F = 0xFF;
+    R->mC->l->unk4 = 0.0f;
+    R->mC->l->unk8 = 0.0f;
+    R->mC->l->unkC = 0.0f;
+    R->mC->l->unk12 = 0;
+    R->mC->l->unk30 = (s32)D_801DA088 | 0x40000000;
+    R->mC->l->unk24 = 0x100;
+    R->mC->l->unk48 = 0xFF;
+    R->mC->l->unk49 = 0xFF;
+    R->mC->l->unk4A = 0xFF;
+    R->mC->l->unk4B = 0xFF;
+    R->m10->l->unk4 = -145.0f;
+    R->m10->l->unk8 = 0.0f;
+    R->m10->l->unkC = 0.0f;
+    R->m10->l->unk12 = 0;
+    R->m10->l->unk18 = 1.0f;
+    R->m10->l->unk1C = 1.0f;
+    R->m10->l->unk20 = 1.0f;
+    R->m14->l->unk4 = 0.0f;
+    R->m14->l->unk8 = 0.0f;
+    R->m14->l->unkC = 0.0f;
+    R->m14->l->unk12 = 0;
+    R->m14->l->unk18 = 1.0f;
+    R->m14->l->unk1C = 1.0f;
+    R->m14->l->unk20 = 1.0f;
+    R->m14->unk22 = 1;
+    R->m18->l->unk4 = 0.0f;
+    R->m18->l->unk8 = 0.0f;
+    R->m18->l->unkC = 0.0f;
+    R->m18->l->unk12 = 0;
+    R->m18->l->unk18 = 1.0f;
+    R->m18->l->unk1C = 1.0f;
+    R->m18->l->unk20 = 1.0f;
+    R->m18->unk22 = 0;
+    R->m1C->l->unk4 = 0.0f;
+    R->m1C->l->unk8 = 0.0f;
+    R->m1C->l->unkC = 0.0f;
+    R->m1C->l->unk12 = 0;
+    R->m1C->l->unk18 = 1.0f;
+    R->m1C->l->unk1C = 1.0f;
+    R->m1C->l->unk20 = 1.0f;
+    R->m1C->l->unk28 = D_801D9908;
+    R->m1C->l->unk24 = 0x300;
+    R->m1C->l->unk48 = 0xFF;
+    R->m1C->l->unk49 = 0xFF;
+    R->m1C->l->unk4A = 0xFF;
+    R->m1C->l->unk4B = 0xFF;
+    R->m1C->l->unk4C = 0;
+    R->m1C->l->unk4D = 0xFF;
+    R->m1C->l->unk4E = 0xFF;
+    R->m1C->l->unk4F = 0xFF;
+    R->m1C->unk22 = 0;
+    R->m20->l->unk4 = 0.0f;
+    R->m20->l->unk8 = 0.0f;
+    R->m20->l->unkC = 0.0f;
+    R->m20->l->unk12 = 0;
+    R->m20->l->unk18 = 1.0f;
+    R->m20->l->unk1C = 1.0f;
+    R->m20->l->unk20 = 1.0f;
+    R->m20->l->unk28 = D_801D9908;
+    R->m20->l->unk24 = 0x300;
+    R->m20->l->unk48 = 0xFF;
+    R->m20->l->unk49 = 0xFF;
+    R->m20->l->unk4A = 0xFF;
+    R->m20->l->unk4B = 0xFF;
+    R->m20->l->unk4C = 0;
+    R->m20->l->unk4D = 0xFF;
+    R->m20->l->unk4E = 0xFF;
+    R->m20->l->unk4F = 0xFF;
+    R->m20->unk22 = 0;
+    R->m24->l->unk4 = D_801EDD08;
+    R->m24->l->unk8 = 0.0f;
+    R->m24->l->unkC = -0.5f;
+    R->m24->l->unk12 = 0;
+    R->m24->l->unk18 = 0.0f;
+    R->m24->l->unk1C = 3.0f;
+    R->m24->l->unk20 = 0.0f;
+    R->m24->l->unk30 = (s32)func_801D9F00 | 0x40000000;
+    R->m24->l->unk24 = 0x300;
+    R->m24->l->unk48 = 0;
+    R->m24->l->unk49 = 0xFF;
+    R->m24->l->unk4A = 0xFF;
+    R->m24->l->unk4B = 0;
+    R->m24->l->unk4C = 0xFF;
+    R->m24->l->unk4D = 0xFF;
+    R->m24->l->unk4E = 0xFF;
+    R->m24->l->unk4F = 0xFF;
+    R->m24->unk22 = 0;
+    return 2;
+}

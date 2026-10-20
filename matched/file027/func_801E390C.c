@@ -3,9 +3,9 @@
 
 
 
-s32 func_801C2F60(f32 *);
+extern s32 func_801C2F60();
 void func_801C2F24(void);
-extern func_801E390C_Struct1 *D_8038D8D0;
+extern struct func_801E390C_Struct1 *D_8038D8D0;
 extern f32 D_801F3BA0;
 
 s32 func_801E390C(s32 arg0, s32 arg1) {

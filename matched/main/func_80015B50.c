@@ -1,16 +1,5 @@
 #include "context.h"
 
-struct func_80015B50_Struct {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-    s32 unkC;
-    s32 unk10;
-    s32 unk14;
-    u8 pad18[4];
-    s32 unk1C;
-    s32 unk20;
-};
 
 s32 func_80016A24(s8 *);                            /* extern */
 extern s32 D_8008DC94;

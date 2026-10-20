@@ -22,8 +22,8 @@ struct func_801F0634_Struct1 {
     struct func_801F0634_Struct2 *unk8;
 };
 
-extern s32 func_801CFE28(s32, s32);
-extern void func_8038D33C(f32, f32, s32, s32, f32, f32);
+extern s32 func_801CFE28(s32 a0, s32 a1);
+extern void func_8038D33C(f32 a0, f32 a1, s32 a2, s32 a3, f32 a4, f32 a5);
 extern f32 D_801F5A38;
 
 s32 func_801F0634(s32 arg0, s32 arg1) {

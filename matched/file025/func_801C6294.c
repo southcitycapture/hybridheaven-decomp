@@ -14,7 +14,7 @@ typedef struct func_801C6294_S1 {
     u16 unk90;
 } func_801C6294_S1;
 struct func_801C63B4_Struct;
-void func_801C63B4(struct func_801C63B4_Struct *arg0, void *arg1);
+extern void func_801C63B4();
 extern f32 D_801DA508;
 extern f32 D_801DD238;
 

@@ -1,24 +1,9 @@
 #include "context.h"
 void func_800058DC(void *, void (*)());
-struct func_80242C60_Cfg {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-};
 s32 func_8012CE9C(s32, void *, struct func_80242C60_Cfg, s32);
 extern s32 func_80010550();
 
-struct func_80242B30_Inner {
-    u8 pad0[0x78];
-    s16 unk78;
-};
 
-struct func_80242B30_Struct {
-    u8 pad0[0x5C];
-    struct func_80242B30_Inner *unk5C;
-    u8 pad1[0x94 - 0x60];
-    u16 unk94;
-};
 
 extern struct func_80242C60_Cfg D_80258D80;
 extern void func_80242BC4();

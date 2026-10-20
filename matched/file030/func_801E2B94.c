@@ -1,6 +1,6 @@
 #include "common.h"
 
-s32 func_8038BEF8(f32 a, f32 b, f32 c, f32 d, f32 e, f32 f, f32 g, f32 h, f32 i, f32 j, f32 k, f32 l, f32 m, f32 n);
+extern s32 func_8038BEF8(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern f32 D_801EC624;
 extern f32 D_801EC628;
 extern f32 D_801EC62C;

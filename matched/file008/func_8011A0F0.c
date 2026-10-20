@@ -1,16 +1,6 @@
 #include "common.h"
 
-typedef struct func_8011A0F0_StructB {
-    u8 pad0[0x48];
-    s32 unk48;
-    s32 unk4C;
-    f32 unk50;
-} func_8011A0F0_StructB;
 
-typedef struct func_8011A0F0_StructA {
-    u8 pad0[0x2C];
-    func_8011A0F0_StructB *unk2C;
-} func_8011A0F0_StructA;
 
 extern void func_80119F9C(s16 *, s16 *);
 extern void func_8011A06C(s16, s16, s32, s32, f32, s32);

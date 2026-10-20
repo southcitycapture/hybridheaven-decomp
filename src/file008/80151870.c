@@ -65,5 +65,12 @@ void func_80151A88(s32 arg0, s32 arg1) {
     func_800058DC(arg0, func_80151AE0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80151870/func_80151AE0.s")
+
+void func_80151AE0(s32 arg0, s32 arg1) {
+    s32 i;
+
+    for (i = 0; i < 2; i = (i + 1) & 0xFF) {
+        func_80151990(i);
+    }
+}
 

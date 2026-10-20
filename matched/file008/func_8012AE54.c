@@ -2,18 +2,7 @@
 
 extern f32 func_8002FC20(f32, f32);
 
-typedef struct func_8012AE54_StructVec {
-    u8 pad0[4];
-    f32 x;
-    u8 pad1[4];
-    f32 y;
-} func_8012AE54_StructVec;
 
-typedef struct func_8012AE54_StructObj {
-    u8 pad0[0x2C];
-    func_8012AE54_StructVec *unk2C;
-    func_8012AE54_StructVec *unk30;
-} func_8012AE54_StructObj;
 
 typedef struct func_8012AE54_StructArg {
     u8 pad0[0x24];

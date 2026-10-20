@@ -1,8 +1,8 @@
 #include "common.h"
 
-void func_801CFD28();
-void func_801CFD34();
-void func_80005670();
+extern void func_801CFD28();
+extern void func_801CFD34();
+extern void func_80005670();
 void func_801D2094();
 void func_801D20A0();
 void func_801D2704();
@@ -10,7 +10,7 @@ void func_801D2710();
 void func_801D048C();
 void func_801D03E0();
 void func_801D03EC();
-void func_801CC530();
+extern void func_801CC530();
 
 extern u8 func_801DAAF0[];
 extern u8 func_801DAE70[];

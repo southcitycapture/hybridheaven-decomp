@@ -98,10 +98,35 @@ void func_80378CF0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80376D10/func_80378E3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80376D10/func_80378EBC.s")
-
-
 extern u8 D_80388410[];
+
+struct func_80378EBC_Struct {
+    u8 pad[0x52];
+    u16 unk52;
+};
+
+s32 func_80378EBC(struct func_80378EBC_Struct *arg0) {
+    struct {
+        u16 value;
+        u16 pad;
+    } total;
+    u8 i;
+
+    i = 0;
+    total.value = 100;
+    if (arg0->unk52 > 100) {
+        while (i < func_80376D10()) {
+            total.value += ((u16 *)(D_80388410 + 0x3DE))[i];
+            i++;
+            if (total.value >= arg0->unk52) {
+                break;
+            }
+        }
+    }
+    return i;
+}
+
+
 
 void func_80378F64(u8 *arg0) {
     s32 temp_v0;

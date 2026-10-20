@@ -1,9 +1,4 @@
 #include "context.h"
-typedef struct func_801C2494_Struct388500 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_801C2494_Struct388500;
 extern s32 func_8012CE9C(s32, void *, func_801C2494_Struct388500, s32);
 
 typedef struct func_801C1F40_StructArg {

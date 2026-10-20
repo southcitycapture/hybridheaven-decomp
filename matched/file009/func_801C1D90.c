@@ -1,10 +1,4 @@
 #include "context.h"
-typedef struct func_801C1EE0_StructB00 {
-    s32 unk0;
-    s16 unk4;
-    u16 unk6;
-    f32 unk8;
-} func_801C1EE0_StructB00;
 extern void func_800058DC();
 extern func_801C1EE0_StructB00 D_801E0B00;
 

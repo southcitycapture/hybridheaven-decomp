@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern void func_80148E70(s32);
+extern void func_80148E70(s32 arg0);
 
 s32 func_80149040(void) {
     u8 sum;

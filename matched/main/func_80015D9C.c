@@ -1,12 +1,5 @@
 #include "context.h"
 
-typedef struct func_80015D9C_Struct {
-    u8 pad0[8];
-    s32 unk8;
-    u8 pad0C[0x18];
-    void (*unk24)(struct func_80015D9C_Struct *, s32, s32, s32);
-    s32 (*unk28)(struct func_80015D9C_Struct *, s32, s32);
-} func_80015D9C_Struct;
 
 extern s32 func_80016340(void *);
 extern void func_80015F14(void *, s32, s32, s32);

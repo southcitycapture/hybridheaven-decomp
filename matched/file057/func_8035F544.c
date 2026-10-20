@@ -20,18 +20,7 @@ typedef struct func_8035F544_Entry {
     u8 unk392;
 } func_8035F544_Entry;
 
-typedef struct func_8035F544_Globals {
-    u8 pad0[0xDC];
-    void *unkDC;
-    u8 pad1[0x1031 - 0xE0];
-    u8 unk1031;
-} func_8035F544_Globals;
 
-typedef struct func_8035F544_Copy {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_8035F544_Copy;
 
 extern s32 func_802233B0();
 extern void func_802237B0(void *arg0, s32 arg1);

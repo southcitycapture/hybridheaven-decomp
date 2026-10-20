@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern s32 D_801EB9FC;
-s32 func_801D2C10(void);
+extern s32 func_801D2C10(void);
 
 s32 func_801E6670(s32 arg0, s32 arg1) {
     if (D_801EB9FC == 0) {

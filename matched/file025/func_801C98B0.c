@@ -50,7 +50,7 @@ extern void func_8012CF8C(void *, u8 *, s32, s32);
 extern u8 D_801DA7B8[];
 extern u8 D_801D9908[];
 extern f32 D_801DD2DC;
-extern void func_801C9ACC(void);
+extern void func_801C9ACC();
 
 void func_801C98B0(func_801C98B0_Arg *arg0, func_801C98B0_Outer **arg1) {
     func_80005E44((s32)arg0, D_801DA7B8);

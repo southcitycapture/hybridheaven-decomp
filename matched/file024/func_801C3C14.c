@@ -3,18 +3,6 @@ extern void func_800023A8(s32);
 extern void func_800058DC(s32, void *);
 extern s32 func_8012FE50();
 
-typedef struct func_801C3C14_Struct {
-    u8 pad[0x2];
-    u16 unk2;
-    u16 unk4;
-    u8 pad2[0x4];
-    u16 unkA;
-    u16 unkC;
-    u8 pad3[0x3A2 - 0xE];
-    u16 unk3A2;
-    u8 pad4[0xEF2 - 0x3A4];
-    u16 unkEF2;
-} func_801C3C14_Struct;
 
 extern func_801C3C14_Struct D_801BBBF0;
 extern void func_801C3CD0();

@@ -1,19 +1,6 @@
 #include "context.h"
 
-typedef struct func_801FCAE0_Struct2 {
-    u8 pad0[0x30];
-    f32 unk30;
-    u8 pad1[4];
-    f32 unk38;
-    f32 unk3C;
-    u8 pad2[4];
-    f32 unk44;
-} func_801FCAE0_Struct2;
 
-typedef struct func_801FCAE0_Struct1 {
-    u8 pad0[0x2C];
-    func_801FCAE0_Struct2 *unk2C;
-} func_801FCAE0_Struct1;
 
 f32 func_8001EAD0(s16);
 s16 func_8001EF38(f32, f32);

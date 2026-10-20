@@ -10,17 +10,7 @@ struct func_80243224_Outer {
 };
 void func_80243224(s32 arg0, struct func_80243224_Outer **arg1);
 
-typedef struct func_802430FC_Struct_Quad {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-    s32 unkC;
-} func_802430FC_Struct_Quad;
 
-typedef union func_802430FC_Union_Quad {
-    s64 align;
-    func_802430FC_Struct_Quad w;
-} func_802430FC_Union_Quad;
 
 typedef struct func_802430FC_Struct_Inner {
     u8 pad0[0x24];

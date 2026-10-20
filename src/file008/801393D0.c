@@ -1,6 +1,23 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801393D0/func_801393D0.s")
+
+typedef struct func_801393D0_Struct {
+    u16 id;
+    u8 pad[2];
+    void *data;
+} func_801393D0_Struct;
+
+extern u16 D_8017BC7C[];
+
+void func_801393D0(func_801393D0_Struct *arg0, u8 *arg1, u16 arg2) {
+    s32 i;
+
+    for (i = 0; i < arg2; i++) {
+        arg0[i].id = D_8017BC7C[i];
+        arg0[i].data = arg1 + i * 16;
+    }
+    arg0->id = arg2;
+}
 
 extern u8 D_801BD960[];
 
@@ -10,7 +27,19 @@ void func_801394CC(void) {
     func_800279F0(&D_801BD960, 0x20);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801393D0/func_801394F4.s")
+
+void func_801394F4(void) {
+    s32 i;
+    s32 j;
+
+    for (i = 0; i < 8; i++) {
+        j = 0;
+        do {
+            D_801BD960[i * 4 + j] = 1;
+            j++;
+        } while (j < 4);
+    }
+}
 
 
 
@@ -27,7 +56,42 @@ void func_80139544(s32 arg0) {
     D_801BD960[arg0] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801393D0/func_8013955C.s")
+
+typedef struct func_8013955C_StructVector {
+    s32 x;
+    s32 y;
+    f32 z;
+} func_8013955C_StructVector;
+
+typedef struct func_8013955C_StructEntry {
+    u8 pad[0x24];
+    func_8013955C_StructVector value;
+    u8 pad30[0x10];
+} func_8013955C_StructEntry;
+
+extern func_8013955C_StructEntry D_801BCE60[];
+
+void func_8013955C(u16 arg0, func_8013955C_StructVector *arg1,
+                   func_8013955C_StructVector *arg2) {
+    func_8013955C_StructEntry *entry;
+    u16 i;
+    func_8013955C_StructVector *value;
+
+    entry = D_801BCE60;
+    arg1->z = 1.0f;
+    if (arg2 != NULL) {
+        arg2->z = 1.0f;
+    }
+    for (i = 0; i < arg0; i++) {
+        if (i < 0x13 || arg2 == NULL) {
+            value = arg1;
+        } else {
+            value = arg2;
+        }
+        entry->value = *value;
+        entry++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/801393D0/func_801395E4.s")
 

@@ -1,10 +1,5 @@
 #include "context.h"
 
-typedef struct func_803790F0_Struct2 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_803790F0_Struct2;
 
 extern s32 func_80010550(s32, s32);
 extern void func_8001B204(s32, s32, s32, void *);

@@ -3,10 +3,6 @@ extern func_8024090C_Struct D_801BBBF0;
 extern void func_800058DC(void *, void *);
 void func_8024294C(void *arg0, void *arg1);
 
-typedef struct func_802428F8_Struct {
-    u8 pad0[0x90];
-    u16 unk90;
-} func_802428F8_Struct;
 
 void func_802428F8(func_802428F8_Struct *arg0, void *arg1)
 {

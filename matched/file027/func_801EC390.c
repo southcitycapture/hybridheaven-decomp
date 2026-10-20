@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern void D_8038BA70(void);
-extern s32 func_801C2420(s32 id, void *data);
+extern s32 func_801C2420(s32 arg0, void *arg1);
 extern u8 D_8038DD90[];
 extern u8 D_8038DDA8[];
 extern u8 D_8038DDC0[];

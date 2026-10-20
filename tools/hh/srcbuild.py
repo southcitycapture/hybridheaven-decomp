@@ -394,7 +394,19 @@ def _settle(seg, cfile, snips, td, hoist):
         for n in wrong: rejected[n] = "does not match in file context (instructions or addresses)"; snips.pop(n)
     return {}, rejected, None, "gave up"
 
-def existing_ok(seg, cfile, snips, td):
+def fn_body(text, name):
+    """The definition of `name` in C text (signature line to its closing brace), whitespace-normalized; None if absent."""
+    lines = text.splitlines()
+    for i, l in enumerate(lines):
+        m = DEFN.match(l)
+        if m and m.group(1) == name:
+            out, depth, opened = [], 0, False
+            for l2 in lines[i:]:
+                out.append(l2); depth += l2.count("{") - l2.count("}"); opened = opened or "{" in l2
+                if opened and depth <= 0: return " ".join(" ".join(out).split())
+    return None
+
+def existing_ok(seg, cfile, snips, td, bodies=True):
     """The current src file, if it already is a correct build of exactly these snippets: it compiles, its C function
     definitions are exactly the registered ones, each matches at its address and the file keeps its size. A file built
     up one match at a time can be right where a from-scratch render of the same snippets is not (declaration order
@@ -404,6 +416,8 @@ def existing_ok(seg, cfile, snips, td):
     text = open(path).read()
     defined = set(re.findall(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*\{", text, re.M))
     if defined != set(snips): return False
+    # same bodies too: unify and protofix rewrite registered snippets, and a stale file must not pass for the new text
+    if bodies and any(fn_body(t, n) is None or fn_body(t, n) != fn_body(text, n) for n, t in snips.items()): return False
     obj, err = compile_file(text, td)
     if obj is None: return False
     info = {e[0]: e for e in entries(seg, cfile)}
@@ -422,6 +436,14 @@ def build_one(args):
         if snips and existing_ok(seg, cfile, snips, td):
             return (fname, dict(snips), {}, None)   # already right: keep the file as it is
         kept, rej, text, problem = settle(seg, cfile, snips, td)
+        old = {n: t for n, t in snips.items() if prio.get(n, float("inf")) != float("inf")}
+        if (problem or set(old) - set(kept)) and existing_ok(seg, cfile, old, td, bodies=False):
+            # the file as it stands is a correct build of its registered functions (the last ROM-checked one, even if
+            # unify/protofix have since rewritten a snippet's text), and a from-scratch render, or adding the new
+            # ones, would cost one of them (file045 loses 4, file018 lost 2 in cycle 29): keep it frozen and turn any
+            # new candidates away
+            return (fname, dict(old), {n: "file frozen: adding it would evict registered functions"
+                                       for n in snips if n not in old}, None)
         if not rej and not problem:
             open("src/%s.c" % fname, "w").write(text); return (fname, kept, {}, None)
         kept, rejected, text = {}, {}, None
@@ -602,12 +624,14 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
                 shutil.move("matched/%s/%s.c" % (seg, n), "matched_rejected/%s/%s.c" % (seg, n))
                 fh.write(json.dumps({"segment": seg, "func": n, "why": why, "was_registered": True}) + "\n")
     elif mode == "add":
-        new = {}
+        new = {}; blocked = link_blocked()
         for b in sys.argv[2:]:
             for l in open("queue/%s/results.jsonl" % b):
                 r = json.loads(l); key = (r["segment"], r["func"])
-                if r["verified"] == "MATCH" and key not in reg:
-                    new[key] = open(workdir.attempt(b, r["func"], r["segment"])).read()
+                if r["verified"] == "MATCH" and key not in reg and key not in blocked:
+                    a = workdir.attempt(b, r["func"], r["segment"])
+                    if a is None: continue     # work dir archived (tools/swarm/housekeep.py): offered and settled before
+                    new[key] = open(a).read()
         # skip candidates rejected before with the same text while their file's registered functions were the same:
         # the loop re-offers the last few batches every cycle, and each retried reject costs a one-at-a-time rebuild of
         # its file (cycles 23-25 hit the 60 min integrate timeout that way)

@@ -86,11 +86,27 @@ void func_8038B964(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038B7E0/func_8038B970.s")
+
+extern void func_8038BB6C(void);
+extern void func_8038B9DC(s32 arg0, s32 arg1);
+extern s32 D_8038D86C;
+extern s32 D_8038D870;
+extern s32 D_8038D874;
+extern s32 D_8038D8CC;
+extern s32 D_8038D8D0;
+
+void func_8038B970(s32 arg0, s32 arg1) {
+    D_8038D86C = 0;
+    D_8038D8CC = 0;
+    D_8038D8D0 = 0;
+    D_8038D870 = D_8038D874 = 0;
+    func_801BF6C4(3);
+    func_8038BB6C();
+    func_800058DC(arg0, &func_8038B9DC);
+}
 
 
 extern void func_8038BA20(s32 arg0, s32 arg1);
-extern s32 D_8038D86C;
 
 void func_8038B9DC(s32 arg0, s32 arg1) {
     D_8038D86C = 1;
@@ -102,8 +118,6 @@ void func_8038B9DC(s32 arg0, s32 arg1) {
 
 extern u8 D_8038D860[];
 extern u8 D_8038E060[];
-extern s32 D_8038D8CC;
-extern s32 D_8038D8D0;
 
 void func_8038BA20(s32 arg0, s32 arg1) {
     D_8038D8CC = arg0;
@@ -118,14 +132,12 @@ s32 func_8038BA64(void) {
 }
 
 
-extern s32 D_8038D870;
 
 s32 func_8038BA70(void) {
     return ++D_8038D870 < 0x14;
 }
 
 
-extern s32 D_8038D874;
 
 s32 func_8038BA8C(void) {
     return ++D_8038D874 < 0x14;
@@ -133,7 +145,6 @@ s32 func_8038BA8C(void) {
 
 
 void func_801C25B0(void *);
-void func_8038BB6C(void);
 extern u8 D_8038DD90[];
 extern u8 D_8038DF70[];
 
@@ -449,7 +460,7 @@ struct func_8038BEF8_StructG {
     struct func_8038BEF8_StructO *o;
 };
 
-extern f64 func_80034C24(u64 a);
+extern f64 func_80034C24();
 extern s32 func_801C0DE4(s32 a, s32 b, f32 c);
 extern void func_801C0EB0(s32 a, s32 b);
 extern u64 func_801C0F18(s32 a, s32 b);
@@ -480,7 +491,24 @@ void func_8038C068(void) {
     func_801C0D04(0, 0x2328);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file100/8038B7E0/func_8038C08C.s")
+
+extern f64 D_8038DD00;
+
+s32 func_8038C08C(f32 arg0, f32 arg1, f32 arg2, f32 arg3)
+{
+  f64 new_var;
+  if (func_801C0DE4(0, 9000, arg1) != 0)
+  {
+    func_801C0EB0(0, 9000);
+    return 1;
+  }
+  if (func_801C0DE4(0, 9000, arg0) != 0)
+  {
+    new_var = func_80034C24(func_801C0F18(0, 9000));
+    D_801BBCD8->unk2C->unk1C = ((arg3 - arg2) * (((f32) ((new_var / D_8038DD00) - ((f64) arg0))) / (arg1 - arg0))) + arg2;
+  }
+  return 0;
+}
 
 
 

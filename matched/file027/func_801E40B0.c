@@ -16,7 +16,7 @@ struct func_801E40B0_StructA {
 };
 
 extern f64 func_80034C24();
-extern u64 func_801C0B2C(void);
+extern u64 func_801C0B2C();
 extern f64 D_801F5820;
 
 s32 func_801E40B0(s32 arg0, s32 arg1) {

@@ -17,7 +17,20 @@ s32 func_80000704(u8 *arg0) {
     return *(s32 *)(arg0 + 0x898);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80000460/func_8000070C.s")
+
+extern void func_800265F0(void *);
+extern void func_80026CE0(void *);
+
+void func_8000070C(u8 *arg0) {
+    func_800265F0(arg0 + 0x528);
+    func_80026CE0(arg0 + 0x528);
+    *(s32 *)(arg0 + 0x88C) = 0;
+    *(s32 *)(arg0 + 0x894) = 0;
+    func_800265F0(arg0 + 0x6D8);
+    func_80026CE0(arg0 + 0x6D8);
+    func_800265F0(arg0 + 0x378);
+    func_80026CE0(arg0 + 0x378);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80000460/func_80000774.s")
 
@@ -117,7 +130,40 @@ s32 func_80000EC8(void *arg0) {
     return M2C_FIELD(arg0, s32 *, 0x89C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80000460/func_80000ED0.s")
+
+extern s16 D_80089356;
+
+typedef struct func_80000ED0_Struct {
+    u8 pad[0x898];
+    s32 unk898;
+    s32 unk89C;
+} func_80000ED0_Struct;
+
+typedef struct func_80000ED0_StructInput {
+    u8 pad[8];
+    u32 unk8;
+} func_80000ED0_StructInput;
+
+void func_80000ED0(func_80000ED0_Struct *arg0, void *arg1, func_80000ED0_StructInput *arg2) {
+    s32 temp_a0;
+    u32 temp_t1;
+    u32 temp_v0;
+
+    if (arg2->unk8 & 0x40) {
+        if ((D_80089356 == 0) || (temp_v0 = arg0->unk898, temp_v0 == 2)) {
+            arg0->unk898++;
+            if ((u32)arg0->unk898 >= 3U) {
+                arg0->unk898 = 0;
+            }
+        } else {
+            arg0->unk898 = temp_v0 ^ 1;
+        }
+        temp_a0 = func_800267F0(1);
+        arg0->unk89C = arg0->unk89C + 1;
+        func_800267F0(temp_a0);
+    }
+    func_80026300(arg1, arg2, 1);
+}
 
 
 typedef struct func_80000F78_Struct {
@@ -137,5 +183,27 @@ void func_80000F88(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80000460/func_80000F9C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80000460/func_80001010.s")
+
+typedef struct func_80001010_Struct {
+    s32 mask;
+    s32 value;
+    s32 unused;
+} func_80001010_Struct;
+
+void func_80001010(s32 arg0, s32 arg1, func_80001010_Struct *arg2) {
+    s32 mask;
+    s32 result;
+
+    result = 1;
+    mask = arg2->mask;
+    if (mask != 0) {
+        do {
+            if (((mask & arg0) == arg2->value) && (result != 0)) {
+                result = 0;
+            }
+            mask = arg2[1].mask;
+            arg2++;
+        } while (mask != 0);
+    }
+}
 

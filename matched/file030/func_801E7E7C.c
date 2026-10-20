@@ -29,7 +29,7 @@ extern void func_80006214(s32);
 extern void func_8012C89C(s32, s32, s32, s32);
 extern u8 func_8038D830[];
 extern s32 func_8038D850;
-extern struct func_801E7E7C_StructP *func_8038D854;
+extern struct func_801E3988_StructP *func_8038D854;
 extern u8 D_8017AE98[];
 
 s32 func_801E7E7C(s32 arg0, s32 arg1) {

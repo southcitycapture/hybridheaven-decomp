@@ -44,7 +44,7 @@ typedef struct func_801CA628_Root {
     u8 pad[0x2C];
     func_801CA628_Cam *unk2C;
 } func_801CA628_Root;
-extern func_801CA628_Root *D_801BBCD8;
+extern func_801CA274_StructE *D_801BBCD8;
 extern u8 D_801D9908[];
 extern u8 D_801DA950[];
 extern u8 func_801CA8C4[];

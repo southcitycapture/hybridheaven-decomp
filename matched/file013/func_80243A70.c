@@ -1,16 +1,5 @@
 #include "context.h"
 
-typedef struct func_80243A70_Struct {
-    u8 pad0[0x24];
-    func_80242FD0_StructC *unk24;
-    u8 pad28[0x5C - 0x28];
-    func_80243688_StructE *unk5C;
-    u8 pad60[0x70 - 0x60];
-    u16 unk70;
-    u8 pad72[0x91 - 0x72];
-    u8 unk91;
-    u8 unk92;
-} func_80243A70_Struct;
 
 extern s32 func_80010550(s32, void *);
 extern void func_80020744(s32);

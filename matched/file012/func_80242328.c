@@ -10,7 +10,7 @@ struct func_80242328_Struct {
     u8 unkA0;
 };
 
-extern void func_800058DC(void *arg0, void *arg1);
+extern s32 func_800058DC(s32, void *);
 extern void func_80242364(void);
 
 void func_80242328(struct func_80242328_Struct *arg0, s32 arg1) {

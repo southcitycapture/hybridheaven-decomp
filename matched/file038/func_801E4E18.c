@@ -1,7 +1,7 @@
 #include "common.h"
 
-extern s32 func_801CE274();
-extern void func_801CC470(s32, s32, s32, s32, f32);
+extern s32 func_801CE274(void);
+extern s32 func_801CC470(s32, s32, s32, s32, f32);
 
 s32 func_801E4E18(s32 arg0, s32 arg1) {
     if (func_801CE274() == 0) {

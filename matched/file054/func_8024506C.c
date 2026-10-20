@@ -8,7 +8,7 @@ extern f32 D_802486F4;
 extern f32 D_802486F8;
 extern f32 D_802486FC;
 extern f32 D_80248700;
-extern void func_80245250(void);
+extern void func_80245250();
 
 void func_8024506C(func_80244874_Obj *arg0, s32 arg1) {
     s32 sp5C;

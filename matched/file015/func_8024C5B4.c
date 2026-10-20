@@ -1,14 +1,5 @@
 #include "common.h"
 
-struct func_8024C5B4_Struct {
-    u8 pad[0x1E8];
-    s32 unk1E8;
-    s32 unk1EC;
-    s32 unk1F0;
-    f32 unk1F4;
-    f32 unk1F8;
-    f32 unk1FC;
-};
 
 extern struct func_8024C5B4_Struct D_801BBBF0;
 extern f32 D_80259740;

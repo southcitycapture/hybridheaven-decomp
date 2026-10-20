@@ -2,10 +2,6 @@
 extern struct func_801C2F0C_StructBBBF0 D_801BBBF0;
 extern void func_801C3BAC(u16);
 
-struct func_801C2E20_Struct0 {
-    u8 pad0[0x5C];
-    s32 unk5C;
-};
 struct func_801C2E20_Struct12 {
     u8 pad0[0x12];
     s16 unk12;
@@ -21,11 +17,6 @@ struct func_801C2E20_StructBBBF0 {
     u16 unk1B4;
     u8 pad2[0x1D4 - 0x1B6];
     s16 unk1D4;
-};
-struct func_801C2E20_Struct10 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
 };
 
 extern void func_800058DC(void *, void *);

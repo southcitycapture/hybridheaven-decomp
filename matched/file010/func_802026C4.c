@@ -45,13 +45,6 @@ typedef struct func_802026C4_StructS {
     s32 unkC;
 } func_802026C4_StructS;
 
-typedef struct func_802026C4_StructD {
-    u8 pad0[0xF32];
-    u8 unkF32;
-    u8 unkF33;
-    u8 unkF34;
-    u8 unkF35;
-} func_802026C4_StructD;
 
 extern s32 func_8000C3B0(void *);
 extern f32 func_8001EAD0(s16);

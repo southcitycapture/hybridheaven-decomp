@@ -35,7 +35,7 @@ typedef struct func_801E31C0_Struct0 {
 extern void func_80005E44(s32, void *);
 extern void func_80006214(s32);
 extern void func_8012C89C(s32, s32, s32, s32);
-extern void func_8038D28C(s32 a0);
+extern void func_8038D28C(s32);
 extern s32 D_8038D8CC;
 extern u8 D_8038D88C[];
 extern u8 D_801D9040[];

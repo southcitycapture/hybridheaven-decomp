@@ -1,9 +1,5 @@
 #include "context.h"
 extern void func_8012CF8C(void *arg0, u8 *arg1, s32 arg2, s32 arg3);
-struct func_801C2E9C_Struct {
-    u8 pad0[0x30];
-    u8 *unk30;
-};
 struct func_801C2E9C_Struct2 {
     u8 pad0[0x9C];
     u16 unk9C;

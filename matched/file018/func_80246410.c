@@ -4,17 +4,6 @@ extern s32 func_80244AB0();
 extern s32 func_8012C6B4(s32);
 extern void func_80246488();
 
-typedef struct func_80246410_Struct {
-    u8 pad0[0x2C];
-    s32 unk2C;
-    s32 unk30;
-    u8 pad34[0x28];
-    u8 *unk5C;
-    u8 pad60[0x34];
-    s16 unk94;
-    u8 pad96[0x6];
-    s32 unk9C;
-} func_80246410_Struct;
 
 void func_80246410(func_80246410_Struct *arg0, s32 arg1)
 {

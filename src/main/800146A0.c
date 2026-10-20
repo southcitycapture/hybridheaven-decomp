@@ -1,13 +1,98 @@
 #include "common.h"
 
+extern f32 D_80043860[];
 extern f32 func_8001518C();                                /* extern */
 extern void func_80014B88(void *, s16, s16, s16);
 extern void func_80014E14(void *, void *, s32, s32, f32);
 extern void func_80029D30(void *, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_800146A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80014798.s")
+f32 func_800146A0(f32 arg0) {
+    f64 t2;
+    f64 t0;
+    f64 x;
+    f64 a;
+    f64 b;
+    f64 i;
+    f64 r;
+    f64 k;
+
+    r = 0.0;
+    k = 2.0;
+    x = (f64) arg0;
+    if (x < 0.0) {
+        a = -x;
+    } else {
+        a = x;
+    }
+    if (a <= 1.0) {
+        b = x;
+    } else {
+        b = 1.0 / x;
+    }
+    for (i = 19.0; i >= 1.0; i -= 1.0) {
+        t2 = 1.0 + r + (k * i);
+        t0 = i * b * i;
+        r = (t0 * b) / t2;
+    }
+    b = b / (1.0 + r);
+    if (x > 1.0) {
+        return (f32) (1.5707963705062866 - b);
+    }
+    if (x < -1.0) {
+        return (f32) (-1.5707963705062866 - b);
+    }
+    return (f32) b;
+}
+
+
+
+f32 func_80014798(f32 arg0, f32 arg1) {
+    s32 i;
+    f32 a;
+    f32 b;
+    f32 r;
+
+    if (arg1 < 0.0f) {
+        a = -arg1;
+    } else {
+        a = arg1;
+    }
+    if (arg0 < 0.0f) {
+        b = -arg0;
+    } else {
+        b = arg0;
+    }
+    if (b < a) {
+        if (arg1 == 0.0f) {
+            return 0.0f;
+        }
+        i = (s32)(((f64)b * 512.0) / (f64)a);
+        if ((u32)i >= 0x201U) {
+            i = 0x200;
+        }
+        r = D_80043860[i];
+    } else if (a < b) {
+        if (arg0 == 0.0f) {
+            return 0.0f;
+        }
+        i = (s32)(((f64)a * 512.0) / (f64)b);
+        if ((u32)i >= 0x201U) {
+            i = 0x200;
+        }
+        r = (f32)(1.5707963267948966 - (f64)D_80043860[i]);
+    } else if (a == b) {
+        r = 0.7853982f;
+    }
+    if ((arg1 < 0.0f) && (arg0 >= 0.0f)) {
+        r = (f32)(3.141592653589793 - (f64)r);
+    } else if ((arg1 < 0.0f) && (arg0 < 0.0f)) {
+        r = (f32)((f64)r + 3.141592653589793);
+    } else if ((arg1 >= 0.0f) && (arg0 < 0.0f)) {
+        r = (f32)(6.283185307179586 - (f64)r);
+    }
+    return r;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80014990.s")
 

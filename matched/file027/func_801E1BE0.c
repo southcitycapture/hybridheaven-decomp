@@ -3,7 +3,7 @@ extern void func_8038BED4(void);
 extern void func_8038BD50(f32, f32, s32);
 extern void D_8038BD88(f32, f32, s32);
 extern s32 func_801C0B8C(u64);
-s32 func_801C0B8C(u64 time);
+extern s32 func_801C0B8C(u64);
 
 extern f32 D_801F564C;
 

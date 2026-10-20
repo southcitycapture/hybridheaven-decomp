@@ -10,15 +10,7 @@ typedef struct func_8036265C_Struct {
     u8 unk38_rest : 5;
 } func_8036265C_Struct;
 
-typedef struct func_8036265C_Inner {
-    u8 pad[0x7C];
-    u8 *unk7C;
-} func_8036265C_Inner;
 
-typedef struct func_8036265C_Arg {
-    u8 pad[0x5C];
-    func_8036265C_Inner *unk5C;
-} func_8036265C_Arg;
 
 void func_8036265C(func_8036265C_Arg *arg0, s32 arg1)
 {

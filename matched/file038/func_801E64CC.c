@@ -10,7 +10,7 @@ typedef struct func_801E64CC_Struct {
 } func_801E64CC_Struct;
 
 extern func_801E64CC_Struct D_801E6D08;
-extern s32 func_801C18CC(s32, void *);
+extern void func_801C18CC(s32, void *);
 
 s32 func_801E64CC(s32 arg0, s32 arg1) {
     func_801E64CC_Struct sp18;

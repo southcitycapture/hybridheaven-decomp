@@ -1,14 +1,7 @@
 #include "context.h"
 
-typedef struct func_8036D9F8_Struct3 { s32 w[3]; } func_8036D9F8_Struct3;
 typedef struct func_8036D9F8_Struct6 { s32 w[2][3]; } func_8036D9F8_Struct6;
 
-struct func_8036D9F8_Arg {
-    u8 pad0[0x36];
-    u16 unk36;
-    u8 pad1[0x5C - 0x38];
-    s32 unk5C;
-};
 
 struct func_8036D9F8_Obj {
     u8 pad0[0x30];
@@ -19,7 +12,7 @@ struct func_8036D9F8_Obj {
 
 extern func_8036D9F8_Struct3 D_80387AFC;
 extern func_8036D9F8_Struct6 D_80387B08;
-extern void func_8036DB90();
+extern void func_8036DB90(struct func_8036D9F8_Arg *arg0, s32 arg1);
 extern void func_802237B0(void *, s32);
 extern void func_80226710(void *, s32, s32);
 extern s32 func_80011140(s32, s32, func_8036D9F8_Struct3, s32);

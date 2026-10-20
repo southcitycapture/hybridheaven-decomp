@@ -26,7 +26,7 @@ extern s32 func_801CE274();
 extern void func_801CC550(s32);
 extern void func_8038D33C(f32, f32, s32, s32, f32, f32);
 extern f32 D_801EC714;
-extern void *D_801DAB14;
+extern func_801E5470_StructP1 *D_801DAB14;
 
 s32 func_801E55F8(s32 arg0, s32 arg1) {
     func_801E55F8_StructE *temp_v0;

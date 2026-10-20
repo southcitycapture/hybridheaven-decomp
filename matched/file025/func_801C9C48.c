@@ -1,35 +1,6 @@
 #include "context.h"
 
-typedef struct func_801C9C48_Struct30 {
-    u8 pad0[4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    s16 unk10;
-    s16 unk12;
-    s16 unk14;
-    u8 pad16[2];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    u32 unk24;
-    u8 pad28[8];
-    u32 unk30;
-    u8 pad34[0x14];
-    u8 unk48;
-    u8 unk49;
-    u8 unk4A;
-    u8 unk4B;
-    u8 unk4C;
-    u8 unk4D;
-    u8 unk4E;
-    u8 unk4F;
-} func_801C9C48_Struct30;
 
-typedef struct func_801C9C48_Struct1 {
-    u8 pad0[0x30];
-    func_801C9C48_Struct30 *unk30;
-} func_801C9C48_Struct1;
 
 typedef struct func_801C9C48_Struct0 {
     u8 pad[0x90];

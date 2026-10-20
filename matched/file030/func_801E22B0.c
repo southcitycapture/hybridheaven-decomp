@@ -5,8 +5,8 @@ typedef struct func_801E22B0_Struct {
     s32 unkC;
 } func_801E22B0_Struct;
 
-void *func_801BF6B0(s32 arg0);
-s32 func_801C1B1C(void);
+extern void *func_801BF6B0(s32 arg0);
+extern s32 func_801C1B1C();
 
 s32 func_801E22B0(s32 arg0, s32 arg1) {
     func_801E22B0_Struct *obj;

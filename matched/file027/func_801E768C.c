@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_801BF628(s32, u8 *);
+extern void func_801BF628(s32 arg0, s32 *arg1);
 extern s32 D_801F4000;
 
 s32 func_801E768C(s32 arg0, s32 arg1) {

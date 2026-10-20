@@ -81,7 +81,24 @@ void func_80152BC8(u8 arg0, s8 arg1) {
     *var_v0 += arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80152890/func_80152C04.s")
+extern u16 D_80183AD0;
+
+typedef struct func_80152C04_Struct {
+    u16 id;
+    u8 pad[2];
+    s32 value;
+    u8 pad2[4];
+} func_80152C04_Struct;
+
+s32 func_80152C04(u16 arg0) {
+    u8 i;
+
+    i = 0;
+    while (arg0 != ((func_80152C04_Struct *)&D_80183AD0)[i].id && i < 0x2C) {
+        i++;
+    }
+    return ((func_80152C04_Struct *)&D_80183AD0)[i].value;
+}
 
 
 extern u8 D_8017DC89;
@@ -177,7 +194,6 @@ typedef struct func_80152F7C_Struct {
 } func_80152F7C_Struct;
 
 extern u16 func_80152980(s32 arg0, s32 arg1);
-extern u16 D_80183AD0;
 
 #define D_STRUCT (*(func_80152F7C_Struct *) &D_8017DD7C)
 

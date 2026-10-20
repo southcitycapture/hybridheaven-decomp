@@ -82,7 +82,35 @@ void func_8023A2BC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023A3C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023A424.s")
+
+extern s32 func_802333FC(s32, u8);
+extern u8 D_8024089B;
+
+struct func_8023A424_Struct {
+    u8 pad[0x98];
+    s32 unk98;
+};
+
+s32 func_8023A424(struct func_8023A424_Struct *arg0, u8 arg1) {
+    s32 temp;
+    u8 value;
+
+    temp = arg0->unk98;
+    value = 2;
+    if (D_8024089B == 1) {
+        value = 4;
+    }
+    if ((arg1 == 0) || (arg1 == 2)) {
+        return 0;
+    }
+    if (arg1 == 3) {
+        value++;
+    }
+    if (func_802333FC(temp, value) != 0) {
+        return 1;
+    }
+    return 0;
+}
 
 
 struct func_8023A4AC_Struct {
@@ -113,10 +141,23 @@ s32 func_8023A4EC(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8023A210/func_8023A51C.s")
+
+extern s8 func_80243E50(u8, s32, u8, u8);
+
+s32 func_8023A51C(s32 arg0, u8 arg1) {
+    s32 p;
+    s32 i;
+    s32 o;
+    o = arg0;
+    p = *(s32 *)(arg0 + 0x98);
+    i = func_80243E50(((u8 *)&D_80240880)[0x1B], (((u8 *)&D_80240880)[0x1C] - 1) / 2 & 0xFF, ((u8 *)&D_80240880)[0x1D], arg1);
+    if (*(u8 *)(p + 0xA8 + i * 6) == 1) {
+        return 1;
+    }
+    return 0;
+}
 
 
-s32 func_8023A51C(s32, u8);
 extern u8 D_8024089E;
 
 s32 func_8023A5A4(s32 a) {
@@ -479,7 +520,6 @@ struct func_8023BF10_StructB {
     u8 unk2D9;
 };
 
-extern s8 func_80243E50(u8, s32, u8, u8);
 extern void func_80376BE4(void *);
 extern void func_8023A09C();
 extern u8 D_801842A0[];

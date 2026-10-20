@@ -24,7 +24,24 @@ void func_80379410(u8 *arg0, u8 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_80379490.s")
+extern u8 D_801BBBF0[];
+
+extern f32 D_8038BA70;
+
+u16 func_80379490(u8 *arg0, u16 arg1, u8 arg2, f32 arg3) {
+    f32 k = 1.0f;
+    if ((D_801BBBF0[0x1033] & 8) && (arg0 == D_801BBBF0 + 0x7E8)) {
+        return 0;
+    }
+    if ((arg0 == D_801BBBF0 + 0x7E8) && (*(u16 *)(D_801BBBF0 + 0x2C) != 0xA)) {
+        if (D_801BBBF0[0x1D] == 1) {
+            k = D_8038BA70;
+        } else if (D_801BBBF0[0x1D] == 2) {
+            k = 1.5f;
+        }
+    }
+    return (u32)((((f32)(arg1 * arg2) * k) / 100.0f) * arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_803795D8.s")
 
@@ -48,7 +65,14 @@ void func_803796E4(struct func_803796E4_Struct *arg0) {
     arg0->unk9E = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_803796EC.s")
+
+u16 func_803796EC(s16 *arg0, u8 arg1, u16 arg2) {
+    f32 t = ((f32) *arg0 * (f32) arg1) / 100.0f;
+    if (t < (f32) arg2) {
+        return arg2;
+    }
+    return (u32) t;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_803797F8.s")
 
@@ -100,7 +124,6 @@ void func_8037ACCC(void *arg0, s32 arg1) {
 
 extern s32 func_8022B640(s32, void *);
 extern u8 *D_8008DA88;
-extern u8 D_801BBBF0[];
 extern u8 D_801BC3D8[];
 extern u8 D_801BC03C[];
 
@@ -152,12 +175,49 @@ void func_8037AED8(struct func_8037AED8_Obj *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_8037B0B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_8037B188.s")
+extern void func_8037B23C();
+struct func_8037EB58_Struct {
+    u8 pad[0xA8];
+    u8 unkA8;
+    u8 padA9[7];
+    s16 unkB0;
+};
+extern s32 func_80006214(void *);
+
+extern void func_8037B0B0(void *, s16, s16, s8 *);
+
+void func_8037B188(struct func_8037EB58_Struct *arg0, s32 arg1) {
+    s8 sp25[4];
+    u8 *var_t0;
+    s32 var_v0;
+    s32 var_v1;
+
+    sp25[1] = 0;
+    var_v0 = arg0->unkA8;
+    if (var_v0 == 0) {
+        var_t0 = D_801BC03C;
+    } else {
+        var_t0 = D_801BC3D8;
+    }
+    var_v1 = 0xBA;
+    if (var_v0 == 0) {
+        var_v0 = 0xA0;
+        var_v1 = 0x28;
+    } else {
+        var_v0 = 0x64;
+    }
+    func_8037B0B0(arg0, (s16)var_v0, (s16)var_v1, &sp25[1]);
+    func_80006214(arg0);
+    if (*(s16 *)(var_t0 + 6) >= 0x1E) {
+        ((struct func_8037AED8_Tab *)D_8008DA88)->unk30->unkB = 0;
+    }
+    arg0->unkB0 = 0;
+    func_800058DC(arg0, func_8037B23C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_8037B23C.s")
 
 
-extern void func_8037B23C();
 
 void func_8037B530(struct func_8037EB58_Struct *arg0, s32 arg1) {
     if ((*(s16 *) ((u8 *) arg0 + 0xB0))-- == 0) {
@@ -814,17 +874,45 @@ void func_8037E780(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_8037E7E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_8037E9B8.s")
 
+struct func_8037EB58_Struct;
+void func_8037EB58(struct func_8037EB58_Struct *arg0, s32 arg1);
 
-struct func_8037EB58_Struct {
-    u8 pad[0xA8];
-    u8 unkA8;
-    u8 padA9[7];
+struct func_8037E9B8_Struct {
+    u8 pad[0xB0];
     s16 unkB0;
 };
 
-extern s32 func_80006214(void *);
+void func_8037E9B8(struct func_8037E9B8_Struct *arg0, s32 arg1) {
+    f32 v;
+    u8 t;
+    u8 t2;
+    func_8037DCEC_Inner *p;
+
+    if (arg0->unkB0 < 8) {
+        if (func_8001EAD0(arg0->unkB0 << 9) < 0.0f) {
+            v = -func_8001EAD0(arg0->unkB0 << 9);
+        } else {
+            v = func_8001EAD0(arg0->unkB0 << 9);
+        }
+        t = (u32)(v * 255.0f);
+        G->unk4->unk30->unkE = t;
+        G->unk4->unk30->unkD = t;
+        G->unk4->unk30->unkC = t;
+        arg0->unkB0 = arg0->unkB0 + 1;
+        return;
+    }
+    G->unk4->unk30->unkE = 0;
+    p = G->unk4->unk30;
+    t2 = p->unkE;
+    p->unkD = t2;
+    G->unk4->unk30->unkC = t2;
+    arg0->unkB0 = 0;
+    func_800058DC(arg0, func_8037EB58);
+}
+
+
+
 extern s32 func_8037EBD0;
 
 void func_8037EB58(struct func_8037EB58_Struct *arg0, s32 arg1) {

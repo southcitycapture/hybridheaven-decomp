@@ -61,7 +61,14 @@ void func_800026E4(u8 arg0, u8 *arg1, s32 arg2) {
     func_8002EE40(D_8005CE70 + arg0 * 0x68, *(u16 *)(arg1 + 0x8), *(s32 *)(arg1 + 0x4), arg1 + 0xE, arg1 + 0xA, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_80002750.s")
+extern s32 func_80032DD0();
+
+void func_80002750(s32 arg0, s32 a1, s32 a2) {
+    s32 temp_a3;
+
+    temp_a3 = arg0 & 0xFF;
+    func_80032DD0(D_8005CE70 + (temp_a3 * 0x68), a1, a2, temp_a3);
+}
 
 void func_80032AB0(void *, s32, s32, s32);
 
@@ -201,7 +208,34 @@ s32 func_80002BAC(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_80003118.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_800031EC.s")
+
+extern u8 func_80002BE0(u8);
+extern u8 func_80002DBC(u8, u8, u8 *);
+
+u8 func_800031EC(u8 arg0, u8 arg1, u16 arg2, u16 arg3, s32 arg4) {
+    u8 v;
+    u8 sp26;
+    s32 r;
+
+    v = func_80002BE0(arg0);
+    if (v == 0) {
+        v = func_80002DBC(arg0, arg1, &sp26);
+        if (v == 0) {
+            r = func_80029784(&D_8005CE70[arg0 * 0x68], sp26, 0, arg2, arg3, arg4);
+            switch (r) {
+            case 0: v = 0; break;
+            case 1: v = 1; break;
+            case 2: v = 2; break;
+            case 3: v = 8; break;
+            case 4: v = 3; break;
+            case 5: v = 9; break;
+            case 6: v = 0xD; break;
+            default: v = 0; break;
+            }
+        }
+    }
+    return v;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_800032E0.s")
 

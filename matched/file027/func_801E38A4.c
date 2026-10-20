@@ -10,7 +10,7 @@ typedef struct func_801E390C_Struct2 {
 typedef struct func_801E390C_Struct1 {
     func_801E390C_Struct2 *unk0;
 } func_801E390C_Struct1;
-extern func_801E390C_Struct1 *D_8038D8D0;
+extern struct func_801E390C_Struct1 *D_8038D8D0;
 extern f32 D_801F3BA0;
 
 extern void func_801C2EF8();

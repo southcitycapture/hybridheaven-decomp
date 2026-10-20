@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void *func_801BF6B0(s32);
+extern struct func_801E1D84_StructA *func_801BF6B0(s32 a0);
 extern void func_8038BD50(f32, f32, s32);
 extern void D_8038BD88(f32, f32, s32);
 extern f32 D_801F5688;

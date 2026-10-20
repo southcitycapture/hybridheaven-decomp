@@ -25,7 +25,7 @@ typedef struct func_801E5470_StructP1 {
 } func_801E5470_StructP1;
 
 extern func_801E5470_StructP1 *D_801DAB14;
-extern void func_801CC470(s32 a0, s32 a1, s32 a2, s32 a3, f32 f12);
+extern s32 func_801CC470(s32 a0, s32 a1, s32 a2, s32 a3, f32 f);
 
 s32 func_801E5470(s32 arg0, s32 arg1) {
     func_801E5470_StructP3 *temp_v0;

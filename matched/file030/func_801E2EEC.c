@@ -4,7 +4,7 @@ void func_801CCE0C(s32 arg0);
 void func_801CCE50(s32 arg0, s32 arg1, s32 arg2);
 void func_801CCE88(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_801CCEC8(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-void func_801CD5C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_801CD5C8(s32, s32, s32, s32);
 
 s32 func_801E2EEC(s32 arg0, s32 arg1) {
     func_801CCE0C(2);

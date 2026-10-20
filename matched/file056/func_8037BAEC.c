@@ -1,9 +1,5 @@
 #include "context.h"
 
-typedef struct func_8037BAEC_StructBBBF0 {
-    u8 pad[0xEF0];
-    u16 unkEF0;
-} func_8037BAEC_StructBBBF0;
 
 typedef struct func_8037BAEC_StructA930 {
     f32 unk0;

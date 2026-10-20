@@ -1,5 +1,5 @@
 #include "common.h"
-s32 func_801C0B8C(u64 time);
+extern s32 func_801C0B8C(u64 time);
 
 extern void D_8038C97C(s32, s32, s32, s32, s32, s32, s32);
 extern s16 D_80089354;

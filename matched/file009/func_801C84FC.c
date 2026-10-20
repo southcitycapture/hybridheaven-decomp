@@ -28,7 +28,7 @@ extern void func_800058DC(void *, void *);
 extern void func_8001F74C(s32);
 extern void func_801C4A5C(void *, s32);
 extern s32 func_8012FF4C(void);
-extern void func_803771E8(void);
+extern void func_803771E8();
 struct func_801C8608_Outer;
 extern void func_801C8608(struct func_801C8608_Outer *, s32);
 

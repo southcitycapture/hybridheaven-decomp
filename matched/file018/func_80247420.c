@@ -1,16 +1,6 @@
 #include "context.h"
 
-typedef struct func_80247420_StructInner {
-    u8 pad0[0x78];
-    s16 unk78;
-} func_80247420_StructInner;
 
-typedef struct func_80247420_Struct {
-    u8 pad0[0x2C];
-    s32 unk2C;
-    u8 pad30[0x2C];
-    func_80247420_StructInner *unk5C;
-} func_80247420_Struct;
 
 extern void func_802474E4();
 

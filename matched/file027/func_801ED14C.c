@@ -10,7 +10,7 @@ typedef struct func_801ED14C_Struct0 {
 } func_801ED14C_Struct0;
 
 extern u8 *D_801DAB14;
-extern void func_801CC4D8(s32 a0, s32 a1, s32 a2, s32 a3, f32 f);
+extern s32 func_801CC4D8(s32 a0, s32 a1, s32 a2, s32 a3, f32 f);
 extern void func_801C0D04(s32, s32);
 extern s32 func_801C0DE4(s32, s32, s32);
 extern void func_801C0EB0(s32, s32);

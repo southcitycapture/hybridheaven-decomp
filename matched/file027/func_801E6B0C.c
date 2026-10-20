@@ -5,7 +5,7 @@ struct func_801E6B0C_Struct {
     s32 unkC;
 };
 
-extern struct func_801E6B0C_Struct *func_801BF6B0();
+extern struct func_801E1D84_StructA *func_801BF6B0(s32 a0);
 extern s32 func_801C1B1C();
 
 s32 func_801E6B0C(s32 arg0, s32 arg1) {

@@ -42,10 +42,6 @@ typedef struct func_80249A58_StructArg0 {
     s16 unk96;
 } func_80249A58_StructArg0;
 
-typedef struct func_80249A58_StructTbl {
-    u8 unk0;
-    u8 pad1[0x13];
-} func_80249A58_StructTbl;
 
 extern void func_8012D8C8(void *, s32, s32, s32, s32, s32);
 extern u8 D_80258FE0[];

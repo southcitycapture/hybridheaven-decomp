@@ -1,5 +1,5 @@
 #include "context.h"
-s32 func_801C18CC(s32 arg0, func_801E6F80_Struct *arg1);
+extern s32 func_801C18CC(s32 arg0, func_801E6F80_Struct *arg1);
 
 typedef struct func_801E9304_Struct {
     s32 unk0;

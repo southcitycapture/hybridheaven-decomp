@@ -1,6 +1,6 @@
 #include "context.h"
 
-extern s32 func_8038BEF8(f32 f0, f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6, f32 f7, f32 f8, f32 f9, f32 f10, f32 f11, f32 f12, f32 f13);
+extern s32 func_8038BEF8(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern f32 D_801F570C;
 extern f32 D_801F5710;
 extern f32 D_801F5714;

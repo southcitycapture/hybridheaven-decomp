@@ -12,7 +12,7 @@ typedef struct func_80151700_Struct1 {
 
 extern void func_80006214(void *);
 extern void *D_8008D5D4;
-extern func_80151700_Struct1 *D_8008DA88[];
+extern struct func_80151700_Struct1 *D_8008DA88[];
 
 s32 func_80151700(func_801516CC_Struct0 *arg0, u8 arg1, s32 arg2) {
     func_801516CC_Struct1 *sp1C;

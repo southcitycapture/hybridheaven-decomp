@@ -1,14 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80373BB0.s")
-
-
 struct func_80373BF0_Struct {
     u8 pad[4];
     s32 *unk4;
 };
-
 extern struct func_80373BF0_Struct *D_80171CEC[];
+
+extern s32 func_8000511C(u16, s32);
+
+s64 func_80373BB0(u16 arg0) {
+    return func_8000511C(**(u16 **)D_80171CEC[arg0], arg0);
+}
+
+
+
 
 s32 func_80373BF0(u16 arg0, u16 arg1) {
     return D_80171CEC[arg0]->unk4[arg1];
@@ -144,7 +149,27 @@ void func_80374CB8(s32 arg0, s32 arg1) {
     func_80005700(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80373BB0/func_80374CE4.s")
+
+extern u8 D_801BCC25[];
+extern void func_80374D3C();
+
+struct func_80374CE4_Struct {
+    u8 pad0[0x42];
+    s16 unk42;
+    u8 pad44[0x18];
+    u16 unk5C;
+    u16 unk5E;
+};
+
+void func_80374CE4(s32 arg0, s32 arg1) {
+    struct func_80374CE4_Struct *ptr;
+
+    ptr = (struct func_80374CE4_Struct *)D_801BCC24.unkE4;
+    if (ptr->unk42 == 0 && (s32)ptr->unk5E++ < (s32)ptr->unk5C) {
+    } else {
+        func_800058DC(arg0, func_80374D3C);
+    }
+}
 
 
 struct func_80374D3C_StructXform {

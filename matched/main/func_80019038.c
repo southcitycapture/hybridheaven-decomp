@@ -2,9 +2,6 @@
 
 extern u8 D_800441D0[];
 
-typedef struct func_80019038_Struct {
-    u8 b[8];
-} func_80019038_Struct;
 
 void func_80019038(void) {
     func_80019038_Struct sp28;

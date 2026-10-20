@@ -1,14 +1,5 @@
-#include "common.h"
+#include "context.h"
 
-
-
-extern void func_80005670();
-extern void func_801CC530();
-extern void func_801CEDBC();
-extern void func_801CEDC8();
-extern struct func_801E527C_Root func_801DAAF0;
-extern u8 func_801DAC30[];
-extern u8 D_801DAD14[];
 extern u8 D_801DB300[];
 extern u8 D_801DB320[];
 

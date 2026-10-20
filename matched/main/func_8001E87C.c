@@ -5,19 +5,7 @@ void func_80006214(s32);
 extern void func_80005700();
 extern void func_801170DC(s32 arg0);
 
-struct func_8001E87C_Sub {
-    u8 pad[0xB];
-    s8 unkB;
-    u8 pad2[4];
-    s16 unk10;
-};
 
-struct func_8001E87C_Struct {
-    u8 pad[0x22];
-    u8 unk22;
-    u8 pad2[0xD];
-    struct func_8001E87C_Sub *unk30;
-};
 
 void func_8001E87C(s32 arg0, struct func_8001E87C_Struct **arg1) {
     s32 var_v0;

@@ -2,19 +2,7 @@
 extern s32 func_80244AB0();
 extern s32 func_8012CE9C(s32, void *, func_80246E60_StructGlobal, s32);
 
-typedef struct func_80246AA8_StructInner {
-    u8 pad0[0x78];
-    s16 unk78;
-} func_80246AA8_StructInner;
 
-typedef struct func_80246AA8_Struct {
-    u8 pad0[0x2C];
-    s32 unk2C;
-    u8 pad30[0x2C];
-    func_80246AA8_StructInner *unk5C;
-    u8 pad60[0x34];
-    s16 unk94;
-} func_80246AA8_Struct;
 
 extern func_80246E60_StructGlobal D_80258F18;
 extern s32 func_8012C6B4(s32);

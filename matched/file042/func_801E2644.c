@@ -7,19 +7,8 @@ extern void func_8038D28C(s32 a0);
 extern f64 func_80034C24();
 extern f64 D_801E5010;
 
-typedef struct func_801E2644_Struct3 {
-    u8 pad0[0x8];
-    f32 unk8;
-} func_801E2644_Struct3;
 
-typedef struct func_801E2644_Struct2 {
-    u8 pad0[0x30];
-    func_801E2644_Struct3 *unk30;
-} func_801E2644_Struct2;
 
-typedef struct func_801E2644_Struct1 {
-    func_801E2644_Struct2 *unk0;
-} func_801E2644_Struct1;
 
 extern func_801E2644_Struct1 *D_8038D8D0;
 

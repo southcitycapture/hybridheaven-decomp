@@ -6,4 +6,6 @@ lock = open("build/.integrate.lock", "w"); fcntl.flock(lock, fcntl.LOCK_EX)
 r = subprocess.run([sys.executable, "tools/hh/srcbuild.py", "add"] + sys.argv[1:], capture_output=True, text=True)
 print(r.stdout.strip()); print(r.stderr.strip()[-2000:]) if r.returncode else None
 b = subprocess.run("make -j6 2>&1 | tail -2", shell=True, capture_output=True, text=True, executable="/bin/bash")
-print("ROM matches" if "hybridheaven.z64: OK" in b.stdout else "ROM DOES NOT MATCH:\n" + b.stdout)
+ok = "hybridheaven.z64: OK" in b.stdout
+print("ROM matches" if ok else "ROM DOES NOT MATCH:\n" + b.stdout)
+sys.exit(0 if ok and r.returncode == 0 else 1)   # the loop checks this (a crashed srcbuild used to pass as "ROM matches")

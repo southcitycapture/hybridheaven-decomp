@@ -56,7 +56,7 @@ extern f32 D_8025C908;
 extern f32 D_8025C90C;
 extern f32 D_8025C910;
 extern u8 func_80126EAC[];
-extern u8 func_80245DCC[];
+extern void func_80245DCC();
 
 void func_802453F0(struct func_802453F0_StructO *arg0, struct func_802453F0_StructP *arg1) {
     s32 sp38[4];

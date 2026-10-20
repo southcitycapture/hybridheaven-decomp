@@ -12,15 +12,6 @@ extern f32 D_801E51D0;
 extern f32 D_801E51D4;
 extern void func_801C7A74(void *arg0);
 
-typedef struct func_801E2E4C_Struct {
-    f32 unk0;
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad10[4];
-    f32 unk14;
-    f32 unk18;
-} func_801E2E4C_Struct;
 
 extern func_801E2E4C_Struct D_801E5200;
 

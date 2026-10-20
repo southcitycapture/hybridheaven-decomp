@@ -1,9 +1,5 @@
 #include "context.h"
 
-typedef struct func_801C07A8_Struct {
-    u8 pad[4];
-    u16 unk4;
-} func_801C07A8_Struct;
 
 extern s32 func_8012FE50(s32, u16, s32, s32, s32);
 extern s32 func_801C0334(s32 arg0);

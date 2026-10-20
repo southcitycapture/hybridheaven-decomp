@@ -8,7 +8,7 @@ struct func_802432F8_Struct {
     u8 unk42;
 };
 
-extern void func_8024334C(void);
+extern void func_8024334C();
 
 void func_802432F8(struct func_802432F8_Struct *arg0, s32 arg1) {
     u16 *temp_v0;

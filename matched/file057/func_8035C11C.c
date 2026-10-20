@@ -1,18 +1,6 @@
 #include "context.h"
 
-typedef struct func_8035C11C_Inner {
-    u8 pad0[0x7C];
-    void *unk7C;
-    u16 unk80;
-    u16 unk82;
-} func_8035C11C_Inner;
 
-typedef struct func_8035C11C_Obj {
-    u8 pad0[0x36];
-    u16 unk36;
-    u8 pad1[0x5C - 0x38];
-    func_8035C11C_Inner *unk5C;
-} func_8035C11C_Obj;
 
 extern void func_8013AE20(void *, s32, s32, void *);
 extern void func_8035C230();

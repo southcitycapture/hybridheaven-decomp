@@ -2,22 +2,7 @@
 
 extern void func_80245F84();
 
-typedef struct func_80245EBC_StructInner {
-    u8 pad0[0x78];
-    s16 unk78;
-} func_80245EBC_StructInner;
 
-typedef struct func_80245EBC_Struct {
-    u8 pad0[0x2C];
-    s32 unk2C;
-    s32 unk30;
-    u8 pad34[0x28];
-    func_80245EBC_StructInner *unk5C;
-    u8 pad60[0x34];
-    s16 unk94;
-    u8 pad96[0x6];
-    s32 unk9C;
-} func_80245EBC_Struct;
 
 void func_80245EBC(func_80245EBC_Struct *arg0, s32 arg1) {
     func_80245EBC_StructInner *sp2C;

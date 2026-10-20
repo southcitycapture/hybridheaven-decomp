@@ -1,6 +1,26 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1520/func_801C1520.s")
+extern s32 D_801D8DB0;
+extern struct func_801C157C_Struct D_801DED70[];
+
+struct func_801C1520_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+
+void func_801C1520(void) {
+    s32 i;
+    struct func_801C1520_Struct *p;
+
+    D_801D8DB0 = 0;
+    p = (struct func_801C1520_Struct *)((u8 *)D_801DED70 - 0x180);
+    for (i = 0; i < 32; i++) {
+        p[i].unk0 = -1;
+        p[i].unk4 = -1;
+        p[i].unk8 = 0;
+    }
+}
 
 
 struct func_801C157C_Struct {
@@ -10,9 +30,7 @@ struct func_801C157C_Struct {
 };
 
 extern void func_801C1834(struct func_801C157C_Struct *, s32);
-extern s32 D_801D8DB0;
 extern struct func_801C157C_Struct D_801DEBF0[];
-extern struct func_801C157C_Struct D_801DED70[];
 
 void func_801C157C(s32 arg0, s32 arg1) {
     s32 i;
@@ -50,7 +68,15 @@ s32 func_801C175C(void) {
     return (D_801D8DB0 != 0) ? 1 : ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1520/func_801C1780.s")
+
+s32 func_801C1780(s32 arg0, s32 arg1) {
+    s32 i;
+
+    for (i = 0; i < 32; i++) {
+        if (arg0 == D_801DEBF0[i].unk0 && arg1 == D_801DEBF0[i].unk4) return 1;
+    }
+    return 0;
+}
 
 
 

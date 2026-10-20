@@ -1,14 +1,4 @@
 #include "context.h"
-struct func_80244F98_Child {
-    u8 pad0[0x78];
-    s16 unk78;
-};
-struct func_80244F98_Obj {
-    u8 pad0[0x2C];
-    u32 unk2C;
-    u8 pad1[0x2C];
-    struct func_80244F98_Child *unk5C;
-};
 
 extern s32 func_80133A24(s32);
 extern void func_80010550(s32, void *, s32);

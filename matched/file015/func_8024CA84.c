@@ -6,7 +6,7 @@ typedef struct func_8024CA84_Struct {
 } func_8024CA84_Struct;
 
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
-extern void func_8024CBB0(void);
+extern void func_8024CBB0();
 extern u8 D_802595B8[];
 extern f32 D_8025978C;
 extern f32 D_80259790;

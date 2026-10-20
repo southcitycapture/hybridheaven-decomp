@@ -1,15 +1,42 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file062/8038CFC0/func_8038CFC0.s")
+extern f64 D_8038DB80;
+extern s32 D_801BBCCC;
+extern s32 func_8022B640();
+extern s32 func_8038D5C4();
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern u8 func_8038D784[];
+extern void func_800058DC(void *, void *);
+extern void func_80229404(void *);
+extern void func_80229500(void *, void *, void *);
+extern void func_80229CE0(void *, void *, s32);
+extern void func_8022A834();
+extern void func_8038CFFC();
+
+
+struct func_8038CFC0_Struct {
+    u8 pad0[0x98];
+    s16 unk98;
+};
+
+
+void func_8038CFC0(s32 arg0, s32 arg1)
+{
+  void *new_var;
+  extern void func_80229500();
+  if (1)
+  {
+    new_var = (void *) arg0;
+    func_80229500();
+    ((struct func_8038CFC0_Struct *) arg0)->unk98 = 3;
+  }
+  func_800058DC(new_var, &func_8038CFFC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file062/8038CFC0/func_8038CFFC.s")
 
-extern u8 D_801BC3D8[];
 
-extern void func_80229404(void *);
-extern void func_80229CE0(void *, void *, s32);
-extern s32 func_8022B640();
-extern f64 D_8038DB80;
 
 s32 func_8038D5C4(u8 *arg0, u8 *arg1, u8 *arg2) {
     u32 v = *(u32 *)(arg2 + 0x30);
@@ -37,11 +64,6 @@ struct func_8038D6FC_Struct {
     s32 unkC;
 };
 
-extern void func_800058DC(void *, void *);
-extern void func_80229500(void *, void *, void *);
-extern s32 D_801BBCCC;
-extern u8 D_801BC03C[];
-extern u8 func_8038D784[];
 
 void func_8038D6FC(struct func_8038D6FC_Struct *arg0, void *arg1) {
     void *var_a1;
@@ -64,5 +86,64 @@ void func_8038D6FC(struct func_8038D6FC_Struct *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file062/8038CFC0/func_8038D784.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file062/8038CFC0/func_8038DA40.s")
+/* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
+
+struct func_8038DA40_StructA {
+    u8 pad0[0xA5];
+    u8 unkA5;
+};
+
+struct func_8038DA40_StructB {
+    u8 pad0[6];
+    s16 unk6;
+    u8 pad1[0x333 - 8];
+    u8 unk333;
+};
+
+
+void func_8038DA40(struct func_8038DA40_StructA *arg0, struct func_8038DA40_StructB *arg1)
+{
+  s32 temp_v0;
+  s32 k;
+  temp_v0 = arg1->unk333;
+  k = 2;
+  if (temp_v0 == 0)
+  {
+    goto case0;
+  }
+  if (1 == temp_v0)
+  {
+    goto case1;
+  }
+  if (temp_v0 == k)
+  {
+    goto case2;
+    done:
+    return;
+
+  }
+  goto done;
+  case0:
+  arg0->unkA5 = 0;
+
+  arg1->unk333 = (u8) (arg1->unk333 + 1);
+  return;
+  case1:
+  func_8022A834();
+
+  arg1->unk333 = (u8) (arg1->unk333 + 1);
+  return;
+  case2:
+  if (arg1->unk6 >= 0x64)
+  {
+    arg0->unkA5 = k;
+  }
+  else
+  {
+    arg0->unkA5 = 0;
+  }
+
+  arg1->unk333 = 0;
+  return;
+}
 

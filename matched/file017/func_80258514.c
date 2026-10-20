@@ -19,15 +19,7 @@ typedef struct func_80258514_Struct_Global {
     func_80258514_Struct_A *unkE0;
 } func_80258514_Struct_Global;
 
-typedef struct func_80258514_Struct_Arg1 {
-    u8 pad[0x22];
-    u8 unk22;
-} func_80258514_Struct_Arg1;
 
-typedef struct func_80258514_Struct_Arg0 {
-    u8 pad[0x74];
-    s32 unk74;
-} func_80258514_Struct_Arg0;
 
 extern void func_80258580(s32 arg0, s32 arg1);
 

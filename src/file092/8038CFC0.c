@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file092/8038CFC0/func_8038CFC0.s")
+
+extern void func_800058DC();
+extern u8 func_8038CFF8[];
+
+void func_8038CFC0(u8 *arg0, void *arg1)
+{
+  extern void func_80229500();
+ do { func_80229500(); arg0[0xA0] = 0; func_800058DC(arg0, func_8038CFF8); } while (0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file092/8038CFC0/func_8038CFF8.s")
 
@@ -84,7 +92,6 @@ typedef struct func_8038D740_Struct {
 extern s32 D_801BBCCC;
 extern void func_8038D7D0();
 extern void func_80229500(void *a, void *b, void *c);
-extern void func_800058DC();
 
 void func_8038D740(func_8038D740_Struct *arg0, void *arg1) {
     void *var_a1;

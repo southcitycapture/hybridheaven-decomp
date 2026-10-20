@@ -11,10 +11,6 @@ extern u8 D_801CF160[];
 extern u8 D_801CF170[];
 extern void func_801C1DB8();
 
-struct func_801C56B8_Struct {
-    u8 pad[0x3C];
-    s16 unk3C;
-};
 
 void func_801C56B8(struct func_801C56B8_Struct *arg0, s32 arg1) {
     arg0->unk3C = 0x384;

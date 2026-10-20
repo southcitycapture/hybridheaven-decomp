@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern s32 func_801CC4D8(s32 a0, u32 a1, s32 a2, s32 a3, f32 f);
+extern s32 func_801CC4D8(s32 a, s32 b, s32 c, s32 d, f32 e);
 
 s32 func_801E5934(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0xACEED5) != 0) {

@@ -7,7 +7,7 @@ struct func_80243CA4_Struct {
     u8 unk42;
 };
 
-extern void func_80243CF4(void);
+extern void func_80243CF4();
 
 void func_80243CA4(struct func_80243CA4_Struct *arg0, s32 arg1) {
     s16 *temp_v0;

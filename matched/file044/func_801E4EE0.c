@@ -5,28 +5,8 @@ struct func_801E4EE0_Ret {
     s32 unkC;
 };
 
-struct func_801E4EE0_Leaf {
-    u8 pad0[0x4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad1[0x2];
-    s16 unk12;
-    u8 pad2[0x4B - 0x14];
-    u8 unk4B;
-};
 
-struct func_801E4EE0_Mid {
-    u8 pad0[0x22];
-    u8 unk22;
-    u8 pad1[0x30 - 0x23];
-    struct func_801E4EE0_Leaf *unk30;
-};
 
-struct func_801E4EE0_Obj {
-    u8 pad0[0x1C];
-    struct func_801E4EE0_Mid *unk1C;
-};
 
 extern struct func_801E4EE0_Obj *D_8038D8D0;
 extern f32 D_801EDD0C;

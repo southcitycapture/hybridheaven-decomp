@@ -11,12 +11,6 @@ struct func_801C2F0C_Struct20 {
     s32 unk1C;
 };
 
-struct func_801C2F0C_StructBBBF0 {
-    u8 pad0[0x1B4];
-    u16 unk1B4;
-    u8 pad1[0x1E0 - 0x1B6];
-    f32 unk1E0;
-};
 
 extern void func_801C3B5C();
 extern void func_801C3BAC(u16);
