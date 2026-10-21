@@ -1,13 +1,5 @@
 #include "context.h"
 
-struct func_80005A04_Struct {
-    struct func_80005A04_Struct *unk0;
-    struct func_80005A04_Struct *unk4;
-    struct func_80005A04_Struct *unk8;
-    struct func_80005A04_Struct *unkC;
-    u8 pad10[4];
-    u32 unk14;
-};
 
 extern struct func_80005A04_Struct *D_8008D5D4;
 

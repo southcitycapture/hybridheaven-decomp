@@ -391,10 +391,25 @@ d:
     return r;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8014150C.s")
-
+u8 func_801422E4(u8 arg0, s32 arg1);
 
 extern u8 func_80142350();
+
+s32 func_8014150C(u8 arg0, u8 *arg1) {
+    u8 r;
+    r = 0;
+    if (arg0 == 1) goto a;
+    if (arg0 != 2) goto d;
+    goto b;
+a:
+    return func_801422E4(0, (s32)arg1);
+b:
+    return func_801422E4(1, (s32)arg1);
+d:
+    return r;
+}
+
+
 
 u8 func_80141568(u8 arg0) {
     u8 r;
@@ -447,7 +462,6 @@ l3:
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8014168C.s")
 
 
-s32 func_8014150C(u8, u8 *);
 
 s32 func_80141934(u8 arg0) {
     s32 var_v0;

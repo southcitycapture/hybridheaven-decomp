@@ -17,13 +17,6 @@ typedef struct func_80241DE0_Struct {
     func_80241DE0_Struct1 *unk38;
 } func_80241DE0_Struct;
 
-typedef struct func_80241DE0_Struct2 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-    s32 unkC;
-    s32 unk10;
-} func_80241DE0_Struct2;
 
 extern func_80241DE0_Struct2 D_8024F768;
 extern s32 D_801BCCF0;

@@ -374,11 +374,51 @@ u8 func_8001C824(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001C96C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001CE9C.s")
+
+u16 func_8001CE9C(u16 arg0) {
+    u8 high;
+    u16 result;
+
+    high = (arg0 >> 8) & 0xFF;
+    result = 0;
+    if (high == 0xA1) {
+        result = func_8001C670((arg0 & 0xFF) - 0xA1);
+    }
+    if (high == 0xA2) {
+        result = func_8001C6E8((arg0 & 0xFF) - 0xA1);
+    }
+    if (high == 0xA3) {
+        result = func_8001C734((arg0 & 0xFF) - 0xB0);
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001CF40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001D2E0.s")
+
+s32 func_8001D2E0(u16 arg0) {
+    u8 high;
+    u16 result;
+
+    high = arg0 >> 8;
+    result = 0;
+    if (high == 0xA1) {
+        result = func_8001C670((arg0 & 0xFF) - 0xA1);
+    }
+    if (high == 0xA2) {
+        result = func_8001C6E8((arg0 & 0xFF) - 0xA1);
+    }
+    if (high == 0xA3) {
+        result = func_8001C734((arg0 & 0xFF) - 0xB0);
+    }
+    if (arg0 == 0xA2A7) {
+        result = 0x55;
+    }
+    if (arg0 == 0xA1FC) {
+        result = 0x56;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001D394.s")
 
@@ -690,7 +730,49 @@ void func_8001E87C(s32 arg0, struct func_8001E87C_Struct **arg1) {
     func_801170DC(var_v0 & 0xFFFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001E978.s")
+
+typedef struct func_8001E978_Struct {
+    u8 pad[0x154];
+    u16 unk154;
+    u16 unk156;
+    u8 pad158[2];
+    u8 unk15A;
+    u8 unk15B;
+    u8 unk15C;
+    u8 unk15D;
+    u8 unk15E;
+    u8 pad15F;
+    s32 unk160;
+    u8 unk164;
+} func_8001E978_Struct;
+
+typedef struct func_8001E978_StructCopy {
+    s32 words[4];
+} func_8001E978_StructCopy;
+
+extern s32 func_80005670(s32, void *);
+extern u8 D_800448E0[];
+extern func_8001E978_StructCopy D_80044918;
+
+void func_8001E978(s32 arg0, u8 arg1, u8 arg2, u8 arg3, u16 arg4, u16 arg5, u8 arg6, u8 arg7) {
+    func_8001E978_StructCopy sp18;
+
+    if ((((func_8001E978_Struct *)&D_801BBBF0)->unk15D & 0x80) && (((func_8001E978_Struct *)&D_801BBBF0)->unk160 != 0)) {
+        sp18 = D_80044918;
+        return;
+    }
+    ((func_8001E978_Struct *)&D_801BBBF0)->unk160 = func_80005670(arg0, D_800448E0);
+    if (((func_8001E978_Struct *)&D_801BBBF0)->unk160 != 0) {
+        ((func_8001E978_Struct *)&D_801BBBF0)->unk154 = arg4;
+        ((func_8001E978_Struct *)&D_801BBBF0)->unk156 = arg5;
+        ((func_8001E978_Struct *)&D_801BBBF0)->unk15A = arg1;
+        ((func_8001E978_Struct *)&D_801BBBF0)->unk15B = arg2;
+        ((func_8001E978_Struct *)&D_801BBBF0)->unk15C = arg3;
+        ((func_8001E978_Struct *)&D_801BBBF0)->unk15D = arg6;
+        ((func_8001E978_Struct *)&D_801BBBF0)->unk15E = arg7;
+        ((func_8001E978_Struct *)&D_801BBBF0)->unk164 = 1;
+    }
+}
 
 
 

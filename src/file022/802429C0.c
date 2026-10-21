@@ -42,9 +42,53 @@ f32 func_80242A68(f32 arg0, u16 arg1, f32 arg2, u16 arg3) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file022/802429C0/func_80242AB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file022/802429C0/func_80242B3C.s")
+s32 func_80242AB8(u16 arg0) {
+    u16 t;
+    s32 r;
+    arg0 = arg0 % 60;
+    t = arg0;
+    if (t < 0x14) r = 1;
+    else if (t < 0x19) r = 0;
+    else if (t < 0x23) r = 1;
+    else if (t < 0x32) r = 0;
+    else if (t < 0x37) r = 1;
+    else r = 0;
+    return r;
+}
+
+
+s32 func_80242B3C(u16 arg0) {
+    s32 result;
+
+    arg0 %= 60;
+    if (arg0 < 3) {
+        result = 1;
+    } else if (arg0 < 5) {
+        result = 0;
+    } else if (arg0 < 0xA) {
+        result = 1;
+    } else if (arg0 < 0x12) {
+        result = 0;
+    } else if (arg0 < 0x15) {
+        result = 1;
+    } else if (arg0 < 0x17) {
+        result = 0;
+    } else if (arg0 < 0x1A) {
+        result = 1;
+    } else if (arg0 < 0x24) {
+        result = 0;
+    } else if (arg0 < 0x28) {
+        result = 1;
+    } else if (arg0 < 0x2C) {
+        result = 0;
+    } else if (arg0 < 0x32) {
+        result = 1;
+    } else {
+        result = 0;
+    }
+    return result;
+}
 
 
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);

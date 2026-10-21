@@ -29,3 +29,17 @@
 2026-10-21T03:43:59+00:00 usage  usage-gate (brief, weekday): weekly 48% (max 60), 5-hour 70% (max 90), weekly resets 2026-10-26T23:00Z -> GO
 2026-10-21T03:45:59+00:00 usage  usage-gate (brief, weekday): weekly 48% (max 60), 5-hour 70% (max 90), weekly resets 2026-10-26T23:00Z -> GO
 2026-10-21T03:47:59+00:00 usage  usage-gate (brief, weekday): weekly 48% (max 60), 5-hour 70% (max 90), weekly resets 2026-10-26T23:00Z -> GO
+2026-10-21T03:49:59+00:00 usage  usage-gate (brief, weekday): weekly 49% (max 60), 5-hour 77% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-21T03:52:00+00:00 usage  usage-gate (brief, weekday): weekly 49% (max 60), 5-hour 77% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-21T03:54:00+00:00 usage  usage-gate (brief, weekday): weekly 49% (max 60), 5-hour 77% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-21T03:56:00+00:00 usage  usage-gate (brief, weekday): weekly 50% (max 60), 5-hour 86% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-21T03:58:00+00:00 usage  usage-gate (brief, weekday): weekly 50% (max 60), 5-hour 86% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-21T04:00:01+00:00 usage  usage-gate (brief, weekday): weekly 50% (max 60), 5-hour 86% (max 90), weekly resets 2026-10-26T22:59Z -> GO
+2026-10-21T04:02:01+00:00 usage  usage-gate (brief, weekday): weekly 51% (max 60), 5-hour 92% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-21T04:02:01+00:00 STOP 5-hour 92% >= cap 90%
+2026-10-21T04:04:01+00:00 usage  usage-gate (brief, weekday): weekly 51% (max 60), 5-hour 92% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-21T04:04:01+00:00 STOP 5-hour 92% >= cap 90%
+2026-10-21T04:06:01+00:00 usage  usage-gate (brief, weekday): weekly 51% (max 60), 5-hour 92% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-21T04:06:02+00:00 STOP 5-hour 92% >= cap 90%
+2026-10-21T04:06:13+00:00 workers finished  usage-gate (brief, weekday): weekly 51% (max 60), 5-hour 92% (max 90), weekly resets 2026-10-26T23:00Z -> HOLD
+2026-10-21T04:06:13+00:00 integrated: 

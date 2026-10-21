@@ -1,46 +1,7 @@
 #include "context.h"
 
-typedef struct func_8024B5B0_StructInner {
-    u8 pad0[0x4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    s16 unk10;
-    s16 unk12;
-    s16 unk14;
-    u8 pad16[0x2];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    s32 unk24;
-    u8 pad28[0x8];
-    s32 unk30;
-    u8 pad34[0x6];
-    u8 unk3A;
-    u8 pad3B[0xD];
-    u8 unk48;
-    u8 unk49;
-    u8 unk4A;
-    u8 unk4B;
-    u8 unk4C;
-    u8 unk4D;
-    u8 unk4E;
-} func_8024B5B0_StructInner;
 
-typedef struct func_8024B5B0_StructObj {
-    u8 pad0[0x22];
-    u8 unk22;
-    u8 pad23[0xD];
-    func_8024B5B0_StructInner *unk30;
-} func_8024B5B0_StructObj;
 
-typedef struct func_8024B5B0_StructArg0 {
-    u8 pad0[0x90];
-    s16 unk90;
-    s16 unk92;
-    u8 pad94[0x2];
-    s16 unk96;
-} func_8024B5B0_StructArg0;
 
 extern void func_8024BCE4();
 extern f32 D_8025C644;

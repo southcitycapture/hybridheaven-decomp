@@ -4,8 +4,8 @@ extern func_800213DC_Struct D_800CBDD8[];
 extern u8 D_800CBDD0;
 extern void (*D_80047E0C[])(void);
 extern void func_80021518();
-extern void func_80021824(s32);
-extern void func_80021EB8(void);
+extern void func_80021824();
+extern s32 func_80021EB8();
 
 void func_800213DC(void)
 {

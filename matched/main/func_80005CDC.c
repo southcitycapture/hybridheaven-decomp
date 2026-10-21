@@ -1,13 +1,5 @@
 #include "context.h"
 
-struct func_80005CDC_Struct {
-    u8 pad0[0xB6];
-    u16 unkB6;
-    u8 padB8[0x4];
-    s32 unkBC;
-    u8 padC0[0x4];
-    u8 *unkC4;
-};
 
 extern struct func_80005CDC_Struct D_800892B0;
 

@@ -1,11 +1,5 @@
 #include "common.h"
 
-typedef struct func_80243D1C_Struct {
-    u8 pad0[4];
-    u16 unk4;
-    u8 pad6[0x434 - 6];
-    u8 unk434;
-} func_80243D1C_Struct;
 
 extern s32 func_801C3044(void);
 extern void func_800058DC(void *, void *);

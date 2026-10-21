@@ -112,7 +112,34 @@ s32 func_8001559C(s32 arg0, s32 arg1, func_8001559C_Struct *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_800158C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80015A64.s")
+
+typedef struct func_80015A64_Struct {
+    u8 pad0[0x14];
+    s32 unk14;
+    u8 pad18[8];
+    u16 *unk20;
+} func_80015A64_Struct;
+
+void func_80015A64(s32 arg0, func_80015A64_Struct *arg1) {
+    s32 r;
+    s32 g;
+    s32 b;
+    s32 a;
+    s32 c;
+    s32 i;
+
+    for (i = 0; i < arg0; i++) {
+        r = func_80016D50(5);
+        g = func_80016D50(5);
+        b = func_80016D50(5);
+        a = func_80016D50(1);
+        c = (g << 11) | (r << 6) | (b << 1);
+        arg1->unk20[i] = a | c;
+        if (arg1->unk14 != 0x80000000 && arg1->unk14 == (arg1->unk20[i] & 0xFFFE)) {
+            arg1->unk20[i] &= 0xFFFE;
+        }
+    }
+}
 
 
 
@@ -381,7 +408,32 @@ s32 func_8001643C(func_8001643C_Struct *arg0, s32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80016500.s")
+
+s32 func_80016500(void *arg0, s32 arg1) {
+    func_8001643C_StructEntry *node;
+    s32 old;
+    func_8001643C_StructEntry *head;
+    s32 result;
+
+    old = D_8008DFA8;
+    if (arg1 != old) {
+        node = &D_8008DCA8[arg1];
+        D_8008DCA8[node->next].unk2 = node->unk2;
+        D_8008DCA8[node->unk2].next = node->next;
+        head = &D_8008DCA8[old];
+        D_8008DCA8[head->next].unk2 = arg1;
+        D_8008DFA8 = arg1;
+        node->next = head->next;
+        head->next = arg1;
+        node->unk2 = old;
+    }
+    if (*(s32 *)((u8 *)arg0 + 8) == 0x10) {
+        result = D_8008DCA8[arg1].value;
+    } else {
+        result = D_8008DCA8[arg1].value * 2;
+    }
+    return result;
+}
 
 
 
@@ -1394,7 +1446,28 @@ void func_80019038(void) {
     *(func_80019038_Struct *) (D_8008EE8C + 8) = sp28;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80019158.s")
+
+typedef struct func_80019158_Struct {
+    u8 b[30];
+} func_80019158_Struct;
+
+extern func_80019158_Struct D_800441D8;
+
+s32 func_80019158(u16 arg0, u16 arg1) {
+    u16 code;
+    u8 result;
+    func_80019158_Struct table = D_800441D8;
+
+    code = (arg1 == 0) ? 0 : arg0;
+    result = 0;
+    if (code >= 0xA3E1 && code < 0xA3FB) {
+        result = table.b[code - 0xA3E1];
+    }
+    if (code >= 0xA3C1 && code < 0xA3DB) {
+        result = table.b[code - 0xA3C1];
+    }
+    return result;
+}
 
 
 extern s32 func_80018BD8(void);

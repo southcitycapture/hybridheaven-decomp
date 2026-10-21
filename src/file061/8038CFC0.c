@@ -1,11 +1,13 @@
 #include "common.h"
 
 extern s32 D_801BBCCC;
+extern s32 func_8022B640(s32);
 extern s32 func_8038D618();
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern void func_800058DC();
 extern void func_80229500();
+extern void func_80229CE0(void *, void *, s32);
 extern void func_8022A834();
 extern void func_8022B3E0();
 extern void func_8038CFF4();
@@ -20,7 +22,52 @@ void func_8038CFC0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file061/8038CFC0/func_8038CFF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file061/8038CFC0/func_8038D618.s")
+
+typedef struct func_8038D618_StructA {
+    u8 pad0[0x9A];
+    s16 unk9A;
+    u8 pad9C[5];
+    u8 unkA1;
+    u8 unkA2;
+} func_8038D618_StructA;
+typedef struct func_8038D618_StructB {
+    u8 pad0[0x38];
+    u32 f31 : 1;
+    u32 rest : 31;
+    u8 pad3C[0x2D8 - 0x3C];
+    u8 unk2D8;
+    u8 unk2D9;
+} func_8038D618_StructB;
+typedef struct func_8038D618_StructC {
+    u8 pad0[2];
+    s16 unk2;
+    u8 pad4[0x2C];
+    u32 hi : 11;
+    u32 f : 2;
+    u32 rest : 19;
+} func_8038D618_StructC;
+
+s32 func_8038D618(arg0, arg1, arg2)
+    func_8038D618_StructA *arg0;
+    func_8038D618_StructB *arg1;
+    func_8038D618_StructC *arg2;
+{
+    if (arg2->f != 0) {
+        arg1->unk2D8 = 0xB;
+        arg1->unk2D9 = 5;
+        arg0->unk9A |= 8;
+    } else if (arg1->f31 != 0) {
+        arg1->unk2D8 = 2;
+        arg0->unk9A |= 2;
+        if (arg2->unk2 < 0x28) {
+            func_80229CE0(arg0, arg1, 2);
+        } else {
+            func_80229CE0(arg0, arg1, func_8022B640(2) & 0xFF);
+        }
+    }
+    arg0->unkA1 = arg1->unk2D8;
+    arg0->unkA2 = arg1->unk2D9;
+}
 
 
 struct func_8038D6E8_Struct {

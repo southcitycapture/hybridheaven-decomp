@@ -7,21 +7,6 @@ struct func_801FE5F0_Struct {
 };
 void func_801FE5F0(struct func_801FE5F0_Struct *arg0, s32 arg1);
 
-struct func_801FE250_Sub {
-    u8 pad0[4];
-    s16 unk4;
-    s16 unk6;
-};
-struct func_801FE250_Obj {
-    u8 pad0[0x30];
-    struct func_801FE250_Sub *unk30;
-};
-struct func_801FE250_Struct {
-    u8 pad0[0xAB];
-    u8 unkAB;
-    u8 pad1[0xB0 - 0xAC];
-    s16 unkB0;
-};
 extern void func_801FDCD0(void *, s32, s32, s32, s32, s32, s32, s8 *);
 extern void func_80006214(void *);
 

@@ -4,7 +4,15 @@
 #   workers once weekly usage reaches WEEKLY_CAP %, then integrates verified matches and refreshes the dashboard.
 { # whole script in one block: bash parses it before running, so editing this file cannot break live runs
 BATCH=$1; P=${2:-4}; CAP=${3:-72}; HH="$(cd "$(dirname "$0")/../.." && pwd)"; cd "$HH"; . ./env.sh
-export BATCH; Q=queue/$BATCH; L=$Q/usage.log; rm -f $Q/STOP
+export BATCH; Q=queue/$BATCH; L=$Q/usage.log; rm -f $Q/STOP $Q/RESUME
+# a batch the 5-hour window stops is relaunched by tools/swarm/resume.sh once the window has room again (the loop's own
+# batches excluded: the loop waits for the window itself). launch.sh is this exact launch, settings included.
+if [[ ! "$BATCH" =~ ^loop[0-9] ]]; then
+  { echo "#!/bin/bash"; echo "cd $HH"
+    for v in NO_INTEGRATE INFILE DIAG HARNESS2 MODEL RUN_ONE FROM NOTE_FILE CHECK_LIMIT DEADLINE_MIN FIVE_CAP WORKER_FLAGS \
+             BIGFUNC SIMILAR LEARNINGS GROW WORKER_TIMEOUT; do [ -n "${!v+x}" ] && printf 'export %s=%q\n' "$v" "${!v}"; done
+    printf 'exec tools/swarm/run_batch3.sh %q %q %q\n' "$BATCH" "$P" "$CAP"; } > $Q/launch.sh; chmod +x $Q/launch.sh
+fi
 weekly() { $(command -v ~/bin/usage-gate || echo true) --brief 2>&1 | sed -n 's/.*weekly \([0-9]*\)%.*/\1/p'; }
 five() { $(command -v ~/bin/usage-gate || echo true) --brief 2>&1 | sed -n 's/.*5-hour \([0-9]*\)%.*/\1/p'; }
 echo "$(date -Is) start  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
@@ -12,7 +20,7 @@ echo "$(date -Is) start  $($(command -v ~/bin/usage-gate || echo true) --brief 2
 ( unread=0; while [ ! -f $Q/DONE ]; do w=$(weekly); echo "$(date -Is) usage  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
     if [ -z "$w" ]; then unread=$((unread+1)); [ $unread -ge 3 ] && { touch $Q/STOP; echo "$(date -Is) STOP meter unreadable 3x" >> $L; }; else unread=0; fi
     [ -n "$w" ] && [ "$w" -ge "$CAP" ] && { touch $Q/STOP; echo "$(date -Is) STOP weekly ${w}% >= cap ${CAP}%" >> $L; }
-    f=$(five); [ -n "$f" ] && [ "$f" -ge "${FIVE_CAP:-90}" ] && { touch $Q/STOP; echo "$(date -Is) STOP 5-hour ${f}% >= cap ${FIVE_CAP:-90}%" >> $L; }
+    f=$(five); [ -n "$f" ] && [ "$f" -ge "${FIVE_CAP:-90}" ] && { touch $Q/STOP; [ -f $Q/launch.sh ] && touch $Q/RESUME; echo "$(date -Is) STOP 5-hour ${f}% >= cap ${FIVE_CAP:-90}%" >> $L; }
     sleep 120; done ) &
 # retry anything that ended in an API error; skip real outcomes
 # keyed func@seg: overlays share addresses, so the same name can sit in several segments

@@ -2,10 +2,6 @@
 
 extern void func_80005700();
 
-typedef struct func_802507D8_Struct {
-    u8 pad[0x90];
-    u16 unk90;
-} func_802507D8_Struct;
 
 void func_802507D8(func_802507D8_Struct *arg0, void *arg1)
 {

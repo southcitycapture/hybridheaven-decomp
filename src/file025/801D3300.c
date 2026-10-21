@@ -5,6 +5,8 @@ extern f32 D_801DB3F8;
 extern f32 D_801DB3FC;
 extern f32 D_801DB400;
 extern f32 D_801DB428[];
+extern f32 D_801DD53C;
+extern f32 D_801DD540;
 extern f32 D_801DD544;
 extern f32 D_801DD548;
 extern f32 D_801DD54C;
@@ -192,7 +194,19 @@ void func_801D3FD8(s32 arg0) {
     D_801DB384 = func_801C354C(arg0) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D3300/func_801D4008.s")
+
+struct func_801D4008_B { u8 pad[8]; f32 f; };
+struct func_801D4008_A { u8 pad[0x2C]; struct func_801D4008_B *p; };
+struct func_801D4008_S { u8 pad[0x24]; struct func_801D4008_A *p; };
+
+void func_801D4008(s32 arg0, s32 arg1) {
+    if (arg1) {}
+    func_80006214(arg0);
+    D_801DB3F4 = ((struct func_801D4008_S *)arg0)->p->p->f;
+    D_801DB3F8 = 0.0f;
+    D_801DB3FC = D_801DD53C;
+    D_801DB400 = D_801DD540;
+}
 
 struct func_801D4068_Struct2 { u8 pad[0x2C]; f32 unk2C_; };
 struct func_801D4068_Struct1 { u8 pad[0x24]; struct func_801D4068_Struct2 *unk24; };

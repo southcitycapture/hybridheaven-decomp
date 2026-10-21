@@ -6,6 +6,7 @@ extern f32 D_801E8C34;
 extern f32 D_801E8C38;
 extern f32 D_801E8C3C;
 extern f32 D_801E8C98;
+extern f32 D_801E8C9C;
 extern f32 D_801E8CA0;
 extern f32 D_801E8CA4;
 extern f32 D_801E8CA8;
@@ -19,6 +20,7 @@ extern f32 D_801E8D00;
 extern f32 D_801E8D04;
 extern s16 D_80089354;
 extern s32 D_8017AE98;
+extern s32 D_801CC470(s32, s32, s32, s32, f32);
 extern s32 D_801D8D60;
 extern s32 D_801DABB8;
 extern s32 D_801DABBC;
@@ -847,7 +849,40 @@ s32 func_801E35A8(s32 arg0, s32 arg1) {
     return 7;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E35E4.s")
+
+
+struct func_801E35E4_StructData {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    s32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+};
+struct func_801E35E4_StructObj {
+    u8 pad0[0x2C];
+    struct func_801E35E4_StructData *unk2C;
+};
+struct func_801E35E4_StructMid {
+    u8 pad0[0x24];
+    struct func_801E35E4_StructObj *unk24;
+};
+struct func_801E35E4_StructHead {
+    u8 pad0[8];
+    struct func_801E35E4_StructMid *unk8;
+};
+
+#define H ((struct func_801E35E4_StructHead *)func_801DAAF0.unk24)
+
+s32 func_801E35E4(s32 arg0, s32 arg1) {
+    if (func_801CE274() == 0) {
+        H->unk8->unk24->unk2C->unk12 = 0x1800;
+        D_801CC470(0, 0x0168003F, 0, 0x100, 1.0f);
+        func_8038D33C(H->unk8->unk24->unk2C->unk4, H->unk8->unk24->unk2C->unk8, H->unk8->unk24->unk2C->unkC, 0x677, D_801E8C9C, 1.0f);
+        return 9;
+    }
+    return 8;
+}
 
 
 s32 func_801E3698(s32 arg0, s32 arg1) {

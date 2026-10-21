@@ -337,6 +337,7 @@ extern void func_801D2704();
 extern void func_801D2710();
 extern void func_8038BA8C(void);
 extern void func_8038BD50(f32, f32, s32);
+extern void func_8038BD88(f32, f32, f32);
 extern void func_8038BEC8(f32);
 extern void func_8038BED4(void);
 extern void func_8038CB60(f32 arg0, void *arg1);
@@ -8079,7 +8080,13 @@ s32 func_801EF09C(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file027/801E1BE0/func_801EF0AC.s")
+
+
+s32 func_801EF0AC(s32 arg0, s32 arg1) {
+    func_8038BD50(-5120.0f, 0.0f, 0x41A00000);
+    func_8038BD88(-5120.0f, 0.0f, 0.0f);
+    return 1;
+}
 
 
 
@@ -9022,7 +9029,33 @@ s32 func_801F1358(s32 arg0, s32 arg1) {
     return 0x1A;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file027/801E1BE0/func_801F1370.s")
+
+s32 func_801F1370(s32 arg0, s32 arg1) {
+    func_801ED14C_Struct0 *p;
+    u32 n;
+    f32 k;
+
+    if (D_801F4D08 == 0) goto c0;
+    if (D_801F4D08 == 1) goto c1;
+    return 0x1A;
+c0:
+    func_801C0D04(4, 2);
+    func_801D271C(1);
+    D_801F4D08 = 1;
+    goto end;
+c1:
+    if (func_801C0DE4(4, 2, 0x3FC00000) != 0) {
+        func_801C0EB0(4, 2);
+        func_801D271C(0);
+        return 0x1B;
+    }
+    p = OBJ;
+    k = 1.5f;
+    n = k * 30.0f;
+    p->unk12 += (s16)((2048.0f * (180.0f / n)) / 90.0f);
+end:
+    return 0x1A;
+}
 
 
 s32 func_801F1508(s32 arg0, s32 arg1) {

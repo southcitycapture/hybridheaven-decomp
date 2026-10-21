@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-21: **51.85% of the code** (13653 of 15833 functions, including duplicates).
+Progress as of 2026-10-21: **54.20% of the code** (13808 of 15833 functions, including duplicates).
 
-**17715 model runs, $2229.96 API-equivalent in total** (local and cloud). Of the **13660 functions now in C**, **5756 were matched by AI workers** (≈ $0.387 per function, failures included), **7553 were placed by propagation** (a match copied onto identical-shape code), 203 came from decomp-permuter and 148 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**18048 model runs, $2423.70 API-equivalent in total** (local and cloud). Of the **13816 functions now in C**, **5902 were matched by AI workers** (≈ $0.411 per function, failures included), **7556 were placed by propagation** (a match copied onto identical-shape code), 204 came from decomp-permuter and 154 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -189,11 +189,15 @@ Progress as of 2026-10-21: **51.85% of the code** (13653 of 15833 functions, inc
 | `nearS2` | nearS2 | sonnet-5-5 | 189 | 18 | 10% | $40.19 | $2.233 | 32% → 34% |
 | `addrS` | addrS | sonnet-5-5 | 65 | 5 | 8% | $18.10 | $3.619 | 34% → 35% |
 | `unify_loop0032` | unify_loop0032 | unify (no model) | 132 | 10 | 8% | $0.00 | – |  |
-| `gptO_sol` | gptO_sol | openai/gpt-6.1-sol | 131 | 20 | 15% | $0.00 | – |  |
 | `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 152 | 75 | 49% | $0.00 | – |  |
 | `unify_loop0033` | unify_loop0033 | unify (no model) | 121 | 6 | 5% | $0.00 | – |  |
 | `unify_loop0034` | unify_loop0034 | unify (no model) | 130 | 3 | 2% | $0.00 | – |  |
-| `permute` | decomp-permuter on near-misses | , decomp-permuter | 1724 | 276 | 16% | $0.00 | – |  |
-| `opusN` | opusN | opus-5-5 | 414 | 240 | 58% | $275.45 | $1.148 | 36% → 48% |
+| `opusN` | opusN | opus-5-5 | 470 | 267 | 57% | $342.06 | $1.281 | 36% → 51% |
+| `unify_loop0035` | unify_loop0035 | unify (no model) | 120 | 40 | 33% | $0.00 | – |  |
+| `unify_loop0036` | unify_loop0036 | unify (no model) | 97 | 4 | 4% | $0.00 | – |  |
+| `gptO_sol` | gptO_sol | openai/gpt-6.1-sol | 260 | 38 | 15% | $0.00 | – |  |
+| `unify_loop0037` | unify_loop0037 | unify (no model) | 94 | 1 | 1% | $0.00 | – |  |
+| `permute` | decomp-permuter on near-misses | , decomp-permuter | 1971 | 280 | 14% | $0.00 | – |  |
+| `opusN2` | opusN2 | opus-5-5 | 148 | 86 | 58% | $127.13 | $1.478 | 51% → 58% |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

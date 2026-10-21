@@ -1,9 +1,5 @@
 #include "context.h"
 
-typedef struct func_80250AB0_Struct {
-    u8 pad[0x90];
-    u16 unk90;
-} func_80250AB0_Struct;
 extern s32 func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern u8 D_80259EDC[];
 extern u8 D_80259F1C[];

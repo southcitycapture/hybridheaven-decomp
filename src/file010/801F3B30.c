@@ -866,7 +866,69 @@ s32 func_801F55EC(func_801F55EC_Struct *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F5630.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F56A8.s")
+
+typedef struct func_801F56A8_Sub {
+    u8 pad0[2];
+    u16 unk2;
+    u8 pad4[0xC];
+    u32 unk10;
+    u32 unk14;
+} func_801F56A8_Sub;
+typedef struct func_801F56A8_Struct {
+    u8 pad0[4];
+    struct { u8 pad[0x10]; s32 unk10; } *unk4;
+    u8 pad8[0x30];
+    func_801F56A8_Sub *unk38;
+    u8 pad3C[0x6C];
+    void *unkA8;
+} func_801F56A8_Struct;
+extern s32 func_80126CC0(void *, void *);
+extern void func_80133980(u32);
+extern void func_8013B570(void *, u16, s32, s32, void *);
+extern void func_801FA0B0(u16, u8);
+extern void func_801FA220(void *);
+extern s32 D_8021AFE0;
+void func_80005700(void *);
+struct func_801F57EC_Struct;
+void func_801F57EC(struct func_801F57EC_Struct *arg0, s32 arg1);
+void func_801FA074(s32 arg0, s32 arg1);
+
+void func_801F56A8(func_801F56A8_Struct *arg0, s32 arg1) {
+    u32 v;
+    s32 t;
+    u8 lo;
+    u16 hi;
+    D_8021AFE0 = (s32)arg0;
+    t = arg0->unk38->unk14 & 0xFFFF;
+    if (t != 0 && func_80133A24(t * 1) != 0) {
+        func_80005700(arg0);
+        return;
+    }
+    func_801FA220(arg0);
+    if (func_801F5490(arg0) != 0) {
+        if (arg0->unk4 != NULL && arg0->unk4->unk10 == 2) {
+            arg0->unkA8 = arg0->unk4;
+        }
+        if (func_801F54B8((void *)arg0) != 0) {
+            if (func_801F54EC((void *)arg0) != 0) {
+                func_80005700(arg0);
+                return;
+            }
+        } else {
+            v = arg0->unk38->unk10;
+            func_801FA0B0((arg0->unk38->unk10 >> 16) & 0xFFFF, arg0->unk38->unk10 & 0xFF);
+            func_80133980(arg0->unk38->unk10 >> 16);
+        }
+    }
+    func_801F3B5C(1);
+    if (func_80126CC0(arg0, func_801FA074) != 0) {
+        {
+            extern void func_8001F74C();
+            func_8001F74C(arg0);
+        }
+        func_8013B570(arg0, arg0->unk38->unk2, 2, 3, func_801F57EC);
+    }
+}
 
 
 struct func_801F57EC_Struct24 {
@@ -990,7 +1052,6 @@ struct func_801F5EFC_StructOuter {
     struct func_801F5EFC_StructInner *unkC;
 };
 
-void func_80005700(void *);
 void func_80147450(void *);
 void func_801FA570(s32);
 
@@ -1341,7 +1402,6 @@ typedef struct func_801F82D4_Struct {
 } func_801F82D4_Struct;
 
 extern void func_801479A8(s32, void *);
-extern s32 D_8021AFE0;
 
 void func_801F82D4(func_801F82D4_Struct *arg0, func_801F82D4_Struct *arg1) {
     s32 temp_v0;
@@ -1516,7 +1576,41 @@ void func_801F94AC(func_801F94AC_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F9524.s")
+
+struct func_801F9524_Pos { u8 pad0[4]; f32 x; f32 y; f32 z; u8 pad10[2]; s16 unk12; };
+struct func_801F9524_Mid { u8 pad0[0x2C]; struct func_801F9524_Pos *unk2C; };
+struct func_801F9524_Obj {
+    u8 pad0[0x24];
+    struct func_801F9524_Mid *unk24;
+    u8 pad28[0x16];
+    u8 unk3E;
+    u8 pad3F;
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    u8 pad4C[0x10];
+    void *unk5C;
+};
+extern s32 D_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+extern s32 D_8013A334(f32 *, s32, void *, s32);
+extern u8 D_80218AFC[];
+extern u8 func_801F9664[];
+
+void func_801F9524(struct func_801F9524_Obj *arg0, s32 arg1) {
+    void *t;
+    f32 v[3];
+
+    t = arg0->unk5C;
+    D_8013A334(v, arg1, t, 6);
+    if (D_8011AAF4(D_80218AFC, 0x8E0, arg0, 0, 2, 3.0f, ((struct func_801F9524_Mid *)D_801BBCD0)->unk2C->x, ((struct func_801F9524_Mid *)D_801BBCD0)->unk2C->y + 22.0f, ((struct func_801F9524_Mid *)D_801BBCD0)->unk2C->z, 3.0f, v[0], v[1], v[2], 3.0f, 50.0f, -1, -1) == 0) {
+        func_801F5210(arg0);
+        arg0->unk3E = 2;
+        arg0->unk44 = 2.0f;
+        arg0->unk48 = func_8001EB64(arg0->unk24->unk2C->unk12) * -1.0f;
+        arg0->unk40 = func_8001EAD0(arg0->unk24->unk2C->unk12) * -1.0f;
+        func_800058DC(arg0, (s32)func_801F9664);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/func_801F9664.s")
 

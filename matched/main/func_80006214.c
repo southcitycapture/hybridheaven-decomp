@@ -2,10 +2,6 @@
 
 extern void *D_8008DA88;
 
-struct func_80006214_Struct {
-    u8 pad0[0x10];
-    struct func_80006214_Struct *unk10;
-};
 
 s32 func_80006214(struct func_80006214_Struct *arg0) {
     s32 var_v1;

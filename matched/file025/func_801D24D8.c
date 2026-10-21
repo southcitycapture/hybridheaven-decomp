@@ -8,11 +8,6 @@ struct func_801D27D8_Struct {
 };
 extern struct func_801D27D8_Struct D_801E1418;
 
-struct func_801D24D8_StructP { u8 pad[0x5C]; s32 u5C, u60, u64; };
-struct func_801D24D8_StructQ { u8 pad[0x76]; u8 u76; };
-struct func_801D24D8_StructR { u8 pad[4]; struct func_801D24D8_StructS *u4; };
-struct func_801D24D8_StructS { u8 pad[0x2C]; struct func_801D24D8_StructP *u2C; };
-struct func_801D24D8_StructT { u8 pad[0x5C]; struct func_801D24D8_StructQ *u5C; };
 void func_80006214();
 extern s32 func_801CC540();
 extern s32 func_80010550(void *, void *);

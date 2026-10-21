@@ -1,9 +1,5 @@
 #include "context.h"
 
-struct func_802515AC_Struct {
-    u8 pad[0x92];
-    u16 unk92;
-};
 
 struct func_802515AC_Vec {
     u8 pad[4];

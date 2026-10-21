@@ -1,11 +1,5 @@
 #include "context.h"
 
-struct func_80242840_Struct {
-    u8 pad0[0x2C];
-    s32 unk2C;
-    u8 pad1[0x90 - 0x30];
-    s16 unk90;
-};
 
 extern void func_80005700();
 extern s32 func_80150584();
