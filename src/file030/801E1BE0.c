@@ -1396,7 +1396,28 @@ s32 func_801E49E4(s32 arg0, s32 arg1) {
     return 0xB;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file030/801E1BE0/func_801E4A6C.s")
+extern f64 D_801EC6E8;
+extern f64 D_801EC6F0;
+extern f64 D_801EC6F8;
+
+s32 func_801E4A6C(s32 arg0, s32 arg1) {
+    u64 r;
+    f32 t;
+    f64 d;
+    f64 four = 4.0;
+
+    if (func_801C0B8C(0x0138CE20) != 0) {
+        func_801C0EB0(3, 1);
+        ((func_801E48C4_StructB *)(*(func_801E48C4_StructD **)&D_8038D8D0)->unk4->unk30)->unk4B = 0x7F;
+        return 0xD;
+    }
+    r = func_801C0F18(3, 1);
+    t = (func_80034C24(r) / D_801EC6E8 / four) * 24.0;
+    d = func_80034C24(r);
+    ((func_801E48C4_StructA *)(*(func_801E48C4_StructD **)&D_8038D8D0)->unk4->unk30)->unk12 = ((func_801E48C4_StructA *)(*(func_801E48C4_StructD **)&D_8038D8D0)->unk4->unk30)->unk12 - (s16)(2048.0f * t / 90.0f);
+    ((func_801E48C4_StructB *)(*(func_801E48C4_StructD **)&D_8038D8D0)->unk4->unk30)->unk4B = (u32)(f32)(d / D_801EC6F0 / four * D_801EC6F8);
+    return 0xC;
+}
 
 
 struct func_801E4C38_Struct3 {
@@ -3769,7 +3790,53 @@ s32 func_801E7F94(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file030/801E1BE0/func_801E7FE8.s")
+
+typedef struct func_801E7FE8_StructR {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+} func_801E7FE8_StructR;
+
+typedef struct func_801E7FE8_StructQ {
+    u8 pad0[0x30];
+    func_801E7FE8_StructR *unk30;
+} func_801E7FE8_StructQ;
+
+#define OBJ ((func_801E7FE8_StructQ **)D_8038D8D0)
+#define HANDLE D_8038D8CC
+
+s32 func_801E7FE8(s32 arg0, s32 arg1) {
+    s32 i;
+
+    for (i = 0; i < 2; i++) {
+        func_80005E44(HANDLE, func_8038D830 + 0x5C);
+    }
+    func_80006214(HANDLE);
+    func_8012C89C(HANDLE, 0, 0x48A, 0);
+    func_8012C89C(HANDLE, 1, 0x2D2, 0);
+    OBJ[0]->unk30->unk4 = 0.0f;
+    OBJ[0]->unk30->unk8 = 0.0f;
+    OBJ[0]->unk30->unkC = -42.0f;
+    OBJ[0]->unk30->unk12 = 0;
+    OBJ[0]->unk30->unk18 = 1.0f;
+    OBJ[0]->unk30->unk1C = 1.0f;
+    OBJ[0]->unk30->unk20 = 1.0f;
+    OBJ[1]->unk30->unk4 = 0.0f;
+    OBJ[1]->unk30->unk8 = 8.0f;
+    OBJ[1]->unk30->unkC = -42.0f;
+    OBJ[1]->unk30->unk12 = 0;
+    OBJ[1]->unk30->unk18 = 1.0f;
+    OBJ[1]->unk30->unk1C = 1.0f;
+    OBJ[1]->unk30->unk20 = 1.0f;
+    return 2;
+}
 
 
 s32 func_801E818C(s32 arg0, s32 arg1) {

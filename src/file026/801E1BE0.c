@@ -298,7 +298,39 @@ s32 func_801E22F4(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801E2378.s")
+
+extern s32 D_8038C17C(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+void func_8038BE98(f32);
+
+extern f32 D_801FBCD4, D_801FBCD8, D_801FBCDC, D_801FBCE0, D_801FBCE4, D_801FBCE8, D_801FBCEC, D_801FBCF0, D_801FBCF4, D_801FBCF8, D_801FBCFC, D_801FBD00, D_801FBD04, D_801FBD08, D_801FBD0C, D_801FBD10, D_801FBD14, D_801FBD18, D_801FBD1C, D_801FBD20;
+
+s32 func_801E2378(s32 arg0, s32 arg1) {
+    f32 a;
+    f32 b;
+
+    if (D_801FAFD8 == 0) goto c0;
+    if (D_801FAFD8 == 1) goto c1;
+    return 1;
+c0:
+    a = D_801FBCD4;
+    b = D_801FBCD8;
+    if (D_8038C17C(0.0f, D_801FBCDC, -15.0f, a, D_801FBCE0, D_801FBCE4, a, D_801FBCE8, D_801FBCEC, 12.5f, D_801FBCF0, -19.5f, D_801FBCF4, D_801FBCF8, b, b) != 0) {
+        D_8038C158();
+        D_801FAFD8 = 1;
+    }
+    goto end;
+c1:
+    do { a = D_801FBCFC; } while (0);
+    if (D_8038C17C(0.0f, 7.25f, -18.3f, 20.4f, D_801FBD00, D_801FBD04, D_801FBD08, D_801FBD0C, a, 17.0f, 14.0f, a, 17.0f, 14.0f, 30.0f, 30.0f) != 0) {
+        func_8038BE98(D_801FBD10);
+        func_8038D28C(0x695);
+        func_8038BD50(D_801FBD14, D_801FBD18, 96.618f);
+        D_8038BD88(D_801FBD1C, D_801FBD20, 77.525f);
+        return 2;
+    }
+end:
+    return 1;
+}
 
 extern void func_801CCE50(s32, s32, s32);
 extern void func_801CCE88(s32, s32, s32, s32);
@@ -350,7 +382,6 @@ s32 func_801E26A0(s32 arg0, s32 arg1) {
     return 3;
 }
 
-extern s32 D_8038C17C(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 
 extern f32 D_801FBD48;
 extern f32 D_801FBD4C;
@@ -373,7 +404,6 @@ s32 func_801E2738(s32 arg0, s32 arg1) {
     return 4;
 }
 
-void func_8038BE98(f32);
 
 extern f32 D_801FBD6C;
 extern f32 D_801FBD70;
@@ -433,7 +463,38 @@ s32 func_801E2980(s32 arg0, s32 arg1) {
     return 7;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801E2A08.s")
+
+extern f32 D_801FBDA0, D_801FBDA4, D_801FBDA8, D_801FBDAC, D_801FBDB0, D_801FBDB4, D_801FBDB8, D_801FBDBC, D_801FBDC0, D_801FBDC4, D_801FBDC8, D_801FBDCC;
+extern f32 D_801FBDD0, D_801FBDD4, D_801FBDD8, D_801FBDDC, D_801FBDE0, D_801FBDE4, D_801FBDE8, D_801FBDEC;
+
+s32 func_801E2A08(s32 arg0, s32 arg1) {
+    f32 a, b, c;
+    if (D_801FAFD8 == 0) {
+        goto c0;
+    }
+    if (D_801FAFD8 == 1) {
+        goto c1;
+    }
+    return 8;
+c0:
+    b = D_801FBDA0;
+    c = D_801FBDA4;
+    if (D_8038C17C(0.0f, D_801FBDA8, 77.8f, 26.5f, D_801FBDAC, D_801FBDB0, D_801FBDB4, D_801FBDB8, D_801FBDBC, c, D_801FBDC0, D_801FBDC4, D_801FBDC8, D_801FBDCC, b, b) != 0) {
+        D_8038C158();
+        D_801FAFD8 = 1;
+    }
+    goto end;
+c1:
+    a = D_801FBDD0;
+    b = D_801FBDD4;
+    c = D_801FBDD8;
+    if (D_8038C17C(0.0f, D_801FBDDC, 73.6f, 16.3f, D_801FBDE0, 73.5f, D_801FBDE4, -0.5f, a, 16.5f, D_801FBDE8, a, b, D_801FBDEC, c, c) != 0) {
+        D_8038C158();
+        return 9;
+    }
+end:
+    return 8;
+}
 
 
 extern f32 D_801FBDF0;
@@ -6562,7 +6623,52 @@ s32 func_801F484C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801F4AD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801F4F00.s")
+extern f32 D_801FB87C;
+extern f32 D_801FD2DC;
+extern f32 D_801FD2E0;
+extern f32 D_801FD2E4;
+
+s32 func_801F4F00(s32 arg0, s32 arg1) {
+    s8 p1;
+    s8 p2;
+    s8 p3;
+    s8 sp1C;
+    s8 sp1B;
+    f32 t;
+    f32 *p = &D_801FB87C;
+
+    if (func_801C0B8C(0x049F1095) != 0) {
+        return 9;
+    }
+    if (func_801C0B8C(0x047149D5) != 0) {
+        func_801CCE0C(1);
+        func_801CCE88(0, 0x64, 0x64, 0x64);
+        func_801CCEC8(0, 0, 0x50, 0);
+        func_801CCE50(0x32, 0x32, 0x32);
+    } else {
+        if (func_801C0B8C(0x043440D5) != 0) {
+            D_801FB870 *= 2.5f;
+        }
+        if (func_801C0B8C(0x0208531F) != 0) {
+            t = D_801FB87C;
+            t += D_801FB870;
+            *p = t;
+            if (D_801FD2DC < t) {
+                *p = 0.0f;
+            }
+            func_801CCE0C(2);
+            func_801CCE50(0x32, 0x32, 0x32);
+            sp1C = (s8)(s32)(func_80032720(D_801FB87C) * 80.0f);
+            sp1B = (s8)(s32)(func_80029280(D_801FB87C) * 80.0f);
+            func_801CCE88(0, 0, 0, 0xFE);
+            func_801CCEC8(0, 0x14, sp1C, sp1B);
+            func_801CCE88(1, 0, 0, 0xFE);
+            sp1C = (s8)(s32)(func_80032720(D_801FB87C + D_801FD2E0) * 80.0f);
+            func_801CCEC8(1, 0x14, sp1C, (s8)(s32)(func_80029280(D_801FB87C + D_801FD2E4) * 80.0f));
+        }
+    }
+    return 8;
+}
 
 
 
@@ -7481,9 +7587,77 @@ s32 func_801F732C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801F7370.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801F752C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/func_801F7768.s")
+struct func_801F752C_StructC {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+};
+struct func_801F752C_StructB {
+    u8 pad[0x30];
+    struct func_801F752C_StructC *unk30;
+};
+struct func_801F752C_StructA {
+    u8 pad[0x20];
+    struct func_801F752C_StructB *unk20[12];
+};
+
+#define A ((struct func_801F752C_StructA *)D_8038D8D0)
+
+s32 func_801F752C(s32 arg0, s32 arg1) {
+    s32 i;
+    s32 j;
+    f32 y;
+
+    for (i = 0; i != 12; i++) {
+        if ((s32)A->unk20[i]->unk30->unk8 >= 420) {
+            A->unk20[i]->unk30->unk8 = -420.0f;
+        }
+        A->unk20[i]->unk30->unk8 += 2.0f;
+    }
+    if (func_801C0B8C(0x043440D5)) {
+        y = -420.0f;
+        for (j = 0; j < 12; j++) {
+            A->unk20[j]->unk30->unk4 = 0.0f;
+            A->unk20[j]->unk30->unk8 = y;
+            y += 70.0f;
+            A->unk20[j]->unk30->unkC = 0.0f;
+            A->unk20[j]->unk30->unk12 = 0;
+        }
+        return 3;
+    }
+    return 2;
+}
+
+
+s32 func_801F7768(s32 arg0, s32 arg1) {
+    s32 i;
+    s32 j;
+    f32 a;
+
+    if (func_801C0B8C(0x047149D5) != 0) {
+        a = 130.0f;
+        for (i = 0; i < 12; i++) {
+            A->unk20[i]->unk30->unk4 = 0.0f;
+            A->unk20[i]->unk30->unk8 = a;
+            a += 70.0f;
+            A->unk20[i]->unk30->unkC = 0.0f;
+            A->unk20[i]->unk30->unk12 = 0;
+        }
+        return 4;
+    } else {
+        for (j = 0; j < 12; j++) {
+            if ((s32)A->unk20[j]->unk30->unk8 >= 420) {
+                A->unk20[j]->unk30->unk8 = -420.0f;
+            }
+            A->unk20[j]->unk30->unk8 += 5.0f;
+        }
+        return 3;
+    }
+}
 
 
 s32 func_801F79EC(s32 arg0, s32 arg1) {

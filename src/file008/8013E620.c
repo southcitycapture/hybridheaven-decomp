@@ -490,7 +490,33 @@ s32 func_80141934(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_80141F28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8014217C.s")
+
+extern void func_80144E68(u8 **);
+extern void func_80145014(u8 **);
+
+s32 func_8014217C(u8 arg0, s32 arg1) {
+    u8 *sp2C;
+    u8 result;
+    u16 sum;
+    s32 i;
+
+    sum = 0;
+    for (i = 0; i < 0xCFF; i++) {
+        sum += ((u8 *)arg1)[i];
+    }
+    if ((u8)sum != ((u8 *)arg1)[i]) {
+        result = 0xE;
+    } else {
+        result = 0;
+        sp2C = (u8 *)arg1;
+        if (arg0 & 1) {
+            func_80145014(&sp2C);
+        } else {
+            func_80144E68(&sp2C);
+        }
+    }
+    return result;
+}
 
 
 s32 func_80002DBC(u8, s32, u8 *);
@@ -597,7 +623,6 @@ u8 func_80142450(u8 arg0, u8 arg1) {
 }
 
 
-extern s32 func_8014217C(u8 arg0, s32 arg1);
 
 u8 func_801424D0(u8 arg0, u8 arg1, u8 arg2) {
     u8 sp27;

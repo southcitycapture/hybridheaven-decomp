@@ -1,6 +1,5 @@
 #include "context.h"
 
-struct func_802329F8_Struct { u8 pad0[2]; u8 unk2; u8 unk3; };
 extern u8 D_8017DCC8;
 extern u8 D_8017DCC9;
 extern struct func_802329F8_Struct D_8017DDA4;

@@ -14,11 +14,6 @@ extern void func_8013A28C(void *, struct func_801D24D8_StructA);
 
 struct func_801D1E08_StructA { s32 a, b, c; };
 struct func_801D1E08_StructB { s32 a, b; f32 c; };
-struct func_801D1E08_StructP { u8 pad[0x5C]; s32 u5C, u60, u64; };
-struct func_801D1E08_StructQ { u8 pad[0x76]; u8 u76; };
-struct func_801D1E08_StructR { u8 pad[4]; struct func_801D1E08_StructS *u4; };
-struct func_801D1E08_StructS { u8 pad[0x2C]; struct func_801D1E08_StructP *u2C; };
-struct func_801D1E08_StructT { u8 pad[0x5C]; struct func_801D1E08_StructQ *u5C; };
 void func_80006214();
 extern s32 func_801CC540();
 extern s32 func_80010550(void *, void *);

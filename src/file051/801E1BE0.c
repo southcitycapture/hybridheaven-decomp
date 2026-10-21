@@ -54,6 +54,7 @@ extern f32 D_801E790C;
 extern f32 D_801E7910;
 extern f32 D_801E7934;
 extern f32 D_801E7938;
+extern f32 D_801E7948;
 extern f32 D_801E794C;
 extern f32 D_801E7950[];
 extern f32 D_801E7960[];
@@ -78,6 +79,8 @@ extern s32 D_8038C97C(s32, s32, s32, s32, s32, s32, s32);
 extern s32 D_8038D8CC;
 extern s32 func_801C0B8C(u64);
 extern s32 func_801C1000(s32, s32);
+extern s32 func_801C1088(s32, s32, s32);
+extern s32 func_801C1134(s32, s32);
 extern s32 func_801C1974();
 extern s32 func_801C1B1C();
 extern s32 func_801CD044();
@@ -125,6 +128,7 @@ extern void func_80005E44(s32, void *);
 extern void func_80006214(s32);
 extern void func_8012C89C(s32, s32, s32, s32);
 extern void func_801BF628(s32 arg0, s32 *arg1);
+extern void func_801C10D8(s32, s32);
 extern void func_801C2420(s32 arg0, void *arg1);
 extern void func_801CC318();
 extern void func_801CC458(s32, void *);
@@ -1991,7 +1995,42 @@ s32 func_801E63CC(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file051/801E1BE0/func_801E6470.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file051/801E1BE0/func_801E65AC.s")
+
+
+typedef struct func_801E65AC_StructVals {
+    u8 pad[4];
+    f32 x;
+    f32 y;
+    f32 z;
+} func_801E65AC_StructVals;
+
+typedef struct func_801E65AC_StructNode {
+    u8 pad[8];
+    struct func_801E65AC_StructNode *next;
+    u8 padC[0x18];
+    struct func_801E65AC_StructNode *obj;
+    u8 pad28[4];
+    func_801E65AC_StructVals *vals;
+} func_801E65AC_StructNode;
+
+#define VALS (((func_801E65AC_StructNode *)func_801DAAF0[9])->next->next->next->next->obj->vals)
+
+s32 func_801E65AC(s32 arg0, s32 arg1) {
+    func_801E65AC_StructVals *p;
+    f32 ratio;
+
+    ratio = (f32)(u32)func_801C1134(4, 3) / 75.0f;
+    VALS->z = -20.0f * ratio + 69.0f;
+    if (func_801D7634(0x01B80047, 6) || func_801D7634(0x01B80047, 0x24)) {
+        p = VALS;
+        func_8038D33C(p->x, p->y, *(s32 *)&p->z, 0x654, D_801E7948, 1.0f);
+    }
+    if (func_801C1088(4, 3, 0x4B)) {
+        func_801C10D8(4, 3);
+        return 0x14;
+    }
+    return 0x13;
+}
 
 
 

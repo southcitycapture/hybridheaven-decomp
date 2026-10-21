@@ -1,9 +1,5 @@
 #include "context.h"
 
-struct func_8035BF98_Struct0 {
-    u8 pad[0x3E];
-    u16 unk3E;
-};
 
 struct func_8035BF98_Struct1 {
     u8 pad[0x31];

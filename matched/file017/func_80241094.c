@@ -1,14 +1,6 @@
 #include "context.h"
 
-struct func_80241094_StructB {
-    u8 pad[0x12];
-    s16 unk12;
-};
 
-struct func_80241094_StructA {
-    u8 pad[0x2C];
-    struct func_80241094_StructB *unk2C;
-};
 
 struct func_80241094_StructC {
     u8 pad[0x9C];

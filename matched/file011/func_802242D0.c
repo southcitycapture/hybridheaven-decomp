@@ -8,12 +8,6 @@ struct func_80224B64_Globals {
     u8 pad2[0xB98 - 0xF0];
     s16 unkB98;
 };
-struct func_802253B8_Struct {
-    u8 pad0[0x2C];
-    u16 unk2C;
-    u8 pad1[0xDC - 0x2E];
-    s32 unkDC;
-};
 extern func_80225664_Struct D_801BC03C;
 extern func_80225664_Struct D_801BC3D8;
 

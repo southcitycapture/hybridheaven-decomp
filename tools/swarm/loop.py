@@ -16,6 +16,7 @@ during a batch is counted too, which only makes it more careful), at least 0.05 
 starts a batch at or above `hard_cap` total.
 """
 import datetime as dt, fcntl, glob, json, os, re, subprocess, sys, time
+import weekly_cap                                   # tools/swarm/weekly_cap.py: the work-week usage schedule
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 D = "queue/loop"; os.makedirs(D, exist_ok=True)
 DEFAULTS = dict(budget=0.5, batch=60, parallel=10, publish_hours=6, hard_cap=95, harness2=False, diag=False,
@@ -281,16 +282,19 @@ def main():
             st["week_reset"] = reset; st["spent"] = 0; save(D + "/state.json", st)
         if cfg["publish_hours"] and time.time() - st.get("last_publish", 0) >= 3600 * cfg["publish_hours"] and st.get("cycle"):
             if publish(cfg, st): st["last_publish"] = time.time(); save(D + "/state.json", st)
-        if w >= cfg["hard_cap"]:
-            status(cfg, st, "waiting: weekly meter %d%% is at or above the hard cap %d%%" % (w, cfg["hard_cap"]))
+        wcap = weekly_cap.cap("weekly", cfg["hard_cap"])      # the work-week ramp, once active (weekly_cap.py)
+        if w >= wcap:
+            status(cfg, st, "waiting: weekly meter %d%% is at or above the cap %d%% (hard cap %d%%, work-week schedule)"
+                   % (w, wcap, cfg["hard_cap"]))
             time.sleep(1800); continue
         free_gb = __import__("shutil").disk_usage(HH if "HH" in globals() else ".").free / 1e9
         if free_gb < cfg.get("min_free_gb", 1.5):     # a full disk breaks builds mid-cycle (2026-10-18: opencode temp files)
             status(cfg, st, "waiting: only %.1f GB free on the container disk (min %.1f GB)" % (free_gb, cfg.get("min_free_gb", 1.5)))
             time.sleep(600); continue
         f5 = five_hour()
-        if f5 is not None and f5 >= cfg["five_cap"]:
-            status(cfg, st, "waiting: 5-hour window at %d%% (cap %d%%)" % (f5, cfg["five_cap"]))
+        fcap = weekly_cap.cap("five", cfg["five_cap"])
+        if f5 is not None and f5 >= fcap:
+            status(cfg, st, "waiting: 5-hour window at %d%% (cap %d%%)" % (f5, fcap))
             time.sleep(600); continue
         if st.get("spent", 0) >= allowed(cfg, reset):
             status(cfg, st, "waiting for budget: spent %.1f%%, allowed %.1f%% so far" % (st.get("spent", 0), allowed(cfg, reset)))

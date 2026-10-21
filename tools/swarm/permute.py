@@ -15,6 +15,7 @@ HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdi
 sys.path.insert(0, os.path.join(HH, "tools/hh")); import workdir
 PERM = os.path.join(HH, "tools/decomp-permuter")
 OUT = os.path.join(HH, "queue/permute")
+BATCH = "permute"          # --out queue/NAME changes both (a sweep writes its own batch: tools/swarm/loop.py integrates it)
 PY = os.path.join(HH, ".venv/bin/python")
 CC = os.path.join(HH, "tools/ido/7.1/cc")
 
@@ -52,7 +53,7 @@ def candidates(min_score, batches=None, min_aligned=0.95):
     seen, out = set(), []
     for res in sorted(glob.glob("queue/*/results.jsonl"), key=os.path.getmtime, reverse=True):
         batch = res.split("/")[1]
-        if batch == "permute" or (batches and batch not in batches): continue
+        if batch in ("permute", "permsweep", BATCH) or (batches and batch not in batches): continue
         for l in open(res):
             r = json.loads(l)
             f, seg = r["func"], r["segment"]
@@ -67,9 +68,50 @@ def candidates(min_score, batches=None, min_aligned=0.95):
     scored = [(sp, f, seg, src, sa) for (f, seg, src), sp, sa in zip(out, pos, ali) if sp >= min_score or sa >= min_aligned]
     return [c[:4] for c in sorted(scored, key=lambda c: (-max(c[0], c[4]), c[1]))]
 
+def sweep_candidates():
+    """Every unmatched function with a worker attempt, from its best attempt across queue/*/work by the aligned
+    score the checker saved (.attempts/N.ali, 0-1000; as tools/swarm/run_one_from.sh picks it). Order: functions
+    never permuted first, then by that score; functions in queue/rejected.jsonl last (the loop doesn't re-offer them).
+    Returns (None, func, seg, src, aligned/1000) tuples: the positional start score is measured in the worker."""
+    import csv
+    segs = {}
+    for r in csv.DictReader(open("queue/functions.csv")): segs.setdefault(r["func"], set()).add(r["segment"])
+    done = {tuple(p[:-2].split("/")[1:]) for p in glob.glob("matched/*/*.c")}
+    def keys(path):
+        out = set()
+        if os.path.exists(path):
+            for l in open(path):
+                try: r = json.loads(l); out.add((r["segment"], r["func"]))
+                except (ValueError, KeyError): pass
+        return out
+    permuted, rejected, mine = keys("queue/permute/results.jsonl"), keys("queue/rejected.jsonl"), keys(OUT + "/results.jsonl")
+    ran = {}
+    best = {}
+    for d in glob.glob("queue/*/work/*"):
+        b, name = d.split("/")[1], d.split("/")[3]
+        if b in ("permute", BATCH): continue
+        if "@" in name: f, seg = name.split("@", 1)
+        else:
+            f = name; ss = segs.get(f, set())
+            if len(ss) == 1: seg = next(iter(ss))
+            else:                     # an old FUNC-only dir of a name several overlays share: its batch says which
+                if b not in ran: ran[b] = keys("queue/%s/results.jsonl" % b)
+                hit = [x for x in ss if (x, f) in ran[b]]
+                if len(hit) != 1: continue
+                seg = hit[0]
+        if (seg, f) in done or (seg, f) in mine or seg not in segs.get(f, ()): continue
+        for ali in glob.glob(d + "/.attempts/*.ali"):
+            try: v = int(open(ali).read().split()[0])
+            except (ValueError, IndexError, OSError): continue
+            c = ali[:-4] + ".c"
+            if v < 1000 and os.path.exists(c) and v > best.get((seg, f), (-1,))[0]: best[(seg, f)] = (v, c)
+    order = sorted(best, key=lambda k: ((k in rejected), (k in permuted), -best[k][0], k))
+    return [(None, f, seg, best[(seg, f)][1], best[(seg, f)][0] / 1000) for seg, f in order]
+
 def func_span(text, name):
     """(start, end) of the definition of `name` in C text (head through closing brace)."""
-    m = re.search(r"^[^\n;{}]*\b%s\s*\([^;{]*\)\s*\{" % re.escape(name), text, re.M)
+    # K&R definitions (`s32 f(arg0)\n s32 arg0;\n{`) have parameter declarations between `)` and `{`
+    m = re.search(r"^[^\n;{}]*\b%s\s*\([^;{]*\)\s*(?:[A-Za-z_][\w \t\*\[\],]*;\s*)*\{" % re.escape(name), text, re.M)
     if not m: return None
     i, depth = m.end(), 1
     while depth and i < len(text):
@@ -107,29 +149,50 @@ def run_one(args):
     """_run_one, but an exception becomes a FAIL record instead of crashing the whole pass."""
     try: return _run_one(args)
     except Exception as e:
-        return dict(func=args[1], segment=args[2], model="decomp-permuter", verified="FAIL", start_score=round(args[0], 3),
+        return dict(func=args[1], segment=args[2], model="decomp-permuter", verified="FAIL", start_score=round(args[0] or 0, 3),
                     seconds=0, checks=0, cost_usd_equiv=0.0, output_tokens=0, note="error: %r" % e)
 
 def _run_one(args):
     global _PROC
-    sc, func, seg, src, minutes, jobs = args
-    d = os.path.join(HH, workdir.path("permute", func, seg))     # FUNC@SEG for names several segments share
+    sc, func, seg, src, minutes, jobs = args[:6]
+    d = os.path.join(HH, workdir.path(BATCH, func, seg))     # FUNC@SEG for names several segments share
     shutil.rmtree(d, ignore_errors=True)
+    extra = {}
+    if sc is None:
+        # a sweep job: start from a copy of the attempt (often .attempts/N.c) beside the headers it includes
+        os.makedirs(d, exist_ok=True); sd = os.path.dirname(os.path.abspath(src))
+        if os.path.basename(sd) == ".attempts": sd = os.path.dirname(sd)
+        for h in ("context.h", "known.h"):
+            if os.path.exists(os.path.join(sd, h)): shutil.copy(os.path.join(sd, h), d)
+        shutil.copy(src, d + "/start.c")
+        extra = dict(start_from=os.path.relpath(src, HH), start_aligned=args[6])
+        src = d + "/start.c"; sc = score(func, seg, src)
+    if extra:
+        r = _run_one2(sc, func, seg, src, minutes, jobs, d); r.update(extra); return r
+    return _run_one2(sc, func, seg, src, minutes, jobs, d)
+
+def _run_one2(sc, func, seg, src, minutes, jobs, d):
+    global _PROC
     if sc == 1.0:          # an earlier "failure" that matches now (e.g. after a shared-header fix)
         os.makedirs(d, exist_ok=True); shutil.copy(src, d + "/attempt.c")
+        for h in ("context.h", "known.h"):
+            hp = os.path.join(os.path.dirname(os.path.abspath(src)), h)
+            if os.path.exists(hp) and not os.path.exists(os.path.join(d, h)): shutil.copy(hp, d)
         return dict(func=func, segment=seg, model="decomp-permuter", verified="MATCH", start_score=1.0, seconds=0,
                     checks=0, cost_usd_equiv=0.0, output_tokens=0, note="already matched; no permuting needed")
     try: setup(func, seg, src, d)
     except Exception as e: return dict(func=func, segment=seg, verified="FAIL", note="setup failed: %s" % e, start_score=sc)
     t0 = time.time()
-    dbg = subprocess.run([PY, PERM + "/permuter.py", d, "--debug"], capture_output=True, text=True)
+    # --stack-diffs: stack offsets count in the score. Without it a different frame size scored 0, the permuter
+    # stopped on a "win" that the exact check then rejected (87 of 265 "did not survive" runs, 2026-10-21).
+    dbg = subprocess.run([PY, PERM + "/permuter.py", d, "--debug", "--stack-diffs"], capture_output=True, text=True)
     m = re.search(r"base score = (\d+)", dbg.stdout + dbg.stderr)
     if m and m.group(1) == "0":
         # instructions already match; only an address (symbol/offset) is wrong, which permuting can't fix
         return dict(func=func, segment=seg, model="decomp-permuter", verified="FAIL", start_score=round(sc, 3),
                     seconds=0, checks=0, cost_usd_equiv=0.0, output_tokens=0, note="address-only mismatch: needs a model")
     # own process group, so a timeout also kills the permuter's -j helper processes (they used to be orphaned)
-    proc = subprocess.Popen(["nice", "-n", "19", PY, PERM + "/permuter.py", d, "-j", str(jobs), "--stop-on-zero", "--best-only"],
+    proc = subprocess.Popen(["nice", "-n", "19", PY, PERM + "/permuter.py", d, "-j", str(jobs), "--stop-on-zero", "--best-only", "--stack-diffs"],
                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
     _PROC = proc
     try: proc.wait(timeout=minutes * 60)
@@ -144,17 +207,68 @@ def _run_one(args):
         best = sorted(glob.glob(d + "/output-*/source.c"), key=lambda p: int(p.split("output-")[1].split("-")[0]))
         rec.update(verified="FAIL", note="no exact match in %d min" % minutes, best=best[0] if best else None)
         return rec
-    # splice the winning function into the worker's own C (keeps its includes and declarations)
-    win = open(wins[0]).read(); orig = open(src).read()
-    ws, os_ = func_span(win, func), func_span(orig, func)
-    if not ws or not os_:
-        rec.update(verified="FAIL", note="could not splice winner"); return rec
-    new = orig[:os_[0]] + win[ws[0]:ws[1]] + orig[os_[1]:]
-    dst = os.path.join(d, "attempt.c"); open(dst, "w").write(new)     # d is FUNC@SEG for shared names (was work/FUNC: crashed)
     for h in ("context.h", "known.h"):   # the worker's C includes these; without them the exact check can't compile
-        if os.path.exists(os.path.join(os.path.dirname(src), h)): shutil.copy(os.path.join(os.path.dirname(src), h), d)
-    rec["verified"] = "MATCH" if score(func, seg, dst) == 1.0 else "FAIL"
-    if rec["verified"] == "FAIL": rec["note"] = "permuter win did not survive the exact check"
+        hp = os.path.join(os.path.dirname(os.path.abspath(src)), h)
+        if os.path.exists(hp) and not os.path.exists(os.path.join(d, h)): shutil.copy(hp, d)
+    return check_wins(rec, func, seg, src, d, wins)
+
+def _diff_groups(diff):
+    """(first new-file line index, old lines, new lines) for each run of -/+ lines in the permuter's diff.txt
+    (a unified diff from its pretty-printed base to the winner)."""
+    out, ln, cur = [], 0, None
+    for l in diff.splitlines():
+        m = re.match(r"@@ -\d+(?:,\d+)? \+(\d+)", l)
+        if m: ln, cur = int(m.group(1)) - 1, None; continue
+        if l.startswith(("---", "+++")) and cur is None and not ln: continue
+        if l.startswith("-") or l.startswith("+"):
+            if cur is None: cur = [ln, [], []]; out.append(cur)
+            (cur[1] if l[0] == "-" else cur[2]).append(l[1:])
+            if l[0] == "+": ln += 1
+        else: cur = None; ln += 1
+    return out
+
+def splices(orig, diff, win, func):
+    """Ways to put the permuter's winning function back into the worker's own C (which keeps its includes and
+    declarations): the function alone, then the function plus the permuter's edits outside it (from its diff.txt).
+    The permuter also rewrites file-scope declarations (e.g. a prototype's return type); splicing only the function
+    lost those, and the exact check failed on a real win (2026-10-21)."""
+    ws, os_ = func_span(win, func), func_span(orig, func)
+    if not ws or not os_: return []
+    new = orig[:os_[0]] + win[ws[0]:ws[1]] + orig[os_[1]:]
+    out = [new]
+    if not diff: return out
+    f0, f1 = win[:ws[0]].count("\n"), win[:ws[1]].count("\n")         # the function's lines in the winner
+    groups = [g for g in _diff_groups(diff) if not (f0 <= g[0] <= f1)]
+    if not groups: return out
+    fs = func_span(new, func); head, fn, tail = new[:fs[0]], new[fs[0]:fs[1]], new[fs[1]:]
+    hl, tl, before = head.split("\n"), tail.split("\n"), []
+    key = lambda x: re.sub(r"\s+", "", x)
+    for _, old, rep_ in groups:
+        for k, line in enumerate(old):          # each changed or deleted line must be the worker's own (not a header's)
+            for lines in (hl, tl):
+                hit = [n for n, x in enumerate(lines) if key(x) == key(line) and key(x)]
+                if hit:
+                    lines[hit[0]] = rep_[k] if len(old) == len(rep_) else "\0"; break
+            else:
+                return out
+        if len(rep_) != len(old): before += rep_   # insertions (or uneven replacements) go just above the function
+    head = "\n".join(x for x in hl if x != "\0"); tail = "\n".join(x for x in tl if x != "\0")
+    out.append(head + ("\n".join(before) + "\n" if before else "") + fn + tail)
+    return out
+
+def check_wins(rec, func, seg, src, d, wins):
+    """Exact-check each permuter win spliced into the worker's C; the first that matches becomes attempt.c."""
+    orig = open(src).read()
+    dst = os.path.join(d, "attempt.c")     # d is FUNC@SEG for shared names (was work/FUNC: crashed)
+    tried = 0
+    for w in wins:
+        dt = os.path.join(os.path.dirname(w), "diff.txt")
+        for new in splices(orig, open(dt).read() if os.path.exists(dt) else "", open(w).read(), func):
+            tried += 1; open(dst, "w").write(new)
+            if score(func, seg, dst) == 1.0:
+                rec["verified"] = "MATCH"; rec.pop("note", None); return rec
+    rec["verified"] = "FAIL"
+    rec["note"] = "permuter win did not survive the exact check" if tried else "could not splice winner"
     return rec
 
 WB = os.path.expanduser("~/work/tools-ext/wb-venv/bin/decomp-workbench")
@@ -174,8 +288,28 @@ if __name__ == "__main__":
     ap.add_argument("--jobs", type=int, default=2); ap.add_argument("--parallel", type=int, default=3)
     ap.add_argument("--limit", type=int, default=0); ap.add_argument("--batches", default="")
     ap.add_argument("--no-triage", action="store_true", help="don't classify with N64 Decomp Workbench")
+    ap.add_argument("--out", default="queue/permute", help="batch directory for results.jsonl and work/ (queue/NAME)")
+    ap.add_argument("--sweep", action="store_true", help="every unmatched function from its best attempt by .ali "
+                    "(not just failed results), never-permuted first; resumes, skipping what --out already recorded")
     a = ap.parse_args()
+    OUT = os.path.join(HH, a.out.rstrip("/")); BATCH = os.path.basename(OUT)
     os.makedirs(OUT, exist_ok=True)
+    if a.sweep:
+        cands = sweep_candidates(); a.no_triage = True
+        if a.limit: cands = cands[:a.limit]
+        print("%d unmatched functions with a scored attempt" % len(cands), flush=True)
+        if a.list:
+            for _, f, seg, src, al in cands: print("%.3f %s %s %s" % (al, f, seg, src))
+            sys.exit()
+        jobs = [(None, f, seg, src, a.minutes, a.jobs, al) for _, f, seg, src, al in cands]
+        with Pool(a.parallel, initializer=_worker_init, maxtasksperchild=20) as p:
+            for rec in p.imap_unordered(run_one, jobs):
+                rec["batch"] = BATCH
+                open(OUT + "/results.jsonl", "a").write(json.dumps(rec) + "\n")
+                print("%s %s %s (aligned %.3f, positional %.3f, %ss) %s" % (rec["verified"], rec["func"], rec["segment"],
+                      rec.get("start_aligned", 0), rec.get("start_score", 0), rec.get("seconds", "?"), rec.get("note", "")), flush=True)
+        open(OUT + "/DONE", "w").write("sweep finished %s\n" % time.strftime("%Y-%m-%d %H:%M"))
+        sys.exit()
     cands = candidates(a.min, set(a.batches.split(",")) if a.batches else None, a.min_aligned)
     if a.limit: cands = cands[:a.limit]
     print("%d near-misses (positional >= %.0f%% or aligned >= %.0f%%)" % (len(cands), 100 * a.min, 100 * a.min_aligned), flush=True)

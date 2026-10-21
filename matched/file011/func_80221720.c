@@ -11,10 +11,6 @@ extern void func_80224BEC(s32, s32);
 extern s32 func_80011140(s32, s32, struct func_8021E52C_Struct, s32);
 
 
-struct func_80221720_Actor {
-    u8 pad0[0x5C];
-    s32 unk5C;
-};
 
 void func_80221720(struct func_80221720_Actor *arg0, s32 arg1) {
     s32 sp44;

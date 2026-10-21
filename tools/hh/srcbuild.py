@@ -25,6 +25,9 @@ CFLAGS = "-G 0 -non_shared -Xcpluscomm -mips2 -O2 -I include -I src".split()
 ASFLAGS = "-EB -march=vr4300 -mabi=32 -G 0 -I include -I build/include".split()
 DECL = re.compile(r"^\s*extern\b[^;]*?\b((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*(?:\(|\[|;)")
 DEFN = re.compile(r"^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;]*$")
+# a one-line old-style definition, `void f(arg0) T *arg0; {` (DEFN excludes `;`): existing_ok must see it as a definition,
+# or a file holding one is never "already right" and gets re-rendered (and, once frozen, rebuilt one at a time) every time
+KR_DEFN = re.compile(r"^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*(?:[^{};]+;\s*)+\{\s*$")
 TYPEDEF = re.compile(r"\btypedef\b.*?\b(\w+)\s*;\s*$|^\s*}\s*(\w+)\s*;\s*$")
 # a file-scope prototype without `extern` (`void func_800062F8(s32, s32);`); only used at brace depth 0
 PROTO = re.compile(r"^\s*(?!return\b|else\b|case\b|goto\b)(?:[A-Za-z_]\w*[\s\*]+)+\**\s*((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*\([^;{]*\)\s*;\s*(?://.*|/\*.*\*/)?$")
@@ -402,7 +405,7 @@ def fn_body(text, name):
     """The definition of `name` in C text (signature line to its closing brace), whitespace-normalized; None if absent."""
     lines = text.splitlines()
     for i, l in enumerate(lines):
-        m = DEFN.match(l)
+        m = DEFN.match(l) or KR_DEFN.match(l)
         if m and m.group(1) == name:
             out, depth, opened = [], 0, False
             for l2 in lines[i:]:
@@ -418,7 +421,7 @@ def existing_ok(seg, cfile, snips, td, bodies=True):
     path = "src/%s/%s.c" % (seg, cfile)
     if not os.path.exists(path): return False
     text = open(path).read()
-    defined = set(re.findall(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*\{", text, re.M))
+    defined = set(re.findall(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*(?:[^{};]+;\s*)*\{", text, re.M))
     if defined != set(snips): return False
     # same bodies too: unify and protofix rewrite registered snippets, and a stale file must not pass for the new text
     if bodies and any(fn_body(t, n) is None or fn_body(t, n) != fn_body(text, n) for n, t in snips.items()): return False
@@ -444,10 +447,17 @@ def build_one(args):
         if (problem or set(old) - set(kept)) and existing_ok(seg, cfile, old, td, bodies=False):
             # the file as it stands is a correct build of its registered functions (the last ROM-checked one, even if
             # unify/protofix have since rewritten a snippet's text), and a from-scratch render, or adding the new
-            # ones, would cost one of them (file045 loses 4, file018 lost 2 in cycle 29): keep it frozen and turn any
-            # new candidates away
-            return (fname, dict(old), {n: "file frozen: adding it would evict registered functions"
-                                       for n in snips if n not in old}, None)
+            # ones, would cost one of them (file045 loses 4, file018 lost 2 in cycle 29): keep it frozen. New candidates
+            # are edited into the file as it stands instead (reconcile_frozen: declaration dedup, private aliases),
+            # each kept only if every registered function still matches and the new one does
+            new = {n: t for n, t in snips.items() if n not in old}
+            if not new: return (fname, dict(old), {}, None)
+            import reconcile_frozen
+            text, acc, rej = reconcile_frozen.reconcile_file(seg, cfile, open("src/%s.c" % fname).read(), old, new, td)
+            if acc: open("src/%s.c" % fname, "w").write(text)
+            kept = dict(old); kept.update({n: new[n] for n in acc})
+            return (fname, kept, {n: "file frozen: adding it would evict registered functions (reconcile: %s)"
+                                  % rej.get(n, "?")[:300] for n in new if n not in acc}, None)
         if not rej and not problem:
             open("src/%s.c" % fname, "w").write(text); return (fname, kept, {}, None)
         kept, rejected, text = {}, {}, None

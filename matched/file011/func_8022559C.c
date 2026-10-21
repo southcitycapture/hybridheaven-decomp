@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern s32 D_8023C8D0[];
+extern s32 *D_8023C8D0[];
 
 s32 func_8022559C(s32 arg0) {
     s32 *row;

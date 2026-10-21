@@ -14512,7 +14512,29 @@ s32 func_801FB8F0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801FB994.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801FBCB8.s")
+
+extern s32 D_8020790C;
+extern s8 D_80208E34;
+extern s8 D_80208E35;
+extern s8 D_80208E36;
+
+s32 func_801FBCB8(s32 arg0, s32 arg1) {
+    func_801CCE0C(1);
+    func_801CCE88(0, 0xFF, 0, 0);
+    func_801CCEC8(0, D_80208E34, D_80208E35, D_80208E36);
+    if (D_8020790C != 0) {
+        D_80208E36 = (u8) D_80208E36 + 4 + (D_80208E35 = (u8) D_80208E35 + 4 + (D_80208E34 = (u8) D_80208E34 + 4, 0), 0);
+        if ((u8) D_80208E34 >= 0x7C) {
+            D_8020790C = 0;
+        }
+    } else {
+        D_80208E36 = (u8) D_80208E36 - 4 + (D_80208E35 = (u8) D_80208E35 - 4 + (D_80208E34 = (u8) D_80208E34 - 4, 0), 0);
+        if ((u8) D_80208E34 < 5) {
+            D_8020790C = 1;
+        }
+    }
+    return 5;
+}
 
 
 
@@ -14739,7 +14761,34 @@ s32 func_801FC5E0(s32 arg0, s32 arg1) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801FC5F0.s")
+
+extern f32 D_80208DA8;
+
+struct func_801FC5F0_StructLeaf {
+    u8 pad[0x14];
+    s16 unk10;
+};
+struct func_801FC5F0_StructMid {
+    u8 pad[0x30];
+    struct func_801FC5F0_StructLeaf *unk30;
+};
+struct func_801FC5F0_StructRoot {
+    u8 pad[0x4];
+    struct func_801FC5F0_StructMid *unk10;
+};
+
+s32 func_801FC5F0(s32 arg0, s32 arg1) {
+    struct func_801FC5F0_StructLeaf *temp_v0;
+
+    if (func_801C0B8C(0x7704C0) != 0) {
+        return 3;
+    }
+    if (func_801C0B8C(0x493E00) != 0) {
+        temp_v0 = ((struct func_801FC5F0_StructRoot *)D_8038D8D0)->unk10->unk30;
+        temp_v0->unk10 += (s16)((2048.0f * D_80208DA8) / 90.0f);
+    }
+    return 2;
+}
 
 
 s32 func_801FC68C(s32 arg0, s32 arg1) {
@@ -14823,7 +14872,35 @@ s32 func_801FC830(s32 arg0, s32 arg1) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801FC840.s")
+/* starting point: func_801FC970 (file028), whose assembly is 97% the same as this function's */
+
+extern f32 D_80208DB0;
+
+struct func_801FC840_StructLeaf {
+    u8 pad[0x10];
+    s16 unk10;
+};
+struct func_801FC840_StructMid {
+    u8 pad[0x30];
+    struct func_801FC840_StructLeaf *unk30;
+};
+struct func_801FC840_StructRoot {
+    u8 pad[0xC];
+    struct func_801FC840_StructMid *unk10;
+};
+
+s32 func_801FC840(s32 arg0, s32 arg1) {
+    struct func_801FC840_StructLeaf *temp_v0;
+
+    if (func_801C0B8C(0xA4CB80) != 0) {
+        return 3;
+    }
+    if (func_801C0B8C(0x7704C0) != 0) {
+        temp_v0 = ((struct func_801FC840_StructRoot *)D_8038D8D0)->unk10->unk30;
+        temp_v0->unk10 += (s16)((2048.0f * D_80208DB0) / 90.0f);
+    }
+    return 2;
+}
 
 
 s32 func_801FC8DC(s32 arg0, s32 arg1) {

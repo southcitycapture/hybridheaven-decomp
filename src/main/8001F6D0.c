@@ -63,7 +63,22 @@ void func_8001F75C(struct func_8001F75C_Struct *arg0) {
     arg0->unk28 &= 0xFFFE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F6D0/func_8001F76C.s")
+
+struct func_8001F76C_Struct {
+    u8 pad[0x28];
+    u16 unk28;
+};
+
+s32 func_8001F76C(struct func_8001F76C_Struct *arg0) {
+    s32 result;
+
+    if (arg0->unk28 & 1) {
+        result = 1;
+    } else {
+        result = 0;
+    }
+    return result;
+}
 
 
 void func_8001F790(void *arg0) {
@@ -113,5 +128,20 @@ void func_8001F7E4(u8 *arg0) {
     *(u16 *)(arg0 + 0x28) = *(u16 *)(arg0 + 0x28) & 0xFFFB;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F6D0/func_8001F7F4.s")
+
+struct func_8001F7F4_Struct {
+    u8 pad[0x28];
+    u16 unk28;
+};
+
+s32 func_8001F7F4(struct func_8001F7F4_Struct *arg0) {
+    s32 result;
+
+    if (arg0->unk28 & 4) {
+        result = 1;
+    } else {
+        result = 0;
+    }
+    return result;
+}
 

@@ -102,6 +102,11 @@ extern f32 D_801EA164;
 extern f32 D_801EA17C;
 extern f32 D_801EA180;
 extern f32 D_801EA184;
+extern f32 D_801EA188;
+extern f32 D_801EA18C;
+extern f32 D_801EA190;
+extern f32 D_801EA194;
+extern f32 D_801EA198;
 extern f32 D_801EA19C;
 extern f32 D_801EA1A0;
 extern f32 D_801EA1A4;
@@ -119,11 +124,13 @@ extern f32 D_801EA1D0;
 extern f32 D_801EA1D4;
 extern f32 D_801EA1D8;
 extern f32 D_801EA1E8;
+extern f32 D_801EA1F8;
 extern f32 D_801EA1FC;
 extern f32 D_801EA200;
 extern f32 D_801EA204;
 extern f32 D_801EA208;
 extern f64 D_801EA1E0;
+extern f64 D_801EA1F0;
 extern f64 func_80034C24();
 extern s16 D_80089354;
 extern s32 D_801D8D60;
@@ -821,7 +828,24 @@ s32 func_801E3214(s32 arg0, s32 arg1) {
     return 0x36;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file043/801E1C00/func_801E325C.s")
+
+
+s32 func_801E325C(s32 arg0, s32 arg1) {
+    f32 x;
+    f32 y;
+
+    do {
+        x = D_801EA188;
+        y = D_801EA18C;
+    } while (0);
+    if (D_8038C17C(0.0f, 8.0f, -84.0f, 8.9f,
+            97.0f, D_801EA190, D_801EA194, D_801EA198,
+            x, y, 116.5f,
+            x, y, 116.5f, 41.5f, 41.5f) != 0) {
+        return 0x38;
+    }
+    return 0x37;
+}
 
 
 s32 func_801E3314(s32 arg0, s32 arg1) {
@@ -1126,7 +1150,33 @@ s32 func_801E3FCC(s32 arg0, s32 arg1) {
     return 5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file043/801E1C00/func_801E4018.s")
+
+s32 func_801E4018(s32 arg0, s32 arg1) {
+    f64 t;
+    f32 k;
+    f32 b;
+    f32 c;
+    s32 i;
+    u64 r;
+
+    if (func_801C0DE4(3, 1, 0x40F33334) != 0) {
+        func_801C0EB0(3, 1);
+        return 7;
+    }
+    r = func_801C0F18(3, 1);
+    t = func_80034C24(r);
+    i = 1;
+    if (D_801E96B8 + 1 >= 2) {
+        k = (f32)(t / D_801EA1F0) / D_801EA1F8;
+        do {
+            b = (f32)(i - 1) * D_801E96BC + -51.0f;
+            c = (f32)(i - 1) * D_801E96BC + -940.0f;
+            ENTRY(i * 4)->unk30->unk4 = (c - b) * k + b;
+            i++;
+        } while (D_801E96B8 >= i);
+    }
+    return 6;
+}
 
 
 s32 func_801E4130(s32 arg0, s32 arg1) {

@@ -4368,3 +4368,76 @@
 {"segment": "file010", "func": "func_801F8F3C", "why": "compile error in file context", "was_registered": false}
 {"segment": "file010", "func": "func_801F9664", "why": "compile error in file context", "was_registered": false}
 {"segment": "file010", "func": "func_801F9A8C", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801FB910", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file025", "func": "func_801D4F1C", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80226010", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80223ED4", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80237EC8", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80234724", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80234CE8", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file015", "func": "func_80243D84", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file015", "func": "func_80242DCC", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80232820", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80231D84", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file025", "func": "func_801C851C", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file024", "func": "func_801C70E8", "why": "compile error in file context", "was_registered": false}
+{"segment": "file073", "func": "func_8038D8FC", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_80369CF4", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file017", "func": "func_80256034", "why": "compile error in file context", "was_registered": false}
+{"segment": "file008", "func": "func_8015032C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file008", "func": "func_80150C8C", "why": "compile error in file context", "was_registered": false}
+{"segment": "file024", "func": "func_801C4674", "why": "compile error in file context", "was_registered": false}
+{"segment": "file057", "func": "func_8035BD6C", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_8035A310", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_8035908C", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_8035C9D0", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_80359F54", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file009", "func": "func_801D080C", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file009", "func": "func_801D49F0", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file009", "func": "func_801CF5F0", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file009", "func": "func_801CFD44", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file009", "func": "func_801D1080", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file009", "func": "func_801D1918", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file017", "func": "func_8024D9B8", "why": "compile error in file context", "was_registered": false}
+{"segment": "file011", "func": "func_80236788", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file015", "func": "func_80247DA0", "why": "compile error in file context", "was_registered": false}
+{"segment": "file008", "func": "func_8011BAEC", "why": "compile error in file context", "was_registered": false}
+{"segment": "file020", "func": "func_80241420", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file015", "func": "func_8024F4D4", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file025", "func": "func_801D1C90", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file025", "func": "func_801C83BC", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file025", "func": "func_801C8D28", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file017", "func": "func_80240C58", "why": "compile error in file context", "was_registered": false}
+{"segment": "file015", "func": "func_802412F8", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_8021FD00", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80222B08", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80223260", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file011", "func": "func_80221070", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file015", "func": "func_8024ACB8", "why": "compile error in file context", "was_registered": false}
+{"segment": "file057", "func": "func_80364F74", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_80366BF4", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file056", "func": "func_8037A320", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file056", "func": "func_8037AC08", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file056", "func": "func_8037B118", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "main", "func": "func_80000DC8", "why": "compile error in file context", "was_registered": false}
+{"segment": "file051", "func": "func_801E6470", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file051", "func": "func_801E5900", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file051", "func": "func_801E61E4", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file051", "func": "func_801E281C", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file051", "func": "func_801E26BC", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file056", "func": "func_80376ADC", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "main", "func": "func_80022694", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file018", "func": "func_80248E34", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file018", "func": "func_802492E8", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "main", "func": "func_80024ADC", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file010", "func": "func_801F60D8", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_800158C0", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80017608", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_80019CB4", "why": "compile error in file context", "was_registered": false}
+{"segment": "file057", "func": "func_8035F8D8", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_8035D660", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_8035F6B4", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_803628B8", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file057", "func": "func_8035EF60", "why": "file frozen: adding it would evict registered functions", "was_registered": false}
+{"segment": "file017", "func": "func_80253680", "why": "compile error in file context", "was_registered": false}
+{"segment": "file017", "func": "func_80258268", "why": "compile error in file context", "was_registered": false}

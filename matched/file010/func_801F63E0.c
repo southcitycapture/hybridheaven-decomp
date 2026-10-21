@@ -1,7 +1,6 @@
 #include "context.h"
 typedef struct func_801F63E0_Struct2 { u8 pad0[4]; s32 unk4; u8 pad1[4]; s32 unkC; } func_801F63E0_Struct2;
 extern s32 func_801F5630();
-typedef struct func_801F63E0_Struct3 { s32 w0; s32 w1; s32 w2; } func_801F63E0_Struct3;
 extern func_801F63E0_Struct3 D_8021AFF8;
 extern void func_801F474C();
 extern void func_801F74FC();

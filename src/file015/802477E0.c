@@ -78,7 +78,45 @@ void func_80247A2C(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/802477E0/func_80247AAC.s")
+
+struct func_80247AAC_StructParams {
+    s16 a;
+    s32 b;
+    f32 c;
+    s16 d;
+    u8 pad[0x10];
+};
+struct func_80247AAC_StructState {
+    u8 pad[0x1E8];
+    f32 a, b, c, d, e, f;
+};
+#define S ((struct func_80247AAC_StructState *)&D_801BBBF0)
+extern f32 D_80258D1C;
+extern f32 D_80258D20;
+extern f32 D_80258D24;
+extern f32 D_80258D28;
+extern f32 D_80258D2C;
+extern f32 D_80258D30;
+extern void func_80247B60();
+
+void func_80247AAC(s32 arg0, s32 arg1) {
+    struct func_80247AAC_StructParams params;
+
+    if (func_801C3044() == 0) {
+        params.a = 0;
+        params.b = 0x03480017;
+        params.c = 3.0f;
+        D_801C2F0C(4, &params.a);
+        *(s16 *)((u8 *)arg0 + 0x3C) = 0;
+        S->a = D_80258D1C;
+        S->b = D_80258D20;
+        S->c = D_80258D24;
+        S->d = D_80258D28;
+        S->e = D_80258D2C;
+        S->f = D_80258D30;
+        func_800058DC(arg0, func_80247B60);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/802477E0/func_80247B60.s")
 
@@ -131,7 +169,49 @@ void func_8024800C(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/802477E0/func_8024806C.s")
+
+extern f32 D_80258D70;
+extern f32 D_80258D74;
+extern f32 D_80258D78;
+extern s32 D_801C2F0C(s32, void *);
+void func_80248108(s32 arg0, s32 arg1);
+
+struct func_8024806C_Struct {
+    s16 a;
+    s32 b;
+    f32 c;
+    s16 d;
+    u8 pad[0x10];
+};
+
+struct func_8024806C_StructGlobal {
+    u8 pad[0x1E8];
+    f32 x, y, z;
+};
+
+struct func_8024806C_StructArg {
+    u8 pad[0x3C];
+    s16 state;
+};
+
+#define G ((struct func_8024806C_StructGlobal *)&D_801BBBF0)
+
+void func_8024806C(struct func_8024806C_StructArg *arg0, s32 arg1) {
+    struct func_8024806C_Struct data;
+
+    if (func_801C3044() == 0) {
+        data.a = 0x1100;
+        data.b = 0x0348007A;
+        data.d = 0x14;
+        data.c = 5.0f;
+        D_801C2F0C(5, &data.a);
+        arg0->state = 0;
+        G->x = D_80258D70;
+        G->y = D_80258D74;
+        G->z = D_80258D78;
+        func_800058DC((s32)arg0, func_80248108);
+    }
+}
 
 
 s32 func_800178E8();

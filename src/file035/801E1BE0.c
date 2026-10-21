@@ -654,7 +654,31 @@ s32 func_801E3234(s32 arg0, s32 arg1) {
     return 0x1A;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E3314.s")
+#define D_8038C17C D_8038C17C__func_801E3314
+
+extern f32 D_801E8C14;
+extern f32 D_801E8C18;
+extern f32 D_801E8C1C;
+extern f32 D_801E8C20;
+extern f32 D_801E8C24;
+extern f32 D_801E8C28;
+extern f32 D_801E8C2C;
+
+extern s32 D_8038C17C(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32,
+                      f32, f32, f32, f32, f32);
+
+s32 func_801E3314(s32 arg0, s32 arg1) {
+    f32 a = D_801E8C14;
+    f32 b = D_801E8C18;
+    f32 c = D_801E8C1C;
+    f32 d = D_801E8C20;
+    if (D_8038C17C(0.0f, D_801E8C24, a, b, c, a, b, c, d, 14.0f, D_801E8C28, d, 14.0f, D_801E8C2C, 20.0f, 35.0f) != 0) {
+        D_8038C158();
+        return 0x1C;
+    }
+    return 0x1B;
+}
+#undef D_8038C17C
 
 
 
@@ -1300,7 +1324,55 @@ s32 func_801E4F00(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/func_801E4F4C.s")
+
+typedef struct func_801E4F4C_StructB {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad1[0x3B];
+    u8 unk4B;
+} func_801E4F4C_StructB;
+typedef struct func_801E4F4C_StructA {
+    u8 pad0[0x30];
+    func_801E4F4C_StructB *unk30;
+} func_801E4F4C_StructA;
+typedef struct func_801E4F4C_StructC {
+    u8 pad0[0x14];
+    func_801E4F4C_StructA *unk14;
+} func_801E4F4C_StructC;
+
+extern f64 D_801E8CD0;
+extern f32 D_801E8CD8;
+extern f32 D_801E8CDC;
+extern f32 D_801E8CE0;
+extern f32 D_801E8CE4;
+extern f32 D_801E8CE8;
+#define G4F4C (*(func_801E4F4C_StructC **)&D_8038D8D0)
+
+s32 func_801E4F4C(s32 arg0, s32 arg1) {
+    s32 sp1C;
+    f32 t;
+    f32 z;
+
+    z = 0.0f;
+    if (func_801C0DE4(3, 5, 4.5000038146972656f) != 0) {
+        func_801C0EB0(3, 5);
+        return 5;
+    }
+    sp1C = func_801C0DE4(3, 5, 2.2500019073486328f);
+    t = (f32)(func_80034C24(func_801C0F18(3, 5)) / D_801E8CD0) / D_801E8CD8;
+    G4F4C->unk14->unk30->unk4 = (16.5f - 16.5f) * t + D_801E8CDC;
+    G4F4C->unk14->unk30->unk8 = D_801E8CE0 * t + D_801E8CE4;
+    G4F4C->unk14->unk30->unkC = 16.5f * t + D_801E8CE8;
+    if (sp1C != 0) {
+        G4F4C->unk14->unk30->unk4B = (u32)(-510.0f * t + 510.0f);
+    } else {
+        G4F4C->unk14->unk30->unk4B = (u32)(510.0f * t);
+    }
+    return 4;
+}
+#undef G4F4C
 
 
 s32 func_801E51C0(s32 arg0, s32 arg1) {

@@ -735,7 +735,33 @@ void func_8021D808(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8021B150/func_8021D84C.s")
+#define D_8017DD7C D_8017DD7C__func_8021D84C
+#define func_80005700 func_80005700__func_8021D84C
+#define func_8012FE50 func_8012FE50__func_8021D84C
+
+extern void func_80005700(s32);
+extern void func_8012FE50(s32, s32, s32, s32, s32);
+extern u8 D_8017DD7C[];
+
+void func_8021D84C(s32 arg0, s32 arg1)
+{
+  u32 var_v0;
+  u8 *var_v1;
+ var_v0 = 0; var_v1 = D_8017DD7C;
+  do
+  {
+    var_v0 = (var_v0 + 1) & 0xFF;
+    *var_v1 = 0;
+    var_v1 += 1;
+  }
+  while (var_v0 < 0x28U);
+  func_8012FE50(0xE, 0x73, 1, 1, 0);
+  func_80020744(1);
+  func_80005700(arg0);
+}
+#undef D_8017DD7C
+#undef func_80005700
+#undef func_8012FE50
 
 
 void func_8021D8B8(s32 arg0, s32 arg1) {

@@ -16,11 +16,14 @@ fi
 weekly() { $(command -v ~/bin/usage-gate || echo true) --brief 2>&1 | sed -n 's/.*weekly \([0-9]*\)%.*/\1/p'; }
 five() { $(command -v ~/bin/usage-gate || echo true) --brief 2>&1 | sed -n 's/.*5-hour \([0-9]*\)%.*/\1/p'; }
 echo "$(date -Is) start  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
-# usage guard: every 2 minutes, log usage and set STOP once weekly >= CAP
+# usage guard: every 2 minutes, log usage and set STOP once weekly >= CAP or the 5-hour window >= FIVE_CAP. Both caps
+# are lowered by the work-week schedule (weekly_cap.py) once it is active; a schedule stop sets RESUME, so resume.sh
+# relaunches the batch when the ramp or the window has room again.
 ( unread=0; while [ ! -f $Q/DONE ]; do w=$(weekly); echo "$(date -Is) usage  $($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)" >> $L
+    cw=$(python3 tools/swarm/weekly_cap.py weekly "$CAP"); cf=$(python3 tools/swarm/weekly_cap.py five "${FIVE_CAP:-90}")
     if [ -z "$w" ]; then unread=$((unread+1)); [ $unread -ge 3 ] && { touch $Q/STOP; echo "$(date -Is) STOP meter unreadable 3x" >> $L; }; else unread=0; fi
-    [ -n "$w" ] && [ "$w" -ge "$CAP" ] && { touch $Q/STOP; echo "$(date -Is) STOP weekly ${w}% >= cap ${CAP}%" >> $L; }
-    f=$(five); [ -n "$f" ] && [ "$f" -ge "${FIVE_CAP:-90}" ] && { touch $Q/STOP; [ -f $Q/launch.sh ] && touch $Q/RESUME; echo "$(date -Is) STOP 5-hour ${f}% >= cap ${FIVE_CAP:-90}%" >> $L; }
+    [ -n "$w" ] && [ "$w" -ge "$cw" ] && { touch $Q/STOP; [ "$cw" -lt "$CAP" ] && [ -f $Q/launch.sh ] && touch $Q/RESUME; echo "$(date -Is) STOP weekly ${w}% >= cap ${cw}%" >> $L; }
+    f=$(five); [ -n "$f" ] && [ "$f" -ge "$cf" ] && { touch $Q/STOP; [ -f $Q/launch.sh ] && touch $Q/RESUME; echo "$(date -Is) STOP 5-hour ${f}% >= cap ${cf}%" >> $L; }
     sleep 120; done ) &
 # retry anything that ended in an API error; skip real outcomes
 # keyed func@seg: overlays share addresses, so the same name can sit in several segments

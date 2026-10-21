@@ -9,31 +9,6 @@ struct func_801D24D8_StructT { u8 pad[0x5C]; struct func_801D24D8_StructQ *u5C; 
 extern u8 *D_801DB274;
 void func_801D24D8(struct func_801D24D8_StructT *arg0, struct func_801D24D8_StructR *arg1);
 
-typedef struct func_801D2360_StructData {
-    u16 unk0;
-    u8 pad2[2];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad10[2];
-    s16 unk12;
-    u8 pad14[4];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    s32 unk24;
-    u32 unk28;
-    u16 unk2C;
-} func_801D2360_StructData;
-typedef struct func_801D2360_StructObject {
-    u8 pad0[0x22];
-    s8 unk22;
-    u8 pad23;
-    s32 unk24;
-    u8 pad28[4];
-    func_801D2360_StructData *unk2C;
-    s32 unk30;
-} func_801D2360_StructObject;
 typedef struct func_801D2360_StructSource {
     u16 *unk0;
     void **unk4;

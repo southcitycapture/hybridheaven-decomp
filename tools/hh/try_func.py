@@ -62,7 +62,8 @@ def func_bytes(obj, name):
     return data[start:start + size], {o - start: t for o, t in relocs.items() if start <= o < start + size}
 
 MASK = {2: 0, 4: 0xFC000000, 5: 0xFFFF0000, 6: 0xFFFF0000}   # R_MIPS_32, 26, HI16, LO16
-ADDR_NAME = re.compile(r"^(?:func_|D_|B_|jtbl_)([0-9A-F]{8})$|^\.L([0-9A-F]{8})$")
+# an optional __<function> suffix is srcbuild's per-snippet private alias (reconcile_frozen.private_names): same address
+ADDR_NAME = re.compile(r"^(?:func_|D_|B_|jtbl_)([0-9A-F]{8})(?:__\w+)?$|^\.L([0-9A-F]{8})$")
 
 def _named_symbols():
     """Symbols with a real name (not address-named) that the project defines: symbol_addrs.txt and splat's

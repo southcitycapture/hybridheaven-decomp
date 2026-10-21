@@ -52,7 +52,14 @@ void func_80130670(u16 arg0) {
     func_80032720((f32) ((f64) ((f32) temp_a0 / 32768.0f) * D_8018D690));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/func_801306D0.s")
+
+extern f32 D_80130670(u16);
+
+f32 func_801306D0(s32 arg0, f32 *arg1) {
+    u16 a;
+    *(*(f32 **)(&arg0 + 1)) = D_80130670((a = ((u16 *)&arg0)[1], *(f32 **)(&arg0 + 1) = arg1, a));
+    func_80130610(((u16 *)&arg0)[1]);
+}
 
 
 f32 func_801306D0(s32, f32 *);                      /* extern */

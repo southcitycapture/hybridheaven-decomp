@@ -1,45 +1,8 @@
 #include "context.h"
 void func_80248D34(func_80248D34_Struct *arg0);
-typedef struct func_80249A58_StructTbl {
-    u8 unk0;
-    u8 pad1[0x13];
-} func_80249A58_StructTbl;
 extern u8 D_80258FE0[];
 extern func_80249A58_StructTbl D_8025C728[];
 
-typedef struct func_8024951C_S30 {
-    u8 pad0[0x4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad10[0x8];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    s32 unk24;
-    u8 pad28[0x8];
-    s32 unk30;
-    u8 pad34[0x14];
-    u8 unk48;
-    u8 unk49;
-    u8 unk4A;
-    u8 unk4B;
-    u8 unk4C;
-    u8 unk4D;
-    u8 unk4E;
-} func_8024951C_S30;
-typedef struct func_8024951C_Obj {
-    u8 pad0[0x30];
-    func_8024951C_S30 *unk30;
-} func_8024951C_Obj;
-typedef struct func_8024951C_StructA {
-    u8 pad0[0x2C];
-    u32 unk2C;
-    u8 pad30[0x60];
-    s16 unk90;
-    s16 unk92;
-    s16 unk94;
-} func_8024951C_StructA;
 extern f32 D_8025C5E4;
 extern u8 func_80249704[];
 

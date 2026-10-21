@@ -1,10 +1,5 @@
 #include "context.h"
 
-typedef struct func_8036B7EC_Struct {
-    u32 unk0;
-    u8 pad[0xC - 4];
-    s16 unkC;
-} func_8036B7EC_Struct;
 
 extern s32 func_80368E58(s32, s32, s16, u8);
 extern func_8036B7EC_Struct *func_803698D0(void *);

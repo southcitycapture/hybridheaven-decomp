@@ -2,7 +2,6 @@
 
 struct func_8024F588_StructB { u8 pad[0x12]; s16 unk12; };
 struct func_8024F588_StructA { u8 pad[0x2C]; struct func_8024F588_StructB *unk2C; };
-struct func_8024F588_Arg0 { u8 pad[0x5C]; s32 unk5C; };
 
 extern func_8024EF6C_Vec D_80254AD0;
 extern u8 D_80254F6C[];

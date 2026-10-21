@@ -1,25 +1,7 @@
 #include "context.h"
 
-struct func_801FBA3C_Struct {
-    u8 pad0[0x24];
-    void *unk24;
-    u8 pad28[0xAF - 0x28];
-    u8 unkAF;
-};
 
-struct func_801FBA3C_Inner {
-    u8 pad0[0x8];
-    u8 unk8;
-    u8 unk9;
-    u8 unkA;
-};
 
-struct func_801FBA3C_Entry {
-    u8 pad0[0x22];
-    u8 unk22;
-    u8 pad23[0x30 - 0x23];
-    struct func_801FBA3C_Inner *unk30;
-};
 
 void func_801FBA3C(struct func_801FBA3C_Struct *arg0, struct func_801FBA3C_Entry **arg1) {
     s32 var_a0;
