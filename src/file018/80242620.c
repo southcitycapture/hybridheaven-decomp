@@ -1,10 +1,15 @@
 #include "common.h"
 
 extern f32 D_8025BF5C;
+extern f32 D_8025BF68;
+extern f32 D_8025BF6C;
 extern f32 D_8025BF70;
+extern f32 D_8025BF74;
 extern f32 D_8025BF78;
 extern f32 D_8025BF7C;
 extern f32 D_8025BF80;
+extern s16 D_8025C6E2;
+extern s32 D_80242714(void *);
 extern s32 D_80258DF8[];
 extern s32 D_8025C6E0;
 extern s32 D_8025C6E4;
@@ -32,11 +37,14 @@ extern s8 D_8025C6FD;
 extern s8 D_8025C704;
 extern u8 D_80164F40[];
 extern u8 D_801BBC0D;
+extern u8 D_80243AF0[];
 extern u8 D_80258DD4[];
+extern void D_80243B94();
 extern void func_80005700();
 extern void func_800058DC(void *, void (*)());
 extern void func_80005F6C(void *, void *);
 extern void func_80006214(void *);
+extern void func_80010454(void *, void *, s32);
 extern void func_8001F74C(void *);
 extern void func_80020744(s16 arg0);
 extern void func_80127014();
@@ -53,6 +61,7 @@ extern void func_80242BC4();
 extern void func_80242D98();
 extern void func_80242E5C();
 extern void func_802431FC();
+extern void func_8024368C();
 extern void func_802438BC();
 extern void func_80243B94();
 extern void func_80243C54();
@@ -69,6 +78,7 @@ extern void func_8024490C();
 extern void func_8024495C();
 extern void func_802449AC();
 extern void func_802449FC();
+extern void func_8037BB4C(s16, f32, f32, s16);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_80242620.s")
 
@@ -461,7 +471,78 @@ void func_8024312C(func_8024312C_Struct *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_802431FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_8024339C.s")
+
+struct func_8024339C_Inner { u8 pad0[0x78]; s16 unk78; };
+struct func_8024339C_Leaf { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; u8 pad10[2]; s16 unk12; };
+struct func_8024339C_Mid { u8 pad0[0x2C]; struct func_8024339C_Leaf *unk2C; };
+struct func_8024339C_Struct {
+    u8 pad0[0x24];
+    struct func_8024339C_Mid *unk24;
+    u8 pad28[8];
+    s32 unk30;
+    u8 pad34[0x5C - 0x34];
+    struct func_8024339C_Inner *unk5C;
+    u8 pad60[0x94 - 0x60];
+    s16 unk94;
+    u8 pad96[6];
+    s32 unk9C;
+};
+struct func_8024339C_Cfg { s32 a; s32 b; s32 c; };
+struct func_8024339C_Node { u8 pad0[0x18]; struct { u8 pad0[0x2C]; struct { u8 pad0[0x6A]; u8 unk6A; } *unk2C; } *unk18; };
+extern s32 func_8012CF10(void *, void *, struct func_8024339C_Cfg, s32, s32);
+extern struct func_8024339C_Cfg D_80258DC8;
+
+void func_8024339C(struct func_8024339C_Struct *arg0, void *arg1) {
+    struct func_8024339C_Inner *sp54;
+    f32 v[3];
+    struct func_8024339C_Leaf *l;
+    struct func_8024339C_Leaf *q;
+    f32 dy, dx, dz;
+
+    sp54 = arg0->unk5C;
+    if (func_80242620() != 0) return;
+    if (D_80242714(arg0) != 0) return;
+    if (!(arg0->unk9C & 8)) {
+        if (arg0->unk30 & 0x10) {
+            sp54->unk78 = 1;
+            l = arg0->unk24->unk2C;
+            func_80127430(l->unk4, l->unk8, *(s32 *)&l->unkC, 0x337, D_8025BF68, 1.0f);
+            func_800058DC(arg0, func_80243C54);
+            arg0->unk9C = arg0->unk30;
+            return;
+        }
+        if (arg0->unk30 & 0x80) {
+            sp54->unk78 = 1;
+            func_800058DC(arg0, D_80243B94);
+            arg0->unk9C = arg0->unk30;
+            return;
+        }
+    }
+    arg0->unk9C = arg0->unk30;
+    func_8013A334(v, arg1, sp54, 0xC);
+    if (arg0->unk94 != 0) {
+        q = (*((struct func_8024339C_Mid **)&D_8025C6E4 - 0x28285))->unk2C;
+        if (q->unk8 < v[1]) dy = -(q->unk8 - v[1]); else dy = q->unk8 - v[1];
+        if (q->unk4 < v[0]) dx = -(q->unk4 - v[0]); else dx = q->unk4 - v[0];
+        if (q->unkC < v[2]) dz = -(q->unkC - v[2]); else dz = q->unkC - v[2];
+        if (dz * 1.0f + (dx + dy) < 30.0f) {
+            arg0->unk94 = 0;
+            l = arg0->unk24->unk2C;
+            func_80127430(l->unk4, l->unk8, *(s32 *)&l->unkC, 0x6BD, D_8025BF6C, 1.0f);
+            func_8037BB4C(arg0->unk24->unk2C->unk12 + 0x800, 2.0f, 2.0f, D_8025C6E2);
+        }
+    }
+    func_80010454(arg1, sp54, 0xE3F001);
+    if (func_8012CF10(arg1, sp54, D_80258DC8, 0xA, 0x1C0FFE) == 0) {
+        func_80010454(arg1, sp54, 0x1C0FFE);
+        func_80010550(arg1, sp54);
+        if (((struct func_8024339C_Node *)arg1)->unk18->unk2C->unk6A != 0) {
+            sp54->unk78 = 1;
+            arg0->unk94 = func_8012C6B4(0x40) + 0x10;
+            func_800058DC(arg0, func_8024368C);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_8024368C.s")
 
@@ -509,7 +590,87 @@ void func_802437C4(struct func_802437C4_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_802438BC.s")
+
+struct func_802438BC_StructB {
+    u8 pad0[0x6A];
+    u8 unk6A;
+};
+struct func_802438BC_StructA {
+    u8 pad0[0x2C];
+    struct func_802438BC_StructB *unk2C;
+};
+struct func_802438BC_Arg1 {
+    u8 pad0[0x18];
+    struct func_802438BC_StructA *unk18;
+};
+struct func_802438BC_Body {
+    u8 pad0[0x12];
+    s16 unk12;
+};
+struct func_802438BC_Node {
+    u8 pad0[0x2C];
+    struct func_802438BC_Body *unk2C;
+};
+struct func_802438BC_Cam {
+    u8 pad0[0x2C];
+    struct func_802437C4_Leaf *unk2C;
+};
+
+
+void func_802438BC(arg0, arg1)
+struct func_802437C4_Struct *arg0;
+struct func_802438BC_Arg1 *arg1;
+{
+    struct func_802437C4_Inner *sp54;
+    f32 sp48[3];
+    struct func_802437C4_Leaf *v;
+    f32 a;
+    f32 b;
+    f32 c;
+    f32 t;
+
+    sp54 = arg0->unk5C;
+    if (func_80242620() == 0 && D_80242714(arg0) == 0) {
+        func_8013A334(sp48, arg1, sp54, 0xC);
+        if (arg0->unk94 != 0) {
+            v = (*((struct func_802438BC_Cam **)&D_8025C6E4 - 0x28285))->unk2C;
+            t = v->unk8;
+            if (t < sp48[1]) {
+                a = -(t - sp48[1]);
+            } else {
+                a = t - sp48[1];
+            }
+            t = v->unk4;
+            if (t < sp48[0]) {
+                b = -(t - sp48[0]);
+            } else {
+                b = t - sp48[0];
+            }
+            t = *(f32 *)&v->unkC;
+            if (t < sp48[2]) {
+                c = -(t - sp48[2]);
+            } else {
+                c = t - sp48[2];
+            }
+            if (c * 1.0f + (b + a) < 30.0f) {
+                arg0->unk94 = 0;
+                func_8037BB4C(((struct func_802438BC_Node *)arg0->unk24)->unk2C->unk12 + 0x800, 2.0f, 2.0f, D_8025C6E2);
+            }
+        }
+        func_80010454(arg1, sp54, 0xE3F001);
+        if (func_8012CF10(arg1, sp54, D_80258DC8, 0xA, 0x1C0FFE) == 0) {
+            func_80010454(arg1, sp54, 0x1C0FFE);
+            func_80010550(arg1, sp54);
+            if (arg1->unk18->unk2C->unk6A != 0) {
+                sp54->unk78 = 1;
+                arg0->unk94 = 0x40;
+                v = arg0->unk24->unk2C;
+                func_80127430(v->unk4, v->unk8, v->unkC, 0x668, D_8025BF74, 1.0f);
+                func_800058DC(arg0, (void (*)())D_80243AF0);
+            }
+        }
+    }
+}
 
 struct func_80243AF0_Struct {
     u8 pad0[0x5C];
@@ -687,7 +848,37 @@ void func_80243F08(struct func_80243F08_Struct *volatile arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_80243F68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/func_802442FC.s")
+
+struct func_802442FC_Struct {
+    u8 pad0[0x24];
+    struct func_80243E0C_StructMid *unk24;
+    u8 pad28[0x34];
+    struct func_80242868_Inner *unk5C;
+};
+
+void func_802442FC(struct func_802442FC_Struct *arg0, s32 arg1) {
+    s32 diff;
+    struct func_80242868_Inner *sp28;
+    struct func_80242868_Inner **pp = &sp28;
+    func_802455D8_Sub *other;
+    struct func_80243E0C_StructSub *self;
+
+    sp28 = arg0->unk5C;
+    if (func_8012CE9C(arg1, sp28, D_80258DA4, 10) == 0) {
+        func_80010550(arg1, *pp);
+        other = D_801BBCD0->unk2C;
+        self = arg0->unk24->unk2C;
+        diff = (u16)((arg0->unk24->unk2C->unk12 - func_8001EF38(other->unk4 - self->unk4, other->unkC - self->unkC)) & 0x1FFF);
+        if (diff < 0x200 || (diff >= 0x1E01 && diff < 0x1FFF)) {
+            (*pp)->unk78 = 1;
+            D_8025C704 = 1;
+            D_8025C6FA = 0;
+            D_8025C6FD = 0;
+            func_800058DC(arg0, func_80242E5C);
+        }
+        func_8012A94C(arg0, 0x40);
+    }
+}
 
 
 

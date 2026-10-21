@@ -32,6 +32,6 @@ print(os.path.abspath(best[1]) if best[1] else "")
 PY
 )
 export PREVIOUS
-[ "${FROM:-best}" = match ] && export NOTE_FILE=fix_note.md || export NOTE_FILE=retry_note.md
+if [ -z "$NOTE_FILE" ]; then [ "${FROM:-best}" = match ] && NOTE_FILE=fix_note.md || NOTE_FILE=retry_note.md; fi; export NOTE_FILE
 exec "$HH/tools/swarm/run_one3.sh" "$FUNC" "$SEG"
 exit; }

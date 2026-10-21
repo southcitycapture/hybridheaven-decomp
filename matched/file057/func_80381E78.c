@@ -1,12 +1,6 @@
 #include "context.h"
 extern void func_80005700(void *);
 
-struct func_80381E78_Struct {
-    u8 pad0[0x94];
-    u8 unk94;
-    u8 pad95[0xF];
-    void *unkA4;
-};
 
 extern void func_8001B204();
 extern void func_8001F6FC(void);

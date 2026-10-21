@@ -1,9 +1,5 @@
 #include "context.h"
 
-typedef struct func_801C2684_Node {
-    u8 pad[0x10];
-    struct func_801C2684_Node *unk10;
-} func_801C2684_Node;
 
 typedef struct func_801C2684_Arg0 {
     u8 pad[0x3C];

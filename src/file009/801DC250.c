@@ -1,10 +1,114 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DC250.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DC510.s")
+typedef struct func_801DC250_Struct {
+    u32 key;
+    u8 b[4];
+} func_801DC250_Struct;
+typedef struct func_801DC250_Arg {
+    u32 key;
+    u16 unk4;
+    u8 pad[2];
+    f32 unk8;
+} func_801DC250_Arg;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DC700.s")
+extern u16 func_80011590();
+extern func_801DC250_Struct D_801E17C0[];
+
+s32 func_801DC250(arg0)
+    func_801DC250_Arg *arg0;
+{
+    func_801DC250_Struct *p = D_801E17C0;
+    u32 k = arg0->key;
+    u16 a = arg0->unk4;
+    f32 f = arg0->unk8;
+
+    if (p->key != 0) {
+        do {
+            if (k == p->key) {
+                if (a == func_80011590((u32)(p->b[0] * f) & 0xFFFF)) goto ret;
+                if (a == func_80011590((u32)(p->b[1] * f) & 0xFFFF)) goto ret;
+                if (a == func_80011590((u32)(p->b[2] * f) & 0xFFFF)) {
+ret:
+                    return p->b[3];
+                }
+                return 0;
+            }
+            p++;
+        } while (p->key != 0);
+    }
+    return 0;
+}
+
+
+typedef struct func_801DC510_StructA { s32 id; u16 k; u8 pad6[2]; f32 scale; } func_801DC510_StructA;
+typedef struct func_801DC510_StructB { s32 id; u16 a; u16 b; u16 c; u8 pad[2]; } func_801DC510_StructB;
+
+u16 func_801DC510(func_801DC510_StructA *arg0, func_801DC510_StructB *arg1) {
+    s32 id = arg0->id;
+    u16 k = arg0->k;
+    f32 s = arg0->scale;
+
+    while (arg1->id != 0) {
+        if (id == arg1->id) {
+            if (k == func_80011590((u16)(u32)(arg1->a * s), arg1) ||
+                k == func_80011590((u16)(u32)(arg1->b * s), arg1)) {
+                return arg1->c;
+            }
+            return 0;
+        }
+        arg1++;
+    }
+    return 0;
+}
+
+
+
+typedef struct func_801DC700_Struct0 {
+    s32 unk0;
+    u16 unk4;
+    u8 pad6[2];
+    f32 unk8;
+} func_801DC700_Struct0;
+
+typedef struct func_801DC700_Struct1 {
+    s32 unk0;
+    u8 unk4;
+    u8 unk5;
+    u8 unk6;
+    u8 pad7;
+} func_801DC700_Struct1;
+
+#define arg0 ((func_801DC700_Struct0 *)a0)
+#define E ((func_801DC700_Struct1 *)a1)
+
+s32 func_801DC700(s32 a0, void *a1) {
+    s32 key = arg0->unk0;
+    u16 id = arg0->unk4;
+    f32 scale = arg0->unk8;
+
+    if (E->unk0 != 0) {
+        do {
+            if (key == E->unk0) {
+                if (id == func_80011590((u16)(u32)(E->unk4 * scale))) {
+                    return 1;
+                }
+                if (id == func_80011590((u16)(u32)(E->unk5 * scale))) {
+                    return 2;
+                }
+                if (id == func_80011590((u16)(u32)(E->unk6 * scale))) {
+                    return 3;
+                }
+                return 0;
+            }
+            a1 = E + 1;
+        } while (E->unk0 != 0);
+    }
+    return 0;
+}
+
+#undef arg0
+#undef E
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DC9C4.s")
 
@@ -15,7 +119,6 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DCDBC.s")
 
 
-s32 func_801DC250();                                /* extern */
 s32 func_801DCC50(u16, u8, u16 *);                  /* extern */
 
 typedef struct func_801DE464_Struct {
@@ -87,7 +190,6 @@ typedef struct func_801DE6F4_StructTable {
     u16 values[2][2];
 } func_801DE6F4_StructTable;
 
-extern s32 func_801DC700(s32, void *);
 extern void func_801DC9C4(func_801DE6F4_StructVec, u16, f32);
 extern u8 D_801E1FD0[];
 extern func_801DE6F4_StructTable D_801E2008;

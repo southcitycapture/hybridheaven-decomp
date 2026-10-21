@@ -12,8 +12,10 @@ extern s32 D_801CFDB8[];
 extern s32 func_80001060(s32);
 extern s32 func_80006214(s32);
 extern s32 func_801C5AD4(u8);
+extern s8 D_801CFDA6[];
 extern u16 D_801CFDAC[];
 extern u32 D_80171CF0[];
+extern u8 *D_801CFD90[];
 extern u8 D_80089474[];
 extern u8 D_801CCBB0[];
 extern u8 D_801CCBF8[];
@@ -46,6 +48,7 @@ extern void func_8012FE50(s32, s32, s32, s32, s32);
 extern void func_80145348(s32, s32, s32);
 extern void func_80146208(s32, s16 *, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern void func_80147250(void *, s32, s32, s32, s32);
+extern void func_801472C0(void *, s32, s32, s32, s32);
 extern void func_80147370(void *, s32, s32, s32, s32);
 extern void func_8014753C(void *, s32);
 extern void func_80147734(void *arg0, void *arg1, void *arg2);
@@ -146,7 +149,30 @@ void func_801C5CC8(f32 *arg0, f32 *arg1, u8 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file024/801C5AB0/func_801C5D64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C5AB0/func_801C5DAC.s")
+typedef struct func_801C5DAC_Struct {
+    u8 pad[0x10];
+    struct func_801C5DAC_Struct *unk10;
+} func_801C5DAC_Struct;
+
+void func_801C5DAC(u8 *arg0) {
+    u8 i;
+    u8 j;
+    func_801C5DAC_Struct *p;
+
+    p = (func_801C5DAC_Struct *)D_801CFD90[arg0[0x90]];
+    for (i = 0; i < 2; i++) {
+        for (j = 0; j < 2; j++) {
+            if ((i == 0 && D_801CFDA6[arg0[0x90]] == 1) || (i == 1 && D_801CFDA6[arg0[0x90]] == 2)) {
+                func_80147250(p, 0xFF, 0xCF, 0xCF, 0xFF);
+                func_801472C0(p, 0xFF, 0x20, 0x20, 0xFF);
+            } else {
+                func_80147250(p, 0x60, 0x30, 0x30, 0xFF);
+                func_801472C0(p, 0x40, 0, 0, 0xFF);
+            }
+            p = p->unk10;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file024/801C5AB0/func_801C5F04.s")
 

@@ -80,7 +80,23 @@ void func_8001F7A0(struct func_8001F7A0_Struct *arg0) {
     arg0->unk28 &= 0xFFFD;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F6D0/func_8001F7B0.s")
+
+struct func_8001F7B0_Struct {
+    u8 pad[0x28];
+    u16 unk28;
+};
+
+s32 func_8001F7B0(struct func_8001F7B0_Struct *arg0) {
+    s32 result = 0;
+
+    if (arg0->unk28 & 2) {
+        result = 1;
+        goto end;
+    }
+    result = 0;
+end:
+    return result;
+}
 
 
 struct func_8001F7D4_Struct {

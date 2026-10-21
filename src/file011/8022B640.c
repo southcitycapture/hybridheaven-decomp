@@ -468,7 +468,30 @@ void func_8022D9EC(u8 *arg0) {
     arg0[0x2D] = (s32) (func_8001EAD0((s16) (*(u16 *) (D_801BBBF0 + 0x30) + 0x1000)) * D_8023FA34);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_8022DA7C.s")
+
+struct func_8022DA7C_B { u8 pad[0x2C]; struct func_8022DA7C_C *u2C; };
+struct func_8022DA7C_C { u8 pad[0x12]; s16 u12; };
+struct func_8022DA7C_A { u8 pad[0x24]; struct func_8022DA7C_B *u24; };
+
+#define S13(x) (((x) & 0x1000) ? (((x) & 0x1FFF) - 0x2000) : ((x) & 0x1FFF))
+
+s32 func_8022DA7C(struct func_8022DA7C_A *arg0) {
+    s16 a1, v1, d, e;
+    void *p;
+    s32 r;
+
+    e = arg0->u24->u2C->u12;
+    p = *(void **)(D_801BBBF0 + 0xDC);
+
+    if ((void *)arg0 == p) a1 = *(s16 *)(D_801BBBF0 + 0x75C);
+    else a1 = *(s16 *)(D_801BBBF0 + 0xAF8);
+    if ((void *)arg0 == p) v1 = *(s16 *)(D_801BBBF0 + 0xB98);
+    else v1 = *(s16 *)(D_801BBBF0 + 0xB98) + 0x1000;
+    d = v1 - e;
+    r = (S13(d) < 0) ? -S13(d) : S13(d);
+    if (r < a1) return 1;
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_8022DB40.s")
 
@@ -764,7 +787,31 @@ void func_80230484(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_80230494.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_80230500.s")
+
+extern s32 func_80378EBC();
+
+u16 func_80230500(s32 arg0, u8 arg1) {
+    u16 sum;
+    u8 i;
+    s32 r;
+    s32 t;
+    f32 q;
+    u16 n;
+
+    sum = 0;
+    r = func_80378EBC(arg0);
+    n = r;
+    i = 0;
+    if (r > 0) {
+        do {
+            t = func_8022B640((u16)(200 / n + 0.5));
+            i++;
+            sum = sum + t;
+        } while (i < n);
+    }
+    sum = (f32)sum / (f32)arg1 + 0.5;
+    return sum;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file011/8022B640/func_80230728.s")
 

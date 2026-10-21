@@ -12,11 +12,60 @@ void func_8001F1D4(u8 *arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F204.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F290.s")
-
-
-extern s32 func_8001F290();
 extern s32 D_80047940;
+
+typedef struct func_8001F290_Struct {
+    s32 unk0;
+    s32 unk4;
+    struct func_8001F290_Struct *unk8;
+    struct func_8001F290_Struct *unkC;
+} func_8001F290_Struct;
+
+extern func_8001F290_Struct *D_80091BC8;
+
+s32 func_8001F290(arg0)
+    s32 arg0;
+{
+    s32 temp_a0;
+    s32 temp_v1;
+    u8 *temp_a2;
+    func_8001F290_Struct *temp_a3;
+    func_8001F290_Struct *var_a1;
+    func_8001F290_Struct *var_v0;
+
+    if (arg0 <= 0) {
+        return 0;
+    }
+    temp_v1 = (arg0 + 0x17) & ~7;
+    var_a1 = D_80091BC8;
+    var_v0 = var_a1->unkC;
+    if (var_v0 != NULL) {
+loop_4:
+        temp_a0 = ((s32)var_a1 + D_80047940 + 0x10) & ~D_80047940;
+        if ((var_v0->unk0 - temp_a0) < temp_v1) {
+            var_a1 = var_v0;
+            var_v0 = var_v0->unkC;
+            if (var_v0 != NULL) {
+                goto loop_4;
+            }
+        } else {
+            goto found;
+        }
+    }
+    return 0;
+found:
+        temp_a2 = (u8 *)(temp_a0 + temp_v1);
+        *(func_8001F290_Struct **)(temp_a2 - 8) = var_a1;
+        temp_a3 = (func_8001F290_Struct *)(temp_a2 - 0x10);
+        *(func_8001F290_Struct **)(temp_a2 - 4) = var_a1->unkC;
+        var_a1->unkC->unk8 = temp_a3;
+        var_a1->unkC = temp_a3;
+        *(s32 *)(temp_a2 - 0x10) = temp_a0;
+        *(s32 *)(temp_a2 - 0xC) = temp_v1;
+        return temp_a0;
+}
+
+
 
 void func_8001F334(void) {
     D_80047940 = 0xFFF;
@@ -24,10 +73,54 @@ void func_8001F334(void) {
     D_80047940 = 7;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F364.s")
+
+typedef struct func_8001F364_Struct {
+    u32 unk0;
+    s32 unk4;
+    struct func_8001F364_Struct *unk8;
+    struct func_8001F364_Struct *unkC;
+} func_8001F364_Struct;
+
+extern func_8001F364_Struct *D_80091BCC;
+
+s32 func_8001F364(arg0)
+    s32 arg0;
+{
+    s32 size;
+    u32 addr;
+    func_8001F364_Struct *end;
+    func_8001F364_Struct *node;
+    func_8001F364_Struct *prev;
+    func_8001F364_Struct *next;
+
+    if (arg0 <= 0) {
+        return 0;
+    }
+    size = (arg0 + 0x17) & ~7;
+    prev = D_80091BCC;
+    next = prev->unk8;
+    while (next != NULL) {
+        addr = (prev->unk0 - size) & ~D_80047940;
+        if (addr >= (u32)next + 0x10) {
+            goto found;
+        }
+        prev = next;
+        next = next->unk8;
+    }
+    return 0;
+found:
+        end = (func_8001F364_Struct *)((u8 *)addr + size);
+        ((func_8001F364_Struct ** )end)[-2] = next;
+        ((func_8001F364_Struct ** )end)[-1] = prev;
+        node = end - 1;
+        prev->unk8->unkC = node;
+        prev->unk8 = node;
+        node->unk0 = addr;
+        node->unk4 = size;
+        return addr;
+}
 
 
-extern s32 func_8001F364();
 
 void func_8001F400(void) {
     D_80047940 = 0xFFF;

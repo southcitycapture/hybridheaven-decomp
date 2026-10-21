@@ -333,7 +333,11 @@ def render(seg, cfile, snips, pad=0, keep_ro=True, hoist=False):
 
 def compile_file(text, td):
     c = os.path.join(td, "f.c"); o = os.path.join(td, "f.o"); open(c, "w").write(text)
-    r = subprocess.run([sys.executable, "tools/asm-processor/build.py", IDO, "--", "mips-linux-gnu-as"] + ASFLAGS +
+    # same string encoding as the Makefile's ASMPROC: the game's strings are EUC-JP, the sources UTF-8. Without it every
+    # Japanese string in a file's GLOBAL_ASM data or C literals came out longer (UTF-8), shifting the rest of the file's
+    # rodata: the per-file check could reject matching functions (found on the overlay-rodata branch, 89 of 175)
+    r = subprocess.run([sys.executable, "tools/asm-processor/build.py", "--input-enc", "utf-8", "--output-enc", "euc-jp",
+                        IDO, "--", "mips-linux-gnu-as"] + ASFLAGS +
                        ["--", "-c"] + CFLAGS + ["-o", o, c], capture_output=True, text=True)
     if r.returncode == 0:
         import mulfix; mulfix.fix(o)        # the original build's VR4300 nop between consecutive float multiplies
@@ -642,6 +646,7 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         def memo_key(key, text):
             return "%s %s %s %s" % (key[0], key[1], sha(text), sha("".join(sorted(byfile.get((key[0], file_of(*key)), [])))))
         seen = {json.loads(l)["key"] for l in open(MEMO)} if os.path.exists(MEMO) else set()
+        if os.environ.get("SRCBUILD_NO_MEMO"): seen = set()   # re-offer every earlier reject (after a check fix)
         skipped = {k for k, t in new.items() if memo_key(k, t) in seen}
         for k in skipped: new.pop(k)
         cands = dict(reg); cands.update(new)

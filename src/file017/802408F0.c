@@ -63,7 +63,7 @@ extern void func_801C3B2C(s32);
 extern void func_801C419C(void *, f32, f32, s32, f32);
 extern void func_801FBB30(void);
 extern void func_80240B10();
-extern void func_80240C00(void);
+extern void func_80240C00();
 extern void func_80241094();
 extern void func_80241144(void);
 extern void func_80241574();

@@ -14,12 +14,6 @@ struct func_802253B8_Struct {
     u8 pad1[0xDC - 0x2E];
     s32 unkDC;
 };
-typedef struct func_80225664_Struct {
-    u8 pad0[0x10];
-    f32 unk10;
-    u8 pad14[0x30 - 0x14];
-    s32 unk30;
-} func_80225664_Struct;
 extern func_80225664_Struct D_801BC03C;
 extern func_80225664_Struct D_801BC3D8;
 

@@ -53,13 +53,15 @@ def features():
     files = glob.glob(os.path.join(HH, "asm/nonmatchings/*/*/func_*.s"))
     newest = max(os.path.getmtime(f) for f in files)
     if os.path.exists(CACHE) and os.path.getmtime(CACHE) >= newest:
-        return {tuple(k.split("/")): v for k, v in json.load(open(CACHE)).items()}
+        try: return {tuple(k.split("/")): v for k, v in json.load(open(CACHE)).items()}
+        except ValueError: pass             # half-written by a concurrent process (srcbuild's pool): rebuild it
     out = {}
     for f in files:
         seg, name = f.split("/")[-3], os.path.basename(f)[:-2]
         out["%s/%s" % (seg, name)] = scan(f)
     os.makedirs(os.path.dirname(CACHE), exist_ok=True)
-    json.dump(out, open(CACHE, "w"))
+    tmp = "%s.%d.tmp" % (CACHE, os.getpid())      # atomic: srcbuild's worker processes read it concurrently
+    json.dump(out, open(tmp, "w")); os.replace(tmp, CACHE)
     return {tuple(k.split("/")): v for k, v in out.items()}
 
 if __name__ == "__main__":

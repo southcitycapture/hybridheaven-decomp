@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-20: **49.88% of the code** (13516 of 15833 functions, including duplicates).
+Progress as of 2026-10-21: **51.85% of the code** (13653 of 15833 functions, including duplicates).
 
-**17152 model runs, $1936.41 API-equivalent in total** (local and cloud). Of the **13522 functions now in C**, **5639 were matched by AI workers** (≈ $0.343 per function, failures included), **7550 were placed by propagation** (a match copied onto identical-shape code), 197 came from decomp-permuter and 136 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**17715 model runs, $2229.96 API-equivalent in total** (local and cloud). Of the **13660 functions now in C**, **5756 were matched by AI workers** (≈ $0.387 per function, failures included), **7553 were placed by propagation** (a match copied onto identical-shape code), 203 came from decomp-permuter and 148 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -176,7 +176,6 @@ Progress as of 2026-10-20: **49.88% of the code** (13516 of 15833 functions, inc
 | `he_import` | he_import | hybrid-engine | 17 | 13 | 76% | $0.00 | – |  |
 | `fp1` | fp1 | sonnet-5-5 | 450 | 179 | 40% | $107.25 | $0.599 | 86% → 92% |
 | `fp2` | fp2 | sonnet-5-5 | 349 | 125 | 36% | $85.12 | $0.681 | 93% → 98% |
-| `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 135 | 70 | 52% | $0.00 | – |  |
 | `gptN_sol` | gptN_sol | openai/gpt-6.1-sol | 300 | 111 | 37% | $0.00 | – |  |
 | `loop0028` | loop0028 | haiku-5-5, sonnet-5-5 | 888 | 189 | 21% | $215.92 | $1.142 | 41% → 14% |
 | `unify_loop0028` | unify_loop0028 | unify (no model) | 126 | 75 | 60% | $0.00 | – |  |
@@ -184,11 +183,17 @@ Progress as of 2026-10-20: **49.88% of the code** (13516 of 15833 functions, inc
 | `unify_loop0029` | unify_loop0029 | unify (no model) | 240 | 135 | 56% | $0.00 | – |  |
 | `fixH` | fixH | haiku-5-5 | 28 | 12 | 43% | $0.39 | $0.032 | 20% → 21% |
 | `unify_loop0030` | unify_loop0030 | unify (no model) | 108 | 2 | 2% | $0.00 | – |  |
-| `gptO_sol` | gptO_sol | openai/gpt-6.1-sol | 64 | 8 | 12% | $0.00 | – |  |
 | `weak594` | weak594 | sonnet-5-5 | 333 | 97 | 29% | $50.88 | $0.525 | 14% → 28% |
 | `nearS` | nearS | sonnet-5-5 | 788 | 127 | 16% | $187.88 | $1.479 | 20% → 32% |
 | `unify_loop0031` | unify_loop0031 | unify (no model) | 134 | 23 | 17% | $0.00 | – |  |
 | `nearS2` | nearS2 | sonnet-5-5 | 189 | 18 | 10% | $40.19 | $2.233 | 32% → 34% |
-| `permute` | decomp-permuter on near-misses | , decomp-permuter | 1550 | 261 | 17% | $0.00 | – |  |
+| `addrS` | addrS | sonnet-5-5 | 65 | 5 | 8% | $18.10 | $3.619 | 34% → 35% |
+| `unify_loop0032` | unify_loop0032 | unify (no model) | 132 | 10 | 8% | $0.00 | – |  |
+| `gptO_sol` | gptO_sol | openai/gpt-6.1-sol | 131 | 20 | 15% | $0.00 | – |  |
+| `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 152 | 75 | 49% | $0.00 | – |  |
+| `unify_loop0033` | unify_loop0033 | unify (no model) | 121 | 6 | 5% | $0.00 | – |  |
+| `unify_loop0034` | unify_loop0034 | unify (no model) | 130 | 3 | 2% | $0.00 | – |  |
+| `permute` | decomp-permuter on near-misses | , decomp-permuter | 1724 | 276 | 16% | $0.00 | – |  |
+| `opusN` | opusN | opus-5-5 | 414 | 240 | 58% | $275.45 | $1.148 | 36% → 48% |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

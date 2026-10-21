@@ -1,11 +1,6 @@
 #include "context.h"
 
 
-typedef struct func_8001643C_StructEntry {
-    s16 value;
-    s16 unk2;
-    s16 next;
-} func_8001643C_StructEntry;
 
 extern func_8001643C_StructEntry D_8008DCA8[];
 extern s32 D_8008DFA8;

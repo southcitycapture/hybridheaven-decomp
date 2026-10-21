@@ -23,10 +23,6 @@ typedef struct func_80385208_Globals {
     u16 unkC8;
 } func_80385208_Globals;
 
-typedef struct func_80385208_Gfx {
-    u8 pad0[0xA];
-    u16 unkA;
-} func_80385208_Gfx;
 
 extern func_80385208_Globals D_801BBBF0;
 extern func_80385208_Gfx D_801BBC8E;
