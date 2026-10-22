@@ -138,12 +138,38 @@ def rom_ok():
     whole-ROM link is moved out of the registry onto the link blocklist and the build retried (up to 3 times),
     instead of the whole cycle being reverted for it (cycle 28 lost 115 matches to one such function)."""
     for _ in range(4):
-        code, out = sh(".venv/bin/python tools/hh/srcbuild.py all && make -j8 2>&1 | grep -B1 -A3 -E 'non-instruction-aligned|z64: OK|Error' | tail -12", 120)
+        code, out = sh(".venv/bin/python tools/hh/srcbuild.py all && make -j8 2>&1 | grep -B1 -A3 -E 'non-instruction-aligned|undefined reference|no longer fits|z64: OK|Error' | tail -40", 120)
         if "hybridheaven.z64: OK" in out: return True, out[-1500:]
         # "build/src/<seg>/<file>.o: in function `<name>':" then the error line; overlays share addresses, so the same
         # name lives in several segments and only the one named in the error is taken out
         bad = set(re.findall(r"build/src/(\w+)/\w+\.o: in function `(func_[0-9A-F]{8})'[^\n]*\n[^\n]*non-instruction-aligned", out))
-        moved = 0
+        # "src/<seg>/<file>.c:<line>: undefined reference to `X'" (cycle 40: B_801C3DC8 in file016): the function whose
+        # body holds that line
+        for seg, cf, line in set(re.findall(r"src/(\w+)/(\w+)\.c:(\d+): undefined reference", out)):
+            try: lines = open("src/%s/%s.c" % (seg, cf)).read().splitlines()[:int(line)]
+            except OSError: continue
+            for l in reversed(lines):
+                m = re.match(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8})\s*\(", l)
+                if m: bad.add((seg, m.group(1))); break
+        # "file N no longer fits its slot" (cycle 40: file 9, 6 bytes over): one of this cycle's new functions in that
+        # segment changes the file's bytes though each matches in its file. Take out all of them (not blocklisted: they
+        # go to queue/rejected.jsonl and can be re-offered); the rest of the cycle keeps its matches.
+        for n in set(re.findall(r"file (\d+) no longer fits its slot", out)):
+            seg = "file%03d" % int(n)
+            new = [x for x in dirty() if x.startswith("matched/%s/" % seg) and x.endswith(".c")]
+            _, tracked = sh("git ls-files matched/%s" % seg)
+            tracked = set(tracked.split())
+            for x in new:
+                name = os.path.basename(x)[:-2]
+                if x in tracked:    # a rewritten snippet: back to its committed text
+                    sh("git checkout HEAD -- %s" % x); log("  slot repair: %s/%s restored to HEAD" % (seg, name)); continue
+                os.makedirs("matched_rejected/" + seg, exist_ok=True); os.replace(x, "matched_rejected/%s/%s.c" % (seg, name))
+                open("queue/rejected.jsonl", "a").write(json.dumps({"segment": seg, "func": name,
+                    "why": "file %s no longer fits its ROM slot with this cycle's additions" % n}) + "\n")
+                log("  slot repair: %s/%s taken out (file %s overflowed its slot)" % (seg, name, n))
+            if new: bad.add(("__slot__", seg))
+        moved = sum(1 for seg, _ in bad if seg == "__slot__")
+        bad = {(seg, name) for seg, name in bad if seg != "__slot__"}
         for seg, name in bad:
             p = "matched/%s/%s.c" % (seg, name)
             if not os.path.exists(p): continue

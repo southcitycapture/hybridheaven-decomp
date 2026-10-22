@@ -1180,7 +1180,6 @@ void func_801300E8(void) {
         }
     }
 }
-#undef G
 
 extern u8 D_801760B4;
 

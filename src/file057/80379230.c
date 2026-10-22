@@ -124,24 +124,6 @@ void func_8037ACCC(void *arg0, s32 arg1) {
     }
 }
 
-#define D_80172574 D_80172574__func_8037AD08
-#define D_80181A84 D_80181A84__func_8037AD08
-#define func_80146088 func_80146088__func_8037AD08
-#define func_8037B5A0_Struct0 func_8037B5A0_Struct0__func_8037AD08
-#define func_8037B5A0_Struct1 func_8037B5A0_Struct1__func_8037AD08
-#define func_8037B5A0_Struct2 func_8037B5A0_Struct2__func_8037AD08
-struct func_8037B5A0_Struct1 {
-    u8 pad[0x44];
-    s32 unk44;
-};
-struct func_8037B5A0_Struct0 {
-    u16 *unk0;
-    struct func_8037B5A0_Struct1 *unk4;
-};
-struct func_8037B5A0_Struct2 {
-    u8 pad[0xC];
-    void *unkC;
-};
 
 struct func_8037AD08_Struct {
     u8 pad0[8];
@@ -206,12 +188,6 @@ void func_8037AD08(arg0, arg1, arg2, arg3, arg4)
     ((struct func_8037AD08_Struct2 *)&D_80181A84)->unkC = &s.unk0;
     func_80146088(arg0, &D_80181A84, (s32)arg4);
 }
-#undef D_80172574
-#undef D_80181A84
-#undef func_80146088
-#undef func_8037B5A0_Struct0
-#undef func_8037B5A0_Struct1
-#undef func_8037B5A0_Struct2
 
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
@@ -225,7 +201,6 @@ typedef struct func_8037ADF8_Struct {
     s16 unkB0;
 } func_8037ADF8_Struct;
 
-extern void func_8037AD08(void *, s16, s16, s32, s8 *);
 extern void func_8037AED8();
 
 void func_8037ADF8(func_8037ADF8_Struct *arg0, s32 arg1) {
@@ -405,10 +380,7 @@ struct func_8037B5A0_Struct3 {
     u8 pad34[8];
 };
 
-void func_80146088(void *a0, void *a1, s32 a2);
 
-extern struct func_8037B5A0_Struct0 *D_80172574;
-extern struct func_8037B5A0_Struct2 D_80181A84;
 
 void func_8037B5A0(void *arg0, s16 arg1, s16 arg2, s32 arg3)
 {

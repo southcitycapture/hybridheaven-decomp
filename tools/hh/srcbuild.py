@@ -27,7 +27,7 @@ DECL = re.compile(r"^\s*extern\b[^;]*?\b((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*
 DEFN = re.compile(r"^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;]*$")
 # a one-line old-style definition, `void f(arg0) T *arg0; {` (DEFN excludes `;`): existing_ok must see it as a definition,
 # or a file holding one is never "already right" and gets re-rendered (and, once frozen, rebuilt one at a time) every time
-KR_DEFN = re.compile(r"^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*(?:[^{};]+;\s*)+\{\s*$")
+KR_DEFN = re.compile(r"^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*(?:[^{};]*;)+\s*\{\s*$")
 TYPEDEF = re.compile(r"\btypedef\b.*?\b(\w+)\s*;\s*$|^\s*}\s*(\w+)\s*;\s*$")
 # a file-scope prototype without `extern` (`void func_800062F8(s32, s32);`); only used at brace depth 0
 PROTO = re.compile(r"^\s*(?!return\b|else\b|case\b|goto\b)(?:[A-Za-z_]\w*[\s\*]+)+\**\s*((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*\([^;{]*\)\s*;\s*(?://.*|/\*.*\*/)?$")
@@ -421,7 +421,7 @@ def existing_ok(seg, cfile, snips, td, bodies=True):
     path = "src/%s/%s.c" % (seg, cfile)
     if not os.path.exists(path): return False
     text = open(path).read()
-    defined = set(re.findall(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*(?:[^{};]+;\s*)*\{", text, re.M))
+    defined = set(re.findall(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*(?:[^{};]*;)*\s*\{", text, re.M))
     if defined != set(snips): return False
     # same bodies too: unify and protofix rewrite registered snippets, and a stale file must not pass for the new text
     if bodies and any(fn_body(t, n) is None or fn_body(t, n) != fn_body(text, n) for n, t in snips.items()): return False
