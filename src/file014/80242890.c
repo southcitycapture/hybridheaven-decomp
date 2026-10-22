@@ -57,6 +57,7 @@ extern void func_802438E4();
 extern void func_80243A4C();
 extern void func_80244248();
 extern void func_802445F8();
+extern void func_8024476C();
 extern void func_80244FDC();
 extern void func_80245290();
 extern void func_80245BF8();
@@ -388,7 +389,31 @@ void func_80243E38(struct func_80243E38_Obj *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_802445F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_80244714.s")
+
+
+struct func_80244714_StructChild {
+    u8 pad[0x78];
+    s16 unk78;
+};
+
+struct func_80244714_StructObj {
+    u8 pad[0x2C];
+    u32 unk2C;
+    u8 pad30[0x2C];
+    struct func_80244714_StructChild *unk5C;
+};
+
+void func_80244714(struct func_80244714_StructObj *arg0, s32 arg1)
+{
+  struct func_80244714_StructChild *temp_v1;
+ do { temp_v1 = arg0->unk5C; } while (0);
+  if (func_80242890() == 0)
+  {
+    arg0->unk2C |= 0x80;
+    temp_v1->unk78 = 1;
+    func_800058DC(arg0, func_8024476C);
+  }
+}
 
 
 struct func_8024476C_Struct {
@@ -542,7 +567,66 @@ void func_80244FDC(struct func_80244FDC_Obj *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_80245048.s")
+#define func_80245144 func_80245144__func_80245048
+#define func_80245144_Obj func_80245144_Obj__func_80245048
+struct func_80245144_Obj {
+    u8 pad0[0x5C];
+    void *unk5C;
+    u8 pad1[0x3C];
+    s16 unk9C;
+    s16 unk9E;
+    s16 unkA0;
+};
+extern void func_80245144(struct func_80245144_Obj *arg0, s32 arg1);
+
+struct func_80245048_StructInfo {
+    u8 pad[0x10];
+    u32 unk10;
+};
+struct func_80245048_StructObj {
+    u8 pad[0x38];
+    struct func_80245048_StructInfo *unk38;
+    u8 pad2[0x20];
+    struct func_80246478_Child *unk5C;
+    u8 pad3[0x42];
+    u16 unkA2;
+};
+
+void func_80245048(struct func_80245048_StructObj *arg0, s32 arg1)
+{
+  struct func_80246478_Child *sp2C;
+  u16 new_var;
+ sp2C = arg0->unk5C; if (func_8012CE9C(arg1, sp2C, *((struct func_802438E4_Table *) (&D_802484C4)), 10) == 0) {
+    func_80010550(arg1, sp2C);
+    new_var = (*arg0).unkA2--;
+    if (new_var == 0)
+    {
+ do { } while (0);
+      arg0->unkA2++;
+      if ((arg0->unk38->unk10 >> 24) != 3)
+      {
+        if (func_8012A564(arg0, 0x43340000) != 0)
+        {
+          return;
+        }
+      }
+      else
+        if (func_8012A564(arg0, 0x42C80000) != 0)
+      {
+        return;
+      }
+      if (0, func_801268F4(0) != 0)
+      {
+        sp2C += 0;
+        sp2C->unk78 = 1;
+        func_801FBB30();
+        func_800058DC(arg0, func_80245144);
+      }
+    }
+  }
+}
+#undef func_80245144
+#undef func_80245144_Obj
 
 struct func_80245244_Obj {
     u8 pad0[0x5C];

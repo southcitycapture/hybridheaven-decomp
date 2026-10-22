@@ -69,7 +69,9 @@ def weekly_cap(s, now):
 def five_cap(s, now):
     local = now.astimezone(ZoneInfo(s["tz"]))
     d0, d1, h0, h1 = s["work_hours"]
-    work = d0 <= local.weekday() <= d1 and h0 <= local.hour < h1
+    # a 5-hour window opened before work still runs into it (2026-10-22: Opus filled the window by 08:40 ET under the
+    # night cap and Zach started the day at 92%): the work cap starts 5 hours before work does
+    work = d0 <= local.weekday() <= d1 and h0 - 5 <= local.hour < h1
     return s["five_work"] if work else s["five_other"]
 
 

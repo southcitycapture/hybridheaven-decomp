@@ -1,14 +1,6 @@
 #include "context.h"
 
-struct func_8024C560_StructInner {
-    u8 pad[0x22];
-    u8 unk22;
-};
 
-struct func_8024C560_Struct {
-    s32 pad0;
-    struct func_8024C560_StructInner *unk4;
-};
 
 extern s32 func_80133A24(s32);
 extern void func_800058DC(s32, void *);

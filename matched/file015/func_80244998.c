@@ -3,7 +3,7 @@
 extern s32 func_801517CC(s32);
 extern void func_801512CC();
 extern void func_80151430();
-extern u8 func_80244A04[];
+extern void func_80244A04(void *arg0, void *arg1);
 
 void func_80244998(arg0, arg1)
 s32 arg0;

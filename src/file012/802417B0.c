@@ -196,7 +196,6 @@ struct func_80242E58_Table {
 extern void *func_80005670(void *, void *);
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
-extern u8 D_801BC3D8[];
 extern u8 D_80248F20[];
 
 void *func_80242E58(void *arg0) {
@@ -325,7 +324,42 @@ void func_8024334C(struct func_8024334C_Struct *arg0, s32 arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file012/802417B0/func_80243454.s")
+
+extern u8 func_80237250[];
+void func_802434C0();
+
+struct func_80243454_S2C {
+    u8 pad0[0x1C];
+    void *unk1C;
+};
+
+struct func_80243454_S34 {
+    u8 pad0[0xC];
+    s16 unkC;
+};
+
+struct func_80243454_Struct {
+    u8 pad0[0x2C];
+    struct func_80243454_S2C *unk2C;
+    u8 pad30[4];
+    struct func_80243454_S34 *unk34;
+    u8 pad38[0xA];
+    u8 unk42;
+};
+
+void func_80243454(struct func_80243454_Struct *arg0, s32 arg1) {
+    struct func_80243454_S2C *a = arg0->unk2C;
+    u8 *p = &arg0->unk42;
+    struct func_80243454_S34 *v1 = arg0->unk34;
+
+    if (a->unk1C == (void *)func_80237250) {
+        if (++*p >= 0x15) {
+            *p = 0;
+            v1->unkC = 0x200;
+            func_800058DC((s32)arg0, (void *)func_802434C0);
+        }
+    }
+}
 
 extern u8 func_802436A4[];
 extern void func_80243538();
@@ -427,7 +461,6 @@ struct func_802438A4_Struct {
     u8 unk42;
 };
 extern void func_8022696C();
-extern u8 func_80237250[];
 extern u8 func_80243920[];
 
 void func_802438A4(struct func_802438A4_Struct *arg0, s32 arg1) {

@@ -323,7 +323,37 @@ s32 func_8014B2CC(s32 arg0) {
     return 0xFF00;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B2FC.s")
+#define func_8014B420_Struct func_8014B420_Struct__func_8014B2FC
+#define func_8014B420_StructInner func_8014B420_StructInner__func_8014B2FC
+struct func_8014B420_StructInner {
+    u8 pad[0x90];
+    f32 unk90;
+    f32 unk94;
+    f32 unk98;
+    s16 unk9C;
+};
+struct func_8014B420_Struct {
+    u8 pad[4];
+    struct func_8014B420_StructInner *unk4;
+};
+
+struct func_8014B420_Struct;
+
+s32 func_8014B2FC(arg0, arg1)
+    u16 arg0;
+    u8 arg1;
+{
+    u8 *temp_v0;
+
+    temp_v0 = (u8 *)D_8014B7CC(arg0);
+    if (temp_v0 != NULL) {
+        *temp_v0 = arg1;
+        return 1;
+    }
+    return 0;
+}
+#undef func_8014B420_Struct
+#undef func_8014B420_StructInner
 
 
 s32 func_8014B33C(s32 arg0) {
@@ -353,7 +383,17 @@ s32 func_8014B36C(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B3B0.s")
+
+s32 func_8014B3B0(u16 arg0, u8 arg1) {
+    u8 *temp_v0;
+
+    temp_v0 = (u8 *)D_8014B7CC(arg0);
+    if (temp_v0 != NULL) {
+        temp_v0[8] = arg1;
+        return 1;
+    }
+    return 0;
+}
 
 
 
@@ -420,7 +460,35 @@ s32 func_8014B4A0(u16 arg0, struct func_8014B4A0_StructOutput *arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014B518.s")
+
+u16 func_8014B518() {
+    s32 i;
+    s32 j;
+    s32 t;
+
+    if (*(u16 *)&D_801BED32 == 0) {
+        t = *(u16 *)&D_801BED30;
+        if (t >= 0x80F7) {
+            *(u16 *)&D_801BED32 = 1;
+            *(u16 *)&D_801BED30 = 1;
+        } else {
+            *(u16 *)&D_801BED30 = t + 1;
+            return t;
+        }
+    }
+    for (i = 0; i != 0x80F6; i++) {
+        for (j = 0; j < 48; j++) {
+            if (((&D_801BEF38)[j * 12] & 1) &&
+                *(u16 *)&D_801BED30 == *(u16 *)(&D_801BEF38 + j * 12 + 2)) {
+                break;
+            }
+            if (j == 47) {
+                return (*(u16 *)&D_801BED30)++;
+            }
+        }
+    }
+    return 0;
+}
 
 
 

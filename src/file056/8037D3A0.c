@@ -667,9 +667,30 @@ void func_8037F220(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037F258.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037F290.s")
+void func_8037F258(u8 arg0) {
+    u8 v = arg0;
+
+    if (v == 1) {
+        ((s8 *)D_801BBC06)[2] = 1;
+    } else if (v == 2) {
+        ((s8 *)D_801BBC06)[2] = -1;
+    }
+}
+
+
+void func_8037F290(u8 arg0) {
+    s32 temp_v0;
+
+    temp_v0 = arg0;
+    if (temp_v0 == 1) {
+        ((s8 *)D_801BBC06)[3] = 1;
+        return;
+    }
+    if (temp_v0 == 2) {
+        ((s8 *)D_801BBC06)[3] = -1;
+    }
+}
 
 
 void func_8037F2C8(s32 arg0) {

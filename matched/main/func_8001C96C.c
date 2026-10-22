@@ -1,0 +1,83 @@
+#include "context.h"
+
+u16 func_8001C96C(u16 arg0) {
+    u8 high;
+    u16 result;
+
+    high = arg0 >> 8;
+    result = 0;
+    if (high == 0xA1) result = func_8001C670((arg0 & 0xFFFF) - 0xA1);
+    if (high == 0xA2) result = func_8001C6E8((arg0 & 0xFFFF) - 0xA1);
+    if (high == 0xA3) result = func_8001C734((arg0 & 0xFFFF) - 0xB0);
+    if (high == 0xA4) result = func_8001C7A4((arg0 & 0xFFFF) - 0xA1);
+    if (high == 0xA5) result = func_8001C824((arg0 & 0xFFFF) - 0xA1);
+    if (high >= 0xB0) {
+        if (arg0 == 0xBCF3) result = 0xFD;
+        if (arg0 == 0xC5EA) result = 0xFE;
+        if (arg0 == 0xB0EC) result = 0xFF;
+        if (arg0 == 0xCBDC) result = 0x100;
+        if (arg0 == 0xC7D8) result = 0x101;
+        if (arg0 == 0xC9E9) result = 0x102;
+        if (arg0 == 0xC8BF) result = 0x103;
+        if (arg0 == 0xBFC8) result = 0x104;
+        if (arg0 == 0xB5D5) result = 0x105;
+        if (arg0 == 0xB8AA) result = 0x106;
+        if (arg0 == 0xBAD5) result = 0x107;
+        if (arg0 == 0xB9FC) result = 0x108;
+        if (arg0 == 0xBFE2) result = 0x109;
+        if (arg0 == 0xC4BE) result = 0x10A;
+        if (arg0 == 0xC4B7) result = 0x10B;
+        if (arg0 == 0xC9A8) result = 0x10C;
+        if (arg0 == 0xC0B5) result = 0x10D;
+        if (arg0 == 0xCCCC) result = 0x10E;
+        if (arg0 == 0xB8C7) result = 0x10F;
+        if (arg0 == 0xBDBD) result = 0x110;
+        if (arg0 == 0xBBFA) result = 0x111;
+        if (arg0 == 0xCFC6) result = 0x112;
+        if (arg0 == 0xBDB3) result = 0x113;
+        if (arg0 == 0xCDE1) result = 0x114;
+        if (arg0 == 0xBCE8) result = 0x115;
+        if (arg0 == 0xC0DA) result = 0x116;
+        if (arg0 == 0xCAD6) result = 0x117;
+        if (arg0 == 0xC3E6) result = 0x118;
+        if (arg0 == 0xB2BC) result = 0x119;
+        if (arg0 == 0xC3CA) result = 0x11A;
+        if (arg0 == 0xBAB8) result = 0x11B;
+        if (arg0 == 0xB1A6) result = 0x11C;
+        if (arg0 == 0xB2A3) result = 0x11D;
+        if (arg0 == 0xCEA2) result = 0x11E;
+        if (arg0 == 0xCFD3) result = 0x11F;
+        if (arg0 == 0xCDEE) result = 0x120;
+        if (arg0 == 0xBEE5) result = 0x121;
+        if (arg0 == 0xBCC2) result = 0x122;
+        if (arg0 == 0xB3E4) result = 0x123;
+        if (arg0 == 0xC1C8) result = 0x124;
+        if (arg0 == 0xB4AC) result = 0x125;
+        if (arg0 == 0xC0DE) result = 0x126;
+        if (arg0 == 0xB8E5) result = 0x127;
+        if (arg0 == 0xB2F3) result = 0x128;
+        if (arg0 == 0xCAA7) result = 0x129;
+        if (arg0 == 0xC7BE) result = 0x12A;
+        if (arg0 == 0xC5B7) result = 0x12B;
+        if (arg0 == 0xC5DD) result = 0x12C;
+        if (arg0 == 0xC2AD) result = 0x12D;
+        if (arg0 == 0xE7A7) result = 0x12E;
+        if (arg0 == 0xCAA2) result = 0x12F;
+        if (arg0 == 0xB6DA) result = 0x130;
+        if (arg0 == 0xBEAE) result = 0x131;
+        if (arg0 == 0xC2E7) result = 0x132;
+        if (arg0 == 0xC9FC) result = 0x133;
+        if (arg0 == 0xB4F0) result = 0x134;
+        if (arg0 == 0xC1C3) result = 0x135;
+        if (arg0 == 0xB9B6) result = 0x136;
+        if (arg0 == 0xB7E2) result = 0x137;
+        if (arg0 == 0xCECF) result = 0x138;
+        if (arg0 == 0xCBC9) result = 0x139;
+        if (arg0 == 0xB8E6) result = 0x13A;
+        if (arg0 == 0xC1C7) result = 0x13B;
+        if (arg0 == 0xC1E1) result = 0x13C;
+        if (arg0 == 0xC1B0) result = 0x13D;
+        if (arg0 == 0xB5D3) result = 0x13E;
+    }
+    return result;
+}

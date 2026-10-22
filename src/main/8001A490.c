@@ -138,7 +138,50 @@ void func_8001A584(s32 arg0, func_8001A584_StructObj **a1) {
     D_801BBF8E = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001A804.s")
+#define va_arg(ap, type) (*(type *)((ap = (u8 *)(((u32)ap + 3) & ~3) + 4) - 4))
+
+void func_8001A804(u8 arg0, u8 *arg1, ...) {
+    u8 *ap;
+    s32 i;
+    u8 c;
+
+    ap = (u8 *)(&arg1 + 1);
+    D_8008EEA0[arg0].flag = 1;
+    c = *arg1;
+    if (c != 0) {
+        i = 0;
+        do {
+            if (c != ' ') {
+                if (c == 'p') {
+                    c = arg1[++i];
+                    if (c == 'x') D_8008EEA0[arg0].x = va_arg(ap, s32);
+                    if (c == 'y') D_8008EEA0[arg0].y = va_arg(ap, s32);
+                }
+                if (c == 's') {
+                    c = arg1[++i];
+                    if (c == 'x') D_8008EEA0[arg0].w0E = va_arg(ap, s32);
+                    if (c == 'y') D_8008EEA0[arg0].w10 = va_arg(ap, s32);
+                    if (c == 'f') D_8008EEA0[arg0].w12 = va_arg(ap, s32);
+                }
+                if (c == 'w') {
+                    c = arg1[++i];
+                    if (c == 'r') D_8008EEA0[arg0].b6 = va_arg(ap, s32);
+                    if (c == 'g') D_8008EEA0[arg0].b7 = va_arg(ap, s32);
+                    if (c == 'b') D_8008EEA0[arg0].b8 = va_arg(ap, s32);
+                    if (c == 'a') D_8008EEA0[arg0].b9 = va_arg(ap, s32);
+                }
+                if (c == 'f') {
+                    c = arg1[++i];
+                    if (c == 'r') D_8008EEA0[arg0].bA = va_arg(ap, s32);
+                    if (c == 'g') D_8008EEA0[arg0].bB = va_arg(ap, s32);
+                    if (c == 'b') D_8008EEA0[arg0].bC = va_arg(ap, s32);
+                    if (c == 'a') D_8008EEA0[arg0].bD = va_arg(ap, s32);
+                }
+            }
+            c = arg1[++i];
+        } while (c != 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001AA50.s")
 
@@ -273,7 +316,30 @@ u8 func_8001BD20(u8 arg0, u16 arg1) {
     return v;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001BFE4.s")
+struct func_8001BFE4_StructA { u16 d[6]; };
+struct func_8001BFE4_StructB { u8 d[6]; };
+extern struct func_8001BFE4_StructB D_80044624;
+extern struct func_8001BFE4_StructA D_8004462C;
+extern u8 D_8008DC18;
+extern u8 D_801077E0[];
+void func_80001FE8(s32, u8 *, u8);
+s32 func_8000511C(u16);
+
+void func_8001BFE4(u8 arg0, u16 arg1) {
+    s32 pad;
+    struct func_8001BFE4_StructB sp2C;
+    struct func_8001BFE4_StructA sp20;
+    u32 i;
+
+    i = 0x10;
+    sp2C = D_80044624;
+    sp20 = D_8004462C;
+    D_8008DC18 = 1;
+    func_80001FE8(func_8000511C(sp20.d[arg0]) + sp2C.d[arg0] * (arg1 >> 1), D_801077E0, sp2C.d[arg0]);
+    for (; i--;) {
+    }
+    D_8008DC18 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001C0B0.s")
 
@@ -372,7 +438,88 @@ u8 func_8001C824(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001C88C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001C96C.s")
+
+u16 func_8001C96C(u16 arg0) {
+    u8 high;
+    u16 result;
+
+    high = arg0 >> 8;
+    result = 0;
+    if (high == 0xA1) result = func_8001C670((arg0 & 0xFFFF) - 0xA1);
+    if (high == 0xA2) result = func_8001C6E8((arg0 & 0xFFFF) - 0xA1);
+    if (high == 0xA3) result = func_8001C734((arg0 & 0xFFFF) - 0xB0);
+    if (high == 0xA4) result = func_8001C7A4((arg0 & 0xFFFF) - 0xA1);
+    if (high == 0xA5) result = func_8001C824((arg0 & 0xFFFF) - 0xA1);
+    if (high >= 0xB0) {
+        if (arg0 == 0xBCF3) result = 0xFD;
+        if (arg0 == 0xC5EA) result = 0xFE;
+        if (arg0 == 0xB0EC) result = 0xFF;
+        if (arg0 == 0xCBDC) result = 0x100;
+        if (arg0 == 0xC7D8) result = 0x101;
+        if (arg0 == 0xC9E9) result = 0x102;
+        if (arg0 == 0xC8BF) result = 0x103;
+        if (arg0 == 0xBFC8) result = 0x104;
+        if (arg0 == 0xB5D5) result = 0x105;
+        if (arg0 == 0xB8AA) result = 0x106;
+        if (arg0 == 0xBAD5) result = 0x107;
+        if (arg0 == 0xB9FC) result = 0x108;
+        if (arg0 == 0xBFE2) result = 0x109;
+        if (arg0 == 0xC4BE) result = 0x10A;
+        if (arg0 == 0xC4B7) result = 0x10B;
+        if (arg0 == 0xC9A8) result = 0x10C;
+        if (arg0 == 0xC0B5) result = 0x10D;
+        if (arg0 == 0xCCCC) result = 0x10E;
+        if (arg0 == 0xB8C7) result = 0x10F;
+        if (arg0 == 0xBDBD) result = 0x110;
+        if (arg0 == 0xBBFA) result = 0x111;
+        if (arg0 == 0xCFC6) result = 0x112;
+        if (arg0 == 0xBDB3) result = 0x113;
+        if (arg0 == 0xCDE1) result = 0x114;
+        if (arg0 == 0xBCE8) result = 0x115;
+        if (arg0 == 0xC0DA) result = 0x116;
+        if (arg0 == 0xCAD6) result = 0x117;
+        if (arg0 == 0xC3E6) result = 0x118;
+        if (arg0 == 0xB2BC) result = 0x119;
+        if (arg0 == 0xC3CA) result = 0x11A;
+        if (arg0 == 0xBAB8) result = 0x11B;
+        if (arg0 == 0xB1A6) result = 0x11C;
+        if (arg0 == 0xB2A3) result = 0x11D;
+        if (arg0 == 0xCEA2) result = 0x11E;
+        if (arg0 == 0xCFD3) result = 0x11F;
+        if (arg0 == 0xCDEE) result = 0x120;
+        if (arg0 == 0xBEE5) result = 0x121;
+        if (arg0 == 0xBCC2) result = 0x122;
+        if (arg0 == 0xB3E4) result = 0x123;
+        if (arg0 == 0xC1C8) result = 0x124;
+        if (arg0 == 0xB4AC) result = 0x125;
+        if (arg0 == 0xC0DE) result = 0x126;
+        if (arg0 == 0xB8E5) result = 0x127;
+        if (arg0 == 0xB2F3) result = 0x128;
+        if (arg0 == 0xCAA7) result = 0x129;
+        if (arg0 == 0xC7BE) result = 0x12A;
+        if (arg0 == 0xC5B7) result = 0x12B;
+        if (arg0 == 0xC5DD) result = 0x12C;
+        if (arg0 == 0xC2AD) result = 0x12D;
+        if (arg0 == 0xE7A7) result = 0x12E;
+        if (arg0 == 0xCAA2) result = 0x12F;
+        if (arg0 == 0xB6DA) result = 0x130;
+        if (arg0 == 0xBEAE) result = 0x131;
+        if (arg0 == 0xC2E7) result = 0x132;
+        if (arg0 == 0xC9FC) result = 0x133;
+        if (arg0 == 0xB4F0) result = 0x134;
+        if (arg0 == 0xC1C3) result = 0x135;
+        if (arg0 == 0xB9B6) result = 0x136;
+        if (arg0 == 0xB7E2) result = 0x137;
+        if (arg0 == 0xCECF) result = 0x138;
+        if (arg0 == 0xCBC9) result = 0x139;
+        if (arg0 == 0xB8E6) result = 0x13A;
+        if (arg0 == 0xC1C7) result = 0x13B;
+        if (arg0 == 0xC1E1) result = 0x13C;
+        if (arg0 == 0xC1B0) result = 0x13D;
+        if (arg0 == 0xB5D3) result = 0x13E;
+    }
+    return result;
+}
 
 
 u16 func_8001CE9C(u16 arg0) {
@@ -422,7 +569,6 @@ s32 func_8001D2E0(u16 arg0) {
 
 
 extern u16 func_8001C88C(u16);
-extern u16 func_8001C96C(u16);
 extern u16 func_8001CF40(u16);
 
 s32 func_8001D394(u8 arg0, u16 arg1) {
@@ -506,7 +652,95 @@ u8 func_8001D588(u8 arg0) {
     return c;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001D69C.s")
+
+
+void func_8001D69C(s32 arg0, u8 arg1, s8 *arg2) {
+    s32 value;
+    s32 remaining;
+    s32 divisor;
+    s32 digit;
+
+    if (arg0 < 0) {
+        *arg2 = '-';
+        value = -arg0;
+        arg2++;
+    } else {
+        value = arg0;
+    }
+    remaining = value;
+    divisor = 1000000000;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    }
+    divisor = 100000000;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    } else if (arg1 >= 9) {
+        *arg2++ = ' ';
+    }
+    divisor = 10000000;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    } else if (arg1 >= 8) {
+        *arg2++ = ' ';
+    }
+    divisor = 1000000;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    } else if (arg1 >= 7) {
+        *arg2++ = ' ';
+    }
+    divisor = 100000;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    } else if (arg1 >= 6) {
+        *arg2++ = ' ';
+    }
+    divisor = 10000;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    } else if (arg1 >= 5) {
+        *arg2++ = ' ';
+    }
+    divisor = 1000;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    } else if (arg1 >= 4) {
+        *arg2++ = ' ';
+    }
+    divisor = 100;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    } else if (arg1 >= 3) {
+        *arg2++ = ' ';
+    }
+    divisor = 10;
+    if (value >= divisor) {
+        digit = remaining / divisor;
+        remaining -= digit * divisor;
+        *arg2++ = func_8001D588(digit);
+    } else if (arg1 >= 2) {
+        *arg2++ = ' ';
+    }
+    *arg2++ = func_8001D588(remaining);
+    *arg2 = 0;
+}
 
 
 void func_8001DBC8(s32 arg0, u8 arg1, s8 *arg2) {
@@ -618,9 +852,119 @@ void func_8001DE38(s32 arg0, func_8001DE38_Struct **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001DFFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001E4C0.s")
 
+typedef struct func_8001E4C0_StructDraw {
+    u8 pad[8];
+    u16 flags;
+    u8 padA[2];
+    void *data;
+} func_8001E4C0_StructDraw;
+extern func_8001E4C0_StructDraw D_800448F4;
+extern void func_80116E80(s32, void *, void *);
+
+typedef struct func_8001E4C0_StructState {
+    u8 pad[0x154];
+    u16 unk154;
+    u16 unk156;
+    u16 unk158;
+    u8 unk15A;
+    u8 unk15B;
+    u8 unk15C;
+    u8 unk15D;
+    u8 unk15E;
+    u8 pad15F;
+    s32 unk160;
+    u8 unk164;
+} func_8001E4C0_StructState;
+struct func_8001E87C_Struct;
 extern struct func_8001EA48_Struct D_801BBBF0;
+void func_8001E768(void *arg0, struct func_8001E87C_Struct **arg1);
+void func_8001E66C(s32 arg0, struct func_8001E87C_Struct **arg1);
+void func_8001E87C(s32 arg0, struct func_8001E87C_Struct **arg1);
+#define S4C0 (*(func_8001E4C0_StructState *)&D_801BBBF0)
+typedef struct func_8001E4C0_StructRect {
+    s16 x, y, w, h;
+    u8 r, g, b, a;
+    u8 pad[4];
+    s16 flags, end;
+    u8 tail[0x28];
+} func_8001E4C0_StructRect;
+#define sp2C rect.x
+#define sp2E rect.y
+#define sp30 rect.w
+#define sp32 rect.h
+#define sp34 rect.r
+#define sp35 rect.g
+#define sp36 rect.b
+#define sp37 rect.a
+#define sp3C rect.flags
+#define sp3E rect.end
+typedef struct func_8001E4C0_Bits {
+    u8 flag : 1;
+    u8 mid : 3;
+    u8 lo : 4;
+} func_8001E4C0_Bits;
+void func_8001E4C0(s32 arg0, s32 arg1) {
+    func_8001E4C0_StructRect rect;
+    s32 var_v0;
+    s32 mode;
+    s32 state;
+
+    sp2C = 0;
+    sp2E = 0;
+    sp32 = (sp30 = 320) - 80;
+    sp34 = S4C0.unk15A;
+    sp35 = S4C0.unk15B;
+    sp36 = S4C0.unk15C;
+    if (func_801302CC() && (sp34 || sp35 || sp36)) {
+        sp2E = 45;
+        sp32 = 150;
+    }
+    state = S4C0.unk15D;
+    if (state == 2 || state == 0) {
+        sp37 = 255;
+        sp3C = 0;
+    } else {
+        sp37 = 0;
+        sp3C = 0x1002;
+    }
+    sp3E = 0;
+    D_800448F4.data = &sp2C;
+    if (S4C0.unk15E) D_800448F4.flags = 128;
+    else D_800448F4.flags = 4;
+    if (S4C0.unk15E) var_v0 = 128;
+    else var_v0 = 4;
+    func_80116E80(var_v0 & 0xFFFF, &D_800448F4, &D_801BBBF0);
+    func_80005E44(arg0, &D_800448F4);
+    state = S4C0.unk15D;
+    if (S4C0.unk15D == 2) S4C0.unk158 = S4C0.unk154;
+    else S4C0.unk158 = 0;
+    state |= state << 4;
+    S4C0.unk15D = state;
+    ((func_8001E4C0_Bits *)&S4C0.unk15D)->flag = 1;
+    S4C0.unk164 = 1;
+    if ((S4C0.unk15D & 0xF) == 0) {
+        func_800058DC(arg0, (void (*)(void))func_8001E768);
+        return;
+    }
+    if ((S4C0.unk15D & 0xF) == 2) {
+        func_800058DC(arg0, (void (*)(void))func_8001E87C);
+        return;
+    }
+    func_800058DC(arg0, (void (*)(void))func_8001E66C);
+}
+#undef S4C0
+#undef sp2C
+#undef sp2E
+#undef sp30
+#undef sp32
+#undef sp34
+#undef sp35
+#undef sp36
+#undef sp37
+#undef sp3C
+#undef sp3E
+
 struct func_8001E87C_Sub {
     u8 pad[0xB];
     s8 unkB;
@@ -649,7 +993,6 @@ struct func_8001E66C_StructState {
     u8 unk15D;
 };
 
-extern void func_8001E768(void *arg0, struct func_8001E87C_Struct **arg1);
 extern u8 D_80044914;
 extern s16 D_8008934C;
 #define STATE (*(struct func_8001E66C_StructState *)&D_801BBBF0)
@@ -681,7 +1024,6 @@ void func_8001E66C(s32 arg0, struct func_8001E87C_Struct **arg1) {
 
 extern s16 D_80089354;
 void func_8001E830(s32 arg0, s32 arg1);
-void func_8001E87C(s32 arg0, struct func_8001E87C_Struct **arg1);
 
 
 struct func_8001E768_Struct {

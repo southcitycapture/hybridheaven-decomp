@@ -300,7 +300,98 @@ void func_8014CDA0(func_8014CDA0_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_8014CE54.s")
+#define D_80182950 D_80182950__func_8014CE54
+#define func_8014D070_Struct_Table func_8014D070_Struct_Table__func_8014CE54
+typedef struct func_8014D070_Struct_Table {
+    u16 unk0;
+    u8 pad[18];
+} func_8014D070_Struct_Table;
+extern func_8014D070_Struct_Table D_80182950[];
+
+typedef struct func_8014CE54_Struct_Pos {
+    u8 pad[6];
+    s16 x, y, z;
+} func_8014CE54_Struct_Pos;
+typedef struct func_8014CE54_Struct {
+    u8 pad0[0x38];
+    func_8014CE54_Struct_Pos *pos;
+    u8 pad3C[0x74 - 0x3C];
+    s32 unk74;
+    u8 pad78[0x90 - 0x78];
+    u8 unk90, unk91, unk92, unk93;
+    f32 unk94;
+    s32 unk98;
+    u8 pad9C[2];
+    u16 unk9E;
+    u8 padA0[5];
+    u8 unkA5;
+} func_8014CE54_Struct;
+extern s32 (*D_80182104[])(func_8014CE54_Struct *, s32);
+extern u16 D_801BBBF4;
+extern u8 D_801BBF96;
+extern u8 D_801BBF97;
+extern s32 func_80126950(void);
+extern void func_801FC830(f32, f32, f32, f32, s32);
+extern void func_8012FE50(s32, u16, u8, s32, s32);
+
+void func_8014CE54(func_8014CE54_Struct *arg0, s32 arg1) {
+    s32 flag;
+    u8 bits;
+    u8 mode;
+    s32 (*callback)(func_8014CE54_Struct *, s32);
+    func_8014C2B0_Struct_Table *table;
+    u16 sound;
+    func_8014CE54_Struct_Pos *pos;
+    void (*callback2)(func_8014C2B0_Struct *, func_8014C2B0_Struct_Obj **);
+    s32 action;
+    s32 enabled;
+    s32 old;
+
+    callback = D_80182104[D_80182950[arg0->unk90].unk0];
+    flag = 0;
+    if (callback == NULL) {
+        flag = 1;
+    } else if (callback(arg0, arg1) == 0) {
+        flag = 1;
+    }
+    if (flag && func_80126950() == 0) {
+        table = &D_8018294C[arg0->unk90];
+        sound = *(u16 *)table->pad12;
+        if (sound != 0) {
+            pos = arg0->pos;
+            func_801FC830((f32)pos->x / 10.0, (f32)pos->y / 10.0,
+                         (f32)pos->z / 10.0, 500.0f, sound);
+            table = &D_8018294C[arg0->unk90];
+        }
+        arg0->unk94 = 0.0f;
+        callback2 = D_80182268[table->unk4];
+        if (callback2 != NULL) {
+            callback2((func_8014C2B0_Struct *)arg0, (func_8014C2B0_Struct_Obj **)arg1);
+        }
+        if (arg0->unkA5 != 0) {
+            action = 9;
+            D_801BBBF4 = arg0->unk9E;
+            mode = 1;
+            enabled = 1;
+            if (arg0->unk91 & 4) {
+                mode = 6;
+            }
+            if (arg0->unk91 & 8) {
+                func_80020718(10);
+                action = 16;
+                enabled = 0;
+            }
+            func_8012FE50(action, D_801BBBF4, mode, 1, enabled);
+            D_801BBF96 = arg0->unkA5;
+            D_801BBF97 = arg0->unk92;
+        }
+        arg0->unk98 = arg0->unk74;
+        arg0->unk74 = 0;
+        func_800058DC(arg0, func_8014D070);
+    }
+}
+#undef D_80182950
+#undef func_8014D070_Struct_Table
 
 
 typedef struct func_8014D070_Struct_Data {
@@ -427,7 +518,110 @@ void func_8014D2D0(void *arg0, s32 arg1) {
     ((u8 *)arg0)[0x93] = 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_8014D2E0.s")
+#ifndef GG
+#endif
+
+typedef struct func_8014D2E0_Struct_Table {
+    u8 pad[6];
+    u16 limit;
+    f32 speed;
+    u8 padC[8];
+} func_8014D2E0_Struct_Table;
+typedef struct func_8014D2E0_Struct_P {
+    u8 pad0[6];
+    s16 unk6;
+    s16 unk8;
+    s16 unkA;
+} func_8014D2E0_Struct_P;
+typedef struct func_8014D2E0_Struct_G {
+    u8 pad0[0x198];
+    f32 unk198;
+    u8 pad19C[4];
+    f32 unk1A0;
+} func_8014D2E0_Struct_G;
+typedef struct func_8014D2E0_Struct {
+    u8 pad[0x24];
+    func_8014C2B0_Struct_Sub *unk24;
+    u8 pad28[0x10];
+    func_8014D2E0_Struct_P *unk38;
+    u8 pad3C[0x54];
+    u8 unk90;
+    u8 unk91;
+    u8 unk92;
+    u8 unk93;
+    f32 unk94;
+} func_8014D2E0_Struct;
+extern s32 func_8014F358(f32, f32);
+extern void func_8014F940();
+extern void func_801C2F0C();
+typedef struct func_8014D2E0_Struct_Speed {
+    f32 speed;
+    u8 pad[16];
+} func_8014D2E0_Struct_Speed;
+extern func_8014D2E0_Struct_Speed D_80182954[];
+#define DTI(i) (*(func_8014D2E0_Struct_Table *)((u8 *)D_8018294C + (i) * 20))
+#define GD ((func_8014D2E0_Struct_G *)D_801BBBF0)
+
+s32 func_8014D2E0(func_8014D2E0_Struct *arg0, s32 arg1) {
+    u8 state;
+    s32 flag;
+    f32 sum;
+    func_8014D2E0_Struct_Table *entry;
+    state = arg0->unk93;
+    if (state == 1) goto state1;
+    if (state == 2) goto state2;
+    if (state == 3) goto state3;
+    return 1;
+    state1: {
+        arg0->unk24->unk30->unk4 += (f64)func_8001EB64(arg0->unk24->unk30->unk12) * (f64)DTI(arg0->unk90).speed;
+        arg0->unk24->unk30->unkC -= (f64)func_8001EAD0(arg0->unk24->unk30->unk12) * (f64)DTI(arg0->unk90).speed;
+        entry = &DTI(arg0->unk90);
+        sum = (f64)arg0->unk94 + (f64)entry->speed;
+        arg0->unk94 = sum;
+        if (sum >= (f32)(u32)entry->limit) {
+            if (func_8014F358(GD->unk198, GD->unk1A0)) {
+                arg0->unk93 = 2;
+                arg0->unk94 = 0.0f;
+            }
+        }
+    }
+    goto done;
+    state2: {
+        flag = arg0->unk94 == 5.0f;
+        arg0->unk94 += 1.0f;
+        if (flag) {
+            func_8014F940(arg0);
+        }
+        if (func_801C3044() == 0) {
+            func_801C2F0C(1, NULL);
+            if (arg0->unk91 & 1) {
+                arg0->unk93 = 3;
+                arg0->unk94 = 0.0f;
+            } else {
+                arg0->unk24->unk30->unk4 = (f32)arg0->unk38->unk6 / 10.0;
+                arg0->unk24->unk30->unkC = (f32)arg0->unk38->unkA / 10.0;
+                return 0;
+            }
+        }
+    }
+    goto done;
+    state3: {
+        arg0->unk24->unk30->unk4 -= (f64)func_8001EB64(arg0->unk24->unk30->unk12) * (f64)D_80182954[arg0->unk90].speed;
+        arg0->unk24->unk30->unkC += (f64)func_8001EAD0(arg0->unk24->unk30->unk12) * (f64)DTI(arg0->unk90).speed;
+        entry = &DTI(arg0->unk90);
+        sum = (f64)arg0->unk94 + (f64)entry->speed;
+        arg0->unk94 = sum;
+        if (sum >= (f32)(u32)entry->limit) {
+            arg0->unk24->unk30->unk4 = (f32)arg0->unk38->unk6 / 10.0;
+            arg0->unk24->unk30->unkC = (f32)arg0->unk38->unkA / 10.0;
+            return 0;
+        }
+    }
+done:
+    return 1;
+}
+#undef DTI
+#undef GD
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014C2B0/func_8014D6BC.s")
 

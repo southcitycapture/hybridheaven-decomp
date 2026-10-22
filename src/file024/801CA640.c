@@ -146,11 +146,25 @@ void func_801CACF0(s32 arg0, s32 arg1) {
     func_800058DC(arg0, func_801CACE4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801CA640/func_801CAD70.s")
-
-
+extern u16 D_80089474[];
 extern u8 D_801BBCDC[];
 extern u8 D_801CFDF0[];
+extern u16 D_801CE604[][5];
+
+s32 func_801CAD70(u8 arg0) {
+    if (D_80089474[2] == D_801CE604[arg0][D_801CFDF0[arg0]]) {
+        D_801CFDF0[arg0]++;
+    } else if (D_80089474[2] != 0) {
+        D_801CFDF0[arg0] = 0;
+    }
+    if (D_801CFDF0[arg0] >= 5) {
+        D_801BBCDC[0xB] = arg0 + 1;
+        return 1;
+    }
+    return 0;
+}
+
+
 extern u8 D_801CFDF3;
 extern u8 D_801CFDF4;
 extern u8 func_801CAEEC[];
@@ -275,7 +289,6 @@ void func_801CB27C(s32 arg0, s32 arg1) {
 }
 
 
-extern u16 D_80089474[];
 
 void func_801CB550(s32 arg0, s32 arg1) {
     if (D_80089474[2] & 0xB000) {

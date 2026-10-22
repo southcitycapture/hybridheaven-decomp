@@ -141,6 +141,7 @@ extern f32 D_801E7258;
 extern f32 D_801E7268;
 extern f32 D_801E7280;
 extern f32 D_801E7290;
+extern f32 D_801E7294;
 extern f32 D_801E72B0;
 extern f32 D_801E72B4;
 extern f32 D_801E72B8;
@@ -1220,7 +1221,20 @@ s32 func_801E4388(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E43CC.s")
+
+s32 func_801E43CC(s32 arg0, s32 arg1) {
+    f32 v = D_801E7294;
+    s32 i;
+
+    for (i = 0; i < 12; i++) {
+        P->unk0[i + 4]->unk30->unk4 = 0.0f;
+        P->unk0[i + 4]->unk30->unk8 = v;
+        v += 195.0f;
+        P->unk0[i + 4]->unk30->unkC = 0.0f;
+        P->unk0[i + 4]->unk30->unk12 = 0;
+    }
+    return 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/func_801E4558.s")
 

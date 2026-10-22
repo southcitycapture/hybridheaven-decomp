@@ -1,8 +1,35 @@
 #include "common.h"
 
-
-extern u8 D_80176BA8[];
+extern f32 D_80130670(u16);
+extern f32 D_801753A0[];
+extern f32 D_801753A4[];
+extern f32 D_801763A0[];
+extern f32 D_801763A4[];
+extern f32 D_801773A0[];
+extern f32 D_801773A4[];
+extern f32 D_801783A0[];
+extern f32 D_801783A4[];
+extern f32 D_8018D698;
+extern f32 func_80014798(f32, f32);
+extern f32 func_8001EAD0(s16);                             /* extern */
+extern f32 func_8001EB64(s16);                             /* extern */
+extern f32 func_8002FC20(f32);
+extern f32 func_801306D0(s32, f32 *);                      /* extern */
+extern f32 func_80130874(s32, f32 *);
+extern f64 D_8018D688;
+extern f64 D_8018D690;
+extern f64 D_8018D6C0;
+extern s32 D_801309EC(f32, f32);
+extern s32 func_801303D8(void);
 extern u16 D_80178BAC[];
+extern u8 D_80176BA8[];
+extern void func_80029280(f32);
+extern void func_80032720(f32);
+extern void func_80130F74(f32 *);
+extern void func_80131074(f32 *, f32 *, f32 *);
+extern void func_80131CC4(u16 *arg0, u16 *arg1, u16 *arg2);
+
+
 
 s32 func_80130310(u32 arg0) {
     s32 var_v1;
@@ -34,16 +61,12 @@ loop_6:
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/func_801303D8.s")
 
 
-extern f64 D_8018D688;
-extern void func_80029280(f32);
 
 void func_80130610(u16 arg0) {
     func_80029280((f32) ((f64) ((f32) arg0 / 32768.0f) * D_8018D688));
 }
 
 
-extern void func_80032720(f32);
-extern f64 D_8018D690;
 
 void func_80130670(u16 arg0) {
     u32 temp_a0;
@@ -53,7 +76,6 @@ void func_80130670(u16 arg0) {
 }
 
 
-extern f32 D_80130670(u16);
 
 f32 func_801306D0(s32 arg0, f32 *arg1) {
     u16 a;
@@ -62,7 +84,6 @@ f32 func_801306D0(s32 arg0, f32 *arg1) {
 }
 
 
-f32 func_801306D0(s32, f32 *);                      /* extern */
 
 f32 func_80130708(s32 arg0) {
     f32 temp_fv1;
@@ -79,10 +100,6 @@ f32 func_80130708(s32 arg0) {
 }
 
 
-extern f32 D_801753A0[];
-extern f32 D_801763A0[];
-extern f32 D_801773A0[];
-extern f32 D_801783A0[];
 
 f32 func_80130754(u16 arg0) {
     u16 temp_v0;
@@ -103,10 +120,6 @@ f32 func_80130754(u16 arg0) {
 }
 
 
-extern f32 D_801753A4[];
-extern f32 D_801763A4[];
-extern f32 D_801773A4[];
-extern f32 D_801783A4[];
 
 f32 func_801307E4(u16 arg0) {
     u16 temp_v0;
@@ -129,7 +142,6 @@ f32 func_801307E4(u16 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/func_80130874.s")
 
 
-f32 func_80130874(s32, f32 *);
 
 f32 func_8013099C(s32 arg0) {
     f32 temp_fv1;
@@ -142,15 +154,11 @@ f32 func_8013099C(s32 arg0) {
     return temp_fv1 / sp18;
 }
 
-extern s32 func_801303D8(void);
 s32 func_801309EC(void) {
     return ((s32) (func_801303D8() + 0x20) >> 6) & 0x3FF & 0xFFFF;
 }
 
 
-extern f32 func_80014798(f32, f32);
-extern f32 func_8002FC20(f32);
-extern f32 D_8018D698;
 
 f32 func_80130A18(f32 arg0) {
     f64 temp_fv1;
@@ -165,11 +173,32 @@ f32 func_80130A18(f32 arg0) {
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/func_80130AA0.s")
+
+void func_80130AA0(s16 arg0, s16 arg1, s16 arg2, f32 *arg3, f32 *arg4, f32 *arg5) {
+    f32 sa, ca, sb, cb, sc, cc;
+    s32 angle;
+    f32 sasb;
+    f32 ox, oy, oz;
+
+    angle = arg0;
+    sa = func_8001EAD0(angle);
+    ca = func_8001EB64(angle);
+    angle = arg1;
+    sb = func_8001EAD0(angle);
+    cb = func_8001EB64(angle);
+    angle = arg2;
+    sc = func_8001EAD0(angle);
+    cc = func_8001EB64(angle);
+    sasb = sa * sb;
+    ox = cb * cc * *arg3 + (sasb * cc - ca * sc) * *arg4 + (ca * sb * cc + sa * sc) * *arg5;
+    oy = cb * sc * *arg3 + (sasb * sc + ca * cc) * *arg4 + (ca * sb * sc - sa * cc) * *arg5;
+    oz = -sb * *arg3 + sa * cb * *arg4 + ca * cb * *arg5;
+    *arg3 = ox;
+    *arg4 = oy;
+    *arg5 = oz;
+}
 
 
-f32 func_8001EAD0(s16);                             /* extern */
-f32 func_8001EB64(s16);                             /* extern */
 
 void func_80130C40(s16 arg0, f32 *arg1, f32 *arg2) {
     f32 sp1C;
@@ -186,8 +215,6 @@ void func_80130C40(s16 arg0, f32 *arg1, f32 *arg2) {
 }
 
 
-extern void func_80130F74(f32 *);
-extern void func_80131074(f32 *, f32 *, f32 *);
 
 typedef struct func_80130CBC_Struct {
     u8 pad0[0x1C];
@@ -235,8 +262,6 @@ f32 func_80130CBC(func_80130CBC_Struct *arg0, f32 arg1, f32 arg2, f32 arg3, f32 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/func_801311F8.s")
 
 
-extern f64 D_8018D6C0;
-extern s32 D_801309EC(f32, f32);
 typedef struct func_801315A8_Struct {
     u16 f0;
     u16 f2;
@@ -270,7 +295,34 @@ void func_801315A8(func_801315A8_Struct *arg0, f32 arg1, f32 arg2, f32 arg3, f32
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/func_801318D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/func_80131B24.s")
+
+
+#define ADIFF(a, b) ((((a) - (b)) & 0x200) ? ((b) - (a)) : ((a) - (b)))
+
+void func_80131B24(u16 *arg0, u16 *arg1, u16 *arg2, u16 arg3, u16 arg4, u16 arg5) {
+    u16 sum;
+    u16 sum2;
+    u16 pad;
+    u16 x;
+    u16 y;
+    u16 z;
+
+    sum = ADIFF(*arg0, arg3) & 0x3FF;
+    sum += (u16)ADIFF(*arg1, arg4) & 0x3FF;
+    sum += (u16)ADIFF(*arg2, arg5) & 0x3FF;
+    x = *arg0;
+    y = *arg1;
+    z = *arg2;
+    func_80131CC4(&x, &y, &z);
+    sum2 = ADIFF(x, arg3) & 0x3FF;
+    sum2 += (u16)ADIFF(y, arg4) & 0x3FF;
+    sum2 += (u16)ADIFF(z, arg5) & 0x3FF;
+    if (sum >= sum2) {
+        *arg0 = x;
+        *arg1 = y;
+        *arg2 = z;
+    }
+}
 
 
 void func_80131CC4(u16 *arg0, u16 *arg1, u16 *arg2) {

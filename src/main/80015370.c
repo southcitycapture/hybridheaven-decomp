@@ -669,7 +669,35 @@ void func_80016950(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80016A24.s")
+
+extern u8 D_8004C964[];
+
+s32 func_80016A24(s8 *arg0) {
+    s32 temp_a2;
+    s32 var_a0;
+    s32 var_v0;
+    s32 var_v1;
+    u8 *table;
+
+    table = D_8004C964;
+    var_v1 = 0;
+    for (var_v0 = 0; var_v0 != 4; var_v0++) {
+        var_a0 = 0;
+        do {
+            if (*(u8 *)arg0 == table[var_a0]) {
+                temp_a2 = ((-var_v0) << 2) + 0xC;
+                break;
+            }
+            var_a0++;
+            if (var_a0 == 0x10) {
+                return 0x80000000;
+            }
+        } while (1);
+        arg0 += 1;
+        var_v1 += var_a0 << temp_a2;
+    }
+    return var_v1;
+}
 
 
 
@@ -792,7 +820,19 @@ void func_80016CB4(s32 arg0) {
     D_8008DFB8 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80016CE4.s")
+
+s32 func_80016CE4(void) {
+    s32 n;
+
+    n = --D_80044084;
+    if (n >= 0) {
+        return ((u32) D_8004408C >> n) & 1;
+    }
+    D_80044084 = 7;
+    D_8004408C = *(u8 *) D_8008DFB8;
+    D_8008DFB8 = (s32) ((u8 *) D_8008DFB8 + 1);
+    return ((u32) D_8004408C >> 7) & 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80016D50.s")
 
@@ -1110,7 +1150,25 @@ s32 func_800174CC(s32 arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_8001752C.s")
+#define D_8008E7C0 D_8008E7C0__func_8001752C
+extern u16 D_8008E7C0[];
+extern s16 D_8008E9C0[];
+
+s32 func_8001752C(u16 arg0)
+{
+  {
+    extern s32 func_80016EAC();
+    func_80016EAC(arg0);
+  }
+  D_8008E7C0[D_800892B0[0x217E]] = arg0;
+  D_8008E9C0[D_800892B0[0x217E]]++;
+  D_800892B0[0x217E]++;
+  if (D_800892B0 && D_800892B0)
+  {
+  }
+  return 1;
+}
+#undef D_8008E7C0
 
 
 extern u16 D_8008D5AC;
@@ -1620,16 +1678,137 @@ void func_800183D0(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80018518.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80018684.s")
+
+extern u16 *D_800440A4[];
+
+s32 func_80018684(u32 arg0) {
+    s32 r = 1;
+    switch ((arg0 >> 4) & 0xF) {
+    case 0:
+        if ((s32)((arg0 >> 16) & 0xFFFF) == *D_800440A4[(arg0 >> 8) & 0x1F]) r = 0;
+        break;
+    case 1:
+        if ((s32)((arg0 >> 16) & 0xFFFF) != *D_800440A4[(arg0 >> 8) & 0x1F]) r = 0;
+        break;
+    case 2:
+        if ((s32)((arg0 >> 16) & 0xFFFF) >= *D_800440A4[(arg0 >> 8) & 0x1F]) r = 0;
+        break;
+    case 3:
+        if (*D_800440A4[(arg0 >> 8) & 0x1F] >= (s32)((arg0 >> 16) & 0xFFFF)) r = 0;
+        break;
+    case 4:
+        if (*D_800440A4[(arg0 >> 8) & 0x1F] < (s32)((arg0 >> 16) & 0xFFFF)) r = 0;
+        break;
+    case 5:
+        if ((s32)((arg0 >> 16) & 0xFFFF) < *D_800440A4[(arg0 >> 8) & 0x1F]) r = 0;
+        break;
+    case 6:
+        if (*D_800440A4[(arg0 >> 8) & 0x1F] == *D_800440A4[arg0 >> 16]) r = 0;
+        break;
+    case 7:
+        if (*D_800440A4[(arg0 >> 8) & 0x1F] != *D_800440A4[arg0 >> 16]) r = 0;
+        break;
+    case 8:
+        if (*D_800440A4[arg0 >> 16] >= *D_800440A4[(arg0 >> 8) & 0x1F]) r = 0;
+        break;
+    case 9:
+        if (*D_800440A4[(arg0 >> 8) & 0x1F] >= *D_800440A4[arg0 >> 16]) r = 0;
+        break;
+    case 10:
+        if (*D_800440A4[(arg0 >> 8) & 0x1F] < *D_800440A4[arg0 >> 16]) r = 0;
+        break;
+    case 11:
+        if (*D_800440A4[arg0 >> 16] < *D_800440A4[(arg0 >> 8) & 0x1F]) r = 0;
+        break;
+    }
+    return r;
+}
 
 
 s32 func_800189BC(u32 arg0) {
     return (arg0 >> 8) & 0xF;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_800189C8.s")
+#define D_8008EC18 D_8008EC18__func_800189C8
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80018AB4.s")
+extern void *func_8001B154(s32);
+extern u8 D_8008EC18[];
+extern s16 D_801BBF40;
+
+typedef struct func_800189C8_Struct {
+    u8 unk0;
+    u8 pad1[5];
+    s16 unk6;
+    u8 pad8[6];
+    s16 unkE;
+    s16 unk10;
+    u8 unk12;
+    u8 unk13;
+    u8 unk14;
+    u8 pad15[2];
+    u8 unk17;
+    u8 pad18[0x102];
+} func_800189C8_Struct;
+
+void func_800189C8(void)
+{
+  u8 i;
+  s32 j;
+  func_800189C8_Struct *p;
+  func_800189C8_Struct *q;
+  i = 0;
+  p = func_8001B154(D_8008EBC2 * 4);
+  while (i < D_8008EC18[(D_8008EBC2 * 0x26) + 4])
+  {
+    j = 0;
+    q = p;
+ do { while (q->unk12 != 0xFF) { j = (j + 1) & 0xFF; q->unk13 = 0; q->unk17 = 0; q->unk14 = 0xFF; q = (func_800189C8_Struct *) (((u8 *) p) + (j * 8)); if (!i) { } } } while (0);
+    p->unkE = 0;
+    p->unk10 = 0;
+    p->unk0 = 1;
+    p->unk6 = 0;
+    i++;
+    p++;
+  }
+
+  D_801BBF40 = 0;
+}
+#undef D_8008EC18
+
+#define D_8008EC18 D_8008EC18__func_80018AB4
+
+typedef struct func_80018AB4_Struct10 {
+    u16 v[5];
+} func_80018AB4_Struct10;
+typedef struct func_80018AB4_Struct8 {
+    u16 v[4];
+} func_80018AB4_Struct8;
+typedef struct func_80018AB4_StructEntry {
+    u8 unk0;
+    u8 unk1;
+    u8 pad2[4];
+    u16 unk6;
+    func_80018AB4_Struct10 unk8;
+    func_80018AB4_Struct8 unk12;
+    u8 pad1A[0x100];
+} func_80018AB4_StructEntry;
+extern func_80018AB4_Struct10 D_800441A0;
+extern func_80018AB4_Struct8 D_800441AC;
+extern u8 D_8008EC18[];
+
+void func_80018AB4(void)
+{
+  u8 i;
+  func_80018AB4_StructEntry *p;
+  func_80018AB4_Struct10 a;
+  func_80018AB4_Struct8 b;
+  a = D_800441A0;
+ b = D_800441AC; i = 0; p = func_8001B154(D_8008EBC2 * 4); for (; i < D_8008EC18[(D_8008EBC2 * 0x26) + 4]; i++, p++) { p->unk0 = 1; p->unk1 = 0; p->unk6 = 0; p->unk12 = b;
+    p->unk8 = a;
+  }
+
+}
+#undef D_8008EC18
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80018BD8.s")
 
@@ -1774,7 +1953,51 @@ void func_80019410(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80019898.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80019CB4.s")
+
+typedef struct func_80019CB4_Struct {
+    u8 pad0[0x10];
+    u8 unk10;
+    u8 unk11;
+    u8 pad12[0xA];
+    s16 unk1C;
+    s16 unk1E;
+    u8 pad20[6];
+} func_80019CB4_Struct;
+
+void func_80019CB4(s32 arg0, s32 arg1) {
+    extern void func_8001A804();
+    s16 temp_t1;
+    s16 temp_v1_2;
+    s32 temp_a0;
+    s32 temp_v1;
+    s32 temp_a2;
+    s32 temp_a3;
+    s32 index;
+    func_80019CB4_Struct *temp_v0;
+
+    switch ((u16)D_8008EBD2) {
+    case 0:
+        index = D_8008EBC2;
+        temp_v0 = (func_80019CB4_Struct *)&D_8008EC18[index];
+        temp_a2 = temp_v0->unk10;
+        temp_a3 = temp_v0->unk11;
+        temp_v1 = temp_a2 * 0x10;
+        temp_a0 = temp_a3 * 0x10;
+        temp_v0->unk1C = temp_v0->unk1C + (temp_v1 / 10);
+        temp_v0->unk1E = temp_v0->unk1E + (temp_a0 / 10);
+        temp_t1 = temp_v0->unk1C;
+        if ((temp_t1 >= temp_v1) || (temp_v1_2 = temp_v0->unk1E, temp_v1_2 >= temp_a0)) {
+            func_8001A804(index & 0xFF, "wa fa", temp_a2, temp_a3);
+            func_800058DC(arg0, func_80017BB8);
+            return;
+        }
+        func_8001A804(index & 0xFF, "wa fa", temp_t1 >> 4, temp_v1_2 >> 4);
+        return;
+    case 1:
+        func_800058DC(arg0, func_80017BB8);
+        return;
+    }
+}
 
 
 extern void func_80019E7C();

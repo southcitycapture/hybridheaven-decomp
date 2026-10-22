@@ -168,6 +168,24 @@ def rom_ok():
                     "why": "file %s no longer fits its ROM slot with this cycle's additions" % n}) + "\n")
                 log("  slot repair: %s/%s taken out (file %s overflowed its slot)" % (seg, name, n))
             if new: bad.add(("__slot__", seg))
+        # the ROM builds but its checksum differs (cycle 40, after the repairs above): map the differing bytes of the
+        # expanded image to the C files that hold them and take out this cycle's new functions there, as above
+        if "computed checksum did NOT match" in out:
+            for seg, cf in differing_files():
+                new = [x for x in dirty() if x.startswith("matched/%s/" % seg) and x.endswith(".c")]
+                _, tracked = sh("git ls-files matched/%s" % seg); tracked = set(tracked.split())
+                sys.path.insert(0, "tools/hh"); import srcbuild
+                for x in new:
+                    name = os.path.basename(x)[:-2]
+                    if srcbuild.file_of(seg, name) != cf: continue
+                    if x in tracked:
+                        sh("git checkout HEAD -- %s" % x); log("  byte repair: %s/%s restored to HEAD" % (seg, name))
+                    else:
+                        os.makedirs("matched_rejected/" + seg, exist_ok=True); os.replace(x, "matched_rejected/%s/%s.c" % (seg, name))
+                        open("queue/rejected.jsonl", "a").write(json.dumps({"segment": seg, "func": name,
+                            "why": "%s/%s differs from the ROM with this cycle's additions" % (seg, cf)}) + "\n")
+                        log("  byte repair: %s/%s taken out (%s/%s differs from the ROM)" % (seg, name, seg, cf))
+                    bad.add(("__slot__", seg))
         moved = sum(1 for seg, _ in bad if seg == "__slot__")
         bad = {(seg, name) for seg, name in bad if seg != "__slot__"}
         for seg, name in bad:
@@ -179,6 +197,26 @@ def rom_ok():
             log("  link repair: %s/%s breaks the whole-ROM link; moved out and blocklisted" % (seg, name))
         if not moved: return False, out[-1500:]
     return False, out[-1500:]
+
+def differing_files():
+    """(segment, C file) whose bytes differ between the built and the original expanded image, from the yaml's
+    subsegment table."""
+    import bisect
+    try: a = open("build/expanded.bin", "rb").read(); b = open("build/expanded.out.bin", "rb").read()
+    except OSError: return set()
+    if len(a) != len(b): return set()
+    rows = []
+    for l in open("hybridheaven.yaml"):
+        m = re.match(r"\s+- \[0x([0-9A-F]+), ([.\w]+)(?:, (\w+)/(\w+))?\]", l)
+        if m: rows.append((int(m.group(1), 16), m.group(3), m.group(4)))
+    rows.sort(); keys = [r[0] for r in rows]; out = set(); i = 0
+    while i < len(a):
+        if a[i] != b[i]:
+            r = rows[bisect.bisect_right(keys, i) - 1]
+            if r[1]: out.add((r[1], r[2]))
+            nxt = bisect.bisect_right(keys, i); i = keys[nxt] if nxt < len(keys) else len(a); continue
+        i += 1
+    return out
 
 def dirty():
     """Uncommitted paths under matched/ and src/ (modified or new)."""

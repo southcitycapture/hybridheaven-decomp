@@ -631,6 +631,17 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
     if mode == "all":
         kept, rejected = run(reg, set())
         print("rebuilt from registry: %d functions in C, %d rejected" % (len(kept), len(rejected)))
+        # a file whose last registered function was taken out (link/slot/byte repair, a reject) is not rebuilt by
+        # run() and kept its stale C (2026-10-22: main/80032720 kept a removed snippet's static const and shifted main
+        # by 16 bytes): write it back as all-asm
+        have = {(seg, file_of(seg, n)) for (seg, n) in kept}
+        try: lib = {tuple(k.split("/")) for k in json.load(open("tools/hh/libultra.json"))}
+        except (OSError, ValueError): lib = set()
+        for path in glob.glob("src/*/*.c"):
+            seg, cf = path.split("/")[1], os.path.basename(path)[:-2]
+            if (seg, cf) in have or (seg, cf) in lib or not entries(seg, cf): continue
+            t = render(seg, cf, {})[0]
+            if open(path).read() != t: open(path, "w").write(t); print("  reset to asm: %s" % path)
         os.makedirs("matched_rejected", exist_ok=True)
         with open("queue/rejected.jsonl", "a") as fh:
             for (seg, n), why in sorted(rejected.items()):

@@ -1,8 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C13C0/func_801C13C0.s")
-
 extern u32 D_801DEBC0[];
+
+void func_801C13C0(void)
+{
+    s32 i;
+
+    for (i = 0; i < 9; i++) {
+        D_801DEBC0[i] = 0;
+    }
+}
+
 
 void func_801C13F8(s32 arg0) {
     D_801DEBC0[arg0] = 1;

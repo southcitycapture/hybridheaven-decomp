@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-22: **58.67% of the code** (14138 of 15833 functions, including duplicates).
+Progress as of 2026-10-22: **62.70% of the code** (14416 of 15833 functions, including duplicates).
 
-**19020 model runs, $3386.73 API-equivalent in total** (local and cloud). Of the **14151 functions now in C**, **6167 were matched by AI workers** (≈ $0.549 per function, failures included), **7560 were placed by propagation** (a match copied onto identical-shape code), 231 came from decomp-permuter and 193 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**19427 model runs, $3677.66 API-equivalent in total** (local and cloud). Of the **14435 functions now in C**, **6425 were matched by AI workers** (≈ $0.572 per function, failures included), **7560 were placed by propagation** (a match copied onto identical-shape code), 257 came from decomp-permuter and 193 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -200,11 +200,11 @@ Progress as of 2026-10-22: **58.67% of the code** (14138 of 15833 functions, inc
 | `unify_loop0039` | unify_loop0039 | unify (no model) | 112 | 22 | 20% | $0.00 | – |  |
 | `permute` | decomp-permuter on near-misses | , decomp-permuter | 2155 | 289 | 13% | $0.00 | – |  |
 | `opusN2` | opusN2 | opus-5-5 | 823 | 413 | 50% | $1082.26 | $2.620 | 51% → 8% |
-| `unify_loop0040` | unify_loop0040 | unify (no model) | 47 | 3 | 6% | $0.00 | – |  |
 | `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 175 | 86 | 49% | $0.00 | – |  |
-| `gptO_sol` | gptO_sol | openai/gpt-6.1-sol | 397 | 67 | 17% | $0.00 | – |  |
-| `gptP_sol` | gptP_sol | openai/gpt-6.1-sol | 119 | 8 | 7% | $0.00 | – |  |
-| `permsweep` | permsweep | decomp-permuter | 1278 | 37 | 3% | $0.00 | – |  |
-| `opusN3` | opusN3 | opus-5-5 | 18 | 2 | 11% | $7.90 | $3.949 | 8% → 9% |
+| `gptO_sol` | gptO_sol | openai/gpt-6.1-sol | 400 | 68 | 17% | $0.00 | – |  |
+| `opusN3` | opusN3 | opus-5-5 | 369 | 107 | 29% | $298.83 | $2.793 | 8% → 21% |
+| `permsweep` | permsweep | decomp-permuter | 1585 | 82 | 5% | $0.00 | – |  |
+| `gptP_sol` | gptP_sol | openai/gpt-6.1-sol | 172 | 21 | 12% | $0.00 | – |  |
+| `unify_loop0040` | unify_loop0040 | unify (no model) | 49 | 5 | 10% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
