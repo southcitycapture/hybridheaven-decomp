@@ -120,7 +120,7 @@ and the "weekly usage" column is the subscription's own usage meter.
 
 Progress as of 2026-10-22: **62.70% of the code** (14416 of 15833 functions, including duplicates).
 
-**19427 model runs, $3677.66 API-equivalent in total** (local and cloud). Of the **14435 functions now in C**, **6425 were matched by AI workers** (≈ $0.572 per function, failures included), **7560 were placed by propagation** (a match copied onto identical-shape code), 257 came from decomp-permuter and 193 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**19562 model runs, $3838.90 API-equivalent in total** (local and cloud). Of the **14435 functions now in C**, **6422 were matched by AI workers** (≈ $0.598 per function, failures included), **7561 were placed by propagation** (a match copied onto identical-shape code), 259 came from decomp-permuter and 193 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 Per-batch table: [RESULTS.md](RESULTS.md).
 
