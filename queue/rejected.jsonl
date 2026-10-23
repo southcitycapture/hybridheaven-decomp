@@ -4569,3 +4569,80 @@
 {"segment": "file010", "func": "func_801F9664", "why": "compile error in file context", "was_registered": false}
 {"segment": "file010", "func": "func_801F9A8C", "why": "compile error in file context", "was_registered": false}
 {"segment": "main", "func": "func_80032720", "why": "main/80032720 differs from the ROM with this cycle's additions"}
+{"segment": "file008", "func": "func_801283AC", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801FF83C", "why": "compile error in file context", "was_registered": false}
+{"segment": "file015", "func": "func_80248B7C", "why": "compile error in file context", "was_registered": false}
+{"segment": "file008", "func": "func_8014D6BC", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 655: 'GD' undefined; reoccurrences will not be reported.; shield: compile error: line 659: 'GD' undefined; reoccurrences will not be reported.; plain+alias-uses: compile error: line 677: 'GD' undefined; reoccurrences will not be reported.)", "was_registered": false}
+{"segment": "file008", "func": "func_8014ECD0", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 679: 'GF' undefined; reoccurrences will not be reported.; alias: compile error: line 681: 'GF' undefined; reoccurrences will not be reported.; isolate: compile error: line 682: 'GF' undefined; reoccurrences will not be reported.; shield: compile error: line 686: 'GF' undef)", "was_registered": false}
+{"segment": "file008", "func": "func_8014FB38", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 940: redeclaration of 'func_8011AAF4'; previous declaration at line 916 in file '/tmp/tmpl_l6jnzn/f.c' | line 940: Incompatible function return type for this function.; isolate: compile error: line 948: redeclaration of 'func_8011AAF4'; previous declaration at line 920 in )", "was_registered": false}
+{"segment": "file008", "func": "func_8014D978", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 658: Selector requires struct/union as left hand side | line 659: Unacceptable operand of '&'. | line 663: 'GD' undefined; reoccurrences will not be reported.; shield: compile error: line 664: Selector requires struct/union as left hand side | line 665: Unacceptable operan)", "was_registered": false}
+{"segment": "file025", "func": "func_801C70A0", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 1832: redeclaration of 'func_801C70A0'; previous declaration at line 1768 in file '/tmp/tmpl5yfzpz1/f.c'; isolate: compile error: line 1833: redeclaration of 'func_801C70A0'; previous declaration at line 1768 in file '/tmp/tmpl5yfzpz1/f.c'; shield: compile error: line 1837)", "was_registered": false}
+{"segment": "file057", "func": "func_8036A680", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 275: redeclaration of 'func_8036A680'; previous declaration at line 14 in file '/tmp/tmp11qy6e_r/f.c' | line 275: Incompatible type for the function parameter | line 300: Type int  of rhs of assignment expression is incompatible with type struct AnimT  of lhs; isolate: com)", "was_registered": false}
+{"segment": "file015", "func": "func_80240930", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 191: redeclaration of 'func_80240930'; previous declaration at line 45 in file '/tmp/tmpiq66ensq/f.c' | line 376: redeclaration of 'D_801BBBF0'; previous declaration at line 152 in file '/tmp/tmpiq66ensq/f.c'; alias: compile error: line 193: redeclaration of 'func_80240930)", "was_registered": false}
+{"segment": "main", "func": "func_80018C9C", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 1834: The number of arguments doesn't agree with the number in the declaration.; alias: compile error: line 1830: redeclaration of 'func_8001B154'; previous declaration at line 1734 in file '/tmp/tmpthnf6fyj/f.c' | line 1830: Incompatible function return type for this func)", "was_registered": false}
+{"segment": "file009", "func": "func_801D277C", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 1972: redeclaration of 'func_801D277C'; previous declaration at line 1918 in file '/tmp/tmp822i2ls2/f.c'; shield: compile error: line 1976: redeclaration of 'func_801D277C'; previous declaration at line 1918 in file '/tmp/tmp822i2ls2/f.c'; plain+alias-later: does not match)", "was_registered": false}
+{"segment": "file010", "func": "func_801F47EC", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file010", "func": "func_801F6534", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801F6F50", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801F8AE8", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file010", "func": "func_801F8F3C", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801F9664", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801F9A8C", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_8000C4A8", "why": "main/8000AFE0 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_80032720", "why": "main/80032720 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_80011678", "why": "main/8000DDB0 differs from the ROM with this cycle's additions"}
+{"segment": "file018", "func": "func_80241C18", "why": "compile error in file context", "was_registered": false}
+{"segment": "file008", "func": "func_8014ECD0", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 645: Selector requires struct/union as left hand side | line 646: Selector requires struct/union as left hand side | line 647: Unacceptable operand of '&'.; alias: compile error: line 649: Selector requires struct/union as left hand side | line 650: Selector requires struc)", "was_registered": false}
+{"segment": "main", "func": "func_80022C8C", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 1044: redeclaration of 'func_80022C8C'; previous declaration at line 816 in file '/tmp/tmppma1x5a5/f.c' | line 1044: Incompatible type for the function parameter; plain+alias-later: compile error: line 1046: redeclaration of 'func_80022C8C'; previous declaration at line 82)", "was_registered": false}
+{"segment": "file015", "func": "func_80241D4C", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 548: redeclaration of 'func_80241D4C'; previous declaration at line 71 in file '/tmp/tmp4kgg2lmz/f.c' | line 548: Incompatible type for the function parameter | line 982: 'func_80242A54' undefined; reoccurrences will not be reported.; isolate: compile error: line 550: rede)", "was_registered": false}
+{"segment": "file017", "func": "func_8025584C", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 1300: redeclaration of 'func_8025584C'; previous declaration at line 98 in file '/tmp/tmpkiedjjlq/f.c'; isolate: compile error: line 1306: redeclaration of 'func_8025584C'; previous declaration at line 98 in file '/tmp/tmpkiedjjlq/f.c'; shield: compile error: line 1316: re)", "was_registered": false}
+{"segment": "file017", "func": "func_80254808", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 2016: 'func_80258268' undefined; reoccurrences will not be reported.; isolate: compile error: line 2022: 'func_80258268' undefined; reoccurrences will not be reported.; shield: compile error: line 2036: 'func_80258268' undefined; reoccurrences will not be reported.; hoist-)", "was_registered": false}
+{"segment": "file057", "func": "func_8036AC14", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 859: redeclaration of 'func_8036BA40'; previous declaration at line 482 in file '/tmp/tmpm0wqc4t8/f.c' | line 859: Incompatible function return type for this function.; isolate: compile error: line 863: redeclaration of 'func_8036BA40'; previous declaration at line 484 in )", "was_registered": false}
+{"segment": "file057", "func": "func_803832F4", "why": "file frozen: adding it would evict registered functions (reconcile: plain: compile error: line 476: The number of arguments doesn't agree with the number in the declaration. | line 476: Reference of an expression of void type or an incomplete type. | line 479: Selector requires struct/union as left hand side; isolate: compile error: line 477: The number of arguments)", "was_registered": false}
+{"segment": "file057", "func": "func_80384AB4", "why": "file frozen: adding it would evict registered functions (reconcile: plain: does not match: func_80385060, func_803840A4, func_80384948, func_80381D48; isolate: does not match: func_80385060, func_803840A4, func_80384948, func_80381D48; shield: does not match: func_80385060, func_803840A4, func_80384948, func_80381D48; hoist-own: does not match: func_80385060, func_8)", "was_registered": false}
+{"segment": "file010", "func": "func_801F474C", "why": "conflicts with earlier-registered functions in this file", "was_registered": false}
+{"segment": "file010", "func": "func_801F47EC", "why": "does not match in file context (instructions or addresses)", "was_registered": false}
+{"segment": "file010", "func": "func_801F6534", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801F6F50", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801F8AE8", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801F9664", "why": "compile error in file context", "was_registered": false}
+{"segment": "file010", "func": "func_801F9A8C", "why": "compile error in file context", "was_registered": false}
+{"segment": "main", "func": "func_8002059C", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_800209E4", "why": "conflicts with earlier-registered functions in this file", "was_registered": true}
+{"segment": "main", "func": "func_80022528", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_800227EC", "why": "does not match in file context (instructions or addresses)", "was_registered": true}
+{"segment": "main", "func": "func_80024114", "why": "compile error in file context", "was_registered": true}
+{"segment": "file016", "func": "func_80242F10", "why": "compile error in file context", "was_registered": true}
+{"segment": "file016", "func": "func_80243054", "why": "compile error in file context", "was_registered": true}
+{"segment": "file016", "func": "func_80244CA8", "why": "does not match in file context (instructions or addresses)", "was_registered": true}
+{"segment": "file016", "func": "func_80244ED8", "why": "compile error in file context", "was_registered": true}
+{"segment": "file016", "func": "func_802454C8", "why": "compile error in file context", "was_registered": true}
+{"segment": "file016", "func": "func_802458AC", "why": "compile error in file context", "was_registered": true}
+{"segment": "file016", "func": "func_80245CC0", "why": "compile error in file context", "was_registered": true}
+{"segment": "file016", "func": "func_802460E0", "why": "does not match in file context (instructions or addresses)", "was_registered": true}
+{"segment": "main", "func": "func_800177F8", "why": "main/80015370 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_80016D50", "why": "main/80015370 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_8000C4A8", "why": "main/8000AFE0 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_80032720", "why": "main/80032720 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_8002B580", "why": "main/8002B410 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_8000FC60", "why": "main/8000DDB0 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_80011678", "why": "main/8000DDB0 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_8000E5D4", "why": "main/8000DDB0 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_80005D3C", "why": "main/80005270 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_80003550", "why": "main/800024D0 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_8001DF40", "why": "main/8001A490 differs from the ROM with this cycle's additions"}
+{"segment": "main", "func": "func_800158C0", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_80015B50", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_80015D9C", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_8001643C", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_80016A9C", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_80016F90", "why": "does not match in file context (instructions or addresses)", "was_registered": true}
+{"segment": "main", "func": "func_8001752C", "why": "conflicts with earlier-registered functions in this file", "was_registered": true}
+{"segment": "main", "func": "func_80017608", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_800189C8", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_80018AB4", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_80019038", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_8002059C", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_80022528", "why": "compile error in file context", "was_registered": true}
+{"segment": "main", "func": "func_800227EC", "why": "does not match in file context (instructions or addresses)", "was_registered": true}
+{"segment": "main", "func": "func_80024114", "why": "compile error in file context", "was_registered": true}
