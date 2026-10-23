@@ -79,6 +79,9 @@ def cap(kind, fallback, now=None):
     """The cap for `kind` ("weekly" or "five") now: min(fallback, schedule) once the schedule is active."""
     s, now = schedule(), now or dt.datetime.now(dt.timezone.utc)
     if not active(s, now): return fallback
+    # one batch exempt from the weekly ramp (WEEKLY_RAMP=off; its own WEEKLY_CAP still applies), the 5-hour cap kept:
+    # 2026-10-23, one Sonnet worker through the work day to measure what that costs
+    if kind == "weekly" and os.environ.get("WEEKLY_RAMP") == "off": return fallback
     v = weekly_cap(s, now) if kind == "weekly" else five_cap(s, now)
     # a temporary raise Zach asked for: {"override": {"until": "<UTC ISO>", "weekly": N}} (2026-10-22: "it's after
     # work, let's cook" -> Friday's daytime share pulled forward to Thursday night)

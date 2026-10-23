@@ -419,7 +419,31 @@ void func_802461CC(func_802461CC_StructState *arg0, func_802461CC_StructObj **ar
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/80244C10/func_80246388.s")
+#define func_802463EC func_802463EC__func_80246388
+extern void func_802463EC(s32 arg0, s32 arg1);
+#define CTX_CAT2(a, b) a##b
+#define CTX_CAT(a, b) CTX_CAT2(a, b)
+#define func_80246020 CTX_CAT(func_80246020_ctx_, __LINE__)
+#define func_802461CC CTX_CAT(func_802461CC_ctx_, __LINE__)
+#undef func_80246020
+#undef func_802461CC
+
+typedef struct func_80246388_Struct {
+    u8 pad0[0x3C];
+    u16 unk3C;
+} func_80246388_Struct;
+
+void func_80246388(func_80246388_Struct *arg0, s32 arg1) {
+    if (arg0->unk3C++ >= 2) {
+        if (func_80133A24(0x73) != 0) {
+            func_800058DC(arg0, func_802463EC);
+            func_80020718(7);
+        }
+    }
+}
+#undef CTX_CAT2
+#undef CTX_CAT
+#undef func_802463EC
 
 
 typedef struct func_802463EC_StructB {

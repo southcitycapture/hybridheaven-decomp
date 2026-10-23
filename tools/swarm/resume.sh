@@ -11,10 +11,12 @@ g=$($(command -v ~/bin/usage-gate || echo true) --brief 2>&1)
 f=$(echo "$g" | sed -n 's/.*5-hour \([0-9]*\)%.*/\1/p'); w=$(echo "$g" | sed -n 's/.*weekly \([0-9]*\)%.*/\1/p')
 fb=$(( $(python3 tools/swarm/weekly_cap.py five 60) - 20 )); [ -n "$RESUME_BELOW" ] && fb=$RESUME_BELOW
 wb=$(( $(python3 tools/swarm/weekly_cap.py weekly 95) - 2 ))
-[ -n "$f" ] && [ -n "$w" ] && [ "$f" -lt "$fb" ] && [ "$w" -lt "$wb" ] || exit 0
+[ -n "$f" ] && [ -n "$w" ] && [ "$f" -lt "$fb" ] || exit 0
 for r in queue/*/RESUME; do
   q=$(dirname "$r"); b=$(basename "$q")
   [ -x "$q/launch.sh" ] || continue
+  # a batch exempt from the weekly ramp (WEEKLY_RAMP=off in its launch.sh) only needs to be under the hard cap
+  if grep -q 'WEEKLY_RAMP=off' "$q/launch.sh"; then [ "$w" -lt 93 ] || continue; else [ "$w" -lt "$wb" ] || continue; fi
   pgrep -f "run_batch3.sh $b " > /dev/null && continue          # already running
   rm -f "$q/RESUME" "$q/STOP" "$q/DONE"
   echo "$(date -Is) resume $b (5-hour ${f}%, weekly ${w}%)" >> queue/resume.log

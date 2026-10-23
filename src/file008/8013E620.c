@@ -1,6 +1,35 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_8013E620.s")
+extern u8 D_801BEBD8[];
+extern u8 D_801BEBDC[];
+
+s32 func_8014150C(u8 arg0, u8 *arg1);
+
+typedef struct func_8013E620_Struct {
+    u8 pad[4];
+    u8 unk4, unk5, unk6, unk7;
+    u16 unk8;
+    u8 unkA, unkB;
+} func_8013E620_Struct;
+
+#define F8013E620_Q ((func_8013E620_Struct *)(D_801BEBD8 + i * 8))
+
+s32 func_8013E620(void) {
+    s32 i;
+    s32 v;
+
+    v = 0;
+    if (func_8014150C(1, D_801BEBDC) == 0) {
+        for (i = 0; i < 4; i++) {
+            if ((F8013E620_Q->unk4 == 1) && (F8013E620_Q->unk6 == 0xFF)) {
+                if (F8013E620_Q->unkB == 0) v |= 1;
+                if (F8013E620_Q->unkB == 1) v |= 2;
+                if (F8013E620_Q->unkB == 2) v |= 4;
+            }
+        }
+    }
+    return v;
+}
 
 
 void func_8013E700(void *arg0) {
@@ -114,7 +143,6 @@ void func_8013EA94(void) {
 
 
 void func_80140E88(u8 arg0, u8 arg1, s32 arg2);
-s32 func_8014150C(u8 arg0, u8 *arg1);
 extern void func_800023A8(s32);
 extern void func_80002A94(s32);
 extern void func_80017990(void *);
@@ -318,8 +346,6 @@ void func_80140368(void) {
 
 extern void func_80142A58(void);
 extern u8 D_80180B38[];
-extern u8 D_801BEBD8[];
-extern u8 D_801BEBDC[];
 
 void func_80140600(void) {
     D_801BEBCC = 0;
@@ -630,7 +656,38 @@ s32 func_80141934(u8 arg0) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013E620/func_801419A4.s")
+
+typedef struct func_801419A4_StructData {
+    u8 bytes[13];
+} func_801419A4_StructData;
+
+extern func_801419A4_StructData D_80181480;
+
+void func_801419A4(s32 arg0) {
+    s32 i;
+    u16 sum;
+    func_801419A4_StructData data;
+
+    data = D_80181480;
+    {
+        u8 *p;
+
+        i = 0;
+        p = (u8 *)arg0;
+        do {
+            i++;
+            *p++ = 0;
+        } while (i < 256);
+    }
+    for (i = 0; i < 13; i++) {
+        ((u8 *)arg0)[i] = data.bytes[i];
+    }
+    sum = 0;
+    for (i = 0; i < 255; i++) {
+        sum += ((u8 *)arg0)[i];
+    }
+    ((u8 *)arg0)[i] = sum;
+}
 
 
 typedef struct func_80141A74_StructHeader {
@@ -855,7 +912,6 @@ void func_8000303C(u8, u8);
 u8 func_800032E0(u8, s32, s32, s32, s32);
 s32 func_8001F430(s32);
 void func_8001F540(s32);
-void func_801419A4(s32);
 
 u8 func_80142240(u8 arg0) {
     u8 pad[4];

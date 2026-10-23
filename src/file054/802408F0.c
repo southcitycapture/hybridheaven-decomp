@@ -656,11 +656,81 @@ void func_802425EC(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_80242758.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_802428BC.s")
+#define HHX2(a, b) a##b
+#define HHX(a, b) HHX2(a, b)
+#define func_80241974 HHX(hhx_80241974_, __LINE__)
+#define func_80246360 HHX(hhx_80246360_, __LINE__)
+
+extern u8 D_80247A78[];
+extern u8 D_80247AB4[];
+extern f32 D_80248328;
+extern f32 D_8024832C;
+extern f32 D_80248330;
+extern f32 D_80248334;
+extern f32 D_80248338;
+extern f32 D_8024833C;
+extern f32 D_80248340;
+extern f32 D_80248344;
+extern f32 D_80248348;
+extern void func_80242A28(void);
+
+void func_802428BC(void *arg0, s32 arg1) {
+    if (D_8011AAF4(D_80247A78, 0x47D, arg0, 0, 2, D_80248328, -4.0f, 5.5f, D_8024832C, 4294967296.0f, D_80248330, D_80248334, D_80248338, 0.0f, 35.0f, -1, -1) == 0) {
+        func_8011AAF4(D_80247AB4, 0x482, arg0, 0, 1, 0.0f, D_8024833C, 14.0f, D_80248340, 0.0f, D_80248344, 16.5f, D_80248348, 0.0f, 35.0f, -1, -1);
+        func_800058DC(arg0, func_80242A28);
+    }
+}
+#undef HHX2
+#undef HHX
+#undef func_80241974
+#undef func_80246360
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_80242A28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_80242B8C.s")
+#define func_80242D38 func_80242D38__func_80242B8C
+#define func_80242D38_Struct func_80242D38_Struct__func_80242B8C
+struct func_80242D38_Struct { u8 pad[0x3C]; u16 unk3C; };
+extern void func_80242D38(struct func_80242D38_Struct *arg0, s32 arg1);
+#define MYCAT2(a, b) a##b
+#define MYCAT(a, b) MYCAT2(a, b)
+#define func_80241974 MYCAT(myctx_80241974_, __LINE__)
+#define func_80246360 MYCAT(myctx_80246360_, __LINE__)
+
+extern u8 D_80247B68[];
+extern u8 D_80247BA4[];
+extern f32 D_80248378;
+extern f32 D_8024837C;
+extern f32 D_80248380;
+extern f32 D_80248384;
+extern f32 D_80248388;
+extern f32 D_8024838C;
+extern f32 D_80248390;
+extern f32 D_80248394;
+extern f32 D_80248398;
+extern f32 D_8024839C;
+
+#define F80242B8C(o) (*(f32 *) ((u8 *) &D_801BBBF0 + (o)))
+
+void func_80242B8C(struct func_80242D38_Struct *arg0, s32 arg1) {
+    if (D_8011AAF4(D_80247B68, 0x4A3, arg0, 0, 2, D_80248378, D_8024837C, D_80248380, -16.0f, 4294967296.0f, D_80248384, D_80248388, D_8024838C, 0.0f, 35.0f, -1, -1) == 0) {
+        F80242B8C(0x1E8) = D_80248390;
+        F80242B8C(0x1EC) = D_80248394;
+        F80242B8C(0x1F0) = D_80248398;
+        F80242B8C(0x1F4) = D_8024839C;
+        F80242B8C(0x1F8) = 16.5f;
+        F80242B8C(0x1FC) = 13.0f;
+        func_8011AAF4(D_80247BA4, 0x4AF, arg0, 0, 1, 0.0f, F80242B8C(0x1E8), F80242B8C(0x1EC), F80242B8C(0x1F0), 0.0f, F80242B8C(0x1F4), F80242B8C(0x1F8), F80242B8C(0x1FC), 0.0f, 35.0f, -1, -1);
+        arg0->unk3C = 0;
+        func_800058DC(arg0, (void (*)(void))func_80242D38);
+    }
+}
+#undef MYCAT2
+#undef MYCAT
+#undef func_80241974
+#undef func_80246360
+#undef F80242B8C
+#undef func_80242D38
+#undef func_80242D38_Struct
 
 
 
@@ -1322,7 +1392,47 @@ void func_8024541C(func_80244874_Obj *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_80245564.s")
+#define MYCAT2(a, b) a##b
+#define MYCAT(a, b) MYCAT2(a, b)
+#define func_80241974 MYCAT(myctx_80241974_, __LINE__)
+#define func_80246360 MYCAT(myctx_80246360_, __LINE__)
+
+typedef struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_80245564_Struct;
+
+extern u8 D_8024696C[];
+extern u8 D_8024737C[];
+extern u8 D_80247FDC[];
+extern void func_802456C8(void);
+
+#define FL(off) (*(f32 *)((u8 *)&D_801BBBF0 + (off)))
+
+void func_80245564(func_80245564_Struct *arg0, s32 arg1) {
+    s32 cnt;
+    f64 d;
+
+    cnt = arg0->unk3C++;
+    D_8011AAF4(D_80247FDC, 0x7B7, arg0, 0, 1, 0.0f, FL(0x1E8), FL(0x1EC), FL(0x1F0), 0.0f, FL(0x1F4), FL(0x1F8), FL(0x1FC), 0.0f, 25.5f, -1, -1);
+    if (!(cnt % 2)) {
+        d = 0.5;
+    } else {
+        d = -0.5;
+    }
+    FL(0x1EC) += d;
+    if (func_800178E8() != 0 && func_80151790(D_80248804) == 0) {
+        func_800179B0(D_8024737C);
+        func_8015115C(D_80248804, D_8024696C);
+        arg0->unk3C = 0;
+        func_800058DC(arg0, func_802456C8);
+    }
+}
+#undef MYCAT2
+#undef MYCAT
+#undef func_80241974
+#undef func_80246360
+#undef FL
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/func_802456C8.s")
 

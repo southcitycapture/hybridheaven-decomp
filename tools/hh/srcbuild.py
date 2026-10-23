@@ -536,6 +536,11 @@ def run(cands, new_keys):
         p = "matched/%s/%s.c" % (seg, name)
         if (seg, name) in new_keys or not os.path.exists(p): prio[(seg, name)] = float("inf")
         else: prio[(seg, name)] = added.get(p, os.path.getmtime(p))
+    # adding: only files that have a new candidate. Rebuilding the others gains nothing and twice evicted registered
+    # functions from files whose inputs had not changed (2026-10-23: file057/80364340, main/800201D0, 6 functions)
+    if new_keys:
+        touched = {(seg, file_of(seg, n)) for seg, n in new_keys}
+        byfile = {k: v for k, v in byfile.items() if k in touched}
     jobs = [(seg, cf, sn, {n: prio[(seg, n)] for n in sn}) for (seg, cf), sn in sorted(byfile.items())]
     kept, rejected = set(), {}
     byname = {"%s/%s" % (j[0], j[1]): j for j in jobs}

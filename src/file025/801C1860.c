@@ -99,9 +99,51 @@ void func_801C1998(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1A2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1A70.s")
+typedef struct func_801C1A2C_Struct {
+    s32 first;
+    s32 second;
+    s32 unused;
+    s32 active;
+} func_801C1A2C_Struct;
+
+void func_801C1A2C(s32 arg0, s32 arg1) {
+    s32 i;
+
+    i = 0;
+loop:
+    if (arg0 == ((func_801C1A2C_Struct *)D_801DED70)[i].first && arg1 == ((func_801C1A2C_Struct *)D_801DED70)[i].second) {
+        ((func_801C1A2C_Struct *)D_801DED70)[i].active = 1;
+        return;
+    }
+    i++;
+    if (i != 32) {
+        goto loop;
+    }
+}
+
+
+typedef struct {
+    s32 a;
+    s32 b;
+    s32 c;
+    s32 d;
+} func_801C1A70_Struct;
+
+void func_801C1A70(s32 arg0, s32 arg1) {
+    s32 i;
+
+    i = 0;
+loop:
+    if (arg0 == ((func_801C1A70_Struct *)D_801DED70)[i].a && arg1 == ((func_801C1A70_Struct *)D_801DED70)[i].b) {
+        ((func_801C1A70_Struct *)D_801DED70)[i].d = 0;
+        return;
+    }
+    i++;
+    if (i != 32) {
+        goto loop;
+    }
+}
 
 
 s32 func_801C1AB4(void)

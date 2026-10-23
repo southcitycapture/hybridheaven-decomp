@@ -38,6 +38,7 @@ extern u8 D_801CFDB0[];
 extern u8 D_801CFDC0;
 extern u8 func_80152890(u8);
 extern u8 func_801C8568[];
+#define func_801C9328 func_801C9328__decl
 extern u8 func_801C9328[];
 extern void *D_801CFD78[];
 extern void *D_801CFDA0;
@@ -610,7 +611,119 @@ void func_801C7C64(func_801C659C_Ret *arg0, s32 arg1) {
     func_801C63CC(var_s0 & 0xFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C5AB0/func_801C7D5C.s")
+#define func_801C813C func_801C813C__func_801C7D5C
+#define func_801C813C_Struct func_801C813C_Struct__func_801C7D5C
+#define func_801C81C8 func_801C81C8__func_801C7D5C
+#define func_801C81C8_Struct func_801C81C8_Struct__func_801C7D5C
+typedef struct func_801C813C_Struct {
+    u8 pad0[0x90];
+    u8 unk90;
+} func_801C813C_Struct;
+typedef struct func_801C81C8_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_801C81C8_Struct;
+extern void func_801C813C(func_801C813C_Struct *arg0, s32 arg1);
+extern void func_801C81C8(func_801C81C8_Struct *arg0, s32 arg1);
+
+extern u8 D_800692B0[];
+extern u8 D_801CD0D0;
+extern u8 D_801CF30C[];
+extern u8 D_801CF314[];
+
+typedef struct func_801C7D5C_Struct {
+    u8 pad0[0x3C];
+    s16 unk3C;
+    u8 pad3E[0x52];
+    u8 unk90;
+} func_801C7D5C_Struct;
+typedef struct func_801C7D5C_StructInput {
+    u8 pad0[0x1C8];
+    u16 unk1C8;
+    u8 pad1CA[6];
+    u16 unk1D0;
+} func_801C7D5C_StructInput;
+
+void func_801C7D5C(func_801C7D5C_Struct *arg0, s32 arg1) {
+    u16 buttons;
+    u16 pressed;
+    u8 color;
+    u8 changed;
+    s32 confirm;
+    u8 index;
+    func_801C7D5C_StructInput *input;
+    extern void func_8001B204();
+    extern void func_800058DC();
+
+    index = arg0->unk90;
+    input = (func_801C7D5C_StructInput *) (D_800692B0 + (index << 5) + 0x20000);
+    buttons = input->unk1D0;
+    color = 0xFF;
+    pressed = input->unk1C8;
+    changed = 1;
+    if (D_801CFDB8[index] == 0) {
+        if ((buttons & 0x800) && (D_801CFDA6[index] >= 2)) {
+            D_801CFDA6[index]--;
+        } else if ((buttons & 0x400) && (D_801CFDA6[index] < 3)) {
+            D_801CFDA6[index]++;
+        } else {
+            confirm = pressed & 0x8000;
+            if (confirm && (D_801CFDA6[index] < 3)) {
+                D_801CFDA6[index]++;
+            } else if ((buttons & 0x100) && (D_801CFDA6[index] == 3)) {
+                D_801CFDA6[index]++;
+            } else if ((buttons & 0x200) && (D_801CFDA6[index] == 4)) {
+                D_801CFDA6[index]--;
+            } else if (confirm && (D_801CFDA6[index] == 3) && (func_801C5AD4(index) == 0)) {
+                func_801C5D64(arg0, 1);
+                D_801CFDB8[arg0->unk90] = 1;
+                D_801CD0D0 = arg0->unk90;
+            } else {
+                changed = 0;
+            }
+        }
+        index = arg0->unk90;
+    }
+    if (D_801CFDA6[index] == 2) {
+        if ((buttons & 0x100) && (D_801CD0C8[index] < 10)) {
+            D_801CD0C8[index]++;
+            index = arg0->unk90;
+        }
+        if ((buttons & 0x200) && (D_801CD0C8[index] >= -9)) {
+            D_801CD0C8[index]--;
+            index = arg0->unk90;
+        }
+    } else {
+        color = 0x78;
+    }
+    if (D_801CD0C8[index] > 0) {
+        func_8001B204((u8)((u32)index + 4), (s16)((s16)(s32)D_801CCF68[index][0] + 1000), 0xAB, D_801CF30C, color, D_801CD0C8[index]);
+    } else {
+        func_8001B204((u8)((u32)index + 4), (s16)((s16)(s32)D_801CCF68[index][0] + 1000), 0xAB, D_801CF314, color, D_801CD0C8[index]);
+    }
+    func_801C5F04(arg0);
+    if (changed) {
+        func_801C5DAC((u8 *)arg0);
+        if (D_801CFDB8[arg0->unk90] != 0) {
+            func_80020744(0x104);
+            func_800058DC(arg0, func_801C813C);
+            return;
+        }
+        func_80020744(0x300);
+        return;
+    }
+    if ((D_801CFDA6[arg0->unk90] == 4) && (pressed & 0x8000)) {
+        D_801CD0CC = 1;
+        func_80020744(0x104);
+        arg0->unk3C = 0x14;
+        func_80020718(7);
+        func_800058DC(arg0, func_801C81C8);
+    }
+}
+#undef func_801C813C
+#undef func_801C813C_Struct
+#undef func_801C81C8
+#undef func_801C81C8_Struct
 
 
 typedef struct func_801C813C_Struct {
@@ -900,7 +1013,75 @@ void func_801C9234(void *arg0, s32 arg1) {
     func_800058DC(arg0, func_801C9328, temp_a2, D_801CFD10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C5AB0/func_801C9328.s")
+#undef func_801C9328
+#define D_801CD0A0 D_801CD0A0__func_801C9328
+#define func_801C9678 func_801C9678__func_801C9328
+#define func_801C9678_Pair func_801C9678_Pair__func_801C9328
+#define func_801C9678_Struct func_801C9678_Struct__func_801C9328
+typedef struct func_801C9678_Struct {
+    u8 pad0[0x90];
+    u8 unk90;
+    u8 pad91[3];
+    s16 unk94;
+    s16 unk96;
+    s16 unk98;
+    u8 pad9A[2];
+    f32 unk9C;
+} func_801C9678_Struct;
+typedef struct func_801C9678_Pair {
+    u8 *unk0;
+    u8 *unk4;
+} func_801C9678_Pair;
+extern void func_801C9678(func_801C9678_Struct *arg0, s32 arg1);
+extern func_801C9678_Pair D_801CD0A0[];
+#define func_801C9328 D_801C9328
+#undef func_801C9328
+
+typedef struct func_801C9328_Struct {
+    u8 pad0[0x90];
+    u8 unk90;
+    u8 unk91;
+    u8 pad92[2];
+    s16 unk94;
+    s16 unk96;
+    s16 unk98;
+    u8 pad9A[2];
+    f32 unk9C;
+} func_801C9328_Struct;
+
+extern f32 func_801476E0(f32 *, func_801C9234_Struct *);
+extern f64 D_801CF3D8;
+
+void func_801C9328(func_801C9328_Struct *arg0, s32 arg1) {
+    u8 *s0;
+    u8 *s1;
+    u8 buf[3];
+    u8 i;
+    extern void func_800058DC();
+
+    s0 = D_801CD0A0[arg0->unk90].unk0;
+    s1 = D_801CD0A0[arg0->unk90].unk4;
+    func_801C5C70(&D_801CFD10[arg0->unk90], (func_801C5C70_Struct *)&D_801CFD40[arg0->unk90], (f32)(u32)arg0->unk91);
+    func_801C5CC8(D_801CD094, &D_801CFD10[arg0->unk90].unk0, s0);
+    ((s8 *)s1)[8] = -((s8 *)s0)[8];
+    ((s8 *)s1)[9] = ((s8 *)s0)[9];
+    ((s8 *)s1)[10] = ((s8 *)s0)[10];
+    arg0->unk9C = 140.0f / func_801476E0(D_801CD094, &D_801CFD10[arg0->unk90]);
+    buf[0] = (u32)(arg0->unk9C * arg0->unk94);
+    buf[1] = (u32)(arg0->unk9C * arg0->unk96);
+    buf[2] = (u32)(arg0->unk9C * arg0->unk98);
+    for (i = 0; i < 3; i++) {
+        s0[i] = s1[i] = buf[i];
+    }
+    if (arg0->unk9C < D_801CF3D8) {
+        func_800058DC(arg0, func_801C9678);
+    }
+}
+#undef D_801CD0A0
+#undef func_801C9678
+#undef func_801C9678_Pair
+#undef func_801C9678_Struct
+#define func_801C9328 func_801C9328__decl
 
 
 typedef struct func_801C9678_Struct {

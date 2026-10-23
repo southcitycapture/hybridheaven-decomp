@@ -68,7 +68,16 @@ s64 func_8000E58C(s32 arg0) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000E5D4.s")
+typedef struct func_8000E5D4_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+} func_8000E5D4_Struct;
+extern struct func_8000E980_StructC D_800631E0;
+void func_8000E5D4(s32 arg0) {
+    *(func_8000E5D4_Struct *)&D_800631E0 = *((func_8000E5D4_Struct **)D_80171CEC[(u16)((arg0 & 0xFFFF0000) >> 16)][1])[(u16)(arg0 & 0xFFFF)];
+}
 
 
 struct func_8000E634_Struct {
@@ -76,7 +85,6 @@ struct func_8000E634_Struct {
     u8 pad4[4];
     f32 unk8;
 };
-extern void func_8000E5D4(s32);
 extern u16 D_800631EA;
 
 u16 func_8000E634(struct func_8000E634_Struct *arg0) {
@@ -98,7 +106,6 @@ typedef struct func_8000E980_StructC {
     u8 pad4[8];
     u8 unkC;
 } func_8000E980_StructC;
-extern func_8000E980_StructC D_800631E0;
 extern func_8000E980_Struct6 D_80062D30[];
 
 typedef struct func_8000E980_StructB {
@@ -260,7 +267,32 @@ f32 func_8000F3D8(f32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000F458.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000FC60.s")
+
+struct func_8000FCD0_Struct;
+
+typedef struct func_8000FC60_Struct {
+    s32 unk0;
+    u16 unk4;
+    u16 unk6;
+    s32 unk8;
+} func_8000FC60_Struct;
+
+#define A ((func_8000FC60_Struct *)arg0)
+
+u16 func_8000FC60(struct func_8000FCD0_Struct *arg0, u16 arg1, void *arg2) {
+    func_8000FC60_Struct *b = arg2;
+    u16 i;
+
+    for (i = 0; i < arg1; i++) {
+        if (b->unk4 == A->unk4 && b->unk0 == A->unk0 && b->unk6 == A->unk6) {
+            return i;
+        }
+        b++;
+    }
+    return arg1;
+}
+
+#undef A
 
 
 typedef struct func_8000FCD0_Struct {
@@ -276,7 +308,6 @@ void func_8000FCD0(u16 *arg0, func_8000FCD0_Struct *arg1, func_8000FCD0_Struct *
 
 
 extern void func_800279F0(void *, s32);
-extern u16 func_8000FC60(func_8000FCD0_Struct *, u16, void *);
 
 u16 func_8000FD0C(u32 **arg0, u16 arg1, void *arg2, u16 *arg3, u32 arg4) {
     u8 pad[4];
@@ -877,5 +908,88 @@ u16 func_80011590(u16 arg0) {
     return (u32)((f64)arg0 * one + 0.5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_80011678.s")
+
+typedef struct func_80011678_StructSub {
+    u8 pad0[0x1C];
+    f32 unk1C;
+    u8 pad20[0x10];
+    f32 unk30, unk34, unk38, unk3C, unk40, unk44;
+    u8 pad48[0xC];
+    f32 unk54;
+    f32 *unk58;
+} func_80011678_StructSub;
+typedef struct func_80011678_StructObj {
+    u8 pad0[0x2C];
+    func_80011678_StructSub *unk2C;
+} func_80011678_StructObj;
+typedef struct func_80011678_StructArg {
+    u16 unk0, unk2;
+    s32 unk4;
+} func_80011678_StructArg;
+
+typedef struct func_80011678_Rec {
+    f32 v[7];
+} func_80011678_Rec;
+
+extern f32 *func_8000522C(u16, s32);
+
+s32 func_80011678(func_80011678_StructObj *arg0, func_80011678_StructArg *arg1) {
+    f32 *data;
+    f32 frame, limit, duration, integral, value;
+    s32 index, count;
+    f32 *base, *next, *entry;
+
+    data = func_8000522C(arg1->unk2, arg1->unk4);
+    if (data != arg0->unk2C->unk58) {
+        arg0->unk2C->unk54 = 0.0f;
+        arg0->unk2C->unk58 = data;
+    }
+    count = arg1->unk0 & 0x7FFF;
+    if (count != 0) {
+        duration = (f32) count;
+    } else {
+        duration = *data - 1.0f;
+    }
+    frame = ((*data - 1.0f) / duration) * arg0->unk2C->unk54;
+    if (*data - 1.0f < frame) {
+        frame = *data - 1.0f;
+    }
+    index = (s32) frame;
+    integral = (f32) index;
+    base = &data[index * 7 + 1];
+    next = &data[index * 7 + 8];
+    value = frame - integral;
+    if (frame != integral) {
+        integral = *base++;
+        arg0->unk2C->unk30 = (*next++ - integral) * value + integral;
+        arg0->unk2C->unk34 = *base + (*next - *base) * value;
+        base++, next++;
+        arg0->unk2C->unk38 = *base + (*next - *base) * value;
+        base++, next++;
+        arg0->unk2C->unk3C = *base + (*next - *base) * value;
+        base++, next++;
+        arg0->unk2C->unk40 = *base + (*next - *base) * value;
+        base++, next++;
+        arg0->unk2C->unk44 = *base + (*next - *base) * value;
+        base++, next++;
+        arg0->unk2C->unk1C = *base + (*next - *base) * value;
+    } else {
+        arg0->unk2C->unk30 = base[0];
+        arg0->unk2C->unk34 = base[1];
+        arg0->unk2C->unk38 = base[2];
+        arg0->unk2C->unk3C = base[3];
+        arg0->unk2C->unk40 = base[4];
+        arg0->unk2C->unk44 = base[5];
+        arg0->unk2C->unk1C = base[6];
+    }
+    if (duration <= arg0->unk2C->unk54) {
+        duration = arg1->unk0 & 0x8000;
+        if (duration != 0.0f) {
+            arg0->unk2C->unk54 = 0.0f;
+        }
+        return 1;
+    }
+    arg0->unk2C->unk54 = arg0->unk2C->unk54 + 1.0f;
+    return 0;
+}
 

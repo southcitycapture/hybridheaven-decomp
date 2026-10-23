@@ -209,14 +209,13 @@ def differing_files():
     for l in open("hybridheaven.yaml"):
         m = re.match(r"\s+- \[0x([0-9A-F]+), ([.\w]+)(?:, (\w+)/(\w+))?\]", l)
         if m: rows.append((int(m.group(1), 16), m.group(3), m.group(4)))
-    rows.sort(); keys = [r[0] for r in rows]; out = set(); i = 0
-    while i < len(a):
-        if a[i] != b[i]:
-            r = rows[bisect.bisect_right(keys, i) - 1]
-            if r[1]: out.add((r[1], r[2]))
-            nxt = bisect.bisect_right(keys, i); i = keys[nxt] if nxt < len(keys) else len(a); continue
-        i += 1
-    return out
+    rows.sort(); keys = [r[0] for r in rows]
+    # only the first differing file: one size or address change early in a segment makes every later file in it
+    # differ too, and blaming them all took out 17 registered functions in cycle 42 (2026-10-23)
+    i = next((k for k in range(len(a)) if a[k] != b[k]), None)
+    if i is None: return set()
+    r = rows[bisect.bisect_right(keys, i) - 1]
+    return {(r[1], r[2])} if r[1] else set()
 
 def dirty():
     """Uncommitted paths under matched/ and src/ (modified or new)."""

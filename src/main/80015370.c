@@ -453,7 +453,55 @@ void func_80016058(func_80016058_Struct *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_800161A0.s")
+#define func_80016CE4 func_80016CE4__func_800161A0
+extern s32 func_80016CE4(void);
+#define HH_CAT2(a, b) a##b
+#define HH_CAT(a, b) HH_CAT2(a, b)
+#define func_800158C0 HH_CAT(func_800158C0_, __LINE__)
+#undef func_800158C0
+
+typedef struct func_800161A0_Struct {
+    u8 pad[0x24];
+    void (*unk24)(struct func_800161A0_Struct *, s32, s32, s32);
+} func_800161A0_Struct;
+
+s32 func_800161A0(func_800161A0_Struct *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 temp_v0;
+
+    while (1) {
+        temp_v0 = func_80016D50(2);
+        switch ((u32)temp_v0) {
+        case 1:
+            arg1 -= 1;
+            arg2 += 1;
+            arg0->unk24(arg0, arg1, arg2, arg3);
+            break;
+        case 2:
+            arg2 += 1;
+            arg0->unk24(arg0, arg1, arg2, arg3);
+            break;
+        case 3:
+            arg1 += 1;
+            arg2 += 1;
+            arg0->unk24(arg0, arg1, arg2, arg3);
+            break;
+        case 0:
+            if (func_80016CE4() == 0) {
+                return;
+            }
+            if (func_80016CE4() != 0) {
+                arg1 += 2;
+            } else {
+                arg1 -= 2;
+            }
+            arg0->unk24(arg0, arg1, ++arg2, arg3);
+            break;
+        }
+    }
+}
+#undef HH_CAT2
+#undef HH_CAT
+#undef func_80016CE4
 
 
 s32 func_80016CE4();                                /* extern */
@@ -834,7 +882,24 @@ s32 func_80016CE4(void) {
     return ((u32) D_8004408C >> 7) & 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80016D50.s")
+#define LP(p, l) LQ(p, l)
+#define LQ(p, l) p##_##l
+#define func_800158C0 LP(fA, __LINE__)
+#undef func_800158C0
+s32 func_80016D50(s32 arg0) {
+    s32 x = 0;
+
+    while (arg0 > D_80044084) {
+        arg0 -= D_80044084;
+        x |= (D_8004408C & ((1 << D_80044084) - 1)) << arg0;
+        D_8004408C = *(*(u8 **)&D_8008DFB8)++;
+        D_80044084 = 8;
+    }
+    D_80044084 -= arg0;
+    return (((u32) D_8004408C >> D_80044084) & ((1 << arg0) - 1)) | x;
+}
+#undef LP
+#undef LQ
 
 
 extern s32 func_80017384(s32 arg0, u16 arg1);
@@ -1274,7 +1339,19 @@ void func_800177BC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_800177F8.s")
+#define HHCAT2(a, b) a##b
+#define HHCAT(a, b) HHCAT2(a, b)
+#define func_800158C0 HHCAT(hhfn_, __LINE__)
+#undef func_800158C0
+
+void func_800177F8(void) {
+    s32 i;
+
+    for (i = 0; i <= D_8008D5AC; i++) {
+    }
+}
+#undef HHCAT2
+#undef HHCAT
 
 extern s16 D_8008EBD4;
 extern s16 D_8008EBD6;
@@ -1810,7 +1887,49 @@ void func_80018AB4(void)
 }
 #undef D_8008EC18
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80018BD8.s")
+#define LPC(a, b) a##b
+#define LP(a, b) LPC(a, b)
+#define func_800158C0 LP(fA, __LINE__)
+#undef func_800158C0
+
+extern u8 D_8008EC1C[];
+
+typedef struct func_80018BD8_Struct8 {
+    u16 unk0;
+    u8 unk2;
+    u8 pad3[4];
+    u8 unk7;
+} func_80018BD8_Struct8;
+
+typedef struct func_80018BD8_Struct {
+    u8 pad0[0x10];
+    func_80018BD8_Struct8 ent[1];
+    u8 pad18[0x11A - 0x18];
+} func_80018BD8_Struct;
+
+s32 func_80018BD8(void) {
+    u8 i;
+    s32 result;
+    u8 j;
+    func_80018BD8_Struct *p;
+
+    i = 0;
+    p = func_8001B154(D_8008EBC2 * 4);
+    result = 0;
+    for (; i < D_8008EC1C[D_8008EBC2 * 0x26]; i++, p++) {
+        if (p->ent[0].unk0 != 0) {
+            result = 1;
+        }
+        for (j = 0; p->ent[j].unk2 != 0xFF; j++) {
+            if (p->ent[j].unk7 != 0) {
+                result = 1;
+            }
+        }
+    }
+    return result;
+}
+#undef LPC
+#undef LP
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80018C9C.s")
 
@@ -1927,7 +2046,48 @@ void func_8001922C(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_800192F4.s")
+#define func_800193E0 func_800193E0__func_800192F4
+extern void func_800193E0(s32 arg0, s32 arg1);
+#define ZP(p, l) ZQ(p, l)
+#define ZQ(p, l) p##_##l
+#define func_800158C0 ZP(zA, __LINE__)
+#undef func_800158C0
+
+typedef struct func_800192F4_Struct {
+    u8 pad[4];
+    u16 flags;
+} func_800192F4_Struct;
+
+void func_800192F4(s32 arg0, s32 arg1) {
+    s32 temp_v0;
+
+    D_8008EBFC = D_800892B0[0x1E8 / 2] | D_800892B0[0x1C8 / 2];
+    if (func_80018BD8() != 0) {
+        D_8008EE82 = 0;
+    } else {
+        *(s8 *)&D_8008EE82 = 1;
+    }
+    temp_v0 = ((func_800192F4_Struct *)D_80044124[D_8008EBC0])->flags;
+    if (temp_v0 & 0xF000) {
+        if (temp_v0 & 0xB000) {
+            D_8008EBEC = 0;
+        } else {
+            D_8008EBEC = 1;
+        }
+        if (D_8008EE82 == 0) {
+            if (D_8008EBCC == 0) {
+                func_800189C8();
+            }
+        } else {
+            D_8008EE82 = 0;
+            D_8008EE83 = 1;
+            func_800058DC(arg0, func_800193E0);
+        }
+    }
+}
+#undef ZP
+#undef ZQ
+#undef func_800193E0
 
 
 

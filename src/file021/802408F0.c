@@ -1041,6 +1041,7 @@ typedef struct func_80241F50_StructB {
     u16 unk2;
 } func_80241F50_StructB;
 
+#define func_80241FBC func_80241FBC__decl1043
 extern u8 func_80241FBC[];
 
 void func_80241F50(func_80241F50_Struct *arg0, s32 arg1) {
@@ -1050,8 +1051,25 @@ void func_80241F50(func_80241F50_Struct *arg0, s32 arg1) {
         func_8013B570(arg0, arg0->unk38->unk2, 2, 4, func_80241FBC);
     }
 }
+#undef func_80241FBC
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file021/802408F0/func_80241FBC.s")
+#define func_8020394C func_8020394C__func_80241FBC
+#define func_8024201C func_8024201C__func_80241FBC
+extern void func_8024201C(s32 arg0, s32 arg1);
+
+extern u8 D_8024F26C[];
+extern void func_8020394C();
+
+void func_80241FBC(s32 arg0, s32 arg1) {
+    func_8001F74C();
+    func_80203830(arg0, D_8024F26C);
+    *(s32 *)((u8 *)&D_801BBBF0 + 0x1088) = arg0;
+    *(s32 *)((u8 *)&D_801BBBF0 + 0x10A0) = *(s32 *)((u8 *)&D_801BBBF0 + 0x40);
+    func_8020394C();
+    func_800058DC((void *)arg0, (void *)func_8024201C);
+}
+#undef func_8020394C
+#undef func_8024201C
 
 
 extern void func_80242044();

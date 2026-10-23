@@ -33,7 +33,9 @@ extern u8 D_8024A8DC[];
 extern u8 func_80127014[];
 extern u8 func_80243C48[];
 extern u8 func_8024412C[];
+#define func_802448C8 func_802448C8__decl
 extern u8 func_802448C8[];
+#define func_80244988 func_80244988__decl
 extern u8 func_80244988[];
 extern u8 func_80245D74[];
 extern void func_800058DC();
@@ -475,9 +477,68 @@ void func_8024476C(struct func_8024476C_Struct *arg0, s32 arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_802448C8.s")
+#undef func_802448C8
+#define LP(p, l) LQ(p, l)
+#define LQ(p, l) p##_##l
+#define func_80243820 LP(fA, __LINE__)
+#define func_802448C8 D_802448C8
+#undef func_80243820
+#undef func_802448C8
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_80244988.s")
+extern struct func_802438E4_Table D_80248518;
+extern s32 D_80010550(s32, void *);
+
+void func_802448C8(struct func_80244F98_Obj *arg0, s32 arg1) {
+    struct func_80244F98_Child *s0;
+
+    s0 = arg0->unk5C;
+    if (func_80242890(arg0) == 0) {
+        f32 sp28[3];
+
+        func_8013A334(sp28, arg1, s0, 0xC);
+        if (func_8012CE9C(arg1, s0, D_80248518, 0xA) == 0) {
+            if (D_80010550(arg1, s0) != 0) {
+                s0->unk78 = 1;
+                arg0->unk2C &= ~0x80;
+                func_800058DC(arg0, func_80244988);
+            }
+        }
+    }
+}
+#undef LP
+#undef LQ
+#define func_802448C8 func_802448C8__decl
+
+#undef func_80244988
+#define MYQ(p, l) p##_##l
+#define MYP(p, l) MYQ(p, l)
+#define func_80244988 D_80244988
+#define func_80243820 MYP(fB, __LINE__)
+#define func_802448C8 MYP(fC, __LINE__)
+#undef func_80244988
+
+extern struct func_802438E4_Table D_802484D0;
+extern void func_80244A54();
+
+void func_80244988(struct func_80244F98_Obj *arg0, s32 arg1) {
+    struct func_80244F98_Child *s0 = arg0->unk5C;
+    f32 sp28[3];
+
+    arg0->unk2C |= 0x80;
+    if (func_80242890() == 0) {
+        func_8013A334(sp28, arg1, s0, 0xC);
+        if (func_8012CE9C(arg1, s0, D_802484D0, 0xA) == 0 && D_80010550(arg1, s0) != 0) {
+            s0->unk78 = 1;
+            arg0->unk2C &= ~0x80;
+            func_800058DC(arg0, func_80244A54);
+        }
+    }
+}
+#undef MYQ
+#undef MYP
+#undef func_80243820
+#undef func_802448C8
+#define func_80244988 func_80244988__decl
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file014/80242890/func_80244A54.s")
 

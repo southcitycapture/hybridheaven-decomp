@@ -70,7 +70,19 @@ void func_801C15F0(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1520/func_801C166C.s")
+
+void func_801C166C(s32 arg0, s32 arg1) {
+    s32 i;
+
+    i = 0;
+loop:
+    if (arg0 == D_801DEBF0[i].unk0 && arg1 == D_801DEBF0[i].unk4) {
+        D_801DEBF0[i].unk8 = 1;
+        return;
+    }
+    i++;
+    if (i != 32) goto loop;
+}
 
 
 void func_801C16B0(s32 arg0, s32 arg1) {
@@ -131,5 +143,22 @@ s32 func_801C1828(void) {
     return D_801D8DB0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1520/func_801C1834.s")
+
+void func_801C1834(struct func_801C157C_Struct *arg0, s32 arg1) {
+    struct func_801C157C_Struct *p;
+    s32 i;
+
+    if (arg0) {
+    }
+    if (arg1) {
+    }
+    i = 0;
+loop:
+    p = &D_801DEBF0[i * 4];
+    if (p->unk0) {
+    }
+    if (++i < 8) goto loop;
+    if (p) {
+    }
+}
 

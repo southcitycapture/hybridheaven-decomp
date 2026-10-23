@@ -10,7 +10,7 @@ export BATCH; Q=queue/$BATCH; L=$Q/usage.log; rm -f $Q/STOP $Q/RESUME
 if [[ ! "$BATCH" =~ ^loop[0-9] ]]; then
   { echo "#!/bin/bash"; echo "cd $HH"
     for v in NO_INTEGRATE INFILE DIAG HARNESS2 MODEL RUN_ONE FROM NOTE_FILE CHECK_LIMIT DEADLINE_MIN FIVE_CAP WORKER_FLAGS \
-             BIGFUNC SIMILAR LEARNINGS GROW WORKER_TIMEOUT; do [ -n "${!v+x}" ] && printf 'export %s=%q\n' "$v" "${!v}"; done
+             BIGFUNC SIMILAR LEARNINGS GROW WORKER_TIMEOUT WEEKLY_RAMP; do [ -n "${!v+x}" ] && printf 'export %s=%q\n' "$v" "${!v}"; done
     printf 'exec tools/swarm/run_batch3.sh %q %q %q\n' "$BATCH" "$P" "$CAP"; } > $Q/launch.sh; chmod +x $Q/launch.sh
 fi
 weekly() { $(command -v ~/bin/usage-gate || echo true) --brief 2>&1 | sed -n 's/.*weekly \([0-9]*\)%.*/\1/p'; }

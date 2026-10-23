@@ -104,7 +104,64 @@ void func_8013A194(s32 a0, s32 a1, s32 a2) {
     func_80139894(a0, a1, a2, 0x1000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801393D0/func_8013A1B4.s")
+
+typedef struct func_8013A1B4_StructVec {
+    s32 x, y, z;
+} func_8013A1B4_StructVec;
+
+typedef struct func_8013A1B4_StructState {
+    u8 pad0[0xD];
+    u8 count;
+    u8 padE[0xE];
+    func_8013A1B4_StructVec pos;
+    u8 pad28[0x4E];
+    u8 flag;
+} func_8013A1B4_StructState;
+
+typedef struct func_8013A1B4_StructSub {
+    u8 pad0[0x5C];
+    func_8013A1B4_StructState *state;
+} func_8013A1B4_StructSub;
+
+typedef struct func_8013A1B4_StructTransform {
+    u8 pad0[0x5C];
+    func_8013A1B4_StructVec pos;
+} func_8013A1B4_StructTransform;
+
+typedef struct func_8013A1B4_StructObject {
+    u8 pad0[0x18];
+    func_8013A1B4_StructSub *sub;
+    u8 pad1C[0x10];
+    func_8013A1B4_StructTransform *transform;
+} func_8013A1B4_StructObject;
+
+void func_8013A1B4(arg0, arg1, arg4)
+    func_8013A1B4_StructObject **arg0;
+    func_8013A1B4_StructVec arg1;
+    u32 arg4;
+{
+    func_8013A1B4_StructSub *sub;
+    func_8013A1B4_StructState *state;
+    u8 count;
+    u8 i;
+
+    sub = arg0[0]->sub;
+    state = sub->state;
+    count = state->count;
+    i = 1;
+    if (arg4 & 1) {
+        state->flag = 1;
+        state->pos = arg1;
+        arg0[0]->transform->pos = arg1;
+    }
+    while (arg4 != 0 && i < count) {
+        if (arg4 & 1) {
+            arg0[i]->transform->pos = arg1;
+        }
+        arg4 >>= 1;
+        i++;
+    }
+}
 
 
 typedef struct func_8013A28C_Struct {
@@ -113,7 +170,6 @@ typedef struct func_8013A28C_Struct {
     s32 z;
 } func_8013A28C_Struct;
 
-extern void func_8013A1B4();
 
 void func_8013A28C(s32 a0, s32 a1, s32 a2, s32 a3) {
     func_8013A1B4(a0, *(func_8013A28C_Struct *)&a1, 0x3FFFF);
