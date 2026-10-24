@@ -27,8 +27,8 @@ for p in glob.glob("asm/**/*.s", recursive=True):
 # C files can reference address-named symbols the asm never mentions
 for p in glob.glob("src/**/*.c", recursive=True):
     s = open(p).read()
-    ref |= set(re.findall(r'\b((?:func_|D_)[0-9A-F]{8})\b', s))
-    aliases |= set(re.findall(r'^#define ((?:func_|D_)[0-9A-F]{8}) (\1__\w+)$', s, re.M))   # srcbuild private names
+    ref |= set(re.findall(r'\b((?:func_|D_|B_)[0-9A-F]{8})\b', s))
+    aliases |= set(re.findall(r'^#define ((?:func_|D_|B_)[0-9A-F]{8}) (\1__\w+)$', s, re.M))   # srcbuild private names
     defined |= set(re.findall(r'^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;]*$', s, re.M))
 known = set()
 for f in ("undefined_syms_auto.txt", "undefined_funcs_auto.txt"):

@@ -27,6 +27,7 @@ void func_801BF1A0(s32 arg0, s32 arg1) {
 
 
 extern void func_801BF9A4(s32 arg0);
+#define func_801C00B8 func_801C00B8__decl29
 extern void func_801C00B8();
 extern void func_801C0C7C();
 extern void func_801C0FA8();
@@ -65,6 +66,7 @@ void func_801BF1F8(s32 arg0, s32 arg1) {
     D_801D8CF4 = 0;
     func_800058DC(arg0, &func_801BF2AC);
 }
+#undef func_801C00B8
 
 extern s32 D_8038BD3C();
 extern s32 D_8038CAE0();
@@ -151,6 +153,7 @@ void func_801BF500(s32 arg0, s32 arg1) {
 }
 
 
+#define func_801BFFCC func_801BFFCC__decl155
 extern void func_801BFFCC();
 extern void func_801BF598(s32 arg0, s32 arg1);
 
@@ -161,6 +164,7 @@ void func_801BF54C(s32 arg0, s32 arg1) {
     D_801D8CF4 = 0;
     func_800058DC(arg0, func_801BF598);
 }
+#undef func_801BFFCC
 
 
 
@@ -524,7 +528,28 @@ void func_801BFFAC(void) {
     D_801D8CF0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801BF1A0/func_801BFFCC.s")
+
+extern void (*D_801D8D28[])(void);
+
+s32 func_801BFFCC(void) {
+    s32 flags;
+    s32 i;
+    s32 bit;
+
+    bit = 1;
+    i = 0;
+    flags = D_801D8CF4;
+loop:
+    if (flags & bit) {
+        if (D_801D8D28[i] != NULL) {
+            D_801D8D28[i]();
+        }
+    }
+    i++;
+    bit <<= 1;
+    if (i != 9) goto loop;
+    return 1;
+}
 
 
 extern void func_801C0760();
@@ -543,7 +568,19 @@ void func_801C0058(void) {
     func_801C0834();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801BF1A0/func_801C00B8.s")
+#define func_801C00B8 ctx_func_801C00B8
+#undef func_801C00B8
+
+s32 func_801C00B8(void) {
+    s32 i;
+
+    i = 0;
+    do {
+        func_801BF6C4(i);
+        i += 1;
+    } while (i != 9);
+    return 1;
+}
 
 
 typedef struct func_801C00FC_StructValue {

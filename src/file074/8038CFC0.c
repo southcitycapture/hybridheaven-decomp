@@ -1,13 +1,57 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file074/8038CFC0/func_8038CFC0.s")
+extern s32 D_801BBCCC;
+extern s32 D_80229500(void *, void *, void *);
+extern s32 func_8022B640(s32);
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern u8 func_8038D048[];
+extern u8 func_8038D9D0[];
+extern void func_800058DC(void *, void *);
+extern void func_80229404(void *);
+extern void func_80229500(void *, void *, void *);
+extern void func_80229CE0(void *, void *, s32);
+extern void func_8038D864(u8 *arg0, u8 *arg1, u8 *arg2);
+
+
+struct func_8038CFC0_S2 {
+    u8 pad[0x5C];
+    u8 *unk5C;
+};
+struct func_8038CFC0_G {
+    u8 pad[0xDC];
+    struct func_8038CFC0_S2 *unkDC;
+    u8 padE0[0xC];
+    struct func_8038CFC0_S2 *unkEC;
+};
+struct func_8038CFC0_Struct {
+    u8 pad0[0xC];
+    struct func_8038CFC0_Struct *unkC;
+    u8 pad10[0x86];
+    s16 unk96;
+};
+extern struct func_8038CFC0_G D_801BBBF0;
+
+void func_8038CFC0(struct func_8038CFC0_Struct *arg0, s32 arg1) {
+    struct func_8038CFC0_S2 *t;
+    u8 *v1;
+
+    t = D_801BBBF0.unkDC;
+    v1 = (u8 *)arg0->unkC->unkC;
+    if ((u8 *)t == v1) {
+        v1 = t->unk5C;
+    } else {
+        v1 = D_801BBBF0.unkEC->unk5C;
+    }
+    D_80229500((void *)((s32)arg0 * 1), &D_801BBBF0, arg0);
+    v1[0x9C] = 1;
+    arg0->unk96 = func_8022B640(8) << 10;
+    func_800058DC(arg0, func_8038D048);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file074/8038CFC0/func_8038D048.s")
 
 
-extern void func_80229404(void *);
-extern void func_80229CE0(void *, void *, s32);
-extern s32 func_8022B640(s32);
 
 void func_8038D864(u8 *arg0, u8 *arg1, u8 *arg2) {
     if (((*(u32 *)(arg2 + 0x30) << 11) >> 30) != 0) {
@@ -35,12 +79,6 @@ struct func_8038D948_Struct {
     s32 unkC;
 };
 
-extern void func_800058DC(void *, void *);
-extern void func_80229500(void *, void *, void *);
-extern s32 D_801BBCCC;
-extern u8 D_801BC03C[];
-extern u8 D_801BC3D8[];
-extern u8 func_8038D9D0[];
 
 void func_8038D948(struct func_8038D948_Struct *arg0, void *arg1) {
     void *var_a1;

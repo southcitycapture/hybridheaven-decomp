@@ -38,6 +38,7 @@ extern u8 D_802498E8[];
 extern u8 D_80249958[];
 extern u8 D_80249994[];
 extern u8 D_802499D0[];
+#define func_802425F4 func_802425F4__decl
 extern u8 func_802425F4[];
 extern void *D_80171CEC[];
 extern void func_80005670();
@@ -1478,7 +1479,353 @@ void func_802424D8(struct func_802424D8_S *arg0, struct func_802424D8_R *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file013/802408F0/func_802425F4.s")
+#undef func_802425F4
+#define LPX2(a, b) a##b
+#define LP2(a, b) LPX2(a, b)
+#define func_80241200 LP2(ctxA2_, __LINE__)
+#define VD_5 void
+#define VD_6 void
+#define VD_8 void
+#define VD_9 void
+#define VD_10 void
+#define VD_18 void
+#define VD_20 void
+#define VD_44 void
+#define VD_45 void
+#define VD_46 void
+#define VD_47 void
+#define VD_49 void
+#define VD_53 void
+#define VD_58 void
+#define VD_59 void
+#define VD_60 void
+#define VD_61 void
+#define VD_62 void
+#define VD_63 void
+#define VD_64 void
+#define VD_65 void
+#define VD_68 void
+#define VD_85 void
+#define VD_86 void
+#define VD_87 void
+#define VD_89 void
+#define VD_102 void
+#define VD_103 void
+#define VD_104 void
+#define VD_121 void
+#define VD_122 void
+#define VD_127 void
+#define VD_139 void
+#define VD_140 void
+#define VD_147 void
+#define VD_148 void
+#define VD_150 void
+#define VD_151 void
+#define VD_155 void
+#define VD_159 void
+#define VD_160 void
+#define VD_161 void
+#define VD_174 void
+#define VD_193 void
+#define VD_194 void
+#define VD_199 void
+#define VD_204 void
+#define VD_205 void
+#define VD_206 void
+#define VD_208 void
+#define VD_209 void
+#define VD_211 void
+#define VD_216 void
+#define VD_217 void
+#define VD_218 void
+#define VD_256 void
+#define VD_257 void
+#define VD_258 void
+#define VD_263 void
+#define VD_264 void
+#define VD_267 void
+#define VD_299 void
+#define VD_318 void
+#define VD_319 void
+#define VD_357 void
+#define VD_374 void
+#define VD_376 void
+#define VD_377 void
+#define VD_399 void
+#define VD_402 void
+#define VD_403 void
+#define VD_404 void
+#define VD_423 void ctxd423(void
+#define VD_425 void
+#define VD_427 void
+#define VD_432 void
+#define VD_433 void
+#define VD_450 void
+#define VD_451 void
+#define VD_470 void
+#define VD_475 void
+#define VD_477 void
+#define VD_497 void
+#define VD_498 void
+#define VD_499 void
+#define VD_518 void
+#define VD_519 void
+#define VD_521 void
+#define VD_522 void
+#define VD_542 void
+#define VD_543 void
+#define VD_562 void
+#define VD_568 void
+#define VD_569 void
+#define VD_595 void
+#define VD_596 void
+#define VD_608 void
+#define VD_615 void
+#define VD_629 void
+#define VD_631 void
+#define AO_6 arg1
+#define AO_20 arg1
+#define AO_49 arg1
+#define AO_53 arg1
+#define AO_63 arg1
+#define AO_68 arg1
+#define AO_87 arg1
+#define AO_102 arg1
+#define AO_104 arg1
+#define AO_121 arg1
+#define AO_122 arg1
+#define AO_140 arg1
+#define AO_148 arg1
+#define AO_151 arg1
+#define AO_155 arg1
+#define AO_159 arg1
+#define AO_160 arg1
+#define AO_174 arg1
+#define AO_193 arg1
+#define AO_199 arg1
+#define AO_205 arg1
+#define AO_206 arg1
+#define AO_208 arg1
+#define AO_211 arg1
+#define AO_216 arg1
+#define AO_217 arg1
+#define AO_218 arg1
+#define AO_256 arg1
+#define AO_258 arg1
+#define AO_264 arg1
+#define AO_267 arg1
+#define AO_299 arg1
+#define AO_319 arg1
+#define AO_357 arg1
+#define AO_377 arg1
+#define AO_403 arg1
+#define AO_423 arg1)
+#define AO_432 arg1
+#define AO_450 arg1
+#define AO_470 arg1
+#define AO_477 arg1
+#define AO_498 arg1
+#define AO_518 arg1
+#define AO_521 arg1
+#define AO_542 arg1
+#define AO_562 arg1
+#define AO_569 arg1
+#define AO_596 arg1
+#define AO_608 arg1
+#define AO_615 arg1
+#define AO_629 arg1
+#define AO_631 arg1
+#define void LP2(VD_, __LINE__)
+#define arg1 LP2(AO_, __LINE__)
+#undef void
+#undef arg1
+#undef func_80241200
+extern f32 func_8001518C(f32);
+extern f32 func_80029280(f32);
+extern f32 func_80032720(f32);
+extern f64 D_80249B20;
+struct func_802425F4_StructA { u8 pad[0x90]; f32 unk90; };
+struct func_802425F4_StructB {
+    u8 pad0[0xF20];
+    u8 unkF20, unkF21, unkF22, unkF23, unkF24, unkF25, unkF26, unkF27, unkF28;
+    u8 pad1[0xF32 - 0xF29];
+    u8 unkF32, unkF33, unkF34;
+};
+
+void func_802425F4(struct func_802425F4_StructA *arg0, s32 arg1) {
+    f32 t;
+
+    arg0->unk90 = (f32)((f64)arg0->unk90 + D_80249B20);
+    t = func_80029280(func_8001518C(arg0->unk90)) * 40.0f;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF26 = (s32)(t + 40.0f);
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF28 = 0x28;
+    t = func_80032720(func_8001518C(arg0->unk90)) * 40.0f;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF27 = (s32)(t + 40.0f);
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF32 = 0x50;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF33 = 0;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF34 = 0;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF20 = (u16)(u32)(func_80029280(func_8001518C(arg0->unk90)) * 40.0f) + 0x96;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF21 = 0x80;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF22 = 0x80;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF23 = 0xFF;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF24 = 0;
+    ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF25 = 0;
+}
+#undef LPX2
+#undef LP2
+#undef VD_5
+#undef VD_6
+#undef VD_8
+#undef VD_9
+#undef VD_10
+#undef VD_18
+#undef VD_20
+#undef VD_44
+#undef VD_45
+#undef VD_46
+#undef VD_47
+#undef VD_49
+#undef VD_53
+#undef VD_58
+#undef VD_59
+#undef VD_60
+#undef VD_61
+#undef VD_62
+#undef VD_63
+#undef VD_64
+#undef VD_65
+#undef VD_68
+#undef VD_85
+#undef VD_86
+#undef VD_87
+#undef VD_89
+#undef VD_102
+#undef VD_103
+#undef VD_104
+#undef VD_121
+#undef VD_122
+#undef VD_127
+#undef VD_139
+#undef VD_140
+#undef VD_147
+#undef VD_148
+#undef VD_150
+#undef VD_151
+#undef VD_155
+#undef VD_159
+#undef VD_160
+#undef VD_161
+#undef VD_174
+#undef VD_193
+#undef VD_194
+#undef VD_199
+#undef VD_204
+#undef VD_205
+#undef VD_206
+#undef VD_208
+#undef VD_209
+#undef VD_211
+#undef VD_216
+#undef VD_217
+#undef VD_218
+#undef VD_256
+#undef VD_257
+#undef VD_258
+#undef VD_263
+#undef VD_264
+#undef VD_267
+#undef VD_299
+#undef VD_318
+#undef VD_319
+#undef VD_357
+#undef VD_374
+#undef VD_376
+#undef VD_377
+#undef VD_399
+#undef VD_402
+#undef VD_403
+#undef VD_404
+#undef VD_423
+#undef VD_425
+#undef VD_427
+#undef VD_432
+#undef VD_433
+#undef VD_450
+#undef VD_451
+#undef VD_470
+#undef VD_475
+#undef VD_477
+#undef VD_497
+#undef VD_498
+#undef VD_499
+#undef VD_518
+#undef VD_519
+#undef VD_521
+#undef VD_522
+#undef VD_542
+#undef VD_543
+#undef VD_562
+#undef VD_568
+#undef VD_569
+#undef VD_595
+#undef VD_596
+#undef VD_608
+#undef VD_615
+#undef VD_629
+#undef VD_631
+#undef AO_6
+#undef AO_20
+#undef AO_49
+#undef AO_53
+#undef AO_63
+#undef AO_68
+#undef AO_87
+#undef AO_102
+#undef AO_104
+#undef AO_121
+#undef AO_122
+#undef AO_140
+#undef AO_148
+#undef AO_151
+#undef AO_155
+#undef AO_159
+#undef AO_160
+#undef AO_174
+#undef AO_193
+#undef AO_199
+#undef AO_205
+#undef AO_206
+#undef AO_208
+#undef AO_211
+#undef AO_216
+#undef AO_217
+#undef AO_218
+#undef AO_256
+#undef AO_258
+#undef AO_264
+#undef AO_267
+#undef AO_299
+#undef AO_319
+#undef AO_357
+#undef AO_377
+#undef AO_403
+#undef AO_423
+#undef AO_432
+#undef AO_450
+#undef AO_470
+#undef AO_477
+#undef AO_498
+#undef AO_518
+#undef AO_521
+#undef AO_542
+#undef AO_562
+#undef AO_569
+#undef AO_596
+#undef AO_608
+#undef AO_615
+#undef AO_629
+#undef AO_631
+#define func_802425F4 func_802425F4__decl
 
 struct func_80242840_Struct {
     u8 pad0[0x2C];

@@ -40,6 +40,12 @@ make                                          # build, then check the SHA-1
 [splat](https://github.com/ethteck/splat). `make` compiles the C with IDO 7.1 through
 [asm-processor](https://github.com/simonlindholm/asm-processor), links, recompresses every file and checks the hash.
 
+## Contributing
+
+Have your own Hybrid Heaven (USA) cartridge, a dumper and a Claude account? You can run decomp workers on your own
+machine and send back matched C: see [contrib/README.md](contrib/README.md). HQ assigns functions in
+`contrib/tasks.json` and re-verifies every submission against the real ROM build before merging it.
+
 ## How the game is put together
 
 The details are in [docs/TECHNICAL.md](docs/TECHNICAL.md). In short:
@@ -118,9 +124,9 @@ The numbers below are generated from the run logs in `queue/*/results.jsonl` (se
 batch). Costs are API-equivalent figures as reported by Claude Code; the runs themselves used a Claude Max subscription,
 and the "weekly usage" column is the subscription's own usage meter.
 
-Progress as of 2026-10-23: **64.72% of the code** (14551 of 15833 functions, including duplicates).
+Progress as of 2026-10-24: **66.44% of the code** (14677 of 15833 functions, including duplicates).
 
-**20053 model runs, $4289.69 API-equivalent in total** (local and cloud). Of the **14573 functions now in C**, **6554 were matched by AI workers** (≈ $0.655 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 261 came from decomp-permuter and 195 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**21240 model runs, $5163.62 API-equivalent in total** (local and cloud). Of the **14712 functions now in C**, **6679 were matched by AI workers** (≈ $0.773 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 275 came from decomp-permuter and 195 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 Per-batch table: [RESULTS.md](RESULTS.md).
 

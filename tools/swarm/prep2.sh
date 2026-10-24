@@ -1,7 +1,7 @@
 #!/bin/bash
 # prep.sh FUNC SEGMENT WORKDIR: set up a worker directory for one function
 set -e
-FUNC=$1; SEG=$2; W=$3; HH="$(cd "$(dirname "$0")/../.." && pwd)"
+FUNC=$1; SEG=$2; W=$3; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}     # HH_ROOT: another checkout (contrib/work.sh)
 mkdir -p "$W"
 cp "$(find "$HH/asm/nonmatchings/$SEG" -name "$FUNC.s" | head -1)" "$W/target.s"
 { echo '#include "common.h"'; echo; "$HH/.venv/bin/python" "$HH/tools/m2c/m2c.py" "$W/target.s" 2>&1; } > "$W/draft.c" || true

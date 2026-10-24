@@ -75,6 +75,10 @@ def unclaimed(B, limit=None, hold_hours=12):
         last = max(os.path.getmtime(x) for x in glob.glob(d + "/*") if os.path.isfile(x))
         if time.time() - last > 3600 * hold_hours: continue
         held |= {tuple(l.split()[:2]) for l in open(q) if len(l.split()) >= 2}
+    try:      # outside contributors' assigned, unfinished tasks (contrib/tasks.json, tools/hh/hq_tasks.py)
+        held |= {(r["func"], r["segment"]) for r in json.load(open("contrib/tasks.json"))["tasks"]
+                 if r.get("assigned") and r.get("status") != "done"}
+    except (OSError, ValueError, KeyError, TypeError): pass
     for p in glob.glob("queue/*/results.jsonl"):
         for l in open(p):
             try: r = json.loads(l)
@@ -347,9 +351,15 @@ def main():
             if publish(cfg, st): st["last_publish"] = time.time(); save(D + "/state.json", st)
         wcap = weekly_cap.cap("weekly", cfg["hard_cap"])      # the work-week ramp, once active (weekly_cap.py)
         if w >= wcap:
-            status(cfg, st, "waiting: weekly meter %d%% is at or above the cap %d%% (hard cap %d%%, work-week schedule)"
-                   % (w, wcap, cfg["hard_cap"]))
-            time.sleep(1800); continue
+            # over the cap: no agents, but matches other lanes left waiting are still integrated (that costs no model
+            # usage; on 2026-10-23 a work-day Sonnet test's matches sat unintegrated all day behind this wait)
+            if not unintegrated() or time.time() - st.get("last_integrate_only", 0) < 3600:
+                status(cfg, st, "waiting: weekly meter %d%% is at or above the cap %d%% (hard cap %d%%, work-week schedule)"
+                       % (w, wcap, cfg["hard_cap"]))
+                time.sleep(1800); continue
+            st["last_integrate_only"] = time.time(); save(D + "/state.json", st)
+            cfg = dict(cfg, min_picks=10 ** 9)
+            log("weekly meter %d%% over the cap %d%%: integration-only cycle (no agents)" % (w, wcap))
         free_gb = __import__("shutil").disk_usage(HH if "HH" in globals() else ".").free / 1e9
         if free_gb < cfg.get("min_free_gb", 1.5):     # a full disk breaks builds mid-cycle (2026-10-18: opencode temp files)
             status(cfg, st, "waiting: only %.1f GB free on the container disk (min %.1f GB)" % (free_gb, cfg.get("min_free_gb", 1.5)))

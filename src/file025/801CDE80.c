@@ -46,29 +46,6 @@ void func_801CDF50(struct func_801CDF50_Struct *arg0, s32 arg1) {
     func_800058DC(arg0, func_801CDF50);
 }
 
-#define D_80006214 D_80006214__func_801CDFAC
-#define D_8008DA88 D_8008DA88__func_801CDFAC
-#define D_80171CF0 D_80171CF0__func_801CDFAC
-#define D_801BC025 D_801BC025__func_801CDFAC
-#define D_801CDFAC D_801CDFAC__func_801CDFAC
-#define D_801DAC54 D_801DAC54__func_801CDFAC
-#define D_801E11A0 D_801E11A0__func_801CDFAC
-#define D_801E11B0 D_801E11B0__func_801CDFAC
-#define D_801E11C0 D_801E11C0__func_801CDFAC
-#define D_801E11D0 D_801E11D0__func_801CDFAC
-#define func_80006214 func_80006214__func_801CDFAC
-#define func_80010550 func_80010550__func_801CDFAC
-#define func_80011140 func_80011140__func_801CDFAC
-#define func_8013A28C func_8013A28C__func_801CDFAC
-#define func_8013A334 func_8013A334__func_801CDFAC
-#define func_801CC540 func_801CC540__func_801CDFAC
-#define func_801CE2D0_Struct func_801CE2D0_Struct__func_801CDFAC
-#define func_801CE5A8 func_801CE5A8__func_801CDFAC
-#define func_801CE5D8 func_801CE5D8__func_801CDFAC
-struct func_801CE2D0_Struct {
-    s32 unk0;
-    u16 unk4;
-};
 
 typedef struct { s32 x; s32 y; f32 z; } func_801CDFAC_V;
 typedef struct { s32 x; s32 y; s32 z; } func_801CDFAC_W;
@@ -147,25 +124,6 @@ void func_801CDFAC(struct func_801CDFAC_Obj *arg0, struct func_801CDFAC_A *arg1)
         D_8008DA88.unk30->unk2C->unk2C = D_80171CF0.unkD8->unk0->unk2;
     }
 }
-#undef D_80006214
-#undef D_8008DA88
-#undef D_80171CF0
-#undef D_801BC025
-#undef D_801CDFAC
-#undef D_801DAC54
-#undef D_801E11A0
-#undef D_801E11B0
-#undef D_801E11C0
-#undef D_801E11D0
-#undef func_80006214
-#undef func_80010550
-#undef func_80011140
-#undef func_8013A28C
-#undef func_8013A334
-#undef func_801CC540
-#undef func_801CE2D0_Struct
-#undef func_801CE5A8
-#undef func_801CE5D8
 
 
 
@@ -185,7 +143,6 @@ s32 func_801CE284(void) {
     return D_801DAC78;
 }
 
-extern u8 D_801E11A0;
 
 u8 *func_801CE2C4(void) {
     return &D_801E11A0;
@@ -197,7 +154,6 @@ struct func_801CE2D0_Struct {
     u16 unk4;
 };
 
-extern struct func_801CE2D0_Struct D_801E11B0;
 
 s32 func_801CE2D0(s32 arg0, u16 arg1) {
     if (arg0 != D_801E11B0.unk0) {
@@ -206,7 +162,6 @@ s32 func_801CE2D0(s32 arg0, u16 arg1) {
     return D_801E11B0.unk4 == arg1;
 }
 
-extern void func_80006214();
 
 extern void func_801C3370(s32, s32, s32, u8, s32, s32, s32, s32);
 
@@ -233,19 +188,16 @@ s32 func_801CE394(void) {
 }
 
 
-extern s32 D_801DAC54;
 
 s32 func_801CE3A0(void) {
     return D_801DAC54;
 }
 
-extern u8 D_801E11C0;
 
 u8 *func_801CE3AC(void) {
     return &D_801E11C0;
 }
 
-extern u8 D_801E11D0;
 
 u8 *func_801CE3B8(void) {
     return &D_801E11D0;
@@ -265,7 +217,63 @@ void func_801CE488(s32 arg0) {
     D_801DAC88 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CDE80/func_801CE494.s")
+
+
+struct func_801CE494_StructData {
+    u8 pad[4];
+    s32 *unk4;
+    u8 pad8[4];
+    u16 unkC;
+};
+struct func_801CE494_StructRoot {
+    u8 pad[0x5C];
+    struct func_801CE494_StructData *unk5C;
+};
+struct func_801CE494_StructModel {
+    u8 pad[0x24];
+    u32 unk24;
+    u8 pad28[8];
+    s32 unk30;
+    u8 pad34[0x17];
+    u8 unk4B;
+};
+struct func_801CE494_StructObj {
+    u8 pad[0x2C];
+    struct func_801CE494_StructModel *unk2C;
+};
+extern u8 D_801D9160[];
+extern u8 D_801D91B8[];
+extern u8 D_801D9268[];
+extern u8 D_801D92C0[];
+
+void func_801CE494(s32 arg0) {
+    s32 i;
+    s32 *p;
+    struct func_801CE494_StructObj **slot;
+    struct func_801CE494_StructData *temp_t0;
+
+    func_80006214((void *)D_801DAC50);
+    temp_t0 = ((struct func_801CE494_StructRoot *)D_801DAC50)->unk5C;
+    p = temp_t0->unk4;
+    for (i = 1; i < temp_t0->unkC; i++) {
+        slot = (struct func_801CE494_StructObj **)((u8 *)&D_8008DA88 + i * 4);
+        if (p[i] < 0) {
+        } else {
+            if (((*slot)->unk2C->unk24 & 0xFF) == 0x15) {
+                if (arg0 != 0) {
+                    (*slot)->unk2C->unk30 = (s32)D_801D91B8 | 0x40000000;
+                } else {
+                    (*slot)->unk2C->unk30 = (s32)D_801D9160 | 0x40000000;
+                }
+            } else if (arg0 != 0) {
+                (*slot)->unk2C->unk30 = (s32)D_801D92C0 | 0x40000000;
+            } else {
+                (*slot)->unk2C->unk30 = (s32)D_801D9268 | 0x40000000;
+            }
+            (*slot)->unk2C->unk4B = 0xFF;
+        }
+    }
+}
 
 
 extern s32 func_801C354C(s32);

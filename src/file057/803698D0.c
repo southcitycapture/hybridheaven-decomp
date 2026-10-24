@@ -26,6 +26,7 @@ extern u8 D_8038CC62;
 extern u8 func_8021E59C[];
 extern u8 func_80222708[];
 extern u8 func_80222E84[];
+#define func_8036E0A4 func_8036E0A4__decl
 extern u8 func_8036E0A4[];
 extern void *func_8035FEC8(u8, void *);
 extern void D_802233B0(s32, s32, void *, void *);
@@ -172,7 +173,60 @@ s32 func_80369CF4(struct func_80369C7C_Obj1 *arg0, s16 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/func_80369DEC.s")
+#define func_8036D30C_Anim func_8036D30C_Anim__func_80369DEC
+typedef struct func_8036D30C_Anim {
+    s32 id;
+    u16 frame;
+    u8 pad6[2];
+    f32 speed;
+} func_8036D30C_Anim;
+typedef struct { int id; unsigned short frame; unsigned char pad6[2]; float speed; } AnimEarly0;
+#define ACAT2(a, b) a##b
+#define ACAT(a, b) ACAT2(a, b)
+#define func_8036D30C_Anim ACAT(AnimL_, __LINE__)
+#define AnimL_58 AnimEarly0
+#define AnimL_63 AnimEarly0
+#define AnimL_195 AnimR
+#define AnimL_200 func_8036D30C_Anim
+#define AnimL_203 func_8036D30C_Anim
+#define AnimL_226 func_8036D30C_Anim
+#define AnimL_228 func_8036D30C_Anim
+
+extern f64 D_8038B0A8;
+extern f64 D_8038B0B0;
+extern f64 D_8038B0B8;
+extern f64 D_8038B0C0;
+
+s32 func_80369DEC(struct func_80369C7C_Obj1 *arg0, s16 arg1) {
+    u8 *p;
+    s16 off;
+    f64 d;
+    s16 x;
+
+    if (arg0 == D_801BBBF0.unkDC) {
+        p = D_801BC03C;
+    } else {
+        p = D_801BC3D8;
+    }
+    x = (s16)((s16)(((arg0 != D_801BBBF0.unkDC) ? 0 : 0x1000) + D_801BBBF0.unkB98) & 0x1FFF);
+    if (p[0x2D8] == 6 || p[0x2D8] == 8) {
+        return func_80369CF4(arg0, arg1);
+    }
+    d = (f64)(s16)((s16)(x - arg1) & 0x1FFF);
+    if ((D_8038B0A8 < d) & (d < D_8038B0B0)) return 1;
+    if ((D_8038B0B8 < d) & (d < D_8038B0C0)) return 0;
+    return 2;
+}
+#undef ACAT2
+#undef ACAT
+#undef AnimL_58
+#undef AnimL_63
+#undef AnimL_195
+#undef AnimL_200
+#undef AnimL_203
+#undef AnimL_226
+#undef AnimL_228
+#undef func_8036D30C_Anim
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/func_80369F54.s")
 
@@ -309,6 +363,7 @@ s32 func_8036A950(struct func_80369C7C_Obj1 *arg0) {
 }
 
 
+#define func_80369DEC func_80369DEC__decl311
 extern u8 func_80369DEC(struct func_80369C7C_Obj1 *, s16, void *);
 
 s32 func_8036AA8C(void *arg0) {
@@ -332,6 +387,7 @@ s32 func_8036AA8C(void *arg0) {
     }
     return 1;
 }
+#undef func_80369DEC
 
 
 typedef struct func_8036AB2C_StructA { u8 pad[0x24]; struct func_8036AB2C_StructB *p; } func_8036AB2C_StructA;
@@ -1170,7 +1226,70 @@ void func_8036DF48(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/func_8036E0A4.s")
+#undef func_8036E0A4
+#define AnimEarly0 AnimEarly0__func_8036E0A4
+#define func_8036E204 func_8036E204__func_8036E0A4
+extern void func_8036E204(s32 arg0, s32 arg1);
+typedef struct { int id; unsigned short frame; unsigned char pad6[2]; float speed; } AnimEarly0;
+#define ACAT2(a, b) a##b
+#define ACAT(a, b) ACAT2(a, b)
+#define func_8036D30C_Anim ACAT(AnimL_, __LINE__)
+#define AnimL_58 AnimEarly0
+#define AnimL_63 AnimEarly0
+#define AnimL_195 AnimR
+#define AnimL_200 func_8036D30C_Anim
+#define AnimL_203 func_8036D30C_Anim
+#define AnimL_226 func_8036D30C_Anim
+#define AnimL_228 func_8036D30C_Anim
+
+void func_8036E0A4(s32 arg0, s32 arg1) {
+    struct func_8036DF48_Struct *a;
+    struct func_8036DF48_Struct *b;
+    s32 sp24[3];
+
+    if (arg0 == D_801BBCCC) {
+        a = (struct func_8036DF48_Struct *)D_801BC03C;
+    } else {
+        a = (struct func_8036DF48_Struct *)D_801BC3D8;
+    }
+    if (arg0 != D_801BBCCC) {
+        b = (struct func_8036DF48_Struct *)D_801BC03C;
+    } else {
+        b = (struct func_8036DF48_Struct *)D_801BC3D8;
+    }
+    func_8036DD64(sp24, arg0, b);
+    if (D_801BCC21 != 0xF) {
+        if (a->unk2 <= 0 || a->b != 0) {
+            func_802233B0(arg0, arg1, b);
+            return;
+        }
+        if (a->d == 5) {
+            func_8022397C(arg0);
+            return;
+        }
+        func_80224AC4(arg0, 0);
+        if (b->c == 0 || b->b != 0 || b->unk2 <= 0) {
+            func_800058DC(arg0, func_8021E59C);
+            return;
+        }
+        if (func_8036A680(arg0, arg1, sp24[0], sp24[2]) != 0) {
+            func_800058DC(arg0, func_8036E204);
+        }
+    }
+}
+#undef ACAT2
+#undef ACAT
+#undef func_8036D30C_Anim
+#undef AnimL_58
+#undef AnimL_63
+#undef AnimL_195
+#undef AnimL_200
+#undef AnimL_203
+#undef AnimL_226
+#undef AnimL_228
+#undef AnimEarly0
+#undef func_8036E204
+#define func_8036E0A4 func_8036E0A4__decl
 
 
 struct func_8036E39C_Arg;

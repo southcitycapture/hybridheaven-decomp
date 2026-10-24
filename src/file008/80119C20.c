@@ -200,7 +200,17 @@ s32 func_8011A2D8(u8 arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80119C20/func_8011A348.s")
+s32 func_8011A348(u8 arg0) {
+    s16 sp26;
+    s16 sp24;
+
+    if (((s16 *)((u8 *)&D_801BBBF0 + arg0 * 2))[0x31A / 2] == -1) {
+        return 0;
+    }
+    func_80119F9C(&sp26, &sp24);
+    func_8011A148(sp26, sp24, ((s16 *)((u8 *)&D_801BBBF0 + arg0 * 2))[0x31A / 2], (f32 *)&D_801BBCD8->unk2C->unk48, (f32 *)&D_801BBCD8->unk2C->unk4C, (f32 *)&D_801BBCD8->unk2C->unk50);
+    return 0;
+}
 
 
 typedef struct func_8011A3D4_Inner {
@@ -367,6 +377,7 @@ struct func_8011A724_Struct {
 };
 
 void func_8011A1B8(u8);
+#define func_8011A348 func_8011A348__decl369
 void func_8011A348(u8);
 
 void func_8011A724(u8 arg0) {
@@ -389,6 +400,7 @@ void func_8011A724(u8 arg0) {
         func_8011A348(arg0);
     }
 }
+#undef func_8011A348
 
 
 

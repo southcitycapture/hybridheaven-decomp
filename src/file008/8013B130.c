@@ -65,7 +65,17 @@ s32 func_8013B208(struct func_8013B208_Struct *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013B268.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013B570.s")
+#define func_8013B570 func_8013B570_ctx
+#undef func_8013B570
+
+extern void D_8013B268(void *, u16, u8, u8, s32, s32);
+
+void func_8013B570(void *arg0, u16 arg1, u8 arg2, u8 arg3, s32 arg4) {
+    D_8013B268(arg0, arg1, arg2, arg3, arg4, 0x1000);
+}
+
+extern void D_8013B570(void *, u16, s32, s32, s32);
+#define func_8013B570 D_8013B570
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8013B130/func_8013B5B4.s")
 
@@ -203,7 +213,6 @@ struct func_8013BDD8_Struct {
     u8 unk4E;
 };
 
-extern void func_8013B570(void *, u16, s32, s32, s32);
 
 void func_8013BDD8(struct func_8013BDD8_Struct *arg0, s32 arg1) {
     arg0->unk2C = 0;

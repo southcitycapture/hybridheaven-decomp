@@ -1676,6 +1676,7 @@ typedef struct func_801CA628_Root {
     func_801CA628_Cam *unk2C;
 } func_801CA628_Root;
 extern u8 D_801DA950[];
+#define func_801CA8C4 func_801CA8C4__decl1678
 extern u8 func_801CA8C4[];
 
 void func_801CA628(func_801C7D0C_Struct *arg0, func_801CA628_Outer **arg1) {
@@ -1712,8 +1713,120 @@ void func_801CA628(func_801C7D0C_Struct *arg0, func_801CA628_Outer **arg1) {
     (*arg1)->unk30->unk10 = func_8001EF38(D_801BBCD8->unk2C->unk40 - D_801BBCD8->unk2C->unk34, func_8002FC20(sp28 * sp28 + sp24 * sp24)) & 0x1FFF;
     func_800058DC((s32)arg0, (void (*)(void))func_801CA8C4);
 }
+#undef func_801CA8C4
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C78C0/func_801CA8C4.s")
+#define D_801DAA60 D_801DAA60__func_801CA8C4
+#define D_801DD300 D_801DD300__func_801CA8C4
+#define func_801CB450 func_801CB450__func_801CA8C4
+#define func_801CB450_StructArg func_801CB450_StructArg__func_801CA8C4
+#define func_801CB450_StructInner func_801CB450_StructInner__func_801CA8C4
+#define func_801CB450_StructOuter func_801CB450_StructOuter__func_801CA8C4
+#define func_801CBC50_Inner func_801CBC50_Inner__func_801CA8C4
+#define func_801CBC50_Outer func_801CBC50_Outer__func_801CA8C4
+#define func_801CBFE8 func_801CBFE8__func_801CA8C4
+#define func_801CBFE8_StructArg func_801CBFE8_StructArg__func_801CA8C4
+typedef struct func_801CB450_StructArg {
+    u8 pad[0xAC];
+    f32 unkAC;
+    u16 unkB0;
+    u16 unkB2;
+} func_801CB450_StructArg;
+typedef struct func_801CB450_StructInner {
+    u8 pad[8];
+    f32 unk8;
+    u8 padC[4];
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    u8 pad16[0x35];
+    u8 unk4B;
+} func_801CB450_StructInner;
+typedef struct func_801CB450_StructOuter {
+    u8 pad[0x30];
+    func_801CB450_StructInner *unk30;
+} func_801CB450_StructOuter;
+typedef struct func_801CBC50_Inner {
+    u8 pad[0x10];
+    s16 unk10;
+    s16 unk12;
+} func_801CBC50_Inner;
+typedef struct func_801CBC50_Outer {
+    u8 pad[0x30];
+    func_801CBC50_Inner *unk30;
+} func_801CBC50_Outer;
+typedef struct func_801CBFE8_StructArg {
+    u8 pad[0x90];
+    u16 unk90;
+    u8 pad92[0x16];
+    u16 unkA8;
+    u16 unkAA;
+} func_801CBFE8_StructArg;
+extern void func_801CB450(func_801CB450_StructArg *arg0, func_801CB450_StructOuter **arg1);
+extern void func_801CBFE8(func_801CBFE8_StructArg *arg0, func_801CBC50_Outer **arg1);
+extern s32 D_801DAA60[];
+extern f32 D_801DD300;
+#define ZP(p,l) ZQ(p,l)
+#define ZQ(p,l) p##_##l
+#define D_801DD300 D_801DD300; void hhk770(func_801CB450, hhd770) int hhd770
+#define func_801CB450_StructOuter ZP(zO, __LINE__)
+#define zO_765 func_801CB450_StructOuter_t
+#define zO_768 func_801CB450_StructOuter_t
+#define zO_770 func_801CB450_StructOuter_t **arg1); {} extern void hhz770(func_801CB450_StructOuter_t
+#define D_801DAA60 D_801DAA60[]; void hhk909(func_801CBFE8, hhd909) int hhd909
+#define func_801CBC50_Outer ZP(zC, __LINE__)
+#define zC_846 func_801CBC50_Outer_t
+#define zC_849 func_801CBC50_Outer_t
+#define zC_851 func_801CBC50_Outer_t
+#define zC_909 func_801CBC50_Outer_t **arg1); {} extern void hhz909(func_801CBC50_Outer_t
+#define func_801CA8C4 D_801CA8C4
+#undef func_801CA8C4
+#undef D_801DD300
+#undef D_801DAA60
+#undef func_801CB450_StructOuter
+#undef func_801CBC50_Outer
+
+extern s32 D_801DA960[];
+
+void func_801CA8C4(func_801C7D0C_Struct *arg0, func_801CA628_Outer **arg1) {
+    s32 pad;
+    f32 sp28;
+    f32 sp24;
+    f32 dx;
+    f32 dz;
+    f32 length;
+    u32 count;
+    func_801CA274_StructD *cam;
+
+    count = arg0->unkB0++ % 20U;
+    func_8012CF8C(arg0, (u8 *)(*arg1)->unk30 + 0x40, 0x2DD, D_801DA960[count]);
+    cam = D_801BBCD8->unk2C;
+    sp28 = cam->unk3C - cam->unk30;
+    sp24 = cam->unk44 - cam->unk38;
+    (*arg1)->unk30->unk12 = (s16)(func_8001EF38(sp28, sp24) + 0x1000) & 0x1FFF;
+    (*arg1)->unk30->unk10 = func_8001EF38(D_801BBCD8->unk2C->unk40 - D_801BBCD8->unk2C->unk34, func_8002FC20(sp28 * sp28 + sp24 * sp24)) & 0x1FFF;
+    if ((s32)arg0->unkB2 < (s32)arg0->unkB0) {
+        func_80005700((s32)arg0);
+    }
+}
+#undef ZP
+#undef ZQ
+#undef zO_765
+#undef zO_768
+#undef zO_770
+#undef zC_846
+#undef zC_849
+#undef zC_851
+#undef zC_909
+#undef D_801DAA60
+#undef D_801DD300
+#undef func_801CB450
+#undef func_801CB450_StructArg
+#undef func_801CB450_StructInner
+#undef func_801CB450_StructOuter
+#undef func_801CBC50_Inner
+#undef func_801CBC50_Outer
+#undef func_801CBFE8
+#undef func_801CBFE8_StructArg
 
 
 typedef struct func_801CA9DC_C {

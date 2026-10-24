@@ -1,6 +1,6 @@
 #!/bin/bash
 # run_one.sh FUNC SEGMENT [MODEL]: run one worker, record the outcome and token usage
-FUNC=$1; SEG=$2; MODEL=${3:-${MODEL:-claude-haiku-5-5}}; HH="$(cd "$(dirname "$0")/../.." && pwd)"
+FUNC=$1; SEG=$2; MODEL=${3:-${MODEL:-claude-haiku-5-5}}; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}     # HH_ROOT: another checkout (contrib/work.sh)
 BATCH=${BATCH:-pilot}; W=$HH/$(python3 "$HH/tools/hh/workdir.py" dir "$BATCH" "$FUNC" "$SEG")
 # repair batches: start from the newest earlier attempt of this function
 if [ -n "$FIXMODE" ] && [ -z "$PREVIOUS" ]; then
@@ -49,7 +49,7 @@ rec = dict(func=f, segment=seg, model=model, verified=verdict,
            cache_read=u.get("cache_read_input_tokens"), cache_write=u.get("cache_creation_input_tokens"),
            cost_usd_equiv=r.get("total_cost_usd"))
 rec["claimed"] = rec["claimed"][0]
-open(os.path.expanduser("$HH/queue/%s/results.jsonl" % os.environ.get("BATCH", "pilot")), "a").write(json.dumps(rec) + "\n")
+open(os.path.join(os.environ.get("HH_ROOT") or os.path.expanduser("$HH"), "queue/%s/results.jsonl" % os.environ.get("BATCH", "pilot")), "a").write(json.dumps(rec) + "\n")
 print(json.dumps(rec))
 PY
 # GROW=1: the worker's general IDO findings join the shared learnings (newest last; prep2 shows the last 60 lines)

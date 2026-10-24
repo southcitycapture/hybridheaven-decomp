@@ -65,7 +65,7 @@ $(BUILD)/assets/%.o: assets/%.bin
 	@mkdir -p $(dir $@)
 	@$(OBJCOPY) -I binary -O elf32-tradbigmips -B mips --rename-section .data=.data,alloc,load,data,contents $< $@
 
-$(BUILD)/extern_syms.ld: $(C_SRC)
+$(BUILD)/extern_syms.ld: $(C_SRC) tools/hh/gen_extern_syms.py
 	@$(PYTHON) tools/hh/gen_extern_syms.py > /dev/null
 
 $(BUILD)/hybridheaven.elf: $(ASM_O) $(C_O) $(BIN_O) hybridheaven.ld $(BUILD)/extern_syms.ld $(BUILD)/libultra_syms.ld

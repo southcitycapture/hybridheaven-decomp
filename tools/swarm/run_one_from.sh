@@ -33,5 +33,5 @@ PY
 )
 export PREVIOUS
 if [ -z "$NOTE_FILE" ]; then [ "${FROM:-best}" = match ] && NOTE_FILE=fix_note.md || NOTE_FILE=retry_note.md; fi; export NOTE_FILE
-exec "$HH/tools/swarm/run_one3.sh" "$FUNC" "$SEG"
+exec "$HH/tools/swarm/${INNER:-run_one3.sh}" "$FUNC" "$SEG"   # INNER=run_one_oc.sh: the same start for an OpenCode model
 exit; }

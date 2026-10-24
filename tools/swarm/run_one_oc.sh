@@ -39,7 +39,7 @@ if [ "${MODEL%%/*}" = codex ]; then
     "$(cat prompt.md)" > result.jsonl 2> stderr.txt < /dev/null &
   IDLE=${OC_IDLE:-600}; DONE_EV='"type":"turn.completed"'      # long reasoning steps emit nothing until done
 else
-  timeout ${OC_TIMEOUT:-1200} "$HOME/.local/bin/opencode" run --pure -m "$MODEL" --format json --dir "$OW" \
+  timeout ${OC_TIMEOUT:-1200} "$HOME/.local/bin/opencode" run --pure -m "$MODEL" ${OC_VARIANT:+--variant "$OC_VARIANT"} --format json --dir "$OW" \
     "$(cat prompt.md)" > result.jsonl 2> stderr.txt < /dev/null &
   IDLE=${OC_IDLE:-240}; DONE_EV='"step_finish"'
 fi

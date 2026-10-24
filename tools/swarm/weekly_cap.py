@@ -87,7 +87,14 @@ def cap(kind, fallback, now=None):
     # work, let's cook" -> Friday's daytime share pulled forward to Thursday night)
     o = s.get("override") or {}
     if o.get(kind) is not None and now < dt.datetime.fromisoformat(o["until"].replace("Z", "+00:00")):
-        v = max(v, o[kind])
+        t = o[kind]
+        # {"from": "<UTC ISO>", "from_value": N}: ramp from N at `from` to the target at `until` instead of jumping
+        # (2026-10-23: a flat 95 for the weekend was used up in one night, leaving Monday's work day 5%)
+        if o.get("from") and o.get("from_value") is not None:
+            t0 = dt.datetime.fromisoformat(o["from"].replace("Z", "+00:00")); t1 = dt.datetime.fromisoformat(o["until"].replace("Z", "+00:00"))
+            f = min(1.0, max(0.0, (now - t0).total_seconds() / max(1, (t1 - t0).total_seconds())))
+            t = o["from_value"] + (t - o["from_value"]) * f
+        v = max(v, t)
     return min(fallback, int(v))
 
 
