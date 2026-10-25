@@ -225,5 +225,8 @@ Progress as of 2026-10-25: **66.81% of the code** (14750 of 15890 functions, inc
 | `unify_loop0051` | unify_loop0051 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0052` | unify_loop0052 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0053` | unify_loop0053 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0054` | unify_loop0054 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0055` | unify_loop0055 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0056` | unify_loop0056 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
