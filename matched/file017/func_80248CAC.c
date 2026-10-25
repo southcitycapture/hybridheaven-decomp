@@ -9,7 +9,7 @@ extern void func_801C3B10(s32);
 extern void func_801C3B2C(s32);
 extern s32 func_801C3D20(f32, f32, f32);
 extern u8 D_8025CAF0[];
-extern u8 func_80248E64[];
+extern void func_80248E64();
 extern s32 D_80258C18;
 typedef struct func_80248CAC_StructB { u8 pad[4]; f32 unk4; u8 pad2[4]; f32 unkC; } func_80248CAC_StructB;
 typedef struct func_80248CAC_StructA { u8 pad[0x2C]; func_80248CAC_StructB *unk2C; } func_80248CAC_StructA;

@@ -7,7 +7,7 @@ struct func_801F290C_G { u8 pad0[0x24]; s32 u24; u8 u28; u8 pad29[0xB7]; struct 
 struct func_801F38B8_Base;
 extern struct func_801F38B8_Base D_801BBBF0;
 #define G ((struct func_801F290C_G *)&D_801BBBF0)
-extern u8 func_801F1D74[];
+extern void func_801F1D74(func_801F1D74_Arg0 *arg0, s32 arg1);
 void func_801F290C(struct func_801F290C_O *arg0, s32 arg1) {
     struct func_801F290C_S *v0;
     u32 v1;

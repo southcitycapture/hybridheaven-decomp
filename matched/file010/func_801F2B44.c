@@ -29,7 +29,7 @@ struct func_801F2B44_Struct0 {
     struct func_801F2B44_Struct3 *unk38;
 };
 extern s32 func_8012AAE8(void *, s32, f32, s32, f32);
-extern u8 func_801F1D74[];
+extern void func_801F1D74(func_801F1D74_Arg0 *arg0, s32 arg1);
 
 void func_801F2B44(struct func_801F2B44_Struct0 *arg0, void *arg1) {
     struct func_801F2B44_Struct1 *v = (struct func_801F2B44_Struct1 *)arg0->unk24->unk30;

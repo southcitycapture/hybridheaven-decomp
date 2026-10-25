@@ -9,11 +9,11 @@ struct func_8038D9D4_Struct {
 };
 
 extern void func_800058DC(void *, void *);
-extern void func_8038D900(void *, void *, void *);
+extern void func_8038D900(void *a0, void *a1, void *a2);
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C;
 extern u8 D_801BC3D8;
-extern void func_8038DA4C(void);
+extern void func_8038DA4C();
 
 void func_8038D9D4(struct func_8038D9D4_Struct *arg0, s32 arg1) {
     u8 *var_a1;

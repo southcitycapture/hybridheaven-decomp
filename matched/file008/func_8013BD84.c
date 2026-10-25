@@ -1,6 +1,6 @@
 #include "context.h"
 
-s32 func_8013B19C(u16);
+extern s32 func_8013B19C(u16 arg0);
 
 struct func_8013BD84_Struct {
     s32 unk0;

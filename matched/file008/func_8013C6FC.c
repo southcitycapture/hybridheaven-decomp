@@ -12,7 +12,7 @@ struct func_8013C6FC_Struct {
 };
 extern struct func_8013BD84_Struct D_8017DC20;
 extern void func_8013A1B4();
-extern s32 func_8013B19C(u16);
+extern s32 func_8013B19C(u16 arg0);
 
 void func_8013C6FC(struct func_8013C6FC_Struct *arg0, s32 arg1, u8 arg2) {
     u8 pad[4];

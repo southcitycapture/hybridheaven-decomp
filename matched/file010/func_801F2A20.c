@@ -27,7 +27,7 @@ struct func_801F2A20_Arg1 {
     struct func_801F2A20_Struct24 *unk4;
 };
 extern s32 func_8012AAE8(void *, s32, f32, s32, f32);
-extern u8 func_801F1D74[];
+extern void func_801F1D74(func_801F1D74_Arg0 *arg0, s32 arg1);
 
 void func_801F2A20(struct func_801F2A20_Arg0 *arg0, struct func_801F2A20_Arg1 *arg1) {
     struct func_801F2A20_Struct30 *p;

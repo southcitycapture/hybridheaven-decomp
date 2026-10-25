@@ -6,7 +6,7 @@ extern void func_80146CD4(s16, s32);
 extern u16 D_8017DC40[];
 extern s32 D_802170F4;
 extern f32 D_8021B0E0;
-extern u8 func_801FBC28[];
+extern void func_801FBC28(s32 arg0, s32 *arg1);
 
 void func_801FBB3C(s32 arg0, s32 arg1) {
     s16 sp1E;

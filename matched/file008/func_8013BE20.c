@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern u16 D_801BBC1C;
-void func_8013B570(void *arg0, u16 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void func_8013B570(void *arg0, u16 arg1, u8 arg2, u8 arg3, s32 arg4);
 
 void func_8013BE20(u8 *arg0, s32 arg1) {
     s32 var_v0;

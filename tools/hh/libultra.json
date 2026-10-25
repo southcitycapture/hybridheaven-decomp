@@ -39,6 +39,11 @@
   "opt": "-O1",
   "src": "src/os/createthread.c"
  },
+ "main/800287E0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/audio/synallocvoice.c"
+ },
  "main/80028A10": {
   "mips": "-mips2 -o32",
   "opt": "-O1",
@@ -48,6 +53,11 @@
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/audio/synstartvoice.c"
+ },
+ "main/80028FF0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/gu/perspective.c"
  },
  "main/80029690": {
   "mips": "-mips2 -o32",
@@ -79,10 +89,25 @@
   "opt": "-O2",
   "src": "src/audio/synsetpan.c"
  },
+ "main/8002BFA0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/pidma.c"
+ },
  "main/8002C0B0": {
   "mips": "-mips2 -o32",
   "opt": "-O1",
   "src": "src/os/getmemsize.c"
+ },
+ "main/8002DDB0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/audio/auxbus.c"
+ },
+ "main/8002EB40": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/audio/resample.c"
  },
  "main/8002EE40": {
   "mips": "-mips2 -o32",
@@ -103,6 +128,11 @@
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/audio/filter.c"
+ },
+ "main/800304F0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/epidma.c"
  },
  "main/800305D0": {
   "mips": "-mips2 -o32",
@@ -128,6 +158,16 @@
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/audio/syngetfxref.c"
+ },
+ "main/800309B0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/sp.c"
+ },
+ "main/800309E0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/si.c"
  },
  "main/80030A10": {
   "mips": "-mips2 -o32",
@@ -248,6 +288,11 @@
   "mips": "-mips2 -o32",
   "opt": "-O1",
   "src": "src/os/startthread.c"
+ },
+ "main/80034E40": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/audio/synallocfx.c"
  },
  "main/80034EE0": {
   "mips": "-mips2 -o32",

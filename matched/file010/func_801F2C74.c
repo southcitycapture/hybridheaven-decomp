@@ -1,29 +1,4 @@
 #include "context.h"
-struct func_801F38B8_Node {
-    u8 pad0[0x8];
-    f32 unk8;
-};
-struct func_801F38B8_Mid {
-    u8 pad0[0x2C];
-    struct func_801F38B8_Node *unk2C;
-};
-struct func_801F38B8_Hi {
-    u8 pad0[0x30];
-    struct func_801F38B8_Node *unk30;
-};
-struct func_801F38B8_Lo {
-    u8 pad0[0x24];
-    struct func_801F38B8_Hi *unk24;
-};
-struct func_801F38B8_Obj {
-    u8 pad0[0x64];
-    struct func_801F38B8_Lo *unk64;
-};
-struct func_801F38B8_Base {
-    u8 pad0[0xDC];
-    struct func_801F38B8_Obj *unkDC;
-    struct func_801F38B8_Mid *unkE0;
-};
 extern struct func_801F38B8_Base D_801BBBF0;
 
 struct func_801F2C74_Struct3 { u8 pad0[0x8]; s16 unk8; u8 pad9[2]; u8 pad1[0x4]; u32 unk10; u8 pad2[4]; u32 unk18; };
@@ -62,7 +37,7 @@ extern void func_8012C89C(void *, s32, u32, s32);
 extern u8 D_80164F40[];
 extern u32 *D_80171CEC[];
 extern s32 D_801BBCD0;
-extern u8 func_801F2EB0[];
+extern void func_801F2EB0();
 
 void func_801F2C74(struct func_801F2C74_Struct0 *arg0, struct func_801F2C74_Struct7 **arg1) {
     f64 base;

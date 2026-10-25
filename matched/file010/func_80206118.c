@@ -5,7 +5,7 @@ struct func_80206118_Struct1 { u8 pad[0x22]; u8 unk22; u8 pad2[0x30 - 0x23]; str
 struct func_80206118_Struct0 { u8 pad[0x2C]; s32 unk2C; };
 
 extern void func_800058DC(void *arg0, void *arg1);
-extern void func_80206180();
+extern void func_80206180(s32 arg0, s32 arg1);
 
 void func_80206118(void *arg0, void **arg1) {
     struct func_80206118_Struct2 *temp_v0;

@@ -11,7 +11,7 @@ struct func_8013BDD8_Struct {
     u8 unk4E;
 };
 
-extern void func_8013B570(void *, u16, s32, s32, s32);
+extern void func_8013B570(void *arg0, u16 arg1, u8 arg2, u8 arg3, s32 arg4);
 
 void func_8013BDD8(struct func_8013BDD8_Struct *arg0, s32 arg1) {
     arg0->unk2C = 0;

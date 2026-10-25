@@ -5,7 +5,7 @@ struct func_8013B208_Struct {
     u8 unk60;
 };
 
-extern void func_800279F0(void *, s32);
+extern void func_800279F0(void *a0, s32 a1);
 extern u8 D_801BD980[];
 extern u8 D_801BEB00[];
 

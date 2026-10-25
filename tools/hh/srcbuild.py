@@ -355,7 +355,7 @@ def func_ok(obj, name, off, size, vram, base, rodata=None):
     while len(mine) > size and mine[-4:] == b"\0\0\0\0": mine = mine[:-4]
     if try_func.compare(mine, rel, orig)[2]: return False
     exact = try_func.linked_func_bytes(obj, name, vram, base, rodata=rodata)
-    if exact is None: return not try_func.UNRESOLVED    # an invented symbol name can't be placed: not a match
+    if exact is None: return False          # unresolved symbols OR a failed link: neither proves an exact match
     while len(exact) > size and exact[-4:] == b"\0\0\0\0": exact = exact[:-4]
     return exact == orig
 
@@ -413,21 +413,30 @@ def fn_body(text, name):
                 if opened and depth <= 0: return " ".join(" ".join(out).split())
     return None
 
-def existing_ok(seg, cfile, snips, td, bodies=True):
+def defined_functions(text):
+    """C definitions, without mistaking a prototype plus the next definition for K&R parameter declarations."""
+    code = "\n".join(l for l in text.splitlines() if not l.lstrip().startswith("#"))
+    return set(re.findall(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8}|main)\s*\([^;{}]*\)\s*(?:[^(){};#]*;)*\s*\{", code, re.M))
+
+def existing_ok(seg, cfile, snips, td, bodies=True, asm_ok=()):
     """The current src file, if it already is a correct build of exactly these snippets: it compiles, its C function
     definitions are exactly the registered ones, each matches at its address and the file keeps its size. A file built
     up one match at a time can be right where a from-scratch render of the same snippets is not (declaration order
-    changes codegen: file045 lost 4 matches to every `srcbuild all`, which paused the loop 2026-10-15 and 10-20)."""
+    changes codegen: file045 lost 4 matches to every `srcbuild all`, which paused the loop 2026-10-15 and 10-20).
+    asm_ok: unchanged registry entries already absent from HEAD's C definitions; preserve their committed ASM too."""
     path = "src/%s/%s.c" % (seg, cfile)
     if not os.path.exists(path): return False
     text = open(path).read()
-    defined = set(re.findall(r"^[A-Za-z_][\w \*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*(?:[^{};]*;)*\s*\{", text, re.M))
-    if defined != set(snips): return False
+    # A K&R parameter declaration cannot contain another function signature. Otherwise a prototype plus the next
+    # definition is swallowed as one K&R definition (file008/80124ED0: func_8012C778 instead of func_80126198).
+    defined = defined_functions(text)
+    info = {e[0]: e for e in entries(seg, cfile)}
+    stubs = {n for n, e in info.items() if is_stub(e[2], e[3])}
+    if defined - stubs - set(snips) or set(snips) - stubs - defined - set(asm_ok): return False
     # same bodies too: unify and protofix rewrite registered snippets, and a stale file must not pass for the new text
-    if bodies and any(fn_body(t, n) is None or fn_body(t, n) != fn_body(text, n) for n, t in snips.items()): return False
+    if bodies and any(fn_body(t, n) is None or fn_body(t, n) != fn_body(text, n) for n, t in snips.items() if n in defined): return False
     obj, err = compile_file(text, td)
     if obj is None: return False
-    info = {e[0]: e for e in entries(seg, cfile)}
     base = min(e[4] for e in info.values()); ro = FILE_RODATA.get((seg, cfile))
     if not all(n in info and func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro) for n in snips): return False
     start, end = file_span(seg, cfile)
@@ -437,14 +446,18 @@ def existing_ok(seg, cfile, snips, td, bodies=True):
 def build_one(args):
     """Build one C file. `prio` orders the snippets (lower = registered earlier); earlier work always wins a
     conflict: if the all-at-once build drops anything, rebuild by adding snippets one at a time in priority order."""
-    seg, cfile, snips, prio = args
+    seg, cfile, snips, prio, committed, asm_ok = args
     fname = "%s/%s" % (seg, cfile)
+    old = {n: t for n, t in snips.items() if prio.get(n, float("inf")) != float("inf")}
+    # The ROM-checked source is authoritative when both it and its complete registry inputs are still HEAD's blobs.
+    # Re-rendering can lose reconciled aliases/declarations, even with identical bodies, or import a different
+    # missing_decls declaration from an unrelated file's grown registry. Do not reinterpret this unchanged file.
+    if committed and set(old) == set(snips): return (fname, dict(old), {}, None)
     with tempfile.TemporaryDirectory() as td:
-        if snips and existing_ok(seg, cfile, snips, td):
+        if snips and existing_ok(seg, cfile, snips, td, asm_ok=asm_ok):
             return (fname, dict(snips), {}, None)   # already right: keep the file as it is
         kept, rej, text, problem = settle(seg, cfile, snips, td)
-        old = {n: t for n, t in snips.items() if prio.get(n, float("inf")) != float("inf")}
-        if (problem or set(old) - set(kept)) and existing_ok(seg, cfile, old, td, bodies=False):
+        if (problem or set(old) - set(kept)) and (committed or existing_ok(seg, cfile, old, td, bodies=False, asm_ok=asm_ok)):
             # the file as it stands is a correct build of its registered functions (the last ROM-checked one, even if
             # unify/protofix have since rewritten a snippet's text), and a from-scratch render, or adding the new
             # ones, would cost one of them (file045 loses 4, file018 lost 2 in cycle 29): keep it frozen. New candidates
@@ -478,6 +491,10 @@ def build_one(args):
         old = [n for n in order if prio.get(n, float("inf")) != float("inf")]
         olds = set(old); rest = [n for n in order if n not in olds]
         if old: try_add(old)
+        if set(old) - set(kept):
+            # An unrecognized/stale source is not permission to evict registered work. Fail before writing the file
+            # (and before run's caller can move registry entries to matched_rejected), rather than sacrifice it.
+            raise RuntimeError("%s: cannot rebuild registered functions: %s" % (fname, ", ".join(sorted(set(old) - set(kept)))))
         for i in range(0, len(rest), 16):
             try_add(rest[i:i + 16])
         if text is None:
@@ -541,7 +558,33 @@ def run(cands, new_keys):
     if new_keys:
         touched = {(seg, file_of(seg, n)) for seg, n in new_keys}
         byfile = {k: v for k, v in byfile.items() if k in touched}
-    jobs = [(seg, cf, sn, {n: prio[(seg, n)] for n in sn}) for (seg, cf), sn in sorted(byfile.items())]
+    # Snapshot HEAD once, before forking. Compare the whole per-file registry, including declarations and removals,
+    # not just fn_body: reconciled src text need not be a literal rendering of its snippets.
+    head = {}
+    for line in subprocess.check_output(["git", "ls-tree", "-r", "HEAD", "--", "matched", "src", LINK_BLOCKLIST], text=True).splitlines():
+        meta, path = line.split("\t", 1); head[path] = meta.split()[2]
+    head_snips, blocked = {}, link_blocked()
+    for path, oid in head.items():
+        if path.startswith("matched/") and path.endswith(".c"):
+            _, seg, name = path.split("/"); name = name[:-2]
+            if (seg, name) in blocked: continue       # registry() excludes these too
+            head_snips.setdefault((seg, file_of(seg, name)), {})[name] = oid
+    def blob(text):
+        data = text.encode(); return hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
+    blocklist_ok = (blob(open(LINK_BLOCKLIST).read()) if os.path.exists(LINK_BLOCKLIST) else None) == head.get(LINK_BLOCKLIST)
+    jobs = []
+    for (seg, cf), sn in sorted(byfile.items()):
+        old = {n: blob(t) for n, t in sn.items() if (seg, n) not in new_keys}
+        path = "src/%s/%s.c" % (seg, cf)
+        committed = (blocklist_ok and old == head_snips.get((seg, cf), {}) and os.path.exists(path)
+                     and blob(open(path).read()) == head.get(path))
+        # Some HEAD registry entries already use ASM in the ROM-checked source (main/800201D0, file057/80364340).
+        # Preserve that baseline after adding a neighbour too; only unchanged committed snippets get this allowance.
+        asm_ok = set()
+        if not committed and path in head:
+            defined = defined_functions(subprocess.check_output(["git", "show", "HEAD:" + path], text=True))
+            asm_ok = {n for n, oid in old.items() if oid == head_snips.get((seg, cf), {}).get(n) and n not in defined}
+        jobs.append((seg, cf, sn, {n: prio[(seg, n)] for n in sn}, committed, asm_ok))
     kept, rejected = set(), {}
     byname = {"%s/%s" % (j[0], j[1]): j for j in jobs}
     lost = lambda fname, rej: sorted(n for n in rej if (fname.split("/")[0], n) not in new_keys)

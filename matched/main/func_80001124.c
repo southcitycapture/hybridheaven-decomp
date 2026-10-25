@@ -10,7 +10,7 @@ void func_80001124_alignment3(void) {
 
 extern void func_8002AC60(s32, void *, void *, s32);
 extern void func_80030B60(s32, s32);
-extern void func_800011B0(void *);
+extern void func_800011B0(s32 arg0);
 extern u8 D_8005BF30[];
 extern u8 D_8005BF48[];
 

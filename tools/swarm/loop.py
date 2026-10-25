@@ -231,9 +231,12 @@ def revert(reason, st):
     carry on if the committed state still builds: the cycle's agent matches stay in results.jsonl and are offered to
     integration again. Pause (needs a person) only if HEAD itself fails, or after 2 failed cycles in a row: every
     pause so far cost hours to days (2026-10-15: 4.5 days; 2026-10-20: 8.5 h)."""
-    sh("git checkout HEAD -- matched src && git clean -fdq matched src")
+    sh("git checkout HEAD -- matched src matched_rejected queue/rejected.jsonl && git clean -fdq matched src matched_rejected")
     st["fails"] = st.get("fails", 0) + 1
-    ok, out = rom_ok()
+    # HEAD was ROM-checked when committed: just build it. rom_ok()'s `srcbuild all` re-rendered every file and could
+    # move registered functions out, leaving the tree dirty after a "revert" (2026-10-24: 21 functions)
+    _, out = sh("make -j8 2>&1 | tail -3", 60)
+    ok = "hybridheaven.z64: OK" in out
     if ok and st["fails"] < 2:
         log("REVERTED (continuing: HEAD builds; failure %d in a row):" % st["fails"], reason); return
     open(D + "/PAUSE", "w").write("Paused by the loop: %s\n%s\n" % (reason, "" if ok else "HEAD does not build either:\n" + out))
@@ -261,8 +264,12 @@ def publish(cfg, st):
     pub = cfg["public_dir"]
     code, out = sh("tools/publish.sh %s" % pub, 30)
     if code: log("publish: publish.sh refused:", out[-400:]); return False
+    try:  # describe the report being published, not an older cycle's number
+        m = json.load(open(os.path.join(pub, "progress/report.json")))["measures"]
+        desc = "%.3f%% of code, %s / %s functions" % (m["matched_code_percent"], m["matched_functions"], m["total_functions"])
+    except (OSError, KeyError, ValueError): desc = st.get("progress", "")
     code, out = sh('cd %s && git add -A && (git diff --cached --quiet || git commit -qm "Update: %s (always-on loop)\n\n'
-                   'Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>") && git push -q -u origin main' % (pub, st.get("progress", "")), 10)
+                   'Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>") && git push -q -u origin main' % (pub, desc), 10)
     log("publish:", "ok" if code == 0 else "failed: " + out[-400:]); return code == 0
 
 def cycle(cfg, st):

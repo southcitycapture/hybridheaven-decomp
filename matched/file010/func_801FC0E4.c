@@ -9,7 +9,7 @@ typedef struct func_801FC0E4_Struct {
 
 extern s32 func_80126A0C(func_801FC0E4_Struct *, s32, s32);
 extern void func_80147148(s32, s32);
-extern void func_800058DC(func_801FC0E4_Struct *, void *);
+extern void func_800058DC(s32, void *);
 extern u8 func_801FBDF4[];
 
 void func_801FC0E4(func_801FC0E4_Struct *arg0, s32 arg1) {

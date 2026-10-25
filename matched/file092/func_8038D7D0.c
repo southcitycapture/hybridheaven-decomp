@@ -22,16 +22,10 @@ struct func_8038D7D0_StructA {
     u16 unk30;
 };
 
-struct func_8038D7D0_StructG {
-    u8 pad0[0xDC];
-    s32 unkDC;
-    u8 pad1[0x1031 - 0xE0];
-    u8 unk1031;
-};
 
 extern struct func_8038D7D0_StructG D_801BBBF0;
-extern struct func_8038D7D0_StructA D_801BC03C;
-extern struct func_8038D7D0_StructA D_801BC3D8;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
 extern void func_8022B3E0();
 
 void func_8038D7D0(struct func_8038D7D0_Struct *arg0, s32 arg1) {

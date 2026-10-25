@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void func_800058DC();
-extern u8 func_8038CFF8[];
+extern void func_8038CFF8();
 
 void func_8038CFC0(u8 *arg0, void *arg1)
 {
