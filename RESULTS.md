@@ -218,5 +218,8 @@ Progress as of 2026-10-25: **66.73% of the code** (14694 of 15833 functions, inc
 | `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 219 | 103 | 47% | $0.00 | – |  |
 | `unify_loop0045` | unify_loop0045 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0046` | unify_loop0046 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0047` | unify_loop0047 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0048` | unify_loop0048 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0049` | unify_loop0049 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
