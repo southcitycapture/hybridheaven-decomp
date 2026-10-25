@@ -1,6 +1,6 @@
 # Research results
 
-Progress as of 2026-10-25: **66.73% of the code** (14694 of 15833 functions, including duplicates).
+Progress as of 2026-10-25: **66.81% of the code** (14750 of 15890 functions, including duplicates).
 
 **21330 model runs, $5163.62 API-equivalent in total** (local and cloud). Of the **14721 functions now in C**, **6688 were matched by AI workers** (≈ $0.772 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 275 came from decomp-permuter and 195 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
@@ -221,5 +221,9 @@ Progress as of 2026-10-25: **66.73% of the code** (14694 of 15833 functions, inc
 | `unify_loop0047` | unify_loop0047 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0048` | unify_loop0048 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0049` | unify_loop0049 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0050` | unify_loop0050 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0051` | unify_loop0051 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0052` | unify_loop0052 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0053` | unify_loop0053 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

@@ -256,7 +256,7 @@ def clean_start():
         log("clean start: dropped leftover matched/src changes (ROM did not match with them)")
 
 def progress():
-    _, out = sh(".venv/bin/python tools/hh/progress.py 2>&1 | tail -1 && python3 tools/hh/dashboard_data.py >/dev/null 2>&1", 40)
+    _, out = sh(".venv/bin/python tools/hh/progress.py 2>&1 | grep '^code:' | tail -1 && python3 tools/hh/dashboard_data.py >/dev/null 2>&1", 40)
     m = re.search(r"\(([\d.]+)%\), functions (\d+) / (\d+)", out)
     return "%s%% of code, %s / %s functions" % m.groups() if m else "unknown"
 
