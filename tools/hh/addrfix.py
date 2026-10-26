@@ -427,8 +427,27 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true"); ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--batch", default="addrfix"); ap.add_argument("--only"); ap.add_argument("--tries", type=int, default=6)
+    ap.add_argument("--walls", help="wall.py JSONL: check every symbols case (and saved standalone matches), including unlogged attempts")
     a = ap.parse_args()
-    want, files = candidates()
+    if a.walls:
+        # The wall scan has freshly compiled these exact sources; do not rely on
+        # historical .res messages to discover the address-only candidates.
+        want, files = [], {}
+        for line in open(a.walls):
+            r = json.loads(line)
+            if r["class"] not in ("symbols", "match") or not r.get("attempt_source"): continue
+            k = r["func"], r["seg"]
+            if os.path.exists("matched/%s/%s.c" % (k[1], k[0])): continue
+            src = r["attempt_source"]
+            if src.startswith("matched_rejected/"):
+                # Recreate the headers used by wall.py when compiling a rejected
+                # registry snippet. Keep the original file untouched.
+                import wall
+                d = os.path.join(HH, "build/wall-addrfix", k[1], k[0]); os.makedirs(d, exist_ok=True)
+                src = wall.stage(os.path.join(HH, src), d, r)
+            want.append(k); files[k] = [src]
+    else:
+        want, files = candidates()
     if a.only: want = [k for k in want if k[0] == a.only]
     print("candidates: %d functions (%d with attempt files)" % (len(want), sum(1 for k in want if files.get(k))), flush=True)
     from multiprocessing import Pool
@@ -448,7 +467,7 @@ def main():
                 try: r = json.loads(l); elsewhere.add((r["func"], r["segment"])) if r.get("verified") == "MATCH" else None
                 except (ValueError, KeyError): pass
     for r in res:
-        if r["outcome"] == "MATCH" and r["plan"].startswith("none") and (r["func"], r["segment"]) in elsewhere:
+        if not a.walls and r["outcome"] == "MATCH" and r["plan"].startswith("none") and (r["func"], r["segment"]) in elsewhere:
             r["outcome"] = "ALREADY_MATCH_ELSEWHERE"
     counts = collections.Counter(bucket(r) for r in res)
     print("outcomes:"); [print("%5d  %s" % (n, k)) for k, n in counts.most_common()]

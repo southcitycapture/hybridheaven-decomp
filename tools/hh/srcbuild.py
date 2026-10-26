@@ -818,10 +818,10 @@ def added_times():
 
 def run(cands, new_keys, every_file=False):
     """cands: {(seg, name): text}. Builds every affected file; returns (kept keys, rejected {key: why}).
-    Files built from library source (tools/hh/libultra.json) are left alone. every_file (srcbuild all): also write the
-    C files with no matched function, and delete src files the asm layout no longer has: after a re-split (new file
-    splits, e.g. per-file rodata) a file left with only asm functions kept its old text, whose GLOBAL_ASM paths point
-    at the old layout and stop the build."""
+    Files built from library source (tools/hh/libultra.json) are left alone. every_file (srcbuild all): also process
+    C files with no matched function through the committed-input guard, and delete src files the asm layout no
+    longer has. Uncommitted/changed-input files still rebuild: after a re-split their old GLOBAL_ASM paths can
+    point at the old layout and stop the build."""
     byfile = {}
     for (seg, name), text in cands.items():
         cf = file_of(seg, name)
@@ -980,17 +980,8 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
     if mode == "all":
         kept, rejected = run(reg, set(), every_file=True)
         print("rebuilt from registry: %d functions in C, %d rejected" % (len(kept), len(rejected)))
-        # a file whose last registered function was taken out (link/slot/byte repair, a reject) is not rebuilt by
-        # run() and kept its stale C (2026-10-22: main/80032720 kept a removed snippet's static const and shifted main
-        # by 16 bytes): write it back as all-asm
-        have = {(seg, file_of(seg, n)) for (seg, n) in kept}
-        try: lib = {tuple(k.split("/")) for k in json.load(open("tools/hh/libultra.json"))}
-        except (OSError, ValueError): lib = set()
-        for path in glob.glob("src/*/*.c"):
-            seg, cf = path.split("/")[1], os.path.basename(path)[:-2]
-            if (seg, cf) in have or (seg, cf) in lib or not entries(seg, cf): continue
-            t = render(seg, cf, {})[0]
-            if open(path).read() != t: open(path, "w").write(t); print("  reset to asm: %s" % path)
+        # every_file already rebuilds stale no-registry files. A second all-asm pass would bypass its committed
+        # source guard and discard intentional C-owned readonly data, hh-block recipes, or placeholder formatting.
         os.makedirs("matched_rejected", exist_ok=True)
         with open("queue/rejected.jsonl", "a") as fh:
             for (seg, n), why in sorted(rejected.items()):

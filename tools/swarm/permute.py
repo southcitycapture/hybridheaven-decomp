@@ -108,6 +108,20 @@ def sweep_candidates():
     order = sorted(best, key=lambda k: ((k in rejected), (k in permuted), -best[k][0], k))
     return [(None, f, seg, best[(seg, f)][1], best[(seg, f)][0] / 1000) for seg, f in order]
 
+def wall_candidates(path):
+    """Fresh classifier's register/schedule walls, closest first, exact saved source.
+
+    Resume only this output batch. A prior permuter failure in a different batch
+    is not a reason to silently omit one of the requested closest cases.
+    """
+    rows = [json.loads(line) for line in open(path)]
+    tried = {(r['segment'], r['func']) for r in map(json.loads, open(OUT + '/results.jsonl'))} if os.path.exists(OUT + '/results.jsonl') else set()
+    rows = [r for r in rows if r['class'] == 'registers_schedule' and r.get('attempt_source')
+            and (r['seg'], r['func']) not in tried
+            and not os.path.exists('matched/%s/%s.c' % (r['seg'], r['func']))]
+    rows.sort(key=lambda r: (-r['diff_score'], -r.get('positional_score', 0), r['seg'], r['func']))
+    return [(None, r['func'], r['seg'], r['attempt_source'], r['diff_score']) for r in rows]
+
 def func_span(text, name):
     """(start, end) of the definition of `name` in C text (head through closing brace)."""
     # K&R definitions (`s32 f(arg0)\n s32 arg0;\n{`) have parameter declarations between `)` and `{`
@@ -185,7 +199,7 @@ def _run_one2(sc, func, seg, src, minutes, jobs, d):
     t0 = time.time()
     # --stack-diffs: stack offsets count in the score. Without it a different frame size scored 0, the permuter
     # stopped on a "win" that the exact check then rejected (87 of 265 "did not survive" runs, 2026-10-21).
-    dbg = subprocess.run([PY, PERM + "/permuter.py", d, "--debug", "--stack-diffs"], capture_output=True, text=True)
+    dbg = subprocess.run([PY, PERM + "/permuter.py", d, "--debug", "--stack-diffs"], capture_output=True, text=True, cwd=d)
     m = re.search(r"base score = (\d+)", dbg.stdout + dbg.stderr)
     if m and m.group(1) == "0":
         # instructions already match; only an address (symbol/offset) is wrong, which permuting can't fix
@@ -193,7 +207,7 @@ def _run_one2(sc, func, seg, src, minutes, jobs, d):
                     seconds=0, checks=0, cost_usd_equiv=0.0, output_tokens=0, note="address-only mismatch: needs a model")
     # own process group, so a timeout also kills the permuter's -j helper processes (they used to be orphaned)
     proc = subprocess.Popen(["nice", "-n", "19", PY, PERM + "/permuter.py", d, "-j", str(jobs), "--stop-on-zero", "--best-only", "--stack-diffs"],
-                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
+                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True, cwd=d)
     _PROC = proc
     try: proc.wait(timeout=minutes * 60)
     except subprocess.TimeoutExpired: pass
@@ -291,11 +305,17 @@ if __name__ == "__main__":
     ap.add_argument("--out", default="queue/permute", help="batch directory for results.jsonl and work/ (queue/NAME)")
     ap.add_argument("--sweep", action="store_true", help="every unmatched function from its best attempt by .ali "
                     "(not just failed results), never-permuted first; resumes, skipping what --out already recorded")
+    ap.add_argument("--walls", help="wall.py JSONL: permute only register/schedule walls, closest first, using the classified source")
     a = ap.parse_args()
+    if a.walls:
+        cpus = len(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else (os.cpu_count() or 2)
+        if a.jobs < 1 or a.parallel < 1 or a.jobs * a.parallel > max(1, cpus // 2):
+            ap.error('--walls requires positive --jobs/--parallel with their product at most half the available CPUs')
+        if a.minutes < 1: ap.error('--minutes must be positive')
     OUT = os.path.join(HH, a.out.rstrip("/")); BATCH = os.path.basename(OUT)
     os.makedirs(OUT, exist_ok=True)
-    if a.sweep:
-        cands = sweep_candidates(); a.no_triage = True
+    if a.sweep or a.walls:
+        cands = wall_candidates(a.walls) if a.walls else sweep_candidates(); a.no_triage = True
         if a.limit: cands = cands[:a.limit]
         print("%d unmatched functions with a scored attempt" % len(cands), flush=True)
         if a.list:

@@ -102,7 +102,8 @@ def main(out):
     bars("Hit rate by lane (each lane had its own queue)", model_rows, os.path.join(out, "models.svg"),
          "Queues differ in difficulty, so lanes are not directly comparable: the head-to-head below is the fair comparison.")
     h2h = [("Claude Opus (high)", "abOpus", C), ("GPT-6.1 Sol (default)", "abSol", O),
-           ("GPT-6.1 Sol (high)", "abSol_high", O), ("GPT-6.1 Sol (max)", "abSol_max", O)]
+           ("GPT-6.1 Sol (high)", "abSol_high", O), ("GPT-6.1 Sol (max)", "abSol_max", O),
+           ("GPT-6.1 Terra (default)", "abTerra", O), ("GPT-6.1 Terra (max)", "abTerra_max", O)]
     rows = [(l, *batch(b), c) for l, b, c in h2h if batch(b)]
     bars("Head to head: the same 40 functions, same starting point", rows, os.path.join(out, "headtohead.svg"),
          "Each model started from the best earlier attempt, with the same instructions and checks.")

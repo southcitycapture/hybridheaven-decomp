@@ -1,5 +1,6 @@
 """Registry preservation regressions. Run after sourcing env.sh: .venv/bin/python tools/hh/test_srcbuild.py"""
-import hashlib, io, os, subprocess, tempfile, unittest
+import hashlib, io, os, subprocess, sys, tempfile, unittest
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 import srcbuild as S
 
@@ -45,7 +46,7 @@ class PreservationTests(unittest.TestCase):
         self.assertEqual(set(kept), {'func_80000000'})
         self.assertIsNone(problem)
 
-    def snapshot(self, snippets=None, source=None, new_keys=None, blocklist=""):
+    def snapshot(self, snippets=None, source=None, new_keys=None, blocklist="", every_file=False):
         original = {"func_80000000": "void func_80000000(void) {}\n",
                     "func_80000008": "void func_80000008(void) {}\n"}
         src = '#include "common.h"\n' + "".join(original.values())
@@ -61,9 +62,13 @@ class PreservationTests(unittest.TestCase):
              patch.object(S, "link_blocked", return_value=set()), patch.object(S, "LIBFILES", set()), \
              patch.object(S.subprocess, "check_output", side_effect=lambda cmd, **kw: tree if cmd[1] == "ls-tree" else src), \
              patch.object(S, "Pool", return_value=pool), \
+             patch.object(S.glob, "glob", side_effect=lambda p: ['asm/nonmatchings/main/file']
+                          if p == 'asm/nonmatchings/*/*' else ['src/main/file.c']), \
+             patch.object(S.os.path, "isdir", return_value=True), \
              patch.object(S.os.path, "exists", return_value=True), patch.object(S.os.path, "getmtime", return_value=0), \
              patch.object(S, "open", side_effect=opened, create=True):
-            S.run({("main", n): t for n, t in (original if snippets is None else snippets).items()}, new_keys or set())
+            S.run({("main", n): t for n, t in (original if snippets is None else snippets).items()},
+                  new_keys or set(), every_file=every_file)
         return captured[0][-2]
 
     def test_unchanged_committed_inputs(self):
@@ -75,6 +80,9 @@ class PreservationTests(unittest.TestCase):
 
     def test_removed_snippet_invalidates_snapshot(self):
         self.assertFalse(self.snapshot({"func_80000000": "void func_80000000(void) {}\n"}))
+
+    def test_removed_last_snippet_still_rebuilds_no_registry_file(self):
+        self.assertFalse(self.snapshot({}, every_file=True))
 
     def test_source_change_invalidates_snapshot(self):
         self.assertFalse(self.snapshot(source="/* edited source */\n"))
@@ -121,6 +129,66 @@ class PreservationTests(unittest.TestCase):
              patch.object(S.try_func, "linked_func_bytes", return_value=None), \
              patch.object(S.try_func, "UNRESOLVED", []):
             self.assertFalse(S.func_ok("obj", "func_80000000", 0, 4, 0x80000000, 0x80000000))
+
+
+class AllFilesTests(unittest.TestCase):
+    def test_all_keeps_committed_files_without_registered_functions(self):
+        # Exercise the CLI too: its old post-run reset undid build_one's preservation.
+        with tempfile.TemporaryDirectory(dir=os.path.join(S.HH, 'build')) as td:
+            root = Path(td)
+            def put(path, text):
+                p = root / path
+                p.parent.mkdir(parents=True, exist_ok=True)
+                p.write_text(text)
+            for name in ('srcbuild.py', 'try_func.py', 'workdir.py'):
+                put('tools/hh/' + name, (Path(S.HH) / 'tools/hh' / name).read_text())
+            put('build/expanded.bin', '')
+            put('build/expanded.json', '{"files":[]}')
+            put('tools/hh/file_splits.json', '{}')
+            put('hybridheaven.yaml', '')
+            (root / 'queue').mkdir()
+            sources = {
+                '80000000': '#include "common.h"\n\n'
+                    '/* hh-block asm/nonmatchings/test/80000000/_mrg_keep_text_func_80000000.s '
+                    '{"functions":["func_80000000"],"rodata":[]} */\n'
+                    '#pragma GLOBAL_ASM("asm/nonmatchings/test/80000000/_mrg_keep_text_func_80000000.s")\n'
+                    'static const unsigned char rodata_80000000[] = {1, 2, 3, 4};\n',
+                '80000010': '#include "common.h"\n\n'
+                    '#pragma GLOBAL_ASM("asm/nonmatchings/test/80000010/func_80000010.s")\n',
+                '80000020': '#include "common.h"\n\n'
+                    '#pragma GLOBAL_ASM("asm/nonmatchings/test/80000020/func_80000020.s")\n\n',
+            }
+            for cf, source in sources.items():
+                put('src/test/%s.c' % cf, source)
+                put('asm/nonmatchings/test/%s/func_%s.s' % (cf, cf),
+                    'nonmatching func_%s, 0x10\nglabel func_%s\n/* 000000 %s 03E00008 */ jr $ra\n' % (cf, cf, cf))
+            def git(*args):
+                return subprocess.run(['git', *args], cwd=td, check=True, capture_output=True, text=True)
+            git('init', '--quiet', '--initial-branch=sol-rodata')
+            git('add', '--', 'src')
+            git('-c', 'user.name=Test', '-c', 'user.email=test@example.com',
+                'commit', '--quiet', '-m', 'committed readonly data and ASM placeholders')
+            result = subprocess.run([sys.executable, str(root / 'tools/hh/srcbuild.py'), 'all'],
+                                    cwd=td, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn('0 functions in C, 0 rejected', result.stdout)
+            for cf, source in sources.items():
+                self.assertEqual((root / ('src/test/%s.c' % cf)).read_text(), source)
+            self.assertEqual(git('diff', '--exit-code', '--', 'src').stdout, '')
+
+    def test_uncommitted_no_registry_file_is_rebuilt(self):
+        stale = 'static const int removed_snippet_data[] = {123};\n'
+        asm = '#include "common.h"\n#pragma GLOBAL_ASM("current.s")\n'
+        output = io.StringIO()
+        def opened(path, mode='r'):
+            return io.StringIO(stale) if mode == 'r' else output
+        with patch.object(S.os.path, 'exists', return_value=True), \
+             patch.object(S, 'open', side_effect=opened, create=True), \
+             patch.object(S, 'settle', return_value=({}, {}, asm, None)) as settle:
+            self.assertEqual(S.build_one(('test', 'file', {}, {}, False, set())),
+                             ('test/file', {}, {}, None))
+        settle.assert_called_once()
+        self.assertEqual(output.getvalue(), asm)
 
 
 class ExistingSourceTests(unittest.TestCase):

@@ -8,6 +8,7 @@ FUNC=$1; SEG=$2; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}; cd "$HH"
 PREVIOUS=$("$HH/.venv/bin/python" - "$FUNC" "$SEG" "${FROM:-best}" "${BATCH:-}" <<'PY'
 import glob, json, os, sys
 func, seg, mode, me = sys.argv[1:5]
+cutoff = float(os.environ.get("BEST_BEFORE") or 0)
 def seg_ok(d):
     """An old FUNC-only work dir counts only if its batch ran FUNC in this segment (overlays share names)."""
     if "@" in d: return True
@@ -27,6 +28,7 @@ for d in dirs:
             try: v = int(open(ali).read().split()[0])
             except (ValueError, IndexError, OSError): continue
             c = ali[:-4] + ".c"
+            if cutoff and os.path.exists(c) and os.path.getmtime(c) > cutoff: continue  # BEST_BEFORE: same start as an earlier A/B
             if os.path.exists(c): best = max(best, (v, c))
 print(os.path.abspath(best[1]) if best[1] else "")
 PY

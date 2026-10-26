@@ -94,7 +94,8 @@ def cap(kind, fallback, now=None):
             t0 = dt.datetime.fromisoformat(o["from"].replace("Z", "+00:00")); t1 = dt.datetime.fromisoformat(o["until"].replace("Z", "+00:00"))
             f = min(1.0, max(0.0, (now - t0).total_seconds() / max(1, (t1 - t0).total_seconds())))
             t = o["from_value"] + (t - o["from_value"]) * f
-        v = max(v, t)
+        # "mode": "hold" can also lower the cap (2026-10-26: loop integration-only while one Opus Max agent runs alone)
+        v = t if o.get("mode") == "hold" else max(v, t)
     return min(fallback, int(v))
 
 
