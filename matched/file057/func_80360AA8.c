@@ -1,3 +1,5 @@
+typedef struct { int unk0; int unk4; int unk8; } func_8035F544_Copy;
+typedef struct { int unk0; } func_8035CDA8_Obj;
 #include "context.h"
 
 typedef struct func_80360AA8_Struct {
@@ -11,11 +13,7 @@ typedef struct func_80360AA8_Struct {
     u8 unk392;
 } func_80360AA8_Struct;
 
-extern s32 func_80224AC4();
-extern void func_80360BDC();
-
 void func_80360AA8(void *arg0, s32 arg1) {
-    extern void func_802256E4();
     s32 sp44;
     func_80360AA8_Struct *v;
     s32 pad[2];
@@ -31,7 +29,7 @@ void func_80360AA8(void *arg0, s32 arg1) {
     }
     func_802256E4((void *) &sp2C, (s32) arg0, 0);
     if (func_80011140(arg1, sp44, sp2C, v->f != 0 ? 3 : 0xA) & 0xFF) {
-        func_800058DC(arg0, &func_80360BDC);
+        func_800058DC(arg0, (void *) func_80360BDC);
     }
     v->unk392 = 0;
 }

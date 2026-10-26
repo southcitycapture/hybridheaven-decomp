@@ -1,6 +1,15 @@
-#include "context.h"
+#include "common.h"
+extern void func_8022C0A0(s32 arg0);
+
 extern void func_8013D09C();
 extern void func_80236744();
+extern s32 D_801BBCCC;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+void func_800058DC(void *arg0, void *arg1);
+void func_8036265C();
+void func_80364174();
+extern void func_80360818(s32 arg0, s32 arg1);
 typedef struct func_80364024_Bits {
     u32 b31 : 1;
     u32 rest : 31;

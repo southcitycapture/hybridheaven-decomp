@@ -75,7 +75,7 @@ extern s32 func_80228C20(void *, void *);
 extern s32 func_80228D90(void *, void *);
 extern void func_80228FD0(void *, void *, s32);
 extern s32 func_80229260(void *, void *, void *, s32);
-extern s32 func_802292D0();
+extern void func_802292D0(void *, void *);
 
 #define ISP1 (dc == ((struct func_8038CFF4_Obj0 *)arg0->unkC2)->unkC)
 
@@ -187,6 +187,10 @@ void func_8038CFF4(struct func_8038CFF4_Obj *arg0, void *arg1) {
 #undef ISP1
 #undef D_801BBBF0
 
+#define D_8038D45C D_8038D45C__func_8038D45C
+#define func_802294BC func_802294BC__func_8038D45C
+#define func_80229CE0 func_80229CE0__func_8038D45C
+#define func_8022B640 func_8022B640__func_8038D45C
 #define func_8038D45C func_8038D45C_decl
 #undef func_8038D45C
 
@@ -237,6 +241,11 @@ void func_8038D45C(void *arg0, void *arg1, void *arg2) {
 
 extern void D_8038D45C(void *, void *, void *, void *);
 #define func_8038D45C D_8038D45C
+#undef OBJ
+#undef D_8038D45C
+#undef func_802294BC
+#undef func_80229CE0
+#undef func_8022B640
 
 
 struct func_8038D548_Struct {
@@ -308,6 +317,7 @@ struct func_8038D5C0_StructGlobal {
 };
 
 extern s32 func_8022AB58(void *, void *, void *);
+extern void func_8038D45C(void *, void *, void *, void *);
 extern u8 func_8022B3E0[];
 
 void func_8038D5C0(struct func_8038D5C0_StructObj *arg0, void *arg1) {

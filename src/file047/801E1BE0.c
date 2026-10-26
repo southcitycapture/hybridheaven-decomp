@@ -6,10 +6,6 @@ extern void func_8038BE98(f32 arg0);
 extern void func_8038BD50(f32 arg0, f32 arg1, s32 arg2);
 extern void D_8038BD88(f32 arg0, f32 arg1, s32 arg2);
 extern void D_8038C158(void);
-extern f32 D_801E3E00;
-extern f32 D_801E3E04;
-extern f32 D_801E3E08;
-extern f32 D_801E3E0C;
 
 s32 func_801E1BE0(s32 arg0, s32 arg1) {
     func_8038BEC8(5.0f);
@@ -17,26 +13,22 @@ s32 func_801E1BE0(s32 arg0, s32 arg1) {
         D_8038C158();
         return 1;
     }
-    func_8038BE98(D_801E3E00);
-    func_8038BD50(D_801E3E04, D_801E3E08, 0xC2C1CCCD);
-    D_8038BD88(-212.0f, D_801E3E0C, 0x42893333);
+    func_8038BE98(33.2999992f);
+    func_8038BD50(78.0999985f, 11.3000002f, 0xC2C1CCCD);
+    D_8038BD88(-212.0f, 152.899994f, 0x42893333);
     return 0;
 }
 
 
 extern s32 D_8038C17C(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
-extern f32 D_801E3E10;
-extern f32 D_801E3E14;
-extern f32 D_801E3E18;
-extern f32 D_801E3E1C;
 
 s32 func_801E1C78(s32 arg0, s32 arg1)
 {
-  f32 temp0 = D_801E3E10;
-  f32 temp1 = D_801E3E14;
+  f32 temp0 = 9.89999962f;
+  f32 temp1 = 15.3000002f;
   float new_var;
   new_var = 33.0f;
- do { if (D_8038C17C(0.0f, 5.0f, 13.9f, temp0, D_801E3E18, 9.5f, temp0, D_801E3E1C, 0.0f, temp1, 100.0f, 0.0f, temp1, 100.0f, new_var, 33.0f) != 0) { return 2; } } while (0);
+ do { if (D_8038C17C(0.0f, 5.0f, 13.9f, temp0, 89.1999969f, 9.5f, temp0, 114.800003f, 0.0f, temp1, 100.0f, 0.0f, temp1, 100.0f, new_var, 33.0f) != 0) { return 2; } } while (0);
   return 1;
 }
 
@@ -394,11 +386,14 @@ s32 func_801E2E8C(s32 arg0, s32 arg1) {
     return 3;
 }
 
+#define func_801E2D58 func_801E2D58__func_801E2EB0
+extern s32 func_801E2D58();
 
 s32 func_801E2EB0(s32 arg0, s32 arg1) {
     func_801E2D58();
     return 0x3;
 }
+#undef func_801E2D58
 
 
 extern void func_801BF628(s32 arg0, s32 *arg1);
@@ -461,11 +456,14 @@ s32 func_801E3050(s32 arg0, s32 arg1) {
     return 2;
 }
 
+#define func_801E2F1C func_801E2F1C__func_801E3074
+extern s32 func_801E2F1C();
 
 s32 func_801E3074(s32 arg0, s32 arg1) {
     func_801E2F1C();
     return 0x2;
 }
+#undef func_801E2F1C
 
 
 
@@ -520,11 +518,14 @@ s32 func_801E3240(s32 arg0, s32 arg1) {
     return 2;
 }
 
+#define func_801E30E0 func_801E30E0__func_801E3264
+extern s32 func_801E30E0();
 
 s32 func_801E3264(s32 arg0, s32 arg1) {
     func_801E30E0();
     return 0x2;
 }
+#undef func_801E30E0
 
 
 
@@ -593,11 +594,14 @@ s32 func_801E33B4(s32 arg0, s32 arg1) {
     return 2;
 }
 
+#define func_801E32D0 func_801E32D0__func_801E33D8
+extern s32 func_801E32D0();
 
 s32 func_801E33D8(s32 arg0, s32 arg1) {
     func_801E32D0();
     return 0x2;
 }
+#undef func_801E32D0
 
 
 
@@ -739,7 +743,9 @@ s32 func_801E39C0(s32 arg0, s32 arg1) {
     return 4;
 }
 
+#define func_801CC470 func_801CC470__func_801E3A24
 
+extern void func_801CC470(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4);
 extern s32 func_801CE274(void);
 
 s32 func_801E3A24(s32 arg0, s32 arg1) {
@@ -749,6 +755,7 @@ s32 func_801E3A24(s32 arg0, s32 arg1) {
     }
     return 5;
 }
+#undef func_801CC470
 
 
 s32 func_801E3A7C(s32 arg0, s32 arg1) {

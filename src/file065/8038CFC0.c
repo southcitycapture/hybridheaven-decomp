@@ -257,6 +257,9 @@ void func_8038D514(struct func_8038D514_Struct *arg0, void *arg1) {
 }
 #undef func_8038D59C
 
+#define D_8038D59C D_8038D59C__func_8038D59C
+#define func_8022AB58 func_8022AB58__func_8038D59C
+#define func_8022B3E0 func_8022B3E0__func_8038D59C
 struct func_8038D59C_StructA { u8 pad[0xC]; s32 unkC; u8 pad2[0x91-0x10]; u8 unk91; u8 pad3[0x9A-0x92]; s16 unk9A; u8 pad5[0xA8-0x9C]; u8 unkA8; u8 pad4[0xB0-0xA9]; void *unkB0; };
 struct func_8038D59C_StructB { u8 pad[0x30]; union { u32 w; u16 h; } unk30; };
 extern u8 func_8022B3E0[];
@@ -304,6 +307,9 @@ void func_8038D59C(struct func_8038D59C_StructA *arg0, s32 arg1) {
         }
     }
 }
+#undef D_8038D59C
+#undef func_8022AB58
+#undef func_8022B3E0
 
 void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
 

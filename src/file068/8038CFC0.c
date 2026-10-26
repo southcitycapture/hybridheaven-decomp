@@ -1,19 +1,18 @@
 #include "common.h"
 
 extern s32 D_801BBCCC;
-extern s32 func_8022AB58(void *, void *, void *);
 extern s32 func_8022B640();
 extern u8 D_801BC03C;
 extern u8 D_801BC3D8;
-extern u8 D_8038DA4C[];
-extern u8 func_8022B3E0[];
 extern void func_800058DC(void *, void *);
 extern void func_802294BC();
 extern void func_80229500(void *, void *, void *);
 extern void func_80229CE0();
 extern void func_8022A834();
 extern void func_8038CFFC();
-extern void func_8038DA4C();
+extern void func_8038D900(void *, void *, void *);
+#define func_8038DA4C func_8038DA4C__decl
+extern void func_8038DA4C(void);
 
 
 struct func_8038CFC0_Struct {
@@ -93,8 +92,11 @@ void func_8038D9D4(struct func_8038D9D4_Struct *arg0, s32 arg1) {
     func_800058DC(arg0, (void *)func_8038DA4C);
 }
 
-#define func_8038DA4C func_8038DA4C_ctx
 #undef func_8038DA4C
+#define D_801BBBF0 D_801BBBF0__func_8038DA4C
+#define D_8038DA4C D_8038DA4C__func_8038DA4C
+#define func_8022AB58 func_8022AB58__func_8038DA4C
+#define func_8022B3E0 func_8022B3E0__func_8038DA4C
 
 struct func_8038DA4C_StructObj {
     u8 pad0[0x0C];
@@ -129,8 +131,10 @@ struct func_8038DA4C_StructGlobal {
     u8 padB94[0x1031 - 0xB94];
     u8 unk1031;
 };
-
+extern s32 func_8022AB58(void *, void *, void *);
 extern struct func_8038DA4C_StructGlobal D_801BBBF0;
+extern u8 func_8022B3E0[];
+extern u8 D_8038DA4C[];
 
 void func_8038DA4C(struct func_8038DA4C_StructObj *arg0, void *arg1) {
     struct func_8038DA4C_StructA *var_a1;
@@ -195,6 +199,11 @@ void func_8038DA4C(struct func_8038DA4C_StructObj *arg0, void *arg1) {
         func_8038D900(arg0, var_a1, var_a2);
     }
 }
+#undef D_801BBBF0
+#undef D_8038DA4C
+#undef func_8022AB58
+#undef func_8022B3E0
+#define func_8038DA4C func_8038DA4C__decl
 
 /* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
 

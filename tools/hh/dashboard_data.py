@@ -72,6 +72,9 @@ m = rep["measures"]
 data = {"generated": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()),
         "total_code": int(m["total_code"]), "matched_code": int(m.get("matched_code", 0)),
         "total_functions": int(m["total_functions"]), "matched_functions": int(m.get("matched_functions", 0)),
+        "total_data": int(m.get("total_data", 0)), "matched_data": int(m.get("matched_data", 0)),
+        "complete_code": int(m.get("complete_code", 0)),
+        "complete_units": int(m.get("complete_units", 0)), "total_units": int(m.get("total_units", 0)),
         "unique_total": uniq_total, "unique_matched": uniq_matched, "units": units, "running": running, "tiers": tiers,
         "generated_ts": int(time.time()),
         "runs": [{k: r.get(k) for k in ("batch", "func", "segment", "model", "verified", "checks", "seconds",
@@ -79,11 +82,12 @@ data = {"generated": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()),
 json.dump(data, open("dashboard/data.json", "w"), separators=(",", ":"))
 hist = "dashboard/history.jsonl"
 point = {"t": int(time.time()), "matched_code": data["matched_code"], "matched_functions": data["matched_functions"],
-         "unique_matched": uniq_matched}
+         "unique_matched": uniq_matched,
+         **{k: data[k] for k in ('total_code', 'total_data', 'matched_data', 'complete_code', 'complete_units', 'total_units')}}
 last = None
 if os.path.exists(hist):
     lines = open(hist).read().strip().splitlines(); last = json.loads(lines[-1]) if lines else None
-if not last or last["matched_functions"] != point["matched_functions"] or last["matched_code"] != point["matched_code"]:
+if not last or any(last.get(k) != v for k, v in point.items() if k != 't'):
     open(hist, "a").write(json.dumps(point) + "\n")
 print("dashboard data: %d/%d functions, %d/%d unique, %.3f%% code" % (data["matched_functions"], data["total_functions"],
       uniq_matched, uniq_total, 100 * data["matched_code"] / data["total_code"]))

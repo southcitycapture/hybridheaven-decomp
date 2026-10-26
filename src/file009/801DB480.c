@@ -243,5 +243,7 @@ s32 func_801DBE94(struct func_801DBE94_Struct *arg0, u8 arg1) {
     return ((s32 *) D_801E15B8[var_v1])[arg1];
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DB480/D_801E3BD0.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801DB480/func_801DBEE4.s")
 

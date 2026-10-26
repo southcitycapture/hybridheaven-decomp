@@ -539,6 +539,101 @@ void *func_8000C3B0(struct func_8000C3B0_Struct *arg0) {
     }
 }
 
+#define D_8000B1E8 D_8000B1E8__func_8000C4A8
+#define D_8000B578 D_8000B578__func_8000C4A8
+#define D_8008D5BC D_8008D5BC__func_8000C4A8
+#define func_8000B1E8_Outer func_8000B1E8_Outer__func_8000C4A8
+#define func_8000B1E8_Sub func_8000B1E8_Sub__func_8000C4A8
+#define func_8000B5AC func_8000B5AC__func_8000C4A8
+#define func_8000B83C_StructB func_8000B83C_StructB__func_8000C4A8
+#define func_8000B8F0_Struct func_8000B8F0_Struct__func_8000C4A8
+#define func_8000B960_C func_8000B960_C__func_8000C4A8
+#define func_8000B960_D func_8000B960_D__func_8000C4A8
+#define func_8000B960_E func_8000B960_E__func_8000C4A8
+struct func_8000B1E8_Sub {
+    u8 pad0[4];
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    u8 pad1[2];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+};
+struct func_8000B1E8_Outer {
+    u8 pad[0x2C];
+    struct func_8000B1E8_Sub *unk2C;
+    struct func_8000B1E8_Sub *unk30;
+};
+struct func_8000B83C_StructB {
+    u8 pad[0x2C];
+    void *unk2C;
+    void *unk30;
+};
+typedef struct func_8000B8F0_Struct {
+    u8 pad0[0x10];
+    s16 unk10;
+    s16 unk12;
+    u8 pad1[0x18];
+    void *unk2C;
+    void *unk30;
+} func_8000B8F0_Struct;
+struct func_8000B960_C {
+    s32 a, b, c;
+};
+struct func_8000B960_E {
+    u8 a, b;
+};
+struct func_8000B960_D {
+    u16 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    u8 pad16[2];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    s32 unk24;
+    s32 unk28;
+    u16 unk2C;
+    u8 pad2E[2];
+    void *unk30;
+    s32 unk34;
+    u8 pad38[2];
+    u8 unk3A;
+    u8 pad3B[5];
+    s32 unk40;
+    s32 unk44;
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+    u8 pad4C[4];
+    f32 unk50;
+    s32 unk54;
+    s16 unk58;
+    u8 pad5A[2];
+    struct func_8000B960_C unk5C;
+    struct func_8000B960_E unk68;
+    u8 pad6A[2];
+    s16 unk6C;
+    u8 pad6E[2];
+    f32 unk70;
+    s16 unk74;
+    u8 pad76[0x22];
+    f32 unk98;
+    f32 unk9C;
+    f32 unkA0;
+    f32 unkA4;
+    f32 unkA8;
+    f32 unkAC;
+};
 
 typedef struct func_8000C4A8_StructCmd { u32 w0, w1; } func_8000C4A8_StructCmd;
 struct func_8000C4A8_StructSub { u8 pad[0x1C]; u32 unk1C; };
@@ -608,6 +703,20 @@ void func_8000C4A8(struct func_8000C4A8_StructObj *arg0, s32 arg1, s32 arg2) {
         break;
     }
 }
+#undef func_8000B1E8
+#undef func_8000B578
+#undef EMIT
+#undef D_8000B1E8
+#undef D_8000B578
+#undef D_8008D5BC
+#undef func_8000B1E8_Outer
+#undef func_8000B1E8_Sub
+#undef func_8000B5AC
+#undef func_8000B83C_StructB
+#undef func_8000B8F0_Struct
+#undef func_8000B960_C
+#undef func_8000B960_D
+#undef func_8000B960_E
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000AFE0/func_8000C768.s")
 

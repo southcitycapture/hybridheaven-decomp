@@ -2,6 +2,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801FEAE0/func_801FEAE0.s")
 
+#define func_80006214 func_80006214__func_801FEC58
+#define func_801FEAE0 func_801FEAE0__func_801FEC58
 
 typedef struct func_801FEC58_Struct {
     u8 pad0[0x90];
@@ -9,7 +11,6 @@ typedef struct func_801FEC58_Struct {
     u8 pad91[0xAB - 0x91];
     u8 unkAB;
 } func_801FEC58_Struct;
-
 extern s8 func_80006214(void *);
 extern s32 func_801FEAE0(void *, u8, s16, s16, s32, s8 *, u8);
 
@@ -56,9 +57,12 @@ void func_801FEC58(arg0, arg1, arg2, arg3, arg4)
     arg0->unkAB = func_80006214(arg0);
     arg0->unk90++;
 }
+#undef func_80006214
+#undef func_801FEAE0
 
 
 extern void func_800058DC(void *, void *);
+extern void func_801FEC58();
 extern s32 func_801FEF20;
 
 typedef struct func_801FEE94_Struct {
@@ -93,5 +97,6 @@ void func_801FEE94(func_801FEE94_Struct *arg0, s32 arg1) {
     }
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801FEAE0/D_80219230.s")
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801FEAE0/func_801FEF20.s")
 

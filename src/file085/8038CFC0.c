@@ -91,6 +91,28 @@ void func_8038D830(struct func_8038D830_Struct *arg0, s32 arg1) {
     func_800058DC(arg0, (void *)func_8038D8A8);
 }
 
+#define D_801BBBF0 D_801BBBF0__func_8038D8A8
+#define D_8038D8A8 D_8038D8A8__func_8038D8A8
+#define func_8022AB58 func_8022AB58__func_8038D8A8
+#define func_8022B3E0 func_8022B3E0__func_8038D8A8
+#define func_8038D744_Struct func_8038D744_Struct__func_8038D8A8
+struct func_8038D744_Struct {
+    u8 pad0[0x30];
+    u32 unk30;
+    u32 unk34;
+    u32 unk38;
+    u8 pad1[0x92 - 0x3C];
+    u8 unk92;
+    u8 unk93;
+    u8 pad2[0x9A - 0x94];
+    s16 unk9A;
+    u8 pad3[0xA1 - 0x9C];
+    u8 unkA1;
+    u8 unkA2;
+    u8 pad4[0x2D8 - 0xA3];
+    u8 unk2D8;
+    u8 unk2D9;
+};
 
 struct func_8038D8A8_Bits30 {
     u32 a : 3;
@@ -183,6 +205,11 @@ void func_8038D8A8(struct func_8038D8A8_Self *arg0, s32 arg1) {
         func_8038D744((struct func_8038D744_Struct *)arg0, (struct func_8038D744_Struct *)a3, (struct func_8038D744_Struct *)a2);
     }
 }
+#undef D_801BBBF0
+#undef D_8038D8A8
+#undef func_8022AB58
+#undef func_8022B3E0
+#undef func_8038D744_Struct
 
 /* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
 

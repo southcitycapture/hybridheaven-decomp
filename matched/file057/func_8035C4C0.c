@@ -6,6 +6,11 @@ typedef struct func_8035C4C0_Struct {
     u16 unk4E;
 } func_8035C4C0_Struct;
 
+extern s32 D_801BBCCC;
+extern s32 D_8038CC10;
+extern void *D_8038CC14;
+extern void func_8013AE20();
+extern void func_800058DC();
 extern void func_80222708();
 
 void func_8035C4C0(s32 arg0, s32 arg1) {

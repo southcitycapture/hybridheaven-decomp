@@ -1,11 +1,12 @@
 #include "common.h"
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801E0040/D_801E3FB0.s")
+
 
 extern void func_8001F74C();
 extern void func_8001F75C();
 extern void func_80005700();
 extern u16 D_801BCAE0;
-extern f64 D_801E4008;
 
 typedef struct func_801E0040_StructB {
     u8 pad0[4];
@@ -45,7 +46,7 @@ void func_801E0040(func_801E0040_StructA *arg0, func_801E0040_StructC **arg1) {
         return;
     }
     func_8001F75C();
-    k = D_801E4008;
+    k = 0.01;
     (*arg1)->p->f4 = (*arg1)->p->f4 + arg0->f40;
     (*arg1)->p->f8 = (*arg1)->p->f8 + arg0->f44;
     (*arg1)->p->fC = (*arg1)->p->fC + arg0->f48;

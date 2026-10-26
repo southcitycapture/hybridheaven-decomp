@@ -1,4 +1,11 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_801FCB44_Struct {
+    u8 pad[0x18];
+    u8 *unk18;
+} func_801FCB44_Struct;
+extern struct func_801FCB44_Struct *D_8038D8D0;
+s32 func_801FC970(s32 arg0, s32 arg1);
+
 /* starting point: func_801FC970 (file028), whose assembly is 97% the same as this function's */
 
 extern s32 func_801C0B8C(u64);

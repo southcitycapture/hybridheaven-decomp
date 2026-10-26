@@ -1,4 +1,11 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_801FCB44_Struct {
+    u8 pad[0x18];
+    u8 *unk18;
+} func_801FCB44_Struct;
+extern struct func_801FCB44_Struct *D_8038D8D0;
+extern s32 func_801C0B8C(u64);
+
 
 struct func_801FCBF8_StructData {
     u8 pad0[8];

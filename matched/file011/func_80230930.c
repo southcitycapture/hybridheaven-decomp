@@ -1,4 +1,12 @@
-#include "context.h"
+#include "common.h"
+u16 func_80230500(s32 arg0, u8 arg1);
+struct func_80231B28_Struct {
+    u8 pad0[0x2D8];
+    u8 unk2D8;
+    u8 pad1[0x2DB - 0x2D9];
+    u8 unk2DB;
+};
+
 
 struct func_80230930_Inner {
     u8 pad0[4];

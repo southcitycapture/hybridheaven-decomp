@@ -96,7 +96,9 @@ void func_8038D7B8(struct func_8038D7B8_Struct *arg0, s32 arg1) {
 }
 #undef func_8038D830
 
-
+#define D_801BBBF0 D_801BBBF0__func_8038D830
+#define func_8022AB58 func_8022AB58__func_8038D830
+#define func_8022B3E0 func_8022B3E0__func_8038D830
 extern s32 func_8022AB58();
 extern u8 func_8022B3E0[];
 
@@ -188,6 +190,9 @@ s32 arg1;
         }
     }
 }
+#undef D_801BBBF0
+#undef func_8022AB58
+#undef func_8022B3E0
 
 void *func_8022AAA8(s32 arg0, struct func_8022AAA8_Struct *arg1);
 

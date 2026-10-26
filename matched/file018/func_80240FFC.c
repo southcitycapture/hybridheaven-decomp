@@ -1,7 +1,9 @@
-#include "context.h"
+#include "common.h"
+extern void func_800058DC(s32, void *);
+
 extern void func_80241078();
 
-extern f64 D_8025BE08;
+extern const f64 D_8025BE08;
 
 typedef struct func_80240FFC_Struct {
     u8 pad0[0x18];

@@ -94,6 +94,10 @@ void func_8038D6AC(struct func_8038D6AC_Struct *arg0, s32 arg1) {
     func_800058DC(arg0, (void *)func_8038D724);
 }
 
+#define D_801BBBF0 D_801BBBF0__func_8038D724
+#define D_8038D724 D_8038D724__func_8038D724
+#define func_8022AB58 func_8022AB58__func_8038D724
+#define func_8022B3E0 func_8022B3E0__func_8038D724
 
 typedef struct {
     u8 pad0[0xC];
@@ -188,6 +192,10 @@ void func_8038D724(func_8038D724_StructA *arg0, s32 arg1) {
         func_8038D5F8(arg0, a, b);
     }
 }
+#undef D_801BBBF0
+#undef D_8038D724
+#undef func_8022AB58
+#undef func_8022B3E0
 
 /* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
 

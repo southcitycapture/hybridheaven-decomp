@@ -19,7 +19,10 @@ s32 func_8002B484(u16 *arg0, u16 *arg1, u16 *arg2)
   return 0;
 }
 
-
+#define func_8002BF90 func_8002BF90__func_8002B580
+#define func_80032D40 func_80032D40__func_8002B580
+#define func_80033E10 func_80033E10__func_8002B580
+#define func_80034060 func_80034060__func_8002B580
 extern s32 func_8002BF90(void);
 extern s32 func_80032D40(void *, s32);
 extern s32 func_80033E10(s32, s32, u16, void *, s32);
@@ -113,8 +116,15 @@ s32 func_8002B580(func_8002B580_Struct2 *arg0, func_8002B580_Struct *arg1, func_
     }
     return 0;
 }
+#undef func_8002BF90
+#undef func_80032D40
+#undef func_80033E10
+#undef func_80034060
 
 
+extern s32 func_80032D40(void *, s32);
+extern s32 func_80033E10(s32, s32, u16, void *, s32);
+extern s32 func_80034060(s32, s32, s32, void *);
 
 s32 func_8002B8D0(void *arg0, u16 *arg1) {
     u16 sp58[4];
@@ -171,6 +181,19 @@ loop_12:
     return 0;
 }
 
+#define func_8002B580_Struct func_8002B580_Struct__func_8002BA34
+#define func_800317D0 func_800317D0__func_8002BA34
+typedef struct func_8002B580_Struct {
+    s32 unk0;
+    s32 unk4;
+    u64 unk8;
+    u64 unk10;
+    u16 unk18;
+    u8 unk1A;
+    u8 unk1B;
+    u16 unk1C;
+    u16 unk1E;
+} func_8002B580_Struct;
 extern void func_800317D0(void *, void *, s32);
 typedef struct func_8002BA34_Struct {
     s32 unk0;
@@ -259,6 +282,9 @@ L:
     }
     return 0;
 }
+#undef func_8002B580
+#undef func_8002B580_Struct
+#undef func_800317D0
 
 
 typedef struct func_8002BBE0_Struct {

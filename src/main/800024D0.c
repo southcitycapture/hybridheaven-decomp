@@ -381,6 +381,7 @@ void func_80003550(u8 arg0, void *arg1) {
     S->b[arg0][i] = 0;
     S->c[arg0] = 0;
 }
+#undef S
 
 
 typedef struct {
@@ -390,6 +391,7 @@ typedef struct {
 } func_800035C4_Struct;
 
 extern void func_800033CC(u8, void *);
+extern void func_80003550(u8, void *);
 
 void func_800035C4(u8 arg0, func_800035C4_Struct *arg1) {
     u8 status;

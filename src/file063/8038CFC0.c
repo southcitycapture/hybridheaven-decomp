@@ -309,7 +309,41 @@ void func_8038D684(struct func_8038D684_Struct *arg0, s32 arg1) {
 }
 #undef func_8038D704
 
+#define D_8038D704 D_8038D704__func_8038D704
+#define func_8022AB58 func_8022AB58__func_8038D704
+#define func_8022B3E0 func_8022B3E0__func_8038D704
+#define func_8038CFF4_StructP func_8038CFF4_StructP__func_8038D704
 #define func_8038D704 D_8038D704
+typedef struct func_8038CFF4_StructP {
+    u8 pad0[0x6];
+    s16 unk6;
+    u8 pad8[0x30 - 0x8];
+    union {
+        struct {
+            u32 bf0 : 3;
+            u32 bf3 : 4;
+            u32 bf7 : 2;
+            u32 bf9 : 2;
+            u32 bf11 : 2;
+            u16 bf13 : 3;
+            u32 bf16 : 6;
+            u32 bf22 : 2;
+            u32 bf24 : 3;
+            u32 bf27 : 2;
+            u32 bf29 : 3;
+        } b;
+        struct {
+            u16 h30;
+            u8 unk32;
+            u8 unk33;
+        } c;
+    } u30;
+    u8 pad34[0x38 - 0x34];
+    u32 bf38 : 1;
+    u32 bf38_1 : 31;
+    u8 pad3C[0x2FC - 0x3C];
+    u8 unk2FC;
+} func_8038CFF4_StructP;
 #undef func_8038D704
 extern u8 D_8038D704[];
 extern s32 func_8022AB58();
@@ -405,6 +439,10 @@ void func_8038D704(func_8038D704_StructA *arg0, s32 arg1) {
     }
 }
 #undef CALL
+#undef D_8038D704
+#undef func_8022AB58
+#undef func_8022B3E0
+#undef func_8038CFF4_StructP
 
 /* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
 
@@ -468,3 +506,8 @@ void func_8038D940(struct func_8038D940_StructA *arg0, struct func_8038D940_Stru
   return;
 }
 
+
+/* Original readonly objects; named loads retain their original addresses. */
+static const unsigned char rodata_8038CFC0[] = {
+    0xB9, 0xCD, 0xB3, 0xAB, 0xBB, 0xCF, 0x0A, 0x00, 0x40, 0x41, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
+};

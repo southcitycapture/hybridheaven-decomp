@@ -1,4 +1,39 @@
-#include "context.h"
+#include "common.h"
+#include "common.h"
+typedef struct func_8035F544_Copy { s32 a; s32 b; s32 c; } func_8035F544_Copy;
+typedef struct func_8035CDA8_Obj { s32 a; } func_8035CDA8_Obj;
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+void func_800058DC(void *arg0, void *arg1);
+extern void func_8022C0A0(s32 arg0);
+typedef struct func_80360020_Struct0 {
+    u8 pad[0x36];
+    u16 unk36;
+} func_80360020_Struct0;
+typedef struct func_80360020_Struct1 {
+    u8 pad[0x2D9];
+    u8 unk2D9;
+} func_80360020_Struct1;
+void func_80360020(func_80360020_Struct0 *arg0, func_80360020_Struct1 *arg1);
+extern void func_80360818(s32 arg0, s32 arg1);
+typedef struct func_80361B50_Struct {
+    u8 pad0[0x2DE];
+    u8 unk2DE;
+    u8 pad1[0x2EC - 0x2DF];
+    f32 unk2EC;
+} func_80361B50_Struct;
+void func_80361B50(s32 arg0, s32 arg1, func_80361B50_Struct *arg2);
+typedef struct func_8036265C_Inner {
+    u8 pad[0x7C];
+    u8 *unk7C;
+} func_8036265C_Inner;
+typedef struct func_8036265C_Arg {
+    u8 pad[0x5C];
+    func_8036265C_Inner *unk5C;
+} func_8036265C_Arg;
+void func_8036265C(func_8036265C_Arg *arg0, s32 arg1);
+
 
 typedef struct func_80364174_StructInner {
     u8 pad0[0x80];
@@ -32,12 +67,12 @@ void func_80364174(func_80364174_StructArg *arg0, s32 arg1) {
     func_80364174_StructA *b;
     func_80364174_StructInner *sp24;
 
-    if ((void *)arg0 == (void *)GL->unkDC) {
-        a = (func_80364174_StructA *)D_801BC03C;
+    if ((void *)arg0 == ((void **)(D_801BBBF0 + 0xDC))[0]) {
+        a =(func_80364174_StructA *)D_801BC03C;
     } else {
         a = (func_80364174_StructA *)D_801BC3D8;
     }
-    if ((void *)arg0 != (void *)GL->unkDC) {
+    if ((void *)arg0 != ((void **)(D_801BBBF0 + 0xDC))[0]) {
         b = (func_80364174_StructA *)D_801BC03C;
     } else {
         b = (func_80364174_StructA *)D_801BC3D8;
@@ -64,10 +99,10 @@ void func_80364174(func_80364174_StructArg *arg0, s32 arg1) {
             a->unk2F4 = 0.0f;
         } else if (b->unk2D8 != 0xD || b->unk2DB == 0) {
             void *v;
-            if ((void *)arg0 == (void *)GL->unkDC) {
-                v = GL->unkEC;
+            if ((void *)arg0 == ((void **)(D_801BBBF0 + 0xDC))[0]) {
+                v = ((void **)(D_801BBBF0 + 0xEC))[0];
             } else {
-                v = GL->unkDC;
+                v = ((void **)(D_801BBBF0 + 0xDC))[0];
             }
             func_800058DC(v, func_80364D2C);
         }

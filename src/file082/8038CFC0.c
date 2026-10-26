@@ -317,6 +317,9 @@ void func_8038D6DC(struct func_8038D6DC_Struct *arg0, void *arg1) {
 }
 #undef func_8038D76C
 
+#define D_8038D76C D_8038D76C__func_8038D76C
+#define func_8022AB58 func_8022AB58__func_8038D76C
+#define func_8022B3E0 func_8022B3E0__func_8038D76C
 
 struct func_8038D76C_StructObj {
     u8 pad0[0x0C];
@@ -341,7 +344,6 @@ struct func_8038D76C_StructB {
     u8 pad0[0x30];
     s32 unk30;
 };
-
 extern s32 func_8022AB58(void *, void *, void *);
 extern u8 func_8022B3E0[];
 extern u8 D_8038D76C[];
@@ -408,6 +410,9 @@ void func_8038D76C(struct func_8038D76C_StructObj *arg0, void *arg1) {
         func_8038D5F8(arg0, var_a1, var_a2);
     }
 }
+#undef D_8038D76C
+#undef func_8022AB58
+#undef func_8022B3E0
 
 void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
 

@@ -71,3 +71,14 @@ are simply skipped; after HQ's next publish you'll see the outcome in `queue/con
 - `make setup` regenerates a few tracked files (for example `undefined_funcs_auto.txt`); don't commit those.
 - The cost printed is the API-equivalent figure Claude Code reports. On a subscription you pay nothing extra; the runs
   count toward your plan's usage.
+# Per-file rodata layout
+
+After updating to the rodata switch-over revision, rerun `contrib/setup.sh` before
+starting more work. This regenerates local assembly, file boundaries and kept-block
+recipes, then verifies the complete ROM. Do not reuse an older `asm/` tree or an old
+worker's `context.h` with the new layout. Function identities are `(segment, name)`;
+use a fresh worker directory so address reuse in overlays is unambiguous.
+
+`contrib/work.sh` uses the checkout's shared in-file integration check. Jump tables
+and `switch` are allowed only where the generated prompt's file-layout policy says
+so. A standalone MATCH still needs an IN-FILE MATCH before submission/integration.

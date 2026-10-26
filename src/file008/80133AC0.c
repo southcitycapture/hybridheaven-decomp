@@ -12,6 +12,7 @@ void func_80133AC0(s32 arg0, s32 arg1) {
     }
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/80133AC0/D_8018D780.s")
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80133AC0/func_80133B00.s")
 
 

@@ -1,5 +1,12 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_8008DA88[];
+extern u8 D_801BBBF0[];
+void func_800058DC(void *arg0, void *arg1);
+extern void func_800112B0(s32, s32, s32, void *);
+
 typedef struct func_8035F8D8_Struct { u8 pad[0x5C]; s32 unk5C; } func_8035F8D8_Struct;
+extern void func_8035D660();
+extern void func_8035DF74();
 void func_8035F8D8(func_8035F8D8_Struct *arg0, s32 arg1) {
     s32 pad;
     s32 sp28;

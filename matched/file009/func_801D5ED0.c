@@ -19,6 +19,10 @@ typedef struct func_801D5ED0_Struct {
 } func_801D5ED0_Struct;
 
 extern u8 D_801CD500(s32, u8, f32);
+extern void func_800058DC(void *arg0, void *arg1);
+extern void func_8012D7A8();
+extern void func_801CE5B0();
+extern u8 func_801CE898[];
 
 void func_801D5ED0(func_801D5ED0_Struct *arg0, func_801D5ED0_StructB **arg1) {
     s32 i;
@@ -34,7 +38,7 @@ void func_801D5ED0(func_801D5ED0_Struct *arg0, func_801D5ED0_StructB **arg1) {
         }
     }
     if (arg0->unk90 < arg0->unk92++ || (arg0->unkC->unk4C & 0x8000)) {
-        func_801CE5B0((void *)arg0, (s32 *)arg1);
-        func_800058DC(arg0, (s32)func_801CE898);
+        func_801CE5B0(arg0, arg1);
+        func_800058DC(arg0, func_801CE898);
     }
 }

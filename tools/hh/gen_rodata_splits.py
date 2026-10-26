@@ -13,11 +13,18 @@ functions using two consecutive groups sit in one C file, that file is really tw
                                       and new text splits in tools/hh/file_splits.json (marked in rodata_text_splits.json)
 """
 import glob, json, re, sys, collections
-SEGS_ARG = sys.argv[1:]
+PRESERVE_TEXT = "--preserve-text" in sys.argv
+SEGS_ARG = [a for a in sys.argv[1:] if a != "--preserve-text"]
 sys.argv = ["x", "none"]; sys.path.insert(0, "tools/hh"); import srcbuild as S
 img = S.IMG
 REF = re.compile(r"\b(lwc1|ldc1|lw|lh|lhu|lb|lbu|ld|addiu|sw|sh|sb|sd|swc1|sdc1)\s+(?:[^,\n]+,\s*)+%lo\(((?:D|jtbl)_([0-9A-F]{8}))(?:\+(0x[0-9A-F]+))?\)")
 STORES = {"sw", "sh", "sb", "sd", "swc1", "sdc1"}
+
+def jump_tables(text):
+    # Monolithic splat data has adjacent dlabels without enddlabel directives.
+    # Stop at either boundary; otherwise a table swallows later readonly objects.
+    return re.finditer(r"^dlabel (jtbl_([0-9A-F]{8}))\n(.*?)(?=^(?:enddlabel|dlabel|\.section)\b|\Z)",
+                       text, re.S | re.M)
 
 def yaml_segments():
     out, cur = {}, None
@@ -31,6 +38,13 @@ def yaml_segments():
         if m and "vram" in out[cur]: out[cur]["data"] = out[cur]["vram"] + int(m.group(1), 16) - out[cur]["start"]
         m = re.match(r"\s+- \{ type: bss, vram: 0x([0-9A-F]+)", l)
         if m: out[cur]["bss"] = int(m.group(1), 16)
+    # A readonly tail exists even when the original object has no BSS. `bss`
+    # here is the end of initialized bytes, not a requirement for a BSS section.
+    manifest = json.load(open("build/expanded.json"))
+    for f in manifest["files"]:
+        seg = "file%03d" % f["id"]
+        if seg in out and "exp_len" in f:
+            out[seg].setdefault("bss", f["vram"] + f["exp_len"])
     return {k: v for k, v in out.items() if "data" in v and "bss" in v}
 
 def analyse(seg, sv):
@@ -49,11 +63,11 @@ def analyse(seg, sv):
                 if m.group(1) in STORES: stored.add(a)
                 if fn in idx: owners[a].add(idx[fn])
                 if m.group(1) in ("lwc1", "ldc1"): late[a] = 4 if m.group(1) == "lwc1" else 8
-            for m in re.finditer(r"dlabel (jtbl_([0-9A-F]{8}))\n(.*?)enddlabel", t, re.S):
+            for m in jump_tables(t):
                 late[int(m.group(2), 16)] = 4 * len(re.findall(r"\.word", m.group(3))); jtbls.add(int(m.group(2), 16))
     # jump tables still in the segment's data file (first pass, before splat migrates them into functions)
     for p in glob.glob("asm/data/%s/*.s" % seg) + glob.glob("asm/data/*.s"):
-        for m in re.finditer(r"dlabel (jtbl_([0-9A-F]{8}))\n(.*?)enddlabel", open(p).read(), re.S):
+        for m in jump_tables(open(p).read()):
             a = int(m.group(2), 16)
             if sv["data"] <= a < sv["bss"]: late.setdefault(a, 4 * len(re.findall(r"\.word", m.group(3)))); jtbls.add(a)
     if not late: return None
@@ -96,6 +110,46 @@ def file_of_index(ents, splits, j):
     off = ents[j][2]; st = max(s for s in splits if s <= off)
     return st
 
+def preserved_layout(seg, sv, analysis):
+    """Keep frozen text units, including units containing multiple original pools.
+
+    A later reference back into an earlier pool is shared data, not ownership.
+    End each unit after its last literal/table, rounded to IDO's object alignment.
+    Interleaved readonly objects are retained explicitly by the source instead
+    of demanding new text boundaries that could invalidate frozen C declarations.
+    """
+    tables = {}
+    paths = glob.glob("asm/nonmatchings/%s/*/func_*.s" % seg)
+    for p in paths + glob.glob("asm/data/%s/*.s" % seg) + glob.glob("asm/data/*.s"):
+        for m in jump_tables(open(p).read()):
+            tables[int(m[2], 16)] = 4 * len(re.findall(r"\.word", m[3]))
+    cursor = analysis[0][0][0]
+    files = {}
+    for cf in sorted({e[-1] for e in analysis[2]}, key=lambda c: int(c, 16)):
+        ends = []
+        for p in glob.glob("asm/nonmatchings/%s/%s/func_*.s" % (seg, cf)):
+            text = open(p).read()
+            for m in REF.finditer(text):
+                a = int(m[3], 16) + (int(m[4], 16) if m[4] else 0)
+                if cursor <= a < sv["bss"] and m[1] in ("lwc1", "ldc1"):
+                    ends.append(a + (8 if m[1] == "ldc1" else 4))
+            for m in re.finditer(r"%lo\(jtbl_([0-9A-F]{8})\)", text):
+                a = int(m[1], 16)
+                if cursor <= a < sv["bss"]:
+                    if a not in tables: raise ValueError("unknown jump table: " + m[1])
+                    ends.append(a + tables[a])
+        if ends:
+            files[cf] = "%08X" % cursor
+            cursor = (max(ends) + 15) & ~15
+    # A final string-only object is independently placeable from its regular refs.
+    for (s, e), users in zip(analysis[0], analysis[1]):
+        if s >= cursor and users:
+            cf = analysis[2][min(users)][-1]
+            if cf not in files: files[cf] = "%08X" % cursor
+            cursor = e
+    return {"start": "%08X" % analysis[0][0][0], "files": files, "orphans": [],
+            "preserve_text": True}
+
 if __name__ == "__main__":
     segs = yaml_segments()
     fs = json.load(open("tools/hh/file_splits.json"))
@@ -106,6 +160,10 @@ if __name__ == "__main__":
         if seg not in segs: continue
         r = analyse(seg, segs[seg])
         if not r: continue
+        if PRESERVE_TEXT or out.get(seg, {}).get("preserve_text"):
+            out[seg] = preserved_layout(seg, segs[seg], r)
+            print("%s: %d readonly units, frozen text boundaries preserved" % (seg, len(out[seg]["files"])))
+            continue
         groups, gu, ents, new, r_jtbl = r
         sp = sorted(set(int(x, 16) for x in fs.get(seg, [])) | set(new))
         fs[seg] = ["0x%X" % x for x in sp]

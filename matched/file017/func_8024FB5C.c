@@ -29,6 +29,11 @@ typedef struct func_8024FB5C_Args {
 } func_8024FB5C_Args;
 
 extern void func_801339D0();
+extern s32 func_80133A24(s32);
+extern s32 func_80126944(void);
+extern void func_801C3B2C(s32);
+extern void func_801C3B10(s32);
+extern void func_801FBB30(void);
 extern void func_8024FC74();
 
 void func_8024FB5C(func_8024FB5C_Ctx *arg0, func_8024FB5C_Args *arg1) {

@@ -32,12 +32,14 @@ struct func_802476F0_StructParams {
     s16 duration;
 };
 
-void func_80247930();
+extern f32 func_8001EB64();
+extern f32 func_8001EAD0();
+extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 
-void func_802476F0(struct func_802476F0_StructObj *arg0,struct func_802450B0_StructN **arg1) {
+void func_802476F0(struct func_802476F0_StructObj *arg0,struct func_80246290_StructN **arg1) {
     f32 temp_fv0;
-    struct func_802450B0_StructT *temp_v0;
-    struct func_802450B0_StructT *temp_v0_2;
+    struct func_80246290_StructB *temp_v0;
+    struct func_80246290_StructB *temp_v0_2;
     struct func_802476F0_StructTransform *temp_v0_3;
     struct func_802476F0_StructParams params;
     s32 one;

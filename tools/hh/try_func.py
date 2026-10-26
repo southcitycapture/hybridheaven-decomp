@@ -62,7 +62,7 @@ def func_bytes(obj, name):
     return data[start:start + size], {o - start: t for o, t in relocs.items() if start <= o < start + size}
 
 MASK = {2: 0, 4: 0xFC000000, 5: 0xFFFF0000, 6: 0xFFFF0000}   # R_MIPS_32, 26, HI16, LO16
-# an optional __<function> suffix is srcbuild's per-snippet private alias (reconcile_frozen.private_names): same address
+# an optional __<function> suffix is srcbuild's per-snippet private alias (srcbuild.private_names): same address
 ADDR_NAME = re.compile(r"^(?:func_|D_|B_|jtbl_)([0-9A-F]{8})(?:__\w+)?$|^\.L([0-9A-F]{8})$")
 
 def _named_symbols():
@@ -96,9 +96,10 @@ def obj_rodata_size(obj):
         s = ELFFile(fh).get_section_by_name(".rodata")
         return s["sh_size"] if s is not None else 0
 
-def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False):
+def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False, want_file=False):
     """Link obj so `name` sits at `vram`, resolving every address-named symbol (func_XXXXXXXX,
     D_XXXXXXXX, ...) to the address in its name, and return the function's final bytes.
+    want_file returns the whole linked (.text, .rodata), including asm neighbours.
     Returns None if a referenced symbol has no address in its name (only the masked compare is possible)."""
     del UNRESOLVED[:]
     _, syms, undef, _ = _parsed(obj)
@@ -120,6 +121,16 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
         ro = ["--section-start=.rodata=0x%X" % rodata] if rodata is not None else []
         r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-Ttext=0x%X" % base, "-e", "0", "--no-check-sections",
                             "-z", "muldefs"] + ro + ["-o", out, obj] + defs, capture_output=True, text=True)
+        if r.returncode:
+            # The default MIPS linker script can crash on overlays even without an explicitly placed .rodata.
+            # Use just the game's section placement, without the default script's segment/stub layout.
+            script = obj + ".ld"
+            with open(script, "w") as fh:
+                ro_addr = " 0x%X" % rodata if rodata is not None else ""
+                fh.write("SECTIONS { .text 0x%X : { *(.text) } .rodata%s : { *(.rodata) } "
+                         "/DISCARD/ : { *(.reginfo) *(.MIPS.abiflags) *(.pdr) *(.mdebug*) *(.comment) } }\n" % (base, ro_addr))
+            r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-T", script, "-e", "0", "--no-check-sections",
+                                "-z", "muldefs", "-o", out, obj] + defs, capture_output=True, text=True)
         if r.returncode: return None
         with open(out, "rb") as fh:
             e = ELFFile(fh); t = e.get_section_by_name(".text"); rs = e.get_section_by_name(".rodata")
@@ -135,6 +146,7 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
     got = link(base if base is not None else vram & ~0xF)   # base: where the object's .text really starts
     if not got: return None
     v, addr, data, rodata_bytes = got
+    if want_file: return data, rodata_bytes
     n = size or len(data) - (v - addr)
     if want_rodata: return data[v - addr:v - addr + n], rodata_bytes
     return data[v - addr:v - addr + n]

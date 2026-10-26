@@ -1,5 +1,6 @@
 #include "common.h"
 
+#define D_801BBBF0 D_801BBBF0__func_80376300
 extern u8 D_801BBBF0[];
 
 struct func_80376300_Struct2 { u8 pad[0x12]; s16 unk12; };
@@ -30,6 +31,10 @@ s32 func_80376300(s32 arg0) {
     }
     return 0;
 }
+#undef G
+#undef WRAP
+#undef ABS
+#undef D_801BBBF0
 
 extern u8 D_801842A0[];
 
@@ -130,6 +135,7 @@ void func_803764CC(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80376300/func_80376708.s")
 
+extern u8 D_801BBBF0[];
 
 typedef struct func_803767F4_StructEntry {
     u8 pad[6];

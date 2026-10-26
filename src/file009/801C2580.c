@@ -1,5 +1,7 @@
 #include "common.h"
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801C2580/D_801E2710.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801C2580/func_801C2580.s")
 
 struct func_801C2820_S2C { u8 pad0[4]; f32 unk4; u8 pad8[4]; f32 unkC; u8 pad10[2]; s16 unk12; };
@@ -112,6 +114,7 @@ void func_801C2A74(struct func_801C2E20_Struct0 *arg0, s32 arg1) {
     }
 }
 
+#define func_801C2BDC func_801C2BDC__func_801C2B00
 
 extern void func_8013A1B4();
 extern void func_801C2BDC();
@@ -131,6 +134,7 @@ void func_801C2B00(struct func_801C2E20_Struct0 *arg0, s32 arg1) {
         func_800058DC(arg0, func_801C2BDC);
     }
 }
+#undef func_801C2BDC
 
 
 

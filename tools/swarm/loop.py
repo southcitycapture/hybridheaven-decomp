@@ -22,7 +22,7 @@ D = "queue/loop"; os.makedirs(D, exist_ok=True)
 DEFAULTS = dict(budget=0.5, batch=60, parallel=10, publish_hours=6, hard_cap=95, harness2=False, diag=False,
                 worker_flags="", big_batch=10, big_minutes=40, model="claude-haiku-5-5", five_cap=90,
                 public_dir=os.path.expanduser("~/work/hybridheaven-decomp"), step_timeout_min=150,
-                permute_minutes=20, permute_min_aligned=0.90, min_picks=20, hold_hours=12)
+                permute_minutes=20, permute_min_aligned=0.90, min_picks=20, hold_hours=12, finish_bonus=0)
 WEEK = 7 * 86400
 
 def log(*a): print(dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%MZ"), *a, flush=True)
@@ -65,28 +65,15 @@ def five_hour():
 
 def unclaimed(B, limit=None, hold_hours=12):
     """Drop picks another lane holds (an open queue's functions.txt: OpenCode free, ChatGPT Plus) or a strong model
-    already tried (Sonnet, Opus, gpt-6.1-sol): the picker doesn't know about either. A queue holds its functions only
+    already tried (Sonnet, Opus, gpt-6.1-sol). Bonus picking also prefilters these; this postfilter remains in place.
+    A queue holds its functions only
     while it is open (no DONE/STOP) and active (touched in the last `hold_hours`): forgotten queues starved the picks
     (cycle 29 kept 11 of 2,700). Keys are (func, seg): overlays share addresses, so the same name lives in several."""
-    held, tried = set(), set()
-    for q in glob.glob("queue/*/functions.txt"):
-        b = q.split("/")[1]; d = "queue/" + b
-        if b == B or os.path.exists(d + "/DONE") or os.path.exists(d + "/STOP"): continue
-        last = max(os.path.getmtime(x) for x in glob.glob(d + "/*") if os.path.isfile(x))
-        if time.time() - last > 3600 * hold_hours: continue
-        held |= {tuple(l.split()[:2]) for l in open(q) if len(l.split()) >= 2}
-    try:      # outside contributors' assigned, unfinished tasks (contrib/tasks.json, tools/hh/hq_tasks.py)
-        held |= {(r["func"], r["segment"]) for r in json.load(open("contrib/tasks.json"))["tasks"]
-                 if r.get("assigned") and r.get("status") != "done"}
-    except (OSError, ValueError, KeyError, TypeError): pass
-    for p in glob.glob("queue/*/results.jsonl"):
-        for l in open(p):
-            try: r = json.loads(l)
-            except ValueError: continue
-            if r.get("verified") != "ERROR" and re.search(r"sonnet|opus|gpt-6\.1-sol", str(r.get("model", ""))):
-                tried.add((r.get("func"), r.get("segment")))
+    sys.path.insert(0, "tools/hh")
+    from pick_filters import unavailable
+    excluded = unavailable(B, hold_hours)
     f = "queue/%s/functions.txt" % B
-    keep = [l for l in open(f) if len(l.split()) >= 2 and tuple(l.split()[:2]) not in held | tried][:limit]
+    keep = [l for l in open(f) if len(l.split()) >= 2 and tuple(l.split()[:2]) not in excluded][:limit]
     open(f, "w").writelines(keep); return len(keep)
 
 def unintegrated():
@@ -275,9 +262,16 @@ def publish(cfg, st):
 def cycle(cfg, st):
     n = st.get("cycle", 0) + 1; B = "loop%04d" % n
     clean_start(); reg0 = registry()
+    # Registry membership can survive a regression from C back to ASM. Compare
+    # actual identities too, using the same layout-independent switch-over audit.
+    sys.path.insert(0, 'tools/hh')
+    import merge_rodata
+    c0 = merge_rodata.functions(merge_rodata.sources(None), load('tools/hh/libultra.json', {}))
     w0, _ = usage()
     # pick from a wider pool: most top picks are held by another lane or already tried by a strong model (unclaimed)
-    code, out = sh(".venv/bin/python tools/hh/pick.py %s -n %d --kind all --allow-switch" % (B, 6 * cfg["batch"]), 20)
+    bonus = float(cfg.get("finish_bonus", 0))
+    finish_flags = " --finish-bonus %g --loop-eligible --hold-hours %g" % (bonus, cfg["hold_hours"]) if bonus else ""
+    code, out = sh(".venv/bin/python tools/hh/pick.py %s -n %d --kind all --allow-switch%s" % (B, 6 * cfg["batch"], finish_flags), 20)
     if code: log("pick failed:", out[-400:]); return False
     log("cycle", n, "picked:", out.strip().splitlines()[2][:150] if len(out.strip().splitlines()) > 2 else "")
     kept = unclaimed(B, cfg["batch"], cfg["hold_hours"])
@@ -330,8 +324,12 @@ def cycle(cfg, st):
     if lost:                   # srcbuild all moves regressed functions out of the registry; the ROM still matches then
         revert("cycle %d would lose %d registered functions (e.g. %s)" % (n, len(lost), ", ".join(sorted(lost)[:5])), st)
         return False
+    c1 = merge_rodata.functions(merge_rodata.sources(None), load('tools/hh/libultra.json', {}))
+    if c0 - c1:
+        revert('cycle %d would lose C identities: %s' % (n, sorted(c0 - c1)), st)
+        return False
     st.setdefault("history", []).append(dict(cycle=n, batch=B, agent=wins, cost=round(cost, 3), registry=[len(reg0), len(reg1)],
-                                             meter=[w0, w1]))
+                                             meter=[w0, w1], functions_in_c=[len(c0), len(c1)]))
     st["progress"] = progress()
     sh("git add -A matched matched_rejected src queue dashboard/history.jsonl && git commit -qm 'Loop cycle %d: %d agent matches; %s\n\n"
        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>'" % (n, wins, st["progress"]))
@@ -388,6 +386,8 @@ def main():
                              shell=True, env=ENV, start_new_session=True)
         with open(D + "/cycle.lock", "w") as lk:
             fcntl.flock(lk, fcntl.LOCK_EX)
+            if os.path.exists(D + '/PAUSE'):
+                continue  # maintenance may have paused us while we waited for the cycle lock
             status(cfg, st, "running cycle %d" % (st.get("cycle", 0) + 1))
             ok = cycle(cfg, st)
             save(D + "/state.json", st)

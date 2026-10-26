@@ -1,4 +1,44 @@
-#include "context.h"
+#include "common.h"
+extern s32 D_801BBCCC;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+void func_800058DC(void *arg0, void *arg1);
+typedef struct func_8035F544_Copy { s32 unk0; s32 unk4; s32 unk8; } func_8035F544_Copy;
+extern s32 func_80011140(s32, s32, func_8035F544_Copy, s32);
+extern s32 func_80224AC4();
+extern s32 func_80224F5C(s32, s32);
+typedef struct func_80360EF8_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80360EF8_Struct;
+extern void func_802256E4(func_80360EF8_Struct *, s32, s32);
+void *func_8035FF0C(u8 arg0);
+extern void *func_8035FFA8(void *arg0);
+typedef struct func_80360588_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80360588_Struct;
+void func_80360400(struct func_80360588_Struct *arg0, s32 arg1, s32 arg2);
+typedef struct func_8036104C_Node {
+    u8 pad0[6];
+    s16 unk6;
+    struct func_8036104C_Node *unk8;
+} func_8036104C_Node;
+typedef struct func_8036104C_Sub {
+    u8 pad0[0x7C];
+    func_8036104C_Node *unk7C;
+    s16 unk80;
+    u16 unk82;
+} func_8036104C_Sub;
+typedef struct func_8036104C_Arg {
+    u8 pad0[0x36];
+    u16 unk36;
+    u8 pad1[0x5C - 0x38];
+    func_8036104C_Sub *unk5C;
+} func_8036104C_Arg;
+
 
 
 typedef struct func_8036104C_Tbl {

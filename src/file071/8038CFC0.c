@@ -72,6 +72,10 @@ void func_8038D74C(struct func_8038D74C_Struct *arg0, void *arg1) {
 }
 #undef func_8038D7D4
 
+#define D_801BBBF0 D_801BBBF0__func_8038D7D4
+#define D_8038D7D4 D_8038D7D4__func_8038D7D4
+#define func_8022AB58 func_8022AB58__func_8038D7D4
+#define func_8022B3E0 func_8022B3E0__func_8038D7D4
 extern u8 D_8038D7D4[];
 #define func_8038D7D4 D_8038D7D4
 #undef func_8038D7D4
@@ -172,6 +176,10 @@ void func_8038D7D4(func_8038D7D4_StructO *arg0, s32 arg1) {
     }
 }
 #undef CALL
+#undef D_801BBBF0
+#undef D_8038D7D4
+#undef func_8022AB58
+#undef func_8022B3E0
 
 
 struct func_8038D9D8_Arg0 {

@@ -1,3 +1,7 @@
+typedef struct func_8024148C_StructArg { unsigned char pad[0x3C]; unsigned short unk3C; } func_8024148C_StructArg;
+typedef struct func_8024148C_StructLoc { short unk0; short pad; int unk4; float unk8; unsigned char padC[0x14]; } func_8024148C_StructLoc;
+struct func_80243290_StructTriple { int a; int b; int c; };
+typedef struct func_80242F38_StructGlobal func_80242F38_StructGlobal;
 #include "context.h"
 
 typedef struct func_80244654_StructInner {
@@ -22,7 +26,6 @@ typedef struct func_80244654_StructArg {
 extern f32 D_80258754;
 extern f32 D_80258758;
 extern struct func_80243290_StructTriple D_80252448;
-extern void func_8024470C();
 
 void func_80244654(func_80244654_StructArg *arg0, void **arg1) {
     ((func_80244654_StructOuter *) *arg1)->unk2C->unk4 = D_80258754;

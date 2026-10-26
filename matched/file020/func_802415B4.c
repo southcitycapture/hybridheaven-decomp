@@ -4,7 +4,6 @@ struct func_802415B4_Struct {
     u8 pad[0x3C];
     u16 unk3C;
 };
-extern void func_80002A04();
 extern u8 D_80246948[];
 extern f32 D_80246A64;
 extern f32 D_80246A68;

@@ -1,5 +1,5 @@
 """Registry preservation regressions. Run after sourcing env.sh: .venv/bin/python tools/hh/test_srcbuild.py"""
-import hashlib, io, unittest
+import hashlib, io, os, subprocess, tempfile, unittest
 from unittest.mock import MagicMock, patch
 import srcbuild as S
 
@@ -10,6 +10,41 @@ def blob(text):
 
 
 class PreservationTests(unittest.TestCase):
+    def test_last_readonly_extent_without_bss(self):
+        manifest = '{"files":[{"id":32,"vram":2149456864,"exp_len":40416}]}'
+        with patch.object(S, 'open', side_effect=lambda p: io.StringIO(
+                '  - name: file032\n' if p == 'hybridheaven.yaml' else manifest), create=True):
+            ends = S._seg_bss()
+        with patch.object(S, 'FILE_RODATA', {('file032', '801E1BF0'): 2149496880}), \
+             patch.object(S, 'SEG_BSS', ends), patch.object(S, 'yaml_extent', return_value=None):
+            self.assertEqual(S.file_rodata_size('file032', '801E1BF0'), 400)
+
+    def test_repair_trial_protects_unregistered_c_neighbour(self):
+        source = 'void func_80000000(void) {}\nvoid func_80000008(void) {}\n'
+        lost_stub = 'void func_80000000(void) {}\n'
+        with patch.object(S, 'open', side_effect=lambda *a: io.StringIO(source), create=True), \
+             patch.object(S, 'entries', return_value=[('func_80000000',), ('func_80000008',)]), \
+             patch.object(S, 'registry', return_value={}), \
+             patch('reconcile_frozen.verify', return_value=(True, 'ok')), \
+             patch('reconcile_frozen.integrate', return_value=(lost_stub, {'func_80000000': 'edit'}, {})):
+            kept, _, text, problem = S.trial_snippets('test', 'file', {'func_80000000': 'changed'}, 'build')
+        self.assertFalse(kept)
+        self.assertEqual(text, source)
+        self.assertIn('lost a neighbour', problem)
+
+    def test_repair_trial_does_not_reinterpret_unchanged_frozen_recipe(self):
+        source = 'void func_80000000(void) { private_alias(); }\n'
+        snippet = 'void func_80000000(void) { original_name(); }\n'
+        with patch.object(S, 'open', side_effect=lambda *a: io.StringIO(source), create=True), \
+             patch.object(S, 'entries', return_value=[('func_80000000',)]), \
+             patch.object(S, 'registry', return_value={('test', 'func_80000000'): snippet}), \
+             patch('reconcile_frozen.verify', return_value=(True, 'ok')), \
+             patch('reconcile_frozen.integrate', return_value=(source, {}, {})) as integrate:
+            kept, _, _, problem = S.trial_snippets('test', 'file', {'func_80000000': snippet}, 'build')
+        self.assertEqual(integrate.call_args.args[3], {})
+        self.assertEqual(set(kept), {'func_80000000'})
+        self.assertIsNone(problem)
+
     def snapshot(self, snippets=None, source=None, new_keys=None, blocklist=""):
         original = {"func_80000000": "void func_80000000(void) {}\n",
                     "func_80000008": "void func_80000008(void) {}\n"}
@@ -128,6 +163,22 @@ void func_80000020(void) {}
         source = '#pragma GLOBAL_ASM("a.s")\nvoid func_80000008(void) {}\n'
         self.assertFalse(self.check_source(source))
         self.assertTrue(self.check_source(source, asm_ok={"func_80000000"}))
+
+
+class ExactLinkTests(unittest.TestCase):
+    def test_default_linker_crash_without_rodata_uses_exact_fallback(self):
+        run = subprocess.run
+        with tempfile.TemporaryDirectory() as td:
+            obj = os.path.join(td, "f.o")
+            asm = ".set noreorder\n.text\n.globl func_80000000\n.type func_80000000,@function\nfunc_80000000:\njr $ra\nnop\n.size func_80000000,.-func_80000000\n"
+            run(["mips-linux-gnu-as", "-EB", "-march=vr4300", "-o", obj], input=asm, text=True, check=True)
+            def crash_default(cmd, **kwargs):
+                if any(arg.startswith("-Ttext=") for arg in cmd):
+                    return subprocess.CompletedProcess(cmd, -11, "", "")
+                return run(cmd, **kwargs)
+            with patch.object(S.try_func.subprocess, "run", side_effect=crash_default):
+                linked = S.try_func.linked_func_bytes(obj, "func_80000000", 0x80000000, base=0x80000000)
+            self.assertEqual(linked, bytes.fromhex("03e0000800000000"))
 
 
 if __name__ == "__main__": unittest.main()

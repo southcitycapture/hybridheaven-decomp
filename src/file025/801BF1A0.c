@@ -153,7 +153,7 @@ void func_801BF500(s32 arg0, s32 arg1) {
 }
 
 
-#define func_801BFFCC func_801BFFCC__decl155
+#define func_801BFFCC func_801BFFCC__decl153
 extern void func_801BFFCC();
 extern void func_801BF598(s32 arg0, s32 arg1);
 

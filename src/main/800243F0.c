@@ -1,3 +1,4 @@
+#define func_80026140 func_80026140__merge_frozen
 #include "common.h"
 
 
@@ -1286,7 +1287,35 @@ void func_80026120(void) {
     func_800261C4(4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_80026140.s")
+#undef func_80026140
+#define D_800497A4 D_800497A4__func_80026140
+#define D_800CBDD0 D_800CBDD0__func_80026140
+#define D_800CBDD8 D_800CBDD8__func_80026140
+
+
+extern u16 D_800497A4[];
+extern u8 D_800CBDD0;
+extern u8 D_800CBDD8[];
+
+void func_80026140(u8 arg0, u8 arg1, u8 arg2, s16 arg3) {
+    u16 v;
+    u8 *p;
+    s32 n;
+
+    v = D_800497A4[arg1];
+    if (v != 0 && (n = D_800CBDD0) < 8) {
+        p = D_800CBDD8 + n * 6;
+        *(u16 *)p = v;
+        p[3] = arg2;
+        *(s16 *)(p + 4) = arg3;
+        p[2] = arg0;
+        D_800CBDD0 = n + 1;
+    }
+}
+#undef D_800497A4
+#undef D_800CBDD0
+#undef D_800CBDD8
+#define func_80026140 func_80026140__merge_frozen
 
 
 void func_800261C4(s32 arg0)
@@ -1342,3 +1371,5 @@ void func_800262DC(void) {
     D_800CBDA0 += 3;
 }
 
+
+#undef func_80026140

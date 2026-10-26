@@ -99,6 +99,10 @@ void func_8038D768(struct func_8038D768_Struct *arg0, void *arg1) {
 }
 #undef func_8038D7F0
 
+#define D_801BBBF0 D_801BBBF0__func_8038D7F0
+#define D_8038D7F0 D_8038D7F0__func_8038D7F0
+#define func_8022AB58 func_8022AB58__func_8038D7F0
+#define func_8022B3E0 func_8022B3E0__func_8038D7F0
 #define func_8038D7F0 D_8038D7F0
 #undef func_8038D7F0
 
@@ -216,6 +220,10 @@ void func_8038D7F0(func_8038D7F0_StructA *arg0, s32 arg1) {
         }
     }
 }
+#undef D_801BBBF0
+#undef D_8038D7F0
+#undef func_8022AB58
+#undef func_8022B3E0
 
 void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
 

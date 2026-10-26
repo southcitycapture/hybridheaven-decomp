@@ -1,10 +1,11 @@
+#include "common.h"
 #define CTX_CAT2(a, b) a##b
 #define CTX_CAT(a, b) CTX_CAT2(a, b)
-#define func_80246020 CTX_CAT(func_80246020_ctx_, __LINE__)
-#define func_802461CC CTX_CAT(func_802461CC_ctx_, __LINE__)
-#include "context.h"
-#undef func_80246020
-#undef func_802461CC
+extern s32 func_800058DC(void *, void *);
+extern void func_80020718(s32);
+extern s32 func_80133A24(s32);
+void func_802463EC(s32 arg0, s32 arg1);
+
 
 typedef struct func_80246388_Struct {
     u8 pad0[0x3C];

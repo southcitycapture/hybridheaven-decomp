@@ -1,7 +1,7 @@
 #!/bin/bash
 # prep.sh FUNC SEGMENT WORKDIR: set up a worker directory for one function
 set -e
-FUNC=$1; SEG=$2; W=$3; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}     # HH_ROOT: another checkout (contrib/work.sh)
+FUNC=$1; SEG=$2; W=$3; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}
 mkdir -p "$W"
 cp "$(find "$HH/asm/nonmatchings/$SEG" -name "$FUNC.s" | head -1)" "$W/target.s"
 { echo '#include "common.h"'; echo; "$HH/.venv/bin/python" "$HH/tools/m2c/m2c.py" "$W/target.s" 2>&1; } > "$W/draft.c" || true
@@ -70,10 +70,8 @@ chmod +x "$W/check"
 "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" context "$SEG" "$FUNC" > "$W/context.h"
 sed -i 's/^#include "common.h"/#include "context.h"/' "$W/draft.c"
 sed "s/{FUNC}/$FUNC/g; s/at most 10 runs/at most ${CHECK_LIMIT:-10} runs/" "$HH/tools/swarm/worker_prompt2.md" > "$W/prompt.md"
-# segments with per-file rodata (tools/hh/rodata_segments.txt) can hold jump tables: there `switch` is allowed
-if grep -qx "$SEG" "$HH/tools/hh/rodata_segments.txt" 2>/dev/null; then
-  sed -i 's/- Do not use `switch` statements, `asm`, or `#pragma`./- `switch` statements are allowed (this segment supports jump tables); write one where target.s uses a jump table (`jr` through a `jtbl_` table). Do not use `asm` or `#pragma`./' "$W/prompt.md"
-fi
+# Query the actual file, including main; a segment-wide allowlist can be stale after a re-split.
+"$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" switches "$SEG" "$FUNC" >> "$W/prompt.md"
 # repair mode: PREVIOUS=path to an earlier attempt
 if [ -n "$PREVIOUS" ] && [ -f "$PREVIOUS" ]; then
   sed 's/^#include "common.h"/#include "context.h"/' "$PREVIOUS" > "$W/previous.c"

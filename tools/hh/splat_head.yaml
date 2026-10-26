@@ -68,5 +68,10 @@ segments:
     subsegments:
       - {MAIN_C}
       - [0x35D20, data]
-      - { type: bss, vram: 0x8004DBD0 }
-
+      # drvrnew's six effect parameter arrays (0x190 bytes), emitted by IDO 5.3.
+      - [0x4B760, .data, main/8002C850]
+      - [0x4B8F0, data]
+      - { type: bss, vram: 0x8004DBD0, name: main_bss_head }
+      # sptask's static OSTask tmp_task; keep its original runtime address.
+      - { type: .bss, vram: 0x800CBE20, name: main/800269F0 }
+      - { type: bss, vram: 0x800CBE60, name: main_bss_tail }

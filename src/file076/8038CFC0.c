@@ -319,6 +319,8 @@ void func_8038D708(struct func_8038D708_Struct *arg0, void *arg1) {
 }
 #undef func_8038D790
 
+#define func_8022AB58 func_8022AB58__func_8038D790
+#define func_8022B3E0 func_8022B3E0__func_8038D790
 #define func_8038D790 func_8038D790_decl
 #undef func_8038D790
 
@@ -353,7 +355,6 @@ typedef struct func_8038D790_StructA {
     u8 padA9[0xB0 - 0xA9];
     void *unkB0;
 } func_8038D790_StructA;
-
 extern void func_8022B3E0();
 extern s32 func_8022AB58();
 
@@ -415,6 +416,8 @@ void func_8038D790(func_8038D790_StructA *arg0, s32 arg1) {
         func_8038D5D8((void *)arg0, (void *)a1, (void *)a2);
     }
 }
+#undef func_8022AB58
+#undef func_8022B3E0
 
 void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
 

@@ -1,4 +1,7 @@
 #include "context.h"
+/* Explicit readonly storage preserves named-load scheduling in the following function. */
+static const f32 func_8038BC00_speed[] = {33.2999992f};
+extern f32 D_8038DCF0__func_8038BC00;
 extern struct func_8038BDC0_Glob D_801BBBF0;
 extern s32 D_8038DB50;
 extern s32 D_8038DB54;
@@ -10,7 +13,6 @@ extern s32 D_8038D8EC;
 extern s32 D_8038D8F0;
 extern s32 D_8038DB48;
 extern s32 D_8038DB4C;
-extern f32 D_8038DCF0;
 extern s32 D_8038E070;
 
 void func_8038BC00(void) {
@@ -44,6 +46,6 @@ void func_8038BC00(void) {
     }
     *(f32 *)((u8 *)&D_801BBBF0 + 0x29C) = 10.0f;
     *(f32 *)((u8 *)&D_801BBBF0 + 0x2A0) = 2000.0f;
-    func_8038BE98(D_8038DCF0);
+    func_8038BE98(D_8038DCF0__func_8038BC00);
     D_8038D8EC = 1;
 }

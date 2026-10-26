@@ -10,7 +10,11 @@ extern f32 D_80246A48;
 extern f32 D_80246A4C;
 extern f32 D_80246A50;
 extern f32 D_80246A54;
-extern void func_80240DF4(void *arg0, void *arg1);
+s32 func_801C3D20(f32, f32, f32);
+void func_801C3B10(s32);
+void func_801C3B2C(s32);
+void func_801FBB30(void);
+void func_80240DF4(void *arg0, void *arg1);
 
 void func_80240CF8(void *arg0, s32 arg1) {
     if (func_801C3D20(D_80246A38, D_80246A3C, 5.0f) != 0) {

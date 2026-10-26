@@ -1,4 +1,26 @@
-#include "context.h"
+#include "common.h"
+extern s32 D_801BBCCC;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+void func_800058DC(void *arg0, void *arg1);
+typedef struct func_80360EF8_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80360EF8_Struct;
+extern void func_8013A28C(s32, func_80360EF8_Struct);
+extern void func_802237B0(void *arg0, s32 arg1);
+void func_803602D4(s32 arg0, s32 arg1);
+u8 func_803626E0(s32 arg0);
+typedef struct func_80362758_Struct {
+    u8 pad[0x2BC];
+    s16 unk2BC;
+    s16 unk2BE;
+    s16 unk2C0;
+    s16 unk2C2;
+} func_80362758_Struct;
+u16 func_80362820(func_80362758_Struct *arg0, u8 arg1);
+
 
 typedef struct func_803628B8_Node {
     s32 unk0;
@@ -45,7 +67,6 @@ typedef struct func_803628B8_State {
 
 extern func_803628B8_Node *D_80385E50[];
 extern u8 D_801842A0[];
-extern s32 func_80362820(void *, u8, u8);
 extern void func_80362A54();
 
 void func_803628B8(func_803628B8_Arg *arg0, s32 arg1) {
@@ -82,7 +103,7 @@ void func_803628B8(func_803628B8_Arg *arg0, s32 arg1) {
         b = (a & 0xFF) ^ 1;
     }
     sub[0]->unk7C = D_80385E50[b];
-    id = func_80362820(s, r, b);
+    id = func_80362820((func_80362758_Struct *)s, r);
     s->unk2D9 = id;
     s->unk2D4 = &D_801842A0[id * 0x1C];
     n = sub[0]->unk7C;

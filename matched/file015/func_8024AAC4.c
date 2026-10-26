@@ -1,4 +1,36 @@
-#include "context.h"
+#include "common.h"
+struct func_8024A434_Sub {
+    u8 pad[0x40];
+    f32 unk40;
+    u8 pad2[4];
+    f32 unk48;
+};
+struct func_8024A434_StructBBF0 {
+    u8 pad[0xDC];
+    struct func_8024A434_Sub *unkDC;
+};
+extern struct func_8024A434_StructBBF0 D_801BBBF0;
+typedef struct func_80249DD0_G {
+    u8 pad[0x1E8];
+    f32 unk1E8;
+    f32 unk1EC;
+    f32 unk1F0;
+    f32 unk1F4;
+    f32 unk1F8;
+    f32 unk1FC;
+} func_80249DD0_G;
+#define G_DD0 ((func_80249DD0_G *)&D_801BBBF0)
+extern void func_800058DC(void *, void *);
+extern s32 func_80010550(s32, s32);
+extern s32 func_800178E8(void);
+extern void func_800179B0(void *);
+extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+extern void func_8013A1B4();
+typedef struct func_80249DD0_Arg {
+    u8 pad[0x5C];
+    s32 unk5C;
+} func_80249DD0_Arg;
+
 
 struct func_8024AAC4_Vec { s32 a, b, c; };
 extern struct func_8024AAC4_Vec D_802534AC;

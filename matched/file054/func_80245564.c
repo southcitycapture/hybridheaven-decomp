@@ -12,7 +12,7 @@ typedef struct {
 extern u8 D_8024696C[];
 extern u8 D_8024737C[];
 extern u8 D_80247FDC[];
-extern void func_802456C8(void);
+extern void func_802456C8();
 extern s32 D_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 
 #define FL(off) (*(f32 *)((u8 *)&D_801BBBF0 + (off)))

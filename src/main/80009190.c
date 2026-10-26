@@ -7,6 +7,10 @@ void func_80009190(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80009190/func_8000919C.s")
 
+#define D_8004347C D_8004347C__func_80009F8C
+#define D_80043504 D_80043504__func_80009F8C
+#define D_8004353A D_8004353A__func_80009F8C
+#define D_80043562 D_80043562__func_80009F8C
 
 extern u16 D_8004347C[];
 extern u16 D_80043504[];
@@ -54,6 +58,10 @@ u16 func_80009F8C(u16 arg0) {
     }
     return var_v1;
 }
+#undef D_8004347C
+#undef D_80043504
+#undef D_8004353A
+#undef D_80043562
 
 
 void func_8000A060(u8 *arg0, s32 arg1) {

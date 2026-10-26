@@ -271,13 +271,15 @@ s32 func_80004EE8(u32 arg0, s32 arg1)
   return 0, func_8000469C(arg0, arg1);
 }
 
+#define D_800399B8 D_800399B8__func_80004F98
+#define D_80039A78 D_80039A78__func_80004F98
 #define func_8000511C func_8000511C__func_80004F98
 #define func_80005144 func_80005144__func_80004F98
-extern s32 func_8000511C(u16 arg0);
-extern s32 func_80005144(u16 arg0);
 #define LQ(p,l) p##_##l
 #define LP(p,l) LQ(p,l)
 #define func_80004EE8 LP(fA, __LINE__)
+extern s32 func_8000511C(u16 arg0);
+extern s32 func_80005144(u16 arg0);
 #undef func_80004EE8
 
 extern u16 D_800399B8[];
@@ -328,6 +330,8 @@ u32 func_80004F98(s32 arg0, s32 arg1) {
 #undef LP
 #undef entry
 #undef data
+#undef D_800399B8
+#undef D_80039A78
 #undef func_8000511C
 #undef func_80005144
 

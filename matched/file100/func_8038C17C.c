@@ -1,12 +1,28 @@
-#include "context.h"
+#include "common.h"
+struct func_8038BDC0_Inner {
+    u8 pad[0x30];
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+};
+struct func_8038BDC0_Outer {
+    u8 pad[0x2C];
+    struct func_8038BDC0_Inner *unk2C;
+};
+struct func_8038BDC0_Glob {
+    u8 pad[0xE8];
+    struct func_8038BDC0_Outer *unkE8;
+};
+extern struct func_8038BDC0_Glob D_801BBBF0;
+extern f64 func_80034C24();
+extern s32 func_801C0DE4(s32 a, s32 b, f32 c);
+extern void func_801C0EB0(s32 a, s32 b);
+extern u64 func_801C0F18(s32 a, s32 b);
+
 
 struct func_8038C17C_Struct { u8 pad[0x1C]; f32 unk1C; u8 pad2[0x10]; f32 unk30; f32 unk34; f32 unk38; f32 unk3C; f32 unk40; f32 unk44; };
 struct func_8038C17C_Outer { u8 pad[0x2C]; struct func_8038C17C_Struct *unk2C; };
-extern s32 func_801C0DE4(s32, s32, f32);
-extern void func_801C0EB0(s32, s32);
-extern u64 func_801C0F18(s32, s32);
-extern f64 func_80034C24();
-extern f64 D_8038DD08;
+extern const f64 D_8038DD08;
 
 s32 func_8038C17C(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10, f32 arg11, f32 arg12, f32 arg13, f32 arg14, f32 arg15) {
     f32 t;

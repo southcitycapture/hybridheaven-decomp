@@ -1,5 +1,6 @@
 #include "common.h"
 
+#define func_80244998 func_80244998__func_80244930
 
 extern s32 func_80126CC0(s32 arg0, void *arg1);
 extern s32 func_8015105C(s32 arg0);
@@ -20,7 +21,9 @@ void func_80244930(s32 arg0, s32 arg1) {
         func_800058DC(arg0, func_80244998, 1);
     }
 }
+#undef func_80244998
 
+#define func_80244A04 func_80244A04__func_80244998
 
 extern s32 func_801517CC(s32);
 extern void func_801512CC();
@@ -40,14 +43,17 @@ s32 arg1;
         }
     }
 }
+#undef func_80244A04
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file015/80244930/D_80258760.s")
+
+#define func_80244AC0 func_80244AC0__func_80244A04
 
 extern s32 func_801270C0(s32);
 extern unsigned short func_801268CC(s32);
 extern void func_80020744(s32);
 extern void func_80126968();
 extern void func_80244AC0();
-extern f32 D_80258778;
 
 void func_80244A04(void *arg0, void *arg1)
 {
@@ -59,14 +65,16 @@ void func_80244A04(void *arg0, void *arg1)
     func_80020744(7);
     *((f32 *) ((*((u8 **) ((*((u8 **) (D_801BBBF0 + 0xE0))) + 0x2C))) + 0x4)) = -95.0f;
     *((f32 *) ((*((u8 **) ((*((u8 **) (D_801BBBF0 + 0xE0))) + 0x2C))) + 0x8)) = -470.0f;
-    *((f32 *) ((*((u8 **) ((*((u8 **) (D_801BBBF0 + 0xE0))) + 0x2C))) + 0xC)) = D_80258778;
+    *((f32 *) ((*((u8 **) ((*((u8 **) (D_801BBBF0 + 0xE0))) + 0x2C))) + 0xC)) = 375.0f;
     *((s16 *) ((*((u8 **) ((*((u8 **) (D_801BBBF0 + ((0, 0xE0))))) + 0x2C))) + 0x12)) = 0x1400;
     *((s16 *) (((u8 *) arg0) + 0x3C)) = 0;
     func_80126968();
     func_800058DC(arg0, &func_80244AC0);
   }
 }
+#undef func_80244AC0
 
+#define func_80244B4C func_80244B4C__func_80244AC0
 extern void func_8001E978(u8 *, s32, s32, s32, s32, s32, s32, s32);
 extern s16 D_80089354;
 void func_80244B4C(s32 arg0, s32 arg1);
@@ -84,7 +92,9 @@ void func_80244AC0(struct func_80244AC0_S *arg0, s32 arg1) {
         }
     }
 }
+#undef func_80244B4C
 
+#define func_80244B94 func_80244B94__func_80244B4C
 extern s32 func_80126944(void);
 void func_80244B94(s32 arg0, s32 arg1);
 
@@ -97,7 +107,9 @@ void func_80244B4C(s32 arg0, s32 arg1) {
         func_800058DC(arg0, &func_80244B94);
     }
 }
+#undef func_80244B94
 
+#define func_80244BF0 func_80244BF0__func_80244B94
 
 extern void func_800208C4(s32 arg0);
 extern void func_80244BF0(s32 arg0, s32 arg1);
@@ -113,6 +125,7 @@ void func_80244B94(s32 arg0, s32 arg1) {
         func_800058DC(arg0, func_80244BF0);
     }
 }
+#undef func_80244BF0
 
 
 void func_80244BF0(s32 arg0, s32 arg1) {

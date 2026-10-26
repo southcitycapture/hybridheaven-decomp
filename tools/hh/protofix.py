@@ -76,11 +76,13 @@ def rewrite(text, fixes):
 
 def ok(seg, cf, snips):
     with tempfile.TemporaryDirectory() as td:
-        kept, rej, text, problem = S.settle(seg, cf, snips, td)
+        kept, rej, text, problem = S.trial_snippets(seg, cf, snips, td)
     return not rej and problem is None and set(kept) == set(snips)
 
 def one_file(args):
     (seg, cf), snips, reg_names = args
+    present = S.defined_functions(open('src/%s/%s.c' % (seg, cf)).read())
+    snips = {n: t for n, t in snips.items() if n in present}
     fixes = plan(seg, cf, snips, reg_names)
     if not fixes: return seg, cf, {}, {}, []
     new = {n: rewrite(t, fixes) for n, t in snips.items()}

@@ -2,6 +2,11 @@
 import re
 
 
+def c_only_source(source):
+    """Remove ASM inclusions without changing __LINE__-based private aliases."""
+    return re.sub(r'(?m)^[ \t]*#pragma GLOBAL_ASM\("[^"\n]+"\)[^\n]*', '', source)
+
+
 def source_units(config):
     """Use the ROM's configured C units, not leftover generated src files."""
     names = []

@@ -1,13 +1,13 @@
 """Build objdiff progress inputs and generate build/progress/report.json.
 
-For every code segment:
-  target object = all original asm for the segment (asm/nonmatchings/<seg>/*.s, in address order)
-  base object   = only the decompiled C (src/<seg>.c with the GLOBAL_ASM lines removed), compiled with IDO
+For every original source-file unit in the active YAML layout:
+  target object = original asm in asm/nonmatchings/<segment>/<file>/
+  base object   = C from src/<segment>/<file>.c, compiled with IDO
 objdiff then diffs them function by function. Data measures are replaced using the
 actual linked layout and compiler-only byte provenance (see progress_data.py)."""
 import glob, json, os, re, subprocess, sys
 import yaml
-from progress_code import source_units, target_source, unit_complete
+from progress_code import source_units, target_source, unit_complete, c_only_source
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../.."))
 os.chdir(HH)
 OUT = "build/progress"; os.makedirs(OUT + "/target", exist_ok=True); os.makedirs(OUT + "/base", exist_ok=True)
@@ -31,6 +31,11 @@ def lib_base(seg, funcs):
         if not n.startswith("func_"): continue
         off = int(n[5:], 16) - start
         if off in names and names[off] != n: ren += ["--redefine-sym", "%s=%s" % (names[off], n)]
+        elif off not in names:
+            # IDO omits static functions from .symtab (e.g. sptask's
+            # _VirtualToPhysicalTask). The original per-function asm supplies
+            # their verified .text offsets, so objdiff can count them too.
+            ren += ["--add-symbol", "%s=.text:0x%X,global,function" % (n, off)]
     subprocess.run(["mips-linux-gnu-objcopy"] + ren + [src, out], check=True)
     return out
 
@@ -50,14 +55,17 @@ for seg in source_units(yaml.safe_load(open("hybridheaven.yaml"))):
     # Rebuild: source mtimes cannot detect changed generators, headers, removed
     # inputs, or preserved-timestamp ROM splits. Old targets hid 57 functions.
     with open(tgt_s, "w") as o:
-        o.write(target_source(HEAD, (open(f).read() for f in funcs)))
+        # splat labels the KSEG1 base as an external data symbol; libultra's
+        # IO_READ macro emits this numeric constant without relocations.
+        head = HEAD + (".equ D_A0000000, 0xA0000000\n" if seg in LIBFILES else "")
+        o.write(target_source(head, (open(f).read() for f in funcs)))
     subprocess.run(AS + ["-o", tgt_o, tgt_s], check=True)
     unit = {"name": seg, "target_path": tgt_o}
     if seg in LIBFILES:                        # built from library source: the real object is the base,
         unit["base_path"] = lib_base(seg, funcs)  # with its functions renamed to the address names objdiff pairs on
         unit["metadata"] = {"progress_categories": ["main"]}; units.append(unit); continue
     text = sources[seg]
-    c_only = re.sub(r'#pragma GLOBAL_ASM\("[^"]+"\)\n', "", text)
+    c_only = c_only_source(text)
     if re.search(r"^\w[\w\s\*]*\bfunc_[0-9A-F]{8}\s*\([^;]*$", c_only, re.M):     # at least one C function body
         base_c, base_o = "%s/base/%s.c" % (OUT, seg), "%s/base/%s.o" % (OUT, seg)
         open(base_c, "w").write(c_only)

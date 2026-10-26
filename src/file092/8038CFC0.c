@@ -2,7 +2,8 @@
 
 
 extern void func_800058DC();
-extern void func_8038CFF8();
+#define func_8038CFF8 func_8038CFF8__decl
+extern u8 func_8038CFF8[];
 
 void func_8038CFC0(u8 *arg0, void *arg1)
 {
@@ -10,7 +11,19 @@ void func_8038CFC0(u8 *arg0, void *arg1)
  do { func_80229500(); arg0[0xA0] = 0; func_800058DC(arg0, func_8038CFF8); } while (0);
 }
 
-#define func_8038CFF8 func_8038CFF8_ctx
+#undef func_8038CFF8
+#define D_801BBBF0 D_801BBBF0__func_8038CFF8
+#define D_801BBC8C D_801BBC8C__func_8038CFF8
+#define D_801BBCAC D_801BBCAC__func_8038CFF8
+#define D_801BC03C D_801BC03C__func_8038CFF8
+#define D_801BC3D8 D_801BC3D8__func_8038CFF8
+#define func_8001EAD0 func_8001EAD0__func_8038CFF8
+#define func_8001EB64 func_8001EB64__func_8038CFF8
+#define func_8010843C func_8010843C__func_8038CFF8
+#define func_80228C20 func_80228C20__func_8038CFF8
+#define func_80228D90 func_80228D90__func_8038CFF8
+#define func_802291FC func_802291FC__func_8038CFF8
+#define func_8038D7D0_StructG func_8038D7D0_StructG__func_8038CFF8
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 struct func_8038D7D0_StructG {
@@ -20,7 +33,6 @@ struct func_8038D7D0_StructG {
     u8 unk1031;
 };
 extern struct func_8038D7D0_StructG D_801BBBF0;
-#undef func_8038CFF8
 
 struct func_8038CFF8_StructG {
     u8 pad0[0xDC];
@@ -195,6 +207,19 @@ void func_8038CFF8(struct func_8038CFF8_StructA *arg0, s32 arg1) {
 #undef G
 #undef P8
 #undef P16
+#undef D_801BBBF0
+#undef D_801BBC8C
+#undef D_801BBCAC
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8010843C
+#undef func_80228C20
+#undef func_80228D90
+#undef func_802291FC
+#undef func_8038D7D0_StructG
+#define func_8038CFF8 func_8038CFF8__decl
 
 
 struct func_8038D630_Struct0 {
@@ -263,6 +288,8 @@ done:;
     arg0->unkA2 = arg1->unk2D9;
 }
 
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
 
 typedef struct func_8038D740_Struct {
     u8 pad0[0xC];
@@ -318,7 +345,14 @@ struct func_8038D7D0_StructA {
     u16 unk30;
 };
 
+struct func_8038D7D0_StructG {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0x1031 - 0xE0];
+    u8 unk1031;
+};
 
+extern struct func_8038D7D0_StructG D_801BBBF0;
 extern void func_8022B3E0();
 
 void func_8038D7D0(struct func_8038D7D0_Struct *arg0, s32 arg1) {

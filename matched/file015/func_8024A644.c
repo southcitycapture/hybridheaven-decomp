@@ -9,6 +9,18 @@ extern f32 D_802592EC;
 extern f32 D_802592F0;
 extern f32 D_802592F4;
 
+typedef struct {
+    u8 pad[0x1E8];
+    f32 unk1E8;
+    f32 unk1EC;
+    f32 unk1F0;
+    f32 unk1F4;
+    f32 unk1F8;
+    f32 unk1FC;
+} func_8024A644_StructG;
+
+#define GG ((func_8024A644_StructG *)&D_801BBBF0)
+
 void func_8024A644(s32 arg0, s32 arg1) {
     struct { s16 unk00; s32 unk04; f32 unk08; u8 pad[0x14]; } sp;
 

@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 
 typedef struct func_8035EF60_StructB {
     u8 pad0[0x30];
@@ -25,7 +26,25 @@ typedef struct func_8035EF60_Arg {
     s32 unk8;
 } func_8035EF60_Arg;
 
-extern void D_8013A28C(s32, func_8035EF60_Arg);
+typedef struct func_8035EF60_Globals {
+    u8 pad0[0xDC];
+    void *unkDC;
+    u8 padE0[0xEC - 0xE0];
+    void *unkEC;
+} func_8035EF60_Globals;
+
+extern void func_803711E8();
+extern void func_802264D0();
+extern void func_80006214();
+extern void func_802237B0();
+extern void func_800058DC();
+extern void func_8035F224();
+extern void func_8035F6B4();
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern u8 D_8008DA88[];
+extern void B_8013A28C(s32, func_8035EF60_Arg);
 
 typedef struct func_8035EF60_P {
     s32 unk0;
@@ -36,7 +55,6 @@ typedef struct func_8035EF60_P {
     s32 unk1C;
 } func_8035EF60_P;
 
-extern void func_8035F224();
 
 void func_8035EF60(func_8035EF60_Obj *arg0, s32 arg1) {
     s32 o[1];
@@ -46,7 +64,7 @@ void func_8035EF60(func_8035EF60_Obj *arg0, s32 arg1) {
     func_8035EF60_Obj *other;
     u8 *volatile o2;
     func_8035EF60_P *p;
-#define g GL
+#define g ((func_8035EF60_Globals *)D_801BBBF0)
 
     o[0] = (s32)arg0->unk5C;
     dc = (func_8035EF60_Obj *)g->unkDC;
@@ -89,7 +107,7 @@ void func_8035EF60(func_8035EF60_Obj *arg0, s32 arg1) {
     if (b->mode == 3) {
         p->unk6 ^= 0x10;
     }
-    D_8013A28C(arg1, *(func_8035EF60_Arg *)p);
+    B_8013A28C(arg1, *(func_8035EF60_Arg *)p);
     func_800058DC(arg0, func_8035F6B4);
     p = (func_8035EF60_P *)(o2 + 0x1C);
     if (!b->f4) {
@@ -106,7 +124,8 @@ void func_8035EF60(func_8035EF60_Obj *arg0, s32 arg1) {
         p->unk6 ^= 0x10;
     }
     func_80006214(other);
-    D_8013A28C((s32)D_8008DA88, *(func_8035EF60_Arg *)p);
+    B_8013A28C((s32)D_8008DA88, *(func_8035EF60_Arg *)p);
     func_80006214(arg0);
     func_800058DC(other, func_8035F224);
 }
+#undef g

@@ -1,4 +1,41 @@
-#include "context.h"
+#include "common.h"
+#define LP(p,l) LQ(p,l)
+#define LQ(p,l) p##_##l
+#define func_80254B3C_Ctx LP(HC, __LINE__)
+#define func_80254B3C_Args LP(HA, __LINE__)
+#define func_80254B3C_Node LP(HN, __LINE__)
+#define HC_116 HCa
+#define HC_125 HCa
+#define HC_126 HCa
+#define HC_130 HCa
+#define HC_184 HCa
+#define HC_222 HCa
+#define HC_223 HCb
+#define HC_237 HCb
+#define HA_117 HAa
+#define HA_145 HAa
+#define HA_222 HAa
+#define HA_224 HAb
+#define HA_289 HAb
+#define HN_118 HNa
+#define HN_225 HNb
+#define HN_237 HNb
+extern u8 D_801BBBF0[];
+extern void func_800058DC(void *, void *);
+extern void func_80020718(s32);
+typedef struct { u8 pad[0x28]; } func_80254B3C_Args;
+typedef struct { u8 pad[0x90]; u16 unk90; } func_80254B3C_Ctx;
+typedef struct { u8 pad[0x28]; } func_80254B3C_Node;
+typedef struct func_8025799C_A0 { u8 pad0[0x90]; u16 unk90; u8 pad92[6]; f32 unk98; f32 unk9C; f32 unkA0; } func_8025799C_A0;
+typedef struct func_8025799C_In { u8 pad0[8]; f32 unk8; } func_8025799C_In;
+typedef struct func_8025799C_Nd { u8 pad0[0x30]; func_8025799C_In *unk30; } func_8025799C_Nd;
+typedef struct func_8025799C_A1 { u8 pad0[4]; func_8025799C_Nd *unk4; func_8025799C_Nd *unk8; } func_8025799C_A1;
+void func_8025799C(func_8025799C_A0 *arg0, func_8025799C_A1 *arg1);
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
+
+#undef func_80254B3C_Ctx
+#undef func_80254B3C_Args
+#undef func_80254B3C_Node
 
 typedef struct func_80255B30_In { u8 pad0[0x4B]; u8 unk4B; } func_80255B30_In;
 typedef struct func_80255B30_Node { u8 pad0[0x30]; func_80255B30_In *unk30; } func_80255B30_Node;

@@ -138,3 +138,8 @@ void func_80242E90(func_80242E90_StructC *arg0, s32 arg1) {
     func_802039B0(arg0, arg1);
 }
 
+
+/* Original readonly objects; named loads retain their original addresses. */
+static const unsigned char rodata_80242D00[] = {
+    0x44, 0x06, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};

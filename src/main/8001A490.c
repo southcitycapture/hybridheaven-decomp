@@ -436,17 +436,16 @@ u8 func_8001C824(u8 arg0) {
     return var_v1;
 }
 
-#define func_8001C670 func_8001C670_ctx
-#define func_8001C6E8 func_8001C6E8_ctx
-#define func_8001C734 func_8001C734_ctx
-#define func_8001C7A4 func_8001C7A4_ctx
-#define func_8001C824 func_8001C824_ctx
-#undef func_8001C670
-#undef func_8001C6E8
-#undef func_8001C734
-#undef func_8001C7A4
-#undef func_8001C824
-
+#define func_8001C670 func_8001C670__func_8001C88C
+#define func_8001C6E8 func_8001C6E8__func_8001C88C
+#define func_8001C734 func_8001C734__func_8001C88C
+#define func_8001C7A4 func_8001C7A4__func_8001C88C
+#define func_8001C824 func_8001C824__func_8001C88C
+extern u16 func_8001C670(u8);
+extern u16 func_8001C6E8(u8);
+extern u16 func_8001C734(u8);
+extern u16 func_8001C7A4(u8);
+extern u16 func_8001C824(u8);
 
 u16 func_8001C88C(u16 arg0) {
     u8 lo;
@@ -473,6 +472,11 @@ u16 func_8001C88C(u16 arg0) {
     }
     return result;
 }
+#undef func_8001C670
+#undef func_8001C6E8
+#undef func_8001C734
+#undef func_8001C7A4
+#undef func_8001C824
 
 
 u16 func_8001C96C(u16 arg0) {
@@ -604,6 +608,7 @@ s32 func_8001D2E0(u16 arg0) {
 }
 
 
+extern u16 func_8001C88C(u16);
 extern u16 func_8001CF40(u16);
 
 s32 func_8001D394(u8 arg0, u16 arg1) {
@@ -883,6 +888,7 @@ void func_8001DE38(s32 arg0, func_8001DE38_Struct **arg1) {
     func_800058DC(arg0, func_8001DF40);
 }
 
+#define D_80037744 D_80037744__func_8001DF40
 
 typedef struct func_8001DF40_StructRecord {
     u8 flag;
@@ -914,6 +920,7 @@ void func_8001DF40(s32 arg0, func_8001DF40_StructObject **arg1) {
         arg1[i]->coords[1] = ((func_8001DF40_StructRecord *)D_80090E50)[i].y;
     }
 }
+#undef D_80037744
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001DFFC.s")
 

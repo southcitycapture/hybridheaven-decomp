@@ -1,14 +1,27 @@
-#include "context.h"
+#include "common.h"
+#include "common.h"
+typedef struct func_80251820_Ctx { u8 pad0[0x92]; u16 unk92; } func_80251820_Ctx;
+typedef struct func_80251820_Args { s32 unk0; } func_80251820_Args;
+typedef struct func_80251820_Node { u8 pad0[0x22]; u8 unk22; } func_80251820_Node;
+extern u8 D_801BBBF0[];
+extern s32 func_80005670();
+extern void func_800058DC(void *, void *);
+extern f32 func_8001EAD0();
+extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+extern s32 func_8012C6B4(s32);
+extern void func_801C2F0C(s32, void *);
 void func_80256308(s32 arg0, s32 arg1);
+
 
 typedef struct func_80256034_Pos { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; } func_80256034_Pos;
 typedef struct func_80256034_Mid { u8 pad0[0x2C]; func_80256034_Pos *unk2C; } func_80256034_Mid;
 typedef struct func_80256034_G { u8 pad0[0xE0]; func_80256034_Mid *unkE0; } func_80256034_G;
 typedef struct func_80256034_Cmd { s16 a; s32 b; f32 c; s16 d; } func_80256034_Cmd;
 
-extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
-extern s32 func_8012C6B4(s32);
+#define func_8001EAD0 func_8001EAD0__func_80256034
+extern f32 func_8001EAD0(s16);
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 extern u8 D_8025DB6C[];
 extern u8 D_80259734[];
 extern u8 D_80259748[];
@@ -16,12 +29,13 @@ extern u8 D_80259748[];
 void func_80256034(func_80251820_Ctx *arg0, func_80251820_Node **arg1) {
     s16 a;
     s32 i;
-    func_80256034_Pos *p;
-    s32 pad;
-    func_80256034_Cmd cmd;
-    s32 t;
     f32 s;
     f32 r;
+    func_80256034_Cmd cmd;
+    s32 t;
+    s32 padA;
+    s32 padB;
+    f32 v;
     f32 ang;
     f32 pad2;
 
@@ -39,7 +53,8 @@ void func_80256034(func_80251820_Ctx *arg0, func_80251820_Node **arg1) {
             r = func_8012C6B4(0x1F4) / 100.0;
             pad2 = func_8001EAD0(a = ang), s = func_8001EB64(a);
 #define func_80256034_P (((func_80256034_G *)D_801BBBF0)->unkE0->unk2C)
-            func_80380F94(pad2 * r + func_80256034_P->unk4, func_80256034_P->unk8 + 12.0f, s * r + func_80256034_P->unkC, 0.0f, func_8012C6B4(0x28) / 10.0 + 4.0, 0.0f, 8);
+            v = func_8012C6B4(0x28) / 10.0 + 4.0;
+            func_80380F94(pad2 * r + func_80256034_P->unk4, func_80256034_P->unk8 + 12.0f, s * r + func_80256034_P->unkC, 0.0f, v, 0.0f, 8);
 #undef func_80256034_P
         }
     }

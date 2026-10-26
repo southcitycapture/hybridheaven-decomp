@@ -218,6 +218,8 @@ function render() {
   const runs = d.runs, ok = runs.filter(r => r.verified === "MATCH"), cost = runs.reduce((s, r) => s + (r.cost_usd_equiv || 0), 0);
   const tiles = [
     ["Code matched", pctS(d.matched_code, d.total_code), `${fmt(d.matched_code)} of ${fmt(d.total_code)} bytes`, pct(d.matched_code, d.total_code)],
+    ["C-produced data", pctS(d.matched_data || 0, d.total_data || 0), `${fmt(d.matched_data || 0)} of ${fmt(d.total_data || 0)} linked data bytes; excludes asm placeholders`, pct(d.matched_data || 0, d.total_data || 0)],
+    ["Fully linked code", pctS(d.complete_code || 0, d.total_code), `${fmt(d.complete_units || 0)} of ${fmt(d.total_units || 0)} linked units complete`, pct(d.complete_code || 0, d.total_code)],
     ["Unique functions matched", fmt(d.unique_matched), `of ${fmt(d.unique_total)} unique (${pctS(d.unique_matched, d.unique_total)})`, pct(d.unique_matched, d.unique_total)],
     ["All functions matched", fmt(d.matched_functions), `of ${fmt(d.total_functions)}, incl. duplicates`, pct(d.matched_functions, d.total_functions)],
     ["Worker match rate", runs.length ? pctS(ok.length, runs.length) : "–", `${ok.length} of ${runs.length} runs (all models)`, pct(ok.length, runs.length)],

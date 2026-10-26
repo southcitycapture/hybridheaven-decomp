@@ -1,15 +1,35 @@
-#include "context.h"
+#include "common.h"
+extern void func_800058DC(void *arg0, void *arg1);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern void func_8011AAF4(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 arg4, f32 f0, f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6, f32 f7, f32 f8, f32 f9, s32 arg15, s32 arg16);
+typedef struct func_80240EF8_Struct {
+    s16 a;
+    s32 b;
+    f32 c;
+    s16 d;
+} func_80240EF8_Struct;
+extern void func_801C2F0C(s32 arg0, struct func_80240EF8_Struct *arg1);
+typedef struct func_80242BE0_Struct_Cam {
+    u8 pad0[0x4];
+    f32 unk4;
+    u8 pad1[0x4];
+    f32 unkC;
+    u8 pad2[0x30 - 0x10];
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+} func_80242BE0_Struct_Cam;
+typedef struct func_80242BE0_Struct_Holder {
+    u8 pad0[0x2C];
+    func_80242BE0_Struct_Cam *unk2C;
+} func_80242BE0_Struct_Holder;
+
 
 struct func_80242BE0_Struct_Holder;
 extern struct func_80242BE0_Struct_Holder *D_801BBCD0;
 extern struct func_80242BE0_Struct_Holder *D_801BBCD8;
 void func_80241214(s32 arg0, s32 arg1);
-s32 func_80126944(void);
-s32 func_801C3B20(void);
-s32 func_801C3D20(f32, f32, f32);
-void func_801C3B10(s32);
-void func_801C3B2C(s32);
-void func_801FBB30(void);
 
 typedef struct func_80241068_Struct_Cam {
     u8 pad0[0x4];

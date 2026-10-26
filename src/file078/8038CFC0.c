@@ -1,14 +1,8 @@
 #include "common.h"
 
 extern f32 D_801BC3D8[];
-extern f32 func_8001EAD0();
-extern f32 func_8001EB64();
 extern s16 func_80228C20(void *);
 extern s32 D_801BBCCC;
-extern s32 func_8010843C(f32, f32, f32, f32, f32, f32);
-extern s32 func_80228D90();
-extern u8 D_801BBC8C[];
-extern u8 D_801BBCAC[];
 extern u8 D_801BC03C[];
 extern u8 func_8038D5BC[];
 extern void func_800058DC();
@@ -26,6 +20,13 @@ void func_8038CFC0(void *arg0, void *arg1) {
     func_800058DC(arg0, func_8038D000);
 }
 
+#define D_801BBBF0 D_801BBBF0__func_8038D000
+#define D_801BBC8C D_801BBC8C__func_8038D000
+#define D_801BBCAC D_801BBCAC__func_8038D000
+#define func_8001EAD0 func_8001EAD0__func_8038D000
+#define func_8001EB64 func_8001EB64__func_8038D000
+#define func_8010843C func_8010843C__func_8038D000
+#define func_80228D90 func_80228D90__func_8038D000
 
 typedef struct {
     u8 pad0[0xC];
@@ -95,6 +96,12 @@ typedef struct {
     u8 unk1031;
 } func_8038D000_Glob;
 extern func_8038D000_Glob D_801BBBF0;
+extern u8 D_801BBC8C[];
+extern u8 D_801BBCAC[];
+extern f32 func_8001EAD0();
+extern f32 func_8001EB64();
+extern s32 func_8010843C(f32, f32, f32, f32, f32, f32);
+extern s32 func_80228D90();
 
 void func_8038D000(func_8038D000_StructA *arg0, s32 arg1) {
     s16 sp3E;
@@ -189,6 +196,14 @@ void func_8038D000(func_8038D000_StructA *arg0, s32 arg1) {
         }
     }
 }
+#undef v0
+#undef D_801BBBF0
+#undef D_801BBC8C
+#undef D_801BBCAC
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8010843C
+#undef func_80228D90
 
 
 struct func_8038D470_Struct0 {

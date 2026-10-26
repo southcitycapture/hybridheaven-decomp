@@ -88,6 +88,29 @@ void func_8038D750(struct func_8038D750_Struct *arg0, void *arg1) {
 }
 #undef func_8038D7D8
 
+#define D_801BBBF0 D_801BBBF0__func_8038D7D8
+#define D_8038D7D8 D_8038D7D8__func_8038D7D8
+#define func_8022AB58 func_8022AB58__func_8038D7D8
+#define func_8022B3E0 func_8022B3E0__func_8038D7D8
+#define func_8038D680_StructA func_8038D680_StructA__func_8038D7D8
+#define func_8038D680_StructB func_8038D680_StructB__func_8038D7D8
+#define func_8038D680_StructC func_8038D680_StructC__func_8038D7D8
+struct func_8038D680_StructA {
+    u8 pad0[0x9A];
+    s16 unk9A;
+    u8 pad1[5];
+    u8 unkA1;
+    u8 unkA2;
+};
+struct func_8038D680_StructB {
+    u8 pad0[0x2D8];
+    u8 unk2D8;
+    u8 unk2D9;
+};
+struct func_8038D680_StructC {
+    u8 pad0[0x30];
+    u32 unk30;
+};
 
 typedef struct func_8038D7D8_StructG {
     u8 pad0[0xDC];
@@ -186,6 +209,13 @@ void func_8038D7D8(func_8038D7D8_StructO *arg0, s32 arg1) {
     }
 }
 #undef CALL
+#undef D_801BBBF0
+#undef D_8038D7D8
+#undef func_8022AB58
+#undef func_8022B3E0
+#undef func_8038D680_StructA
+#undef func_8038D680_StructB
+#undef func_8038D680_StructC
 
 
 typedef struct func_8038D9E4_Struct { u8 pad[0xA5]; u8 unkA5; } func_8038D9E4_Struct;

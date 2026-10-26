@@ -1,7 +1,7 @@
 #include "context.h"
 
 extern void func_8013A334(f32 *, s32, void *, s32);
-extern void func_801F3C90(void *, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern s32 func_801F3C90();
 extern f32 D_80218D1C;
 extern f32 D_80218D20;
 extern u8 func_801F9318[];

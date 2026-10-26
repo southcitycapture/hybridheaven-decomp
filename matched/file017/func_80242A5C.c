@@ -1,4 +1,6 @@
+#define func_80242A5C func_80242A5C__ctx
 #include "context.h"
+#undef func_80242A5C
 
 struct func_80242A5C_StructSelf { u8 pad[0x3C]; u16 unk3C; };
 struct func_80242A5C_StructSub { u8 pad[8]; f32 unk8; };
@@ -33,7 +35,7 @@ void func_80242A5C(struct func_80242A5C_StructSelf *arg0, struct func_80242A5C_S
         arg1->unk18->unk22 = 1;
         arg1->unk14->unk22 = 0;
         arg1->unk0->unk30->unk8 = D_8025C72C;
-        ((struct func_80242A5C_StructSub *)D_801BBCD0->unk2C)->unk8 = arg1->unk0->unk30->unk8;
+        ((struct func_80242A5C_StructSub *)((struct func_802415DC_StructA *)D_801BBCD0)->unk2C)->unk8 = arg1->unk0->unk30->unk8;
         func_802441AC();
         arg0->unk3C = 0;
         func_80020718(0x6C5);

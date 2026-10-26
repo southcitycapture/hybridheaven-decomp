@@ -19,7 +19,8 @@ extern void func_80146CD4(s16, s32);
 extern u16 D_8017DC40[];
 extern s32 D_802170F4;
 extern f32 D_8021B0E0;
-extern void func_801FBC28(s32 arg0, s32 *arg1);
+#define func_801FBC28 func_801FBC28__decl21
+extern u8 func_801FBC28[];
 
 void func_801FBB3C(s32 arg0, s32 arg1) {
     s16 sp1E;
@@ -40,7 +41,14 @@ void func_801FBB3C(s32 arg0, s32 arg1) {
     func_80146CD4(sp1E, 0);
     func_800058DC(arg0, func_801FBC28);
 }
+#undef func_801FBC28
 
+#define func_80116E80 func_80116E80__func_801FBC28
+#define func_801170DC func_801170DC__func_801FBC28
+#define func_801451C0 func_801451C0__func_801FBC28
+#define func_80146208 func_80146208__func_801FBC28
+#define func_80146894 func_80146894__func_801FBC28
+#define func_801FBDF4 func_801FBDF4__func_801FBC28
 #define func_801FBC28 D_801FBC28
 #undef func_801FBC28
 extern void func_80116E80(s32);
@@ -77,6 +85,12 @@ void func_801FBC28(s32 arg0, s32 *arg1) {
     }
     func_800058DC(arg0, func_801FBDF4);
 }
+#undef func_80116E80
+#undef func_801170DC
+#undef func_801451C0
+#undef func_80146208
+#undef func_80146894
+#undef func_801FBDF4
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801FBB20/func_801FBDF4.s")
 
@@ -90,6 +104,7 @@ typedef struct func_801FC0E4_Struct {
 
 extern s32 func_80126A0C(func_801FC0E4_Struct *, s32, s32);
 extern void func_80147148(s32, s32);
+extern u8 func_801FBDF4[];
 
 void func_801FC0E4(func_801FC0E4_Struct *arg0, s32 arg1) {
     if (*(u8 *)&D_8021B0E4 == 1) {

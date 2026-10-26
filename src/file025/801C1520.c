@@ -29,6 +29,7 @@ struct func_801C157C_Struct {
     s32 unk8;
 };
 
+#define func_801C1834 func_801C1834__decl31
 extern void func_801C1834(struct func_801C157C_Struct *, s32);
 extern struct func_801C157C_Struct D_801DEBF0[];
 
@@ -50,6 +51,7 @@ loop_1:
     }
     func_801C1834(D_801DED70, arg1);
 }
+#undef func_801C1834
 
 
 void func_801C15F0(s32 arg0, s32 arg1) {
@@ -143,6 +145,12 @@ s32 func_801C1828(void) {
     return D_801D8DB0;
 }
 
+#define func_801C157C_Struct func_801C157C_Struct__func_801C1834
+struct func_801C157C_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
 
 void func_801C1834(struct func_801C157C_Struct *arg0, s32 arg1) {
     struct func_801C157C_Struct *p;
@@ -161,4 +169,5 @@ loop:
     if (p) {
     }
 }
+#undef func_801C157C_Struct
 

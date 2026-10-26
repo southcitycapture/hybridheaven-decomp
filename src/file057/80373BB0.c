@@ -14,7 +14,6 @@ extern u8 D_801BC3D8[];
 extern u8 D_801BCC25[];
 extern u8 D_80387C50[];
 extern u8 D_80387C64[];
-extern u8 D_80388098[];
 extern u8 D_8038B59C[];
 extern u8 D_8038B604[];
 extern void func_80005700(s32);
@@ -347,9 +346,9 @@ void func_80374D3C(s32 arg0, s32 arg1) {
     }
 }
 
-#define func_80374DF0 func_80374DF0_ctx
-#undef func_80374DF0
+#define D_80388098 D_80388098__func_80374DF0
 
+extern u8 D_80388098[];
 
 void *func_80374DF0(arg0)
     u8 arg0;
@@ -363,6 +362,7 @@ void *func_80374DF0(arg0)
     }
     return NULL;
 }
+#undef D_80388098
 
 
 s32 func_80374E48(s32 arg0, u16 *arg1, u8 arg2) {
@@ -485,6 +485,8 @@ typedef struct func_80374F04_StructSide {
 #define G ((func_80374F04_StructGlobal *)D_801BBBF0)
 #define NEW (*(func_80374F04_StructNew **)(D_801BBBF0 + 0x1118))
 
+#define func_80374DF0 func_80374DF0__decl471
+extern func_80374F04_StructEnt *func_80374DF0(u8, func_80374F04_StructObj *);
 extern func_80374F04_StructNew *func_80005670(func_80374F04_StructObj *, u8 *, func_80374F04_StructPos *);
 
 void func_80374F04(func_80374F04_StructObj *arg0, f32 arg1) {
@@ -575,6 +577,7 @@ found:
         }
     }
 }
+#undef func_80374DF0
 
 
 struct func_8037532C_Struct2 {

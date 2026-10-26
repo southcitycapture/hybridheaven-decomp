@@ -1,5 +1,23 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_8035F544_Copy { int a; int b; int c; } func_8035F544_Copy;
+typedef struct func_8035CDA8_Obj { int a; } func_8035CDA8_Obj;
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+void func_800058DC(void *arg0, void *arg1);
+extern s32 func_80011140(s32, s32, func_8035F544_Copy, s32);
+extern void func_8022310C(void *arg0, s32 arg1);
+extern s32 func_802233B0();
+extern s32 func_8022397C();
+extern s32 func_80224AC4();
+typedef struct func_80360EF8_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80360EF8_Struct;
+extern void func_802256E4(func_80360EF8_Struct *, s32, s32);
 void func_80363204(void *arg0, s32 arg1);
+
 
 typedef struct func_80363018_Struct4 {
     u8 b[4];

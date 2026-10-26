@@ -1,7 +1,7 @@
 """Choose what to send agents next: rank unmatched functions by expected matched bytes per dollar.
 
   pick.py OUT_BATCH [-n N] [--kind fresh|twin|all] [--max-diff D] [--min-diff D] [--max-tries K] [--model haiku|sonnet]
-                     [--allow-switch]
+                     [--allow-switch] [--finish-bonus B] [--loop-eligible] [--hold-hours H]
       writes queue/OUT_BATCH/functions.txt ("func segment" lines, best first) and queue/OUT_BATCH/PICK.md
   pick.py --stats            print the measured success and cost model only
 
@@ -13,7 +13,16 @@ Value of one agent attempt on a function:
   cost    = that model's measured mean $ per attempt for the band
 Skipped: jump-table functions (workers may not write `switch`; --allow-switch allows them in main) and functions
 using instructions C can't produce (tools/hh/features.py).
-  score   = P x payoff / cost       (expected matched bytes per dollar)
+  finish  = file code bytes / remaining functions, only if matching the remaining
+            function placeholders can satisfy progress.py's complete predicate
+            (fresh groups include propagated copies at the same rate as payoff)
+  score   = P x (payoff + finish_bonus x finish) / cost
+            --finish-bonus defaults to 0: exactly the legacy ranking.
+  --loop-eligible prefilters held/tried/rejected/blocklisted functions before choosing
+            representatives. The loop uses it when the bonus is on; its existing
+            postfilter still runs. A nonzero bonus also implies --loop-eligible.
+  Completion estimates use --progress-report (default build/progress/report.json);
+            refresh it with progress.py after integrating matches.
 Kinds:
   fresh   no member of its `fp` group is matched yet: one representative per group, from the segment with the
           most matched code nearby (a richer context.h)
@@ -21,11 +30,13 @@ Kinds:
           started from the twin's C (prep2.sh TWIN, on by default) does much better than from scratch (exp8: 77%)
 Skips functions in library files and ones with no C file. Re-measures everything on each run.
 """
-import collections, csv, glob, json, os, sys
+import collections, csv, glob, json, math, os, sys
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 _argv = sys.argv; sys.argv = ["srcbuild.py", "none"]
 sys.path.insert(0, "tools/hh"); import srcbuild as S
 sys.argv = _argv
+from pick_finish import expected_complete, finish_profiles, finish_shares, score
+from pick_filters import unavailable
 BAND = 25
 TWIN_P = 0.77          # exp8: start from a >=90% twin's C
 FAIL_DECAY = 0.6
@@ -75,21 +86,9 @@ def prop_rate():
         if m and int(m.group(1)) >= 5000: return int(m.group(2)) / int(m.group(1))
     return 0.75
 
-if __name__ == "__main__":
-    rows, by, reg = load()
-    import features as F
-    feats = F.features()
-    stats, fails = model_stats(by, feats, opt("--model", "haiku"))
-    pr = prop_rate()
-    if "--stats" in sys.argv:
-        print("model %s; P per difficulty band, without / with loops" % opt("--model", "haiku"))
-        print("band        tries  wins     P   | tries  wins     P  | $/try")
-        for b in range(13):
-            a0, w0, p0, c = stats[(b, False)]; a1, w1, p1, _ = stats[(b, True)]
-            print("%3d-%3d   %6d %5d  %4.0f%% | %5d %5d  %4.0f%% | %.4f" % (b * BAND, b * BAND + BAND - 1, a0, w0, 100 * p0, a1, w1, 100 * p1, c))
-        print("propagation rate %.0f%%" % (100 * pr)); sys.exit()
-    OUT = "queue/" + sys.argv[1]; n = opt("-n", 200, int); kind = opt("--kind", "all")
-    lo, hi, maxtries = opt("--min-diff", 0, int), opt("--max-diff", 10**9, int), opt("--max-tries", 3, int)
+def rank(rows, by, reg, feats, stats, fails, pr, *, bonus=0, shares=None, excluded=None,
+         kind="all", lo=0, hi=10**9, maxtries=3, allow_jt=False):
+    shares, excluded = shares or {}, excluded or set()
     groups = collections.defaultdict(list)
     for r in rows: groups[r["fp"]].append(r)
     # matched bytes per (segment, C file): a representative there gets a fuller context.h
@@ -97,9 +96,9 @@ if __name__ == "__main__":
     for (seg, f) in reg:
         r = by.get((seg, f))
         if r: near[(seg, r["file"])] += int(r["size"])
-    allow_jt = "--allow-switch" in sys.argv
     RO_SEGS = set(open("tools/hh/rodata_segments.txt").read().split()) if os.path.exists("tools/hh/rodata_segments.txt") else set()          # workers are told not to write `switch` (no overlay jtbls yet)
     def buildable(r):
+        if (r["func"], r["segment"]) in excluded: return False
         f = feats.get((r["segment"], r["func"]), {})
         if f.get("nonc") or (f.get("jtbl") and not (allow_jt and r["segment"] in RO_SEGS)): return False
         return (r["segment"], r["file"]) not in S.LIBFILES and S.file_of(r["segment"], r["func"])
@@ -116,29 +115,68 @@ if __name__ == "__main__":
             for r in todo:
                 if not buildable(r): continue
                 pay = int(r["size"])
-                picks.append((TWIN_P * pay / c, "twin", r, pay, TWIN_P, c, 1))
+                finish = shares.get((r["segment"], r["func"]), 0)
+                picks.append((score(TWIN_P, pay, c, finish, bonus), "twin", r, pay, TWIN_P, c, 1, finish))
         else:
             if kind not in ("fresh", "all"): continue
             cands = [r for r in todo if buildable(r)]
             if not cands: continue
-            rep = max(cands, key=lambda r: (near[(r["segment"], r["file"])], r["segment"] == "main"))
+            def credit(r): return shares.get((r["segment"], r["func"]), 0)
+            def finish_pay(r): return credit(r) + pr * sum(credit(copy) for copy in todo if copy is not r)
+            # At zero use the original key and insertion order, even for ties.
+            rep = max(cands, key=lambda r: ((finish_pay(r) if bonus else 0),
+                                           near[(r["segment"], r["file"])], r["segment"] == "main"))
             pay = int(rep["size"]) + pr * sum(int(r["size"]) for r in todo if r is not rep)
             pp = p * FAIL_DECAY ** fails[fp]
-            picks.append((pp * pay / c, "fresh", rep, pay, pp, c, len(todo)))
+            finish = finish_pay(rep)
+            picks.append((score(pp, pay, c, finish, bonus), "fresh", rep, pay, pp, c, len(todo), finish))
     picks.sort(key=lambda x: -x[0])
+    return picks, groups
+
+
+if __name__ == "__main__":
+    rows, by, reg = load()
+    import features as F
+    feats = F.features()
+    stats, fails = model_stats(by, feats, opt("--model", "haiku"))
+    pr = prop_rate()
+    if "--stats" in sys.argv:
+        print("model %s; P per difficulty band, without / with loops" % opt("--model", "haiku"))
+        print("band        tries  wins     P   | tries  wins     P  | $/try")
+        for b in range(13):
+            a0, w0, p0, c = stats[(b, False)]; a1, w1, p1, _ = stats[(b, True)]
+            print("%3d-%3d   %6d %5d  %4.0f%% | %5d %5d  %4.0f%% | %.4f" % (b * BAND, b * BAND + BAND - 1, a0, w0, 100 * p0, a1, w1, 100 * p1, c))
+        print("propagation rate %.0f%%" % (100 * pr)); sys.exit()
+    OUT = "queue/" + sys.argv[1]; n = opt("-n", 200, int); kind = opt("--kind", "all")
+    lo, hi, maxtries = opt("--min-diff", 0, int), opt("--max-diff", 10**9, int), opt("--max-tries", 3, int)
+    bonus = opt("--finish-bonus", 0.0, float)
+    if not math.isfinite(bonus) or bonus < 0: sys.exit("--finish-bonus must be finite and nonnegative")
+    report = opt("--progress-report", "build/progress/report.json")
+    profiles = []
+    if os.path.exists(report):
+        profiles = finish_profiles(json.load(open(report)), lambda name: open("src/" + name + ".c").read())
+    elif bonus:
+        sys.exit("finish bonus needs %s; run tools/hh/progress.py first" % report)
+    excluded = unavailable(sys.argv[1], opt("--hold-hours", 12.0, float), include_rejected=True) if bonus or "--loop-eligible" in sys.argv else set()
+    picks, groups = rank(rows, by, reg, feats, stats, fails, pr, bonus=bonus, shares=finish_shares(profiles),
+                         excluded=excluded, kind=kind, lo=lo, hi=hi, maxtries=maxtries, allow_jt="--allow-switch" in sys.argv)
     chosen = picks[:n]
     os.makedirs(OUT, exist_ok=True)
     with open(OUT + "/functions.txt", "w") as fh:
         for _, _, r, *_ in chosen: fh.write("%s %s\n" % (r["func"], r["segment"]))
     exp = sum(x[4] * x[3] for x in chosen); spend = sum(x[5] for x in chosen)
+    complete = expected_complete(chosen, groups, profiles, pr) if profiles else 0
     lines = ["# %s: %d picks (%s)" % (sys.argv[1], len(chosen), " ".join(sys.argv[2:]) or "defaults"), "",
              "Expected: about **%.0f bytes** matched (incl. propagated copies) for about **$%.2f** of API-equivalent "
              "spend (%.0f bytes/$). Propagation rate used: %.0f%%." % (exp, spend, exp / max(spend, 1e-9), 100 * pr), "",
-             "| # | func | segment | kind | difficulty | copies | payoff bytes | P | $/try | bytes/$ |",
-             "|---|---|---|---|---|---|---|---|---|---|"]
-    for i, (sc, k, r, pay, pp, c, cp) in enumerate(chosen[:60], 1):
-        lines.append("| %d | %s | %s | %s | %s | %d | %.0f | %.0f%% | %.4f | %.0f |" % (
-            i, r["func"], r["segment"], k, r["difficulty"], cp, pay, 100 * pp, c, sc))
+              "Expected new fully-linked code: **%.0f bytes** (all remaining functions covered; independent attempts and conditional propagation). "
+              "Finish bonus: %g; amortized finish credit: %.0f expected bytes (scoring proxy, not completed bytes).%s" %
+              (complete, bonus, sum(x[4] * x[7] for x in chosen), "" if profiles else " No eligible completion profiles available."), "",
+              "| # | func | segment | kind | difficulty | copies | payoff bytes | finish credit | P | $/try | score/$ |",
+              "|---|---|---|---|---|---|---|---|---|---|---|"]
+    for i, (sc, k, r, pay, pp, c, cp, finish) in enumerate(chosen[:60], 1):
+        lines.append("| %d | %s | %s | %s | %s | %d | %.0f | %.0f | %.0f%% | %.4f | %.0f |" % (
+            i, r["func"], r["segment"], k, r["difficulty"], cp, pay, finish, 100 * pp, c, sc))
     if len(chosen) > 60: lines.append("\n(%d more in functions.txt)" % (len(chosen) - 60))
     open(OUT + "/PICK.md", "w").write("\n".join(lines) + "\n")
     print("\n".join(lines[:3])); print("wrote %s/functions.txt and PICK.md" % OUT)

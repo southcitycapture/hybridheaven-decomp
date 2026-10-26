@@ -1,7 +1,7 @@
 #!/bin/bash
 # prep.sh FUNC SEGMENT WORKDIR: set up a worker directory for one function
 set -e
-FUNC=$1; SEG=$2; W=$3; HH="$(cd "$(dirname "$0")/../.." && pwd)"
+FUNC=$1; SEG=$2; W=$3; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}
 mkdir -p "$W"
 cp "$(find "$HH/asm/nonmatchings/$SEG" -name "$FUNC.s" | head -1)" "$W/target.s"
 { echo '#include "common.h"'; echo; "$HH/.venv/bin/python" "$HH/tools/m2c/m2c.py" "$W/target.s" 2>&1; } > "$W/draft.c" || true
@@ -18,3 +18,4 @@ if [ \$n -gt 10 ]; then echo "check limit reached (10). Stop and report your bes
 EOC
 chmod +x "$W/check"
 sed "s/{FUNC}/$FUNC/g" "$HH/tools/swarm/worker_prompt.md" > "$W/prompt.md"
+"$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" switches "$SEG" "$FUNC" >> "$W/prompt.md"

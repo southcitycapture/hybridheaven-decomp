@@ -28,7 +28,7 @@ struct func_80227484_List {
 
 extern void func_801451C0();
 extern void func_80145310(void *, s32, s32);
-extern void func_801453CC(void *, s32, s32, s32, s32, s32, s32);
+extern s32 func_801453CC();
 extern u8 D_801BCC21;
 
 void func_80227484(struct func_80227484_List *arg0, struct func_80227484_Struct3 *arg1, s8 arg2) {

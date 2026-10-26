@@ -13,7 +13,7 @@ empty-stub C for `jr $ra; nop` functions). Snippets are combined like this:
   srcbuild.py add BATCH [BATCH..]  add each batch's verified matches to the registry, keeping only
                                    those that work in context; then run `make` to confirm the ROM
 """
-import glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile
+import functools, glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 sys.path.insert(0, os.path.join(HH, "tools/hh"))
@@ -24,7 +24,7 @@ IDO = "tools/ido/7.1/cc"
 CFLAGS = "-G 0 -non_shared -Xcpluscomm -mips2 -O2 -I include -I src".split()
 ASFLAGS = "-EB -march=vr4300 -mabi=32 -G 0 -I include -I build/include".split()
 DECL = re.compile(r"^\s*extern\b[^;]*?\b((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*(?:\(|\[|;)")
-DEFN = re.compile(r"^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;]*$")
+DEFN = re.compile(r"^(?!extern\b)[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;]*$")
 # a one-line old-style definition, `void f(arg0) T *arg0; {` (DEFN excludes `;`): existing_ok must see it as a definition,
 # or a file holding one is never "already right" and gets re-rendered (and, once frozen, rebuilt one at a time) every time
 KR_DEFN = re.compile(r"^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;{]*\)\s*(?:[^{};]*;)+\s*\{\s*$")
@@ -32,12 +32,21 @@ TYPEDEF = re.compile(r"\btypedef\b.*?\b(\w+)\s*;\s*$|^\s*}\s*(\w+)\s*;\s*$")
 # a file-scope prototype without `extern` (`void func_800062F8(s32, s32);`); only used at brace depth 0
 PROTO = re.compile(r"^\s*(?!return\b|else\b|case\b|goto\b)(?:[A-Za-z_]\w*[\s\*]+)+\**\s*((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*\([^;{]*\)\s*;\s*(?://.*|/\*.*\*/)?$")
 
+_RD = {}
+def _rd(path):
+    """An asm file's text, read once per process: render runs ~1,000 times on a 900-function file (file027) and
+    re-reading every asm file each time was ~7 million opens, most of the build's time. asm/ doesn't change during a
+    build; the twins srcbuild writes (_ro_, _lr_) are read with open()."""
+    t = _RD.get(path)
+    if t is None: t = _RD[path] = open(path).read()
+    return t
+
 def entries(seg, cfile):
     """Functions of one C file in address order: (name, asm path, rom offset, size)."""
     out = []
     for p in glob.glob("asm/nonmatchings/%s/%s/*.s" % (seg, cfile)):
         if os.path.basename(p).startswith(("_mrg_", "_ro_")): continue      # generated blocks, not functions
-        s = open(p).read()
+        s = _rd(p)
         m = re.search(r"nonmatching (\S+), (0x[0-9A-F]+)\s+[gj]label \1\s+/\* ([0-9A-F]+) ([0-9A-F]+) ", s)   # jlabel: also a jump target
         if m: out.append((m.group(1), p, int(m.group(3), 16), int(m.group(2), 16), int(m.group(4), 16)))
     return sorted(out, key=lambda e: e[2])
@@ -105,7 +114,7 @@ RO_LINE = re.compile(r"/\* [0-9A-F]+ ([0-9A-F]{8}) ")
 def rodata_min(path):
     """Lowest vram of the rodata a function's asm carries (migrated by splat), else None."""
     sect, lo = ".text", None
-    for l in open(path):
+    for l in _rd(path).splitlines(True):
         if l.startswith(".section"): sect = l.split()[1]; continue
         if sect != ".text":
             m = RO_LINE.search(l)
@@ -113,25 +122,111 @@ def rodata_min(path):
     return lo
 
 def rodata_blocks(seg, cfile):
+    return list(_rodata_blocks(seg, cfile))
+
+@functools.lru_cache(maxsize=None)
+def _rodata_blocks(seg, cfile):
     """Rodata splat could not migrate into one function (shared, or not referenced by code): (vram, path)."""
     out = []
     # labels splat already migrated into a function's own asm: a leftover block with the same label would duplicate it
     owned = set()
     for p in glob.glob("asm/nonmatchings/%s/%s/func_*.s" % (seg, cfile)):
-        owned |= set(re.findall(r"^\s*dlabel\s+(\S+)", open(p).read(), re.M))
+        owned |= set(re.findall(r"^\s*dlabel\s+(\S+)", _rd(p), re.M))
     for p in glob.glob("asm/nonmatchings/%s/%s/*.s" % (seg, cfile)):
         b = os.path.basename(p)
-        if b.startswith(("func_", "_pad", "pad", "_ro_", "_mrg_")): continue
-        if set(re.findall(r"^\s*dlabel\s+(\S+)", open(p).read(), re.M)) & owned: continue
+        if b.startswith(("func_", "_pad", "pad", "_ro_", "_mrg_", "_ap_", "_lr_")): continue
+        if set(re.findall(r"^\s*dlabel\s+(\S+)", _rd(p), re.M)) & owned: continue
         if not open(p).readline().startswith(".section .rodata") and ".section .late_rodata" not in open(p).read(200): continue
         v = rodata_min(p)
         if v is not None: out.append((v, p))
-    return sorted(out)
+    return tuple(sorted(out))
+
+def _ro_items(text):
+    """A function asm's non-.text sections as [(section, vram, lines)] per item (an item starts at its `nonmatching`
+    line; `.align` lines just before it belong to it)."""
+    items, sect, buf = [], ".text", []
+    for l in text.split("\n"):
+        if l.startswith(".section"): sect = l.split()[1].rstrip(","); buf = []; continue
+        if sect == ".text": continue
+        if re.match(r"\s*\.align\b", l) and (not items or items[-1][0] != sect or "enddlabel" in items[-1][2][-1] or not items[-1][2][-1].strip()):
+            buf.append(l); continue
+        if re.match(r"\s*nonmatching\s", l):
+            items.append([sect, None, buf + [l]]); buf = []; continue
+        if items and items[-1][0] == sect:
+            items[-1][2].append(l)
+            m = RO_LINE.search(l)
+            if m and items[-1][1] is None: items[-1][1] = int(m.group(1), 16)
+    return [tuple(x) for x in items if x[1] is not None]
+
+@functools.lru_cache(maxsize=None)
+def late_split(seg, cfile, blocks):
+    """The address where this file's late rodata starts. IDO emits [regular rodata][late rodata] per file, but splat
+    labels some items on the wrong side (file048/801E1BE0: 2 'late' floats, 34 regular items, 86 late, 8 regular
+    strays). Chosen as the boundary that disagrees with splat's labels least. None if the file has no late items."""
+    pts = []
+    for f in glob.glob("asm/nonmatchings/%s/%s/func_*.s" % (seg, cfile)):
+        pts += [(v, sect == ".late_rodata") for sect, v, _ in _ro_items(_rd(f))]
+    pts += [(v, False) for v, _ in blocks]
+    if not any(l for _, l in pts): return None
+    pts.sort(); best = None
+    late_before, reg_after = 0, sum(1 for _, l in pts if not l)
+    for k, (v, l) in enumerate(pts):        # boundary just before item k
+        cost = late_before + reg_after
+        if best is None or cost < best[0]: best = (cost, v)
+        late_before += l; reg_after -= (not l)
+    return best[1]
+
+@functools.lru_cache(maxsize=None)
+def late_orphans(seg, cfile, blocks):
+    """Leftover blocks that are really one asm function's late rodata: {function asm path: [block paths]}.
+    A block at or after the file's late split (late_split) used by exactly one asm function rides along with that
+    function as its .late_rodata (file009/801CD500: D_801E35F0, the 500.0 of func_801D0F54, landed ahead of the
+    whole late region as a plain .rodata block and shifted 0x88 bytes; file009 came out a byte too big)."""
+    L = late_split(seg, cfile, blocks)
+    if L is None: return {}
+    funcs = glob.glob("asm/nonmatchings/%s/%s/func_*.s" % (seg, cfile))
+    out = {}
+    for v, p in blocks:
+        if v < L: continue
+        labels = re.findall(r"^\s*dlabel\s+(\S+)", _rd(p), re.M)
+        users = [f for f in funcs if any(re.search(r"%%(?:hi|lo)\(%s\)" % re.escape(l), _rd(f)) for l in labels)]
+        if len(users) == 1: out.setdefault(users[0], []).append(p)
+    return out
+
+@functools.lru_cache(maxsize=None)
+def early_lates(seg, cfile, blocks):
+    """Asm functions whose .late_rodata holds items before the file's late split: really regular rodata."""
+    L = late_split(seg, cfile, blocks)
+    if L is None: return set()
+    return {f for f in glob.glob("asm/nonmatchings/%s/%s/func_*.s" % (seg, cfile))
+            if any(sect == ".late_rodata" and v < L for sect, v, _ in _ro_items(_rd(f)))}
+
+def with_late(path, blocks, split=None):
+    """A twin of a function's asm (build/lr/.../_lr_<func>.s): its .late_rodata items before `split` moved to
+    .rodata, and the given data blocks appended as .late_rodata."""
+    text = _rd(path)
+    items = _ro_items(text)
+    reg = [ls for sect, v, ls in items if sect == ".rodata" or (split is not None and v < split)]
+    late = [ls for sect, v, ls in items if sect == ".late_rodata" and not (split is not None and v < split)]
+    for b in blocks: late.append([l for l in open(b).read().splitlines() if not l.startswith(".section")])
+    code = []; sect = ".text"
+    for l in text.split("\n"):
+        if l.startswith(".section"): sect = l.split()[1].rstrip(","); continue
+        if sect == ".text": code.append(l)
+    out = []
+    if reg: out += [".section .rodata"] + [l for ls in reg for l in ls]
+    if late: out += [".section .late_rodata"] + [l for ls in late for l in ls]
+    out += [".section .text"] + code
+    # kept out of asm/: entries(), gen_extern_syms and others scan asm/ and would count the twin as a second definition
+    tw = os.path.join("build/lr", os.path.dirname(path), "_lr_" + os.path.basename(path)); os.makedirs(os.path.dirname(tw), exist_ok=True)
+    t = "\n".join(out) + "\n"
+    if not os.path.exists(tw) or open(tw).read() != t: open(tw, "w").write(t)
+    return tw
 
 def rodata_part(path):
     """The non-.text sections of a function's asm (its migrated rodata), as text, or None."""
     out, sect, any_ro = [], ".text", False
-    for l in open(path).read().split("\n"):
+    for l in _rd(path).split("\n"):
         if l.startswith(".section"): sect = l.split()[1]
         if sect != ".text": out.append(l); any_ro |= bool(l.strip()) and not l.startswith(".section")
     return "\n".join(out) + "\n" if any_ro else None
@@ -160,22 +255,46 @@ def kept_rodata_block(seg, cfile, name, path, snippet):
     had strings the C no longer needs) still needs that rodata in place: emit the function's own rodata as an asm
     block before it. Returns the block's path or None."""
     ro = rodata_part(path)
-    if not ro or c_makes_rodata(seg, name, snippet): return None
+    if not ro: return None
+    if c_makes_rodata(seg, name, snippet):
+        # it makes some (float literals) but may still read other items by name (file015/func_80241F20: four
+        # __FILE__ strings as `extern u8 D_80258310[]`): keep just those regular .rodata items
+        ro = named_rodata(ro, snippet)
+        if not ro: return None
     p = "asm/nonmatchings/%s/%s/_ro_%s.s" % (seg, cfile, name)
     if not os.path.exists(p) or open(p).read() != ro: open(p, "w").write(ro)
     return p
 
+def named_rodata(ro, snippet):
+    """The items of a function's .rodata section (not .late_rodata) that the C snippet names, as a block, or None."""
+    items, cur, sect = [], None, None
+    for l in ro.split("\n"):
+        if l.startswith(".section"): sect = l.split()[1]; cur = None; continue
+        if sect != ".rodata": continue
+        m = re.match(r"\s*nonmatching\s+(\S+)", l)
+        if m or cur is None: cur = [m.group(1) if m else None, []]; items.append(cur)
+        cur[1].append(l)
+    keep = [ls for n, ls in items if n and re.search(r"\b%s\b" % re.escape(n), snippet)]
+    return ".section .rodata\n" + "\n".join(l for ls in keep for l in ls) + "\n" if keep else None
+
 LATE_ITEM = re.compile(r"dlabel (D_[0-9A-F]{8})\n\s*/\* [0-9A-F]+ [0-9A-F]{8} ([0-9A-F]{8,16}) \*/ \.(float|double)")
 
+_LL = {}
 def late_literals(path, snippet):
+    k = (path, snippet)
+    if k not in _LL: _LL[k] = _late_literals(path, snippet)
+    return _LL[k]
+
+def _late_literals(path, snippet):
     """Matched C written before per-file rodata read its float constants by name (`extern f32 D_...;`). They're the
     function's own late rodata, which IDO emits itself from literals: replace each such name by its exact value."""
-    text = open(path).read()
+    text = _rd(path)
     if ".late_rodata" not in text: return snippet
     late = text.split(".section .late_rodata", 1)[1].split(".section .text", 1)[0]
     import struct
     for name, hexv, kind in LATE_ITEM.findall(late):
-        m = re.search(r"^\s*extern\s+(f32|f64|float|double)\s+%s\s*;\s*$" % name, snippet, re.M)
+        # `extern f32 D_a;` or one name of `extern f32 D_a, D_b, D_c;` (file015/func_80241F20 had five on one line)
+        m = re.search(r"^\s*extern\s+(?:const\s+)?(f32|f64|float|double)(?:\s+const)?\s+((?:\w+\s*,\s*)*%s(?:\s*,\s*\w+)*)\s*;\s*$" % name, snippet, re.M)
         if not m: continue
         if kind == "float" and len(hexv) == 8:
             v = struct.unpack(">f", bytes.fromhex(hexv))[0]; lit = repr(float("%.9g" % v))
@@ -184,10 +303,13 @@ def late_literals(path, snippet):
         elif kind == "double" and len(hexv) == 16:
             v = struct.unpack(">d", bytes.fromhex(hexv))[0]; lit = repr(v)
         else: continue
-        if "e" in lit or "inf" in lit or "nan" in lit: continue
+        if "inf" in lit or "nan" in lit: continue
         if lit.startswith("-"): lit = "(" + lit + ")"
-        snippet = snippet[:m.start()] + snippet[m.end():]
-        snippet = re.sub(r"\b%s\b" % name, lit, snippet)
+        rest = [x.strip() for x in m.group(2).split(",") if x.strip() != name]
+        keep = "extern %s %s;" % (m.group(1), ", ".join(rest)) if rest else ""
+        body = snippet[:m.start()] + keep + snippet[m.end():]
+        cut = m.start() + len(keep)
+        snippet = body[:cut] + re.sub(r"\b%s\b" % name, lit, body[cut:])
     return snippet
 
 _DECLS = None
@@ -226,7 +348,7 @@ INS_LINE = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]{8} [0-9A-F]{8} \*/\s+\S")
 def asm_weights(path):
     """(instruction count, late-rodata words) of a function's asm block."""
     text = late = 0; sect = ".text"
-    for l in open(path):
+    for l in (open(path) if "/_" in path else _rd(path).splitlines(True)):
         if l.startswith(".section"): sect = l.split()[1]; continue
         if sect == ".text" and INS_LINE.match(l): text += 1
         elif sect == ".late_rodata":
@@ -292,45 +414,139 @@ def v0_all(seg, snips):
     for n in snips: v |= set(_FEATS.get((seg, n), {}).get("v0", []))
     return v
 
+_COVER = {}
+def covered_words(dirpath):
+    """Word addresses the asm of one C file already holds (data lines `/* ROM VRAM BYTES */`, any section)."""
+    if dirpath not in _COVER:
+        out = set()
+        for p in glob.glob(os.path.join(HH, dirpath, "*.s")):
+            if os.path.basename(p).startswith("_ap_"): continue
+            t = open(p).read()
+            for m in re.finditer(r"/\* [0-9A-F]+ ([0-9A-F]{8}) ([0-9A-F]+) \*/", t):
+                v = int(m.group(1), 16); out.update(range(v & ~3, v + len(m.group(2)) // 2, 4))
+            # strings: `/* ROM VRAM */ .asciz "..."` then the bytes in a comment on the next line
+            # (the comment also shows zero padding after the string; the assembler emits only up to the next 4 bytes)
+            for m in re.finditer(r"/\* [0-9A-F]+ ([0-9A-F]{8}) \*/\s*\.asci[iz][^\n]*\n\s*/\* ([0-9A-F]+) \*/", t):
+                v = int(m.group(1), 16); raw = bytes.fromhex(m.group(2))
+                end = v + (raw.index(0) + 1 if 0 in raw else len(raw)); end = (end + 3) & ~3
+                out.update(range(v & ~3, end, 4))
+        _COVER[dirpath] = out
+    return _COVER[dirpath]
+
+def padded_block(path):
+    """A data-only rodata block that starts 8-aligned (`.align 3`) right after 4 zero bytes in the original is the
+    original compiler's alignment padding before a double. C rodata before it (strings) ends 4-aligned, so asm-processor
+    sees the block at 4 mod 8 and stops ("unexpected alignment mod 8 ... provide explicit alignment padding",
+    file008 D_80188A08). Use a twin `_ap_<name>.s` that carries the padding word itself; gen_pads.py recreates twins."""
+    full = os.path.join(HH, path) if not os.path.isabs(path) else path
+    try: text = open(full).read()
+    except OSError: return path
+    if not re.search(r"^\s*\.align 3\s*$", text, re.M): return path
+    m = re.search(r"/\* ([0-9A-F]+) ([0-9A-F]{8}) ", text)
+    if not m or int(m.group(2), 16) % 8: return path
+    rom = int(m.group(1), 16)
+    if rom < 4 or IMG[rom - 4:rom] != b"\0\0\0\0": return path
+    if int(m.group(2), 16) - 4 in covered_words(os.path.dirname(path)): return path   # a real zero word, not padding
+    twin = os.path.join(os.path.dirname(path), "_ap_" + os.path.basename(path))
+    if not os.path.exists(os.path.join(HH, twin)):
+        body = [l for l in text.splitlines() if l.strip() not in (".section .rodata", ".align 3")]
+        open(os.path.join(HH, twin), "w").write(".section .rodata\n\n.word 0\n" + "\n".join(body) + "\n")
+    return twin
+
+ADDR_SYM = re.compile(r"^(?:func|D)_[0-9A-F]{8}$")
+TAG_DEF = re.compile(r"^\s*(?:typedef\s+)?(?:struct|union|enum)\s+(\w+)\s*\{")
+
+def _norm_decl(line):
+    return " ".join(re.sub(r"/\*.*?\*/|//.*$", "", line).replace("extern ", "").split())
+
+def private_names(text, decl_text, file_defs, own):
+    """Names this snippet must keep private: file-scope declarations of address-named symbols that differ from the
+    file's first declaration (or that declare a function another snippet of this file defines), and struct/union/enum
+    tags and typedef names an earlier snippet already defined. Each snippet was matched compiled on its own, with its
+    own declarations; one C file allows one declaration per name, so a neighbour's type for a shared global (a struct
+    here, an s32 there) broke ~90 functions per overlay-rodata re-split (compile errors) and changed codegen for others.
+    Renamed via #define to NAME__<function> around the snippet; the alias is linked at NAME's address (address-named
+    symbols carry their address), so the bytes are the same."""
+    out, depth = set(), 0
+    for l in text.splitlines():
+        if depth == 0:
+            n = decl_name(l, 0)
+            if n and ADDR_SYM.match(n) and n != own and (
+                    (n in decl_text and decl_text[n] != _norm_decl(l)) or (n in file_defs and file_defs[n] != own)):
+                out.add(n)
+            for t in TAG_DEF.findall(l) + [x for x in TYPEDEF.findall(l) for x in x if x]:
+                if t in decl_text and decl_text[t] != ("type", own): out.add(t)
+        depth += l.count("{") - l.count("}")
+        if depth == 0:
+            t = TYPEDEF.search(l)
+            if t:
+                tn = t.group(1) or t.group(2)
+                if tn in decl_text and decl_text[tn] != ("type", own): out.add(tn)
+    return out
+
 def render(seg, cfile, snips, pad=0, keep_ro=True, hoist=False):
     """Return (text, line ranges per snippet function). hoist=True puts one declaration per name at the top."""
     lines = ['#include "common.h"', ""]; ranges = {}; declared = set()
+    decl_text = {}                             # name -> first declaration (normalized) or ("type", owner)
+    file_defs = {}                             # function defined in this file -> the snippet that defines it
+    for n, t in snips.items():
+        for l in t.splitlines():
+            m = DEFN.match(l)
+            if m: file_defs.setdefault(m.group(1), n)
     if hoist:
         hd = hoisted_decls(seg, snips, unproto=(hoist == "unproto"))
         lines += sorted(hd.values()) + [""]; declared |= set(hd)
+        for n, l in hd.items(): decl_text.setdefault(n, _norm_decl(l))
     group, gt, gl = [], 0, 0                  # consecutive asm functions waiting to be emitted as one block
     def flush():
         nonlocal group, gt, gl
         if group: lines.extend(['#pragma GLOBAL_ASM("%s")' % merged_block(seg, cfile, group), ""])
         group, gt, gl = [], 0, 0
     pending = rodata_blocks(seg, cfile)        # emitted in rodata order, just before the first function whose rodata comes later
+    tp = tuple(pending)
+    lorph = late_orphans(seg, cfile, tp)       # ...except a lone function's late literal: it travels with that function
+    early = early_lates(seg, cfile, tp)        # and 'late' items splat put before the file's late region are regular
+    lsplit = late_split(seg, cfile, tp) if (lorph or early) else None
+    taken = {b for bs in lorph.values() for b in bs}
+    pending = [(v, p) for v, p in pending if p not in taken]
     for name, path, off, size, vram in entries(seg, cfile):
         lo = rodata_min(path) if pending else None
         if pending and lo is not None and pending[0][0] < lo: flush()
         while pending and lo is not None and pending[0][0] < lo:
-            lines += ['#pragma GLOBAL_ASM("%s")' % pending.pop(0)[1], ""]
+            lines += ['#pragma GLOBAL_ASM("%s")' % padded_block(pending.pop(0)[1]), ""]
         if name in snips or is_stub(off, size): flush()
         if name in snips:
             snips = dict(snips); snips[name] = late_literals(path, snips[name])
             kb = kept_rodata_block(seg, cfile, name, path, snips[name]) if keep_ro else None
             if kb: lines += ['#pragma GLOBAL_ASM("%s")' % kb, ""]
-            body = missing_decls(snips[name], declared) + snippet_lines(snips[name], declared)
+            priv = private_names(snips[name], decl_text, file_defs, name)
+            body = (["#define %s %s__%s" % (n, n, name) for n in sorted(priv)]
+                    + missing_decls(snips[name], declared) + snippet_lines(snips[name], declared - priv)
+                    + ["#undef %s" % n for n in sorted(priv)])
             start = len(lines) + 1; lines += body + [""]; ranges[name] = (start, len(lines))
             depth = 0
             for l in body:
                 n = decl_name(l, depth) or (DEFN.match(l).group(1) if depth == 0 and DEFN.match(l) else None)
-                if n: declared.add(n)
+                if n and n not in priv:      # a private name's declaration ends at its #undef: later snippets need their own
+                    declared.add(n)
+                    decl_text.setdefault(n, "DEF" if DEFN.match(l) and depth == 0 else _norm_decl(l))
+                if depth == 0:
+                    for tg in TAG_DEF.findall(l):
+                        if tg not in priv: decl_text.setdefault(tg, ("type", name))
                 depth += l.count("{") - l.count("}")
                 t = TYPEDEF.search(l)
-                if t: declared.add(t.group(1) or t.group(2))
+                if t:
+                    tn = t.group(1) or t.group(2)
+                    if tn not in priv: declared.add(tn); decl_text.setdefault(tn, ("type", name))
         elif is_stub(off, size):
             lines += ["void %s(void) {" % name, "}", ""]; declared.add(name)
         else:
+            if path in lorph or path in early: path = with_late(path, lorph.get(path, []), lsplit)
             t, l = asm_weights(path)
             group.append(path); gt += t; gl += l
             if 3 * gl <= gt: flush()           # this block (with any merged predecessors) satisfies asm-processor
     flush()
-    lines += sum((['#pragma GLOBAL_ASM("%s")' % p, ""] for _, p in pending), [])
+    lines += sum((['#pragma GLOBAL_ASM("%s")' % padded_block(p), ""] for _, p in pending), [])
     if pad: lines += ['#pragma GLOBAL_ASM("%s")' % pad_asm(seg, cfile, pad), ""]
     return "\n".join(lines) + "\n", ranges
 
@@ -413,6 +629,48 @@ def fn_body(text, name):
                 if opened and depth <= 0: return " ".join(" ".join(out).split())
     return None
 
+def _seg_bss():
+    """segment -> vram where its .bss starts (hybridheaven.yaml `{ type: bss, vram: ... }`): where its rodata ends."""
+    out, cur = {}, None
+    for l in open("hybridheaven.yaml"):
+        m = re.match(r"  - name: (\w+)", l)
+        if m: cur = m.group(1); continue
+        m = re.match(r"\s+- \{ type: bss, vram: 0x([0-9A-F]+)", l)
+        if m and cur: out[cur] = int(m.group(1), 16)
+    # Also bound the last per-file readonly subsegment in overlays with no BSS.
+    for f in json.load(open("build/expanded.json"))["files"]:
+        if "exp_len" in f:
+            out.setdefault("file%03d" % f["id"], f["vram"] + f["exp_len"])
+    return out
+SEG_BSS = _seg_bss()
+
+_YEXT = None
+def yaml_extent(seg, cfile):
+    """Size of seg/cfile's .rodata subsegment in hybridheaven.yaml (next subsegment's offset minus its own), or None."""
+    global _YEXT
+    if _YEXT is None:
+        _YEXT, rows = {}, []
+        for l in open("hybridheaven.yaml"):
+            m = re.match(r"\s+- \[0x([0-9A-F]+), ([.\w]+)(?:, ([\w/]+))?\]", l)
+            if m: rows.append((int(m.group(1), 16), m.group(2), m.group(3)))
+            elif re.match(r"\s+- name:|\s*- \[0x[0-9A-F]+\]\s*$", l): rows.append((None, None, None))
+        for (o, k, n), (o2, k2, n2) in zip(rows, rows[1:]):
+            if k == ".rodata" and n and o2 is not None and o2 > o: _YEXT[tuple(n.split("/"))] = o2 - o
+    return _YEXT.get((seg, cfile))
+
+def file_rodata_size(seg, cfile):
+    """Bytes of .rodata this C file owns in the per-file layout: up to the next file's, the last one up to the
+    segment's .bss. None if the file has no per-file rodata."""
+    st = FILE_RODATA.get((seg, cfile))
+    if st is None: return None
+    # the yaml's own extent when it has one: up to the next subsegment of any kind (main/80032720 is followed by a
+    # bare 16-byte rodata subsegment before the next C file's rodata, which a next-C-file rule counted as its own)
+    y = yaml_extent(seg, cfile)
+    if y is not None: return y
+    nxt = sorted(v for (s, c), v in FILE_RODATA.items() if s == seg and v > st)
+    end = nxt[0] if nxt else SEG_BSS.get(seg)
+    return (end - st) if end else None
+
 def defined_functions(text):
     """C definitions, without mistaking a prototype plus the next definition for K&R parameter declarations."""
     code = "\n".join(l for l in text.splitlines() if not l.lstrip().startswith("#"))
@@ -438,10 +696,18 @@ def existing_ok(seg, cfile, snips, td, bodies=True, asm_ok=()):
     obj, err = compile_file(text, td)
     if obj is None: return False
     base = min(e[4] for e in info.values()); ro = FILE_RODATA.get((seg, cfile))
-    if not all(n in info and func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro) for n in snips): return False
+    if not all(n in info and func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro) for n in snips if n in defined): return False
     start, end = file_span(seg, cfile)
     with open(obj, "rb") as fh:
-        return ELFFile(fh).get_section_by_name(".text")["sh_size"] == end - start
+        e = ELFFile(fh)
+        if e.get_section_by_name(".text")["sh_size"] != end - start: return False
+        # and its whole .rodata: a file kept from an older layout can compile and match function by function while
+        # missing a data block the current layout gives it (file009/801C2580: 0x210 bytes short, every later file shifted)
+        want = file_rodata_size(seg, cfile)
+        if want is not None:
+            ro = e.get_section_by_name(".rodata")
+            if (((ro["sh_size"] if ro is not None else 0) + 15) & ~15) != want: return False   # files' rodata is 16-aligned
+    return True
 
 def build_one(args):
     """Build one C file. `prio` orders the snippets (lower = registered earlier); earlier work always wins a
@@ -456,6 +722,16 @@ def build_one(args):
     with tempfile.TemporaryDirectory() as td:
         if snips and existing_ok(seg, cfile, snips, td, asm_ok=asm_ok):
             return (fname, dict(snips), {}, None)   # already right: keep the file as it is
+        path = "src/%s.c" % fname
+        if os.path.exists(path):
+            current = open(path).read()
+            present = {n: t for n, t in snips.items() if fn_body(current, n) is not None}
+            new = {n: t for n, t in snips.items() if n not in present}
+            import reconcile_frozen
+            if new and reconcile_frozen.verify(seg, cfile, current, list(present), td)[0]:
+                text, acc, rej = reconcile_frozen.integrate(seg, cfile, current, new, td)
+                if acc: open(path, "w").write(text)
+                return (fname, dict(present, **{n: new[n] for n in acc}), rej, None)
         kept, rej, text, problem = settle(seg, cfile, snips, td)
         if (problem or set(old) - set(kept)) and (committed or existing_ok(seg, cfile, old, td, bodies=False, asm_ok=asm_ok)):
             # the file as it stands is a correct build of its registered functions (the last ROM-checked one, even if
@@ -540,13 +816,23 @@ def added_times():
         elif line.strip() and t is not None: first[line.strip()] = min(t, first.get(line.strip(), t))
     return first
 
-def run(cands, new_keys):
+def run(cands, new_keys, every_file=False):
     """cands: {(seg, name): text}. Builds every affected file; returns (kept keys, rejected {key: why}).
-    Files built from library source (tools/hh/libultra.json) are left alone."""
+    Files built from library source (tools/hh/libultra.json) are left alone. every_file (srcbuild all): also write the
+    C files with no matched function, and delete src files the asm layout no longer has: after a re-split (new file
+    splits, e.g. per-file rodata) a file left with only asm functions kept its old text, whose GLOBAL_ASM paths point
+    at the old layout and stop the build."""
     byfile = {}
     for (seg, name), text in cands.items():
         cf = file_of(seg, name)
         if cf and (seg, cf) not in LIBFILES: byfile.setdefault((seg, cf), {})[name] = text
+    if every_file:
+        layout = {tuple(d.split("/")[2:4]) for d in glob.glob("asm/nonmatchings/*/*") if os.path.isdir(d)}
+        for key in layout - LIBFILES: byfile.setdefault(key, {})
+        for p in glob.glob("src/*/*.c"):
+            key = (p.split("/")[1], os.path.basename(p)[:-2])
+            if key not in layout and key not in LIBFILES and os.path.isdir("asm/nonmatchings/" + key[0]):
+                os.remove(p); print("removed %s: not in the asm layout any more" % p)
     prio = {}
     added = added_times()
     for (seg, name) in cands:
@@ -635,35 +921,50 @@ def context_for(seg, func):
 
 
 def infile_check(seg, func, path):
-    """Build `func`'s real C file with every registered neighbour plus the attempt at `path`, the way
-    `add` would. Returns (ok, message). The neighbours' declarations come first and win, so a clash
-    shows up here exactly as it would at integration."""
+    """Dry-run the same frozen-file integration as add, preserving every C neighbour and the file's size/rodata."""
     cf = file_of(seg, func)
-    info = {e[0]: e for e in entries(seg, cf)}
-    snips = {n: t for (s, n), t in registry().items() if s == seg and n in info and n != func}
-    snips[func] = open(path).read()
+    import reconcile_frozen
+    text = open("src/%s/%s.c" % (seg, cf)).read()
     with tempfile.TemporaryDirectory() as td:
-        text, ranges = render(seg, cf, snips)
-        obj, err = compile_file(text, td)
-        src = text.splitlines()
-        if obj is None:
-            out = []
-            for m in re.finditer(r"line (\d+): (.*)", err):
-                n = int(m.group(1)); who = next((k for k, (a, b) in ranges.items() if a <= n <= b), None)
-                where = "your function" if who == func else ("%s (already matched)" % who if who else "file")
-                out.append("  %s: %s\n      > %s" % (where, m.group(2).strip(), src[n - 1].strip() if n <= len(src) else ""))
-                if len(out) >= 8: break
-            return False, "IN-FILE FAIL: the file %s/%s.c does not compile with your function in it:\n%s" % (seg, cf, "\n".join(out) or err[-600:])
-        base = min(e[4] for e in info.values())
-        ro = FILE_RODATA.get((seg, cf))
-        if not func_ok(obj, func, info[func][2], info[func][3], info[func][4], base, ro):
-            return False, ("IN-FILE FAIL: your function compiles in %s/%s.c but no longer matches there. In the real file, "
-                           "names already declared (context.h) keep their declarations and your extern lines for them are "
-                           "dropped, so use exactly the types in context.h." % (seg, cf))
-        broken = [n for n in snips if n != func and not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro)]
-        if broken:
-            return False, "IN-FILE FAIL: your function breaks already-matched %s (a type or struct you define clashes)." % ", ".join(broken[:3])
-    return True, "IN-FILE MATCH: also matches inside %s/%s.c with its %d matched neighbours" % (seg, cf, len(snips) - 1)
+        _, acc, rej = reconcile_frozen.integrate(seg, cf, text, {func: reconcile_frozen.read_attempt(seg, func, path)}, td)
+    if func not in acc: return False, "IN-FILE FAIL: %s/%s.c: %s" % (seg, cf, rej.get(func, "not accepted"))
+    return True, "IN-FILE MATCH: also matches inside %s/%s.c (%s); all C neighbours preserved" % (seg, cf, acc[func])
+
+
+def trial_snippets(seg, cfile, snips, td):
+    """Repair-tool trial against the frozen file, with the same whole-file gate as workers/add.
+
+    Registry entries still represented by ASM are candidates, never protected neighbours.
+    Return settle's tuple so older repair callers can use the shared path too.
+    """
+    import reconcile_frozen as R
+    path = 'src/%s/%s.c' % (seg, cfile)
+    original = open(path).read()
+    present = defined_functions(original) & {e[0] for e in entries(seg, cfile)}
+    ok, why = R.verify(seg, cfile, original, present, td)
+    if not ok: return {}, {}, original, 'baseline: ' + why
+    reg = registry()
+    # Frozen source can intentionally differ from an unchanged registry recipe
+    # (private aliases, explicit readonly storage). A repair trial must edit only
+    # changed inputs, rather than reinterpret every verified neighbour's recipe.
+    unchanged = {n for n, t in snips.items() if n in present and (seg, n) in reg
+                 and R.normalize(t) == R.normalize(reg[(seg, n)])}
+    pending = {n: t for n, t in snips.items() if n not in unchanged}
+    text, accepted, rejected = R.integrate(seg, cfile, original, pending, td)
+    accepted = set(accepted) | unchanged
+    ok, why = R.verify(seg, cfile, text, present | set(accepted), td)
+    if not ok or not present <= defined_functions(text):
+        return {}, {}, original, 'trial lost a neighbour: ' + why
+    return {n: snips[n] for n in accepted}, rejected, text, None
+
+
+if __name__ == "__main__" and sys.argv[1] == "switches":
+    seg, func = sys.argv[2:4]
+    cf = file_of(seg, func)
+    if cf and (seg == 'main' or (seg, cf) in FILE_RODATA):
+        print('\nFile-layout policy: `switch` is allowed in %s/%s.c. Use it when target.s uses a jump table (`jr` through `jtbl_`).' % (seg, cf))
+    else:
+        print('\nFile-layout policy: do not use `switch` here; this file has no linked per-file rodata placement.')
 
 
 if __name__ == "__main__" and sys.argv[1] == "context":
@@ -677,7 +978,7 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
     mode = sys.argv[1]
     reg = registry()
     if mode == "all":
-        kept, rejected = run(reg, set())
+        kept, rejected = run(reg, set(), every_file=True)
         print("rebuilt from registry: %d functions in C, %d rejected" % (len(kept), len(rejected)))
         # a file whose last registered function was taken out (link/slot/byte repair, a reject) is not rebuilt by
         # run() and kept its stale C (2026-10-22: main/80032720 kept a removed snippet's static const and shifted main
@@ -704,16 +1005,26 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
                 if r["verified"] == "MATCH" and key not in reg and key not in blocked:
                     a = workdir.attempt(b, r["func"], r["segment"])
                     if a is None: continue     # work dir archived (tools/swarm/housekeep.py): offered and settled before
-                    new[key] = open(a).read()
+                    import reconcile_frozen
+                    new[key] = reconcile_frozen.read_attempt(key[0], key[1], a)
         # skip candidates rejected before with the same text while their file's registered functions were the same:
         # the loop re-offers the last few batches every cycle, and each retried reject costs a one-at-a-time rebuild of
         # its file (cycles 23-25 hit the 60 min integrate timeout that way)
         MEMO = "queue/srcbuild_reject_memo.jsonl"
         sha = lambda t: hashlib.sha1(t.encode()).hexdigest()[:16]
+        # A refusal under the old layout or an older integration implementation
+        # says nothing about this one, even when the registry text is identical.
+        gate_version = sha(''.join(open(p).read() for p in (
+            'tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py',
+            'tools/hh/kept_blocks.py', 'hybridheaven.yaml')))
         byfile = {}
         for (seg, n), t in reg.items(): byfile.setdefault((seg, file_of(seg, n)), []).append(n + sha(t))
         def memo_key(key, text):
-            return "%s %s %s %s" % (key[0], key[1], sha(text), sha("".join(sorted(byfile.get((key[0], file_of(*key)), [])))))
+            cf = file_of(*key)
+            path = 'src/%s/%s.c' % (key[0], cf)
+            frozen = open(path).read() if os.path.exists(path) else ''
+            return "%s %s %s %s %s" % (key[0], key[1], sha(text),
+                sha("".join(sorted(byfile.get((key[0], cf), [])))), sha(gate_version + frozen))
         seen = {json.loads(l)["key"] for l in open(MEMO)} if os.path.exists(MEMO) else set()
         if os.environ.get("SRCBUILD_NO_MEMO"): seen = set()   # re-offer every earlier reject (after a check fix)
         skipped = {k for k, t in new.items() if memo_key(k, t) in seen}

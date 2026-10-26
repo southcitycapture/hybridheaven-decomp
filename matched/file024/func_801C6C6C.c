@@ -2,7 +2,7 @@
 
 extern void func_80152BC8(u8, s8);
 extern void func_80152CC8(u8, u16);
-extern void func_801C6D94(void);
+extern void func_801C6D94();
 extern s8 D_801CD0C8[];
 extern func_801C659C_Obj *D_801CFD80[];
 

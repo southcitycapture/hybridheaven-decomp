@@ -1,4 +1,10 @@
-#include "context.h"
+#include "common.h"
+
+typedef struct func_802556EC_Inner { u8 pad[0x4B]; u8 unk4B; } func_802556EC_Inner;
+typedef struct func_802556EC_Node { u8 pad[0x30]; func_802556EC_Inner *unk30; } func_802556EC_Node;
+typedef struct func_802556EC_Args { u8 pad[8]; func_802556EC_Node *unk8; } func_802556EC_Args;
+typedef struct func_802556EC_Ctx { u8 pad[0x92]; u16 unk92; } func_802556EC_Ctx;
+extern void func_8025799C();
 
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern u8 D_8025DA7C[];
@@ -13,7 +19,7 @@ typedef struct func_802556EC_Struct {
     s32 d[5];
 } func_802556EC_Struct;
 
-void func_802556EC(func_80251820_Ctx *arg0, func_80251820_Args *arg1) {
+void func_802556EC(func_802556EC_Ctx *arg0, func_802556EC_Args *arg1) {
     func_802556EC_Struct sp;
 
     func_8025799C();
@@ -24,10 +30,10 @@ void func_802556EC(func_80251820_Ctx *arg0, func_80251820_Args *arg1) {
         sp.c = 3.0f;
         func_801C2F0C(4, &sp);
     }
-    ((func_80251820_Node *)arg1->unk8)->unk30->unk4B += 2;
-    if (((func_80251820_Node *)arg1->unk8)->unk30->unk4B >= 0xFE) {
+    arg1->unk8->unk30->unk4B += 2;
+    if (arg1->unk8->unk30->unk4B >= 0xFE) {
         func_80133980(0x13A);
-        ((func_80251820_Node *)arg1->unk8)->unk30->unk4B = 0xFF;
+        arg1->unk8->unk30->unk4B = 0xFF;
         arg0->unk92 = 0;
         func_800058DC(arg0, func_8025584C);
     }

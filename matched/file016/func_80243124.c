@@ -1,4 +1,12 @@
-#include "context.h"
+#include "common.h"
+extern s32 B_801C3DC8(s32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern s32 D_801BBCD0;
+void func_800058DC(void *, void *);
+extern s32 func_80150584();
+extern void func_801BF1B0(s32);
+extern s32 func_801C3D20(f32, f32, s32);
+void func_80243054(void *arg0, void *arg1);
+
 
 extern f32 D_8024EDF4;
 extern f32 D_8024EDF8;

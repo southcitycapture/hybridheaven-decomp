@@ -1,27 +1,30 @@
-"""Per-function features read from the target asm, cached in build/features2.json (rebuilt when asm/ is newer).
+"""Per-function features read from the target asm, cached in build/features4.json (rebuilt when asm/ is newer).
 
   loop   a branch to an earlier address inside the function (the strongest predictor of agent failure)
   jtbl   uses a jump table (a C `switch`; needs per-file rodata in its segment)
   nonc   uses instructions IDO C can't produce (cop0, cache, 64-bit loads/shifts, eret, tlb*): asm forever
+  float_const  migrated .float/.double data or a named FP load (possibly a mutable global)
   args   1 + highest integer argument register ($a0-$a3) read before written: a lower bound on arity
   v0     callees whose return value ($v0) is read after the call, before $v0 is written
 """
 import glob, json, os, re
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../.."))
-CACHE = os.path.join(HH, "build/features3.json")
+CACHE = os.path.join(HH, "build/features4.json")
 INSN = re.compile(r"^\s*/\* [0-9A-F]+ ([0-9A-F]{8}) [0-9A-F]{8} \*/\s+(\S+)\s*(.*)$")
 BR = re.compile(r"\.L([0-9A-F]{8})\b")
 NONC = {"mfc0", "mtc0", "cache", "eret", "tlbp", "tlbr", "tlbwi", "tlbwr", "ld", "sd", "dsll32", "dsra32", "dsrl32",
         "dsll", "dsrl", "dsra", "daddu", "dsubu", "ldl", "ldr", "sdl", "sdr", "sync"}
 
 def scan(path):
-    loop = jt = nonc = mulpad = False; read, written = set(), set(); prev = []
+    loop = jt = nonc = mulpad = float_const = False; read, written = set(), set(); prev = []
     v0_after, pending = [], None          # pending = [callee, instructions seen since the jal]
     for l in open(path):
+        if re.search(r"\.(?:float|double)\b", l): float_const = True
         if l.startswith("endlabel"): break
         m = INSN.match(l)
         if not m: continue
         addr, op, args = int(m.group(1), 16), m.group(2), m.group(3)
+        if op in ("lwc1", "ldc1") and re.search(r"%lo\(D_[0-9A-F]+\)", args): float_const = True
         if op in ("mul.s", "mul.d") and prev[-2:] and prev[-1] == "nop" and len(prev) >= 2 and prev[-2] in ("mul.s", "mul.d"): mulpad = True
         prev.append(op)
         if pending:
@@ -47,7 +50,8 @@ def scan(path):
             for r in regs[1:] if dest else regs:
                 if r not in written: read.add(r)
             if dest: written.add(dest)
-    return dict(loop=loop, jtbl=jt, nonc=nonc, args=max([int(r[-1]) + 1 for r in read] or [0]), v0=v0_after, mulpad=mulpad)
+    return dict(loop=loop, jtbl=jt, nonc=nonc, args=max([int(r[-1]) + 1 for r in read] or [0]), v0=v0_after, mulpad=mulpad,
+                float_const=float_const)
 
 def features():
     files = glob.glob(os.path.join(HH, "asm/nonmatchings/*/*/func_*.s"))

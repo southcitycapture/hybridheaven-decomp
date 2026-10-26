@@ -6,7 +6,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file012/80243E50/func_80244174.s")
 
-
+#define D_8017DC40 D_8017DC40__func_80244410
+#define D_8017DCDE D_8017DCDE__func_80244410
+#define D_8017DD8A D_8017DD8A__func_80244410
+#define D_8017DD8B D_8017DD8B__func_80244410
+#define D_801BBBF0 D_801BBBF0__func_80244410
+#define func_8022C5AC func_8022C5AC__func_80244410
+#define func_80244174 func_80244174__func_80244410
 extern s32 func_80244174(s32, u8, s8);
 extern void func_8022C5AC();
 extern u8 D_8017DC40[];
@@ -99,4 +105,11 @@ void func_80244410(func_80244410_Struct *arg0) {
         func_8022C5AC(arg0);
     }
 }
+#undef D_8017DC40
+#undef D_8017DCDE
+#undef D_8017DD8A
+#undef D_8017DD8B
+#undef D_801BBBF0
+#undef func_8022C5AC
+#undef func_80244174
 

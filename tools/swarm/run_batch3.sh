@@ -3,7 +3,7 @@
 #   Runs Haiku workers over queue/BATCH/functions.txt ("func segment ..." per line), stops launching new
 #   workers once weekly usage reaches WEEKLY_CAP %, then integrates verified matches and refreshes the dashboard.
 { # whole script in one block: bash parses it before running, so editing this file cannot break live runs
-BATCH=$1; P=${2:-4}; CAP=${3:-72}; HH="$(cd "$(dirname "$0")/../.." && pwd)"; cd "$HH"; . ./env.sh
+BATCH=$1; P=${2:-4}; CAP=${3:-72}; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}; cd "$HH"; . ./env.sh
 export BATCH; Q=queue/$BATCH; L=$Q/usage.log; rm -f $Q/STOP $Q/RESUME
 # a batch the 5-hour window stops is relaunched by tools/swarm/resume.sh once the window has room again (the loop's own
 # batches excluded: the loop waits for the window itself). launch.sh is this exact launch, settings included.

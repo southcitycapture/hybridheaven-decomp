@@ -1,4 +1,39 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801D9110[];
+extern u8 D_8038D89C[];
+extern s32 D_8038D8CC;
+typedef struct func_801FCB44_Struct {
+    u8 pad[0x18];
+    u8 *unk18;
+} func_801FCB44_Struct;
+extern struct func_801FCB44_Struct *D_8038D8D0;
+typedef struct func_801E3068_Struct2 {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[0x10];
+    s32 unk24;
+    u8 pad28[8];
+    s32 unk30;
+    u8 pad34[0x14];
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+} func_801E3068_Struct2;
+typedef struct func_801E3068_Struct1 {
+    u8 pad0[0x30];
+    func_801E3068_Struct2 *unk30;
+} func_801E3068_Struct1;
+#define O ((func_801E3068_Struct1 **)D_8038D8D0)
+extern void func_80005E44(s32, void *);
+extern void func_80006214(s32);
+extern void func_8012C89C(s32, s32, s32, s32);
+extern u8 func_8038D830[];
+
 
 typedef struct func_801FC008_StructB {
     u8 pad0[4];
@@ -26,6 +61,7 @@ typedef struct func_801FC008_StructA {
 } func_801FC008_StructA;
 
 extern f32 D_80208DA0;
+#undef O
 #define O(i) (((func_801FC008_StructA **)D_8038D8D0)[i])->unk30
 
 s32 func_801FC008(s32 arg0, s32 arg1) {

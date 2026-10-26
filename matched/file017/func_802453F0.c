@@ -1,7 +1,5 @@
 #include "context.h"
 
-struct func_802453F0_Sq { s32 a, b, c, d; };
-struct func_802453F0_Sp { struct func_802453F0_Sq q; s32 e; };
 struct func_802453F0_StructG {
     u8 pad0[0x32];
     s16 unk32;
@@ -39,36 +37,31 @@ struct func_802453F0_StructB {
 };
 struct func_802453F0_StructA { u8 pad[0x30]; struct func_802453F0_StructB *unk30; };
 struct func_802453F0_StructP { struct func_802453F0_StructA *unk0; };
-
-extern void func_80246284(s32 arg0, s32 arg1);
-extern void func_801339D0(s32);
-extern s32 func_80126CC0(void *, void *);
-extern void func_80005E44(void *, void *);
-extern void func_80006214(void *);
-extern void func_8012C89C(void *, s32, s32, s32);
-extern f32 func_8001EB64(s16);
-extern f32 func_8001EAD0(s16);
-extern void *func_80241790(f32, f32, f32, s32, s32, s32, s32, s32);
-extern u8 D_80164F40[];
-extern u8 D_8017AF38[];
-extern struct func_802453F0_StructG D_801BBBF0;
-extern f32 D_8025C908;
-extern f32 D_8025C90C;
-extern f32 D_8025C910;
-extern u8 func_80126EAC[];
 extern void func_80245DCC();
+extern void func_80246284();
+extern void func_80245DCC__func_802450B0();
+extern void func_80246284__func_802450B0();
+#ifndef D_8025C908
+extern f32 D_8025C908;
+#endif
+#ifndef D_8025C90C
+extern f32 D_8025C90C;
+#endif
+#ifndef D_8025C910
+extern f32 D_8025C910;
+#endif
 
-void func_802453F0(struct func_802453F0_StructO *arg0, struct func_802453F0_StructP *arg1) {
+void func_802453F0(struct func_802450B0_StructO *arg0, struct func_802450B0_StructP *arg1) {
     s32 sp38[4];
     if (func_80133A24(0x129) != 0) {
         func_801339D0(0x129);
-        D_801BBBF0.unk32 = 0x1D55;
-        D_801BBBF0.unk198 = -258.0f;
-        D_801BBBF0.unk19C = 0.0f;
-        D_801BBBF0.unk1A0 = 452.0f;
+        G.unk32 = 0x1D55;
+        G.unk198 = -258.0f;
+        G.unk19C = 0.0f;
+        G.unk1A0 = 452.0f;
     }
     if (func_80126CC0(arg0, func_80126EAC) != 0) {
-        *(struct func_802453F0_Sq *)sp38 = *(struct func_802453F0_Sq *)D_80164F40;
+        *(struct func_802450B0_Sq *)sp38 = *(struct func_802450B0_Sq *)D_80164F40;
         sp38[1] = 0x80000900;
         func_80005E44(arg0, sp38);
         func_80006214(arg0);
@@ -78,39 +71,39 @@ void func_802453F0(struct func_802453F0_StructO *arg0, struct func_802453F0_Stru
         arg0->unk9C = 0x1D55;
         func_8012C89C(arg0, 0, 0x30A, 0);
         arg1->unk0->unk30->unk24 |= 0x400;
-        arg1->unk0->unk30->unk30 = (void *)((s32)D_8017AF38 | 0x40000000);
+        arg1->unk0->unk30->unk30 = (s32)D_8017AF38 | 0x40000000;
         arg1->unk0->unk30->unk4 = func_8001EB64((s16)arg0->unk9C) * 46.0 + arg0->unk90;
         arg1->unk0->unk30->unk8 = arg0->unk94;
         arg1->unk0->unk30->unkC = arg0->unk98 - func_8001EAD0((s16)arg0->unk9C) * 46.0;
         arg1->unk0->unk30->unk12 = arg0->unk9C;
-        arg1->unk0->unk30->unk4C = D_801BBBF0.unkF32;
-        arg1->unk0->unk30->unk4D = D_801BBBF0.unkF33;
-        arg1->unk0->unk30->unk4E = D_801BBBF0.unkF34;
-        arg1->unk0->unk30->unk4F = D_801BBBF0.unkF35;
-        D_801BBBF0.unkF22 = 0x46;
-        D_801BBBF0.unkF20 = 0x64;
-        D_801BBBF0.unkF21 = 0x64;
-        D_801BBBF0.unkF23 = 1;
-        D_801BBBF0.unkF24 = 0x50;
-        D_801BBBF0.unkF25 = 0xFF;
-        D_801BBBF0.unkF26 = 0xB;
-        D_801BBBF0.unkF27 = 0x19;
-        D_801BBBF0.unkF28 = 0xB;
-        D_801BBBF0.unkF29 = 0x9D;
-        D_801BBBF0.unkF2A = 0x50;
-        D_801BBBF0.unkF2B = 0xFF;
-        D_801BBBF0.unkF2C = -0xB;
-        D_801BBBF0.unkF2D = -0x22;
-        D_801BBBF0.unkF2E = 0x25;
-        D_801BBBF0.unkF32 = 0x3C;
-        D_801BBBF0.unkF33 = 0x14;
-        D_801BBBF0.unkF34 = 0x32;
-        D_801BBBF0.unkF35 = 0xAA;
-        D_801BBBF0.unk29C = 5.0f;
-        D_801BBBF0.unk2A0 = 500.0f;
+        arg1->unk0->unk30->unk4C = G.unkF32;
+        arg1->unk0->unk30->unk4D = G.unkF33;
+        arg1->unk0->unk30->unk4E = G.unkF34;
+        arg1->unk0->unk30->unk4F = G.unkF35;
+        G.unkF22 = 0x46;
+        G.unkF20 = 0x64;
+        G.unkF21 = 0x64;
+        G.unkF23 = 1;
+        G.unkF24 = 0x50;
+        G.unkF25 = 0xFF;
+        *(u8 *)&G.unkF26 = 0xB;
+        G.unkF27 = 0x19;
+        G.unkF28 = 0xB;
+        G.unkF29 = 0x9D;
+        G.unkF2A = 0x50;
+        G.unkF2B = 0xFF;
+        G.unkF2C = -0xB;
+        G.unkF2D = -0x22;
+        G.unkF2E = 0x25;
+        G.unkF32 = 0x3C;
+        G.unkF33 = 0x14;
+        G.unkF34 = 0x32;
+        G.unkF35 = 0xAA;
+        G.unk29C = 5.0f;
+        G.unk2A0 = 500.0f;
         arg0->unkA4 = -205.0f;
         arg0->unkA8 = D_8025C90C;
-        *(void **)((u8 *)&D_8025C910 + 0x14A0) = (void *)func_80241790(D_8025C910, 0.0f, 459.0f, 0x1D55, 0x119, 0x129, 0x115, 0x2A);
+        D_8025DDB0 = func_80241790(D_8025C910, 0.0f, 459.0f, 0x1D55, 0x119, 0x129, 0x115, 0x2A);
         if (func_80133A24(0x119) == 0) {
             func_800058DC(arg0, func_80245DCC);
             return;

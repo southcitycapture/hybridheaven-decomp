@@ -1,5 +1,11 @@
-#include "context.h"
+#include "common.h"
 extern s32 B_801C3DC8(s32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern s32 D_801BBCD0;
+void func_800058DC(void *, void *);
+extern s32 func_80150584();
+extern void func_801BF1B0(s32);
+extern s32 func_801C3D20(f32, f32, s32);
+
 
 typedef struct func_80242F80_StructInner {
     u8 pad0[0xC];

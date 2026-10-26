@@ -2,7 +2,7 @@
 
 extern void func_80005700(s32);
 extern void func_80020744(s32);
-extern void func_8012FE50(s32, s32, s32, s32, s32);
+extern s32 func_8012FE50();
 extern u8 D_8017DD7C[];
 
 void func_8021D84C(s32 arg0, s32 arg1)

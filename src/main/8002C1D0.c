@@ -1,5 +1,21 @@
 #include "common.h"
 
+#define func_800268C0 func_800268C0__func_8002C1D0
+#define func_8002CD2C func_8002CD2C__func_8002C1D0
+#define func_8002CDD4 func_8002CDD4__func_8002C1D0
+#define func_8002CE7C func_8002CE7C__func_8002C1D0
+#define func_8002CF08 func_8002CF08__func_8002C1D0
+#define func_8002CF5C func_8002CF5C__func_8002C1D0
+#define func_8002CFB0 func_8002CFB0__func_8002C1D0
+#define func_8002D000 func_8002D000__func_8002C1D0
+#define func_8002DDB0 func_8002DDB0__func_8002C1D0
+#define func_8002E3C8 func_8002E3C8__func_8002C1D0
+#define func_8002EB40 func_8002EB40__func_8002C1D0
+#define func_8002F010 func_8002F010__func_8002C1D0
+#define func_8003089C func_8003089C__func_8002C1D0
+#define func_80034A10 func_80034A10__func_8002C1D0
+#define func_80034E40 func_80034E40__func_8002C1D0
+extern void func_800268C0(s32, void *);
 
 struct func_8002C1D0_StructB {
     u8 pad0[4];
@@ -40,7 +56,6 @@ struct func_8002C1D0_StructA {
     s32 unk44;
     s32 unk48;
 };
-
 extern void func_8002CF08(u8 *, u8 *, s32);
 extern void func_8002CF5C(u8 *, u8 *, s32);
 extern void func_8002CFB0(u8 *);
@@ -124,18 +139,41 @@ void func_8002C1D0(struct func_8002C1D0_StructA *arg0, struct func_8002C1D0_Stru
     }
     arg0->unk28 = s7;
 }
+#undef func_800268C0
+#undef func_8002CD2C
+#undef func_8002CDD4
+#undef func_8002CE7C
+#undef func_8002CF08
+#undef func_8002CF5C
+#undef func_8002CFB0
+#undef func_8002D000
+#undef func_8002DDB0
+#undef func_8002E3C8
+#undef func_8002EB40
+#undef func_8002F010
+#undef func_8003089C
+#undef func_80034A10
+#undef func_80034E40
 
 #define D_800498F0 D_800498F0__func_8002C4D0
+#define func_8002C6A0_Struct func_8002C6A0_Struct__func_8002C4D0
 #define func_8002C6E8 func_8002C6E8__func_8002C4D0
 #define func_8002C780 func_8002C780__func_8002C4D0
 #define func_8002C780_Struct func_8002C780_Struct__func_8002C4D0
 #define func_8002C7F4 func_8002C7F4__func_8002C4D0
 #define func_8002C7F4_Node func_8002C7F4_Node__func_8002C4D0
 #define func_8002C7F4_Root func_8002C7F4_Root__func_8002C4D0
+struct func_8002C6A0_Struct {
+    u8 pad[0x2C];
+    struct func_8002C6A0_Struct *unk2C;
+};
+extern struct func_8002C6A0_Struct *D_800498F0;
+extern void func_8002C6E8(void *arg0);
 struct func_8002C780_Struct {
     u8 pad[0x44];
     s32 unk44;
 };
+extern s32 func_8002C780(struct func_8002C780_Struct *arg0, s32 arg1);
 struct func_8002C7F4_Node {
     struct func_8002C7F4_Node *next;
     u8 pad[0xC];
@@ -146,10 +184,7 @@ struct func_8002C7F4_Root {
     u8 pad[0x1C];
     s32 base;
 };
-extern void func_8002C6E8(void *arg0);
-extern s32 func_8002C780(struct func_8002C780_Struct *arg0, s32 arg1);
 extern s32 func_8002C7F4(struct func_8002C7F4_Root *arg0, struct func_8002C7F4_Node **arg1);
-extern s32 D_800498F0;
 
 struct func_8002C4D0_StructG {
     u32 w0;
@@ -226,6 +261,7 @@ struct func_8002C4D0_StructG *func_8002C4D0(struct func_8002C4D0_StructG *cmdLis
     return cmdlEnd;
 }
 #undef D_800498F0
+#undef func_8002C6A0_Struct
 #undef func_8002C6E8
 #undef func_8002C780
 #undef func_8002C780_Struct
@@ -274,7 +310,6 @@ void func_8002C6D0(s32 *arg0) {
 
 
 extern void func_80026890(s32);
-#define func_800268C0 func_800268C0__decl47
 extern void func_800268C0(s32, void *);
 
 void func_8002C6E8(void *arg0) {
@@ -289,7 +324,6 @@ void func_8002C6E8(void *arg0) {
         } while (var_s0 != 0);
     }
 }
-#undef func_800268C0
 
 
 

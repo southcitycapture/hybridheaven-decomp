@@ -102,6 +102,7 @@ void func_80115F10(func_80115F10_StructB *arg0, s32 arg1) {
     func_800058DC(arg0, func_801166C8);
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/80115F10/D_80188A10.s")
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80115F10/func_80116150.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80115F10/func_801166C8.s")

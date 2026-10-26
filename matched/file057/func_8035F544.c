@@ -1,8 +1,16 @@
-#include "context.h"
+#include "common.h"
+#include "common.h"
+typedef struct func_8035F544_Copy { s32 unk0; s32 unk4; s32 unk8; } func_8035F544_Copy;
+typedef struct func_8035CDA8_Obj { u8 pad[0x5C]; s32 unk5C; } func_8035CDA8_Obj;
+typedef struct func_8035CDA8_Words { s32 unk0; s32 unk4; s32 unk8; } func_8035CDA8_Words;
+typedef struct func_8035CDA8_Sub { u8 pad[0x12]; u16 unk12; } func_8035CDA8_Sub;
+typedef struct func_8035CDA8_Mid { u8 pad[0x2C]; func_8035CDA8_Sub *unk2C; } func_8035CDA8_Mid;
+void func_800058DC(void *arg0, void *arg1);
+extern void func_802237B0(void *arg0, s32 arg1);
+
 extern u8 D_801BBBF0[];
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-void func_800058DC(void *arg0, void *arg1);
 
 typedef struct func_8035F544_Obj {
     u8 pad[0x5C];
@@ -23,7 +31,6 @@ typedef struct func_8035F544_Entry {
 
 
 extern s32 func_802233B0();
-extern void func_802237B0(void *arg0, s32 arg1);
 extern s32 func_8022397C();
 extern s32 func_80011140(s32, s32, func_8035F544_Copy, s32);
 extern void func_8035F6B4();

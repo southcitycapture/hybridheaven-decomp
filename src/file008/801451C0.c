@@ -228,7 +228,24 @@ void func_80146178(s32 arg1, s32 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, u
     func_80146088(arg1, &D_80181A84, arg2, arg4);
 }
 
+#define D_80171CEC D_80171CEC__func_80146208
+#define func_80006214 func_80006214__func_80146208
+#define func_80146178_Struct func_80146178_Struct__func_80146208
 #define func_80146208 func_80146208_decl
+extern void func_80006214(void *a0);
+typedef struct func_80146178_Struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    u8 unk8;
+    u8 unk9;
+    u8 unkA;
+    u8 unkB;
+    u8 pad0[4];
+    s16 unkC;
+    s16 unkE;
+} func_80146178_Struct;
 #undef func_80146208
 
 typedef struct func_80146208_StructData {
@@ -336,6 +353,9 @@ end:
     func_80006214((void *)arg0);
     return result;
 }
+#undef D_80171CEC
+#undef func_80006214
+#undef func_80146178_Struct
 
 
 extern u8 D_80171CF0[];
@@ -456,6 +476,7 @@ void func_8014677C(func_8014677C_StructA **arg0, u16 arg1, u16 arg2) {
     }
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/D_8018F840.s")
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_80146894.s")
 
 
@@ -727,6 +748,20 @@ void func_80147330(func_80147330_StructArg *arg0) {
     }
 }
 
+#define func_80147250_Obj func_80147250_Obj__func_80147370
+#define func_80147250_Struct func_80147250_Struct__func_80147370
+struct func_80147250_Obj {
+    u8 pad0[0x48];
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+};
+struct func_80147250_Struct {
+    u8 pad0[0x2C];
+    struct func_80147250_Obj *unk2C;
+    struct func_80147250_Obj *unk30;
+};
 
 struct func_80147370_StructNode {
     u8 pad[0x10];
@@ -747,6 +782,8 @@ void func_80147370(void *arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4) {
         node = node->next;
     }
 }
+#undef func_80147250_Obj
+#undef func_80147250_Struct
 
 extern s32 D_801BEC98[];
 
@@ -828,7 +865,7 @@ struct func_80147450_Top {
 };
 
 s32 func_8000C3B0(void *);                          /* extern */
-#define func_80147370 func_80147370__decl811
+#define func_80147370 func_80147370__decl831
 s32 func_80147370(void *, s32, s32, s32, s32);      /* extern */
 
 void func_80147450(struct func_80147450_Top *arg0)

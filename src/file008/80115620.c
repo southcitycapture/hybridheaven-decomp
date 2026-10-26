@@ -229,5 +229,6 @@ void func_80115C3C(s32 arg0, s32 arg1) {
     func_8011AA54(arg0, func_80115C64);
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/80115620/D_801884E0.s")
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80115620/func_80115C64.s")
 

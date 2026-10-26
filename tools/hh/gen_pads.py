@@ -11,4 +11,10 @@ for c in glob.glob(os.path.join(HH, "src/*/*.c")):
         if os.path.exists(p): continue
         os.makedirs(os.path.dirname(p), exist_ok=True)
         open(p, "w").write("glabel pad_%s_%s\n" % (seg, cfile) + "    nop\n" * (int(size) // 4)); n += 1
+    # srcbuild.padded_block's twins: a data-only rodata block with its leading alignment padding written out
+    for full, seg, cfile, base in re.findall(r'#pragma GLOBAL_ASM\("(asm/nonmatchings/([^/]+)/([^/]+)/_ap_(\w+\.s))"\)', open(c).read()):
+        p = os.path.join(HH, full); src = os.path.join(os.path.dirname(p), base)
+        if os.path.exists(p) or not os.path.exists(src): continue
+        body = [l for l in open(src).read().splitlines() if l.strip() not in (".section .rodata", ".align 3")]
+        open(p, "w").write(".section .rodata\n\n.word 0\n" + "\n".join(body) + "\n"); n += 1
 if n: print("generated %d padding blocks" % n)

@@ -57,7 +57,6 @@ extern u8 D_801E1280;
 extern u8 D_801E12A0;
 extern u8 D_801E12B0;
 extern u8 D_801E12C8;
-#define func_800058DC func_800058DC__decl
 extern void func_800058DC(void *, void (*)(void));
 extern void func_80006214();
 extern void func_8012D844(void *, s32, s32);
@@ -110,8 +109,42 @@ void func_801CE7D4(struct func_801CE7D4_Struct *arg0, s32 arg1) {
     func_800058DC(arg0, func_801CE7D4);
 }
 
-#undef func_800058DC
+#define D_801DAD40 D_801DAD40__func_801CE830
+#define func_80005FAC func_80005FAC__func_801CE830
+#define func_801CE7D4_Struct func_801CE7D4_Struct__func_801CE830
 #define func_801CEA50 func_801CEA50__func_801CE830
+#define func_801CF950_StructData func_801CF950_StructData__func_801CE830
+#define func_801CF950_StructObject func_801CF950_StructObject__func_801CE830
+typedef struct func_801CF950_StructData {
+    u16 unk0;
+    u8 pad2[2];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    s32 unk24;
+    u32 unk28;
+    u16 unk2C;
+} func_801CF950_StructData;
+typedef struct func_801CF950_StructObject {
+    u8 pad0[0x22];
+    s8 unk22;
+    u8 pad23;
+    s32 unk24;
+    u8 pad28[4];
+    func_801CF950_StructData *unk2C;
+    s32 unk30;
+} func_801CF950_StructObject;
+extern func_801CF950_StructObject *func_80005FAC(void *, s32, void *);
+struct func_801CE7D4_Struct {
+    u8 pad[0x24];
+    s32 unk24;
+};
 extern void func_801CEA50(u8 *arg0, u8 *arg1);
 
 struct func_801CE830_StructB {
@@ -183,8 +216,12 @@ void func_801CE830(struct func_801CE7D4_Struct *arg0, struct func_801CE830_Struc
 }
 #undef O
 #undef S
+#undef D_801DAD40
+#undef func_80005FAC
+#undef func_801CE7D4_Struct
 #undef func_801CEA50
-#define func_800058DC func_800058DC__decl
+#undef func_801CF950_StructData
+#undef func_801CF950_StructObject
 
 struct func_801CEE30_Struct {
     s32 unk0;
@@ -577,7 +614,6 @@ typedef struct func_801CF950_StructSource {
     u16 *unk0;
     void **unk4;
 } func_801CF950_StructSource;
-#define func_80005FAC func_80005FAC__decl504
 extern func_801CF950_StructObject *func_80005FAC(void *, s32, void *);
 struct func_801CFAC8_S;
 struct func_801CFAC8_A;
@@ -612,7 +648,6 @@ void func_801CF950(func_801CF950_StructObject *arg0, func_801CF950_StructObject 
     }
     func_800058DC(arg0, (void (*)(void))func_801CF950);
 }
-#undef func_80005FAC
 
 struct func_801CFE28_Struct {
     s32 unk0;

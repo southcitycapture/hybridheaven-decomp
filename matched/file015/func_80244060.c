@@ -1,12 +1,15 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_8024148C_StructArg func_8024148C_StructArg;
+typedef struct func_80242F38_StructGlobal func_80242F38_StructGlobal;
+struct func_80243290_StructTriple { int a; int b; int c; };
 extern struct func_80243290_StructTriple D_80252418;
 extern void func_800058DC(void *, void *);
 extern s32 func_80010550(s32, s32, s32);
 extern void func_801339D0(s32);
 extern s32 func_80133A24(s32);
-extern s32 func_8013A1B4();
+void func_802440EC(void *arg0, void *arg1);
 
-extern void func_802440EC(void *arg0, void *arg1);
+extern s32 func_8013A1B4();
 
 void func_80244060(void *arg0, s32 volatile arg1, s32 arg2) {
     s32 unk5C;

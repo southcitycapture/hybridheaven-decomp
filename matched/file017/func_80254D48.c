@@ -1,5 +1,21 @@
+#define LP(p, l) LQ(p, l)
+#define LQ(p, l) p##_##l
+#define func_80254B3C_Ctx LP(CX, __LINE__)
+#define func_80254B3C_Args LP(AX, __LINE__)
+#define func_80254B3C_Node LP(NX, __LINE__)
+typedef struct CXT CX_125;
+typedef struct CXT CX_126;
+typedef struct CXT CX_130;
+typedef struct CXT CX_168;
+typedef struct CXT CX_206;
+typedef struct CXT CX_234;
+typedef struct AXT AX_206;
+typedef struct AXT AX_286;
+typedef struct NXT NX_234;
 #include "context.h"
-void func_802550A8(void *arg0);
+#undef func_80254B3C_Ctx
+#undef func_80254B3C_Args
+#undef func_80254B3C_Node
 
 typedef struct func_80254D48_Struct {
     u8 pad0[0x90];
@@ -11,6 +27,38 @@ typedef struct func_80254D48_Struct {
     f32 unkA0;
 } func_80254D48_Struct;
 
+typedef struct func_80254D48_Inner {
+    u8 pad0[0x18];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    u32 unk24;
+    u8 pad28[8];
+    u32 unk30;
+    u8 pad34[0x14];
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+    u8 unk4C;
+    u8 unk4D;
+    u8 unk4E;
+    u8 unk4F;
+} func_80254D48_Inner;
+
+typedef struct func_80254D48_Node {
+    u8 pad0[0x22];
+    u8 unk22;
+    u8 pad23[0xD];
+    func_80254D48_Inner *unk30;
+} func_80254D48_Node;
+
+typedef struct func_80254D48_Args {
+    func_80254D48_Node *unk0;
+    func_80254D48_Node *unk4;
+    func_80254D48_Node *unk8;
+} func_80254D48_Args;
+
 extern u8 D_80175C58[];
 extern u8 D_80259920[];
 extern u8 D_80259978[];
@@ -18,7 +66,7 @@ extern f32 D_8025DBF8;
 extern f32 D_8025DBFC;
 extern f32 D_8025DC00;
 
-void func_80254D48(func_80254D48_Struct *arg0, func_80251820_Args *arg1) {
+void func_80254D48(func_80254D48_Struct *arg0, func_80254D48_Args *arg1) {
     register f32 k;
     struct { s32 a[3]; } sp20;
 

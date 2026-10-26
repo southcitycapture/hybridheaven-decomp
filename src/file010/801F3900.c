@@ -65,7 +65,8 @@ void func_801F39AC(s32 arg0, s32 arg1) {
 }
 #undef func_801F3A18
 
-
+#define func_8012D844 func_8012D844__func_801F3A18
+#define func_80133A24 func_80133A24__func_801F3A18
 extern s32 func_80133A24(s32);
 extern void func_8012D844(s32, s32, s32);
 
@@ -97,4 +98,6 @@ seven:
 other:
     func_8012D844(arg0, 0x78, 0);
 }
+#undef func_8012D844
+#undef func_80133A24
 

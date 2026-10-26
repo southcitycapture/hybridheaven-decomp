@@ -24,6 +24,11 @@
   "opt": "-O2",
   "src": "src/audio/synsetvol.c"
  },
+ "main/800269F0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/sptask.c"
+ },
  "main/80026CE0": {
   "mips": "-mips2 -o32",
   "opt": "-O1",
@@ -98,6 +103,11 @@
   "mips": "-mips2 -o32",
   "opt": "-O1",
   "src": "src/os/getmemsize.c"
+ },
+ "main/8002C850": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/drvrnew.c"
  },
  "main/8002DDB0": {
   "mips": "-mips2 -o32",
@@ -283,6 +293,11 @@
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/audio/heapalloc.c"
+ },
+ "main/80034A80": {
+  "mips": "-mips3 -32",
+  "opt": "-O1",
+  "src": "src/libc/llcvt.c"
  },
  "main/80034C90": {
   "mips": "-mips2 -o32",

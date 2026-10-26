@@ -1,6 +1,15 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+void func_800058DC(void *arg0, void *arg1);
+extern s32 func_80010550(s32, s32);
+extern s32 func_802233B0();
+extern void func_802237B0(void *arg0, s32 arg1);
+
 
 extern s32 func_802320DC();
+extern u16 func_80011590();
 extern void func_8035F8D8();
 extern void func_8035F544();
 extern void func_8035F6B4();

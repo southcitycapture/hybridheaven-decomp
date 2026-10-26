@@ -1,5 +1,6 @@
 #include "common.h"
 
+#define func_801D0D90 func_801D0D90__func_801D0CD0
 
 extern s32 func_801CC654(s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern void func_8013B570(s32, s32, s32, s32, void *);
@@ -20,6 +21,7 @@ void func_801D0CD0(s32 arg0, s32 arg1) {
     D_801DB0B0 = func_801CC654(arg0, 0x140, 0, 0x140, 1, 0x140, 2, 0x140, 1, 1, 1, 0);
     func_8013B570(arg0, 0x141, 0, 4, (void *) func_801D0D90);
 }
+#undef func_801D0D90
 
 
 struct func_801D0D90_Struct {
@@ -166,6 +168,8 @@ s32 func_801D1220(s32 arg0, u16 arg1) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D0CD0/func_801D1258.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D0CD0/D_801DD480.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D0CD0/func_801D12B8.s")
 

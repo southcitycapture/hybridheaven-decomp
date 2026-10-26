@@ -101,6 +101,10 @@ void func_8038D918(func_8038D918_Struct *arg0, void *arg1) {
     func_800058DC(arg0, func_8038D9A8);
 }
 
+#define D_801BBBF0 D_801BBBF0__func_8038D9A8
+#define D_8038D9A8 D_8038D9A8__func_8038D9A8
+#define func_8022AB58 func_8022AB58__func_8038D9A8
+#define func_8022B3E0 func_8022B3E0__func_8038D9A8
 
 typedef struct func_8038D9A8_StructArg {
     u8 pad0[0xC];
@@ -203,6 +207,10 @@ void func_8038D9A8(func_8038D9A8_StructArg *arg0, s32 arg1) {
         func_8038D7EC((void *)arg0, (void *)var_a1, (void *)var_a3);
     }
 }
+#undef D_801BBBF0
+#undef D_8038D9A8
+#undef func_8022AB58
+#undef func_8022B3E0
 
 void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
 

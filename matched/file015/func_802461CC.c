@@ -1,4 +1,11 @@
-#include "context.h"
+#include "common.h"
+#define func_802461CC func_802461CC__ctx
+extern void *D_8025A2A4;
+extern s32 func_800058DC(void *, void *);
+extern void func_80020718(s32);
+extern void func_80133980(s32);
+
+#undef func_802461CC
 
 typedef struct func_802461CC_StructVec {
     f32 x, y, z;

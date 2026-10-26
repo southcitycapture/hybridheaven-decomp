@@ -8,7 +8,7 @@ struct func_8021D1A8_Struct {
 };
 
 extern s32 func_80005700(void *);
-extern s32 func_8012FE50(s32, u16, s32, s32, s32);
+extern s32 func_8012FE50();
 extern u16 D_801BBBF4;
 
 void func_8021D1A8(struct func_8021D1A8_Struct *arg0, s32 arg1) {

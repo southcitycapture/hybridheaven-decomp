@@ -1,3 +1,5 @@
+typedef struct func_8024AA38_Struct_ { unsigned char pad[12]; } func_8024AA38_Struct;
+struct func_80249CF8_Obj { unsigned char pad[0x5C]; int unk5C; };
 #include "context.h"
 
 typedef struct func_8024A7C8_StructB {
@@ -18,6 +20,9 @@ extern f32 func_8001EB64(s16);
 extern s32 func_801C3DC8(void *, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void func_801FBB20(void);
 extern void func_800208C4(s32);
+extern void func_800058DC(void *arg0, void *arg1);
+extern void func_801C2F0C(s32 arg0, void *arg1);
+extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern func_8024A7C8_StructA *D_801BBCD0;
 extern func_8024A7C8_StructA *D_801BBCD8;
 extern u8 D_8025922C[];

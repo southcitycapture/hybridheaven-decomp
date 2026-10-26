@@ -1,7 +1,7 @@
 #include "context.h"
 
-u64 func_80026F58(u64 a, u64 b);
-extern u64 func_80026E58(u64, u64);                        /* extern */
+extern u64 func_80026F58();
+extern u64 func_80026E58();
 
 void func_801C0B2C(void) {
     u64 temp;

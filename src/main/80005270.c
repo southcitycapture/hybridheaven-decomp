@@ -265,6 +265,8 @@ void func_80005700(void *arg0) {
 }
 
 
+#define func_80005670 func_80005670__decl228
+extern void func_80005670(s32, s32);
 
 struct func_800057DC_Struct {
     u8 pad[0xC];
@@ -282,6 +284,7 @@ void func_800057DC(struct func_800057DC_Struct *arg0, s32 arg1) {
         func_80005624(arg1);
     }
 }
+#undef func_80005670
 
 
 typedef struct func_8000582C_Struct {
@@ -683,6 +686,7 @@ end:
 }
 
 
+extern s32 func_80005D3C(void);
 
 struct func_80005D9C_Struct {
     u8 pad[0x2A];

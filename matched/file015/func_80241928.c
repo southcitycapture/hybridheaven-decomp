@@ -1,3 +1,13 @@
+typedef struct func_80241928_StructInner {
+    u8 pad0[0x40];
+    f32 unk40;
+    u8 pad1[4];
+    f32 unk48;
+} func_80241928_StructInner;
+typedef struct func_80241928_StructOuter {
+    u8 pad0[0xDC];
+    func_80241928_StructInner *unkDC;
+} func_80241928_StructOuter;
 #include "common.h"
 
 

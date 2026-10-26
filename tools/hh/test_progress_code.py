@@ -8,10 +8,17 @@ import unittest
 
 from elftools.elf.elffile import ELFFile
 
-from progress_code import source_units, target_source, unit_complete
+from progress_code import source_units, target_source, unit_complete, c_only_source
 
 
 class CodeProgressTests(unittest.TestCase):
+    def test_c_only_compile_preserves_line_number_aliases(self):
+        source = '#define NAME CAT(private_, __LINE__)\n#pragma GLOBAL_ASM("first.s")\n\nint NAME;\n  #pragma GLOBAL_ASM("last.s")'
+        result = c_only_source(source)
+        self.assertNotIn('GLOBAL_ASM', result)
+        self.assertEqual(result.splitlines()[3], 'int NAME;')
+        self.assertEqual(result.count('\n'), source.count('\n'))
+
     def setUp(self):
         self.unit = {"measures": {"total_functions": 2, "matched_functions": 2},
                      "functions": [{"name": "first", "fuzzy_match_percent": 100.0},

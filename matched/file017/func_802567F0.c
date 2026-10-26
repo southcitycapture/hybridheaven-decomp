@@ -1,4 +1,23 @@
-#include "context.h"
+#include "common.h"
+#define LP(p, l) LQ(p, l)
+#define LQ(p, l) p##_##l
+#define func_80254B3C_Ctx LP(CX, __LINE__)
+#define func_80254B3C_Args LP(AX, __LINE__)
+#define func_80254B3C_Node LP(NX, __LINE__)
+typedef struct CXT CX_125, CX_126, CX_130, CX_184, CX_222, CX_250;
+typedef struct AXT AX_145, AX_222, AX_284;
+typedef struct NXT NX_250;
+extern void func_800058DC(void *, void *);
+extern s32 func_80133A24(s32);
+typedef struct { u8 pad[0x28]; } func_80254B3C_Args;
+typedef struct { u8 pad[0x90]; u16 unk90; } func_80254B3C_Ctx;
+typedef struct { u8 pad[0x28]; } func_80254B3C_Node;
+typedef struct func_80251820_Args { s32 unk0; } func_80251820_Args;
+void func_802569D0(s32 arg0, func_80251820_Args *arg1);
+
+#undef func_80254B3C_Ctx
+#undef func_80254B3C_Args
+#undef func_80254B3C_Node
 
 typedef struct func_802567F0_StructB {
     u8 pad[0x4A];
@@ -14,7 +33,6 @@ typedef struct func_802567F0_Arg0 {
     u8 pad[0x90];
     u16 unk90;
 } func_802567F0_Arg0;
-extern f32 func_8001EAD0();
 
 void func_802567F0(func_802567F0_Arg0 *arg0, func_802567F0_StructA **arg1)
 {

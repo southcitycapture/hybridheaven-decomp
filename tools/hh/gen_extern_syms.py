@@ -29,6 +29,8 @@ for p in glob.glob("src/**/*.c", recursive=True):
     s = open(p).read()
     ref |= set(re.findall(r'\b((?:func_|D_|B_)[0-9A-F]{8})\b', s))
     aliases |= set(re.findall(r'^#define ((?:func_|D_|B_)[0-9A-F]{8}) (\1__\w+)$', s, re.M))   # srcbuild private names
+    # Self-contained worker snippets can spell the private alias directly instead of defining a macro for it.
+    aliases |= {(base, base + suffix) for base, suffix in re.findall(r'\b((?:func_|D_|B_)[0-9A-F]{8})(__\w+)\b', s)}
     defined |= set(re.findall(r'^[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;]*$', s, re.M))
 known = set()
 for f in ("undefined_syms_auto.txt", "undefined_funcs_auto.txt"):

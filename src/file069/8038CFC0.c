@@ -306,7 +306,46 @@ void func_8038D6E8(struct func_8038D6E8_Struct *arg0, void *arg1) {
 }
 #undef func_8038D770
 
+#define D_8038D59C D_8038D59C__func_8038D770
+#define D_8038D770 D_8038D770__func_8038D770
+#define func_8022AB58 func_8022AB58__func_8038D770
+#define func_8022B3E0 func_8022B3E0__func_8038D770
+#define func_8038CFF4_StructP func_8038CFF4_StructP__func_8038D770
 #define func_8038D770 func_8038D770_decl
+typedef struct func_8038CFF4_StructP {
+    u8 pad0[0x6];
+    s16 unk6;
+    u8 pad8[0x30 - 0x8];
+    union {
+        struct {
+            u32 bf0 : 3;
+            u32 bf3 : 4;
+            u32 bf7 : 2;
+            u32 bf9 : 2;
+            u32 bf11 : 2;
+            u16 bf13 : 3;
+            u32 bf16 : 6;
+            u32 bf22 : 2;
+            u32 bf24 : 3;
+            u32 bf27 : 2;
+            u32 bf29 : 3;
+        } b;
+        struct {
+            u16 h30;
+            u8 unk32;
+            u8 unk33;
+        } c;
+    } u30;
+    u8 pad34[0x38 - 0x34];
+    u32 bf38 : 1;
+    u32 bf38_1 : 31;
+    u8 pad3C[0xA6 - 0x3C];
+    u8 unkA6;
+    u8 padA7[0x2FC - 0xA7];
+    u8 unk2FC;
+    u8 pad2FD[0x312 - 0x2FD];
+    s16 unk312;
+} func_8038CFF4_StructP;
 #undef func_8038D770
 
 typedef struct func_8038D770_StructP {
@@ -403,6 +442,11 @@ void func_8038D770(func_8038D770_StructA *arg0, void *arg1) {
         D_8038D59C(arg0, p, c, &D_801BBBF0);
     }
 }
+#undef D_8038D59C
+#undef D_8038D770
+#undef func_8022AB58
+#undef func_8022B3E0
+#undef func_8038CFF4_StructP
 
 
 
@@ -414,3 +458,8 @@ void func_8038D9D8(u8 *arg0, s16 *arg1) {
     arg0[0xA5] = 0;
 }
 
+
+/* Original readonly objects; named loads retain their original addresses. */
+static const unsigned char rodata_8038CFC0[] = {
+    0x40, 0x41, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};

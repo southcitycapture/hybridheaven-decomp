@@ -60,6 +60,10 @@ void func_80152240(void) {
     D_8017DDA4 = spA4;
 }
 
+#define D_801837E4 D_801837E4__func_80152608
+#define D_80183884 D_80183884__func_80152608
+#define D_8018389C D_8018389C__func_80152608
+#define D_80183AA0 D_80183AA0__func_80152608
 typedef struct { s32 a[39]; u16 h; } func_80152608_StructA;
 extern func_80152240_S9E D_801837E4;
 extern func_80152240_S15 D_80183884;
@@ -89,4 +93,8 @@ void func_80152608(void) {
     }
     D_8017DD7C = d;
 }
+#undef D_801837E4
+#undef D_80183884
+#undef D_8018389C
+#undef D_80183AA0
 

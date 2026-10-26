@@ -204,7 +204,7 @@ def alone(args):
 def file_ok(seg, cf, snips, must):
     """Build the file with snips; returns the subset of snips kept, or None if any `must` name dropped out."""
     with tempfile.TemporaryDirectory() as td:
-        kept, rej, text, problem = S.settle(seg, cf, snips, td)
+        kept, rej, text, problem = S.trial_snippets(seg, cf, snips, td)
     if problem or not must <= set(kept): return None
     return set(kept)
 
@@ -242,7 +242,8 @@ def one_file(item):
     failed_before = known_failures()
     import unify
     reg = S.registry(); names = {e[0] for e in S.entries(seg, cf)}
-    base = {n: t for (s, n), t in reg.items() if s == seg and n in names}
+    present = S.defined_functions(open('src/%s/%s.c' % (seg, cf)).read())
+    base = {n: t for (s, n), t in reg.items() if s == seg and n in names & present}
     added = fit(seg, cf, base, new)
     dropped = {}
     for n in new:                                 # matched alone but breaks a neighbour: a declaration clash,
@@ -292,7 +293,9 @@ if __name__ == "__main__":
     # tool are unchanged (each loop cycle otherwise re-checks ~1,100 known failures)
     import hashlib
     ALONE_LOG = "queue/propagate_alone_failed.jsonl"
-    tool_v = hashlib.sha1(open(__file__, "rb").read()).hexdigest()[:12]
+    tool_v = hashlib.sha1(b''.join(open(p, 'rb').read() for p in (
+        __file__, 'tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py',
+        'tools/hh/unify.py', 'tools/hh/try_func.py', 'hybridheaven.yaml'))).hexdigest()[:12]
     filesnips = collections.defaultdict(list)
     for (sg, n), t in reg.items(): filesnips[(sg, S.file_of(sg, n))].append(n + "\0" + t)
     filehash = {k: hashlib.sha1("\0".join(sorted(v)).encode()).hexdigest()[:16] for k, v in filesnips.items()}

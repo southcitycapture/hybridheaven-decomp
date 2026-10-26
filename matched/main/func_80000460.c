@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 
 typedef struct func_80000460_Struct {
     u16 unk0;
@@ -18,7 +19,6 @@ typedef struct func_80000460_Struct {
     s64 unk8B8;
     s64 unk8C0;
 } func_80000460_Struct;
-
 extern void func_80028260(void *, s32, void *, void *, void *, s32);
 extern void func_800295D0(s32);
 extern void func_80029FA0(void *);

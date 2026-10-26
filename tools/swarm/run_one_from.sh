@@ -4,7 +4,7 @@
 #   FROM=match  an attempt that matched on its own but was rejected in its file (repair it to fit the file)
 # Earlier attempts are found in queue/*/work/FUNC@SEG (and old FUNC-only dirs); archived batches aren't searched.
 { # whole script in one block: bash parses it before running, so editing this file cannot break live runs
-FUNC=$1; SEG=$2; HH="$(cd "$(dirname "$0")/../.." && pwd)"; cd "$HH"
+FUNC=$1; SEG=$2; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}; cd "$HH"
 PREVIOUS=$("$HH/.venv/bin/python" - "$FUNC" "$SEG" "${FROM:-best}" "${BATCH:-}" <<'PY'
 import glob, json, os, sys
 func, seg, mode, me = sys.argv[1:5]

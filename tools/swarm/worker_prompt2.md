@@ -14,7 +14,7 @@ Rules:
 - Declare everything the function uses: `extern` prototypes for every called function, and `extern` declarations for every `D_xxxxxxxx` symbol (use arrays like `extern u8 D_800692B0[];` or typed variables). Never define globals with values.
 - If you need a struct, name it `{FUNC}_Struct...` so it can't clash with other functions' structs. Pad with `u8 pad[N];` arrays to reach the offsets in the asm.
 - Things that commonly fix mismatches: parameter and variable types (s16/u8 vs s32 changes extension and stack spills), signed vs unsigned, the order of statements, using a temp variable or not, `for` vs `while`, pointer vs array indexing.
-- Do not use `switch` statements, `asm`, or `#pragma`. Do not touch any file outside this directory.
+- Use `switch` only when the file-layout policy below allows jump tables. Do not use `asm` or `#pragma`. Do not touch any file outside this directory.
 - You have at most 10 runs of `./check`. Stop as soon as you get `MATCH`.
 
 Steps: read target.s and draft.c, write attempt.c, run ./check, improve, repeat.

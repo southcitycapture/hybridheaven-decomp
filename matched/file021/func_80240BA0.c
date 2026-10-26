@@ -1,4 +1,7 @@
-#include "context.h"
+#include "common.h"
+extern void func_800058DC(void *, void *);
+void func_80240C74(s32 arg0, s32 arg1);
+
 
 struct func_80240BA0_Inner {
     u8 pad0[0x30];

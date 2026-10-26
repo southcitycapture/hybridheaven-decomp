@@ -1,0 +1,6 @@
+# seg func: matches in its file but breaks the whole-ROM link (see srcbuild.link_blocked)
+file026 func_801E39F8
+file024 func_801C2280
+file016 func_802429F8
+file009 func_801D3D5C  # held back 2026-10-22: batch addrfix changed its file's ROM bytes
+main func_80032720  # defines static const D_8004D4C0: shifts main's rodata (2026-10-22/24)

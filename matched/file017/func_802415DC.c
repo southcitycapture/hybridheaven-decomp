@@ -1,8 +1,4 @@
 #include "context.h"
-extern struct func_80241094_StructA *D_801BBCD0;
-extern void func_800058DC(void *, void *);
-extern void func_801C2F0C(s32, void *);
-extern s32 func_801C3044(void);
 extern s16 func_801FD284(s16, s16, s32);
 
 struct func_802415DC_StructB {
@@ -28,11 +24,13 @@ struct func_802415DC_StructD {
 
 extern void func_8024168C();
 
+#define G_BBCD0 (*(struct func_802415DC_StructA **)&D_801BBCD0)
+
 void func_802415DC(struct func_802415DC_StructC *arg0, void *arg1) {
     u8 pad[0x14];
     struct func_802415DC_StructD sp18;
 
-    D_801BBCD0->unk2C->unk12 = func_801FD284(D_801BBCD0->unk2C->unk12, (s16) ((s16) (arg0->unk9C + 0x1000) & 0x1FFF), 0x3DCCCCCD);
+    G_BBCD0->unk2C->unk12 = func_801FD284(G_BBCD0->unk2C->unk12, (s16) ((s16) (arg0->unk9C + 0x1000) & 0x1FFF), 0x3DCCCCCD);
     if (func_801C3044() == 0) {
         sp18.unk0 = 0x1000;
         sp18.unk4 = 0x0168002D;

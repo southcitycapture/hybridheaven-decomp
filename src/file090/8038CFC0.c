@@ -284,7 +284,41 @@ void func_8038D600(struct func_8038D600_Struct *arg0, s32 arg1) {
 }
 #undef func_8038D680
 
+#define D_8038D680 D_8038D680__func_8038D680
+#define func_8022AB58 func_8022AB58__func_8038D680
+#define func_8022B3E0 func_8022B3E0__func_8038D680
+#define func_8038CFF4_StructP func_8038CFF4_StructP__func_8038D680
 #define func_8038D680 D_8038D680
+typedef struct func_8038CFF4_StructP {
+    u8 pad0[0x6];
+    s16 unk6;
+    u8 pad8[0x30 - 0x8];
+    union {
+        struct {
+            u32 bf0 : 3;
+            u32 bf3 : 4;
+            u32 bf7 : 2;
+            u32 bf9 : 2;
+            u32 bf11 : 2;
+            u16 bf13 : 3;
+            u32 bf16 : 6;
+            u32 bf22 : 2;
+            u32 bf24 : 3;
+            u32 bf27 : 2;
+            u32 bf29 : 3;
+        } b;
+        struct {
+            u16 h30;
+            u8 unk32;
+            u8 unk33;
+        } c;
+    } u30;
+    u8 pad34[0x38 - 0x34];
+    u32 bf38 : 1;
+    u32 bf38_1 : 31;
+    u8 pad3C[0x312 - 0x3C];
+    s16 unk312;
+} func_8038CFF4_StructP;
 #undef func_8038D680
 
 typedef struct func_8038D680_StructA {
@@ -322,7 +356,6 @@ typedef struct func_8038D680_StructP {
     u32 b28 : 1;
     u32 rest : 28;
 } func_8038D680_StructP;
-
 extern s32 func_8022AB58(void *, void *, void *);
 extern u8 func_8022B3E0[];
 extern void D_8038D680(void);
@@ -391,6 +424,10 @@ void func_8038D680(func_8038D680_StructA *arg0, s32 arg1) {
         func_8038D4D4((void *)arg0, (void *)p, (void *)q);
     }
 }
+#undef D_8038D680
+#undef func_8022AB58
+#undef func_8022B3E0
+#undef func_8038CFF4_StructP
 
 /* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
 

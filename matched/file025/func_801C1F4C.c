@@ -1,7 +1,7 @@
 #include "context.h"
 
-extern u64 func_80026E58(u64, u64);
-extern u64 func_80026F58(u64, u64);
+extern u64 func_80026E58();
+extern u64 func_80026F58();
 extern u64 func_801C0C08();
 extern u64 D_801D8DE0;
 

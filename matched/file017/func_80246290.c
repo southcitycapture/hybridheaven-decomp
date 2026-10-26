@@ -30,8 +30,15 @@ struct func_80246290_StructA {
     s16 unk90;
     u8 unk92;
 };
+struct func_80246290_Sq { u32 a, b, c, d; };
+struct func_80246290_Glob { u8 pad[0xF32]; u8 unkF32, unkF33, unkF34, unkF35; };
+extern struct func_80246290_Glob D_801BBBF0;
 struct func_80246B40_StructObj;
 void func_80246B40(struct func_80246B40_StructObj *arg0, s32 arg1);
+extern void func_8012D918(s32, s32, s32, s32, s32);
+extern void func_80005E44();
+extern void func_80006214();
+extern void func_8012C89C();
 extern s32 func_8012C97C(s32, s32);
 extern void func_80241854(f32, f32, f32, s32, s32, s32, s32);
 extern u8 D_80258918[];
@@ -40,13 +47,10 @@ extern u8 D_8017AF90[];
 extern u8 func_80246C0C[];
 
 void func_80246290(struct func_80246290_StructA *arg0, struct func_80246290_StructN **arg1) {
-    extern void func_800058DC(void *, void *);
-    extern s32 func_80133A24(u16);
-    extern void func_8012D918(s32, s32, s32, s32, s32);
-    struct func_802453F0_Sq sp;
+    struct func_80246290_Sq sp;
     u32 sp30;
 
-    sp = *(struct func_802453F0_Sq *)D_80164F40;
+    sp = *(struct func_80246290_Sq *)D_80164F40;
     func_80005E44(arg0, &sp);
     sp.b = 0x80000900;
     func_80005E44(arg0, &sp);

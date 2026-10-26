@@ -79,7 +79,7 @@ def rewrite(text, choice):
 
 def file_ok(seg, cf, snips):
     with tempfile.TemporaryDirectory() as td:
-        kept, rej, text, problem = S.settle(seg, cf, snips, td)
+        kept, rej, text, problem = S.trial_snippets(seg, cf, snips, td)
     return not rej and problem is None and set(kept) == set(snips)
 
 def sources():
@@ -181,7 +181,8 @@ def one_file(args):
     (seg, cf), items = args
     reg = S.registry()
     info = {e[0] for e in S.entries(seg, cf)}
-    neigh = {n: t for (s, n), t in reg.items() if s == seg and n in info}
+    present = S.defined_functions(open('src/%s/%s.c' % (seg, cf)).read())
+    neigh = {n: t for (s, n), t in reg.items() if s == seg and n in info & present}
     order = [e[0] for e in S.entries(seg, cf)]
     out = []
     for func, path in items:

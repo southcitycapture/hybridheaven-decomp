@@ -34,7 +34,8 @@ void func_8038CFC0(s32 arg0, s32 arg1)
   func_800058DC(new_var, &func_8038CFFC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file062/8038CFC0/func_8038CFFC.s")
+/* hh-block asm/nonmatchings/file062/8038CFC0/_mrg_keep_text_func_8038CFFC.s {"functions":["func_8038CFFC"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file062/8038CFC0/_mrg_keep_text_func_8038CFFC.s")
 
 
 
@@ -84,7 +85,8 @@ void func_8038D6FC(struct func_8038D6FC_Struct *arg0, void *arg1) {
     func_800058DC(arg0, func_8038D784);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file062/8038CFC0/func_8038D784.s")
+/* hh-block asm/nonmatchings/file062/8038CFC0/_mrg_keep_text_func_8038D784.s {"functions":["func_8038D784"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file062/8038CFC0/_mrg_keep_text_func_8038D784.s")
 
 /* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
 
@@ -147,3 +149,9 @@ void func_8038DA40(struct func_8038DA40_StructA *arg0, struct func_8038DA40_Stru
   return;
 }
 
+
+/* Original readonly objects; named loads retain their original addresses. */
+static const unsigned char rodata_8038CFC0[] = {
+    0xA5, 0xD7, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00, 0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
+    0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
+};

@@ -12,6 +12,7 @@ void func_8038CFC0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file093/8038CFC0/func_8038CFF4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/file093/8038CFC0/D_8038E0F0.s")
 #pragma GLOBAL_ASM("asm/nonmatchings/file093/8038CFC0/func_8038DAFC.s")
 
 

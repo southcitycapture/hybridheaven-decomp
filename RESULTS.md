@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-26: **66.81% of the code** (14750 of 15890 functions, including duplicates).
+Progress as of 2026-10-26: **68.72% of the code** (14882 of 15891 functions, including duplicates).
 
-**21335 model runs, $5163.62 API-equivalent in total** (local and cloud). Of the **14721 functions now in C**, **6688 were matched by AI workers** (≈ $0.772 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 275 came from decomp-permuter and 195 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**21335 model runs, $5163.62 API-equivalent in total** (local and cloud). Of the **14828 functions now in C**, **6787 were matched by AI workers** (≈ $0.761 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 279 came from decomp-permuter and 199 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -234,5 +234,8 @@ Progress as of 2026-10-26: **66.81% of the code** (14750 of 15890 functions, inc
 | `unify_loop0060` | unify_loop0060 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0061` | unify_loop0061 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0062` | unify_loop0062 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0063` | unify_loop0063 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0064` | unify_loop0064 | unify (no model) | 79 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0065` | unify_loop0065 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

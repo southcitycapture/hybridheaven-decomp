@@ -1,6 +1,6 @@
-#define func_8023A398 func_8023A398_ctx
-#include "context.h"
-#undef func_8023A398
+#include "common.h"
+extern void (*D_80216D10[])(void *, s32);
+
 
 typedef struct func_8023A398_StructData {
     u8 pad[0xA];
@@ -38,4 +38,3 @@ u8 func_8023A398(func_8023A398_StructOuter *arg0, u8 arg1) {
 }
 
 extern s8 D_8023A398(void *, s32);
-#define func_8023A398 D_8023A398
