@@ -1,6 +1,6 @@
 # Research results
 
-Progress as of 2026-10-26: **68.77% of the code** (14885 of 15891 functions, including duplicates).
+Progress as of 2026-10-26: **68.79% of the code** (14886 of 15891 functions, including duplicates).
 
 **21415 model runs, $5163.62 API-equivalent in total** (local and cloud). Of the **14832 functions now in C**, **6788 were matched by AI workers** (≈ $0.761 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 279 came from decomp-permuter and 202 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
@@ -242,7 +242,7 @@ Progress as of 2026-10-26: **68.77% of the code** (14885 of 15891 functions, inc
 | `unify_loop0068` | unify_loop0068 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0069` | unify_loop0069 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
 | `abTerra` | abTerra | openai/gpt-6.1-terra | 40 | 4 | 10% | $0.00 | – |  |
-| `unify_loop0070` | unify_loop0070 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
 | `abTerra_max` | abTerra_max | openai/gpt-6.1-terra | 40 | 6 | 15% | $0.00 | – |  |
+| `unify_loop0070` | unify_loop0070 | unify (no model) | 13 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
