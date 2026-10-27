@@ -101,7 +101,7 @@ def main(out):
         if got: model_rows.append((label, sum(m for m, _ in got), sum(n for _, n in got), c))
     bars("Hit rate by lane (each lane had its own queue)", model_rows, os.path.join(out, "models.svg"),
          "Queues differ in difficulty, so lanes are not directly comparable: the head-to-head below is the fair comparison.")
-    h2h = [("Claude Opus (high)", "abOpus", C), ("GPT-6.1 Sol (default)", "abSol", O),
+    h2h = [("Claude Opus (high)", "abOpus", C), ("Claude Sonnet (high)", "abSonnet", C), ("GPT-6.1 Sol (default)", "abSol", O),
            ("GPT-6.1 Sol (high)", "abSol_high", O), ("GPT-6.1 Sol (max)", "abSol_max", O),
            ("GPT-6.1 Terra (default)", "abTerra", O), ("GPT-6.1 Terra (max)", "abTerra_max", O)]
     rows = [(l, *batch(b), c) for l, b, c in h2h if batch(b)]
