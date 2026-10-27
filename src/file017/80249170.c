@@ -14,6 +14,7 @@ extern f32 D_8025CD60;
 extern f32 D_8025CD64;
 extern f32 D_8025CD68;
 extern f32 D_8025CD6C;
+extern f32 func_8001EAD0(s16);
 extern s32 D_801BBCCC;
 extern s32 func_800058DC(void *, void *);
 extern s32 func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
@@ -49,6 +50,7 @@ extern void func_8024A418();
 extern void func_8024A4FC(void *arg0, s32 arg1);
 extern void func_8024A54C(s32 arg0, s32 arg1);
 
+#define func_80249960 func_80249960__func_80249170
 
 typedef struct func_80249170_Inner {
     u8 pad0[0x24];
@@ -101,6 +103,7 @@ typedef struct func_80249170_Ctx {
     u16 unk98;
 } func_80249170_Ctx;
 
+extern void func_80249960();
 extern func_80249170_Copy D_80164F40;
 
 void func_80249170(func_80249170_Ctx *arg0, func_80249170_Args *arg1) {
@@ -241,8 +244,8 @@ void func_80249170(func_80249170_Ctx *arg0, func_80249170_Args *arg1) {
     func_80005670(arg0, D_80258C34);
     func_800058DC(arg0, (void *) func_80249960);
 }
+#undef func_80249960
 
-#define func_8001EAD0 func_8001EAD0__func_80249960
 #define func_80249170_Ctx func_80249170_Ctx__func_80249960
 typedef struct func_80249170_Ctx {
     u8 pad0[0x90];
@@ -280,7 +283,6 @@ typedef struct func_80249960_Args {
     func_80249960_Node *unk24;
     func_80249960_Node *unk28;
 } func_80249960_Args;
-extern f32 func_8001EAD0(s16);
 
 void func_80249960(func_80249170_Ctx *arg0, func_80249960_Args *arg1) {
     arg1->unk0->unk30->unk4C = arg0->unk96;
@@ -301,7 +303,6 @@ void func_80249960(func_80249170_Ctx *arg0, func_80249960_Args *arg1) {
     arg0->unk94++;
     arg0->unk96--;
 }
-#undef func_8001EAD0
 #undef func_80249170_Ctx
 
 #define func_80249EF8 func_80249EF8__func_80249EC4
@@ -315,7 +316,6 @@ void func_80249EC4(void *arg0, s32 arg1) {
 }
 #undef func_80249EF8
 
-/* hh-block asm/nonmatchings/file017/80249170/_ro_func_80249EF8.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80249170/func_80249EF8.s","D_8025CB70"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80249170/_ro_func_80249EF8.s")
 
 #define func_80249FF4 func_80249FF4__func_80249EF8
@@ -344,7 +344,6 @@ void func_80249EF8(void *arg0, s32 arg1) {
 }
 #undef func_80249FF4
 
-/* hh-block asm/nonmatchings/file017/80249170/_ro_func_80249FF4.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80249170/func_80249FF4.s","D_8025CBA8"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80249170/_ro_func_80249FF4.s")
 
 #define func_8024A0D4 func_8024A0D4__func_80249FF4
@@ -367,7 +366,6 @@ void func_80249FF4(func_80249FF4_Struct *arg0, s32 arg1) {
 }
 #undef func_8024A0D4
 
-/* hh-block asm/nonmatchings/file017/80249170/_ro_func_8024A0D4.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80249170/func_8024A0D4.s","D_8025CBE0"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80249170/_ro_func_8024A0D4.s")
 
 #define func_8024A418 func_8024A418__func_8024A0D4
@@ -388,7 +386,6 @@ void func_8024A0D4(func_8024A0D4_Struct *arg0, s32 arg1) {
 }
 #undef func_8024A418
 
-/* hh-block asm/nonmatchings/file017/80249170/_ro_func_8024A1B4.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80249170/func_8024A1B4.s","D_8025CC18"],[".rodata","asm/nonmatchings/file017/80249170/func_8024A1B4.s","D_8025CC50"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80249170/_ro_func_8024A1B4.s")
 
 #define func_8024A33C func_8024A33C__func_8024A1B4
@@ -412,7 +409,6 @@ void func_8024A1B4(void *arg0, s32 arg1) {
 }
 #undef func_8024A33C
 
-/* hh-block asm/nonmatchings/file017/80249170/_ro_func_8024A33C.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80249170/func_8024A33C.s","D_8025CC88"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80249170/_ro_func_8024A33C.s")
 
 #define func_8024A1B4 func_8024A1B4__func_8024A33C
@@ -430,7 +426,6 @@ void func_8024A33C(void *arg0, s32 arg1) {
 }
 #undef func_8024A1B4
 
-/* hh-block asm/nonmatchings/file017/80249170/_ro_func_8024A418.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80249170/func_8024A418.s","D_8025CCC0"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80249170/_ro_func_8024A418.s")
 
 #define func_8024A4FC func_8024A4FC__func_8024A418
@@ -458,7 +453,6 @@ void func_8024A4FC(void *arg0, s32 arg1) {
 }
 #undef func_8024A54C
 
-/* hh-block asm/nonmatchings/file017/80249170/_ro_func_8024A54C.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80249170/func_8024A54C.s","D_8025CCF8"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file017/80249170/_ro_func_8024A54C.s")
 
 
