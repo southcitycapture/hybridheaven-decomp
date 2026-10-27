@@ -2,7 +2,7 @@
 
 Progress as of 2026-10-27: **68.84% of the code** (14888 of 15891 functions, including duplicates).
 
-**21481 model runs, $5216.53 API-equivalent in total** (local and cloud). Of the **14834 functions now in C**, **6790 were matched by AI workers** (≈ $0.768 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 279 came from decomp-permuter and 202 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**21488 model runs, $5216.53 API-equivalent in total** (local and cloud). Of the **14834 functions now in C**, **6790 were matched by AI workers** (≈ $0.768 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 279 came from decomp-permuter and 202 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -256,6 +256,13 @@ Progress as of 2026-10-27: **68.84% of the code** (14888 of 15891 functions, inc
 | `unify_loop0078` | unify_loop0078 | unify (no model) | 14 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0079` | unify_loop0079 | unify (no model) | 14 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0080` | unify_loop0080 | unify (no model) | 14 | 0 | 0% | $0.00 | – |  |
-| `localA` | localA | strata/qwen3.8-flash-next | 11 | 7 | 64% | $0.00 | – |  |
+| `unify_loop0081` | unify_loop0081 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0082` | unify_loop0082 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0083` | unify_loop0083 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0084` | unify_loop0084 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0085` | unify_loop0085 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
+| `localA` | localA | strata/qwen3.8-flash-next | 15 | 7 | 47% | $0.00 | – |  |
+| `unify_loop0086` | unify_loop0086 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
+| `localC` | localC | strata/qwen3.8-flash-next | 3 | 2 | 67% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
