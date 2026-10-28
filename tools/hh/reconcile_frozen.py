@@ -25,7 +25,7 @@ else:
 from elftools.elf.elffile import ELFFile
 import kept_blocks
 
-ADDR_SYM = re.compile(r"^(?:func|D)_[0-9A-F]{8}$")
+ADDR_SYM = re.compile(r"^(?:func|D|B)_[0-9A-F]{8}$")
 TAG_DEF = re.compile(r"^\s*(?:typedef\s+)?(?:struct|union|enum)\s+(\w+)\s*\{")
 PRAGMA = re.compile(r'^#pragma GLOBAL_ASM\("([^"]+)"\)\s*$')
 
@@ -236,10 +236,21 @@ def context_dependencies(seg, cfile, name, snippet, sc, i, context=None):
 
 def read_attempt(seg, name, path):
     """Freeze the worker's used context declarations into its snippet before its neighbours change."""
-    snippet = normalize(open(path).read())
-    context = os.path.join(os.path.dirname(path), "context.h")
+    original = open(path).read()
+    snippet = normalize(original)
+    parent = os.path.dirname(path)
+    if os.path.basename(parent) == '.attempts': parent = os.path.dirname(parent)
+    context = os.path.join(parent, "context.h")
     if os.path.exists(context):
-        snippet = context_dependencies(seg, S.file_of(seg, name), name, snippet, Scan(""), 0, open(context).read())
+        snapshot = open(context).read()
+        before, _, after = original.partition('#include "context.h"')
+        # A worker can intentionally expose a hidden declaration under its new
+        # name (e.g. a callback stored as D_XXXXXXXX). Removing the hiding macro
+        # must not discard that declaration when the body uses the alias.
+        for old, new in re.findall(r'(?m)^#define\s+(\w+)\s+(\w+)\s*$', before):
+            if re.search(r'(?m)^#undef\s+' + re.escape(old) + r'\s*$', after) and re.search(r'\b' + re.escape(new) + r'\b', snippet):
+                snapshot = re.sub(r'\b' + re.escape(old) + r'\b', new, snapshot)
+        snippet = context_dependencies(seg, S.file_of(seg, name), name, snippet, Scan(""), 0, snapshot)
         # Registry entries must remain usable after the queue workdir (and its snapshot header) is archived.
         snippet = '#include "common.h"\n' + snippet.replace('#include "context.h"', '')
     return snippet
@@ -465,7 +476,11 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
             for how, cand in _insert_variants(seg, cfile, lines0, name, sn, loc0, literals):
                 for direction in (False, True) if not literals else (False,):
                     merged = merge_kept_lates(seg, cfile, cand, direction)
-                    yield ("named-" if not literals else "") + prefix + how + ("-before" if direction else ""), kept_blocks.annotate(S, seg, cfile, merged)
+                    tag = ("named-" if not literals else "") + prefix + how + ("-before" if direction else "")
+                    yield tag, kept_blocks.annotate(S, seg, cfile, merged)
+                    promoted = orphan_lates(merged)
+                    if promoted != merged:
+                        yield tag + '-c-lates', kept_blocks.annotate(S, seg, cfile, promoted)
     if not _file_alias:
         # A new definition changes the declaration seen by every later caller, even callers beyond the next
         # declaration region. Give the frozen file its own address alias and expose the real name only inside
@@ -476,6 +491,61 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
         frozen += "\n#undef %s\n" % name
         for how, cand in insert_variants(seg, cfile, frozen, name, snippet, _file_alias=True):
             yield "file-alias-" + how, cand
+
+def orphan_lates(text):
+    """Give scalar late data C storage when its last ASM instruction donor lands.
+
+    A late-only GLOBAL_ASM cannot compile without an instruction budget. Explicit
+    readonly arrays precede IDO's literal pool, retaining named loads and letting
+    the whole-file verifier decide whether that placement is exact.
+    """
+    import struct
+    constants, remove, replacements = {}, set(), {}
+    for line in text.splitlines():
+        match = PRAGMA.match(line)
+        if not match:
+            continue
+        path = match[1]
+        data = S._rd(path)
+        if not data or S.asm_weights(path)[0]:
+            continue
+        items = S._ro_items(data)
+        pending, regular = {}, []
+        for section, address, lines in items:
+            if section != '.late_rodata':
+                regular.append((section, lines))
+                continue
+            scalar = S.LATE_ITEM.search('\n'.join(lines))
+            if scalar is None:
+                break
+            name, bits, kind = scalar.groups()
+            value = struct.unpack('>f' if kind == 'float' else '>d', bytes.fromhex(bits))[0]
+            literal = repr(value) + ('f' if kind == 'float' else '')
+            pending[name] = (address, 'f32' if kind == 'float' else 'f64', literal)
+        else:
+            if pending:
+                constants.update(pending)
+                remove.add(path)
+                if regular:
+                    data = '\n'.join('.section ' + section + '\n' + '\n'.join(lines)
+                                     for section, lines in regular) + '\n.section .text\n'
+                    out = os.path.join(os.path.dirname(path), '_ro_regular_' + hashlib.sha1(data.encode()).hexdigest()[:16] + '.s')
+                    with open(out, 'w') as fh: fh.write(data)
+                    replacements[path] = '#pragma GLOBAL_ASM("%s")' % out
+    if not constants:
+        return text
+    lines = []
+    for line in text.splitlines():
+        match = PRAGMA.match(line)
+        if match and match[1] in remove:
+            if match[1] in replacements: lines.append(replacements[match[1]])
+        elif not (kept_blocks.RECIPE.search(line) and kept_blocks.RECIPE.search(line)[1] in remove):
+            lines.append(line)
+    lines.append('/* Readonly constants retained after the last ASM donor became C. */')
+    lines += ['static const %s %s__rodata[] = {%s};' % (typ, name, literal)
+              for name, (_, typ, literal) in sorted(constants.items(), key=lambda item: item[1][0])]
+    return '\n'.join(lines) + '\n'
+
 
 def merge_kept_lates(seg, cfile, text, before=False):
     """A data-only late block needs an asm neighbour's instruction budget, at that neighbour's original text position."""

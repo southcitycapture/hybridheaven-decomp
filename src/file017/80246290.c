@@ -1,3 +1,4 @@
+#define func_80247530 func_80247530__merge_frozen
 #include "common.h"
 
 extern s32 func_80126944(void);
@@ -648,8 +649,81 @@ void func_802471F4(struct func_802471F4_StructO *arg0, struct func_802471F4_Stru
 #undef func_80247978_StructGlobal
 
 
-/* hh-block asm/nonmatchings/file017/80246290/_mrg_keep_ab1c892a8cc7951f.s {"functions":["func_80247530"],"rodata":[[".rodata","asm/nonmatchings/file017/80246290/func_80246C0C.s","D_8025C974"],[".late_rodata","asm/nonmatchings/file017/80246290/func_80246C0C.s","D_8025C9AC"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80246290/_mrg_keep_ab1c892a8cc7951f.s")
+/* hh-block asm/nonmatchings/file017/80246290/_ro_regular_83a605d68de50166.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80246290/func_80246C0C.s","D_8025C974"]]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file017/80246290/_ro_regular_83a605d68de50166.s")
+
+#undef func_80247530
+#define D_801BBCD0 D_801BBCD0__func_80247530
+#define D_80258A88 D_80258A88__func_80247530
+#define D_8025C9D0 D_8025C9D0__func_80247530
+#define func_8001EAD0 func_8001EAD0__func_80247530
+#define func_8001EB64 func_8001EB64__func_80247530
+#define func_80020718 func_80020718__func_80247530
+#define func_800208C4 func_800208C4__func_80247530
+#define func_8011AAF4 func_8011AAF4__func_80247530
+#define func_801C3B10 func_801C3B10__func_80247530
+#define func_801C3B2C func_801C3B2C__func_80247530
+#define func_801C3D20 func_801C3D20__func_80247530
+#define func_802476F0 func_802476F0__func_80247530
+struct func_80245DCC_Struct3 { u8 pad[4]; f32 unk4; u8 pad2[4]; f32 unkC; };
+struct func_80245DCC_Struct2 { u8 pad[0x2C]; struct func_80245DCC_Struct3 *unk2C; };
+extern struct func_80245DCC_Struct2 *D_801BBCD0;
+extern s32 D_80258A88;
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern void func_80020718(s32);
+extern void func_800208C4(s32);
+extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+extern void func_801C3B10(s32);
+extern void func_801C3B2C(s32);
+extern s32 func_801C3D20(f32, f32, f32);
+
+
+struct func_80247530_Struct { u8 pad[0x9C]; s16 unk9C; u8 pad2[2]; f32 unkA0; f32 unkA4; f32 unkA8; };
+extern u8 D_8025C9D0[];
+void func_802476F0();
+
+void func_80247530(struct func_80247530_Struct *arg0, s32 arg1)
+{
+    s32 i;
+    s16 a;
+    s32 t;
+    f32 s;
+    f32 f;
+
+    for (i = -0x28; i != 0x2C; i += 4) {
+        s = func_8001EB64(arg0->unk9C);
+        f = (f32) i;
+        if (func_801C3D20(arg0->unkA4 - (s * f), (func_8001EAD0(arg0->unk9C) * f) + arg0->unkA8, 3.0f) != 0) {
+            func_801C3B2C(2);
+            func_801C3B10(1);
+            t = (s16) ((u16) arg0->unk9C - 0x2AA) & 0x1FFF;
+            a = t;
+            s = func_8001EAD0(a), f = func_8001EB64(a);
+            func_8011AAF4(D_8025C9D0, 0x14E, arg0, 0, 1, 0.0f, (s * 30.0f) + D_801BBCD0->unk2C->unk4, -70.0f,
+                          (f * 30.0f) + D_801BBCD0->unk2C->unkC, 0.0f, D_801BBCD0->unk2C->unk4, -90.0f, D_801BBCD0->unk2C->unkC, 0.0f, 35.0f, -1, -1);
+            arg0->unkA0 = 0.0f;
+            func_800208C4(0x44);
+            func_80020718(0x12F);
+            D_80258A88 = 0;
+            func_800058DC(arg0, func_802476F0);
+            return;
+        }
+    }
+}
+#undef D_801BBCD0
+#undef D_80258A88
+#undef D_8025C9D0
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_80020718
+#undef func_800208C4
+#undef func_8011AAF4
+#undef func_801C3B10
+#undef func_801C3B2C
+#undef func_801C3D20
+#undef func_802476F0
+#define func_80247530 func_80247530__merge_frozen
 
 #define func_80247930 func_80247930__func_802476F0
 #define func_80247930_Struct func_80247930_Struct__func_802476F0
@@ -805,3 +879,7 @@ void func_802479E8(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
+
+#undef func_80247530
+/* Readonly constants retained after the last ASM donor became C. */
+static const f32 D_8025C9AC__rodata[] = {291.0f};

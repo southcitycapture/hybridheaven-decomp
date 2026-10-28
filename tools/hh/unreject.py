@@ -25,15 +25,7 @@ S, R = M.S, M.R
 
 def read_saved(seg, name, path):
     """An archived attempt shares its worker's context, not .attempts/context.h."""
-    snippet = R.normalize(Path(path).read_text())
-    parent = Path(path).parent
-    if parent.name == '.attempts':
-        parent = parent.parent
-    context = parent / 'context.h'
-    if context.exists():
-        snippet = R.context_dependencies(seg, S.file_of(seg, name), name, snippet,
-                                         R.Scan(''), 0, context.read_text())
-        snippet = '#include "common.h"\n' + snippet.replace('#include "context.h"', '')
+    snippet = R.read_attempt(seg, name, path)
     # Some workers put local typedefs on their definition line. Split that
     # line so the shared function scanner sees the definition.
     return re.sub(r'(?m)^([^;\n{}]*\b' + name +

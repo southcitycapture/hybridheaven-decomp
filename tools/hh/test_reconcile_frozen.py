@@ -7,6 +7,60 @@ S = R.S
 
 
 class ContextTests(unittest.TestCase):
+    def test_b_address_alias_prototype_is_private_like_func_and_data_aliases(self):
+        sc = R.Scan('extern void B_80000004(int, float, float);\n')
+        snippet = 'extern int B_80000004(void *, float, int);\nvoid func_80000000(void) { B_80000004(0, 1.0f, 0x3F800000); }\n'
+        with patch.object(S, 'late_literals', side_effect=lambda p,t:t), \
+             patch.object(S, 'kept_rodata_block', return_value=None), \
+             patch.object(S, 'missing_decls', return_value=[]):
+            body, private = R.body_for('test', 'file', 'func_80000000', snippet, sc, 1, 'isolate')
+        self.assertIn('B_80000004', private)
+        self.assertIn('#define B_80000004 B_80000004__func_80000000', body)
+        self.assertEqual(body[-1], '#undef B_80000004')
+
+    def test_last_donor_keeps_string_position_and_promotes_scalar_late(self):
+        regular = '.section .rodata\nnonmatching D_80000010\ndlabel D_80000010\n/* 10 80000010 */ .asciz "message"\nenddlabel D_80000010\n'
+        late = '.section .late_rodata\nnonmatching D_80000018\ndlabel D_80000018\n/* 18 80000018 3F800000 */ .float 1.0\nenddlabel D_80000018\n'
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            path = os.path.join(td, '_ro_named_test.s')
+            with open(path, 'w') as fh: fh.write(regular + late)
+            source = '#pragma GLOBAL_ASM("%s")\nvoid func_80000000(void) {}\n' % path
+            promoted = R.orphan_lates(source)
+            self.assertNotIn(path, promoted)
+            self.assertIn('static const f32 D_80000018__rodata[] = {1.0f};', promoted)
+            retained = R.PRAGMA.match(promoted.splitlines()[0])[1]
+            with open(retained) as fh: data = fh.read()
+            self.assertIn('message', data)
+            self.assertNotIn('late_rodata', data)
+            self.assertLess(promoted.index(retained), promoted.index('void func_80000000'))
+            self.assertEqual(R.orphan_lates(promoted), promoted)
+
+    def test_orphan_promotion_does_not_consume_jump_tables_or_asm_functions(self):
+        table = '.section .late_rodata\nnonmatching jtbl_80000010\ndlabel jtbl_80000010\n/* 10 80000010 80000004 */ .word .L80000004\nenddlabel jtbl_80000010\n'
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            path = os.path.join(td, '_ro_named_test.s')
+            with open(path, 'w') as fh: fh.write(table)
+            source = '#pragma GLOBAL_ASM("%s")\n' % path
+            self.assertEqual(R.orphan_lates(source), source)
+            with patch.object(S, 'asm_weights', return_value=(4, 0)):
+                self.assertEqual(R.orphan_lates(source), source)
+
+    def test_archived_snapshot_exposes_used_hidden_callback_alias(self):
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            os.mkdir(os.path.join(td, '.attempts'))
+            with open(os.path.join(td, 'context.h'), 'w') as fh:
+                fh.write('extern unsigned char func_80000000[];\nextern int UNUSED;\n')
+            path = os.path.join(td, '.attempts', '1.c')
+            with open(path, 'w') as fh:
+                fh.write('#define func_80000000 D_80000000\n#include "context.h"\n#undef func_80000000\nvoid func_80000000(void) { void *p = D_80000000; }\n')
+            with patch.object(S, 'file_of', return_value='file'):
+                snippet = R.read_attempt('test', 'func_80000000', path)
+            self.assertIn('extern unsigned char D_80000000[];', snippet)
+            self.assertNotIn('extern unsigned char func_80000000', snippet)
+            self.assertNotIn('UNUSED', snippet)
+            self.assertNotIn('context.h', snippet)
+            self.assertNotIn('#define', snippet)
+
     def test_borrowed_late_budget_does_not_move_regular_strings(self):
         regular = '.section .rodata\nnonmatching D_80000010\ndlabel D_80000010\n/* 10 80000010 41000000 */ .word 0x41000000\nenddlabel D_80000010\n'
         late = '.section .late_rodata\nnonmatching D_80000014\ndlabel D_80000014\n/* 14 80000014 3F800000 */ .float 1.0\nenddlabel D_80000014\n'

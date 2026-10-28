@@ -453,7 +453,7 @@ def padded_block(path):
         open(os.path.join(HH, twin), "w").write(".section .rodata\n\n.word 0\n" + "\n".join(body) + "\n")
     return twin
 
-ADDR_SYM = re.compile(r"^(?:func|D)_[0-9A-F]{8}$")
+ADDR_SYM = re.compile(r"^(?:func|D|B)_[0-9A-F]{8}$")
 TAG_DEF = re.compile(r"^\s*(?:typedef\s+)?(?:struct|union|enum)\s+(\w+)\s*\{")
 
 def _norm_decl(line):
