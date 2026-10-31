@@ -11,7 +11,7 @@ rm -rf "$W"; "$HH/tools/swarm/prep2.sh" "$FUNC" "$SEG" "$W"
 cd "$W"
 start=$(date +%s)
 claude -p "$(cat prompt.md)" --model "$MODEL" --permission-mode acceptEdits $WORKER_FLAGS \
-  --allowedTools "Read" "Write" "Edit" "Bash(./check)" "Bash(./check:*)" \
+  --allowedTools "Read" "Write" "Edit" "Bash(./check)" "Bash(./check:*)" ${LEAD:+"Agent" "Bash"} \
   --output-format json > result.json 2> stderr.txt < /dev/null
 echo $? > exit.txt
 # API trouble (rate limit, overload, auth) is not a failed match: record ERROR so the runner retries it

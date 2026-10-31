@@ -115,7 +115,9 @@ def private_names(text, decl_text, file_defs, own):
 
 def merged_paths(block):
     """Asm paths a _mrg_ block was made from (their glabels, in order)."""
-    seg, cf = block.split("/")[2:4]
+    parts = block.split("/")
+    root = parts.index('nonmatchings')
+    seg, cf = parts[root + 1:root + 3]
     text = open(block).read()
     names = re.findall(r"^glabel (func_[0-9A-F]{8})", text, re.M)
     paths = ["asm/nonmatchings/%s/%s/%s.s" % (seg, cf, n) for n in names]
@@ -138,7 +140,7 @@ def locate(lines, seg, cfile, name):
         if not m: continue
         p = m.group(1)
         if p == own: return i, [], []
-        if os.path.basename(p).startswith("_mrg_") and os.path.exists(p):
+        if (os.path.basename(p).startswith("_mrg_") or kept_blocks.custom(p)) and os.path.exists(p):
             ps = merged_paths(p)
             if own in ps:
                 k = ps.index(own); return i, ps[:k], ps[k + 1:]
@@ -290,12 +292,16 @@ def body_for(seg, cfile, name, snippet, sc, i, alias, literals=True):
     ro_start = S.FILE_RODATA.get((seg, cfile))
     ro_end = (ro_start + len(re.findall(r'\b0x[0-9A-Fa-f]{2}\b', owned_bytes[1]))
               if owned_bytes and ro_start is not None else None)
-    if kb and (c_owned or ro_end is not None):
+    owned_ranges = [(ro_start, ro_end)] if ro_end is not None else []
+    for _, recipe in kept_blocks.RECIPE.findall(source):
+        span = json.loads(recipe).get('rodata_bytes')
+        if span: owned_ranges.append((span[0], span[0] + span[2]))
+    if kb and (c_owned or owned_ranges):
         with open(kb) as fh: kept_text = fh.read()
         items = [(sect, ls) for sect, _, ls in S._ro_items(kept_text)
                  if not c_owned.intersection(re.findall(r'\bdlabel (\w+)', '\n'.join(ls)))
-                 and not (ro_end is not None and any(ro_start <= int(a, 16) < ro_end
-                     for a in re.findall(r'\bdlabel (?:D|jtbl)_([0-9A-F]{8})', '\n'.join(ls))))]
+                  and not any(lo <= int(a, 16) < hi for lo, hi in owned_ranges
+                      for a in re.findall(r'\bdlabel (?:D|jtbl)_([0-9A-F]{8})', '\n'.join(ls)))]
         out = []
         if items:
             ro = '\n'.join('.section ' + sect + '\n' + '\n'.join(ls) for sect, ls in items) + '\n.section .text\n'
@@ -362,9 +368,25 @@ def verify(seg, cfile, text, names, td):
     if obj is None:
         errs = re.findall(r"Error: \S+ (line \d+: .*)", err) or re.findall(r"line \d+: .*", err)
         return False, "compile error: " + (" | ".join(m.strip() for m in errs[:3]) or err.strip()[-300:])[:300]
+    with open(obj, 'rb') as fh:
+        elf = ELFFile(fh)
+        bss_owner = S.FILE_BSS.get((seg, cfile))
+        storage = [(s.name, s['sh_size']) for s in elf.iter_sections()
+                   if s.name in ('.data', '.bss', '.sdata', '.sbss') and s['sh_size']]
+        if bss_owner:
+            storage = [(n, size) for n, size in storage if n != '.bss' or size != bss_owner[1]]
+            actual = elf.get_section_by_name('.bss')
+            if actual is None or actual['sh_size'] != bss_owner[1]:
+                return False, 'source-owned .bss size differs'
+        symtab = elf.get_section_by_name('.symtab')
+        storage += [(s.name, s['st_size']) for s in symtab.iter_symbols()
+                    if s['st_shndx'] == 'SHN_COMMON'] if symtab else []
+        if storage:
+            return False, 'unplaced writable storage: ' + ', '.join('%s=0x%X' % v for v in storage)
     info = {e[0]: e for e in S.entries(seg, cfile)}
     base = min(e[4] for e in info.values()); ro = S.FILE_RODATA.get((seg, cfile))
-    bad = [n for n in names if n not in info or not S.func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro)]
+    bss = bss_owner[0] if bss_owner else None
+    bad = [n for n in names if n not in info or not S.func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=bss)]
     if bad: return False, "does not match: " + ", ".join(bad[:4])
     start, end = S.file_span(seg, cfile)
     with open(obj, "rb") as fh:
@@ -379,7 +401,7 @@ def verify(seg, cfile, text, names, td):
     # Checking only registered C misses an asm neighbour whose local late-rodata relocations moved, or constants
     # read through absolute D_ names. Require the whole linked file, including asm and data, to stay byte-identical.
     first = min(info.values(), key=lambda e: e[2])
-    linked = S.try_func.linked_func_bytes(obj, first[0], first[4], base, S.FILE_RODATA.get((seg, cfile)), want_file=True)
+    linked = S.try_func.linked_func_bytes(obj, first[0], first[4], base, S.FILE_RODATA.get((seg, cfile)), want_file=True, bss=bss)
     if linked is None: return False, "cannot link whole file"
     code, data = linked
     if code != S.IMG[start:end]: return False, "file .text differs (including asm neighbours)"
@@ -471,6 +493,7 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
     contextual = context_dependencies(seg, cfile, name, snippet, sc0, loc0[0])
     path = "asm/nonmatchings/%s/%s/%s.s" % (seg, cfile, name)
     modes = (False, True) if ".late_rodata" in S._rd(path) else (True,)
+    pool_candidates = []
     for literals in modes:
         for prefix, sn in ([("context-", contextual)] if contextual != snippet else []) + [("", snippet)]:
             for how, cand in _insert_variants(seg, cfile, lines0, name, sn, loc0, literals):
@@ -478,10 +501,27 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
                     merged = merge_kept_lates(seg, cfile, cand, direction)
                     tag = ("named-" if not literals else "") + prefix + how + ("-before" if direction else "")
                     yield tag, kept_blocks.annotate(S, seg, cfile, merged)
+                    if not _file_alias and how.startswith('isolate') and not direction:
+                        pool_candidates.append((tag, merged))
                     promoted = orphan_lates(merged)
                     if promoted != merged:
                         yield tag + '-c-lates', kept_blocks.annotate(S, seg, cfile, promoted)
+                        if not _file_alias and how.startswith('isolate') and not direction:
+                            pool_candidates.append((tag + '-c-lates', promoted))
     if not _file_alias:
+        import rodata_owned
+        for how, candidate in pool_candidates:
+            repartitioned = rodata_owned.repartition(S, seg, cfile, candidate)
+            if repartitioned is not None:
+                yield 'owned-layout-' + how, repartitioned
+        released = rodata_owned.release_tail(S, seg, cfile, text, name, snippet)
+        if released is not None:
+            for how, cand in insert_variants(seg, cfile, released, name, snippet, _file_alias=True):
+                yield 'owned-tail-' + how, cand
+        companions = rodata_owned.literal_companions(S, seg, cfile, text, name, snippet)
+        if companions is not None and companions != released:
+            for how, cand in insert_variants(seg, cfile, companions, name, snippet, _file_alias=True):
+                yield 'owned-companions-' + how, cand
         # A new definition changes the declaration seen by every later caller, even callers beyond the next
         # declaration region. Give the frozen file its own address alias and expose the real name only inside
         # the inserted snippet (_insert_variants masks active aliases there).

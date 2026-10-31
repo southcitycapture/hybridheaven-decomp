@@ -7,9 +7,16 @@
 srcbuild.py writes these while rendering; a fresh checkout only has splat's per-function asm, so they're rebuilt here
 from the src files that reference them.
 """
-import glob, json, os, re, sys
+import glob, json, os, re, shutil, sys
 import kept_blocks
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
+# Standalone splat regeneration can emit already-matching functions here. Keep
+# them with the other comparison inputs, as make setup does, rather than letting
+# Makefile's generic asm scan try to assemble GLOBAL_ASM-only directives.
+for source in glob.glob('asm/matchings/**/*.s', recursive=True):
+    target = source.replace('asm/matchings/', 'asm/nonmatchings/', 1)
+    os.makedirs(os.path.dirname(target), exist_ok=True)
+    shutil.move(source, target)
 annotate = "--annotate" in sys.argv
 sys.argv = ["srcbuild.py", "none"]; sys.path.insert(0, "tools/hh"); import srcbuild as S
 import reconcile_frozen as R

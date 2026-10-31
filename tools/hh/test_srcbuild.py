@@ -140,11 +140,12 @@ class AllFilesTests(unittest.TestCase):
                 p = root / path
                 p.parent.mkdir(parents=True, exist_ok=True)
                 p.write_text(text)
-            for name in ('srcbuild.py', 'try_func.py', 'workdir.py'):
+            for name in ('srcbuild.py', 'try_func.py', 'workdir.py', 'bss_layout.py'):
                 put('tools/hh/' + name, (Path(S.HH) / 'tools/hh' / name).read_text())
             put('build/expanded.bin', '')
             put('build/expanded.json', '{"files":[]}')
             put('tools/hh/file_splits.json', '{}')
+            put('tools/hh/bss_splits.json', '{}')
             put('hybridheaven.yaml', '')
             (root / 'queue').mkdir()
             sources = {

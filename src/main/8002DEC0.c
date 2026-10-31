@@ -185,7 +185,16 @@ f64 func_8002E790(f64 arg0, s32 *arg2)
   return var_fv1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002DEC0/func_8002E87C.s")
+
+
+f64 func_8002E87C(f64 arg0, s32 arg2) {
+    s32 x;
+    if (arg2 != 0) {
+        x = 1 << arg2;
+        arg0 *= x;
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8002DEC0/func_8002E8A4.s")
 

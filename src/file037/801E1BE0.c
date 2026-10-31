@@ -39,7 +39,19 @@ s32 func_801E1C3C(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file037/801E1BE0/func_801E1D18.s")
+
+
+s32 func_801E1D18(s32 arg0, s32 arg1) {
+    f32 a;
+    a = 8.9f;
+    if (D_8038C17C(0.0f, 2.0f, 14.5f, -7.7f,
+        26.2f, 23.7f, -2.0f, 27.3f,
+        a, 15.5f, -0.4f, a, 15.5f, -0.4f, 43.6f, 43.6f) != 0) {
+        D_8038C158();
+        return 3;
+    }
+    return 2;
+}
 
 
 s32 func_801E1DE0(s32 arg0, s32 arg1) {

@@ -34,7 +34,8 @@ def yaml_segments():
         if cur is None: continue
         m = re.match(r"    (start|vram): (0x[0-9A-F]+)", l)
         if m: out[cur][m.group(1)] = int(m.group(2), 16)
-        m = re.match(r"\s+- \[0x([0-9A-F]+), data\]", l)
+        # a generic data span, or one gen_splat.py links from generated C (data_to_c.py)
+        m = re.match(r"\s+- \[0x([0-9A-F]+), (?:data|\.data, data/\w+/data_[0-9A-F]{8})\]", l)
         if m and "vram" in out[cur]: out[cur]["data"] = out[cur]["vram"] + int(m.group(1), 16) - out[cur]["start"]
         m = re.match(r"\s+- \{ type: bss, vram: 0x([0-9A-F]+)", l)
         if m: out[cur]["bss"] = int(m.group(1), 16)
@@ -66,7 +67,7 @@ def analyse(seg, sv):
             for m in jump_tables(t):
                 late[int(m.group(2), 16)] = 4 * len(re.findall(r"\.word", m.group(3))); jtbls.add(int(m.group(2), 16))
     # jump tables still in the segment's data file (first pass, before splat migrates them into functions)
-    for p in glob.glob("asm/data/%s/*.s" % seg) + glob.glob("asm/data/*.s"):
+    for p in glob.glob("asm/data/%s/*.s" % seg) + glob.glob("asm/data/data/%s/*.s" % seg) + glob.glob("asm/data/*.s"):
         for m in jump_tables(open(p).read()):
             a = int(m.group(2), 16)
             if sv["data"] <= a < sv["bss"]: late.setdefault(a, 4 * len(re.findall(r"\.word", m.group(3)))); jtbls.add(a)
@@ -120,7 +121,7 @@ def preserved_layout(seg, sv, analysis):
     """
     tables = {}
     paths = glob.glob("asm/nonmatchings/%s/*/func_*.s" % seg)
-    for p in paths + glob.glob("asm/data/%s/*.s" % seg) + glob.glob("asm/data/*.s"):
+    for p in paths + glob.glob("asm/data/%s/*.s" % seg) + glob.glob("asm/data/data/%s/*.s" % seg) + glob.glob("asm/data/*.s"):
         for m in jump_tables(open(p).read()):
             tables[int(m[2], 16)] = 4 * len(re.findall(r"\.word", m[3]))
     cursor = analysis[0][0][0]

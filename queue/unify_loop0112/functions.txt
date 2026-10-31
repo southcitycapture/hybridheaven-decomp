@@ -1,0 +1,3 @@
+func_80032720 main
+func_801C8E20 file024
+func_801E1D78 file051

@@ -149,6 +149,7 @@ extern s32 func_801CED5C(s32);
 extern s32 func_801CEDD4(void);
 extern s32 func_801CEDE4();
 extern s32 func_801E2BE0();
+#define func_801E3B04 func_801E3B04__decl
 extern s32 func_801E3B04();
 extern s32 func_8038CBF0(void);
 extern u64 func_801C0F18(s32 arg0, s32 arg1);
@@ -1095,7 +1096,62 @@ s32 func_801E3978(s32 arg0, s32 arg1) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E3B04.s")
+#undef func_801E3B04
+#define D_8038D8D0 D_8038D8D0__func_801E3B04
+#define func_801E3750_Struct0 func_801E3750_Struct0__func_801E3B04
+#define func_801E3750_Struct4 func_801E3750_Struct4__func_801E3B04
+#define func_801E3750_Struct8 func_801E3750_Struct8__func_801E3B04
+struct func_801E3750_Struct8 {
+    u8 pad[8];
+    f32 unk8;
+};
+struct func_801E3750_Struct4 {
+    u8 pad[0x30];
+    struct func_801E3750_Struct8 *unk30;
+};
+struct func_801E3750_Struct0 {
+    u8 pad[4];
+    struct func_801E3750_Struct4 *unk4;
+};
+extern struct func_801E3750_Struct0 *D_8038D8D0;
+
+typedef struct func_801E3B04_Obj {
+    u8 pad0[8];
+    f32 unk8;
+} func_801E3B04_Obj;
+
+typedef struct func_801E3B04_Mid {
+    u8 pad0[0x30];
+    func_801E3B04_Obj *unk30;
+} func_801E3B04_Mid;
+
+typedef struct func_801E3B04_Base {
+    u8 pad0[0xC];
+    func_801E3B04_Mid *unkC[12];
+} func_801E3B04_Base;
+
+void func_801E3B04(void) {
+    s32 i;
+
+    for (i = 0; i != 0xC; i += 2) {
+        if ((s32)(*(func_801E3B04_Base **)&D_8038D8D0)->unkC[i]->unk30->unk8 < -0x491) {
+            (*(func_801E3B04_Base **)&D_8038D8D0)->unkC[i]->unk30->unk8 = 1170.0f;
+        }
+        (*(func_801E3B04_Base **)&D_8038D8D0)->unkC[i]->unk30->unk8 =
+            (*(func_801E3B04_Base **)&D_8038D8D0)->unkC[i]->unk30->unk8 - 1.0f;
+
+        if ((s32)(*(func_801E3B04_Base **)&D_8038D8D0)->unkC[i + 1]->unk30->unk8 < -0x491) {
+            (*(func_801E3B04_Base **)&D_8038D8D0)->unkC[i + 1]->unk30->unk8 = 1170.0f;
+        }
+        (*(func_801E3B04_Base **)&D_8038D8D0)->unkC[i + 1]->unk30->unk8 =
+            (*(func_801E3B04_Base **)&D_8038D8D0)->unkC[i + 1]->unk30->unk8 - 1.0f;
+    }
+}
+#undef D_8038D8D0
+#undef func_801E3750_Struct0
+#undef func_801E3750_Struct4
+#undef func_801E3750_Struct8
+#define func_801E3B04 func_801E3B04__decl
 
 
 s32 func_801E3BD4(s32 arg0, s32 arg1) {

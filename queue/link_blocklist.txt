@@ -4,3 +4,12 @@ file024 func_801C2280
 file016 func_802429F8
 file009 func_801D3D5C  # held back 2026-10-22: batch addrfix changed its file's ROM bytes
 main func_80032720  # defines static const D_8004D4C0: shifts main's rodata (2026-10-22/24)
+# reserved (Zach, 2026-10-28): the last functions of file036, which holds "JONNY SAYS, MERRY XMAS." / "HOLY SAYS, MERRY XMAS.";
+# matched last, to complete the 100%. Remove these four lines then.
+file036 func_801E2708  reserved: Christmas finale
+file036 func_801E27E4  reserved: Christmas finale
+file036 func_801E2B54  reserved: Christmas finale
+file036 func_801E2D2C  reserved: Christmas finale
+# approved switch gaps (Zach, 2026-10-26): registered under the old layout, do not build in the per-file rodata layout yet
+file028 func_801F8008  approved switch gap
+file028 func_801FC490  approved switch gap

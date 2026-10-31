@@ -17,6 +17,9 @@ case $MODEL in openrouter/*)
   OPENROUTER_API_KEY=$(tr -d '\n\r ' < "$HOME/.oc/openrouter.key"); export OPENROUTER_API_KEY; CD=$HOME/.oc/COOLDOWN.or-$(echo "${MODEL#openrouter/}" | tr '/:' '__')  # free models are rate-limited upstream per model
   # opencode's title helper ("small model") would otherwise pick a paid OpenRouter model: pin it to this free one
   OPENCODE_CONFIG_CONTENT=$(printf '{"small_model":"%s"}' "$MODEL"); export OPENCODE_CONFIG_CONTENT;;
+strata/*)   # the workstation's local model (Strata, OpenAI-compatible, 128K context; 10-28): free, one GPU, its own cooldown
+  CD=$HOME/.oc/COOLDOWN.strata; STRATA_API_KEY=$(tr -d '\n\r ' < "$HOME/.oc/strata.key"); export STRATA_API_KEY
+  OPENCODE_CONFIG_CONTENT=$(printf '{"provider":{"strata":{"npm":"@ai-sdk/openai-compatible","name":"Strata (workstation)","options":{"baseURL":"%s","apiKey":"{env:STRATA_API_KEY}"},"models":{"%s":{"name":"%s","limit":{"context":131072,"output":16384}}}}},"small_model":"%s"}' "${STRATA_URL:-$(cat "$HOME/.oc/strata.url")}" "${MODEL#strata/}" "${MODEL#strata/}" "$MODEL"); export OPENCODE_CONFIG_CONTENT;;
 codex/*)    # Codex CLI on the ChatGPT Plus sign-in: shares the plan's usage windows with openai/*
   CD=$HOME/.oc/COOLDOWN.cx-${MODEL#codex/};;
 openai/*)   # ChatGPT Plus sign-in (opencode auth login, headless): its own usage windows, so its own cooldown

@@ -177,6 +177,29 @@ def rom_ok():
                             "why": "%s/%s differs from the ROM with this cycle's additions" % (seg, cf)}) + "\n")
                         log("  byte repair: %s/%s taken out (%s/%s differs from the ROM)" % (seg, name, seg, cf))
                     bad.add(("__slot__", seg))
+        # srcbuild all refuses to evict ("<seg>/<file>: cannot rebuild registered functions: X", 10-29 cycle 122: a
+        # local-model match in file025 made func_801CC350 unbuildable): take out this cycle's new functions in that
+        # file, as above, so the loop keeps going instead of pausing on it
+        for seg, cf in set(re.findall(r"RuntimeError: (\w+)/(\w+): cannot rebuild registered functions", out)):
+            # the file was rewritten this cycle; HEAD's version is the one known to keep every registered function
+            if sh("git diff --quiet HEAD -- src/%s/%s.c" % (seg, cf))[0]:
+                sh("git checkout HEAD -- src/%s/%s.c" % (seg, cf)); log("  rebuild repair: src/%s/%s.c restored to HEAD" % (seg, cf))
+                bad.add(("__slot__", seg))
+            new = [x for x in dirty() if x.startswith("matched/%s/" % seg) and x.endswith(".c")]
+            _, tracked = sh("git ls-files matched/%s" % seg); tracked = set(tracked.split())
+            sys.path.insert(0, "tools/hh"); import srcbuild
+            for x in new:
+                name = os.path.basename(x)[:-2]
+                if x in tracked:    # a rewritten snippet anywhere in the segment (unify/protofix/propagate): back to its
+                    # committed text; protofix's prototype changes in one file change how its neighbours compile (10-30)
+                    sh("git checkout HEAD -- %s" % x); log("  rebuild repair: %s/%s restored to HEAD" % (seg, name))
+                    bad.add(("__slot__", seg)); continue
+                if srcbuild.file_of(seg, name) != cf: continue      # new functions: only those in the refusing file
+                os.makedirs("matched_rejected/" + seg, exist_ok=True); os.replace(x, "matched_rejected/%s/%s.c" % (seg, name))
+                open("queue/rejected.jsonl", "a").write(json.dumps({"segment": seg, "func": name,
+                    "why": "%s/%s: its registered functions cannot all be rebuilt with this function added" % (seg, cf)}) + "\n")
+                log("  rebuild repair: %s/%s taken out (%s/%s could not keep its registered functions)" % (seg, name, seg, cf))
+                bad.add(("__slot__", seg))
         moved = sum(1 for seg, _ in bad if seg == "__slot__")
         bad = {(seg, name) for seg, name in bad if seg != "__slot__"}
         for seg, name in bad:

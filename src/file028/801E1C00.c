@@ -10,7 +10,7 @@ s32 func_801E1C00(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/D_80208740.s")
+
 
 s32 func_8038BEF8(f32 a0, f32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, f32 a7, f32 a8, f32 a9, f32 a10, f32 a11, f32 a12, f32 a13);
 
@@ -5098,7 +5098,8 @@ s32 func_801EA924(s32 arg0, s32 arg1) {
     return 0x31;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801EA980.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_617f877d76cba6db.s {"functions":["func_801EA980"],"rodata":[],"rodata_bytes":[2149615980,7499820,20]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_617f877d76cba6db.s")
 
 
 s32 func_801EAA24(s32 arg0, s32 arg1) {
@@ -5150,7 +5151,8 @@ s32 func_801EAB78(s32 arg0, s32 arg1) {
     return 0x37;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801EABD4.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_73b96b4ed30108af.s {"functions":["func_801EABD4"],"rodata":[],"rodata_bytes":[2149616008,7499848,24]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_73b96b4ed30108af.s")
 
 
 s32 func_801EAC7C(s32 arg0, s32 arg1) {
@@ -5757,7 +5759,8 @@ s32 func_801EBD2C(s32 arg0, s32 arg1)
   return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801EBE14.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_4e5794f870742d60.s {"functions":["func_801EBE14"],"rodata":[],"rodata_bytes":[2149616048,7499888,36]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_4e5794f870742d60.s")
 
 
 s32 func_801EC0A8(s32 arg0, s32 arg1) {
@@ -10537,7 +10540,8 @@ s32 func_801F3E68(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801F3EB4.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_4fd25cb44a311883.s {"functions":["func_801F3EB4"],"rodata":[],"rodata_bytes":[2149616312,7500152,44]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_4fd25cb44a311883.s")
 
 
 
@@ -10606,7 +10610,14 @@ s32 func_801F4218(s32 arg0, s32 arg1) {
     return 0xA;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801F4264.s")
+
+s32 func_801F4264(s32 arg0, s32 arg1) {
+    f32 a = -0.7f;
+    if (func_8038BEF8(0.0f, 4.5f, 200.3f, 31.3f, 0.0f, 199.899994f, 13.0f, (-3.0999999f), 200.0f, a, (-0.100000001f), 200.0f, a, -3.0f) != 0) {
+        return 0xC;
+    }
+    return 0xB;
+}
 
 
 s32 func_801F4310(s32 arg0, s32 arg1) {
@@ -11271,7 +11282,8 @@ s32 func_801F5340(s32 arg0, s32 arg1) {
     return 6;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801F540C.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_0e6104ec413af0cb.s {"functions":["func_801F540C"],"rodata":[],"rodata_bytes":[2149616508,7500348,16]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_0e6104ec413af0cb.s")
 
 
 s32 func_801F54AC(s32 arg0, s32 arg1) {
@@ -11293,7 +11305,8 @@ s32 func_801F5528(s32 arg0, s32 arg1) {
     return 9;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801F5574.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_2c87c196b7da01e6.s {"functions":["func_801F5574"],"rodata":[],"rodata_bytes":[2149616540,7500380,20]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_2c87c196b7da01e6.s")
 
 
 s32 func_801F5630(s32 arg0, s32 arg1) {
@@ -12755,7 +12768,8 @@ s32 func_801F7EFC(s32 arg0, s32 arg1) {
     return 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801F8008.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_8f6f0a11614bd80e.s {"functions":["func_801F8008"],"rodata":[],"rodata_bytes":[2149616668,7500508,12]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_8f6f0a11614bd80e.s")
 
 
 s32 func_801F8278(s32 arg0, s32 arg1) {
@@ -14614,7 +14628,8 @@ s32 func_801FB0F8(s32 arg0, s32 arg1) {
     return 6;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801FB144.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_98d7e35840825516.s {"functions":["func_801FB144"],"rodata":[],"rodata_bytes":[2149616748,7500588,16]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_98d7e35840825516.s")
 
 
 s32 func_801FB1FC(s32 arg0, s32 arg1) {
@@ -14718,7 +14733,19 @@ s32 func_801FB5BC(s32 arg0, s32 arg1) {
     return 0xD;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801FB690.s")
+
+s32 func_801FB690(s32 arg0, s32 arg1) {
+    f32 x = 4.0f;
+    f32 y = 24.4f;
+    f32 z = -37.4f;
+    if (func_8038BEF8(0.0f, 7.0f, -7.9f, 19.3f,
+            -18.0f, 13.8000002f, 16.3999996f, (-17.7000008f),
+            x, y, z, x, y, z) != 0) {
+        func_8038BED4();
+        return 0xF;
+    }
+    return 0xE;
+}
 
 #define func_8038BEF8 func_8038BEF8__func_801FB74C
 
@@ -14796,7 +14823,8 @@ s32 func_801FB8F0(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801FB994.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_043b91e580d4e32e.s {"functions":["func_801FB994"],"rodata":[],"rodata_bytes":[2149616944,7500784,144]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_043b91e580d4e32e.s")
 
 
 extern s32 D_8020790C;
@@ -15044,8 +15072,47 @@ s32 func_801FC480(s32 arg0, s32 arg1) {
 
 
 
-/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_24e90f53582217c4.s {"functions":["func_801FC490"],"rodata":[[".late_rodata","asm/nonmatchings/file028/801E1C00/func_801FC008.s","D_80208DA0"],[".late_rodata","asm/nonmatchings/file028/801E1C00/func_801FC490.s","D_80208DA4"],[".late_rodata","asm/nonmatchings/file028/801E1C00/func_801FC5F0.s","D_80208DA8"],[".late_rodata","asm/nonmatchings/file028/801E1C00/func_801FC710.s","D_80208DAC"],[".late_rodata","asm/nonmatchings/file028/801E1C00/func_801FC970.s","D_80208DB4"],[".late_rodata","asm/nonmatchings/file028/801E1C00/func_801FC840.s","D_80208DB0"],[".late_rodata","asm/nonmatchings/file028/801E1C00/func_801FCBF8.s","D_80208DB8"],[".late_rodata","asm/nonmatchings/file028/801E1C00/func_801FCBF8.s","D_80208DBC"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_24e90f53582217c4.s")
+
+
+#define D_80208DA4 D_80208DA4__func_801FC490
+#define D_8038D8D0 D_8038D8D0__func_801FC490
+#define func_801FCB44_Struct func_801FCB44_Struct__func_801FC490
+typedef struct func_801FCB44_Struct {
+    u8 pad[0x18];
+    u8 *unk18;
+} func_801FCB44_Struct;
+extern struct func_801FCB44_Struct *D_8038D8D0;
+
+
+extern f32 D_80208DA4;
+
+struct func_801FC490_StructLeaf {
+    u8 pad[0x14];
+    s16 unk14;
+};
+struct func_801FC490_StructMid {
+    u8 pad[0x30];
+    struct func_801FC490_StructLeaf *unk30;
+};
+struct func_801FC490_StructRoot {
+    struct func_801FC490_StructMid *unk0;
+};
+
+s32 func_801FC490(s32 arg0, s32 arg1) {
+    struct func_801FC490_StructLeaf *temp_v0;
+
+    if (func_801C0B8C(0x7704C0) != 0) {
+        return 4;
+    }
+    if (func_801C0B8C(0x493E00) != 0) {
+        temp_v0 = ((struct func_801FC490_StructRoot *)D_8038D8D0)->unk0->unk30;
+        temp_v0->unk14 += (s16)((2048.0f * D_80208DA4) / 90.0f);
+    }
+    return 3;
+}
+#undef D_80208DA4
+#undef D_8038D8D0
+#undef func_801FCB44_Struct
 
 
 s32 func_801FC52C(s32 arg0, s32 arg1) {
@@ -17199,3 +17266,103 @@ s32 func_80201130(s32 arg0, s32 arg1) {
     return 7;
 }
 
+/* Readonly constants retained after the last ASM donor became C. */
+
+static const unsigned char rodata_801E1C00[] = {
+    0x70, 0x61, 0x73, 0x73, 0x65, 0x64, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00,
+};
+/* hh-owned-pool func_801E1C34 8020874C 8020876C */
+/* hh-owned-pool func_801E1D08 8020876C 80208778 */
+/* hh-owned-pool func_801E1DC0 80208778 80208794 */
+/* hh-owned-pool func_801E1F2C 80208794 802087A8 */
+/* hh-owned-pool func_801E207C 802087A8 802087B4 */
+/* hh-owned-pool func_801E2180 802087B4 802087C4 */
+/* hh-owned-pool func_801E2288 802087C4 802087E0 */
+/* hh-owned-pool func_801E23E4 802087E0 802087EC */
+/* hh-owned-pool func_801E24E8 802087EC 802087F0 */
+/* hh-owned-pool func_801E25E8 802087F0 802087F8 */
+/* hh-owned-pool func_801E26E0 802087F8 802087FC */
+/* hh-owned-pool func_801E27E0 802087FC 80208804 */
+/* hh-owned-pool func_801E28EC 80208804 8020881C */
+/* hh-owned-pool func_801E2A3C 8020881C 80208828 */
+/* hh-owned-pool func_801E2B3C 80208828 80208834 */
+/* hh-owned-pool func_801E3A90 80208834 80208848 */
+/* hh-owned-pool func_801E3D90 80208848 8020884C */
+/* hh-owned-pool func_801E42F0 8020884C 80208854 */
+/* hh-owned-pool func_801E49E4 80208854 80208858 */
+/* hh-owned-pool func_801E5BA0 80208858 8020885C */
+/* hh-owned-pool func_801E64E0 80208860 80208868 */
+/* hh-owned-pool func_801E96E8 80208868 80208870 */
+/* hh-owned-pool func_801E976C 80208870 80208888 */
+/* hh-owned-pool func_801E9864 80208888 802088A0 */
+/* hh-owned-pool func_801E9954 802088A0 802088B8 */
+/* hh-owned-pool func_801E9A10 802088B8 802088C0 */
+/* hh-owned-pool func_801E9B0C 802088C0 802088CC */
+/* hh-owned-pool func_801E9C10 802088CC 802088D8 */
+/* hh-owned-pool func_801E9D14 802088D8 802088E4 */
+/* hh-owned-pool func_801E9E18 802088E4 802088F0 */
+/* hh-owned-pool func_801E9F20 802088F0 80208908 */
+/* hh-owned-pool func_801EA084 80208908 80208914 */
+/* hh-owned-pool func_801EA188 80208914 8020891C */
+/* hh-owned-pool func_801EA290 8020891C 80208930 */
+/* hh-owned-pool func_801EA3FC 80208930 8020893C */
+/* hh-owned-pool func_801EA500 8020893C 80208940 */
+/* hh-owned-pool func_801EA604 80208940 8020894C */
+/* hh-owned-pool func_801EA710 8020894C 80208964 */
+/* hh-owned-pool func_801EA874 80208964 8020896C */
+/* hh-owned-pool func_801EAACC 80208980 80208988 */
+/* hh-owned-pool func_801EB470 802089A0 802089A8 */
+/* hh-owned-pool func_801EB798 802089A8 802089B0 */
+/* hh-owned-pool func_801EC110 802089D4 802089D8 */
+/* hh-owned-pool func_801EC594 802089D8 802089E0 */
+/* hh-owned-pool func_801ED01C 802089E0 802089E4 */
+/* hh-owned-pool func_801EE778 802089E4 802089E8 */
+/* hh-owned-pool func_801EE890 802089E8 802089F0 */
+/* hh-owned-pool func_801F2474 802089F0 80208A00 */
+/* hh-owned-pool func_801F24D0 80208A00 80208A10 */
+/* hh-owned-pool func_801F25C4 80208A10 80208A24 */
+/* hh-owned-pool func_801F2E34 80208A28 80208A48 */
+/* hh-owned-pool func_801F34C4 80208A48 80208A50 */
+/* hh-owned-pool func_801F3640 80208A50 80208A54 */
+/* hh-owned-pool func_801F3C80 80208A54 80208A84 */
+/* hh-owned-pool func_801F3D74 80208A84 80208AB8 */
+/* hh-owned-pool func_801F3FE4 80208AE4 80208B08 */
+/* hh-owned-pool func_801F4124 80208B08 80208B30 */
+/* hh-owned-pool func_801F4D18 80208B40 80208B48 */
+/* hh-owned-pool func_801F51B0 80208B48 80208B54 */
+/* hh-owned-pool func_801F52AC 80208B54 80208B5C */
+/* hh-owned-pool func_801F5340 80208B5C 80208B7C */
+/* hh-owned-pool func_801F54AC 80208B8C 80208B9C */
+/* hh-owned-pool func_801F5630 80208BB0 80208BD4 */
+/* hh-owned-pool func_801F5744 80208BD4 80208BE0 */
+/* hh-owned-pool func_801F5870 80208BE0 80208BF4 */
+/* hh-owned-pool func_801F59B8 80208BF4 80208BFC */
+/* hh-owned-pool func_801F5C30 80208BFC 80208C10 */
+/* hh-owned-pool func_801F75E4 80208C10 80208C18 */
+/* hh-owned-pool func_801F7A44 80208C18 80208C1C */
+/* hh-owned-pool func_801F8CA0 80208C28 80208C30 */
+/* hh-owned-pool func_801F8F14 80208C30 80208C38 */
+/* hh-owned-pool func_801FAEBC 80208C38 80208C44 */
+/* hh-owned-pool func_801FAFD0 80208C44 80208C64 */
+/* hh-owned-pool func_801FB084 80208C64 80208C6C */
+/* hh-owned-pool func_801FB1FC 80208C7C 80208C98 */
+/* hh-owned-pool func_801FB2C0 80208C98 80208CB0 */
+/* hh-owned-pool func_801FB37C 80208CB0 80208CC8 */
+/* hh-owned-pool func_801FB434 80208CC8 80208CE0 */
+/* hh-owned-pool func_801FB500 80208CE0 80208CF0 */
+/* hh-owned-pool func_801FB5BC 80208CF0 80208D10 */
+/* hh-owned-pool func_801FB74C 80208D24 80208D30 */
+/* hh-owned-pool func_801FDB00 80208DC0 80208DC4 */
+/* hh-owned-pool func_801FE1D4 80208DC4 80208DC8 */
+/* hh-owned-pool func_801FE32C 80208DC8 80208DCC */
+/* hh-owned-pool func_801FE3D8 80208DCC 80208DD0 */
+/* hh-owned-pool func_801FE690 80208DD0 80208DD4 */
+/* hh-owned-pool func_801FE984 80208DD4 80208DD8 */
+/* hh-owned-pool func_801FF2CC 80208DD8 80208DDC */
+/* hh-owned-pool func_801FF4DC 80208DDC 80208DE0 */
+/* hh-owned-pool func_801FFC84 80208DE0 80208DE4 */
+/* hh-owned-pool func_801FFFD4 80208DE4 80208DEC */
+/* hh-owned-pool func_80200130 80208DEC 80208DF0 */
+/* hh-owned-pool func_80200298 80208DF0 80208DF4 */
+/* hh-owned-pool func_802003A0 80208DF4 80208E00 */
+/* hh-owned-pool func_802005CC 80208E00 80208E04 */

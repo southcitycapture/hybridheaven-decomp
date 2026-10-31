@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-28: **69.06% of the code** (14900 of 15891 functions, including duplicates).
+Progress as of 2026-10-31: **72.56% of the code** (15034 of 15891 functions, including duplicates).
 
-**21506 model runs, $5216.53 API-equivalent in total** (local and cloud). Of the **14846 functions now in C**, **6801 were matched by AI workers** (≈ $0.767 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 202 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**22190 model runs, $5546.27 API-equivalent in total** (local and cloud). Of the **14981 functions now in C**, **6888 were matched by AI workers** (≈ $0.805 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 250 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -279,9 +279,77 @@ Progress as of 2026-10-28: **69.06% of the code** (14900 of 15891 functions, inc
 | `unify_loop0100` | unify_loop0100 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0101` | unify_loop0101 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0102` | unify_loop0102 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
-| `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 236 | 108 | 46% | $0.00 | – |  |
 | `unify_loop0103` | unify_loop0103 | unify (no model) | 12 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0104` | unify_loop0104 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0105` | unify_loop0105 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0106` | unify_loop0106 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0107` | unify_loop0107 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0108` | unify_loop0108 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0109` | unify_loop0109 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0110` | unify_loop0110 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0111` | unify_loop0111 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `abWallB.aborted` | abWallB.aborted | sonnet-5-5 | 3 | 1 | 33% | $0.45 | $0.446 |  |
+| `abWallA.aborted` | abWallA.aborted | sonnet-5-5 | 4 | 1 | 25% | $0.47 | $0.475 |  |
+| `terraL1.aborted` | terraL1.aborted | openai/gpt-6.1-terra | 3 | 0 | 0% | $0.00 | – |  |
+| `abWallA` | abWallA | sonnet-5-5 | 24 | 2 | 8% | $8.76 | $4.381 |  |
+| `abWallB` | abWallB | sonnet-5-5 | 24 | 1 | 4% | $10.62 | $10.616 |  |
+| `abWallC` | abWallC | sonnet-5-5 | 20 | 2 | 10% | $8.55 | $4.274 |  |
+| `unify_loop0112` | unify_loop0112 | unify (no model) | 3 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0113` | unify_loop0113 | unify (no model) | 3 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0114` | unify_loop0114 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0115` | unify_loop0115 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0116` | unify_loop0116 | unify (no model) | 7 | 1 | 14% | $0.00 | – |  |
+| `terraL1` | terraL1 | openai/gpt-6.1-terra | 100 | 22 | 22% | $0.00 | – |  |
+| `unify_loop0117` | unify_loop0117 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0118` | unify_loop0118 | unify (no model) | 9 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0119` | unify_loop0119 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `abWallT` | abWallT | openai/gpt-6.1-terra | 20 | 2 | 10% | $0.00 | – |  |
+| `terraL2` | terraL2 | openai/gpt-6.1-terra | 83 | 21 | 25% | $0.00 | – |  |
+| `unify_loop0120` | unify_loop0120 | unify (no model) | 11 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0121` | unify_loop0121 | unify (no model) | 11 | 0 | 0% | $0.00 | – |  |
+| `sonnetN1` | sonnetN1 | sonnet-5-5 | 54 | 0 | 0% | $33.22 | – |  |
+| `unify_loop0122` | unify_loop0122 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0123` | unify_loop0123 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0124` | unify_loop0124 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0125` | unify_loop0125 | unify (no model) | 7 | 1 | 14% | $0.00 | – |  |
+| `unify_loop0126` | unify_loop0126 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0127` | unify_loop0127 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `symfixS1` | symfixS1 | sonnet-5-5 | 10 | 0 | 0% | $1.90 | – |  |
+| `unify_loop0128` | unify_loop0128 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0129` | unify_loop0129 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0130` | unify_loop0130 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0131` | unify_loop0131 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
+| `terraL3` | terraL3 | openai/gpt-6.1-terra | 116 | 16 | 14% | $0.00 | – |  |
+| `armC1` | armC1 | opus-5-5 | 2 | 0 | 0% | $6.08 | – |  |
+| `unify_loop0133` | unify_loop0133 | unify (no model) | 2 | 2 | 100% | $0.00 | – |  |
+| `terraOS` | terraOS | openai/gpt-6.1-terra | 75 | 13 | 17% | $0.00 | – |  |
+| `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 251 | 113 | 45% | $0.00 | – |  |
+| `unify_loop0153` | unify_loop0153 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0154` | unify_loop0154 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0155` | unify_loop0155 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0156` | unify_loop0156 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0157` | unify_loop0157 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0158` | unify_loop0158 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `opusWE2` | opusWE2 | opus-5-5 | 17 | 4 | 24% | $55.71 | $13.928 |  |
+| `unify_loop0159` | unify_loop0159 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `opusWE3` | opusWE3 | opus-5-5 | 16 | 7 | 44% | $50.69 | $7.242 |  |
+| `opusWE1` | opusWE1 | opus-5-5 | 15 | 4 | 27% | $60.73 | $15.182 |  |
+| `unify_loop0160` | unify_loop0160 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0161` | unify_loop0161 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
+| `bigC2.aborted` | bigC2.aborted | opus-5-5 | 1 | 0 | 0% | $0.42 | – |  |
+| `bigB2` | bigB2 | sonnet-5-5 | 3 | 0 | 0% | $1.92 | – |  |
+| `bigB1` | bigB1 | sonnet-5-5 | 3 | 0 | 0% | $3.66 | – |  |
+| `bigC2` | bigC2 | opus-5-5 | 3 | 2 | 67% | $8.56 | $4.282 |  |
+| `bigA1` | bigA1 | opus-5-5 | 3 | 0 | 0% | $11.04 | – |  |
+| `bigC1` | bigC1 | opus-5-5 | 3 | 0 | 0% | $10.13 | – |  |
+| `unify_loop0162` | unify_loop0162 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
+| `bigA2` | bigA2 | opus-5-5 | 3 | 2 | 67% | $8.46 | $4.228 |  |
+| `bigC4` | bigC4 | opus-5-5 | 2 | 1 | 50% | $15.21 | $15.207 |  |
+| `bigC3` | bigC3 | opus-5-5 | 2 | 0 | 0% | $7.87 | – |  |
+| `bigA4` | bigA4 | opus-5-5 | 3 | 0 | 0% | $11.23 | – |  |
+| `unify_loop0163` | unify_loop0163 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
+| `bigA3` | bigA3 | opus-5-5 | 4 | 0 | 0% | $14.06 | – |  |
+| `localU1` | localU1 | strata/qwen3.8-flash-next | 53 | 10 | 19% | $0.00 | – |  |
+| `unify_loop0164` | unify_loop0164 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

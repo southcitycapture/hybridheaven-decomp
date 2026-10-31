@@ -2076,7 +2076,47 @@ void func_800183D0(u32 arg0) {
 }
 #undef func_80017820
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80018518.s")
+#define D_800440A4 D_800440A4__func_80018518
+#define func_80017014 func_80017014__func_80018518
+#define func_80017384 func_80017384__func_80018518
+unsigned short func_80017014(int);
+int func_80017384(int, unsigned short);
+extern u16 *D_800440A4[];
+
+
+void func_80018518(u32 arg0) {
+    u16 *temp_v0;
+    u16 *temp_v0_2;
+    u32 temp_t7;
+
+    temp_t7 = (arg0 >> 4) & 0xF;
+    switch (temp_t7) {
+    case 0:
+        *D_800440A4[(arg0 >> 8) & 0x1F] = arg0 >> 16;
+        return;
+    case 1:
+        temp_v0 = D_800440A4[(arg0 >> 8) & 0x1F];
+        *temp_v0 = *temp_v0 + (u16)(arg0 >> 16);
+        return;
+    case 2:
+        temp_v0_2 = D_800440A4[(arg0 >> 8) & 0x1F];
+        *temp_v0_2 = *temp_v0_2 - (u16)(arg0 >> 16);
+        return;
+    case 3:
+        *D_800440A4[(arg0 >> 8) & 0x1F] = *D_800440A4[arg0 >> 16];
+        return;
+    case 4:
+        *D_800440A4[(arg0 >> 8) & 0x1F] += *D_800440A4[arg0 >> 16];
+        return;
+    case 5:
+        *D_800440A4[(arg0 >> 8) & 0x1F] -= *D_800440A4[arg0 >> 16];
+    default:
+        return;
+    }
+}
+#undef D_800440A4
+#undef func_80017014
+#undef func_80017384
 
 
 extern u16 *D_800440A4[];
@@ -2519,7 +2559,79 @@ void func_80019410(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80019460.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80019758.s")
+#undef e
+#define D_80044214 D_80044214__func_80019758
+#define D_8008EC18 D_8008EC18__func_80019758
+#define func_8001800C_Struct func_8001800C_Struct__func_80019758
+#define func_8001800C_Struct5 func_8001800C_Struct5__func_80019758
+#define func_80018C9C func_80018C9C__func_80019758
+#define e (&D_8008EC18[D_8008EBC2])
+typedef struct func_8001800C_Struct {
+    s16 unk0;
+    s16 unk2;
+    u8 unk4;
+    u8 pad5;
+    s16 unk6;
+    s16 unk8;
+    u8 unkA;
+    u8 padB;
+    u16 unkC;
+    u16 unkE;
+    u8 pad10[0x16];
+} func_8001800C_Struct;
+extern func_8001800C_Struct D_8008EC18[];
+#define e (&D_8008EC18[D_8008EBC2])
+typedef struct func_8001800C_Struct5 {
+    u8 b[5];
+} func_8001800C_Struct5;
+void func_80018C9C(u8 arg0);
+
+#undef e
+
+extern func_8001800C_Struct5 D_80044214;
+
+void func_80019758(s32 arg0, s32 arg1) {
+    s32 unused;
+    u8 sp3B;
+    func_8001800C_Struct5 sp34;
+#define n arg1
+    u8 *p;
+    s32 found;
+    func_8001800C_Struct *ent;
+
+    sp34 = D_80044214;
+    sp3B = 0;
+    p = func_8001B154(D_8008EBC2 << 2);
+    ent = &D_8008EC18[D_8008EBC2];
+    n = ent->unk4;
+    found = 0;
+    for (; sp3B < n; sp3B++) {
+        if (p[1] != 0 && p[0xB] != 0) {
+            found = 1;
+        }
+        p += 0x11A;
+    }
+    if (found == 0) {
+        if (D_8008EE81 - (D_8008EBC2 << 2) < n - 1) {
+            D_8008EE81 += 1;
+        } else {
+            D_8008EE81 = D_8008EBC2 << 2;
+        }
+        if (ent->unkA < n - 1) {
+            ent->unk8 += *(u16 *)&D_8008EBE2 + sp34.b[*(u16 *)&D_8008EBE6];
+            ent->unkA += 1;
+        }
+        func_80018C9C(D_8008EE81);
+        func_800058DC(arg0, (void *)func_80017BB8);
+    }
+}
+#undef n
+#undef D_80044214
+#undef D_8008EC18
+#undef func_8001800C_Struct
+#undef func_8001800C_Struct5
+#undef func_80018C9C
+#define e (&D_8008EC18[D_8008EBC2])
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80015370/func_80019898.s")
 

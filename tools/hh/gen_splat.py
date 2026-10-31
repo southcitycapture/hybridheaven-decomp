@@ -2,6 +2,8 @@
 file table in image order (code overlays as code segments, everything else as bin).
 Per-overlay text/data split is a first guess (end of the last jr $ra)."""
 import json
+import bss_layout
+BSS = bss_layout.owners()
 img = open("build/expanded.bin", "rb").read(); man = json.load(open("build/expanded.json"))
 
 def text_end(b):
@@ -37,10 +39,11 @@ for f in files:
     L += c_lines(name, f["exp"], f["vram"])
     te = TEXT_ENDS[name] if name in TEXT_ENDS else text_end(b)
     if te < len(b): L.append("      - [0x%X, data]" % (f["exp"] + te))
-    if bss > 0: L.append("      - { type: bss, vram: 0x%08X }" % (f["vram"] + f["exp_len"]))
+    if bss > 0: L += bss_layout.subsegments(name, f['vram'] + f['exp_len'], f['vram_end'], BSS)
 L.append("  - [0x%X]" % len(img))
 # per-file .rodata subsegments (tools/hh/rodata_splits.json, from gen_rodata_splits.py), after each segment's data line
 import os, re
+import data_to_c
 RO = json.load(open("tools/hh/rodata_splits.json")) if os.path.exists("tools/hh/rodata_splits.json") else {}
 # segments whose .rodata is split per C file (tools/hh/rodata_segments.txt); the rest keep one data blob for now
 RO_SEGS = set(open("tools/hh/rodata_segments.txt").read().split()) if os.path.exists("tools/hh/rodata_segments.txt") else set()
@@ -69,6 +72,22 @@ for line in "\n".join(L).split("\n"):
         ro = [(int(v, 16), "      - [0x%X, .rodata, %s/%s]" % (rom(v), seg, cf)) for cf, v in r["files"].items()]
         ro += [(int(v, 16), "      - [0x%X, rodata]" % rom(v)) for v in r.get("orphans", [])]   # data-only objects
         out += [l for v, l in sorted(ro)]
+L = out
+# initialized .data moved into generated C (tools/hh/data_to_c.py writes src/data/<seg>/data_<VRAM>.c) for the
+# segments in tools/hh/data_c_segments.txt: each generic data span links that C object's .data instead
+DATA_C = set(data_to_c.listed_segments())
+if "DATA_C_SEGS" in os.environ: DATA_C = set(filter(None, os.environ["DATA_C_SEGS"].split(",")))
+out, cur = [], {}
+for line in L:
+    m = re.match(r"  - name: (\w+)", line)
+    if m: cur = {"name": m.group(1)}
+    m = re.match(r"    (start|vram): (0x[0-9A-F]+)", line)
+    if m: cur[m.group(1)] = int(m.group(2), 16)
+    m = re.match(r"      - \[0x([0-9A-F]+), data\]\s*$", line)
+    if m and cur.get("name") in DATA_C:
+        rom = int(m.group(1), 16)
+        line = "      - [0x%X, .data, %s]" % (rom, data_to_c.unit_name(cur["name"], cur["vram"] + rom - cur["start"]))
+    out.append(line)
 L = out
 open("hybridheaven.yaml", "w").write("\n".join(L) + "\n")
 print("wrote hybridheaven.yaml")

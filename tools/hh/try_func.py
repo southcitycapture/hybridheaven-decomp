@@ -96,7 +96,7 @@ def obj_rodata_size(obj):
         s = ELFFile(fh).get_section_by_name(".rodata")
         return s["sh_size"] if s is not None else 0
 
-def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False, want_file=False):
+def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False, want_file=False, bss=None):
     """Link obj so `name` sits at `vram`, resolving every address-named symbol (func_XXXXXXXX,
     D_XXXXXXXX, ...) to the address in its name, and return the function's final bytes.
     want_file returns the whole linked (.text, .rodata), including asm neighbours.
@@ -114,11 +114,12 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
     out = obj + ".linked"
     def link(base):
         # .rodata (jump tables, float constants, strings) goes where the original's is, so references resolve
-        st = os.stat(obj); key = (obj, st.st_ino, st.st_mtime_ns, st.st_size, base, rodata, tuple(defs))
+        st = os.stat(obj); key = (obj, st.st_ino, st.st_mtime_ns, st.st_size, base, rodata, bss, tuple(defs))
         if key in _linked:
             vals, addr, data, ro_b = _linked[key]
             return (vals[name][0], addr, data, ro_b) if name in vals else None
         ro = ["--section-start=.rodata=0x%X" % rodata] if rodata is not None else []
+        if bss is not None: ro += ['--section-start=.bss=0x%X' % bss]
         r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-Ttext=0x%X" % base, "-e", "0", "--no-check-sections",
                             "-z", "muldefs"] + ro + ["-o", out, obj] + defs, capture_output=True, text=True)
         if r.returncode:
@@ -127,8 +128,9 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
             script = obj + ".ld"
             with open(script, "w") as fh:
                 ro_addr = " 0x%X" % rodata if rodata is not None else ""
-                fh.write("SECTIONS { .text 0x%X : { *(.text) } .rodata%s : { *(.rodata) } "
-                         "/DISCARD/ : { *(.reginfo) *(.MIPS.abiflags) *(.pdr) *(.mdebug*) *(.comment) } }\n" % (base, ro_addr))
+                bss_addr = ' 0x%X' % bss if bss is not None else ''
+                fh.write("SECTIONS { .text 0x%X : { *(.text) } .rodata%s : { *(.rodata) } .bss%s : { *(.bss) *(COMMON) } "
+                         "/DISCARD/ : { *(.reginfo) *(.MIPS.abiflags) *(.pdr) *(.mdebug*) *(.comment) } }\n" % (base, ro_addr, bss_addr))
             r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-T", script, "-e", "0", "--no-check-sections",
                                 "-z", "muldefs", "-o", out, obj] + defs, capture_output=True, text=True)
         if r.returncode: return None

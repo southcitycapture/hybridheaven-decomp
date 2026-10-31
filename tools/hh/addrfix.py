@@ -121,18 +121,13 @@ def sext(v): return v - 0x10000 if v & 0x8000 else v
 
 DEFINED = set()      # symbols the attempt defines itself (the last mine_refs object)
 
-def mine_refs(obj, func):
-    """{offset: (kind, symbol, addend)} for the function's relocations, from the unlinked object (REL: the addend
-    lives in the instruction; a HI16 pairs with the next LO16 of the same symbol)."""
+def _ref_facts(obj):
     with open(obj, "rb") as fh:
         e = ELFFile(fh); text = e.get_section_by_name(".text").data(); symtab = e.get_section_by_name(".symtab")
-        fs = next((s for s in symtab.iter_symbols() if s.name == func), None)
-        if fs is None: return None
-        start = fs["st_value"]; size = fs["st_size"] or len(text) - start
+        symbols = {s.name: s for s in symtab.iter_symbols()}
         rels = []
-        DEFINED.clear()
-        DEFINED.update(s.name for s in symtab.iter_symbols()
-                       if s.name and s.name != func and s["st_shndx"] != "SHN_UNDEF" and s["st_info"]["type"] != "STT_SECTION")
+        defined = {s.name for s in symbols.values()
+                   if s.name and s["st_shndx"] != "SHN_UNDEF" and s["st_info"]["type"] != "STT_SECTION"}
         for sec in e.iter_sections():
             if isinstance(sec, RelocationSection) and sec.name == ".rel.text":
                 for r in sec.iter_relocations():
@@ -140,6 +135,18 @@ def mine_refs(obj, func):
                     name = s.name if s.name else ("<section %s>" % s["st_shndx"])
                     if s["st_info"]["type"] == "STT_SECTION": name = "<section %s>" % e.get_section(s["st_shndx"]).name
                     rels.append((r["r_offset"], r["r_info_type"], name))
+    return text, symbols, rels, defined
+
+
+def mine_refs(obj, func, _facts=None):
+    """{offset: (kind, symbol, addend)} for the function's relocations, from the unlinked object (REL: the addend
+    lives in the instruction; a HI16 pairs with the next LO16 of the same symbol)."""
+    text, symbols, rels, defined = _facts or _ref_facts(obj)
+    fs = symbols.get(func)
+    if fs is None: return None
+    start = fs["st_value"]; size = fs["st_size"] or len(text) - start
+    DEFINED.clear()
+    DEFINED.update(defined - {func})
     word = lambda o: int.from_bytes(text[o:o + 4], "big")
     out, pending, last_hi = {}, collections.defaultdict(list), {}
     for o, t, name in rels:
@@ -159,6 +166,12 @@ def mine_refs(obj, func):
         for h in hs:
             if start <= h < start + size: out[h - start] = ("hi", name, (word(h) & 0xFFFF) << 16)
     return out
+
+
+def mine_refs_many(obj, functions):
+    """Read a whole-file ELF once while retaining the scalar HI16/LO16 rules."""
+    facts = _ref_facts(obj)
+    return {name: mine_refs(obj, name, facts) for name in functions}
 
 EXPR = re.compile(r"^\s*\(?\s*([A-Za-z_.$][\w.$]*)\s*(?:([+-])\s*(0x[0-9A-Fa-f]+|\d+))?\s*\)?\s*$")
 

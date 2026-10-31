@@ -258,7 +258,50 @@ s32 func_80002D00(u8 arg0) {
     return r;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_80002DBC.s")
+#define D_80037790 D_80037790__func_80002DBC
+#define func_80002BE0 func_80002BE0__func_80002DBC
+#define func_80002EF0_Struct func_80002EF0_Struct__func_80002DBC
+typedef struct func_80002EF0_Struct {
+    s32 a;
+    s32 b;
+    u16 c;
+    u8 d;
+    u8 pad0[3];
+    u8 e[0x12];
+} func_80002EF0_Struct;
+extern func_80002EF0_Struct D_80037790;
+u8 func_80002BE0(u8 arg0);
+
+
+u8 func_80002DBC(u8 arg0, u8 arg1, u8 *arg2) {
+    u8 ret;
+    s32 sp48;
+    u32 t;
+    func_80002EF0_Struct sp24;
+
+    ret = func_80002BE0(arg0);
+    if (ret == 0) {
+        sp24 = D_80037790;
+        sp24.d = arg1 + 0x10;
+        t = func_8002EE40(D_8005CE70 + arg0 * 0x68, sp24.c, sp24.b, sp24.e, &sp24.d, &sp48);
+        switch (t) {
+        case 0:
+            ret = 0;
+            *arg2 = sp48;
+            break;
+        case 1: ret = 1; break;
+        case 2: ret = 2; break;
+        case 3: ret = 8; break;
+        case 4: ret = 3; break;
+        case 5: ret = 9; break;
+        default: ret = 0; break;
+        }
+    }
+    return ret;
+}
+#undef D_80037790
+#undef func_80002BE0
+#undef func_80002EF0_Struct
 
 #define D_80037790 D_80037790__func_80002EF0
 
@@ -300,7 +343,37 @@ u8 func_80002EF0(u8 arg0, u8 arg1, s32 arg2) {
 }
 #undef D_80037790
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_8000303C.s")
+#define func_80002BE0 func_80002BE0__func_8000303C
+u8 func_80002BE0(u8 arg0);
+
+
+s32 func_8000303C(u8 arg0, u8 arg1) {
+    s32 v;
+    u8 r;
+    s32 pad[4];
+    u8 sp28[16];
+    void *sp20[2];
+
+    r = func_80002BE0(arg0);
+    if (r == 0) {
+        sp20[1] = &D_8005CE70[arg0 * 0x68];
+        v = func_80032DD0(sp20[1], arg1, sp28);
+        if (v == 0) {
+            v = func_80031BC0(sp20[1], *(u16 *)(sp28 + 8), *(s32 *)(sp28 + 4), sp28 + 14, sp28 + 10);
+        }
+        switch (v) {
+        case 0: r = 0; break;
+        case 1: r = 1; break;
+        case 2: r = 2; break;
+        case 3: r = 8; break;
+        case 4: r = 3; break;
+        case 5: r = 9; break;
+        default: r = 0; break;
+        }
+    }
+    return r;
+}
+#undef func_80002BE0
 
 
 s32 func_80003118(u8 arg0, s8 *arg1) {
@@ -391,7 +464,51 @@ u8 func_800032E0(u8 arg0, u8 arg1, u16 arg2, u16 arg3, s32 arg4) {
     return v;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800024D0/func_800033CC.s")
+#define D_800377B0 D_800377B0__func_800033CC
+
+
+typedef struct func_800033CC_StructCharacter {
+    u16 first;
+    u16 second;
+} func_800033CC_StructCharacter;
+
+typedef struct func_800033CC_StructTable {
+    func_800033CC_StructCharacter chars[160];
+} func_800033CC_StructTable;
+extern func_800033CC_StructTable D_800377B0;
+
+typedef struct func_800033CC_StructEntry {
+    u32 word;
+    u8 pad4[6];
+    u8 shortcodes[4];
+    u8 codes[18];
+} func_800033CC_StructEntry;
+
+typedef struct func_800033CC_Struct {
+    func_800033CC_StructEntry entries[16];
+    u8 pad200[2];
+    u8 name[16][33];
+    u8 shortname[16][9];
+    u8 flag[16];
+} func_800033CC_Struct;
+
+void func_800033CC(u8 arg0, void *arg1) {
+    s32 i;
+    func_800033CC_StructTable table = D_800377B0;
+
+    for (i = 0; i < 16; i++) {
+        ((func_800033CC_Struct *)arg1)->name[arg0][i * 2] = (u8)((u16 *)table.chars)[((func_800033CC_Struct *)arg1)->entries[arg0].codes[i] * 2];
+        ((func_800033CC_Struct *)arg1)->name[arg0][i * 2 + 1] = ((u16 *)table.chars)[((func_800033CC_Struct *)arg1)->entries[arg0].codes[i] * 2 + 1];
+    }
+    ((func_800033CC_Struct *)arg1)->name[arg0][i * 2] = 0;
+    for (i = 0; i < 4; i++) {
+        ((func_800033CC_Struct *)arg1)->shortname[arg0][i * 2] = ((u16 *)table.chars)[((func_800033CC_Struct *)arg1)->entries[arg0].shortcodes[i] * 2];
+        ((func_800033CC_Struct *)arg1)->shortname[arg0][i * 2 + 1] = ((u16 *)table.chars)[((func_800033CC_Struct *)arg1)->entries[arg0].shortcodes[i] * 2 + 1];
+    }
+    ((func_800033CC_Struct *)arg1)->shortname[arg0][i * 2] = 0;
+    ((func_800033CC_Struct *)arg1)->flag[arg0] = ((func_800033CC_Struct *)arg1)->entries[arg0].word >> 8;
+}
+#undef D_800377B0
 
 
 typedef struct {

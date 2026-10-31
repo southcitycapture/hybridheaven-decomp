@@ -72,6 +72,8 @@ def _file_rodata():
         if m and "vram" in cur: out[(m.group(2), m.group(3))] = cur["vram"] + int(m.group(1), 16) - cur["start"]
     return out
 FILE_RODATA = _file_rodata()
+import bss_layout
+FILE_BSS = bss_layout.owners()
 SPLITS = {k: [int(x, 16) for x in v] for k, v in json.load(open("tools/hh/file_splits.json")).items()}
 TEXT_END = _text_ends()
 
@@ -562,7 +564,7 @@ def compile_file(text, td):
         import mulfix; mulfix.fix(o)        # the original build's VR4300 nop between consecutive float multiplies
     return (o if r.returncode == 0 else None), r.stderr + r.stdout
 
-def func_ok(obj, name, off, size, vram, base, rodata=None):
+def func_ok(obj, name, off, size, vram, base, rodata=None, bss=None):
     """Instructions must match, and every address must resolve to the original's (exact link check).
     `rodata`: where the file's .rodata really starts (its jump tables / constants must land there)."""
     try: mine, rel = try_func.func_bytes(obj, name)
@@ -570,7 +572,7 @@ def func_ok(obj, name, off, size, vram, base, rodata=None):
     orig = IMG[off:off + size]
     while len(mine) > size and mine[-4:] == b"\0\0\0\0": mine = mine[:-4]
     if try_func.compare(mine, rel, orig)[2]: return False
-    exact = try_func.linked_func_bytes(obj, name, vram, base, rodata=rodata)
+    exact = try_func.linked_func_bytes(obj, name, vram, base, rodata=rodata, bss=bss)
     if exact is None: return False          # unresolved symbols OR a failed link: neither proves an exact match
     while len(exact) > size and exact[-4:] == b"\0\0\0\0": exact = exact[:-4]
     return exact == orig
@@ -1006,8 +1008,9 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         # A refusal under the old layout or an older integration implementation
         # says nothing about this one, even when the registry text is identical.
         gate_version = sha(''.join(open(p).read() for p in (
-            'tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py',
-            'tools/hh/kept_blocks.py', 'hybridheaven.yaml')))
+            'tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py', 'tools/hh/mulfix.py',
+            'tools/hh/kept_blocks.py', 'tools/hh/rodata_owned.py',
+            'tools/hh/bss_layout.py', 'tools/hh/bss_splits.json', 'hybridheaven.yaml')))
         byfile = {}
         for (seg, n), t in reg.items(): byfile.setdefault((seg, file_of(seg, n)), []).append(n + sha(t))
         def memo_key(key, text):

@@ -38,6 +38,13 @@ ALIGNED_ARG=""; [ -n "$HARNESS2" ] && ALIGNED_ARG=" --aligned-out .aligned"     
 cat >> "$W/check" <<EOC
 "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" $FUNC attempt.c --seg $SEG -v$ALIGNED_ARG 2>&1 | head -30 | tee .lastcheck
 EOC
+# REGIONS=1: independent regional feedback on every check, retained with snapshots.
+if [ "${REGIONS:-0}" = 1 ]; then
+  cat >> "$W/check" <<EOC
+rm -f .regions.json
+"$HH/.venv/bin/python" "$HH/tools/hh/regions.py" $FUNC $SEG --source attempt.c --json .regions.json 2>&1 | tee -a .lastcheck
+EOC
+fi
 [ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
 if head -1 .lastcheck | grep -q '^compile failed'; then
   c=$(( $(cat .compile_errors 2>/dev/null || echo 0) + 1 )); echo $c > .compile_errors
@@ -56,6 +63,11 @@ mkdir -p .attempts; cp attempt.c .attempts/$n.c; head -1 .lastcheck > .attempts/
 best=$(for f in .attempts/*.res; do k=${f%.res}; k=${k##*/}; l=$(head -1 $f); case "$l" in MATCH*) s=1000000;; score*) s=$(echo "$l" | sed -n 's/^score \([0-9]*\)\/\([0-9]*\).*/\1 \2/p' | awk '{printf "%d", ($2 ? 1000*$1/$2 : 0)}');; *) s=0;; esac; echo "$s $k"; done | sort -n | tail -1)
 [ -n "$best" ] && echo "(attempt $n saved as .attempts/$n.c; best so far: .attempts/${best##* }.c)"
 EOC
+if [ "${REGIONS:-0}" = 1 ]; then
+  cat >> "$W/check" <<'EOC'
+[ ! -f .regions.json ] || cp .regions.json .attempts/$n.regions.json
+EOC
+fi
 [ -n "$HARNESS2" ] && cat >> "$W/check" <<'EOC'
 # progress = the aligned score (an inserted instruction doesn't zero everything after it); the first attempt that
 # reached the best aligned score counts (equal scores are not progress)
@@ -81,8 +93,28 @@ fi
 if [ -n "$SIMILAR" ]; then "$HH/.venv/bin/python" "$HH/tools/hh/similar.py" "$SEG" "$FUNC" "$W" >> "$W/prompt.md" 2>/dev/null || true; fi
 # LEARNINGS=1: condensed IDO habits (tools/swarm/learnings_note.md, docs/IDO_LEARNINGS.md)
 if [ -n "$LEARNINGS" ]; then cat "$HH/tools/swarm/learnings_note.md" >> "$W/prompt.md"; fi
+# SYMFIX=1 (with WALLNOTE=1): instructions already match, only references differ: a narrow-fix note (tools/swarm/symfix_note.md)
+if [ -n "$SYMFIX" ]; then cat "$HH/tools/swarm/symfix_note.md" >> "$W/prompt.md"; fi
+# LEAD=1: this session leads Sonnet region workers (tools/swarm/lead_note.md, agents/region-worker.md; 10-30, Arm C)
+if [ -n "$LEAD" ]; then mkdir -p "$W/.claude/agents"; cp "$HH/tools/swarm/agents/region-worker.md" "$W/.claude/agents/"; cat "$HH/tools/swarm/lead_note.md" >> "$W/prompt.md"; fi
+# PERSIST=1: ask the worker to keep searching systematically instead of stopping early (tools/swarm/persist_note.md, 10-28)
+if [ -n "$PERSIST" ]; then cat "$HH/tools/swarm/persist_note.md" >> "$W/prompt.md"; fi
+# LEVERS=1: the IDO 7.1 source-shape levers built from this repo's evidence (tools/swarm/ido_levers.md, Sol Task 15)
+if [ -n "$LEVERS" ]; then printf '\n## IDO 7.1 levers (what changed codegen in earlier matches here)\n\n' >> "$W/prompt.md"; cat "$HH/tools/swarm/ido_levers.md" >> "$W/prompt.md"; fi
+# WALLNOTE=1 (with PREVIOUS): the wall classifier's diagnosis of the previous attempt (tools/hh/wall.py)
+if [ -n "$WALLNOTE" ] && [ -n "$PREVIOUS" ] && [ -f "$PREVIOUS" ]; then
+  wn=$(cd "$HH" && timeout 180 "$HH/.venv/bin/python" tools/hh/wall.py "$FUNC" --seg "$SEG" --source "$PREVIOUS" 2>/dev/null | head -40)
+  [ -n "$wn" ] && printf '\n## Why previous.c does not match yet (automatic diagnosis; fix this wall first)\n\n```\n%s\n```\n' "$wn" >> "$W/prompt.md"
+fi
 # BIGFUNC=1: skeleton-then-fill method for large functions (with DEADLINE_MIN)
 if [ -n "$BIGFUNC" ]; then cat "$HH/tools/swarm/bigfunc_note.md" >> "$W/prompt.md"; fi
+if [ "${REGIONS:-0}" = 1 ]; then
+  [ -n "$BIGFUNC" ] || cat "$HH/tools/swarm/bigfunc_note.md" >> "$W/prompt.md"
+  printf '\n## Fixed target regions (REGIONS=1)\n\n' >> "$W/prompt.md"
+  region_args=()
+  [ ! -f "$W/previous.c" ] || region_args=(--source "$W/previous.c")
+  "$HH/.venv/bin/python" "$HH/tools/hh/regions.py" "$FUNC" "$SEG" "${region_args[@]}" --json "$W/regions.before.json" >> "$W/prompt.md" 2>&1 || true
+fi
 # GROW=1: show the newest shared learnings (queue/learnings/live.md) and ask for new ones in learnings.txt
 if [ -n "$GROW" ]; then
   "$HH/.venv/bin/python" - "$HH" >> "$W/prompt.md" <<'PY'

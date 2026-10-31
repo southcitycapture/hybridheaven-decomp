@@ -30,6 +30,20 @@ for d in dirs:
             c = ali[:-4] + ".c"
             if cutoff and os.path.exists(c) and os.path.getmtime(c) > cutoff: continue  # BEST_BEFORE: same start as an earlier A/B
             if os.path.exists(c): best = max(best, (v, c))
+if mode != "match" and not best[1]:
+    # Claude-lane work dirs keep attempt.c without .attempts/*.ali scores (10-28: 5 of 8 A/B functions started empty).
+    # Fall back to the attempt the wall classifier judged best (queue/walls.jsonl), then to the newest attempt.c.
+    ok = lambda c: os.path.exists(c) and not (cutoff and os.path.getmtime(c) > cutoff)
+    try:
+        for l in open("queue/walls.jsonl"):
+            if '"%s"' % func in l:
+                r = json.loads(l)
+                if r.get("func") == func and r.get("seg") == seg and r.get("attempt_source") and ok(r["attempt_source"]):
+                    best = (0, r["attempt_source"])
+    except OSError: pass
+    if not best[1]:
+        cs = [d + "/attempt.c" for d in dirs if ok(d + "/attempt.c")]
+        if cs: best = (0, max(cs, key=os.path.getmtime))
 print(os.path.abspath(best[1]) if best[1] else "")
 PY
 )

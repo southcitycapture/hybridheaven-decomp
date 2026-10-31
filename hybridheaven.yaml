@@ -224,10 +224,10 @@ segments:
       - [0x35B70, c, main/80034F70]
       - [0x35C20, c, main/80035020]
       - [0x35CD0, c, main/800350D0]
-      - [0x35D20, data]
+      - [0x35D20, .data, data/main/data_80035120]
       # drvrnew's six effect parameter arrays (0x190 bytes), emitted by IDO 5.3.
       - [0x4B760, .data, main/8002C850]
-      - [0x4B8F0, data]
+      - [0x4B8F0, .data, data/main/data_8004ACF0]
       - [0x4C500, .rodata, main/80001060]
       - [0x4C510, .rodata, main/800024D0]
       - [0x4C6E0, .rodata, main/80005270]
@@ -316,7 +316,7 @@ segments:
       - [0x531240, c, file008/80151B30]
       - [0x531940, c, file008/80152230]
       - [0x531FA0, c, file008/80152890]
-      - [0x532780, data]
+      - [0x532780, .data, data/file008/data_80153070]
       - [0x562060, .rodata, file008/80107A50]
       - [0x564F50, .rodata, file008/8010DCF0]
       - [0x565410, .rodata, file008/8010E680]
@@ -372,7 +372,7 @@ segments:
       - [0x58CF10, c, file009/801DB480]
       - [0x58DCE0, c, file009/801DC250]
       - [0x591AD0, c, file009/801E0040]
-      - [0x5923F0, data]
+      - [0x5923F0, .data, data/file009/data_801E0960]
       - [0x593FF0, .rodata, file009/801BF1A0]
       - [0x5940B0, .rodata, file009/801C1970]
       - [0x5941A0, .rodata, file009/801C2580]
@@ -408,7 +408,7 @@ segments:
       - [0x5B4830, c, file010/80203830]
       - [0x5B6720, c, file010/80205720]
       - [0x5B7190, c, file010/80206190]
-      - [0x5C7B70, data]
+      - [0x5C7B70, .data, data/file010/data_80216B70]
       - [0x5C8CC0, .rodata, file010/801E4AA0]
       - [0x5C9120, .rodata, file010/801E4F60]
       - [0x5C97C0, .rodata, file010/801F3B30]
@@ -437,7 +437,7 @@ segments:
       - [0x5E4290, c, file011/80233430]
       - [0x5E52B0, c, file011/80234450]
       - [0x5EB070, c, file011/8023A210]
-      - [0x5ED0B0, data]
+      - [0x5ED0B0, .data, data/file011/data_8023C250]
       - [0x5EF7A0, .rodata, file011/8021B150]
       - [0x5EF7B0, .rodata, file011/8021D8D0]
       - [0x5EFB40, .rodata, file011/802237B0]
@@ -460,7 +460,7 @@ segments:
       - [0x5F2450, c, file012/802417B0]
       - [0x5F3A20, c, file012/80242D80]
       - [0x5F4AF0, c, file012/80243E50]
-      - [0x5F52C0, data]
+      - [0x5F52C0, .data, data/file012/data_80244620]
       - [0x5F9C30, .rodata, file012/802408F0]
       - [0x5F9CC0, .rodata, file012/802417B0]
       - [0x5F9E90, .rodata, file012/80242D80]
@@ -476,7 +476,7 @@ segments:
       - [0x5FC170, c, file013/802428C0]
       - [0x5FC5B0, c, file013/80242D00]
       - [0x5FC810, c, file013/80242F60]
-      - [0x5FD590, data]
+      - [0x5FD590, .data, data/file013/data_80243CE0]
       - [0x603340, .rodata, file013/802408F0]
       - [0x6033E0, .rodata, file013/80242D00]
       - [0x6033F0, .rodata, file013/80242F60]
@@ -493,7 +493,7 @@ segments:
       - [0x603F50, c, file014/80241420]
       - [0x6040B0, c, file014/80241580]
       - [0x6053C0, c, file014/80242890]
-      - [0x609450, data]
+      - [0x609450, .data, data/file014/data_80246920]
       - [0x60CDA0, .rodata, file014/802408F0]
       - [0x60CDC0, .rodata, file014/80240CE0]
       - [0x60CE80, .rodata, file014/80241320]
@@ -519,7 +519,7 @@ segments:
       - [0x618A00, c, file015/8024BC80]
       - [0x619FB0, c, file015/8024D230]
       - [0x61B140, c, file015/8024E3C0]
-      - [0x61ED80, data]
+      - [0x61ED80, .data, data/file015/data_80252000]
       - [0x624F70, .rodata, file015/802408F0]
       - [0x625010, .rodata, file015/80241550]
       - [0x6253C0, .rodata, file015/80243420]
@@ -545,7 +545,7 @@ segments:
       - [0x62CF30, c, file016/80246830]
       - [0x62D130, c, file016/80246A30]
       - [0x62DAE0, c, file016/802473E0]
-      - [0x62FDA0, data]
+      - [0x62FDA0, .data, data/file016/data_802496A0]
       - [0x6352E0, .rodata, file016/802408F0]
       - [0x635360, .rodata, file016/80242080]
       - [0x635810, .rodata, file016/80246A30]
@@ -572,7 +572,7 @@ segments:
       - [0x646B20, c, file017/80251820]
       - [0x648D80, c, file017/80253A80]
       - [0x64CE10, c, file017/80257B10]
-      - [0x64D890, data]
+      - [0x64D890, .data, data/file017/data_80258590]
       - [0x6515C0, .rodata, file017/802408F0]
       - [0x6515E0, .rodata, file017/802414B0]
       - [0x651AA0, .rodata, file017/802450B0]
@@ -597,7 +597,7 @@ segments:
       - [0x6530A0, c, file018/802408F0]
       - [0x654DD0, c, file018/80242620]
       - [0x657260, c, file018/80244AB0]
-      - [0x65F8D0, data]
+      - [0x65F8D0, .data, data/file018/data_8024D120]
       - [0x66E5B0, .rodata, file018/802408F0]
       - [0x66E620, .rodata, file018/80242620]
       - [0x66E740, .rodata, file018/80244AB0]
@@ -619,7 +619,7 @@ segments:
     subsegments:
       - [0x671030, c, file020/802408F0]
       - [0x6739A0, c, file020/80243260]
-      - [0x6749A0, data]
+      - [0x6749A0, .data, data/file020/data_80244260]
       - [0x677170, .rodata, file020/802408F0]
       - [0x677240, .rodata, file020/80243260]
       - { type: bss, vram: 0x80246C60 }
@@ -633,7 +633,7 @@ segments:
       - [0x6773A0, c, file021/802408F0]
       - [0x677650, c, file021/80240BA0]
       - [0x678CB0, c, file021/80242200]
-      - [0x67C490, data]
+      - [0x67C490, .data, data/file021/data_802459E0]
       - [0x68D9E0, .rodata, file021/802408F0]
       - [0x68DA00, .rodata, file021/80240BA0]
       - [0x68DA80, .rodata, file021/80242200]
@@ -648,7 +648,7 @@ segments:
       - [0x68DC00, c, file022/802408F0]
       - [0x68FCD0, c, file022/802429C0]
       - [0x6917C0, c, file022/802444B0]
-      - [0x693CD0, data]
+      - [0x693CD0, .data, data/file022/data_802469C0]
       - [0x69F810, .rodata, file022/802408F0]
       - [0x69F890, .rodata, file022/802429C0]
       - [0x69F9E0, .rodata, file022/802444B0]
@@ -669,7 +669,7 @@ segments:
       - [0x6AD060, c, file024/801CA640]
       - [0x6ADFC0, c, file024/801CB5A0]
       - [0x6AE7E0, c, file024/801CBDC0]
-      - [0x6AF200, data]
+      - [0x6AF200, .data, data/file024/data_801CC7E0]
       - [0x6B1400, .rodata, file024/801BF1A0]
       - [0x6B1500, .rodata, file024/801C0B30]
       - [0x6B1CC0, .rodata, file024/801C5AB0]
@@ -712,7 +712,7 @@ segments:
       - [0x6CA1F0, c, file025/801D6C80]
       - [0x6CA7C0, c, file025/801D7250]
       - [0x6CBC70, c, file025/801D8700]
-      - [0x6CC170, data]
+      - [0x6CC170, .data, data/file025/data_801D8C00]
       - [0x6D0330, .rodata, file025/801BF1A0]
       - [0x6D03E0, .rodata, file025/801C0A30]
       - [0x6D0450, .rodata, file025/801C2980]
@@ -732,6 +732,24 @@ segments:
       - [0x6D0B50, .rodata, file025/801D6C80]
       - [0x6D0B60, .rodata, file025/801D7250]
       - { type: bss, vram: 0x801DD670 }
+      - { type: .bss, vram: 0x801E07A0, name: file025/801CC210 }
+      - { type: bss, vram: 0x801E0A50, name: file025_bss_801E0A50 }
+      - { type: .bss, vram: 0x801E11E0, name: file025/801CDE80 }
+      - { type: bss, vram: 0x801E11F0, name: file025_bss_801E11F0 }
+      - { type: .bss, vram: 0x801E1210, name: file025/801CE760 }
+      - { type: bss, vram: 0x801E1270, name: file025_bss_801E1270 }
+      - { type: .bss, vram: 0x801E1310, name: file025/801D0690 }
+      - { type: bss, vram: 0x801E1320, name: file025_bss_801E1320 }
+      - { type: .bss, vram: 0x801E1350, name: file025/801D0CD0 }
+      - { type: bss, vram: 0x801E1360, name: file025_bss_801E1360 }
+      - { type: .bss, vram: 0x801E1420, name: file025/801D1760 }
+      - { type: bss, vram: 0x801E1430, name: file025_bss_801E1430 }
+      - { type: .bss, vram: 0x801E16E0, name: file025/801D5420 }
+      - { type: bss, vram: 0x801E16F0, name: file025_bss_801E16F0 }
+      - { type: .bss, vram: 0x801E1710, name: file025/801D6000 }
+      - { type: bss, vram: 0x801E1720, name: file025_bss_801E1720 }
+      - { type: .bss, vram: 0x801E1790, name: file025/801D6C80 }
+      - { type: bss, vram: 0x801E17A0, name: file025_bss_801E17A0 }
   - name: file026
     type: code
     start: 0x6D0BE0
@@ -740,7 +758,7 @@ segments:
     bss_size: 0xA0
     subsegments:
       - [0x6D0BE0, c, file026/801E1BE0]
-      - [0x6E91F0, data]
+      - [0x6E91F0, .data, data/file026/data_801FA1F0]
       - [0x6EACB0, .rodata, file026/801E1BE0]
       - { type: bss, vram: 0x801FD420 }
   - name: file027
@@ -751,7 +769,7 @@ segments:
     bss_size: 0x20
     subsegments:
       - [0x6EC420, c, file027/801E1BE0]
-      - [0x6FC780, data]
+      - [0x6FC780, .data, data/file027/data_801F1F40]
       - [0x6FFE80, .rodata, file027/801E1BE0]
       - { type: bss, vram: 0x801F5A60 }
   - name: file028
@@ -763,7 +781,7 @@ segments:
     subsegments:
       - [0x7002A0, c, file028/801E1BE0]
       - [0x7002C0, c, file028/801E1C00]
-      - [0x71F800, data]
+      - [0x71F800, .data, data/file028/data_80201140]
       - [0x726E00, .rodata, file028/801E1C00]
       - { type: bss, vram: 0x80208E10 }
   - name: file029
@@ -773,7 +791,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x7274D0, c, file029/801E1BE0]
-      - [0x72B2C0, data]
+      - [0x72B2C0, .data, data/file029/data_801E59D0]
       - [0x72C180, .rodata, file029/801E1BE0]
   - name: file030
     type: code
@@ -782,7 +800,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x72C430, c, file030/801E1BE0]
-      - [0x733F10, data]
+      - [0x733F10, .data, data/file030/data_801E96C0]
       - [0x736CC0, .rodata, file030/801E1BE0]
   - name: file031
     type: code
@@ -791,7 +809,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x736FD0, c, file031/801E1BE0]
-      - [0x737E20, data]
+      - [0x737E20, .data, data/file031/data_801E2A30]
       - [0x7381E0, .rodata, file031/801E1BE0]
   - name: file032
     type: code
@@ -801,7 +819,7 @@ segments:
     subsegments:
       - [0x738220, c, file032/801E1BE0]
       - [0x738230, c, file032/801E1BF0]
-      - [0x73FC80, data]
+      - [0x73FC80, .data, data/file032/data_801E9640]
       - [0x741E70, .rodata, file032/801E1BF0]
   - name: file033
     type: code
@@ -810,7 +828,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x742000, c, file033/801E1BE0]
-      - [0x751C80, data]
+      - [0x751C80, .data, data/file033/data_801F1860]
       - [0x754910, .rodata, file033/801E1BE0]
   - name: file034
     type: code
@@ -819,7 +837,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x754F10, c, file034/801E1BE0]
-      - [0x75B790, data]
+      - [0x75B790, .data, data/file034/data_801E8460]
       - [0x75C6F0, .rodata, file034/801E1BE0]
   - name: file035
     type: code
@@ -828,7 +846,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x75CA60, c, file035/801E1BE0]
-      - [0x762D60, data]
+      - [0x762D60, .data, data/file035/data_801E7EE0]
       - [0x763750, .rodata, file035/801E1BE0]
   - name: file036
     type: code
@@ -838,7 +856,7 @@ segments:
     bss_size: 0x60
     subsegments:
       - [0x763BE0, c, file036/801E1BE0]
-      - [0x766B30, data]
+      - [0x766B30, .data, data/file036/data_801E4B30]
       - [0x766F40, .rodata, file036/801E1BE0]
       - { type: bss, vram: 0x801E5200 }
   - name: file037
@@ -849,7 +867,7 @@ segments:
     bss_size: 0xA0
     subsegments:
       - [0x767200, c, file037/801E1BE0]
-      - [0x76B270, data]
+      - [0x76B270, .data, data/file037/data_801E5C50]
       - [0x76C120, .rodata, file037/801E1BE0]
       - { type: bss, vram: 0x801E6E10 }
   - name: file038
@@ -859,7 +877,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x76C430, c, file038/801E1BE0]
-      - [0x771110, data]
+      - [0x771110, .data, data/file038/data_801E68C0]
       - [0x771820, .rodata, file038/801E1BE0]
   - name: file039
     type: code
@@ -869,7 +887,7 @@ segments:
     bss_size: 0x40
     subsegments:
       - [0x771B10, c, file039/801E1BE0]
-      - [0x779D20, data]
+      - [0x779D20, .data, data/file039/data_801E9DF0]
       - [0x77AF70, .rodata, file039/801E1BE0]
       - { type: bss, vram: 0x801EB3D0 }
   - name: file040
@@ -880,7 +898,7 @@ segments:
     bss_size: 0xC0
     subsegments:
       - [0x77B300, c, file040/801E1BE0]
-      - [0x780C40, data]
+      - [0x780C40, .data, data/file040/data_801E7520]
       - [0x781C10, .rodata, file040/801E1BE0]
       - { type: bss, vram: 0x801E8910 }
   - name: file041
@@ -891,7 +909,7 @@ segments:
     bss_size: 0xE0
     subsegments:
       - [0x782030, c, file041/801E1BE0]
-      - [0x7880C0, data]
+      - [0x7880C0, .data, data/file041/data_801E7C70]
       - [0x788B00, .rodata, file041/801E1BE0]
       - { type: bss, vram: 0x801E8960 }
   - name: file042
@@ -901,7 +919,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x788DB0, c, file042/801E1BE0]
-      - [0x78B320, data]
+      - [0x78B320, .data, data/file042/data_801E4150]
       - [0x78C140, .rodata, file042/801E1BE0]
   - name: file043
     type: code
@@ -911,7 +929,7 @@ segments:
     subsegments:
       - [0x78C280, c, file043/801E1BE0]
       - [0x78C2A0, c, file043/801E1C00]
-      - [0x793510, data]
+      - [0x793510, .data, data/file043/data_801E8E70]
       - [0x794680, .rodata, file043/801E1C00]
   - name: file044
     type: code
@@ -921,7 +939,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x7948B0, c, file044/801E1BE0]
-      - [0x79ECF0, data]
+      - [0x79ECF0, .data, data/file044/data_801EC020]
       - [0x7A07F0, .rodata, file044/801E1BE0]
       - { type: bss, vram: 0x801EDEF0 }
   - name: file045
@@ -932,7 +950,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x7A0BC0, c, file045/801E1BE0]
-      - [0x7A6770, data]
+      - [0x7A6770, .data, data/file045/data_801E7790]
       - [0x7A7C10, .rodata, file045/801E1BE0]
       - { type: bss, vram: 0x801E8D10 }
   - name: file046
@@ -942,7 +960,7 @@ segments:
     exclusive_ram_id: slot801E1BE0
     subsegments:
       - [0x7A7CF0, c, file046/801E1BE0]
-      - [0x7AF580, data]
+      - [0x7AF580, .data, data/file046/data_801E9470]
       - [0x7B13B0, .rodata, file046/801E1BE0]
   - name: file047
     type: code
@@ -952,7 +970,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x7B14E0, c, file047/801E1BE0]
-      - [0x7B34E0, data]
+      - [0x7B34E0, .data, data/file047/data_801E3BE0]
       - [0x7B3700, .rodata, file047/801E1BE0]
       - { type: bss, vram: 0x801E3E50 }
   - name: file048
@@ -963,7 +981,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x7B3750, c, file048/801E1BE0]
-      - [0x7BB390, data]
+      - [0x7BB390, .data, data/file048/data_801E9820]
       - [0x7BBC40, .rodata, file048/801E1BE0]
       - { type: bss, vram: 0x801EA5F0 }
   - name: file049
@@ -974,7 +992,7 @@ segments:
     bss_size: 0x30
     subsegments:
       - [0x7BC160, c, file049/801E1BE0]
-      - [0x7C0D90, data]
+      - [0x7C0D90, .data, data/file049/data_801E6810]
       - [0x7C1BB0, .rodata, file049/801E1BE0]
       - { type: bss, vram: 0x801E7760 }
   - name: file050
@@ -985,7 +1003,7 @@ segments:
     bss_size: 0x70
     subsegments:
       - [0x7C1CE0, c, file050/801E1BE0]
-      - [0x7C3A90, data]
+      - [0x7C3A90, .data, data/file050/data_801E3990]
       - [0x7C3C20, .rodata, file050/801E1BE0]
       - { type: bss, vram: 0x801E3D90 }
   - name: file051
@@ -996,7 +1014,7 @@ segments:
     bss_size: 0x20
     subsegments:
       - [0x7C3E90, c, file051/801E1BE0]
-      - [0x7C9020, data]
+      - [0x7C9020, .data, data/file051/data_801E6D70]
       - [0x7C9AA0, .rodata, file051/801E1BE0]
       - { type: bss, vram: 0x801E7950 }
   - name: file052
@@ -1007,7 +1025,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x7C9C00, c, file052/801E1BE0]
-      - [0x7CCA90, data]
+      - [0x7CCA90, .data, data/file052/data_801E4A70]
       - [0x7CD950, .rodata, file052/801E1BE0]
       - { type: bss, vram: 0x801E5A80 }
   - name: file053
@@ -1018,7 +1036,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x7CDAA0, c, file053/801E1BE0]
-      - [0x7D3880, data]
+      - [0x7D3880, .data, data/file053/data_801E79C0]
       - [0x7D5760, .rodata, file053/801E1BE0]
       - { type: bss, vram: 0x801E9990 }
   - name: file054
@@ -1029,7 +1047,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x7D5850, c, file054/802408F0]
-      - [0x7DB720, data]
+      - [0x7DB720, .data, data/file054/data_802467C0]
       - [0x7DD060, .rodata, file054/802408F0]
       - { type: bss, vram: 0x80248800 }
   - name: file055
@@ -1041,7 +1059,7 @@ segments:
     subsegments:
       - [0x7DD760, c, file055/803837E0]
       - [0x7DD920, c, file055/803839A0]
-      - [0x7DE2E0, data]
+      - [0x7DE2E0, .data, data/file055/data_80384360]
       - [0x7E7D20, .rodata, file055/803839A0]
       - { type: bss, vram: 0x8038DDC0 }
   - name: file056
@@ -1059,7 +1077,7 @@ segments:
       - [0x7EF900, c, file056/8037D3A0]
       - [0x7F33F0, c, file056/80380E90]
       - [0x7F9F30, c, file056/803879D0]
-      - [0x7FA9F0, data]
+      - [0x7FA9F0, .data, data/file056/data_80388490]
       - [0x7FB640, .rodata, file056/803757E0]
       - [0x7FB660, .rodata, file056/80376160]
       - [0x7FB920, .rodata, file056/80378340]
@@ -1092,7 +1110,7 @@ segments:
       - [0x823030, c, file057/8037F410]
       - [0x823C10, c, file057/8037FFF0]
       - [0x824F30, c, file057/80381310]
-      - [0x8290F0, data]
+      - [0x8290F0, .data, data/file057/data_803854D0]
       - [0x82DA80, .rodata, file057/80358820]
       - [0x82DD00, .rodata, file057/8035C4C0]
       - [0x82DEA0, .rodata, file057/8035EF60]
@@ -1147,7 +1165,7 @@ segments:
     exclusive_ram_id: slot8038CFC0
     subsegments:
       - [0x833290, c, file062/8038CFC0]
-      - [0x833DA0, data]
+      - [0x833DA0, .data, data/file062/data_8038DAD0]
       - [0x833E40, .rodata, file062/8038CFC0]
   - name: file063
     type: code
@@ -1156,7 +1174,7 @@ segments:
     exclusive_ram_id: slot8038CFC0
     subsegments:
       - [0x833E60, c, file063/8038CFC0]
-      - [0x834870, data]
+      - [0x834870, .data, data/file063/data_8038D9D0]
       - [0x8348F0, .rodata, file063/8038CFC0]
   - name: file064
     type: code
@@ -1205,7 +1223,7 @@ segments:
     exclusive_ram_id: slot8038CFC0
     subsegments:
       - [0x8384A0, c, file069/8038CFC0]
-      - [0x838F10, data]
+      - [0x838F10, .data, data/file069/data_8038DA30]
       - [0x838FA0, .rodata, file069/8038CFC0]
   - name: file070
     type: code
@@ -1288,7 +1306,7 @@ segments:
     exclusive_ram_id: slot8038CFC0
     subsegments:
       - [0x83F650, c, file079/8038CFC0]
-      - [0x840100, data]
+      - [0x840100, .data, data/file079/data_8038DA70]
       - [0x840190, .rodata, file079/8038CFC0]
   - name: file080
     type: code
@@ -1403,7 +1421,7 @@ segments:
     exclusive_ram_id: slot8038CFC0
     subsegments:
       - [0x849470, c, file093/8038CFC0]
-      - [0x84A4E0, data]
+      - [0x84A4E0, .data, data/file093/data_8038E030]
       - [0x84A5A0, .rodata, file093/8038CFC0]
   - name: file094
     type: code
@@ -1464,7 +1482,7 @@ segments:
       - [0x851690, c, file100/8038C8D0]
       - [0x851800, c, file100/8038CA40]
       - [0x851FA0, c, file100/8038D1E0]
-      - [0x8525D0, data]
+      - [0x8525D0, .data, data/file100/data_8038D810]
       - [0x852AB0, .rodata, file100/8038B7E0]
       - [0x852AD0, .rodata, file100/8038D1E0]
       - { type: bss, vram: 0x8038DD60 }

@@ -1,0 +1,8 @@
+func_8024A168 file018
+func_80241FE0 file020
+func_8011E480 file008
+func_80210160 file010
+func_8038CFF4 file095
+func_80233430 file011
+func_8022DB40 file011
+func_8011BC20 file008

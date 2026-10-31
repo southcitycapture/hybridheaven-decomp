@@ -146,9 +146,15 @@ def main():
     if result['passed']:
         print('PASS', flush=True)
         if not args.keep:
-            shutil.rmtree(checkout)
+            shutil.rmtree(directory, ignore_errors=True)
     else:
-        print('FAIL; details: %s; checkout: %s' % (build / 'switch_check.json', checkout), flush=True)
+        # 10-29: kept failed checkouts (~2 GB each) filled the disk; keep only the log unless --keep
+        if not args.keep and checkout.exists():
+            shutil.copy(log, build / 'switch_check_last_fail.log'); shutil.rmtree(directory, ignore_errors=True)
+            print('FAIL; details: %s; log: %s (checkout removed; rerun with --keep to keep it)'
+                  % (build / 'switch_check.json', build / 'switch_check_last_fail.log'), flush=True)
+        else:
+            print('FAIL; details: %s; checkout: %s' % (build / 'switch_check.json', checkout), flush=True)
     return 0 if result['passed'] else 1
 
 
