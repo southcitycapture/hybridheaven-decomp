@@ -273,7 +273,10 @@ def progress():
 def publish(cfg, st):
     pub = cfg["public_dir"]
     code, out = sh("tools/publish.sh %s" % pub, 30)
-    if code: log("publish: publish.sh refused:", out[-400:]); return False
+    if code:
+        log("publish: publish.sh refused:", out[-400:])
+        sh('~/bin/ping-me "HH publish blocked" "The privacy/disassembly scan refused the public snapshot; progress sites are not updating. See queue/loop/loop.log." warn')
+        return False
     try:  # describe the report being published, not an older cycle's number
         m = json.load(open(os.path.join(pub, "progress/report.json")))["measures"]
         desc = "%.3f%% of code, %s / %s functions" % (m["matched_code_percent"], m["matched_functions"], m["total_functions"])

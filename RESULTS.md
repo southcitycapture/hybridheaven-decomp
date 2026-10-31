@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-31: **72.56% of the code** (15034 of 15891 functions, including duplicates).
+Progress as of 2026-10-31: **72.64% of the code** (15035 of 15891 functions, including duplicates).
 
-**22190 model runs, $5546.27 API-equivalent in total** (local and cloud). Of the **14981 functions now in C**, **6888 were matched by AI workers** (≈ $0.805 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 250 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**22191 model runs, $5546.27 API-equivalent in total** (local and cloud). Of the **14981 functions now in C**, **6888 were matched by AI workers** (≈ $0.805 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 250 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -349,7 +349,7 @@ Progress as of 2026-10-31: **72.56% of the code** (15034 of 15891 functions, inc
 | `bigA4` | bigA4 | opus-5-5 | 3 | 0 | 0% | $11.23 | – |  |
 | `unify_loop0163` | unify_loop0163 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
 | `bigA3` | bigA3 | opus-5-5 | 4 | 0 | 0% | $14.06 | – |  |
-| `localU1` | localU1 | strata/qwen3.8-flash-next | 53 | 10 | 19% | $0.00 | – |  |
-| `unify_loop0164` | unify_loop0164 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0164` | unify_loop0164 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
+| `localU1` | localU1 | strata/qwen3.8-flash-next | 54 | 10 | 19% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
