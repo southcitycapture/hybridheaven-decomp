@@ -67,8 +67,60 @@ extern void func_8036DF48();
 extern void func_8036E578(void *);
 extern void func_8036E780();
 
-/* hh-block asm/nonmatchings/file057/803698D0/_mrg_keep_text_func_803698D0.s {"functions":["func_803698D0"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/_mrg_keep_text_func_803698D0.s")
+#define D_80387860 D_80387860__func_803698D0
+#define func_8036B7EC_Struct func_8036B7EC_Struct__func_803698D0
+
+typedef struct func_8036B7EC_Struct {
+    u32 unk0;
+    u8 pad[0xC - 4];
+    s16 unkC;
+} func_8036B7EC_Struct;
+
+typedef struct func_803698D0_Entry {
+    u8 id;
+    u8 pad[0x1F];
+} func_803698D0_Entry;
+
+extern func_803698D0_Entry D_80387860[];
+
+func_8036B7EC_Struct *func_803698D0(u8 *arg0) {
+    func_803698D0_Entry *p;
+    s32 r;
+
+loop:
+    for (p = D_80387860; p->id != 0x57; p++) {
+        if ((r = arg0[0x2D9]) == p->id) {
+            return (func_8036B7EC_Struct *)p;
+        }
+    }
+    r = arg0[0x2D8];
+    if (r != 4) {
+        if (r == 5) goto c5;
+        if (r == 6) goto c6;
+        if (r == 7) goto c7;
+        r = 0x41;
+        goto d2;
+    }
+    goto d;
+c7:
+    r = 0x47;
+    if (1) goto e;
+c6:
+    r = 0x44;
+    if (1) goto e;
+c5:
+    r = 0x49;
+    if (1) goto e;
+d:
+    r = 0x41;
+d2:
+    arg0[0x2D8] = 4;
+e:
+    arg0[0x2D9] = r;
+    goto loop;
+}
+#undef D_80387860
+#undef func_8036B7EC_Struct
 
 #define D_801842A0 D_801842A0__func_80369994
 #define D_801BBBF0 D_801BBBF0__func_80369994
@@ -314,6 +366,7 @@ typedef struct func_8036B7EC_Struct {
     u8 pad[0xC - 4];
     s16 unkC;
 } func_8036B7EC_Struct;
+#define func_803698D0 func_803698D0__decl316
 extern func_8036B7EC_Struct *func_803698D0(void *);
 
 typedef struct func_80369CF4_Struct {
@@ -355,6 +408,7 @@ s32 func_80369CF4(struct func_80369C7C_Obj1 *arg0, s16 arg1) {
     }
     return 1;
 }
+#undef func_803698D0
 
 #define D_8038B0A8 D_8038B0A8__func_80369DEC
 #define D_8038B0B0 D_8038B0B0__func_80369DEC

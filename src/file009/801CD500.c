@@ -3249,12 +3249,44 @@ void func_801D3018(func_801D3018_Struct *arg0, s32 arg1) {
 #undef func_801CE0E8
 #undef func_801D12FC
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/func_801D3060.s")
+#define D_8017BC7C D_8017BC7C__func_801D3060
+#define D_801E1448 D_801E1448__func_801D3060
+#define func_8013A334 func_8013A334__func_801D3060
+typedef struct func_801D3060_V { f32 x, y, z; } func_801D3060_V;
+typedef struct func_801D3060_T { u16 h[5]; } func_801D3060_T;
+extern void func_8013A334(f32 *, s32, void *, u16);
+extern u16 D_8017BC7C[];
+extern func_801D3060_T D_801E1448;
+func_801D3060_V func_801D3060(void *arg1, s32 arg2) {
+    u8 *sp44;
+    func_801D3060_V a;
+    func_801D3060_V b;
+    u16 v;
+    u16 w;
+    sp44 = *(u8 **)((u8 *)arg1 + 0x5C);
+    v = func_8012C6B4(*(u16 *)(sp44 + 0xC));
+    if (v < 2) {
+        func_801D3060_T t;
+        t = D_801E1448;
+        v = t.h[func_8012C6B4(5)];
+    }
+    w = D_8017BC7C[v];
+    func_8013A334(&a.x, arg2, sp44, v);
+    func_8013A334(&b.x, arg2, sp44, w);
+    a.x += (b.x - a.x) * func_8012C6B4(100) / 100.0;
+    a.y += (b.y - a.y) * func_8012C6B4(100) / 100.0;
+    a.z += (b.z - a.z) * func_8012C6B4(100) / 100.0;
+    return a;
+}
+#undef D_8017BC7C
+#undef D_801E1448
+#undef func_8013A334
 
 #define D_8008DA88 D_8008DA88__func_801D3200
 
 extern void func_801D337C();
 struct func_801D35BC_StructObj;
+#define func_801D3060 func_801D3060__decl3257
 extern void func_801D3060(f32 *, void *, struct func_801D35BC_StructObj **);
 extern struct func_801D35BC_StructObj *D_8008DA88[];
 
@@ -3323,6 +3355,7 @@ void func_801D3200(func_801D3200_Struct *arg0, s32 arg1) {
         func_800058DC(arg0, (s32)func_801D337C);
     }
 }
+#undef func_801D3060
 #undef D_8008DA88
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/func_801D337C.s")

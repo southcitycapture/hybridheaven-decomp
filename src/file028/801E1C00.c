@@ -11282,8 +11282,17 @@ s32 func_801F5340(s32 arg0, s32 arg1) {
     return 6;
 }
 
-/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_0e6104ec413af0cb.s {"functions":["func_801F540C"],"rodata":[],"rodata_bytes":[2149616508,7500348,16]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_0e6104ec413af0cb.s")
+
+s32 func_801F540C(s32 arg0, s32 arg1) {
+    f32 y;
+    y = 22.6000004f;
+    if (func_8038BEF8(0.0f, 1.0f, -2.1f, 17.0f, -44.5f,
+        (-1.20000005f), 21.6000004f, (-7.4000001f), 0.0f, 20.0f,
+        y, 0.0f, 20.0f, 22.6000004f) != 0) {
+        return 8;
+    }
+    return 7;
+}
 
 
 s32 func_801F54AC(s32 arg0, s32 arg1) {

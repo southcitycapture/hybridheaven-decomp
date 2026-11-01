@@ -127,11 +127,13 @@ s32 func_801DC700(s32 a0, void *a1) {
 #undef arg0
 #undef E
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/D_801E3D20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DC9C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/func_801DCC50.s")
+/* hh-block asm/nonmatchings/file009/801DC250/_mrg_keep_text_96003b1e2be80ff2.s {"functions":["func_801DC9C4"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/_mrg_keep_text_96003b1e2be80ff2.s")
+
+/* hh-block asm/nonmatchings/file009/801DC250/_mrg_keep_text_75c17de0c5843cb1.s {"functions":["func_801DCC50"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/_mrg_keep_text_75c17de0c5843cb1.s")
 
 
 
@@ -211,8 +213,8 @@ end:;
 
 
 
-/* hh-block asm/nonmatchings/file009/801DC250/_mrg_keep_910192c1382ab340.s {"functions":["func_801DCDBC"],"rodata":[[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DCCB0.s","D_801E3DCC"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DCDBC.s","jtbl_801E3DD0"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DCDBC.s","D_801E3F14"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DCDBC.s","D_801E3F18"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DCDBC.s","D_801E3F1C"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DCDBC.s","D_801E3F20"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DCDBC.s","D_801E3F24"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DCDBC.s","D_801E3F28"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/_mrg_keep_910192c1382ab340.s")
+/* hh-block asm/nonmatchings/file009/801DC250/_mrg_keep_text_40da01efb84f8b6b.s {"functions":["func_801DCDBC"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/_mrg_keep_text_40da01efb84f8b6b.s")
 
 #define func_801DC250 func_801DC250__func_801DE464
 
@@ -308,7 +310,7 @@ void func_801DE5E4(s32 arg0, s32 *arg1, u16 *arg2, f32 *arg3, u8 arg4) {
         arg4 = arg4 % 3;
         *arg2 = *(u16 *)(D_801E179E + (var_a1 << 4) + (arg4 << 2) + (var_a0 << 1));
         if ((*arg1 == 0x01900220) || (*arg1 == 0x019001E6)) {
-            *arg3 = D_801E3F30;
+            *arg3 = (0.30000001192092896f);
         }
     } else {
         *arg2 = 0;
@@ -350,8 +352,241 @@ u16 func_801DE6F4(s32 arg0, func_801DE6F4_StructVec arg1, f32 *arg4, u8 arg5) {
 
 
 
-/* hh-block asm/nonmatchings/file009/801DC250/_mrg_keep_e4c73071deb869ed.s {"functions":["func_801DE7EC"],"rodata":[[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DE5E4.s","D_801E3F30"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DE7EC.s","jtbl_801E3F34"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DE7EC.s","jtbl_801E3F48"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DE7EC.s","jtbl_801E3F70"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DE7EC.s","D_801E3FA8"],[".late_rodata","asm/nonmatchings/file009/801DC250/func_801DFE50.s","D_801E3FAC"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/_mrg_keep_e4c73071deb869ed.s")
+
+#define D_801BBBF0 D_801BBBF0__func_801DE7EC
+#define D_801BBBF4 D_801BBBF4__func_801DE7EC
+#define D_801BBCD0 D_801BBCD0__func_801DE7EC
+#define D_801BBF44 D_801BBF44__func_801DE7EC
+#define D_801E15E8 D_801E15E8__func_801DE7EC
+#define D_801E1F58 D_801E1F58__func_801DE7EC
+#define D_801E1F7C D_801E1F7C__func_801DE7EC
+#define func_8001EAD0 func_8001EAD0__func_801DE7EC
+#define func_8001EB64 func_8001EB64__func_801DE7EC
+#define func_801084C4 func_801084C4__func_801DE7EC
+#define func_80126944 func_80126944__func_801DE7EC
+#define func_801DC510 func_801DC510__func_801DE7EC
+#define func_801DC510_StructA func_801DC510_StructA__func_801DE7EC
+#define func_801DC510_StructB func_801DC510_StructB__func_801DE7EC
+#define func_801DC9C4 func_801DC9C4__func_801DE7EC
+#define func_801DCDBC func_801DCDBC__func_801DE7EC
+#define func_801DE590 func_801DE590__func_801DE7EC
+#define func_801DE5E4 func_801DE5E4__func_801DE7EC
+#define func_801DE6F4 func_801DE6F4__func_801DE7EC
+#define func_801DE6F4_StructVec func_801DE6F4_StructVec__func_801DE7EC
+#define func_801DFE28 func_801DFE28__func_801DE7EC
+extern u8 D_801BBBF0[];
+extern u16 D_801BBBF4;
+typedef struct func_801DC510_StructA { s32 id; u16 k; u8 pad6[2]; f32 scale; } func_801DC510_StructA;
+typedef struct func_801DC510_StructB { s32 id; u16 a; u16 b; u16 c; u8 pad[2]; } func_801DC510_StructB;
+u16 func_801DC510(func_801DC510_StructA *arg0, func_801DC510_StructB *arg1);
+typedef struct func_801DE6F4_StructVec {
+    f32 x, y, z;
+} func_801DE6F4_StructVec;
+extern void func_801DC9C4(func_801DE6F4_StructVec, u16, f32);
+void func_801DE590(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+void func_801DE5E4(s32 arg0, s32 *arg1, u16 *arg2, f32 *arg3, u8 arg4);
+u16 func_801DE6F4(s32 arg0, func_801DE6F4_StructVec arg1, f32 *arg4, u8 arg5);
+u8 func_801DFE28(s32 arg0);
+
+
+typedef struct func_801DE7EC_StructPos {
+    u8 pad0[4]; f32 x, y, z; u8 pad10[2]; s16 angle;
+    u8 pad14[0x1C]; f32 px, py, pz;
+} func_801DE7EC_StructPos;
+typedef struct func_801DE7EC_StructObj {
+    u8 pad0[0x2C]; func_801DE7EC_StructPos *pos;
+} func_801DE7EC_StructObj;
+typedef struct func_801DE7EC_StructActor {
+    u8 pad0[0x24]; func_801DE7EC_StructObj *obj;
+    u8 pad28[0x44]; s32 key; u16 frame;
+} func_801DE7EC_StructActor;
+typedef struct func_801DE7EC_StructArg {
+    u8 pad0[0xE]; u16 id; u8 pad10[0xC];
+    func_801DC510_StructA anim;
+    u8 pad28[0x4C]; u8 mode;
+} func_801DE7EC_StructArg;
+typedef struct func_801DE7EC_StructG {
+    u8 pad0[4]; u16 unk4; u8 pad6[0x26]; u16 unk2C; u8 pad2E[0xBA];
+    func_801DE7EC_StructObj *unkE8;
+} func_801DE7EC_StructG;
+extern func_801DE7EC_StructObj *D_801BBCD0;
+extern u8 D_801BBF44[];
+extern u16 D_801E15E8[][8];
+extern func_801DC510_StructB D_801E1F7C[];
+extern func_801DC510_StructB D_801E1F58[];
+extern s32 func_801084C4(f32, f32, f32, f32, f32, f32);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern s32 func_80126944(void);
+extern void func_801DCDBC(func_801DC510_StructA *, u16 *, f32 *, func_801DE6F4_StructVec);
+
+#define G ((func_801DE7EC_StructG *)D_801BBBF0)
+#define FRAME(n) func_80011590((u32)(anim->scale * (n)) & 0xFFFF)
+#define NORMAL() func_801DE590((s32)actor, (s32)anim, (s32)&sound, (s32)&volume)
+#define SPECIAL(n) func_801DE5E4((s32)actor, (s32 *)anim, &sound, &volume, (n))
+
+void func_801DE7EC(func_801DE7EC_StructActor *actor, func_801DE7EC_StructArg *arg)
+{
+    s32 pad0;
+    f32 scale;
+    s32 pad1;
+    u16 sound = 0;
+    f32 volume;
+    func_801DE6F4_StructVec pos;
+    f32 d, c, b, a;
+    func_801DC510_StructA *anim = &arg->anim;
+
+    if (G->unk4 >= 220) return;
+    pos.x = actor->obj->pos->x;
+    pos.y = actor->obj->pos->y;
+    pos.z = actor->obj->pos->z;
+    if (actor->key == anim->id && actor->frame == anim->k) return;
+    actor->key = anim->id;
+    actor->frame = anim->k;
+    if (anim->id != 0x19100CF && anim->id != 0x1910016 && anim->id != 0x1910008 &&
+        (arg->mode == 3 || arg->mode == 4) && arg->id != 0x32 && arg->id != 0x33 &&
+        arg->id != 0x34 && (arg->id & 0x7FFF) != 0xF8 && arg->id != 0x149 && G->unk2C != 10) {
+        if (func_801084C4(G->unkE8->pos->px, G->unkE8->pos->py,
+                         G->unkE8->pos->pz, pos.x, pos.y + 1.0, pos.z)) return;
+    }
+    scale = anim->scale;
+    volume = 1.0f;
+    if (anim->id == 0x168000F) {
+        if (anim->k == func_80011590((u32)(12.0f * scale) & 0xFFFF) ||
+            anim->k == func_80011590((u32)(32.0f * scale) & 0xFFFF)) sound = 0x68E;
+        func_801DC9C4(pos, sound, volume);
+        return;
+    }
+    if (anim->id == 0x168000D) {
+        if (anim->k == 0) sound = 0x1FD;
+        func_801DC9C4(pos, sound, volume);
+        return;
+    }
+    if (!func_801C5A1C(pos.x, pos.y + 20.0, pos.z, pos.x, pos.y - 10.0, pos.z)) {
+        a = func_8001EAD0(D_801BBCD0->pos->angle);
+        b = func_8001EB64(D_801BBCD0->pos->angle);
+        c = func_8001EAD0(D_801BBCD0->pos->angle);
+        d = func_8001EB64(D_801BBCD0->pos->angle);
+        if (!func_801C5A1C(a * 5.0 + pos.x, pos.y + 20.0, b * 5.0 + pos.z,
+                          c * 5.0 + pos.x, pos.y - 10.0, d * 5.0 + pos.z) &&
+            anim->id != 0x168001F) return;
+    }
+    switch (arg->id) {
+    case 0x29:
+    case 0x2C:
+    case 0x2D:
+    case 0x11B:
+    case 0x11C:
+        if (func_80126944() == 1) NORMAL();
+        else if (func_80126944() == 0) func_801DCDBC(anim, &sound, &volume, pos);
+        break;
+    case 0x50:
+        if (func_80126944() == 1) SPECIAL(2);
+        else {
+            func_801DCDBC(anim, &sound, &volume, pos);
+            if (sound && sound != 0x672 && sound != 0x674 && sound != 0x673 &&
+                sound != 0x675 && sound != 0x68C && sound != 0x68D) sound = 0x654;
+        }
+        break;
+    case 0xF8:
+        if (D_801BBBF4 < 20) {
+            sound = func_801DC510(anim, D_801E1F7C);
+            volume *= 1.5;
+        } else sound = func_801DE6F4((s32)anim, pos, &volume, 0);
+        break;
+    case 0x80F8:
+        sound = func_801DE6F4((s32)anim, pos, &volume, 1);
+        break;
+    case 0x51:
+        if (func_80126944() == 1) SPECIAL(2);
+        else {
+            sound = func_801DC510(anim, D_801E1F58);
+            if (sound == 0) SPECIAL(2);
+        }
+        break;
+    case 0x2E:
+        if (anim->id == 0x19100CF && (anim->k == FRAME(15.0f) || anim->k == FRAME(20.0f) ||
+                                      anim->k == FRAME(24.0f) || anim->k == FRAME(29.0f))) {
+            sound = D_801E15E8[D_801E16A0[D_801BBBF4]][D_801BBF44[7]];
+            volume = 1.1f;
+        } else if (func_80126944() == 1) NORMAL();
+        break;
+    case 0x2B:
+    case 0x31:
+    case 0x148:
+        if (func_80126944() == 1) NORMAL();
+        break;
+    case 0x58:
+        if (anim->id == 0x1910016 && (anim->k == FRAME(6.0f) || anim->k == FRAME(10.0f) ||
+                                      anim->k == FRAME(16.0f) || anim->k == FRAME(21.0f) ||
+                                      anim->k == FRAME(36.0f))) sound = 0x662;
+        else NORMAL();
+        break;
+    case 0x32:
+        if (anim->id == 0x3200015 && (anim->k == FRAME(3.0f) || anim->k == FRAME(6.0f) ||
+                                      anim->k == FRAME(11.0f) || anim->k == FRAME(15.0f))) sound = 0x684;
+        else {
+    case 0x30:
+    case 0x57:
+    case 0x59:
+    case 0x4057:
+            NORMAL();
+        }
+        break;
+    case 0xF4:
+        SPECIAL(0);
+        break;
+    case 0xF5:
+    case 0xF6:
+        SPECIAL(1);
+        break;
+    case 0x33:
+    case 0x34:
+        NORMAL();
+        if (sound != 0) {
+            if (func_801DFE28((s32)actor)) sound = 0x6BE;
+            else sound = 0x6BC;
+        }
+        break;
+    case 0x2A:
+    case 0x2F:
+    case 0x35:
+    case 0x36:
+    case 0xF7:
+    case 0x141:
+    case 0x142:
+        break;
+    default:
+        SPECIAL(2);
+        break;
+    }
+    if (sound) func_801DC9C4(pos, sound, volume);
+}
+#undef G
+#undef FRAME
+#undef NORMAL
+#undef SPECIAL
+#undef D_801BBBF0
+#undef D_801BBBF4
+#undef D_801BBCD0
+#undef D_801BBF44
+#undef D_801E15E8
+#undef D_801E1F58
+#undef D_801E1F7C
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_801084C4
+#undef func_80126944
+#undef func_801DC510
+#undef func_801DC510_StructA
+#undef func_801DC510_StructB
+#undef func_801DC9C4
+#undef func_801DCDBC
+#undef func_801DE590
+#undef func_801DE5E4
+#undef func_801DE6F4
+#undef func_801DE6F4_StructVec
+#undef func_801DFE28
 
 
 typedef struct func_801DFAA4_StructB {
@@ -484,7 +719,7 @@ void func_801DFE50(func_801DFE50_StructArg *arg0, u8 arg1) {
     u32 pad24;
 
     info = arg0->unk5C;
-    scale = D_801E3FAC;
+    scale = (1.2000000476837158f);
     variant = 0;
     pos.x = arg0->unk24->unk2C[1];
     pos.y = arg0->unk24->unk2C[2];
@@ -523,3 +758,44 @@ c:
 #undef D_801E3FAC
 #undef func_80020DAC
 
+/* Readonly constants retained after the last ASM donor became C. */
+
+static const unsigned char rodata_801DC250[] = {
+    0x74, 0x79, 0x70, 0x65, 0x20, 0x3D, 0x20, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x40, 0xE3, 0x6F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x66, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x40, 0x6F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x4F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4,
+    0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4,
+    0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4,
+    0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0x9C,
+    0x80, 0x1D, 0xCC, 0x9C, 0x80, 0x1D, 0xCC, 0x84, 0x80, 0x1D, 0xCC, 0x84, 0x80, 0x1D, 0xCC, 0x7C,
+    0x80, 0x1D, 0xCC, 0x7C, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0xA4, 0x80, 0x1D, 0xCC, 0x9C,
+    0x80, 0x1D, 0xCC, 0x9C, 0x80, 0x1D, 0xCC, 0x94, 0x80, 0x1D, 0xCC, 0x94, 0x80, 0x1D, 0xCC, 0x8C,
+    0x80, 0x1D, 0xCC, 0x8C, 0x80, 0x1D, 0xCC, 0x94, 0x80, 0x1D, 0xCC, 0x94, 0x3E, 0x99, 0x99, 0x9A,
+    0x80, 0x1D, 0xCE, 0x0C, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xD9, 0xAC,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE2, 0xD4, 0x80, 0x1D, 0xE2, 0x1C,
+    0x80, 0x1D, 0xE2, 0xD4, 0x80, 0x1D, 0xE2, 0xD4, 0x80, 0x1D, 0xDF, 0xD8, 0x80, 0x1D, 0xE2, 0xD4,
+    0x80, 0x1D, 0xDC, 0x84, 0x80, 0x1D, 0xDB, 0x8C, 0x80, 0x1D, 0xDE, 0x5C, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xD5, 0xB4, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xD7, 0x54, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xD4, 0x54, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xDD, 0x64, 0x80, 0x1D, 0xE2, 0x1C, 0x80, 0x1D, 0xD9, 0x48,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xCE, 0xF8, 0x80, 0x1D, 0xD0, 0x94, 0x80, 0x1D, 0xD2, 0x40, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44,
+    0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xD3, 0xEC, 0x80, 0x1D, 0xD4, 0x7C,
+    0x80, 0x1D, 0xD4, 0xE4, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xE4, 0x44, 0x80, 0x1D, 0xD5, 0x4C,
+    0x80, 0x1D, 0xD5, 0x4C, 0x3F, 0x8C, 0xCC, 0xCD, 0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x99, 0x99, 0x9A,
+    0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x99, 0x99, 0x9A,
+};
+/* hh-owned-pool func_801DE464 801E3F2C 801E3F30 */
+/* hh-owned-pool func_801DE5E4 801E3F30 801E3F34 */
+/* hh-owned-pool func_801DE7EC 801E3F34 801E3FAC */
+/* hh-owned-pool func_801DFE50 801E3FAC 801E3FB0 */

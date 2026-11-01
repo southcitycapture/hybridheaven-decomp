@@ -46,7 +46,7 @@ LIBFILES = set(json.load(open("tools/hh/libultra.json"))) if os.path.exists("too
 for seg in source_units(yaml.safe_load(open("hybridheaven.yaml"))):
     src = "src/" + seg + ".c"
     sources[seg] = open(src).read()
-    funcs = sorted(f for f in glob.glob("asm/nonmatchings/%s/*.s" % seg) if not os.path.basename(f).startswith(("_pad", "_mrg_", "_ro_")))  # pad blocks are not functions
+    funcs = sorted(f for f in glob.glob("asm/nonmatchings/%s/*.s" % seg) if not os.path.basename(f).startswith(("_pad", "_mrg_", "_ro_", "_ap_")))  # pad blocks are not functions; _ap_ twins repeat a pad file's label
     if not funcs: raise RuntimeError("missing target assembly for " + seg + "; run make setup")
     inputs.append({"name": seg, "source": src, "assembly": funcs})
     os.makedirs(os.path.dirname("%s/target/%s.o" % (OUT, seg)), exist_ok=True)

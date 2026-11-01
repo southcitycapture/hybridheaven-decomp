@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-10-31: **72.64% of the code** (15035 of 15891 functions, including duplicates).
+Progress as of 2026-11-01: **74.01% of the code** (15058 of 15891 functions, including duplicates).
 
-**22191 model runs, $5546.27 API-equivalent in total** (local and cloud). Of the **14981 functions now in C**, **6888 were matched by AI workers** (≈ $0.805 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 250 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**22258 model runs, $5897.82 API-equivalent in total** (local and cloud). Of the **15004 functions now in C**, **6911 were matched by AI workers** (≈ $0.853 per function, failures included), **7563 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 250 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -323,7 +323,6 @@ Progress as of 2026-10-31: **72.64% of the code** (15035 of 15891 functions, inc
 | `armC1` | armC1 | opus-5-5 | 2 | 0 | 0% | $6.08 | – |  |
 | `unify_loop0133` | unify_loop0133 | unify (no model) | 2 | 2 | 100% | $0.00 | – |  |
 | `terraOS` | terraOS | openai/gpt-6.1-terra | 75 | 13 | 17% | $0.00 | – |  |
-| `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 251 | 113 | 45% | $0.00 | – |  |
 | `unify_loop0153` | unify_loop0153 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0154` | unify_loop0154 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0155` | unify_loop0155 | unify (no model) | 1 | 0 | 0% | $0.00 | – |  |
@@ -344,12 +343,19 @@ Progress as of 2026-10-31: **72.64% of the code** (15035 of 15891 functions, inc
 | `bigC1` | bigC1 | opus-5-5 | 3 | 0 | 0% | $10.13 | – |  |
 | `unify_loop0162` | unify_loop0162 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
 | `bigA2` | bigA2 | opus-5-5 | 3 | 2 | 67% | $8.46 | $4.228 |  |
-| `bigC4` | bigC4 | opus-5-5 | 2 | 1 | 50% | $15.21 | $15.207 |  |
-| `bigC3` | bigC3 | opus-5-5 | 2 | 0 | 0% | $7.87 | – |  |
-| `bigA4` | bigA4 | opus-5-5 | 3 | 0 | 0% | $11.23 | – |  |
 | `unify_loop0163` | unify_loop0163 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
-| `bigA3` | bigA3 | opus-5-5 | 4 | 0 | 0% | $14.06 | – |  |
 | `unify_loop0164` | unify_loop0164 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
-| `localU1` | localU1 | strata/qwen3.8-flash-next | 54 | 10 | 19% | $0.00 | – |  |
+| `unify_loop0165` | unify_loop0165 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
+| `ocL_dsf` | ocL_dsf | opencode/deepseek-v4.1-flash-free | 255 | 113 | 44% | $0.00 | – |  |
+| `bigC4` | bigC4 | opus-5-5 | 8 | 1 | 12% | $52.84 | $52.838 |  |
+| `stitch1_land` | stitch1_land | stitch.py (region-complete saved attempt, queue/bigA4/work/func_80229CE0/attempt.c), stitch.py (region-complete saved attempt, queue/bigC3/work/func_80243880/attempt.c), stitch.py (region-complete saved attempt, queue/bigC3/work/func_80379904/attempt.c) | 3 | 3 | 100% | $0.00 | – |  |
+| `bigA3` | bigA3 | opus-5-5 | 8 | 0 | 0% | $48.66 | – |  |
+| `bigA4` | bigA4 | opus-5-5 | 8 | 0 | 0% | $44.85 | – |  |
+| `bigC3` | bigC3 | opus-5-5 | 8 | 2 | 25% | $43.52 | $21.758 |  |
+| `hidden1_land` | hidden1_land | hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/abWallA.aborted/work/func_801C039C/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/bigA3/work/func_80241FE0/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/bigC3/work/func_801DE7EC/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/bigC4/work/func_80125968/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/bigC4/work/func_801C4A5C/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/bigC4/work/func_802432CC/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/kit4_s/work/func_8035D9FC/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/opusN/work/func_801F540C/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/opusN2/work/func_801D3060/match_probe.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/opusN2/work/func_801DB480/match_s32_probe.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/opusN2/work/func_803698D0/probe_common.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/opusN3/work/func_8001518C/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/opusN3/work/func_801EC278/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/opusN3/work/func_801EF944/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/opusW1/work/func_801E3070/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/terraL2/work/func_8024C5B4@file017/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/terraL2/work/func_80256650/.attempts/17.c), hidden_matches.py (saved attempt /home/claude/work/hh-sol2/queue/terraL2/work/func_80381C08/.attempts/19.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/bigA4/work/func_8037BE10/attempt.c) | 19 | 19 | 100% | $0.00 | – |  |
+| `localU1` | localU1 | strata/qwen3.8-flash-next | 69 | 11 | 16% | $0.00 | – |  |
+| `bigC6` | bigC6 | opus-5-5 | 7 | 1 | 14% | $43.76 | $43.760 |  |
+| `bigC7` | bigC7 | opus-5-5 | 6 | 1 | 17% | $51.49 | $51.493 |  |
+| `bigC5` | bigC5 | opus-5-5 | 11 | 1 | 9% | $114.80 | $114.795 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern f32 D_80043860[];
+#define func_8001518C func_8001518C__decl
 extern f32 func_8001518C();                                /* extern */
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
@@ -229,7 +230,22 @@ void func_80015110(s32 arg0, struct func_80015110_Struct *arg1) {
     func_80029D30(&sp28, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_8001518C.s")
+#undef func_8001518C
+
+
+f32 func_8001518C(f32 arg0) {
+    s16 n;
+
+    if ((arg0 < 0.0) || (arg0 >= 360.0)) {
+        n = arg0 / 360.0;
+        if (arg0 < 0.0) {
+            n--;
+        }
+        arg0 -= n * 360.0;
+    }
+    return arg0;
+}
+#define func_8001518C func_8001518C__decl
 
 
 

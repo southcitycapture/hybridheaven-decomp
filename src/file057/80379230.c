@@ -97,14 +97,550 @@ u16 func_803797F8(s16 *arg0, u8 arg1, u16 arg2) {
     return (u32) t;
 }
 
-/* hh-block asm/nonmatchings/file057/80379230/_mrg_keep_text_func_80379904.s {"functions":["func_80379904"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/_mrg_keep_text_func_80379904.s")
+#define D_801BC03C D_801BC03C__func_80379904
+#define D_801BC3D8 D_801BC3D8__func_80379904
+#define D_802176F0 D_802176F0__func_80379904
+#define D_803896DC D_803896DC__func_80379904
+#define D_8038BA78 D_8038BA78__func_80379904
+#define func_80005670 func_80005670__func_80379904
+#define func_8023011C func_8023011C__func_80379904
+#define func_80379490 func_80379490__func_80379904
+#define func_803795D8 func_803795D8__func_80379904
+#define func_803795D8_Struct func_803795D8_Struct__func_80379904
+#define func_803796C8 func_803796C8__func_80379904
+#define func_803796D0 func_803796D0__func_80379904
+#define func_803796E4 func_803796E4__func_80379904
+#define func_803796E4_Struct func_803796E4_Struct__func_80379904
+#define func_803796EC func_803796EC__func_80379904
+#define func_803797F8 func_803797F8__func_80379904
+u16 func_80379490(u8 *arg0, u16 arg1, u8 arg2, f32 arg3);
+struct func_803795D8_Struct {
+    u8 pad[0x30];
+    u8 unk30;
+    u8 pad31[0x396 - 0x31];
+    u8 unk396;
+};
+void func_803795D8(struct func_803795D8_Struct *arg0, u8 arg1, u8 arg2, f32 arg3);
+void func_803796C8(void);
+void func_803796D0(u8 *arg0);
+struct func_803796E4_Struct {
+    u8 pad[0x9E];
+    s16 unk9E;
+};
+void func_803796E4(struct func_803796E4_Struct *arg0);
+u16 func_803796EC(s16 *arg0, u8 arg1, u16 arg2);
+u16 func_803797F8(s16 *arg0, u8 arg1, u16 arg2);
 
-/* hh-block asm/nonmatchings/file057/80379230/_mrg_keep_text_func_8037A884.s {"functions":["func_8037A884"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/_mrg_keep_text_func_8037A884.s")
+
+typedef struct func_80379904_Struct {
+    s16 hp, hpNow;
+    u8 pad4[4];
+    s16 mp, mpNow;
+    u8 padC[0x34];
+    s16 deltaHP, deltaMP;
+    u8 pad44[6];
+    s16 mpTotal;
+    u8 pad4C[0x44];
+    u8 active;
+    u8 pad91[3];
+    u16 amount;
+    u8 side, kind, delay;
+    u8 pad99;
+    u16 damage;
+    u8 pad9C[2];
+    s16 timer, timer2;
+    u8 statA2, statA3, statA4, statA5, flags;
+    u8 padA7[0x231];
+    u8 state, item;
+} func_80379904_Struct;
+
+extern u8 D_801BC3D8[];
+extern u8 D_801BC03C[];
+extern u8 D_802176F0[];
+extern u8 D_803896DC[];
+extern f64 D_8038BA78;
+extern void *func_80005670(void *, void *);
+extern void func_8023011C(u16, void *);
+
+u16 func_80379904(void *arg0, func_80379904_Struct *a)
+{
+    func_80379904_Struct *out;
+    func_80379904_Struct *enemy;
+    f32 factor;
+    u16 hp;
+    u16 mp;
+extern void func_803796C8();
+
+    out = NULL;
+    if ((D_801BBBF0 == (u8 *)a - 0x44C)) enemy = (func_80379904_Struct *)D_801BC3D8;
+    else enemy = (func_80379904_Struct *)D_801BC03C;
+    factor = (enemy->state == 13) ? D_8038BA78 : 1.0;
+
+    switch (a->item) {
+    case 1:
+        hp = func_803796EC((s16 *)a, 25, 100);
+        a->deltaHP = -hp;
+        out = func_80005670(arg0, D_802176F0);
+        if (a->hp < a->hpNow + hp) {
+            out->amount = a->hp - a->hpNow;
+        } else {
+            out->amount = hp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        break;
+    case 2:
+        hp = func_803796EC((s16 *)a, 50, 500);
+        a->deltaHP = -hp;
+        out = func_80005670(arg0, D_802176F0);
+        if (a->hp < a->hpNow + hp) {
+            out->amount = a->hp - a->hpNow;
+        } else {
+            out->amount = hp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        break;
+    case 3:
+        hp = func_803796EC((s16 *)a, 75, 1000);
+        a->deltaHP = -hp;
+        out = func_80005670(arg0, D_802176F0);
+        if (a->hp < a->hpNow + hp) {
+            out->amount = a->hp - a->hpNow;
+        } else {
+            out->amount = hp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        break;
+    case 4:
+        a->deltaHP = a->hpNow - a->hp;
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = -a->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        break;
+    case 5:
+        mp = func_803797F8((s16 *)a, 25, 100);
+        a->deltaMP = -mp;
+        if (a->mpTotal + mp >= a->mp) {
+            a->mpTotal = a->mp;
+        } else {
+            a->mpTotal = a->mpTotal + mp;
+        }
+        out = func_80005670(arg0, D_802176F0);
+        if (a->mp < a->mpNow + mp) {
+            out->amount = a->mp - a->mpNow;
+        } else {
+            out->amount = mp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 2;
+        break;
+    case 6:
+        mp = func_803797F8((s16 *)a, 50, 200);
+        a->deltaMP = -mp;
+        if (a->mpTotal + mp >= a->mp) {
+            a->mpTotal = a->mp;
+        } else {
+            a->mpTotal = a->mpTotal + mp;
+        }
+        out = func_80005670(arg0, D_802176F0);
+        if (a->mp < a->mpNow + mp) {
+            out->amount = a->mp - a->mpNow;
+        } else {
+            out->amount = mp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 2;
+        break;
+    case 7:
+        mp = func_803797F8((s16 *)a, 75, 300);
+        a->deltaMP = -mp;
+        if (a->mpTotal + mp >= a->mp) {
+            a->mpTotal = a->mp;
+        } else {
+            a->mpTotal = a->mpTotal + mp;
+        }
+        out = func_80005670(arg0, D_802176F0);
+        if (a->mp < a->mpNow + mp) {
+            out->amount = a->mp - a->mpNow;
+        } else {
+            out->amount = mp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 2;
+        break;
+    case 8:
+        a->mpTotal = a->mp;
+        a->deltaMP = a->mpNow - a->mp;
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = a->mpNow - a->mp;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 2;
+        break;
+    case 9:
+        hp = func_803796EC((s16 *)a, 25, 100);
+        mp = func_803797F8((s16 *)a, 25, 100);
+        a->deltaHP = -hp;
+        a->deltaMP = -mp;
+        out = func_80005670(arg0, D_802176F0);
+        if (a->hp < a->hpNow + hp) {
+            out->amount = a->hp - a->hpNow;
+        } else {
+            out->amount = hp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        if (a->mpTotal + mp >= a->mp) {
+            a->mpTotal = a->mp;
+        } else {
+            a->mpTotal = a->mpTotal + mp;
+        }
+        out = func_80005670(arg0, D_802176F0);
+        if (a->mp < a->mpNow + mp) {
+            out->amount = a->mp - a->mpNow;
+        } else {
+            out->amount = mp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 2;
+        out->delay = 20;
+        break;
+    case 10:
+        hp = func_803796EC((s16 *)a, 50, 500);
+        mp = func_803797F8((s16 *)a, 50, 200);
+        a->deltaHP = -hp;
+        a->deltaMP = -mp;
+        out = func_80005670(arg0, D_802176F0);
+        if (a->hp < a->hpNow + hp) {
+            out->amount = a->hp - a->hpNow;
+        } else {
+            out->amount = hp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        if (a->mpTotal + mp >= a->mp) {
+            a->mpTotal = a->mp;
+        } else {
+            a->mpTotal = a->mpTotal + mp;
+        }
+        out = func_80005670(arg0, D_802176F0);
+        if (a->mp < a->mpNow + 200) {
+            out->amount = a->mp - a->mpNow;
+        } else {
+            out->amount = mp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 2;
+        out->delay = 20;
+        break;
+    case 11:
+        hp = func_803796EC((s16 *)a, 75, 1000);
+        mp = func_803797F8((s16 *)a, 75, 300);
+        a->deltaHP = -hp;
+        a->deltaMP = -mp;
+        out = func_80005670(arg0, D_802176F0);
+        if (a->hp < a->hpNow + hp) {
+            out->amount = a->hp - a->hpNow;
+        } else {
+            out->amount = hp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        if (a->mpTotal + mp >= a->mp) {
+            a->mpTotal = a->mp;
+        } else {
+            a->mpTotal = a->mpTotal + mp;
+        }
+        out = func_80005670(arg0, D_802176F0);
+        if (a->mp < a->mpNow + mp) {
+            out->amount = a->mp - a->mpNow;
+        } else {
+            out->amount = mp;
+        }
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 2;
+        out->delay = 20;
+        break;
+    case 12:
+        a->deltaHP = a->hpNow - a->hp;
+        a->deltaMP = a->mpNow - a->mp;
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = a->hp - a->hpNow;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        a->mpTotal = a->mp;
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = a->mp - a->mpNow;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 2;
+        out->delay = 20;
+        break;
+    case 13:
+        func_803796D0((u8 *)a);
+        break;
+    case 14:
+        func_803796E4((void *)a);
+        break;
+    case 15:
+        func_803796D0((u8 *)a);
+        func_803796E4((void *)a);
+        a->deltaHP = a->hpNow - a->hp;
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = -a->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 0;
+        } else {
+            out->side = 1;
+        }
+        out->kind = 1;
+        break;
+    case 20:
+        enemy->deltaHP = func_80379490((u8 *)a, 100, enemy->statA2, factor);
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = enemy->damage = enemy->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 1;
+        } else {
+            out->side = 0;
+        }
+        out->kind = 0;
+        func_8023011C(out->amount, enemy);
+        break;
+    case 21:
+        enemy->deltaHP = func_80379490((u8 *)a, 100, enemy->statA2, factor);
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = enemy->damage = enemy->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 1;
+        } else {
+            out->side = 0;
+        }
+        out->kind = 0;
+        func_8023011C(out->amount, enemy);
+        break;
+    case 22:
+        enemy->deltaHP = func_80379490((u8 *)a, 80, enemy->statA3, factor);
+        func_803795D8((void *)enemy, 1, enemy->statA3, factor);
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = enemy->damage = enemy->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 1;
+        } else {
+            out->side = 0;
+        }
+        out->kind = 0;
+        func_8023011C(out->amount, enemy);
+        break;
+    case 23:
+        enemy->deltaHP = func_80379490((u8 *)a, 70, enemy->statA3, factor);
+        func_803795D8((void *)enemy, 3, enemy->statA3, factor);
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = enemy->damage = enemy->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 1;
+        } else {
+            out->side = 0;
+        }
+        out->kind = 0;
+        func_8023011C(out->amount, enemy);
+        break;
+    case 24:
+    case 25:
+        if (enemy->statA4 != 0) {
+            if (a->item == 24) {
+                enemy->timer = 80;
+            } else {
+                enemy->timer = 240;
+            }
+            out = func_80005670(arg0, D_803896DC);
+            out->active = 0;
+            func_803796C8(enemy);
+        }
+        break;
+    case 26:
+        enemy->deltaHP = func_80379490((u8 *)a, 250, enemy->statA5, factor);
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = enemy->damage = enemy->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 1;
+        } else {
+            out->side = 0;
+        }
+        out->kind = 0;
+        func_8023011C(out->amount, enemy);
+        break;
+    case 27:
+        enemy->deltaHP = func_80379490((u8 *)a, 150, enemy->statA5, factor);
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = enemy->damage = enemy->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 1;
+        } else {
+            out->side = 0;
+        }
+        out->kind = 0;
+        func_8023011C(out->amount, enemy);
+        break;
+    case 28:
+        enemy->deltaHP = func_80379490((u8 *)a, 400, 100, 1.0f);
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = enemy->damage = enemy->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 1;
+        } else {
+            out->side = 0;
+        }
+        out->kind = 0;
+        func_8023011C(out->amount, enemy);
+        break;
+    case 29:
+        enemy->deltaHP = func_80379490((u8 *)a, 250, 100, 1.0f);
+        out = func_80005670(arg0, D_802176F0);
+        out->amount = enemy->damage = enemy->deltaHP;
+        if (D_801BBBF0 == (u8 *)a - 0x44C) {
+            out->side = 1;
+        } else {
+            out->side = 0;
+        }
+        out->kind = 0;
+        func_8023011C(out->amount, enemy);
+        break;
+    case 30:
+        if (!(a->flags & 1)) {
+            a->flags |= 1;
+        }
+        break;
+    case 31:
+        if (!(a->flags & 4)) {
+            a->flags |= 4;
+        }
+        break;
+    case 32:
+        if (!(a->flags & 16)) {
+            a->flags |= 16;
+        }
+        break;
+    case 33:
+        if (!(a->flags & 128)) {
+            a->flags |= 128;
+        }
+        break;
+    case 34:
+        if (!(a->flags & 64)) {
+            a->flags |= 64;
+        }
+        break;
+    case 35:
+        if (!(enemy->flags & 2)) {
+            enemy->flags |= 2;
+        }
+        break;
+    case 36:
+        if (!(enemy->flags & 8)) {
+            enemy->flags |= 8;
+        }
+        break;
+    case 37:
+        if (!(enemy->flags & 32)) {
+            enemy->flags |= 32;
+            enemy->timer2 = 50;
+        }
+        out = func_80005670(arg0, D_803896DC);
+        out->active = 1;
+        break;
+    }
+    if (out != NULL) return out->amount;
+    return 0;
+}
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef D_802176F0
+#undef D_803896DC
+#undef D_8038BA78
+#undef func_80005670
+#undef func_8023011C
+#undef func_80379490
+#undef func_803795D8
+#undef func_803795D8_Struct
+#undef func_803796C8
+#undef func_803796D0
+#undef func_803796E4
+#undef func_803796E4_Struct
+#undef func_803796EC
+#undef func_803797F8
+
+/* hh-block asm/nonmatchings/file057/80379230/_mrg_keep_tail_c65fc26144370332.s {"functions":["func_8037A884"],"rodata":[],"rodata_bytes":[2151201560,8582968,56]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/_mrg_keep_tail_c65fc26144370332.s")
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_80379230[] = {
     0xCC, 0xB5, 0xC5, 0xA8, 0xA5, 0xE2, 0xA1, 0xBC, 0xA5, 0xC9, 0x0A, 0x00, 0xA5, 0xA2, 0xA5, 0xA4,
     0xA5, 0xB9, 0xA4, 0xCE, 0xB8, 0xFA, 0xB2, 0xCC, 0x20, 0xB9, 0xC5, 0xC4, 0xBE, 0xBB, 0xFE, 0xB4,
@@ -120,17 +656,5 @@ static const unsigned char rodata_80379230[] = {
     0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04,
     0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04,
     0x3F, 0x99, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xE3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33,
-    0x80, 0x37, 0x99, 0xA0, 0x80, 0x37, 0x9A, 0x24, 0x80, 0x37, 0x9A, 0xAC, 0x80, 0x37, 0x9B, 0x34,
-    0x80, 0x37, 0x9B, 0x90, 0x80, 0x37, 0x9C, 0x38, 0x80, 0x37, 0x9C, 0xE0, 0x80, 0x37, 0x9D, 0x88,
-    0x80, 0x37, 0x9D, 0xEC, 0x80, 0x37, 0x9F, 0x34, 0x80, 0x37, 0xA0, 0x74, 0x80, 0x37, 0xA1, 0xBC,
-    0x80, 0x37, 0xA2, 0x88, 0x80, 0x37, 0xA2, 0x9C, 0x80, 0x37, 0xA2, 0xB0, 0x80, 0x37, 0xA8, 0x64,
-    0x80, 0x37, 0xA8, 0x64, 0x80, 0x37, 0xA8, 0x64, 0x80, 0x37, 0xA8, 0x64, 0x80, 0x37, 0xA3, 0x1C,
-    0x80, 0x37, 0xA3, 0x98, 0x80, 0x37, 0xA4, 0x14, 0x80, 0x37, 0xA4, 0xAC, 0x80, 0x37, 0xA5, 0x44,
-    0x80, 0x37, 0xA5, 0x44, 0x80, 0x37, 0xA5, 0x94, 0x80, 0x37, 0xA6, 0x10, 0x80, 0x37, 0xA6, 0x8C,
-    0x80, 0x37, 0xA7, 0x08, 0x80, 0x37, 0xA7, 0x84, 0x80, 0x37, 0xA7, 0x9C, 0x80, 0x37, 0xA7, 0xB4,
-    0x80, 0x37, 0xA7, 0xCC, 0x80, 0x37, 0xA7, 0xE4, 0x80, 0x37, 0xA7, 0xFC, 0x80, 0x37, 0xA8, 0x14,
-    0x80, 0x37, 0xA8, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xE3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33,
-    0x80, 0x37, 0xA9, 0x18, 0x80, 0x37, 0xA9, 0x24, 0x80, 0x37, 0xA9, 0x60, 0x80, 0x37, 0xA9, 0x48,
-    0x80, 0x37, 0xA9, 0x54, 0x80, 0x37, 0xA9, 0x18, 0x80, 0x37, 0xA9, 0x24, 0x80, 0x37, 0xA9, 0x60,
-    0x3F, 0xE3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-owned-pool func_80379904 8038BA80 8038BB18 */
