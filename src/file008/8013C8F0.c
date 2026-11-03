@@ -231,7 +231,42 @@ u8 *func_8013D140(s32 arg0) {
     return D_8018E300;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8013C8F0/func_8013D16C.s")
+#define D_8017DF14 D_8017DF14__func_8013D16C
+#define D_8017DF2C D_8017DF2C__func_8013D16C
+#define D_801BEB20 D_801BEB20__func_8013D16C
+#define func_8013CC10_Struct func_8013CC10_Struct__func_8013D16C
+#define func_8013D140 func_8013D140__func_8013D16C
+typedef struct func_8013CC10_Struct {
+    u8 value;
+    u8 data[6];
+} func_8013CC10_Struct;
+extern func_8013CC10_Struct D_8017DF14[];
+extern func_8013CC10_Struct D_8017DF2C[];
+u8 *func_8013D140(s32 arg0);
+
+
+extern u8 D_801BEB20[][6];
+
+u8 *func_8013D16C(u8 arg0, u8 *arg1) {
+    u8 *p;
+    u8 i;
+
+    if (arg1 == D_801BBBF0 + 0x44C) {
+        p = (u8 *)&D_8017DF14[arg0];
+    } else {
+        p = (u8 *)&D_8017DF2C[arg0];
+    }
+    for (i = 0; i < *p; i++) {
+        D_801BEB20[arg0][i] = *func_8013D140(p[i + 1]);
+    }
+    D_801BEB20[arg0][i] = 0;
+    return D_801BEB20[arg0];
+}
+#undef D_8017DF14
+#undef D_8017DF2C
+#undef D_801BEB20
+#undef func_8013CC10_Struct
+#undef func_8013D140
 
 #define D_8017DEE5 D_8017DEE5__func_8013D268
 #define D_8017DEED D_8017DEED__func_8013D268

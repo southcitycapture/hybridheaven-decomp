@@ -2464,6 +2464,7 @@ void func_801F7AC8(void *arg0, s32 arg1) {
 #undef func_801F7B2C
 
 
+#define func_801F7DB4 func_801F7DB4__decl2466
 extern u8 func_801F7DB4[];
 
 typedef struct func_801F7B2C_Struct {
@@ -2511,9 +2512,69 @@ void func_801F7B2C(func_801F7B2C_Struct *arg0, s32 arg1) {
         func_800058DC(arg0, (s32) func_801F7DB4);
     }
 }
+#undef func_801F7DB4
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F7DB4.s {"functions":["func_801F7DB4"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F7DB4.s")
+#define func_801FA2E0 func_801FA2E0__func_801F7DB4
+extern s32 func_801FA2E0();
+
+
+typedef struct {
+    u8 pad0[0x3C];
+    s16 unk3C;
+    u8 pad3E[0x90 - 0x3E];
+    s16 unk90;
+    s16 unk92;
+    s16 unk94;
+    s16 unk96;
+    s16 unk98;
+    s16 unk9A;
+} func_801F7DB4_Struct;
+
+void func_801F7DB4(func_801F7DB4_Struct *arg0, s32 arg1) {
+    u8 sp2F;
+    u8 sp2E;
+    u8 sp2D;
+    u8 sp2C;
+    u8 sp2B;
+    s32 deg;
+    f32 f;
+
+    deg = 150;
+    f = func_8001EB64(arg0->unk90);
+    sp2F = (u32) (((f + 1.0f) * 0.5 * 230.0) + 20.0);
+    if (arg0->unk90 < (s16) (deg / 0.0439453125)) {
+        if (arg0->unk90 < 0) {
+            arg0->unk90 += 0x240;
+        } else {
+            arg0->unk90 += 0x60;
+        }
+    }
+    sp2E = (u32) (((func_8001EB64(arg0->unk92) + 1.0f) * 0.5 * 230.0) + 20.0);
+    sp2D = (u32) (((func_8001EB64(arg0->unk94) + 1.0f) * 0.5 * 200.0) + 50.0);
+    sp2C = (u32) ((func_8001EB64(arg0->unk96) + 1.0f) * 0.5 * 80.0);
+    deg = 70;
+    sp2B = (u32) ((func_8001EB64(arg0->unk98) + 1.0f) * 0.5 * 150.0);
+    if ((s16) (deg / 0.0439453125) < arg0->unk90) {
+        if (arg0->unk98 < 0) {
+            arg0->unk98 += 0x60;
+        }
+    }
+    arg0->unk9A -= 5;
+    if (*(s16 *) ((u8 *) arg0 + 0x9A) < -0x6E) {
+        arg0->unk9A = -0x6E;
+    }
+    if (0) {
+        func_801FA2E0(&sp2B);
+    }
+    func_80147AA8(0, sp2F, sp2E, sp2D);
+    func_80147AF0(0, sp2C, sp2B, 0);
+    func_80147C28(0, ((s8 *) &arg0->unk9A)[1], -0x64, -0x43);
+    if (arg0->unk98 >= -0x7FF) {
+        func_801FA2E0();
+        arg0->unk3C = 2;
+    }
+}
+#undef func_801FA2E0
 
 #define D_8021AFE4 D_8021AFE4__func_801F82D4
 
@@ -2791,8 +2852,8 @@ void func_801F8900(u8 *arg0, s32 arg1) {
 }
 #undef func_801F8974
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F8974.s {"functions":["func_801F8974"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F8974.s")
+/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_06bfa01b9d05bb3e.s {"functions":["func_801F8974"],"rodata":[],"rodata_bytes":[2149682440,6069512,56]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_06bfa01b9d05bb3e.s")
 
 
 extern void func_801F8AE8();
@@ -3523,6 +3584,7 @@ void func_801FA074(s32 arg0, s32 arg1) {
 #undef func_801F474C
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_801F3B30[] = {
     0xA5, 0xAC, 0xA5, 0xE9, 0xA5, 0xB9, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0x21, 0x21, 0x21, 0x21,
     0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21,
@@ -3606,10 +3668,5 @@ static const unsigned char rodata_801F3B30[] = {
     0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
     0x3E, 0x19, 0x99, 0x9A, 0x3E, 0x19, 0x99, 0x9A, 0x3E, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00,
     0x3F, 0xB9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x40, 0x32, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCD,
-    0x40, 0x6C, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xA6, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x40, 0x6C, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x62, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xA6, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3E, 0x19, 0x99, 0x9A, 0x3D, 0x8F, 0x5C, 0x29,
-    0x3E, 0x4C, 0xCC, 0xCD, 0x3E, 0x19, 0x99, 0x9A, 0x3E, 0x4C, 0xCC, 0xCD, 0x3E, 0x19, 0x99, 0x9A,
-    0x3E, 0x4C, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-owned-pool func_801F7DB4 80218CE0 80218D08 */

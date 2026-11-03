@@ -41,6 +41,7 @@ extern void func_80126E88(s32);
 extern void func_8013A334(s32 *, u8 *, s32, s32);
 extern void func_801479A8(void *);
 extern void func_801CBD70(void);
+#define func_801CBDBC func_801CBDBC__decl
 extern void func_801CBDBC(void *, void **, s32);
 extern void func_801CC830(u8 *arg0, s32 arg1);
 extern void func_801CCA44();
@@ -100,7 +101,31 @@ void func_801CBD70(void) {
 }
 #undef func_801CBD00
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801CBC70/func_801CBDBC.s")
+#undef func_801CBDBC
+
+
+struct func_801CBDBC_StructInner {
+    u8 pad[0xC];
+    u16 count;
+};
+struct func_801CBDBC_StructOuter {
+    u8 pad[0x5C];
+    struct func_801CBDBC_StructInner *inner;
+};
+struct func_801CBDBC_StructNode {
+    u8 pad[0x28];
+    u16 value;
+};
+
+void func_801CBDBC(struct func_801CBDBC_StructOuter *arg0, struct func_801CBDBC_StructNode **arg1, u16 arg2) {
+    struct func_801CBDBC_StructInner *inner = arg0->inner;
+    s32 i;
+
+    for (i = 0; i < inner->count; i++) {
+        arg1[i]->value = arg2;
+    }
+}
+#define func_801CBDBC func_801CBDBC__decl
 
 #define func_801CBD70 func_801CBD70__func_801CBE04
 

@@ -485,6 +485,14 @@ def own_decl_fixes(lines, name, snippet, at):
         yield "drop-decl", [l for k, l in enumerate(lines) if k not in bad]
         yield "fix-decl", ["extern " + head if k in bad else l for k, l in enumerate(lines)]
 
+def _annotate(seg, cfile, text):
+    """kept_blocks.annotate, or None when a kept block names a readonly label that no asm item owns any more (11-03:
+    Task 31 moved file008's strings such as D_8018CBD4 into C). make setup could not recreate that block, so the
+    variant is skipped instead of crashing the whole integration pool."""
+    try: return kept_blocks.annotate(S, seg, cfile, text)
+    except KeyError: return None
+
+
 def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
     """Candidate texts with `snippet` in place of its asm entry: plain declarations, then private aliases, then the
     snippet's own file-scope declarations hoisted to the top of the file; each also with the file's clashing
@@ -516,12 +524,14 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
                 for direction in (False, True) if not literals else (False,):
                     merged = merge_kept_lates(seg, cfile, cand, direction)
                     tag = ("named-" if not literals else "") + prefix + how + ("-before" if direction else "")
-                    yield tag, kept_blocks.annotate(S, seg, cfile, merged)
+                    annotated = _annotate(seg, cfile, merged)
+                    if annotated is not None: yield tag, annotated
                     if not _file_alias and how.startswith('isolate') and not direction:
                         pool_candidates.append((tag, merged))
                     promoted = orphan_lates(merged)
                     if promoted != merged:
-                        yield tag + '-c-lates', kept_blocks.annotate(S, seg, cfile, promoted)
+                        annotated = _annotate(seg, cfile, promoted)
+                        if annotated is not None: yield tag + '-c-lates', annotated
                         if not _file_alias and how.startswith('isolate') and not direction:
                             pool_candidates.append((tag + '-c-lates', promoted))
     if not _file_alias:

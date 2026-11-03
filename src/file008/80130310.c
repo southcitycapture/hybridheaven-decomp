@@ -531,11 +531,93 @@ void func_801315A8(func_801315A8_Struct *arg0, f32 arg1, f32 arg2, f32 arg3, f32
     }
 }
 
-/* hh-block asm/nonmatchings/file008/80130310/_mrg_keep_text_func_8013173C.s {"functions":["func_8013173C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/_mrg_keep_text_func_8013173C.s")
+#define D_8018D6C8 D_8018D6C8__func_8013173C
 
-/* hh-block asm/nonmatchings/file008/80130310/_mrg_keep_text_func_801318D8.s {"functions":["func_801318D8"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/_mrg_keep_text_func_801318D8.s")
+
+typedef struct func_8013173C_Struct { u16 unk0; u16 unk2; u16 unk4; } func_8013173C_Struct;
+extern f64 D_8018D6C8;
+#define F2 D_801309EC
+
+#define arg0 ((func_8013173C_Struct *)arg0_)
+void func_8013173C(void *arg0_, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10) {
+    f32 var_fv0;
+    f32 x, y;
+
+    arg0->unk2 = F2(arg1, arg2);
+    if (arg2 < 0.0f) {
+        var_fv0 = -arg2;
+    } else {
+        var_fv0 = arg2;
+    }
+    if ((f64) var_fv0 < D_8018D6C8) {
+        if ((arg2 > 0.0f) || ((arg2 == 0.0f) && (arg0->unk0 & 0x200))) {
+            arg0->unk0 = 0;
+            y = arg5 * arg8;
+            x = (arg5 * arg7 * arg10) - (arg6 * arg9);
+            arg0->unk4 = F2(x, y);
+        } else {
+            arg0->unk0 = 0x200;
+            x = (arg5 * arg7 * arg10) - (arg6 * arg9);
+            y = arg5 * arg8;
+            arg0->unk4 = F2(-x, -y);
+        }
+    } else {
+        arg0->unk0 = F2(((-arg5 * arg7 * arg9) - (arg6 * arg10)) / arg2, ((-arg6 * arg7 * arg9) + (arg5 * arg10)) / arg2);
+        arg0->unk4 = F2(arg3 / arg2, arg4 / arg2);
+    }
+}
+#undef F2
+#undef arg0
+#undef D_8018D6C8
+
+#define D_8018D6D0 D_8018D6D0__func_801318D8
+
+
+typedef struct func_801318D8_Struct { u16 f0; u16 f2; u16 f4; } func_801318D8_Struct;
+typedef struct func_801318D8_Vec { f32 x, y, z; } func_801318D8_Vec;
+
+extern f64 D_8018D6D0;
+#define S ((func_801318D8_Struct *)arg0)
+#define V ((func_801318D8_Vec *)arg11)
+
+void func_801318D8(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10, void *arg11, f32 arg12, f32 arg13) {
+    f32 sp3C;
+    f32 sp38;
+    f32 fa0;
+    f32 fa1;
+    f32 ft4;
+    f32 ft5;
+    f32 p;
+    s32 r;
+
+    S->f2 = D_801309EC(arg1, arg2);
+    if (arg2 < 0.0f) {
+        p = -arg2;
+    } else {
+        p = arg2;
+    }
+    if ((f64) p < 1e-06) {
+        fa1 = (arg5 * arg7 * arg9) + (arg6 * arg10);
+        ft4 = (arg5 * arg7 * arg10) - (arg6 * arg9);
+        sp3C = (V->x * fa1) + ((((ft4 * V->y) - (arg5 * arg8 * V->z * V->x)) / arg12) * arg13);
+        sp38 = (V->y * fa1) + ((((-ft4 * V->x) - (arg5 * arg8 * V->z * V->y)) / arg12) * arg13);
+        if ((arg2 > 0.0f) || ((arg2 == 0.0f) && (S->f0 & 0x200))) {
+            S->f0 = 0;
+            S->f4 = D_801309EC(sp3C, sp38);
+        } else {
+            S->f0 = 0x200;
+            S->f4 = D_801309EC(-sp3C, -sp38);
+        }
+    } else {
+        fa1 = (V->z * ((arg5 * arg7 * arg9) + (arg6 * arg10))) + (arg5 * arg8 * arg12 * arg13);
+        ft4 = (V->z * ((arg6 * arg7 * arg9) - (arg5 * arg10))) + (arg6 * arg8 * arg12 * arg13);
+        S->f0 = D_801309EC(fa1 / arg2, ft4 / arg2);
+        S->f4 = D_801309EC(arg3 / arg2, arg4 / arg2);
+    }
+}
+#undef S
+#undef V
+#undef D_8018D6D0
 
 
 
@@ -576,11 +658,12 @@ void func_80131CC4(u16 *arg0, u16 *arg1, u16 *arg2) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_80130310[] = {
     0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x40, 0x09, 0x21, 0xFB, 0x54, 0x44, 0x2D, 0x18,
     0x40, 0x09, 0x21, 0xFB, 0x54, 0x44, 0x2D, 0x18, 0x3F, 0xC9, 0x0F, 0xDB, 0x00, 0x00, 0x00, 0x00,
     0x54, 0x52, 0x41, 0x4E, 0x53, 0x20, 0x44, 0x41, 0x4D, 0x45, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D,
     0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D,
-    0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-owned-pool func_801318D8 8018D6D0 8018D6D8 */

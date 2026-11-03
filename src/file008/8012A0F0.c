@@ -412,8 +412,67 @@ void func_8012AEE0(func_8012AEE0_Arg *arg0, f32 arg1) {
     arg0->unk48 = (f64)(func_8001EB64((s16)v) * arg1);
 }
 
-/* hh-block asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012AF88.s {"functions":["func_8012AF88"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012AF88.s")
+#define D_801BBCD0 D_801BBCD0__func_8012AF88
+#define func_8012A72C_Obj func_8012A72C_Obj__func_8012AF88
+#define func_8012A72C_Vec func_8012A72C_Vec__func_8012AF88
+struct func_8012A72C_Vec {
+    u8 pad0[4];
+    f32 x;
+    u8 pad1[4];
+    f32 y;
+};
+struct func_8012A72C_Obj {
+    u8 pad0[0x2C];
+    struct func_8012A72C_Vec *vec;
+};
+extern struct func_8012A72C_Obj *D_801BBCD0;
+typedef struct T_func_801EFE0C_ret { /* size >= 0x18 */
+    /* 0x000 */ u8 pad0[0x4];
+    /* 0x004 */ f32 x; /* 182 uses */
+    /* 0x008 */ f32 y; /* 117 uses */
+    /* 0x00C */ f32 z; /* 169 uses */
+    /* 0x010 */ s16 unk10; /* 1 use */
+    /* 0x012 */ s16 angle; /* 134 uses */
+    /* 0x014 */ s16 unk14; /* 1 use */
+    /* 0x016 */ u8 pad16[0x2];
+} T_func_801EFE0C_ret;
+typedef struct T_D_801BBCD0_p0 { /* size >= 0x30 */
+    /* 0x000 */ u8 pad0[0x2C];
+    /* 0x02C */ struct T_func_801EFE0C_ret *inner; /* 348 uses */
+} T_D_801BBCD0_p0;
+
+
+#define VEC (((T_D_801BBCD0_p0 *)D_801BBCD0)->inner)
+#define WRAP(v) (((v) & 0x1000) ? (((v) & 0x1FFF) - 0x2000) : ((v) & 0x1FFF))
+#define ABS(v) ((v) < 0 ? -(v) : (v))
+
+s32 func_8012AF88(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, u8 arg6) {
+    s16 d;
+    s16 a;
+
+    if (arg5 * arg5 < (arg0 - VEC->x) * (arg0 - VEC->x) + (arg1 - VEC->y) * (arg1 - VEC->y) + (arg2 - VEC->z) * (arg2 - VEC->z)) {
+        return 0;
+    }
+    a = WRAP(B_8001EF38(arg0 - arg3, arg2 - arg4));
+    d = WRAP((s16)(B_8001EF38(VEC->x - arg3, VEC->z - arg4) - a));
+    if (ABS(d) > 0x200) {
+        return 0;
+    }
+    if (arg6 == 0) {
+        d = VEC->angle - a + 0x1000;
+        d = WRAP(d);
+        if (ABS(d) > 0x400) {
+            return 0;
+        }
+    }
+    return 1;
+}
+#undef VEC
+#undef WRAP
+#undef ABS
+#undef D_801BBCD0
+#undef func_8012A72C_Obj
+#undef func_8012A72C_Vec
 
 /* hh-block asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012B1E4.s {"functions":["func_8012B1E4"],"rodata":[]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012B1E4.s")
