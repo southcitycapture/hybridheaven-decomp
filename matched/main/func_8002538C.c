@@ -14,6 +14,7 @@ struct func_8002538C_Struct {
 
 extern u8 D_80048220[];
 
+/* GGA: sndCmdWobbleTick */
 void func_8002538C(void) {
     s32 temp_v1;
 

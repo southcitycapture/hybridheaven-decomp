@@ -2,6 +2,7 @@
 extern u8 *D_800CBDA0;
 
 
+/* GGA: sndCmdSkip1 */
 void func_800262AC(void) {
     D_800CBDA0 += 1;
 }

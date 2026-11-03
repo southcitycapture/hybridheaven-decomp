@@ -11,6 +11,7 @@ extern s32 D_800CBB48;
 extern void (*D_80047E0C[])(void);
 
 
+/* GGA: sndAddSlot */
 void func_80022C8C(void) {
     s32 value;
     s32 i;

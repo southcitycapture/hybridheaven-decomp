@@ -11,6 +11,20 @@ def blob(text):
 
 
 class PreservationTests(unittest.TestCase):
+    def test_file_span_excludes_linker_owned_zero_padding(self):
+        with patch.object(S, 'entries', return_value=[('func_80000000', 'x.s', 0x100, 0x20)]), \
+             patch.object(S, 'SPLITS', {'test': [0x100, 0x140]}), \
+             patch.object(S, 'LINKER_PADDING', {'test/80000000': 16}):
+            self.assertEqual(S.file_span('test', '80000000'), (0x100, 0x130))
+
+    def test_text_end_includes_padding_before_migrated_data(self):
+        yaml = ('      - [0x100, c, seg/80000000]\n'
+                '      - [0x120, .data, data/seg/data_80000020]\n'
+                '      - [0x200, c, other/80000100]\n'
+                '      - [0x250, data]\n')
+        with patch.object(S, 'open', return_value=io.StringIO(yaml), create=True):
+            self.assertEqual(S._text_ends(), {'seg': 0x120, 'other': 0x250})
+
     def test_last_readonly_extent_without_bss(self):
         manifest = '{"files":[{"id":32,"vram":2149456864,"exp_len":40416}]}'
         with patch.object(S, 'open', side_effect=lambda p: io.StringIO(
@@ -130,6 +144,22 @@ class PreservationTests(unittest.TestCase):
              patch.object(S.try_func, "UNRESOLVED", []):
             self.assertFalse(S.func_ok("obj", "func_80000000", 0, 4, 0x80000000, 0x80000000))
 
+    def test_existing_file_check_links_owned_bss(self):
+        """existing_ok must link a file's own .bss where bss_splits.json puts it, as reconcile_frozen.verify does."""
+        with patch.object(S, "FILE_BSS", {("file025", "801D6000"): (0x801E1700, 0x20)}):
+            self.assertEqual(S.file_bss("file025", "801D6000"), 0x801E1700)
+            self.assertIsNone(S.file_bss("file025", "801D46F0"))
+        text = "void func_80000000(void) {}\n"
+        seen = []
+        with patch.object(S, "FILE_BSS", {("main", "file"): (0x80001000, 0x10)}), \
+             patch.object(S, "open", side_effect=lambda *a: io.StringIO(text), create=True), \
+             patch.object(S.os.path, "exists", return_value=True), \
+             patch.object(S, "entries", return_value=[("func_80000000", 0, 0, 8, 0x80000000)]), \
+             patch.object(S, "compile_file", return_value=("obj", "")), \
+             patch.object(S, "func_ok", side_effect=lambda *a, **k: seen.append(k.get("bss")) or False):
+            self.assertFalse(S.existing_ok("main", "file", {"func_80000000": text}, "td"))
+        self.assertEqual(seen, [0x80001000])
+
 
 class AllFilesTests(unittest.TestCase):
     def test_all_keeps_committed_files_without_registered_functions(self):
@@ -140,11 +170,12 @@ class AllFilesTests(unittest.TestCase):
                 p = root / path
                 p.parent.mkdir(parents=True, exist_ok=True)
                 p.write_text(text)
-            for name in ('srcbuild.py', 'try_func.py', 'workdir.py', 'bss_layout.py'):
+            for name in ('srcbuild.py', 'try_func.py', 'workdir.py', 'bss_layout.py', 'idoflags.py'):
                 put('tools/hh/' + name, (Path(S.HH) / 'tools/hh' / name).read_text())
             put('build/expanded.bin', '')
             put('build/expanded.json', '{"files":[]}')
             put('tools/hh/file_splits.json', '{}')
+            put('tools/hh/text_padding.json', '{}')
             put('tools/hh/bss_splits.json', '{}')
             put('hybridheaven.yaml', '')
             (root / 'queue').mkdir()
@@ -197,7 +228,9 @@ class ExistingSourceTests(unittest.TestCase):
         info = [("func_80000000", "a.s", 0, 8, 0x80000000),
                 ("func_80000008", "b.s", 8, 8, 0x80000008)]
         elf = MagicMock()
-        elf.get_section_by_name.return_value = {"sh_size": 16}
+        section = MagicMock(); section.__getitem__.side_effect = {"sh_size": 16}.__getitem__
+        section.data.return_value = b"\0" * 16
+        elf.get_section_by_name.return_value = section
         with patch.object(S, "open", side_effect=lambda *a: io.StringIO(source), create=True), \
              patch.object(S.os.path, "exists", return_value=True), patch.object(S, "entries", return_value=info), \
              patch.object(S, "is_stub", side_effect=lambda off, size: off == 8), \
@@ -248,6 +281,38 @@ class ExactLinkTests(unittest.TestCase):
             with patch.object(S.try_func.subprocess, "run", side_effect=crash_default):
                 linked = S.try_func.linked_func_bytes(obj, "func_80000000", 0x80000000, base=0x80000000)
             self.assertEqual(linked, bytes.fromhex("03e0000800000000"))
+
+
+class TextExtentTests(unittest.TestCase):
+    """Task 27: IDO pads every object's .text to 16 bytes, and the linker script places each input section SUBALIGN(16).
+    A file whose original .text ends 4/8/12 bytes before a 16-byte boundary followed by zeros links the same either way."""
+    def run_check(self, data, gap=b"\0" * 4, after=b"\x11" * 16):
+        img = b"\0" * 0x100 + b"\x24" * 0x1C + gap + after         # span 0x1C at 0x100 (vram 0x80000000), next at 0x120
+        with patch.object(S, 'IMG', img), patch.object(S, 'file_span', return_value=(0x100, 0x11C)), \
+             patch.object(S, 'entries', return_value=[('func_80000000', 'p', 0x100, 0x1C, 0x80000000)]):
+            return S.text_extent('test', 'file'), S.text_problem('test', 'file', data)
+
+    def test_exact_original_length(self):
+        self.assertEqual(self.run_check(b"\x24" * 0x1C), ((0x1C, 0x20), None))
+
+    def test_ido_padding_into_original_zeros_links_the_same(self):
+        self.assertIsNone(self.run_check(b"\x24" * 0x1C + b"\0" * 4)[1])
+
+    def test_past_the_boundary_moves_the_next_section(self):
+        self.assertEqual(self.run_check(b"\x24" * 0x1C + b"\0" * 0x14)[1], "file .text is 0x30, original 0x1C")
+
+    def test_nonzero_original_gap_allows_no_padding(self):
+        extent, why = self.run_check(b"\x24" * 0x1C + b"\0" * 4, gap=b"\x00\x00\x00\x01")
+        self.assertEqual(extent, (0x1C, 0x1C))
+        self.assertEqual(why, "file .text is 0x20, original 0x1C")
+
+    def test_nonzero_object_padding_changes_a_linked_byte(self):
+        self.assertIn("padding past 0x1C is not zero", self.run_check(b"\x24" * 0x1C + b"\0\0\0\x01")[1])
+
+    def test_short_object_keeps_the_padding_retry_message(self):
+        import re
+        why = self.run_check(b"\x24" * 0x10)[1]
+        self.assertRegex(why, r"^file \.text is 0x([0-9A-F]+), original 0x([0-9A-F]+)$")
 
 
 if __name__ == "__main__": unittest.main()

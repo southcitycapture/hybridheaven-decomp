@@ -45,7 +45,9 @@ s32 arg1;
 }
 #undef func_80244A04
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/80244930/D_80258760.s")
+/* Readonly diagnostics, formerly D_80258760.s. */
+const u8 D_80258760[0x18] =
+    "\271\365\311\376\245\321\245\351\245\341\241\274\245\277\245\273\245\303\245\310\n\000\000";
 
 #define func_80244AC0 func_80244AC0__func_80244A04
 
@@ -135,5 +137,4 @@ void func_80244BF0(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/80244930/_pad_16.s")
-
+/* The following 16 alignment bytes are supplied by the linker's pad subsegment. */

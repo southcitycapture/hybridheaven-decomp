@@ -20,6 +20,7 @@ subsegment (asm/data/data/<seg>/data_<VRAM>.data.s, not linked) after it, so reg
 
   data_to_c.py [SEG ...]   write the C files (default: every segment in data_c_segments.txt)
   data_to_c.py --check     exit 1 if any generated file is missing or differs
+  data_to_c.py --inline-strings SEG/FILE [...]   replace string-only readonly ASM inclusions in their owning C file
 """
 import os
 import re
@@ -225,6 +226,100 @@ def defined_symbols(text):
     return re.findall(r"^(?:u32|u16|u8|char) (\w+)\[", text, re.M)
 
 
+def string_literal(data):
+    """An ASCII C literal preserving EUC-JP bytes independently of source encoding."""
+    escapes = {10: r"\n", 9: r"\t", 34: r'\"', 92: r"\\", 63: r"\?"}
+    return '"' + "".join(escapes.get(b, chr(b) if 32 <= b < 127 else "\\%03o" % b)
+                         for b in data) + '"'
+
+
+def inline_string_block(text, image):
+    """Only accept annotated .rodata strings, proving every byte against the ROM.
+
+    Keep each original label as a const C array, including any following anonymous
+    diagnostic strings. Explicit array extents retain the original internal padding;
+    IDO supplies the same four-byte alignment. Never swallow relocations, late
+    literals, code, or an unknown directive into a raw-byte initializer.
+    """
+    objects, current, section = [], None, None
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        s = line.strip()
+        if s.startswith(".section"):
+            section = s.split()[1]
+            if section not in (".rodata", ".text"):
+                raise ValueError("not regular readonly strings: " + section)
+        elif s.startswith("dlabel "):
+            current = {"name": s.split()[1], "chunks": []}
+            objects.append(current)
+        elif ".asciz" in s:
+            m = re.fullmatch(r"/\* ([0-9A-F]+) ([0-9A-F]{8}) \*/ \.asciz .*", s)
+            raw = re.fullmatch(r"\s*/\* ([0-9A-F]+) \*/\s*", lines[i + 1])
+            if section != ".rodata" or current is None or not m or not raw:
+                raise ValueError("unrecognized readonly string: " + s)
+            rom, vram = int(m[1], 16), int(m[2], 16)
+            data = bytes.fromhex(raw[1])
+            if not data or 0 not in data or any(data[data.index(0):]) or vram % 4 or len(data) % 4:
+                raise ValueError("not a four-aligned padded C string: " + s)
+            if image[rom:rom + len(data)] != data:
+                raise ValueError("string annotation differs from ROM: " + s)
+            chunks = current["chunks"]
+            if chunks and chunks[-1][0] + len(chunks[-1][1]) != vram:
+                raise ValueError("noncontiguous strings: " + s)
+            chunks.append((vram, data))
+        elif (not s or s.startswith(("/*", "nonmatching ", "enddlabel ")) or s == ".align 2"):
+            continue
+        else:
+            raise ValueError("unsupported string-block content: " + s)
+    if not objects or any(not o["chunks"] for o in objects):
+        raise ValueError("empty string block")
+    out = []
+    for obj in objects:
+        chunks = obj["chunks"]
+        size = sum(len(data) for _, data in chunks)
+        out.append("const u8 %s[0x%X] =\n" % (obj["name"], size))
+        for i, (_, data) in enumerate(chunks):
+            # The last NUL is supplied by the C string initializer itself.
+            out.append("    " + string_literal(data[:-1] if i == len(chunks) - 1 else data)
+                       + (";\n" if i == len(chunks) - 1 else "\n"))
+    return "".join(out), {o["name"] for o in objects}
+
+
+def inline_strings(units):
+    os.chdir(HH)
+    image = open("build/expanded.bin", "rb").read()
+    pragma = re.compile(r'^#pragma GLOBAL_ASM\("([^"\n]+)"\)\s*$', re.M)
+    for unit in units:
+        path = "src/" + unit + ".c"
+        text = open(path).read()
+        names, count = set(), 0
+
+        def replace(m):
+            nonlocal count
+            if os.path.basename(m[1]).startswith("_pad_"):
+                return m[0]
+            block, labels = inline_string_block(open(m[1]).read(), image)
+            names.update(labels)
+            count += 1
+            return "/* Readonly diagnostics, formerly %s. */\n%s" % (os.path.basename(m[1]), block)
+
+        text = pragma.sub(replace, text)
+        # Existing declarations keep their shape (including comma-separated names)
+        # and acquire the readonly qualification of the objects they refer to.
+        def qualify(m):
+            declared = set(re.findall(r"\bD_[0-9A-F]{8}\b", m[0]))
+            if not declared & names:
+                return m[0]
+            if not declared <= names:
+                raise ValueError("mixed readonly/writable declaration: " + m[0])
+            return m[0].replace("extern u8 ", "extern const u8 ", 1)
+
+        text = re.sub(r"^extern u8 [^;\n]+;", qualify, text, flags=re.M)
+        with open(path, "w") as f:
+            f.write(text)
+        print("inline strings: %s: %d blocks, %d labeled C objects" % (unit, count, len(names)))
+
+
 def generate(segments=None, check=False):
     import yaml
     os.chdir(HH)
@@ -260,5 +355,8 @@ def generate(segments=None, check=False):
 
 if __name__ == "__main__":
     args = sys.argv[1:]
+    if args and args[0] == "--inline-strings":
+        inline_strings(args[1:])
+        sys.exit(0)
     check = "--check" in args
     sys.exit(1 if generate([a for a in args if a != "--check"] or None, check) and check else 0)

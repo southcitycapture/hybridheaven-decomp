@@ -4,7 +4,7 @@ extern s32 func_8012D894(void *, s32, s32);
 
 struct func_801D70FC_Struct { f32 unk0; s32 unk4; };
 extern u64 func_801C0B2C();
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern struct func_801D70FC_Struct D_801DBA38[];
 extern f64 D_801DD5E0;
 u64 D_801E1798;

@@ -14,6 +14,7 @@ extern s8 *D_800482A0[];
 extern s8 D_80048894[];
 extern void func_80024614(s8 *);
 
+/* GGA: sndCmdInstrument */
 void func_80024540(void) {
     s8 *var_a0;
     u32 var_v0;

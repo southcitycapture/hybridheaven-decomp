@@ -14,6 +14,7 @@ extern u32 D_80047950;
 extern u32 D_80047954;
 extern u8 D_80096950[];
 
+/* GGA: __clearAudioDMA */
 void func_800200B0(void) {
     u32 sp40[2];
     u32 var_s0;

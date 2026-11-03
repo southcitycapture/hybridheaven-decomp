@@ -7,6 +7,7 @@ typedef struct func_80015A64_Struct {
     u16 *unk20;
 } func_80015A64_Struct;
 
+/* GGA: picReadPalette */
 void func_80015A64(s32 arg0, func_80015A64_Struct *arg1) {
     s32 r;
     s32 g;

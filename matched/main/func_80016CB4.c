@@ -6,6 +6,7 @@ extern s32 D_80044088;
 extern s32 D_8004408C;
 extern s32 D_8008DFB8;
 
+/* GGA: picBitsInit */
 void func_80016CB4(s32 arg0) {
     D_80044080 = 0;
     D_80044084 = 0;

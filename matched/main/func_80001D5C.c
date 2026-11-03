@@ -10,6 +10,7 @@ extern func_80001D5C_Gfx D_800692B0[][0x2009];
 extern s16 D_8008934C;
 extern func_80001D5C_Gfx *D_8008D5BC;
 
+/* GGA: dmaSubmitFrame */
 void func_80001D5C(void) {
     func_80001BC0_Struct *a2;
     func_80001D5C_Gfx *g;

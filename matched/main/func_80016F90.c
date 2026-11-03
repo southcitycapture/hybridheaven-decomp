@@ -2,6 +2,7 @@
 
 s32 func_80017014(s32);
 
+/* GGA: resCount */
 s32 func_80016F90(void)
 {
   s32 i;

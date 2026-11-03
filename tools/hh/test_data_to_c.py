@@ -52,6 +52,27 @@ def image():
     return b"\0" * 0x1000 + bytes.fromhex("".join(WORDS))
 
 
+STRINGS = '''.section .rodata
+.align 2
+nonmatching D_80100000
+dlabel D_80100000
+    /* 0 80100000 */ .asciz "a"
+    /* 61000000 */
+.align 2
+    /* 4 80100004 */ .asciz "Japanese"
+    /* A4A20000 */
+.align 2
+enddlabel D_80100000
+dlabel D_80100008
+    /* 8 80100008 */ .asciz ""
+    /* 00000000 */
+.align 2
+enddlabel D_80100008
+.section .text
+'''
+STRING_BYTES = bytes.fromhex("61000000A4A2000000000000")
+
+
 class DataToCTests(unittest.TestCase):
     def test_parse(self):
         labels, relocs, words, strings = D.parse_asm(ASM)
@@ -95,6 +116,36 @@ class DataToCTests(unittest.TestCase):
         self.assertIsNone(D.c_string(b"\xa4\xa2\0\0"))  # EUC-JP stays raw bytes
         self.assertIsNone(D.c_string(b"\0\0\0\0"))
 
+    def test_inline_strings_rejects_code_relocations_and_bad_bytes(self):
+        # This mode must fail rather than flatten anything other than strings.
+        for extra in (".word D_80100000", ".float 1.0", "jr $ra", ".section .late_rodata"):
+            with self.subTest(extra=extra), self.assertRaises(ValueError):
+                D.inline_string_block(STRINGS + extra + "\n", STRING_BYTES)
+        with self.assertRaises(ValueError):
+            D.inline_string_block(STRINGS, b"x" + STRING_BYTES[1:])
+        with self.assertRaises(ValueError):
+            D.inline_string_block(STRINGS.replace("4 80100004", "4 80100010"), STRING_BYTES)
+
+    @unittest.skipUnless(os.path.exists(os.path.join(HH, "tools/ido/7.1/cc")), "IDO not available")
+    def test_inline_strings_ido_readonly_layout(self):
+        from elftools.elf.elffile import ELFFile
+        text, names = D.inline_string_block(STRINGS, STRING_BYTES)
+        self.assertEqual(names, {"D_80100000", "D_80100008"})
+        with tempfile.TemporaryDirectory() as tmp:
+            c, o = os.path.join(tmp, "s.c"), os.path.join(tmp, "s.o")
+            with open(c, "w") as f:
+                f.write("typedef unsigned char u8;\n" + text)
+            import idoflags
+            subprocess.run([os.path.join(HH, "tools/ido/7.1/cc"), "-c"] + idoflags.BASE + ["-O2", "-o", o, c],
+                           check=True, capture_output=True)
+            with open(o, "rb") as f:
+                elf = ELFFile(f)
+                data = elf.get_section_by_name(".rodata").data()
+                self.assertEqual(data, STRING_BYTES + b"\0" * 4)  # IDO's section-end alignment
+                syms = {s.name: s["st_value"] for s in elf.get_section_by_name(".symtab").iter_symbols()}
+                self.assertEqual(syms["D_80100008"], 8)
+                self.assertIsNone(elf.get_section_by_name(".rel.rodata"))
+
     @unittest.skipUnless(os.path.exists(os.path.join(HH, "tools/ido/7.1/cc")) and shutil.which("mips-linux-gnu-readelf"),
                          "IDO / binutils not available")
     def test_ido_layout(self):
@@ -104,8 +155,9 @@ class DataToCTests(unittest.TestCase):
             c, o = os.path.join(tmp, "d.c"), os.path.join(tmp, "d.o")
             with open(c, "w") as f:
                 f.write(text)
-            subprocess.run([os.path.join(HH, "tools/ido/7.1/cc"), "-c", "-G", "0", "-non_shared", "-Xcpluscomm",
-                            "-mips2", "-O2", "-o", o, c], check=True, capture_output=True)
+            import idoflags
+            subprocess.run([os.path.join(HH, "tools/ido/7.1/cc"), "-c"] + idoflags.BASE + ["-O2", "-o", o, c],
+                           check=True, capture_output=True)
             with open(o, "rb") as f:
                 elf = ELFFile(f)
                 data = elf.get_section_by_name(".data").data()

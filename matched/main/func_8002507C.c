@@ -14,6 +14,7 @@ struct func_8002507C_Struct {
     u8 unk9F;
 };
 
+/* GGA: sndCmdVibratoReset */
 void func_8002507C(void) {
     ((struct func_8002507C_Struct *) D_800CBDA4)->unk94 = ((struct func_8002507C_Struct *) D_800CBDA4)->unk93;
     ((struct func_8002507C_Struct *) D_800CBDA4)->unk9F = ((struct func_8002507C_Struct *) D_800CBDA4)->unk9E;

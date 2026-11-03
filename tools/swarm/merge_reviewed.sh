@@ -12,7 +12,11 @@ regen() { make setup > build/merge_setup.log 2>&1; .venv/bin/python tools/hh/gen
 .venv/bin/python tools/hh/progress.py 2>&1 | grep -E '^(code|data|fully)'
 if ! git merge --no-ff --no-commit "$C" > build/merge.out 2>&1; then
   c=$(git diff --name-only --diff-filter=U); echo "conflicts: $c"
-  if [ "$c" = "SOL_REPORT.md" ]; then git checkout --theirs SOL_REPORT.md; git add SOL_REPORT.md; else git merge --abort; echo ABORTED; exit 1; fi
+  for f in $c; do   # KEEP_OURS="a b": files where master's side wins (e.g. docs/HARD_FUNCTIONS_PLAN.md statuses)
+    if [ "$f" = SOL_REPORT.md ]; then git checkout --theirs "$f"; git add "$f"
+    elif [[ " $KEEP_OURS " == *" $f "* ]]; then git checkout --ours "$f"; git add "$f"
+    else git merge --abort; echo "ABORTED on $f"; exit 1; fi
+  done
 fi
 [ -f SOL_REPORT.md ] && { mkdir -p docs/sol; git mv -f SOL_REPORT.md "docs/sol/report-$(git rev-parse --short "$C").md"; }
 regen

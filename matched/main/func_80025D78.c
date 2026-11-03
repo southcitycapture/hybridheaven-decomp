@@ -15,6 +15,7 @@ typedef struct func_80025D78_Struct {
 extern void func_80023D04();
 extern void func_80024358(void *);
 
+/* GGA: sndCmdTie */
 void func_80025D78(void) {
     s32 temp_v1;
 

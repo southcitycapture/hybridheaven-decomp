@@ -6,6 +6,7 @@ extern s32 D_8008DC98;
 extern s32 D_8008DFAC;
 extern s32 D_8008DFB4;
 
+/* GGA: picPut16 */
 void func_80016730(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 {
   int new_var;

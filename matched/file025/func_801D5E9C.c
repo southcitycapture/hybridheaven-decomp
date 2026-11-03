@@ -2,7 +2,7 @@
 extern void func_8012D844(void *, s32, s32);
 
 extern u64 func_801C0B2C();
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 struct func_801D5E9C_Struct { f32 unk0; s32 unk4; };
 extern struct func_801D5E9C_Struct D_801DB808[];
 extern f64 D_801DD5B0;

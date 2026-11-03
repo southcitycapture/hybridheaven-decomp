@@ -136,7 +136,28 @@ s32 func_801D700C(s32 arg0, u16 arg1) {
     return D_801E1788.unk4 == arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D6C80/func_801D7044.s")
+#define D_801DBA30 D_801DBA30__func_801D7044
+#define D_801E17A0 D_801E17A0__func_801D7044
+#define func_801C0B2C func_801C0B2C__func_801D7044
+extern u64 func_801C0B2C();
+extern s32 D_801DBA30;
+u8 func_801D70FC_bss_prefix[8];
+u64 D_801E1798;
+extern s32 D_801E17A0;
+
+void func_801D7044(s32 arg0) {
+    D_801E1774 = arg0;
+    if (D_801E1774 != 0) {
+        D_801DBA30 = 0;
+        D_801E1798 = func_801C0B2C();
+        D_801E17A0 = 0;
+        return;
+    }
+    func_8012D894((void *)D_801E1770, 0x140, 6);
+}
+#undef D_801DBA30
+#undef D_801E17A0
+#undef func_801C0B2C
 
 
 extern void func_801CC948(s32, s32);

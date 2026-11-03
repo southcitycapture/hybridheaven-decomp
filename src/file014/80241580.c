@@ -90,9 +90,13 @@ void func_80241580(s32 arg0, struct func_80241580_StructA **arg1) {
 }
 #undef func_802416D4
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/D_8024A390.s")
+/* Readonly diagnostics, formerly D_8024A390.s. */
+const u8 D_8024A390[0x24] =
+    "\245\250\245\352\245\242\243\262\241\274\243\261\243\260\245\311\245\242\245\307\245\342\245\277\245\271\245\257\310\257\300\270\n\000\000";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/_ro_func_802416D4.s")
+/* Readonly diagnostics, formerly _ro_func_802416D4.s. */
+const u8 D_8024A3B4[0x3C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a02_s10ddemo.c\000\000\000";
 
 #define func_80241834 func_80241834__func_802416D4
 #define func_80242390 func_80242390__func_802416D4
@@ -114,7 +118,7 @@ extern void func_8024252C();
 extern f32 func_8002FC20(f32);
 extern void func_801C3B2C(s32);
 extern void func_801C3B10(s32);
-extern u8 D_8024A3B4[];
+extern const u8 D_8024A3B4[];
 
 void func_802416D4(struct func_802416D4_StructArg *arg0, s32 arg1) {
     struct func_802416D4_StructV *p;
@@ -351,7 +355,9 @@ void func_802419CC(struct func_80241960_StructArg0 *arg0, s32 arg1) {
 #undef func_80241D64
 #undef func_80242778
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/_ro_func_80241D64.s")
+/* Readonly diagnostics, formerly _ro_func_80241D64.s. */
+const u8 D_8024A3F0[0x3C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a02_s10ddemo.c\000\000\000";
 
 #define func_80241D64_Struct func_80241D64_Struct__func_80241D64
 #define func_80241D64_StructP func_80241D64_StructP__func_80241D64
@@ -395,7 +401,7 @@ struct func_80241D64_Struct {
 };
 
 extern u8 D_802483E8[];
-extern u8 D_8024A3F0[];
+extern const u8 D_8024A3F0[];
 
 void func_802420B0();
 void func_80242778();
@@ -455,7 +461,9 @@ void func_80241D64(struct func_80241D64_Struct *arg0, s32 arg1) {
 #undef func_802420B0
 #undef func_80242778
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/_ro_func_802420B0.s")
+/* Readonly diagnostics, formerly _ro_func_802420B0.s. */
+const u8 D_8024A42C[0x3C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a02_s10ddemo.c\000\000\000";
 
 #define func_802422C0 func_802422C0__func_802420B0
 
@@ -463,7 +471,7 @@ struct func_802420B0_StructB { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; };
 struct func_802420B0_StructC { u8 pad0[0x30]; struct func_802420B0_StructB *unk30; };
 struct func_802420B0_Struct { u8 pad0[0x24]; struct func_802420B0_StructC *unk24; u8 pad1[0x14]; u16 unk3C; };
 void func_802422C0(s32 arg0, s32 arg1);
-extern u8 D_8024A42C[];
+extern const u8 D_8024A42C[];
 
 void func_802420B0(struct func_802420B0_Struct *arg0, s32 arg1) {
     s32 sp64;
@@ -479,14 +487,16 @@ void func_802420B0(struct func_802420B0_Struct *arg0, s32 arg1) {
 }
 #undef func_802422C0
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/_ro_func_802422C0.s")
+/* Readonly diagnostics, formerly _ro_func_802422C0.s. */
+const u8 D_8024A468[0x3C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a02_s10ddemo.c\000\000\000";
 
 #define func_80242390 func_80242390__func_802422C0
 
 extern void func_800179B0(void *);
 extern void func_80242390();
 extern u8 D_80248404[];
-extern u8 D_8024A468[];
+extern const u8 D_8024A468[];
 
 void func_802422C0(s32 arg0, s32 arg1) {
     if (func_8011AAF4(D_8024A468, 0x1EA, arg0, 0, 2, 1.5f, 35.0f, 5.0f, 280.0f, 0.0f, 35.0f, 5.0f, 310.0f, 0.0f, 35.0f, -1, -1) == 0) {
@@ -497,7 +507,9 @@ void func_802422C0(s32 arg0, s32 arg1) {
 }
 #undef func_80242390
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/_ro_func_80242390.s")
+/* Readonly diagnostics, formerly _ro_func_80242390.s. */
+const u8 D_8024A4A4[0x3C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a02_s10ddemo.c\000\000\000";
 
 #define func_802424C0 func_802424C0__func_80242390
 
@@ -526,7 +538,7 @@ struct func_80242390_StructO {
 extern s32 func_800178E8();
 void func_802424C0(s32 arg0, s32 arg1);
 extern void func_801C2F0C(s32, s16 *);
-extern u8 D_8024A4A4[];
+extern const u8 D_8024A4A4[];
 
 void func_80242390(s32 arg0, s32 arg1) {
     struct func_80242390_StructBuf b;
@@ -575,7 +587,10 @@ void func_802424C0(s32 arg0, s32 arg1) {
 }
 #undef func_8024252C
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/_ro_func_8024252C.s")
+/* Readonly diagnostics, formerly _ro_func_8024252C.s. */
+const u8 D_8024A4E0[0x5C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a02_s10ddemo.c\000\000\000\000"
+    "\245\327\245\354\245\244\245\344\241\274\265\325\271\324\313\311\273\337\305\366\244\352\310\257\300\270/n\000\000\000";
 
 #define func_802426D0 func_802426D0__func_8024252C
 
@@ -610,7 +625,7 @@ void func_802426D0(s32 arg0, s32 arg1);
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern s32 D_801C3DC8(void *, f32, f32, f32, f32, f32, f32, f32, f32);
-extern u8 D_8024A4E0[];
+extern const u8 D_8024A4E0[];
 
 #define CD0 ((struct func_8024252C_StructA *)D_801BBCD0)
 #define CD8 ((struct func_8024252C_StructC *)D_801BBCD8)
@@ -691,14 +706,16 @@ void func_8024276C(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241580/_ro_func_80242778.s")
+/* Readonly diagnostics, formerly _ro_func_80242778.s. */
+const u8 D_8024A53C[0x3C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a02_s10ddemo.c\000\000\000";
 
 #define func_80242778_StructC func_80242778_StructC__func_80242778
 
 struct func_80242778_StructB { u8 pad[0x30]; f32 unk30; f32 unk34; f32 unk38; f32 unk3C; f32 unk40; f32 unk44; };
 struct func_80242778_StructA { u8 pad[0x2C]; struct func_80242778_StructB *unk2C; };
 struct func_80242778_StructC { u8 pad[0xA0]; f32 unkA0; };
-extern u8 D_8024A53C[];
+extern const u8 D_8024A53C[];
 
 void func_80242778(struct func_80242778_StructC *arg0, s32 arg1) {
     f64 k;

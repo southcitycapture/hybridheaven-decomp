@@ -250,7 +250,11 @@ void func_80246BD4(void) {
 }
 #undef func_80246DE0
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80246290/D_8025C930.s")
+/* Readonly diagnostics, formerly D_8025C930.s. */
+const u8 D_8025C930[0x44] =
+    "\245\323\241\274\245\340\245\267\241\274\245\353\245\311\244\316\277\364 : %d\n\000\000\000\000"
+    "\311\364\262\260\243\261\244\330\302\263\244\257\310\342\312\304\272\277\n\000"
+    "\311\364\262\260\243\262\244\330\302\263\244\257\310\342\312\304\272\277\n";
 
 #undef func_80246C0C
 
@@ -309,7 +313,7 @@ struct func_80246C0C_T { u8 pad[0x4B]; u8 unk4B; };
 struct func_80246C0C_N { u8 pad[0x30]; struct func_80246C0C_T *unk30; };
 struct func_80246C0C_G { u8 pad[4]; u16 unk4; s16 unk6; u8 pad2[0x3A6 - 8]; u8 unk3A6; };
 extern void func_8012FE50();
-extern u8 D_8025C974[];
+extern const u8 D_8025C974[];
 extern f32 D_8025C9AC;
 
 void func_80246C0C(struct func_80246C0C_Obj *arg0, struct func_80246C0C_N **arg1) {
@@ -650,7 +654,9 @@ void func_802471F4(struct func_802471F4_StructO *arg0, struct func_802471F4_Stru
 
 
 /* hh-block asm/nonmatchings/file017/80246290/_ro_regular_83a605d68de50166.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80246290/func_80246C0C.s","D_8025C974"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80246290/_ro_regular_83a605d68de50166.s")
+/* Readonly diagnostics, formerly _ro_regular_83a605d68de50166.s. */
+const u8 D_8025C974[0x38] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s05demo.c";
 
 #undef func_80247530
 #define D_801BBCD0 D_801BBCD0__func_80247530

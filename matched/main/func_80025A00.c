@@ -11,6 +11,7 @@ struct func_80025A00_Struct {
     s32 unk68;
 };
 
+/* GGA: sndCmdLoop2Start */
 void func_80025A00(void) {
     ((struct func_80025A00_Struct *) D_800CBDA4)->unk64 = 0;
     ((struct func_80025A00_Struct *) D_800CBDA4)->unk68 = (s32) D_800CBDA0;

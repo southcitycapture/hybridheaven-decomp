@@ -10,6 +10,7 @@ struct func_800243F0_Struct {
 extern u8 *D_800CBDA0;
 extern struct func_800243F0_Struct *D_800CBDA4;
 
+/* GGA: sndCmdTempo */
 void func_800243F0(void) {
     D_800CBDA4->unk18 = (s16) (*D_800CBDA0 << 8);
     D_800CBDA0 += 1;

@@ -6,6 +6,7 @@ extern f32 func_8001518C();                                /* extern */
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern void func_80014B88(void *, s16, s16, s16);
+#define func_80014E14 func_80014E14__decl
 extern void func_80014E14(void *, void *, s32, s32, f32);
 extern void func_80029D30(void *, s32);
 
@@ -97,7 +98,48 @@ f32 func_80014798(f32 arg0, f32 arg1) {
     return r;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80014990.s")
+
+
+
+typedef struct {
+    f32 f0, f4, f8, fC, f10, f14, f18, f1C, f20, f24, f28, f2C, f30, f34, f38, f3C;
+} func_80014990_Struct;
+
+void func_80014990(void *a0, f32 a1, f32 a2, f32 a3, s32 a4, s32 a5, s32 a6) {
+    func_80014990_Struct *m = a0;
+    f32 sp40;
+    f32 sp3C;
+    f32 t0;
+    f32 sp34;
+    f32 s0;
+    f32 s1;
+    f32 n1;
+    f32 c;
+
+    s1 = func_8001EAD0(*(s16 *)((u8 *)&a4 + 2));
+    s0 = func_8001EB64(*(s16 *)((u8 *)&a4 + 2));
+    sp40 = func_8001EAD0(*(s16 *)((u8 *)&a5 + 2));
+    sp34 = func_8001EB64(*(s16 *)((u8 *)&a5 + 2));
+    sp3C = func_8001EAD0(*(s16 *)((u8 *)&a6 + 2));
+    c = func_8001EB64(*(s16 *)((u8 *)&a6 + 2));
+    n1 = -s1;
+    m->f0 = sp34 * c;
+    m->f4 = s1 * sp40 * c + s0 * sp3C;
+    m->f8 = -s0 * sp40 * c + s1 * sp3C;
+    m->fC = 0.0f;
+    m->f10 = -sp34 * sp3C;
+    m->f14 = n1 * sp40 * sp3C + s0 * c;
+    m->f18 = s0 * sp40 * sp3C + s1 * c;
+    m->f1C = 0.0f;
+    m->f20 = sp40;
+    m->f24 = n1 * sp34;
+    m->f28 = s0 * sp34;
+    m->f2C = 0.0f;
+    m->f30 = m->f20 * a3 + (m->f0 * a1 + m->f10 * a2);
+    m->f34 = a2;
+    m->f38 = m->f28 * a3 + (m->f8 * a1 + m->f18 * a2);
+    m->f3C = 1.0f;
+}
 
 
 void func_80014990(void *a0, f32 a1, f32 a2, f32 a3, s32 a4, s32 a5, s32 a6);
@@ -154,9 +196,38 @@ void func_80014B88(void *arg0, s16 arg1, s16 arg2, s16 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80014CCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80014E14.s")
+#undef func_80014E14
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800146A0/func_80014F10.s")
+
+void func_80014E14(f32 *src, f32 *dst, f32 x, f32 y, f32 z)
+{
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        dst[i] = src[i] * x;
+        dst[i + 4] = src[i + 4] * y;
+        dst[i + 8] = src[i + 8] * z;
+        dst[i + 12] = src[i + 12];
+    }
+}
+#define func_80014E14 func_80014E14__decl
+
+
+
+void func_80014F10(f32 arg0[][4], f32 arg1[][4], f32 arg2, f32 arg3, f32 arg4) {
+    s32 i;
+
+    for (i = 0; i < 4; i += 2) {
+        arg1[i][0] = arg0[i][0] * arg2;
+        arg1[i][1] = arg0[i][1] * arg3;
+        arg1[i][2] = arg0[i][2] * arg4;
+        arg1[i][3] = arg0[i][3];
+        arg1[i + 1][0] = arg0[i + 1][0] * arg2;
+        arg1[i + 1][1] = arg0[i + 1][1] * arg3;
+        arg1[i + 1][2] = arg0[i + 1][2] * arg4;
+        arg1[i + 1][3] = arg0[i + 1][3];
+    }
+}
 
 
 struct func_8001500C_Struct {

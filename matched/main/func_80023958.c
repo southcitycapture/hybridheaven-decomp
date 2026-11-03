@@ -26,6 +26,7 @@ typedef struct func_80023958_Struct {
     u16 unk9A;
 } func_80023958_Struct;
 
+/* GGA: trkMusicTick */
 void func_80023958(void) {
     u8 temp_v1;
 

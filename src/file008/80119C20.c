@@ -539,6 +539,7 @@ void func_8011AA0C(s32 arg0, s32 arg1, s32 arg2) {
 
 
 
+/* GGA: frmMove */
 void func_8011AA54(s32 arg0, s32 arg1) {
     if (func_8011A3D4() == 0) {
         func_8011AA88(arg0, arg1);

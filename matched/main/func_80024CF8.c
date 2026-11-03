@@ -13,6 +13,7 @@ struct func_80024CF8_Struct {
 
 extern void func_80022A84(u8);
 
+/* GGA: sndCmdPan */
 void func_80024CF8(void) {
     u8 temp_v1;
 

@@ -1393,7 +1393,43 @@ s32 func_801E522C(s32 arg0, s32 arg1) {
     return 0x16;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file049/801E1BE0/func_801E527C.s")
+
+typedef struct func_801E527C_StructPos {
+    u8 pad[4];
+    f32 x;
+    f32 y;
+    f32 z;
+} func_801E527C_StructPos;
+
+typedef struct func_801E527C_StructNode {
+    u8 pad[8];
+    struct func_801E527C_StructNode *unk8;
+    u8 padC[0x18];
+    struct func_801E527C_StructNode *unk24;
+    u8 pad28[4];
+    func_801E527C_StructPos *unk2C;
+} func_801E527C_StructNode;
+
+#define NODE (*(func_801E527C_StructNode **)&D_801DAB14)
+
+s32 func_801E527C(s32 arg0, s32 arg1) {
+    f32 t;
+    func_801E527C_StructPos *pos;
+
+    if (func_801C1088(4, 1, 0x4B) != 0) {
+        func_801C10D8(4, 1);
+        return 0x18;
+    }
+    t = (f32)(u32)func_801C1134(4, 1) / 75.0f;
+    NODE->unk8->unk8->unk24->unk2C->x = (-0.699999809f) * t + (-8.69999981f);
+    NODE->unk8->unk8->unk24->unk2C->z = 34.0f * t + 174.199997f;
+    if (func_801CEE30(0x01B8001B, 0x18) != 0 || func_801CEE30(0x01B8001B, 0x3C) != 0) {
+        pos = NODE->unk8->unk8->unk24->unk2C;
+        func_8038D33C(pos->x, pos->y, *(s32 *)&pos->z, 0x67D, 1.20000005f, 1.0f);
+    }
+    return 0x17;
+}
+#undef NODE
 
 
 struct func_801E53D0_Struct3 {

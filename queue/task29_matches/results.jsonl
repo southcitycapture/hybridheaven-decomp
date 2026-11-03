@@ -1,0 +1,4 @@
+{"chain": ["ref sp54 after 42"], "func": "func_801133D0", "segment": "file008", "source": "queue/task29_regsearch_final/work/func_801133D0@file008/attempt.c", "verified": "MATCH"}
+{"chain": ["ref a", "ref a", "ref a"], "func": "func_801EA980", "segment": "file028", "source": "queue/task29_regsearch2/work/func_801EA980@file028/attempt.c", "verified": "MATCH"}
+{"chain": ["ref temp", "ref temp", "ref temp"], "func": "func_801E2D60", "segment": "file029", "source": "queue/task29_regsearch_final/work/func_801E2D60@file029/attempt.c", "verified": "MATCH"}
+{"chain": ["ref height", "ref height", "ref height"], "func": "func_801E2AE0", "segment": "file030", "source": "queue/task29_regsearch_final/work/func_801E2AE0@file030/attempt.c", "verified": "MATCH"}

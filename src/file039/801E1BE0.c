@@ -1703,14 +1703,42 @@ s32 func_801E5078(s32 arg0, s32 arg1) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file039/801E1BE0/func_801E5204.s")
 
+
+typedef struct func_801E5204_StructValue {
+    u8 pad[8];
+    f32 unk8;
+} func_801E5204_StructValue;
+
+typedef struct func_801E5204_StructNode {
+    u8 pad[0x30];
+    func_801E5204_StructValue *unk30;
+} func_801E5204_StructNode;
+
+typedef struct func_801E5204_StructRoot {
+    u8 pad[0x20];
+    func_801E5204_StructNode *unk20[12];
+} func_801E5204_StructRoot;
+
+void func_801E5204(void) {
+    s32 i;
+
+    for (i = 0; i < 12; i++) {
+        if ((s32)((func_801E5204_StructRoot *)D_8038D8D0)->unk20[i]->unk30->unk8 >= 0x492) {
+            ((func_801E5204_StructRoot *)D_8038D8D0)->unk20[i]->unk30->unk8 = (-1170.0f);
+        }
+        ((func_801E5204_StructRoot *)D_8038D8D0)->unk20[i]->unk30->unk8 += 1.0f;
+    }
+}
+
+#define func_801E5204 func_801E5204__decl1707
 extern s32 func_801E5204();
 
 s32 func_801E52D4(s32 arg0, s32 arg1) {
     func_801E5204();
     return 0x3;
 }
+#undef func_801E5204
 
 
 s32 func_801E52FC(s32 arg0, s32 arg1) {

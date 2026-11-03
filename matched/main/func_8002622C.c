@@ -12,6 +12,7 @@ extern void func_80026950(s32, void *, s32, s32);
 extern s32 D_800498F0;
 extern u8 D_800CBBE0[];
 
+/* GGA: sndCmdEnd */
 void func_8002622C(void) {
     if (((struct func_8002622C_Struct *) D_800CBDA4)->unkE != 0) {
         ((struct func_8002622C_Struct *) D_800CBDA4)->unkF = 1;

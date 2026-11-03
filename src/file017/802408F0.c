@@ -160,8 +160,9 @@ void func_80240AA8(struct func_80240AA8_Struct *arg0, void *arg1) {
 }
 #undef func_80240B10
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/802408F0/D_8025C2C0.s")
-
+/* Readonly diagnostics, formerly D_8025C2C0.s. */
+const u8 D_8025C2C0[0x4] =
+    "\245\310\n";
 
 struct func_80240B10_Struct {
     u8 pad0[0x74];

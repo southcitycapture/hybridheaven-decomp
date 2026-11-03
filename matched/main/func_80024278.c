@@ -9,6 +9,7 @@ typedef struct func_80024278_Struct {
     u16 unk52;
 } func_80024278_Struct;
 
+/* GGA: trkEnvSustain */
 void func_80024278(void) {
     ((func_80024278_Struct *) D_800CBDA4)->unk49 = 2;
     if (((func_80024278_Struct *) D_800CBDA4)->unk52 != 0) {

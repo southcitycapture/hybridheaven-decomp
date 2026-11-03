@@ -8,6 +8,7 @@ struct func_800252F4_Struct {
     u8 unk92;
 };
 
+/* GGA: sndCmdWobble */
 void func_800252F4(void) {
     ((struct func_800252F4_Struct *) D_800CBDA4)->unk92 = *D_800CBDA0;
     D_800CBDA0++;

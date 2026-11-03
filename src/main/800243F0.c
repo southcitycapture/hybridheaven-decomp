@@ -12,6 +12,7 @@ struct func_800243F0_Struct {
 extern u8 *D_800CBDA0;
 extern struct func_800243F0_Struct *D_800CBDA4;
 
+/* GGA: sndCmdTempo */
 void func_800243F0(void) {
     D_800CBDA4->unk18 = (s16) (*D_800CBDA0 << 8);
     D_800CBDA0 += 1;
@@ -28,6 +29,7 @@ struct func_8002442C_Struct {
     s16 unk1E;
 };
 
+/* GGA: sndCmdTempoSlide */
 void func_8002442C(void) {
     struct func_8002442C_Struct *s;
     s32 q;
@@ -51,6 +53,7 @@ struct func_800244C8_Struct {
     s16 unk1E;
 };
 
+/* GGA: sndCmdTempoSlideTick */
 void func_800244C8(void) {
     s32 var_v1;
 
@@ -84,6 +87,7 @@ extern s8 *D_800482A0[];
 extern s8 D_80048894[];
 extern void func_80024614(s8 *);
 
+/* GGA: sndCmdInstrument */
 void func_80024540(void) {
     s8 *var_a0;
     u32 var_v0;
@@ -112,7 +116,220 @@ void func_80024540(void) {
     func_80024614(var_a0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800243F0/func_80024614.s")
+#define D_80048100 D_80048100__func_80024614
+#define D_80096A98 D_80096A98__func_80024614
+#define D_800CBAB4 D_800CBAB4__func_80024614
+#define D_800CBDA4 D_800CBDA4__func_80024614
+#define func_80022A84 func_80022A84__func_80024614
+#define func_800243F0_Struct func_800243F0_Struct__func_80024614
+extern u8 D_800CBAB4;
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
+extern void func_80022A84(u8);
+
+/* types from include/gga/snd.h (GGA, CC0) */
+typedef struct SndTrack {
+    /* 0x00 */ u32 id; /* the sound playing (low 15 bits) */
+    /* 0x04 */ u8 prio; /* the playing sound's priority */
+    /* 0x05 */ u8 startDelay;
+    /* 0x06 */ u8 flags;
+    /* 0x07 */ u8 unused7;
+    /* 0x08 */ u8 *data; /* the channel's commands */
+    /* 0x0C */ u8 bank;
+    /* 0x0D */ u8 inst;
+    /* 0x0E */ u8 voiceOn; /* the voice is on */
+    /* 0x0F */ u8 voiceStopTicks;
+    /* 0x10 */ u8 fxmix;
+    /* 0x11 */ u8 pad11[0x3];
+    /* 0x14 */ void *wave; /* ALWaveTable * */
+    /* 0x18 */ u16 tempo; /* the tempo, 8.8 */
+    /* 0x1A */ u16 tempoAcc;
+    /* 0x1C */ u8 tempoSlideTarget; /* a tempo slide's target */
+    /* 0x1D */ u8 tempoSlideTicks; /* and ticks left */
+    /* 0x1E */ s16 tempoSlideStep; /* and step */
+    /* 0x20 */ u8 lastLength; /* the note's length, as last given (trkNextNote) */
+    /* 0x21 */ u8 waitTicks; /* and as played */
+    /* 0x22 */ u8 gate; /* the gate, in 128ths of the length (0: a tie) */
+    /* 0x23 */ u8 lastGate; /* the gate, as last given */
+    /* 0x24 */ u8 noteTicks; /* the note's length left (music) */
+    /* 0x25 */ u8 key; /* the note's key (0x48 and up: a drum, played at 0x3C) */
+    /* 0x26 */ u8 pad26[0x2];
+    /* 0x28 */ s32 note; /* in 1/256 semitones: the key plus the five offsets below */
+    /* 0x2C */ s16 instTune;
+    /* 0x2E */ s16 transpose;
+    /* 0x30 */ s16 detune;
+    /* 0x32 */ s16 loopDetune;
+    /* 0x34 */ s16 loop2Detune;
+    /* 0x36 */ s16 vibratoOffset;
+    /* 0x38 */ u16 wobbleOffset;
+    /* 0x3A */ u16 volume;
+    /* 0x3C */ u8 pad3C[0x4];
+    /* 0x40 */ s16 loopVelocity;
+    /* 0x42 */ s16 loop2Velocity;
+    /* 0x44 */ s16 volSlideStep; /* a volume slide's step */
+    /* 0x46 */ u8 volSlideTarget; /* and target */
+    /* 0x47 */ u8 volSlideTicks; /* and ticks left */
+    /* 0x48 */ u8 velocity;
+    /* 0x49 */ u8 envState; /* 0 attack, 1 decay, 2 sustain, 3 release */
+    /* 0x4A */ u16 envLevel;
+    /* 0x4C */ u16 envTicks; /* until the next state */
+    /* 0x4E */ u16 envAttack;
+    /* 0x50 */ u16 envDecay;
+    /* 0x52 */ u16 envSustain;
+    /* 0x54 */ u16 envDecayLevel;
+    /* 0x56 */ u16 envRelease;
+    /* 0x58 */ u16 pan; /* the expression; 0x8000: given by the sound's id */
+    /* 0x5A */ u8 panSlideTarget;  /* an expression slide's target */
+    /* 0x5B */ u8 panSlideTicks;  /* and ticks left */
+    /* 0x5C */ s16 panSlideStep; /* and step */
+    /* 0x5E */ u8 loopPass;
+    /* 0x5F */ u8 unused5F;
+    /* 0x60 */ u8 *loopStart;
+    /* 0x64 */ u8 loop2Pass;
+    /* 0x65 */ u8 pad65[0x3];
+    /* 0x68 */ u8 *loop2Start;
+    /* 0x6C */ u8 *mark;
+    /* 0x70 */ u8 repeatState;
+    /* 0x71 */ u8 pad71[0x3];
+    /* 0x74 */ u8 *repeatStart;
+    /* 0x78 */ u8 *repeatReturn;
+    /* 0x7C */ u8 portaDelay; /* a portamento's delay */
+    /* 0x7D */ u8 portaTicks; /* and length (ticks) */
+    /* 0x7E */ u8 pad7E[0x2];
+    /* 0x80 */ s32 portaTarget; /* and target note */
+    /* 0x84 */ s32 portaStep; /* and step per tick (a new note first stores the old note here) */
+    /* 0x88 */ u8 bendDelay;
+    /* 0x89 */ u8 bendTicks;
+    /* 0x8A */ s16 bendAmount;
+    /* 0x8C */ u8 glideOn;
+    /* 0x8D */ u8 wobbleNoisePos;
+    /* 0x8E */ u16 wobbleMask;
+    /* 0x90 */ u16 wobblePhase;
+    /* 0x92 */ u8 wobbleSpeed;
+    /* 0x93 */ u8 vibratoDelay; /* vibrato: its delay */
+    /* 0x94 */ u8 vibratoDelayLeft; /* and delay left */
+    /* 0x95 */ u8 vibratoSpeed; /* its phase step */
+    /* 0x96 */ u16 vibratoPhase; /* its phase */
+    /* 0x98 */ u8 vibratoWavePos;
+    /* 0x99 */ u8 vibratoWaveStep; /* its phase step's shift (1, 2, 4, 8 or 0x10) */
+    /* 0x9A */ u16 vibratoDepth; /* its depth */
+    /* 0x9C */ u16 vibratoCurDepth; /* its depth now (rising over unk9E ticks) */
+    /* 0x9E */ u8 vibratoRiseTicks; /* the depth's rise, in ticks */
+    /* 0x9F */ u8 vibratoRiseLeft; /* and ticks left */
+    /* 0xA0 */ u16 vibratoRiseStep; /* and step */
+    /* 0xA2 */ s16 param[3]; /* set by parameter changes, by kind */
+    /* 0xA8 */ s16 param0[3]; /* the sequence's values, by kind (the third adds to the pan) */
+    /* 0xAE */ u8 padAE[0x2];
+    /* 0xB0 */ f32 pitch;
+    /* 0xB4 */ s16 voiceVol;
+    /* 0xB6 */ u16 voiceVolTicks;
+    /* 0xB8 */ u8 scale[3]; /* by kind: 0, or tenths */
+    /* 0xBB */ s8 base[3];
+    /* 0xBE */ u8 stopFadeLevel; /* a volume scale, decaying by unkBF each step */
+    /* 0xBF */ u8 stopFadeStep;
+    /* 0xC0 */ s16 slideTarget[3]; /* slides, by kind (sndStartSlide) */
+    /* 0xC6 */ s16 slide[3];
+    /* 0xCC */ s16 slideStep[3];
+    /* 0xD2 */ u8 slideTicks[3];
+    /* 0xD5 */ u8 stateMuted;
+    /* 0xD6 */ u8 noCrossfade;
+    /* 0xD7 */ u8 unusedD7;
+} SndTrack; /* size 0xD8 in HH (GGA's has a u16 fadeLevel at 0xD8, size 0xDC; HH's loops step 0xD8) */
+
+typedef struct SndFade {
+    /* 0x0 */ s16 rate;
+    /* 0x2 */ u16 level;
+} SndFade;
+
+/* An event from the music to the game (commands 0xFA-0xFE), queued up to 8 at 0x800C36C0. */
+typedef struct SndEvent {
+    /* 0x0 */ u16 sound; /* the event number's sound (the table at 0x8003A510) */
+    /* 0x2 */ u8 kind;   /* 0-4, by command */
+    /* 0x3 */ u8 arg;
+    /* 0x4 */ s16 value;
+} SndEvent; /* size 0x6 */
+
+/* A random variation (gSndVariationTable, 0x80039190: 8 per group): the request's low id, and
+ * each parameter's maximum. */
+typedef struct SndLimit {
+    /* 0x0 */ u16 id;
+    /* 0x2 */ u8 max[3]; /* the first is in 256ths */
+} SndLimit; /* size 0x6 */
+
+/* A random variation to play (command 0xF9), queued up to 4 at 0x800C3638 with the track's
+ * slides; audio.c's sndServeMusicChanges serves it. */
+typedef struct SndSpawn {
+    /* 0x00 */ u16 r;      /* the random number drawn: bits 0-2 the three signs, then the three
+                            * parameters, overlapping */
+    /* 0x02 */ u8 pad2[0x2];
+    /* 0x04 */ SndLimit *lim; /* the variation */
+    /* 0x08 */ u16 sound;  /* the track's id >> 16: the request's high id */
+    /* 0x0A */ s16 slideTarget[3];
+    /* 0x10 */ s16 slide[3];
+    /* 0x16 */ s16 slideStep[3];
+    /* 0x1C */ u8 slideTicks[3];
+    /* 0x1F */ u8 unused1F;
+} SndSpawn; /* size 0x20 */
+
+typedef struct SndRamp {
+    /* 0x0 */ u16 rate; /* its high byte is a speed: 4 - it scales the envelope's time */
+    /* 0x2 */ u16 level;
+} SndRamp;
+
+/* libultra's bank structures (only the fields used) */
+typedef struct GgaALSound { void *envelope; void *keyMap; void *wavetable; } GgaALSound;
+typedef struct GgaALInstrument { u8 pad0[0xE]; s16 soundCount; GgaALSound *soundArray[1]; } GgaALInstrument;
+typedef struct GgaALBank { s16 instCount; u8 flags; u8 pad; s32 sampleRate; GgaALInstrument *percussion; GgaALInstrument *instArray[1]; } GgaALBank;
+typedef struct GgaALBankFile { s16 revision; s16 bankCount; GgaALBank *bankArray[1]; } GgaALBankFile;
+
+extern GgaALBankFile *D_80096A98[];
+extern u16 D_80048100[]; /* GGA gSndEnvelopeTimes (HH's asm names its +0xFE, +0x7A, +0xFA) */
+
+/* GGA: sndCmdInstrumentSetup */
+void func_80024614(s8 *inst) {
+#define TRK ((SndTrack *)D_800CBDA4)
+    s32 decay;
+    s32 sustain;
+    GgaALBank *bank;
+    GgaALInstrument *in;
+    GgaALSound *snd;
+
+    bank = D_80096A98[TRK->bank]->bankArray[0];
+    in = bank->instArray[TRK->inst];
+    snd = in->soundArray[0];
+    TRK->wave = snd->wavetable;
+    TRK->instTune = *inst++ << 8;
+    TRK->instTune += *inst++ * 4;
+    TRK->envAttack = D_80048100[0x7F - *inst++];
+    decay = *(u8 *) inst++;
+    TRK->envDecay = D_80048100[0x3D - ((decay & 0xF0) >> 2)];
+    TRK->envDecayLevel = (decay & 0xF) * 4;
+    sustain = *(u8 *) inst++;
+    sustain &= 0xFF;
+    if (sustain == 0) {
+        TRK->envSustain = 0;
+    } else {
+        TRK->envSustain = D_80048100[0x7F - sustain] + 1;
+    }
+    TRK->envRelease = D_80048100[0x7D - *inst++ * 4];
+    if (TRK->pan < 0x8000) {
+        TRK->pan = *inst << 8;
+        TRK->panSlideTicks = 0;
+    }
+    func_80022A84(D_800CBAB4);
+#undef TRK
+}
+#undef D_80048100
+#undef D_80096A98
+#undef D_800CBAB4
+#undef D_800CBDA4
+#undef func_80022A84
+#undef func_800243F0_Struct
 
 
 struct func_80024780_Struct {
@@ -125,6 +342,7 @@ struct func_80024780_Struct {
 extern s8 D_8004889C[];
 extern void func_80024614(s8 *);
 
+/* GGA: sndCmdDrumInstrument */
 void func_80024780(void)
 {
   int new_var;
@@ -142,6 +360,7 @@ void func_80024780(void)
 extern void func_80024540(void);
 extern void func_80024820(void);
 
+/* GGA: sndCmdVolInstrument */
 void func_800247C8(void) {
     func_80024820();
     func_80024540();
@@ -150,6 +369,7 @@ void func_800247C8(void) {
 
 extern void func_80024CF8(void);
 
+/* GGA: sndCmdVolInstrumentPan */
 void func_800247F0(void) {
     func_80024820();
     func_80024540();
@@ -165,6 +385,7 @@ struct func_80024820_Struct {
     u8 unk47;
 };
 
+/* GGA: sndCmdVolume */
 void func_80024820(void) {
     struct func_80024820_Struct *ptr;
     u32 temp_a1;
@@ -192,6 +413,7 @@ struct func_8002487C_Struct {
     u8 unk47;
 };
 
+/* GGA: sndCmdVolumeSlide */
 void func_8002487C(void)
 {
   s32 new_var;
@@ -203,6 +425,7 @@ void func_8002487C(void)
 }
 
 
+/* GGA: sndCmdVolumeSlideTick */
 void func_80024918(void) {
     s32 var_v1;
 
@@ -234,6 +457,7 @@ struct func_80024998_Struct {
 extern u8 D_800481FE[];
 extern u8 D_8004817A[];
 
+/* GGA: sndCmdEnvAttackDecay */
 void func_80024998(void) {
     u8 temp;
 
@@ -259,6 +483,7 @@ struct func_80024A1C_Struct {
 
 #define OBJ ((struct func_80024A1C_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdEnvSustain */
 void func_80024A1C(void) {
     u16 temp_a0;
     s32 temp_v0;
@@ -298,6 +523,7 @@ struct func_80024ADC_Struct {
 extern u8 D_800481FA[];
 extern struct func_80024ADC_Struct *D_800CBDA4;
 
+/* GGA: sndCmdEnvRelease */
 void func_80024ADC(void)
 {
   D_800CBDA4->unk56 = *((u16 *) (&D_800481FA[-(((*D_800CBDA0) << 1) << 2)]));
@@ -319,6 +545,7 @@ extern u8 D_800CBAB4;
 extern u8 D_800CBBE0[];
 extern s32 D_800CBE08;
 
+/* GGA: sndCmdFxParams */
 void func_80024B4C(void) {
     u8 temp_v1;
     u8 temp_v1_2;
@@ -387,6 +614,7 @@ struct func_80024CF8_Struct {
 
 extern void func_80022A84(u8);
 
+/* GGA: sndCmdPan */
 void func_80024CF8(void) {
     u8 temp_v1;
 
@@ -408,6 +636,7 @@ struct func_80024D50_Struct {
     s16 unk5C;
 };
 
+/* GGA: sndCmdPanSlide */
 void func_80024D50(void) {
     s32 diff;
     ((struct func_80024D50_Struct *) D_800CBDA4)->unk5B = *D_800CBDA0;
@@ -432,6 +661,7 @@ struct func_80024E0C_Struct {
 
 extern void func_80022A84(u8, s32, void **);
 
+/* GGA: sndCmdPanSlideTick */
 void func_80024E0C(void) {
     s32 temp_a1;
     s32 var_v1;
@@ -458,6 +688,7 @@ void func_80024E0C(void) {
 #undef func_80022A84
 
 
+/* GGA: sndCmdTranspose */
 void func_80024EB8(void) {
     *(s16 *)((u8 *)D_800CBDA4 + 0x2E) = (s16) (*D_800CBDA0 << 8);
     D_800CBDA0 += 1;
@@ -469,6 +700,7 @@ struct func_80024EE8_Struct {
     s16 unk30;
 };
 
+/* GGA: sndCmdDetune */
 void func_80024EE8(void) {
     ((struct func_80024EE8_Struct *) D_800CBDA4)->unk30 = *((s8 *) D_800CBDA0) * 4;
     D_800CBDA0++;
@@ -490,6 +722,7 @@ struct func_80024F18_Struct {
 };
 #define P ((struct func_80024F18_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdVibrato */
 void func_80024F18(void) {
     s32 a;
     u8 v;
@@ -545,6 +778,7 @@ struct func_8002507C_Struct {
     u8 unk9F;
 };
 
+/* GGA: sndCmdVibratoReset */
 void func_8002507C(void) {
     ((struct func_8002507C_Struct *) D_800CBDA4)->unk94 = ((struct func_8002507C_Struct *) D_800CBDA4)->unk93;
     ((struct func_8002507C_Struct *) D_800CBDA4)->unk9F = ((struct func_8002507C_Struct *) D_800CBDA4)->unk9E;
@@ -571,6 +805,7 @@ struct func_800250D4_Struct {
 
 extern void func_80025150(void *);
 
+/* GGA: sndCmdVibratoTick */
 void func_800250D4(void)
 {
   u8 temp_v1;
@@ -615,6 +850,7 @@ struct func_80025150_Struct {
 extern u8 D_80048200[];
 #define P ((struct func_80025150_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdVibratoStep */
 void func_80025150(void *arg0) {
     if (arg0) {}
     if (P->unk94 == 0) {
@@ -649,6 +885,7 @@ struct func_80025280_Struct {
     s16 unkA0;
 };
 
+/* GGA: sndCmdVibratoRise */
 void func_80025280(void) {
     u8 temp_v0;
     struct func_80025280_Struct *s;
@@ -671,6 +908,7 @@ struct func_800252F4_Struct {
     u8 unk92;
 };
 
+/* GGA: sndCmdWobble */
 void func_800252F4(void) {
     ((struct func_800252F4_Struct *) D_800CBDA4)->unk92 = *D_800CBDA0;
     D_800CBDA0++;
@@ -700,6 +938,7 @@ struct func_8002538C_Struct {
 
 extern u8 D_80048220[];
 
+/* GGA: sndCmdWobbleTick */
 void func_8002538C(void) {
     s32 temp_v1;
 
@@ -735,6 +974,7 @@ struct func_80025460_Struct {
     s32 unk84;
 };
 
+/* GGA: sndCmdPortamentoCalc */
 void func_80025460(void)
 {
   struct func_80025460_Struct *p;
@@ -779,6 +1019,7 @@ struct func_80025500_Struct {
 
 #define OBJ ((struct func_80025500_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdPortamentoCheck */
 void func_80025500(void) {
     s32 valid;
     s32 value;
@@ -820,6 +1061,7 @@ struct func_800255FC_Struct {
 
 extern void func_80025834(void **);
 
+/* GGA: sndCmdPortamentoTick */
 void func_800255FC(void)
 {
   long temp_v1;
@@ -858,6 +1100,7 @@ struct func_80025694_Struct {
     u8 unk8C;
 };
 
+/* GGA: sndCmdPortamentoTickSe */
 void func_80025694(void) {
     extern void func_80025834();
 
@@ -880,6 +1123,7 @@ struct func_800256FC_Struct {
     u8 unk8C;
 };
 
+/* GGA: sndCmdPitchBend */
 void func_800256FC(void) {
     ((struct func_800256FC_Struct *) D_800CBDA4)->unk8C = 0;
     ((struct func_800256FC_Struct *) D_800CBDA4)->unk88 = *D_800CBDA0;
@@ -907,6 +1151,7 @@ typedef struct func_80025768_Struct {
 } func_80025768_Struct;
 
 
+/* GGA: sndCmdPitchBendNote */
 void func_80025768(void) {
     if (((func_80025768_Struct *) D_800CBDA4)->unk8C == 0) {
         ((func_80025768_Struct *) D_800CBDA4)->unk7C = ((func_80025768_Struct *) D_800CBDA4)->unk88;
@@ -923,6 +1168,7 @@ void func_80025768(void) {
 
 
 
+/* GGA: sndCmdGlide */
 void func_800257F8(void) {
     ((u8 *) D_800CBDA4)[0x8C] = 1;
     *(s16 *) ((u8 *) D_800CBDA4 + 0x8A) = *D_800CBDA0;
@@ -945,6 +1191,7 @@ struct func_80025834_Struct {
 
 #define S ((struct func_80025834_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdGlideTick */
 void func_80025834(void **arg0) {
     s32 diff;
     u32 step;
@@ -977,6 +1224,7 @@ void func_80025834(void **arg0) {
 }
 
 
+/* GGA: sndCmdLoopStart */
 void func_80025908(void) {
     ((u8 *) D_800CBDA4)[0x5E] = 0;
     *(s32 *)((u8 *) D_800CBDA4 + 0x60) = (s32) D_800CBDA0;
@@ -997,6 +1245,7 @@ struct func_80025940_Struct {
 };
 #define O ((struct func_80025940_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdLoopEnd */
 void func_80025940(void) {
     s32 temp_v0;
 
@@ -1028,6 +1277,7 @@ struct func_80025A00_Struct {
     s32 unk68;
 };
 
+/* GGA: sndCmdLoop2Start */
 void func_80025A00(void) {
     ((struct func_80025A00_Struct *) D_800CBDA4)->unk64 = 0;
     ((struct func_80025A00_Struct *) D_800CBDA4)->unk68 = (s32) D_800CBDA0;
@@ -1049,6 +1299,7 @@ struct func_80025A38_Struct {
 
 #define THIS ((struct func_80025A38_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdLoop2End */
 void func_80025A38(void)
 {
   u32 temp_v0;
@@ -1068,6 +1319,7 @@ void func_80025A38(void)
 #undef THIS
 
 
+/* GGA: sndCmdMark */
 void func_80025AF8(void) {
     *(s32 *) ((u8 *) D_800CBDA4 + 0x6C) = (s32) D_800CBDA0;
 }
@@ -1079,6 +1331,7 @@ void func_80025B10(void) {
 
 
 
+/* GGA: sndCmdRepeatStart */
 void func_80025B28(void) {
     ((u8 *) D_800CBDA4)[0x70] = 0;
     ((s32 *) D_800CBDA4)[0x74 / 4] = D_800CBDA0;
@@ -1093,6 +1346,7 @@ struct func_80025B4C_Struct {
     s32 unk78;
 };
 
+/* GGA: sndCmdRepeat */
 void func_80025B4C(void)
 {
   u8 temp_a0;
@@ -1126,6 +1380,7 @@ struct func_80025BD8_Struct {
 };
 extern u8 D_800CBAD0[];
 
+/* GGA: sndCmdFxMix */
 void func_80025BD8(void) {
     s32 var_a0;
     u8 var_a2;
@@ -1153,6 +1408,7 @@ void func_80025BD8(void) {
 
 
 
+/* GGA: sndCmdBank */
 void func_80025C90(void) {
     *((u8 *)D_800CBDA4 + 0xC) = *D_800CBDA0;
     D_800CBDA0 += 1;
@@ -1179,6 +1435,7 @@ struct func_80025CDC_Struct {
 
 extern void func_80026950(s32, void *, s32, s32);
 
+/* GGA: sndCmdRest */
 void func_80025CDC(void) {
     if (((struct func_80025CDC_Struct *) D_800CBDA4)->unkE != 0) {
         ((struct func_80025CDC_Struct *) D_800CBDA4)->unkF = 1;
@@ -1205,6 +1462,7 @@ typedef struct func_80025D78_Struct {
 extern void func_80023D04();
 extern void func_80024358(void *);
 
+/* GGA: sndCmdTie */
 void func_80025D78(void) {
     s32 temp_v1;
 
@@ -1233,6 +1491,7 @@ void func_80025D78(void) {
 }
 
 
+/* GGA: sndCmdScaleBase */
 void func_80025E78(void) {
     u8 temp_v0;
 
@@ -1249,6 +1508,7 @@ void func_80025E78(void) {
 
 extern void func_80026140(s32, u8, s32, s32);
 
+/* GGA: sndCmdEvent */
 void func_80026058(void) {
     u8 temp_a1;
 
@@ -1259,6 +1519,7 @@ void func_80026058(void) {
 
 
 
+/* GGA: sndCmdEventArg */
 void func_80026098(void) {
     u8 temp_a1;
     u8 temp_a2;
@@ -1271,18 +1532,21 @@ void func_80026098(void) {
 
 extern void func_800261C4(s32);
 
+/* GGA: sndCmdEventKind2 */
 void func_800260E0(void) {
     func_800261C4(2);
 }
 
 
 
+/* GGA: sndCmdEventKind3 */
 void func_80026100(void) {
     func_800261C4(3);
 }
 
 
 
+/* GGA: sndCmdEventKind4 */
 void func_80026120(void) {
     func_800261C4(4);
 }
@@ -1297,6 +1561,7 @@ extern u16 D_800497A4[];
 extern u8 D_800CBDD0;
 extern u8 D_800CBDD8[];
 
+/* GGA: sndCmdQueueEvent */
 void func_80026140(u8 arg0, u8 arg1, u8 arg2, s16 arg3) {
     u16 v;
     u8 *p;
@@ -1318,6 +1583,7 @@ void func_80026140(u8 arg0, u8 arg1, u8 arg2, s16 arg3) {
 #define func_80026140 func_80026140__merge_frozen
 
 
+/* GGA: sndCmdEventValue */
 void func_800261C4(s32 arg0)
 {
   u8 temp_a1;
@@ -1344,6 +1610,7 @@ struct func_8002622C_Struct {
 };
 
 
+/* GGA: sndCmdEnd */
 void func_8002622C(void) {
     if (((struct func_8002622C_Struct *) D_800CBDA4)->unkE != 0) {
         ((struct func_8002622C_Struct *) D_800CBDA4)->unkF = 1;
@@ -1355,6 +1622,7 @@ void func_8002622C(void) {
 
 
 
+/* GGA: sndCmdSkip1 */
 void func_800262AC(void) {
     D_800CBDA0 += 1;
 }

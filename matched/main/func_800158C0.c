@@ -19,6 +19,7 @@ typedef struct func_800158C0_Struct {
     s32 (*unk28)(struct func_800158C0_Struct *, s32, s32);
 } func_800158C0_Struct;
 
+/* GGA: picDecode4 */
 s32 func_800158C0(s32 arg0, s32 arg1, func_800158C0_Struct *arg2) {
     s32 temp_s5;
     s32 temp_lo;

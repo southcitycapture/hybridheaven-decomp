@@ -5,11 +5,11 @@
 cd "$(dirname "$0")/../.." || exit 1; . ./env.sh
 B=$1; shift; Q=queue/$B; L=$Q/run.log
 meter() { $(command -v ~/bin/usage-gate || echo true) --brief 100 100 >/dev/null 2>&1
-          python3 -c "import json;d=json.load(open('$HOME/.cache/usage-gate.json'))['data'];print('weekly %s%% five-hour %s%%'%(d['seven_day']['utilization'],d['five_hour']['utilization']))"; }
+          python3 -c "import json;d=json.load(open('$HOME/.cache/usage-gate.json'))['data'];print('weekly %s%% five-hour %s%%'%(d['seven_day']['utilization'],(d.get('five_hour') or {}).get('utilization',0)))"; }
 echo "$(date -u +%FT%H:%MZ) start: $(meter)" >> "$L"
 export BATCH=$B FROM=best INFILE=1 DIAG=1 LEARNINGS=1 CHECK_LIMIT=60 DEADLINE_MIN=25
 export WORKER_FLAGS="--tools Read,Write,Edit,Bash --strict-mcp-config --disable-slash-commands --effort high"
 for kv in "$@"; do export "$kv"; done
-xargs -P 4 -L 1 tools/swarm/run_one_from.sh < "$Q/functions.txt" > /dev/null 2>&1
+xargs -P ${PAR:-4} -L 1 tools/swarm/run_one_from.sh < "$Q/functions.txt" > /dev/null 2>&1
 echo "$(date -u +%FT%H:%MZ) end: $(grep -c '"MATCH"' "$Q/results.jsonl")/$(grep -c . "$Q/results.jsonl") matched; $(meter)" >> "$L"
 touch "$Q/DONE"

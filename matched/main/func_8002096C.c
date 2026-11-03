@@ -3,6 +3,7 @@ extern u8 D_800CBB20;
 typedef struct { u16 a; s16 b; u8 c; u8 p; } func_8002096C_Struct;
 extern func_8002096C_Struct D_800CBAF0[];
 
+/* GGA: sndSetParam */
 void func_8002096C(arg0, arg1, arg2)
 u16 arg0;
 u8 arg1;

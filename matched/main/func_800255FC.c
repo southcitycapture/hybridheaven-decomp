@@ -17,6 +17,7 @@ struct func_800255FC_Struct {
 
 extern void func_80025834(void **);
 
+/* GGA: sndCmdPortamentoTick */
 void func_800255FC(void)
 {
   long temp_v1;

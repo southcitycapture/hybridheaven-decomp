@@ -5098,8 +5098,20 @@ s32 func_801EA924(s32 arg0, s32 arg1) {
     return 0x31;
 }
 
-/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_617f877d76cba6db.s {"functions":["func_801EA980"],"rodata":[],"rodata_bytes":[2149615980,7499820,20]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_617f877d76cba6db.s")
+
+s32 func_801EA980(s32 arg0, s32 arg1) {
+    f32 b = 7.0999999f;
+    f32 c = 9.39999962f;
+    f32 d = 0.200000003f;
+    f32 a = -0.5f;
+    if (a) {}
+    if (a) {}
+    if (a) {}
+    if (func_8038BEF8(0.0f, 2.0f, 23.0f, -0.5f, 17.6000004f, 8.0f, a, 23.7000008f, b, c, d, b, c, d) != 0) {
+        return 0x32;
+    }
+    return 0x31;
+}
 
 
 s32 func_801EAA24(s32 arg0, s32 arg1) {

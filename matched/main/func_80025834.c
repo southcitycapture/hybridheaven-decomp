@@ -15,6 +15,7 @@ struct func_80025834_Struct {
 
 #define S ((struct func_80025834_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdGlideTick */
 void func_80025834(void **arg0) {
     s32 diff;
     u32 step;

@@ -33,7 +33,11 @@ void func_80240CE0(s32 arg0, s32 arg1) {
 }
 #undef func_80240D74
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80240CE0/D_8024A290.s")
+/* Readonly diagnostics, formerly D_8024A290.s. */
+const u8 D_8024A290[0x18] =
+    "ch 1\n\000\000\000"
+    "ch 2\n\000\000\000"
+    "ch 3\n\000\000";
 
 #define func_80240E38 func_80240E38__func_80240D74
 
@@ -172,7 +176,13 @@ void func_8024101C(s32 arg0, s32 arg1) {
 #undef func_80241064
 
 /* hh-block asm/nonmatchings/file014/80240CE0/_ro_func_80241064.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file014/80240CE0/func_80241064.s","D_8024A2A8"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80240CE0/_ro_func_80241064.s")
+/* Readonly diagnostics, formerly _ro_func_80241064.s. */
+const u8 D_8024A2A8[0x7C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/device/chase.c\000\000\000\000"
+    "ch 4\n\000\000\000"
+    "ch 6 %x\n\000\000\000\000"
+    "burosu init come\n\000\000\000"
+    "\245\342\241\274\245\267\245\347\245\363\277\315\267\301\245\273\245\303\245\310\n\000\000";
 
 #define func_80241144 func_80241144__func_80241064
 
@@ -195,7 +205,7 @@ typedef struct func_80241064_StructGlobal {
     func_80241064_StructC *unk2C;
 } func_80241064_StructGlobal;
 
-extern u8 D_8024A2A8[];
+extern const u8 D_8024A2A8[];
 
 extern s32 func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_80241144();

@@ -349,8 +349,16 @@ s32 func_801DBE94(struct func_801DBE94_Struct *arg0, u8 arg1) {
     return ((s32 *) D_801E15B8[var_v1])[arg1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DB480/D_801E3BD0.s")
-
+/* Readonly diagnostics, formerly D_801E3BD0.s. */
+const u8 D_801E3BD0[0x140] =
+    "posi  x %f z %f\n\000\000\000\000"
+    "d[%d]->gmtx is  NULL\n\000\000\000"
+    "md->xyz_max x:%f y:%f z:%f\n\000"
+    "md->xyz_min x:%f y:%f z:%f\n\000"
+    "md->xyz_max_bt_at x:%f y:%f z:%f\n\000\000\000"
+    "md->xyz_min_bt_at x:%f y:%f z:%f\n\000\000\000"
+    "kind = %d  Error  \263\272\305\366\244\271\244\353 kind \244\254\244\242\244\352\244\336\244\273\244\363\241\243\271\275\244\250\244\313\244\267\244\306\244\252\244\255\244\336\244\271\n\000\000\000"
+    "mot_type = %d  Error  \263\272\305\366\244\271\244\353 type \244\254\244\242\244\352\244\336\244\273\244\363\241\243\245\316\241\274\245\336\245\353\245\277\245\244\245\327\244\313\244\267\244\306\244\252\244\255\244\336\244\271\n";
 
 #define D_801BBBF0 D_801BBBF0__func_801DBEE4
 #define D_801E3D10 D_801E3D10__func_801DBEE4

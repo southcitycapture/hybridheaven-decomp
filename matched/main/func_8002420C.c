@@ -13,6 +13,7 @@ struct func_8002420C_Struct {
 
 extern void func_80024278(void);
 
+/* GGA: trkEnvDecay */
 void func_8002420C(void) {
     if (((struct func_8002420C_Struct *) D_800CBDA4)->unk54 != 0) {
         ((struct func_8002420C_Struct *) D_800CBDA4)->unk49 = 1;

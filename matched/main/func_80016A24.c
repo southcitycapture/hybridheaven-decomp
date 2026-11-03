@@ -2,6 +2,7 @@
 
 extern u8 D_8004C964[];
 
+/* GGA: picParseHex */
 s32 func_80016A24(s8 *arg0) {
     s32 temp_a2;
     s32 var_a0;

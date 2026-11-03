@@ -133,6 +133,7 @@ segments:
       - [0x2B710, c, main/8002AB10]
       - [0x2B7A0, c, main/8002ABA0]
       - [0x2B860, c, main/8002AC60]
+      - [0x2BA90, pad]
       - [0x2BAA0, c, main/8002AEA0]
       - [0x2BEB0, c, main/8002B2B0]
       - [0x2BF80, c, main/8002B380]
@@ -404,6 +405,7 @@ segments:
       - [0x5AD490, c, file010/801FC490]
       - [0x5ADBE0, c, file010/801FCBE0]
       - [0x5AFAE0, c, file010/801FEAE0]
+      - [0x5B0170, pad]
       - [0x5B0180, c, file010/801FF180]
       - [0x5B4830, c, file010/80203830]
       - [0x5B6720, c, file010/80205720]
@@ -511,6 +513,7 @@ segments:
       - [0x60E2D0, c, file015/80241550]
       - [0x6101A0, c, file015/80243420]
       - [0x6116B0, c, file015/80244930]
+      - [0x611980, pad]
       - [0x611990, c, file015/80244C10]
       - [0x614560, c, file015/802477E0]
       - [0x6150C0, c, file015/80248340]
@@ -742,11 +745,15 @@ segments:
       - { type: bss, vram: 0x801E1320, name: file025_bss_801E1320 }
       - { type: .bss, vram: 0x801E1350, name: file025/801D0CD0 }
       - { type: bss, vram: 0x801E1360, name: file025_bss_801E1360 }
-      - { type: .bss, vram: 0x801E1420, name: file025/801D1760 }
+      - { type: .bss, vram: 0x801E13E0, name: file025/801D1760 }
       - { type: bss, vram: 0x801E1430, name: file025_bss_801E1430 }
-      - { type: .bss, vram: 0x801E16E0, name: file025/801D5420 }
+      - { type: .bss, vram: 0x801E1610, name: file025/801D46F0 }
+      - { type: bss, vram: 0x801E1620, name: file025_bss_801E1620 }
+      - { type: .bss, vram: 0x801E1670, name: file025/801D4C90 }
+      - { type: bss, vram: 0x801E1680, name: file025_bss_801E1680 }
+      - { type: .bss, vram: 0x801E16C0, name: file025/801D5420 }
       - { type: bss, vram: 0x801E16F0, name: file025_bss_801E16F0 }
-      - { type: .bss, vram: 0x801E1710, name: file025/801D6000 }
+      - { type: .bss, vram: 0x801E1700, name: file025/801D6000 }
       - { type: bss, vram: 0x801E1720, name: file025_bss_801E1720 }
       - { type: .bss, vram: 0x801E1790, name: file025/801D6C80 }
       - { type: bss, vram: 0x801E17A0, name: file025_bss_801E17A0 }

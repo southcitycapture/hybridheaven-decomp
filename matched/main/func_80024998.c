@@ -11,6 +11,7 @@ struct func_80024998_Struct {
 extern u8 D_800481FE[];
 extern u8 D_8004817A[];
 
+/* GGA: sndCmdEnvAttackDecay */
 void func_80024998(void) {
     u8 temp;
 

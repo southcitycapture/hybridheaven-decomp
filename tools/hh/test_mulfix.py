@@ -152,3 +152,40 @@ nop
             self.assertEqual(after_mul('join')[0], 0)                            # rule 2
             self.assertEqual(len(after['join']), len(before['join']) + 4)
             self.assertEqual(M.fix(obj), 0)
+
+    @unittest.skipUnless(Path('tools/ido/7.1/cc').exists(), 'requires IDO 7.1')
+    def test_r4300_mul_flag_equals_mulfix(self):
+        """Task 26: cc -Wab,-r4300_mul (the original build's flag, now the default in tools/hh/idoflags.py) gives
+        the same .text as plain -O2 followed by mulfix.py, so the post-pass is no longer needed."""
+        source = (
+            'float early(float a, float b, int n) { if (n) return a; b = b + a; return a * b; }\n'
+            'float join(float a, float b, int n) { if (n) { a = a * b; } return a; }\n'
+            'float many(float *v) { return v[0] * v[1] + v[2] * v[3] + v[4] * v[5]; }\n')
+        base = ['tools/ido/7.1/cc', '-c', '-G', '0', '-non_shared', '-Xcpluscomm', '-mips2', '-O2']
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            src, old, new = Path(td)/'t.c', Path(td)/'old.o', Path(td)/'new.o'
+            src.write_text(source)
+            subprocess.run(base + ['-o', str(old), str(src)], check=True)
+            subprocess.run(base + ['-Wab,-r4300_mul', '-o', str(new), str(src)], check=True)
+            self.assertGreater(M.fix(old), 0)
+            def text(p):
+                with p.open('rb') as fh:
+                    return ELFFile(fh).get_section_by_name('.text').data()
+            self.assertEqual(text(new), text(old))
+            self.assertEqual(M.fix(new), 0)                    # nothing left for the post-pass to do
+
+    @unittest.skipUnless(Path('tools/ido/7.1/cc').exists(), 'requires IDO 7.1')
+    def test_r4300_mul_flag_keeps_multiply_out_of_return_delay_slot(self):
+        """Beyond mulfix.py: with -Wab,-r4300_mul as1 never fills `jr $ra`'s delay slot with a float multiply
+        (`mul.d; jr ra; nop`), which plain -O2 (+ mulfix) does (`jr ra; mul.d`)."""
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            src, obj = Path(td)/'t.c', Path(td)/'t.o'
+            src.write_text('double dd(double a, double b, double c) { return a * b * c; }\n')
+            subprocess.run(['tools/ido/7.1/cc', '-c', '-G', '0', '-non_shared', '-Xcpluscomm', '-mips2', '-O2',
+                            '-Wab,-r4300_mul', '-o', str(obj), str(src)], check=True)
+            with obj.open('rb') as fh:
+                text = ELFFile(fh).get_section_by_name('.text').data()
+            ws = struct.unpack('>%dI' % (len(text) // 4), text)
+            k = ws.index(M.JR_RA)
+            self.assertTrue(M.is_mul(ws[k - 1]))
+            self.assertEqual(ws[k + 1], 0)

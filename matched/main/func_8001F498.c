@@ -9,6 +9,7 @@ typedef struct func_8001F498_Struct {
 
 extern func_8001F498_Struct D_80091BC0;
 
+/* GGA: heapRepair */
 void func_8001F498(func_8001F498_Struct *arg0) {
     func_8001F498_Struct *var_v1;
     func_8001F498_Struct *temp_v0;

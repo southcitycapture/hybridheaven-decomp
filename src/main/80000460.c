@@ -159,6 +159,7 @@ typedef struct func_80000934_Head {
     func_80000934_Struct *unk888;
 } func_80000934_Head;
 
+/* GGA: mainSchedAddClient */
 void func_80000934(func_80000934_Head *arg0, func_80000934_Struct *arg1, s32 arg2) {
     s32 temp_a0;
 
@@ -171,6 +172,7 @@ void func_80000934(func_80000934_Head *arg0, func_80000934_Struct *arg1, s32 arg
 
 
 
+/* GGA: mainSchedRemoveClient */
 void func_80000984(u8 *arg0, s32 *arg1) {
     s32 *var_v1;
     s32 *var_a2;
@@ -206,6 +208,7 @@ struct func_80000A0C_Node {
 
 extern void func_80026300(void *a0, void *a1, s32 a2);
 
+/* GGA: mainSchedBroadcast */
 void func_80000A0C(u8 *arg0, void *arg1) {
     struct func_80000A0C_Node *node;
 
@@ -247,6 +250,7 @@ typedef struct func_80000A5C_Struct {
     s32 unk54;
 } func_80000A5C_Struct;
 
+/* GGA: mainSchedAudioThread */
 void func_80000A5C(u8 *arg0) {
     void *sp64;
     func_80000A5C_Struct *sp60;
@@ -338,6 +342,7 @@ typedef struct func_80000BF0_Obj {
     s32 unk8A0;
 } func_80000BF0_Obj;
 
+/* GGA: mainSchedGfxThread */
 void func_80000BF0(func_80000BF0_Obj *arg0) {
     void *sp5C;
     func_80000BF0_Msg *sp58;
@@ -411,6 +416,7 @@ extern s32 func_80028F20(void);
 extern void func_80030DC0(s32);
 extern s32 func_80035050(void);
 
+/* GGA: mainSchedSwapThread */
 void func_80000DC8(u8 *arg0) {
     void *sp54;
     func_80000DC8_StructMessage *sp50;

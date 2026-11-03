@@ -40,6 +40,7 @@ struct func_8001FD14_Struct {
     void *unk5C;
 };
 
+/* GGA: __amHandleFrameMsg */
 s32 func_8001FD14(struct func_8001FD14_Struct *arg0, struct func_8001FD14_Struct *arg1) {
     s32 sp3C;
     s32 sp34[2];

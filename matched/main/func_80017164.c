@@ -2,6 +2,7 @@
 
 s32 func_800170C8(s32);                             /* extern */
 
+/* GGA: resFreeList */
 s32 func_80017164(s32 *arg0) {
     s32 temp_v1;
 

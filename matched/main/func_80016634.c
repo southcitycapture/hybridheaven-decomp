@@ -9,6 +9,7 @@ struct func_80016634_Struct {
     s32 unk8;
 };
 
+/* GGA: picPut15 */
 void func_80016634(struct func_80016634_Struct *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 var_v1;
 

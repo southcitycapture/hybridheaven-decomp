@@ -1258,14 +1258,85 @@ void func_8000659C(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BAE0.s")
+/* Readonly diagnostics, formerly D_8004BAE0.s. */
+const u8 D_8004BAE0[0x4F4] =
+    "LZSS 5  %x  %x %x \n\000"
+    "LZSS 7  %x  %x %x \n\000"
+    "\000\000\000\000"
+    "\000\000\000\000"
+    "\n\tsw.segw \244\254\260\354\307\325\244\307\305\270\263\253\244\307\244\255\244\336\244\273\244\363\241\243\n\000"
+    "\n\t\244\271\244\307\244\313 romNo[%d] \244\317\305\270\263\253\244\265\244\354\244\306\244\244\244\336\244\271\241\243\n\000\000\000\000"
+    "trans_buf %x - %x \n\000"
+    "trans.c trans_to_malloc64_seps\263\253\273\317  \n \000\000"
+    "trans.c trans_to_malloc64_sep\312\254\263\344\303\346  \n \000"
+    "trans.c trans_to_malloc64_seps\275\252\316\273  \n \000\000"
+    "trans.c trans_to_malloc64_seps\263\253\273\317  \n \000\000"
+    "error \244\263\244\263\244\317\264\373\244\313\305\270\263\253\244\267\244\306\244\244\244\353\244\313\270\306\244\320\244\354\244\306\244\317\244\244\244\261\244\312\244\244\241\243\n \000\000\000\000"
+    "trans.c trans_to_malloc64_sep\312\254\263\344\303\346  \n \000"
+    "trans.c trans_to_malloc64_seps\275\252\316\273  \n \000\000"
+    "\245\273\245\260\245\341\245\363\245\310[\000"
+    "%04d\000\000\000\000"
+    "%04x\000\000\000\000"
+    "] \244\254 _ENDSIZESegmentRomNo \244\362\245\252\241\274\245\320\241\274\244\267\244\306\244\244\244\336\244\271(\305\270\263\253\245\250\245\351\241\274)\n\000"
+    "can't Read seg_RomDecode NO [%d] over _ENDSIZESegmentRomNo\n\000"
+    "transBusy \244\254\316\251\244\303\244\277\244\336\244\336\244\307\244\271\241\243\312\321\244\307\244\317\244\242\244\352\244\336\244\273\244\363\244\253\241\251\243\261(%d)\n\000"
+    "can't Read seg_RomDecode NO [%d] over _ENDSIZESegmentRomNo\n\000"
+    "transBusy \244\254\316\251\244\303\244\277\244\336\244\336\244\307\244\271\241\243\312\321\244\307\244\317\244\242\244\352\244\336\244\273\244\363\244\253\241\2512\n\000\000"
+    "trans.c \260\265\275\314\305\276\301\367\263\253\273\317 \n\000\000"
+    "trans.c  Lzss\260\265\275\314\244\242\244\352 romNo %d\n\000"
+    "trans.c  L  %x %x %x %x\n\000\000\000\000"
+    "trans.c  Lzss\260\265\275\314\244\242\244\352  \272\307\270\345romNo %d-----------------\n\000\000\000"
+    "trans.c  Lzss\260\265\275\314\244\312\244\267 romNo %d size %x\n\000"
+    "trans.c  Lzss\260\265\275\314\244\312\244\267  \272\307\270\345romNo %d-----------------\n\000\000\000"
+    "trans.c seg_RomDecode_sep \275\252\316\273\n\000"
+    "[%x] romNo setting over error!!\n\000\000\000\000"
+    "trans.c  pic\260\265\275\314 1  %x\n\000"
+    "[%x] romNo setting over error!!\n\000\000\000\000"
+    "trans.c  pic\260\265\275\314 A  %x\n\000"
+    "trans.c  pic\260\265\275\314 \263\253\273\317  %x \n\000"
+    "trans.c  pic\260\265\275\314 \305\276\301\367\303\346 %x %x \n\000"
+    "trans.c  pic\260\265\275\314 \305\276\301\367\303\346\303\307  %x\n\000\000"
+    "trans.c  pic\260\265\275\314 \305\276\301\367\275\252\316\273 \n";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BFD4.s")
+/* Readonly diagnostics, formerly D_8004BFD4.s. */
+const u8 D_8004BFD4[0x8] =
+    "RGBA\000\000\000";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BFDC.s")
+/* Readonly diagnostics, formerly D_8004BFDC.s. */
+const u8 D_8004BFDC[0x4] =
+    "CI\000";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80005270/D_8004BFE0.s")
-
+/* Readonly diagnostics, formerly D_8004BFE0.s. */
+const u8 D_8004BFE0[0x408] =
+    "IA\000\000"
+    "\245\253\245\351\241\274\245\325\245\354\241\274\245\340\245\320\245\303\245\325\245\241\244\362\273\310\244\303\244\306\245\306\245\255\245\271\245\301\245\343\305\270\263\253\000\000\000\000"
+    "\tDEBUG TEXTURE\t[%x]%x, \000"
+    "%s%d, %dx%d\n\000\000\000\000"
+    "NON PIC\n\000\000\000\000"
+    "can't Read seg_RomDecode NO [%04x] over _ENDPTXSegmentRomNo\n\000\000\000\000"
+    "transBusy \244\254\316\251\244\303\244\277\244\336\244\336\244\307\244\271\241\243\312\321\244\307\244\317\244\242\244\352\244\336\244\273\244\363\244\253\241\2513\n\000\000"
+    "can't Read seg_RomDecode NO [%04x] over _ENDPTXSegmentRomNo\n\000\000\000\000"
+    "\000\000\000\000"
+    "mid start syori Proc -------------------------------------\n\000"
+    " pre\000\000\000\000"
+    " mid\000\000\000\000"
+    " aft\n\000\000\000"
+    "mid end   syori Proc -------------------------------------\n\000"
+    "initobj  gmax%d dmax%d mmax%d normal_max%d small_max%d DDATAU %x SDDATAU %x\n\000\000\000\000"
+    "GOBJ work address  start %0x end %0x\n\000\000\000"
+    "DOBJ work address  start %0x end %0x\n\000\000\000"
+    "NDATA work address  start %0x end %0x\n\000\000"
+    "NDATA fg work address  start %0x end %0x\n\000\000\000"
+    "SDATA work address  start %0x end %0x\n\000\000"
+    "SDATA fg work address  start %0x end %0x\n\000\000\000"
+    "GMTX  work address  start %0x end %0x\n\000\000"
+    "\n object malloc start %x end  %x \n\000\000"
+    "error no work sdata %x %d  %x %d \n\000\000"
+    "error no work ndata %x %d  %x %d \n\000\000"
+    "\267\331\271\360 Dobj \244\254\302\255\244\352\244\336\244\273\244\363  %x\n\000"
+    "\267\331\271\360 Dobj \244\254\302\255\244\352\244\336\244\273\244\363\243\262  %x\n\000\000\000"
+    "\nError gmtx buffer over size\n\000\000\000"
+    "\nError gvp buffer over size\n\000\000\000";
 
 struct func_800065EC_Struct {
     u8 pad0[0x20];

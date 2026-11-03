@@ -48,6 +48,7 @@ extern void (*D_80047BD0[])(u8);
 extern u8 *D_800CBDA0;
 #define PZ ((func_80023520_Struct *)D_800CBDA4)
 
+/* GGA: trkNextNote */
 void func_80023520(void) {
     u8 first[4];
     s32 code;

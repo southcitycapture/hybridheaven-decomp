@@ -8,6 +8,7 @@ typedef struct func_80020A7C_Struct {
 
 extern s16 func_800209E4(u8, u8);
 
+/* GGA: sndApplyParam */
 void func_80020A7C(s32 arg0) {
     extern s16 D_80047E00[][2];
     s32 result;

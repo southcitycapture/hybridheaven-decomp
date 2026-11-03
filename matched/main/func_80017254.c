@@ -2,6 +2,7 @@
 
 s32 func_80017480(u16, s32);
 
+/* GGA: resFreeNotInList */
 s32 func_80017254(s32 arg0) {
     u16 temp_s0;
     u16 temp_v0;

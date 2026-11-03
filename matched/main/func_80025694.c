@@ -13,6 +13,7 @@ struct func_80025694_Struct {
     u8 unk8C;
 };
 
+/* GGA: sndCmdPortamentoTickSe */
 void func_80025694(void) {
     extern void func_80025834();
 

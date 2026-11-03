@@ -27,11 +27,12 @@ def find_func(name, asm=None, seg=None):
 
 def compile_c(src, cc, opt, out):
     ido = os.path.join(HH, "tools/ido", cc)
-    cmd = [os.path.join(ido, "cc"), "-c", "-G", "0", "-non_shared", "-Xcpluscomm", "-mips2",
+    import idoflags     # -G 0 -non_shared -Xcpluscomm -mips2 -Wab,-r4300_mul (the original build's flags, Task 26)
+    cmd = [os.path.join(ido, "cc"), "-c"] + idoflags.BASE + [
            "-I", os.path.join(HH, "include"), "-I", os.path.join(HH, "src")] + opt.split() + ["-o", out, src]
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode: sys.exit("compile failed:\n" + r.stderr)
-    import mulfix; mulfix.fix(out)      # the original build's VR4300 nop between consecutive float multiplies
+    idoflags.post(out)      # no-op unless HH_MULFIX=1 (then mulfix.py, the old VR4300 nop post-pass)
 
 _elf = {}
 _linked = {}     # one link per (object version, base, rodata, symbol defs): every function reads from it

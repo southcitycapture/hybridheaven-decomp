@@ -9,6 +9,7 @@ typedef struct func_8001F364_Struct {
 
 extern func_8001F364_Struct *D_80091BCC;
 
+/* GGA: heapMallocTop */
 s32 func_8001F364(arg0)
     s32 arg0;
 {

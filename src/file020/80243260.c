@@ -49,8 +49,8 @@ extern u8 D_80244448[];
 extern u8 D_80244454[];
 extern u8 D_80244460[];
 extern u8 D_802444D0[];
-extern u8 D_80246B18[];
-extern u8 D_80246B64[];
+extern const u8 D_80246B18[];
+extern const u8 D_80246B64[];
 #define func_80243F38 func_80243F38__decl
 extern u8 func_80243F38[];
 extern void *D_801BBCD8;
@@ -130,7 +130,9 @@ void func_802432C0(void *arg0, void *arg1) {
 }
 #undef func_8024332C
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/80243260/D_80246B00.s")
+/* Readonly diagnostics, formerly D_80246B00.s. */
+const u8 D_80246B00[0x18] =
+    "\271\365\311\376\245\321\245\351\245\341\241\274\245\277\245\273\245\303\245\310\n\000\000";
 
 extern struct func_80243D1C_Struct D_801BBBF0;
 typedef struct func_80243D1C_Struct {
@@ -275,7 +277,10 @@ void func_80243724(struct func_80243724_Struct *arg0, s32 arg1) {
 #undef func_802437F0
 
 /* hh-block asm/nonmatchings/file020/80243260/_ro_func_802437F0.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file020/80243260/func_802437F0.s","D_80246B18"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/80243260/_ro_func_802437F0.s")
+/* Readonly diagnostics, formerly _ro_func_802437F0.s. */
+const u8 D_80246B18[0x4C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a08_s02demo.c\000"
+    "\271\365\311\376\245\342\241\274\245\267\245\347\245\363\306\260\272\356\n";
 
 #define func_802438F8 func_802438F8__func_802437F0
 typedef struct func_802438F8_Struct {
@@ -435,7 +440,9 @@ void func_80243B3C(func_80243B3C_Struct *arg0, void *arg1)
 #undef func_80243B88
 
 /* hh-block asm/nonmatchings/file020/80243260/_ro_func_80243B88.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file020/80243260/func_80243B88.s","D_80246B64"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/80243260/_ro_func_80243B88.s")
+/* Readonly diagnostics, formerly _ro_func_80243B88.s. */
+const u8 D_80246B64[0x38] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a08_s02demo.c";
 
 #define func_80243C84 func_80243C84__func_80243B88
 
@@ -573,7 +580,10 @@ void func_80243D94(struct func_80243D94_Arg *arg0, struct func_80243D94_Obj **ar
 
 #undef func_80243F38
 /* hh-block asm/nonmatchings/file020/80243260/_ro_func_80243F38.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file020/80243260/func_80243F38.s","D_80246B9C"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file020/80243260/_ro_func_80243F38.s")
+/* Readonly diagnostics, formerly _ro_func_80243F38.s. */
+const u8 D_80246B9C[0x3C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a08_s02demo.c\000"
+    "\000\000\000";
 
 #define D_80246B9C D_80246B9C__func_80243F38
 #define func_801C3BC8 func_801C3BC8__func_80243F38
@@ -611,7 +621,7 @@ typedef struct func_80243F38_Struct {
 extern void func_801C3BC8();
 void func_80244074(s32 arg0, s32 arg1);
 extern void func_801C3C3C(s32);
-extern u8 D_80246B9C[];
+extern const u8 D_80246B9C[];
 
 void func_80243F38(s32 arg0, s32 arg1) {
     func_801C3BC8();

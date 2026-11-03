@@ -6,6 +6,7 @@ extern void func_80015F14(void *, s32, s32, s32);
 extern s32 D_8008DC94;
 extern s32 D_8008DC98;
 
+/* GGA: picDecodeDirect */
 void func_80015D9C(func_80015D9C_Struct *arg0) {
     u32 var_s2;
     s32 var_s4;

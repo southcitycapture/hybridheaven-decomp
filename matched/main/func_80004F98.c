@@ -7,6 +7,7 @@
 extern u16 D_800399B8[];
 extern s32 D_80039A78[];
 
+/* GGA: fileRomSize */
 u32 func_80004F98(s32 arg0, s32 arg1) {
     s32 sp34;
     s32 address;

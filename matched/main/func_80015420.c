@@ -23,6 +23,7 @@ extern s32 D_8008DC90;
 extern u8 *D_8008DCA0;
 extern u8 D_8008DCA4;
 
+/* GGA: picOpen */
 func_80015420_Struct *func_80015420(u8 *arg0, func_80015420_Struct *arg1) {
     func_80016CB4((s32)arg0);
     arg1->unk18 = arg0;

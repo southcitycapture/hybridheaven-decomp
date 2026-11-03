@@ -4,6 +4,7 @@ u16 func_80017014(s32 arg0);
 s32 func_800170C8(s32);                             /* extern */
 
 
+/* GGA: resFreeAllBut */
 s32 func_800171D0(u16 arg0) {
     s32 temp_v0;
     s32 var_s0;

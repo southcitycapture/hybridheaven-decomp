@@ -12,6 +12,7 @@ typedef struct func_80000934_Head {
     func_80000934_Struct *unk888;
 } func_80000934_Head;
 
+/* GGA: mainSchedAddClient */
 void func_80000934(func_80000934_Head *arg0, func_80000934_Struct *arg1, s32 arg2) {
     s32 temp_a0;
 

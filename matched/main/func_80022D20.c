@@ -15,6 +15,7 @@ void func_80022874(s32 arg0);
 extern s32 func_80024114(s32, u8, s8, ...);
 
 
+/* GGA: sndFreeSlot */
 void func_80022D20(u16 arg0) {
     u32 *var_s1;
     s32 var_s0;

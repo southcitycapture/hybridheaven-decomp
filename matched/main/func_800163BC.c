@@ -8,6 +8,7 @@ typedef struct func_8001643C_StructEntry {
 extern func_8001643C_StructEntry D_8008DCA8[];
 extern s32 D_8008DFA8;
 
+/* GGA: picCacheClear */
 void func_800163BC(void) {
     s32 i;
 

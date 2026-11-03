@@ -8,6 +8,7 @@ extern void func_800306C0(s32, s32);
 extern u8 D_8005C268[];
 extern u8 D_8005CD80[];
 
+/* GGA: dmaTransfer */
 void func_80001F30(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     if (arg1 == 0) {
         func_80028A90(arg2, arg4);

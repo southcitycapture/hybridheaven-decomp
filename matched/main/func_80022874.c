@@ -15,6 +15,7 @@ extern s32 D_800498F0;
 extern u8 D_800CBBE0[];
 void func_80026950(s32, void *, s32, s32);
 
+/* GGA: sndStopTrack */
 void func_80022874(s32 arg0) {
     D_800CBDA4 = (func_80022874_Struct *)((arg0 * 0xD8) + (s32)&D_801B5520);
     ((func_80022874_Struct *)D_800CBDA4)->unk0 = 0;

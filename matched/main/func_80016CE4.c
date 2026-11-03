@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: picReadBit */
 s32 func_80016CE4(void) {
     s32 n;
 

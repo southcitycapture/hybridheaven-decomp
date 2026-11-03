@@ -9,6 +9,7 @@ typedef struct func_80024358_Struct {
     u16 unkB6;
 } func_80024358_Struct;
 
+/* GGA: trkEnvTick */
 void func_80024358(void) {
 
     ((func_80024358_Struct *)D_800CBDA4)->unk4C--;

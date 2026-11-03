@@ -7,6 +7,7 @@
 #undef func_80024114
 #undef func_800209E4
 
+/* GGA: sndParamValue */
 s32 func_800209E4(arg0, arg1)
 u8 arg0;
 u8 arg1;

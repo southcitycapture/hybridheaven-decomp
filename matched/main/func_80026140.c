@@ -5,6 +5,7 @@ extern u16 D_800497A4[];
 extern u8 D_800CBDD0;
 extern u8 D_800CBDD8[];
 
+/* GGA: sndCmdQueueEvent */
 void func_80026140(u8 arg0, u8 arg1, u8 arg2, s16 arg3) {
     u16 v;
     u8 *p;

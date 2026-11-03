@@ -6,6 +6,7 @@ extern s32 D_8008DC98;
 extern u8 *D_8008DFB0;
 extern s32 D_8008DFB4;
 
+/* GGA: picPut8 */
 void func_80016828(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     if ((arg1 < 0) || (arg1 >= D_8008DC94) || (arg2 < 0) || (D_8008DC98 < arg2)) {
 

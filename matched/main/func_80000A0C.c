@@ -7,6 +7,7 @@ struct func_80000A0C_Node {
 
 extern void func_80026300(void *a0, void *a1, s32 a2);
 
+/* GGA: mainSchedBroadcast */
 void func_80000A0C(u8 *arg0, void *arg1) {
     struct func_80000A0C_Node *node;
 

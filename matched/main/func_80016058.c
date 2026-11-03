@@ -7,6 +7,7 @@ typedef struct func_80016058_Struct {
     void (*unk24)(struct func_80016058_Struct *, s32, s32, s32);
 } func_80016058_Struct;
 
+/* GGA: picDecodeSkips */
 void func_80016058(func_80016058_Struct *arg0) {
     s32 temp_lo;
     s32 temp_s0;

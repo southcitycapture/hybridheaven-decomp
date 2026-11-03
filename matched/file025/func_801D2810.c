@@ -7,7 +7,7 @@ struct func_801D2810_Struct {
     f32 unk0;
     s32 unk4;
 };
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern u64 func_801C0B2C();
 extern struct func_801D2810_Struct D_801DB284[];
 extern f64 D_801DD4C0;

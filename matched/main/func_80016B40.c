@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: picMarkWritten */
 void func_80016B40(s32 arg0, s32 arg1) {
     u8 *temp_v0;
 

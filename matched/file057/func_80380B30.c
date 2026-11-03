@@ -9,8 +9,8 @@ extern u8 D_80389880[];
 extern f64 D_8038BE08;
 extern f64 D_8038BE10;
 extern f64 D_8038BE18;
-extern func_80380B30_SA *D_8038CFB4;
-extern u8 func_80380CD8[];
+extern struct func_80380B30_SA *D_8038CFB4;
+extern void func_80380CD8();
 
 void func_80380B30(func_80380B30_S *arg0, s32 arg1)
 {

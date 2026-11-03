@@ -106,7 +106,55 @@ void func_80383AD4(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file055/803839A0/func_80383BCC.s")
+#define D_8038DBBC D_8038DBBC__func_80383BCC
+#define D_8038DBD8 D_8038DBD8__func_80383BCC
+extern s32 D_8038DBBC;
+extern s32 D_8038DBD8;
+
+
+void func_80383BCC(void) {
+    s32 t;
+
+    switch (D_8038DBB8) {
+    case 0:
+        D_8038DBBC = 1;
+        D_8038DBC0 += 0xC;
+        if (D_8038DBC0 >= 0xF1) {
+            D_8038DBC0 = 0xFF;
+            D_8038DBB8++;
+        }
+        D_8038DBB4 = 0;
+        break;
+    case 1:
+        D_8038DBBC = 1;
+        D_8038DBB4 += 1;
+        D_8038DBC0 = 0xFF;
+        D_8038DBD8 = 1;
+        if (D_8038DBB4 >= 0xA9) {
+            D_8038DBB8++;
+            D_8038DBB4 = 0;
+        }
+        break;
+    case 2:
+        D_8038DBBC = 1;
+        D_8038DBB4 += 1;
+        D_8038DBC0 -= 9;
+        if (D_8038DBC0 < 0xA) {
+            D_8038DBC0 = 0;
+            D_8038DBB8++;
+            D_8038DBCC = 1;
+        }
+        break;
+    case 3:
+        D_8038DBBC = 0;
+        break;
+    default:
+        D_8038DBBC = 0;
+        break;
+    }
+}
+#undef D_8038DBBC
+#undef D_8038DBD8
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file055/803839A0/func_80383D08.s")
 

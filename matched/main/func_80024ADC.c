@@ -15,6 +15,7 @@ extern u8 D_800481FA[];
 extern u8 *D_800CBDA0;
 extern struct func_80024ADC_Struct *D_800CBDA4;
 
+/* GGA: sndCmdEnvRelease */
 void func_80024ADC(void)
 {
   D_800CBDA4->unk56 = *((u16 *) (&D_800481FA[-(((*D_800CBDA0) << 1) << 2)]));

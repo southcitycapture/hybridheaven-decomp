@@ -5,6 +5,7 @@
 extern func_8001643C_StructEntry D_8008DCA8[];
 extern s32 D_8008DFA8;
 
+/* GGA: picCacheNew */
 s32 func_8001643C(func_8001643C_Struct *arg0, s32 arg1) {
     if (arg0->unk8 == 15) {
         arg1 = ((arg1 >> 5) & 0x3FF) + ((arg1 & 0x1F) << 10);

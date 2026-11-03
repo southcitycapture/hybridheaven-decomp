@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: resFreeAddr */
 s32 func_80017344(s32 arg0) {
     s32 temp_v0;
 

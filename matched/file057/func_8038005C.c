@@ -8,7 +8,7 @@ typedef struct func_8038005C_Struct {
 extern s32 func_80006214(void *);
 extern s32 func_80147250(s32, s32, s32, s32, s32);
 extern s32 D_8008DA88[];
-extern void *D_8038CFB0;
+extern s32 D_8038CFB0;
 
 void func_8038005C(func_8038005C_Struct *arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4)
 {

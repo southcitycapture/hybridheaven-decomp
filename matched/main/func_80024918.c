@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: sndCmdVolumeSlideTick */
 void func_80024918(void) {
     s32 var_v1;
 

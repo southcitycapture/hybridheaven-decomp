@@ -143,7 +143,8 @@ def setup(func, seg, src, d):
     open(d + "/target.s", "w").write('.include "macro.inc"\n.set noat\n.set noreorder\n.set gp=64\n.section .text\n' + asm)
     subprocess.run(["mips-linux-gnu-as", "-EB", "-march=vr4300", "-mabi=32", "-G", "0", "-I", HH + "/include",
                     "-o", d + "/target.o", d + "/target.s"], check=True)
-    open(d + "/compile.sh", "w").write('#!/bin/bash\n"%s" -c -G 0 -non_shared -Xcpluscomm -mips2 -O2 "$1" -o "$3" && "%s" "%s/tools/hh/mulfix.py" "$3" > /dev/null\n' % (CC, PY, HH))
+    import idoflags     # -Wab,-r4300_mul, as the ROM build (Task 26); mulfix.py only with HH_MULFIX=1
+    open(d + "/compile.sh", "w").write('#!/bin/bash\n"%s" -c %s -O2 "$1" -o "$3"%s\n' % (CC, " ".join(idoflags.BASE), idoflags.shell_post(PY)))
     os.chmod(d + "/compile.sh", 0o755)
     open(d + "/settings.toml", "w").write('func_name = "%s"\ncompiler_type = "ido"\n' % func)
 

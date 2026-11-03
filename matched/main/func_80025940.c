@@ -12,6 +12,7 @@ struct func_80025940_Struct {
 };
 #define O ((struct func_80025940_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdLoopEnd */
 void func_80025940(void) {
     s32 temp_v0;
 

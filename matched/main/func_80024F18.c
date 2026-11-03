@@ -15,6 +15,7 @@ struct func_80024F18_Struct {
 };
 #define P ((struct func_80024F18_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdVibrato */
 void func_80024F18(void) {
     s32 a;
     u8 v;

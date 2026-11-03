@@ -7,6 +7,7 @@ s32 func_8001643C(func_8001643C_Struct *arg0, s32 arg1);
 
 extern s32 func_80016500(void *, s32);
 
+/* GGA: picReadColor */
 s32 func_80016340(void *arg0) {
     s32 temp_a1;
 

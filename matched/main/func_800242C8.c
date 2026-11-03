@@ -9,6 +9,7 @@ struct func_800242C8_Struct {
     u16 unk56;
 };
 
+/* GGA: trkEnvRelease */
 void func_800242C8(void) {
     ((struct func_800242C8_Struct *) D_800CBDA4)->unk49 = 3;
     ((struct func_800242C8_Struct *) D_800CBDA4)->unk4A = 0;

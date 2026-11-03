@@ -3,6 +3,7 @@
 s32 func_80016CE4();                                /* extern */
 s32 func_80016D50(s32);                             /* extern */
 
+/* GGA: picReadLength */
 s32 func_800162EC(void) {
     s32 var_s0;
 

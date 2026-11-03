@@ -18,7 +18,18 @@ ASM_O     := $(patsubst asm/%.s,$(BUILD)/asm/%.o,$(ASM_S))
 C_SRC     := $(shell find src -name '*.c' 2>/dev/null)
 C_O       := $(patsubst src/%.c,$(BUILD)/src/%.o,$(C_SRC))
 IDO       := tools/ido/7.1/cc
-CFLAGS    := -G 0 -non_shared -Xcpluscomm -mips2 -O2 -I include -I src
+# -Wab,-r4300_mul: the original build's flag (as1 emits the VR4300 multiply-pair nops itself; Task 26).
+# HH_MULFIX=1 make  -> the old pipeline instead: no flag, tools/hh/mulfix.py on every object (tools/hh/idoflags.py).
+#                     Comparison only: functions landed since Task 26 need the flag, so that build no longer matches.
+HH_MULFIX ?= 0
+ifeq ($(HH_MULFIX),0)
+R4300_MUL := -Wab,-r4300_mul
+POSTFIX   := @true
+else
+R4300_MUL :=
+POSTFIX   := @$(PYTHON) tools/hh/mulfix.py
+endif
+CFLAGS    := -G 0 -non_shared -Xcpluscomm -mips2 $(R4300_MUL) -O2 -I include -I src
 ASMPROC   := $(PYTHON) tools/asm-processor/build.py --input-enc utf-8 --output-enc euc-jp   # the game's strings are EUC-JP
 BIN_IN    := $(shell find assets -name '*.bin' 2>/dev/null)
 BIN_O     := $(patsubst assets/%.bin,$(BUILD)/assets/%.o,$(BIN_IN))
@@ -56,10 +67,10 @@ LIB_O := $(patsubst %,$(BUILD)/src/%.o,$(shell $(PYTHON) -c "import json;print('
 $(BUILD)/libultra_syms.ld: $(LIB_O) tools/hh/libultra_syms.py
 	@$(PYTHON) tools/hh/libultra_syms.py
 
-$(BUILD)/src/%.o: src/%.c tools/hh/mulfix.py $(shell find include -name '*.h') | pads
+$(BUILD)/src/%.o: src/%.c $(shell find include -name '*.h') | pads
 	@mkdir -p $(dir $@)
 	@$(ASMPROC) $(IDO) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
-	@$(PYTHON) tools/hh/mulfix.py $@   # original VR4300 multiply-pair / branch-boundary padding
+	$(POSTFIX) $@
 
 $(BUILD)/assets/%.o: assets/%.bin
 	@mkdir -p $(dir $@)

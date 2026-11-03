@@ -3,7 +3,7 @@ u8 func_801CF5A0_bss_prefix[0x38];
 extern void func_8012D844(void *, s32, s32);
 
 extern u64 func_801C0B2C();
-extern f64 func_80034C24(s64);
+extern f64 func_80034C24();
 struct func_801CF5A0_Struct { f32 a; s32 b; };
 extern struct func_801CF5A0_Struct D_801DAE10[];
 extern f64 D_801DD450;

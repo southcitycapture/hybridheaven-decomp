@@ -24,7 +24,7 @@ HH = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(HH / 'tools' / 'hh'))
 LIVE = Path('/home/claude/work/hybrid-heaven-decomp')
 CACHE = HH / 'build' / 'hidden_cache.jsonl'
-GATE_FILES = ('tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py', 'tools/hh/mulfix.py',
+GATE_FILES = ('tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py', 'tools/hh/mulfix.py', 'tools/hh/idoflags.py',
               'tools/hh/kept_blocks.py', 'tools/hh/rodata_owned.py', 'tools/hh/bss_layout.py', 'hybridheaven.yaml')
 SCORE = re.compile(r'score (\d+)/(\d+)')
 RODATA = "code matches but the function's .rodata"
@@ -105,7 +105,7 @@ def rank(e):
 
 
 def gate_version():
-    return sha(''.join(_read(HH / p) for p in GATE_FILES))
+    return sha(''.join(_read(HH / p) for p in GATE_FILES) + os.environ.get('HH_MULFIX', '0'))
 
 
 def load_cache():

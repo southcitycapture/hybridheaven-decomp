@@ -89,7 +89,23 @@ extern void func_802449AC();
 extern void func_802449FC();
 extern void func_8037BB4C(s16, f32, f32, s16);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/D_8025BE70.s")
+/* Readonly diagnostics, formerly D_8025BE70.s. */
+const u8 D_8025BE70[0x5C] =
+    "N2\015\000"
+    "N2.5\015\000\000\000"
+    "N3\015\000"
+    "N4\015\000"
+    "N77\015\000\000\000\000"
+    "N78\015\000\000\000\000"
+    "N5\015\000"
+    "N37\015\000\000\000\000"
+    "N14\015\000\000\000\000"
+    "N15\015\000\000\000\000"
+    "N6\015\000"
+    "N7.8\015\000\000\000"
+    "N7\015\000"
+    "N8\015\000"
+    "N775\015\000\000";
 
 struct func_80242620_Leaf {
     u8 pad0[4];
@@ -1239,7 +1255,15 @@ void func_80243F08(struct func_80243F08_Struct *volatile arg0, s32 *arg1) {
 }
 
 /* hh-block asm/nonmatchings/file018/80242620/_ro_func_80243F68.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file018/80242620/func_80243F68.s","D_8025BECC"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80242620/_ro_func_80243F68.s")
+/* Readonly diagnostics, formerly _ro_func_80243F68.s. */
+const u8 D_8025BECC[0x8C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/enemy/e_n40.c\000"
+    "N da8\015\000\000"
+    "N da9\015\000\000"
+    "N da90\015\000"
+    "N da91\015\000"
+    "Nbro_monster_door1_init\015\000\000\000\000"
+    "Nbro_fall_door1_init\015\000\000";
 
 #define D_801BBC20 D_801BBC20__func_80243F68
 #define D_801BC3D8 D_801BC3D8__func_80243F68
@@ -1298,7 +1322,7 @@ extern f32 func_8002FC20(f32);
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern u16 D_801BBC20;
 extern u8 D_801BC3D8[];
-extern u8 D_8025BECC[];
+extern const u8 D_8025BECC[];
 extern struct func_80242C60_Cfg D_80258DE0;
 extern struct func_80242C60_Cfg D_80258DEC;
 extern void func_802442FC();

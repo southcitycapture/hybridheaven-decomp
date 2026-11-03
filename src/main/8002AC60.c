@@ -94,5 +94,4 @@ void func_8002AE64(void) {
     func_80026300(D_800CD4D8, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002AC60/_pad_16.s")
-
+/* The following 16 alignment bytes are supplied by the linker's pad subsegment. */

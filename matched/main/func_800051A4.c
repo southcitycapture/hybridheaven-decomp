@@ -2,6 +2,7 @@
 
 extern u16 D_80037A30[];
 
+/* GGA: fileGroup */
 u8 func_800051A4(u32 arg0) {
     s32 i;
 

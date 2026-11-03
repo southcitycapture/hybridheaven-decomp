@@ -19,6 +19,7 @@ typedef struct func_80000A5C_Struct {
     s32 unk54;
 } func_80000A5C_Struct;
 
+/* GGA: mainSchedAudioThread */
 void func_80000A5C(u8 *arg0) {
     void *sp64;
     func_80000A5C_Struct *sp60;

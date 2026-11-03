@@ -1119,11 +1119,51 @@ s32 func_80147598(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_801475C8.s")
+#define func_8002FC20 func_8002FC20__func_801475C8
+extern f32 func_8002FC20(f32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/801451C0/func_801476E0.s")
+typedef struct func_801475C8_Struct {
+    f32 x, y, z;
+} func_801475C8_Struct;
+
+s32 func_801475C8(func_801475C8_Struct *arg0) {
+    f32 v;
+
+    v = arg0->x * arg0->x + arg0->y * arg0->y + arg0->z * arg0->z;
+    if (v != 0.0f && v != 1.0f) {
+        if (v < 0.0 && func_8002FC20(v) == 0.0) {
+        } else {
+            v = 1.0f / func_8002FC20(v);
+        }
+        arg0->x *= v;
+        arg0->y *= v;
+        arg0->z *= v;
+    }
+    if (v == 0.0f) {
+        return 0;
+    }
+    return 1;
+}
+#undef func_8002FC20
+
+#define func_8002FC20 func_8002FC20__func_801476E0
+
+typedef struct func_801476E0_Struct { f32 x, y, z; } func_801476E0_Struct;
+extern void func_8002FC20(f32);
+void func_801476E0(func_801476E0_Struct *a, func_801476E0_Struct *b) {
+    f32 dx = a->x - b->x;
+    f32 dy = a->y - b->y;
+    f32 dz = a->z - b->z;
+    f32 s;
+    s = dx * dx;
+    s += dy * dy;
+    s += dz * dz;
+    func_8002FC20(s);
+}
+#undef func_8002FC20
 
 
+/* GGA: plVecAdd */
 void func_80147734(f32 *arg0, f32 *arg1, f32 *arg2) {
     arg2[0] = arg1[0] + arg0[0];
     arg2[1] = arg1[1] + arg0[1];
@@ -1131,6 +1171,7 @@ void func_80147734(f32 *arg0, f32 *arg1, f32 *arg2) {
 }
 
 
+#define func_801475C8 func_801475C8__decl1134
 void func_801475C8(f32);
 
 void func_80147768(void *arg0, f32 arg1) {
@@ -1139,6 +1180,7 @@ void func_80147768(void *arg0, f32 arg1) {
     ((f32 *) arg0)[1] = ((f32 *) arg0)[1] * arg1;
     ((f32 *) arg0)[2] = ((f32 *) arg0)[2] * arg1;
 }
+#undef func_801475C8
 
 
 typedef struct func_801477C4_Struct {

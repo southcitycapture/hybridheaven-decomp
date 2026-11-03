@@ -9,6 +9,7 @@ struct func_80025280_Struct {
     s16 unkA0;
 };
 
+/* GGA: sndCmdVibratoRise */
 void func_80025280(void) {
     u8 temp_v0;
     struct func_80025280_Struct *s;

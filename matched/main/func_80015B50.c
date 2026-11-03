@@ -6,6 +6,7 @@ extern s32 D_8008DC94;
 extern s32 D_8008DC98;
 extern s32 D_8008DC9C;
 
+/* GGA: picReadHeader */
 void func_80015B50(struct func_80015B50_Struct *arg0) {
     u8 sp2C[4];
     s32 sp28;

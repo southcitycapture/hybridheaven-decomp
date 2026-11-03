@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: heapFree */
 s32 func_8001F540(s32 arg0) {
     func_8001F498_Struct *n;
     func_8001F498_Struct *next;

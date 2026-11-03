@@ -17,6 +17,7 @@ typedef struct func_80025768_Struct {
 
 extern s32 func_80025460();
 
+/* GGA: sndCmdPitchBendNote */
 void func_80025768(void) {
     if (((func_80025768_Struct *) D_800CBDA4)->unk8C == 0) {
         ((func_80025768_Struct *) D_800CBDA4)->unk7C = ((func_80025768_Struct *) D_800CBDA4)->unk88;

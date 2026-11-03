@@ -7,7 +7,7 @@ typedef struct {
     f32 thr;
     s32 action;
 } func_801CF700_Struct;
-extern f64 func_80034C24(s64);
+extern f64 func_80034C24();
 extern u64 func_801C0B2C();
 extern func_801CF700_Struct D_801DAE88[];
 extern f64 D_801DD458;

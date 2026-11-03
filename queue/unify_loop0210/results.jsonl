@@ -1,0 +1,4 @@
+{"func": "func_80383BCC", "segment": "file055", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_80216550", "segment": "file010", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801F3AF8", "segment": "file026", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}
+{"func": "func_801C3F48", "segment": "file024", "model": "unify (no model)", "verified": "FAIL", "checks": 0, "cost_usd_equiv": 0.0, "output_tokens": 0, "note": "still clashes"}

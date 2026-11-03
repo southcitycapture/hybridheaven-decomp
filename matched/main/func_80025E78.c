@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: sndCmdScaleBase */
 void func_80025E78(void) {
     u8 temp_v0;
 

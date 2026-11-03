@@ -33,6 +33,7 @@ extern s32 func_80030930(s32, s32, s32);
 
 #define P ((func_8002059C_S *)D_800CBDA4)
 
+/* GGA: sndInitVoices */
 void func_8002059C(void) {
     func_8002059C_L sp70;
     u8 pad[0x8];

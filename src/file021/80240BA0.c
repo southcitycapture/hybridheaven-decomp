@@ -90,7 +90,10 @@ void func_80240C80(void *arg0, s32 arg1) {
 }
 #undef func_80240CF8
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file021/80240BA0/D_80256F50.s")
+/* Readonly diagnostics, formerly D_80256F50.s. */
+const u8 D_80256F50[0x2C] =
+    "burosu2 init come\n\000\000"
+    "\245\342\241\274\245\267\245\347\245\363\277\315\267\301\245\273\245\303\245\310\n\000\000";
 
 #define func_80240E30 func_80240E30__func_80240CF8
 struct func_80240E30_Struct;

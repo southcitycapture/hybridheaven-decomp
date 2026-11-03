@@ -11,6 +11,7 @@ struct func_80024E0C_Struct {
 extern void func_80022A84(u8, s32, void **);
 extern u8 D_800CBAB4;
 
+/* GGA: sndCmdPanSlideTick */
 void func_80024E0C(void) {
     s32 temp_a1;
     s32 var_v1;

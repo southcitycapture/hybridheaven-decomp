@@ -8,6 +8,7 @@ struct func_80025B4C_Struct {
     s32 unk78;
 };
 
+/* GGA: sndCmdRepeat */
 void func_80025B4C(void)
 {
   u8 temp_a0;

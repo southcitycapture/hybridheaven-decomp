@@ -17,6 +17,7 @@ typedef struct func_80015680_Arg {
     s32 p;
 } func_80015680_Arg;
 
+/* GGA: picDecode16 */
 s32 func_80015680(s32 arg0, func_80015680_Arg arg1, func_80015680_Struct *arg2) {
     s32 sp54;
     s32 pad[2];

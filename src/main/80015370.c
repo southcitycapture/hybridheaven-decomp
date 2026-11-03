@@ -54,6 +54,7 @@ extern s32 D_8008DC90;
 extern u8 *D_8008DCA0;
 extern u8 D_8008DCA4;
 
+/* GGA: picOpen */
 func_80015420_Struct *func_80015420(u8 *arg0, func_80015420_Struct *arg1) {
     func_80016CB4((s32)arg0);
     arg1->unk18 = arg0;
@@ -102,6 +103,7 @@ extern void func_80016828();
 extern s32 func_800168C8();
 extern void func_80016950();
 
+/* GGA: picDecode */
 func_80015488_Struct *func_80015488(s32 arg0, s32 arg1, func_80015488_Struct *arg2) {
     switch (arg2->unk8) {
     case 15:
@@ -172,6 +174,7 @@ typedef struct func_8001559C_Struct {
     s32 unk1C;
 } func_8001559C_Struct;
 
+/* GGA: picDecode15 */
 s32 func_8001559C(s32 arg0, s32 arg1, func_8001559C_Struct *arg2) {
     s32 i;
     s32 count;
@@ -243,6 +246,7 @@ typedef struct func_80015680_Arg {
     s32 p;
 } func_80015680_Arg;
 
+/* GGA: picDecode16 */
 s32 func_80015680(s32 arg0, func_80015680_Arg arg1, func_80015680_Struct *arg2) {
     s32 sp54;
     s32 pad[2];
@@ -338,6 +342,7 @@ extern void func_80016058(func_80016058_Struct *arg0);
 extern s32 func_80016B6C(s32 arg0, s32 arg1);
 extern s32 *func_80016BA0(u32 arg0, s32 *arg1);
 extern s32 func_8001F540();
+/* GGA: picDecode8 */
 s32 func_80015798(s32 arg0, u8 *arg1, struct func_80015B50_Struct *arg2) {
     s32 n;
     s32 i;
@@ -408,6 +413,7 @@ typedef struct func_800158C0_Struct {
     s32 (*unk28)(struct func_800158C0_Struct *, s32, s32);
 } func_800158C0_Struct;
 
+/* GGA: picDecode4 */
 s32 func_800158C0(s32 arg0, s32 arg1, func_800158C0_Struct *arg2) {
     s32 temp_s5;
     s32 temp_lo;
@@ -455,6 +461,7 @@ typedef struct func_80015A64_Struct {
     u16 *unk20;
 } func_80015A64_Struct;
 
+/* GGA: picReadPalette */
 void func_80015A64(s32 arg0, func_80015A64_Struct *arg1) {
     s32 r;
     s32 g;
@@ -483,6 +490,7 @@ extern s32 D_8008DC94;
 extern s32 D_8008DC98;
 extern s32 D_8008DC9C;
 
+/* GGA: picReadHeader */
 void func_80015B50(struct func_80015B50_Struct *arg0) {
     u8 sp2C[4];
     s32 sp28;
@@ -539,6 +547,7 @@ void func_80015B50(struct func_80015B50_Struct *arg0) {
 extern s32 func_80016340(void *);
 extern void func_80015F14(void *, s32, s32, s32);
 
+/* GGA: picDecodeDirect */
 void func_80015D9C(func_80015D9C_Struct *arg0) {
     u32 var_s2;
     s32 var_s4;
@@ -588,6 +597,7 @@ void func_80015D9C(func_80015D9C_Struct *arg0) {
 #undef func_80016340
 
 
+/* GGA: picChainDirect */
 void func_80015F14(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 var_s2 = 1;
 
@@ -634,6 +644,7 @@ typedef struct func_80016058_Struct {
     void (*unk24)(struct func_80016058_Struct *, s32, s32, s32);
 } func_80016058_Struct;
 
+/* GGA: picDecodeSkips */
 void func_80016058(func_80016058_Struct *arg0) {
     s32 temp_lo;
     s32 temp_s0;
@@ -682,6 +693,7 @@ typedef struct func_800161A0_Struct {
     void (*unk24)(struct func_800161A0_Struct *, s32, s32, s32);
 } func_800161A0_Struct;
 
+/* GGA: picChainSkips */
 s32 func_800161A0(func_800161A0_Struct *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 temp_v0;
 
@@ -725,6 +737,7 @@ s32 func_800161A0(func_800161A0_Struct *arg0, s32 arg1, s32 arg2, s32 arg3) {
 s32 func_80016CE4();                                /* extern */
 s32 func_80016D50(s32);                             /* extern */
 
+/* GGA: picReadLength */
 s32 func_800162EC(void) {
     s32 var_s0;
 
@@ -747,6 +760,7 @@ s32 func_8001643C(func_8001643C_Struct *arg0, s32 arg1);
 
 extern s32 func_80016500(void *, s32);
 
+/* GGA: picReadColor */
 s32 func_80016340(void *arg0) {
     s32 temp_a1;
 
@@ -771,6 +785,7 @@ typedef struct func_8001643C_StructEntry {
 extern func_8001643C_StructEntry D_8008DCA8[];
 extern s32 D_8008DFA8;
 
+/* GGA: picCacheClear */
 void func_800163BC(void) {
     s32 i;
 
@@ -788,6 +803,7 @@ void func_800163BC(void) {
 
 
 
+/* GGA: picCacheNew */
 s32 func_8001643C(func_8001643C_Struct *arg0, s32 arg1) {
     if (arg0->unk8 == 15) {
         arg1 = ((arg1 >> 5) & 0x3FF) + ((arg1 & 0x1F) << 10);
@@ -803,6 +819,7 @@ s32 func_8001643C(func_8001643C_Struct *arg0, s32 arg1) {
 }
 
 
+/* GGA: picCacheGet */
 s32 func_80016500(void *arg0, s32 arg1) {
     func_8001643C_StructEntry *node;
     s32 old;
@@ -831,6 +848,7 @@ s32 func_80016500(void *arg0, s32 arg1) {
 
 
 
+/* GGA: picGetDirect */
 s32 func_800165CC(s32 arg0, s32 arg1, s32 arg2) {
     u16 temp_v1;
 
@@ -845,6 +863,7 @@ struct func_80016634_Struct {
     s32 unk8;
 };
 
+/* GGA: picPut15 */
 void func_80016634(struct func_80016634_Struct *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 var_v1;
 
@@ -859,6 +878,7 @@ void func_80016634(struct func_80016634_Struct *arg0, s32 arg1, s32 arg2, s32 ar
 }
 
 
+/* GGA: picClearPixel */
 void func_800166D4(s32 arg0, s32 arg1) {
     if ((arg0 >= 0) && (arg0 < D_8008DC94) && (arg1 >= 0) && (D_8008DC98 >= arg1)) {
         *(u16 *)(D_8008DFAC + (D_8008DC94 * arg1 * 2) + (arg0 * 2)) = 0;
@@ -869,6 +889,7 @@ void func_800166D4(s32 arg0, s32 arg1) {
 
 extern void func_80016B40(s32, s32);
 
+/* GGA: picPut16 */
 void func_80016730(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 {
   int new_var;
@@ -883,6 +904,7 @@ void func_80016730(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 
 
 
+/* GGA: picGet8 */
 u8 func_800167FC(s32 arg0, s32 arg1, s32 arg2) {
     return *((D_8008DC94 * arg2) + arg1 + D_8008DFB0);
 }
@@ -891,6 +913,7 @@ u8 func_800167FC(s32 arg0, s32 arg1, s32 arg2) {
 
 extern void func_80016B40(s32 arg0, s32 arg1);
 
+/* GGA: picPut8 */
 void func_80016828(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     if ((arg1 < 0) || (arg1 >= D_8008DC94) || (arg2 < 0) || (D_8008DC98 < arg2)) {
 
@@ -902,6 +925,7 @@ void func_80016828(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 
 
+/* GGA: picGet4 */
 s32 func_800168C8(s32 arg0, s32 arg1, s32 arg2) {
     s32 temp_v1;
     s32 temp_v0;
@@ -918,6 +942,7 @@ s32 func_800168C8(s32 arg0, s32 arg1, s32 arg2) {
 
 void func_80016B40(s32, s32);
 
+/* GGA: picPut4 */
 void func_80016950(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 {
   unsigned short new_var;
@@ -948,6 +973,7 @@ void func_80016950(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 
 extern u8 D_8004C964[];
 
+/* GGA: picParseHex */
 s32 func_80016A24(s8 *arg0) {
     s32 temp_a2;
     s32 var_a0;
@@ -980,6 +1006,7 @@ s32 func_80016A24(s8 *arg0) {
 
 extern void func_800166D4(s32, s32);
 
+/* GGA: picClearTransparent */
 void func_80016A9C(func_80016A9C_Struct *arg0) {
     s32 var_s0;
     s32 var_s2;
@@ -1003,6 +1030,7 @@ void func_80016A9C(func_80016A9C_Struct *arg0) {
 #undef func_800166D4
 
 
+/* GGA: picMarkWritten */
 void func_80016B40(s32 arg0, s32 arg1) {
     u8 *temp_v0;
 
@@ -1015,6 +1043,7 @@ void func_80016B64(void) {
 }
 
 
+/* GGA: picIsWritten */
 s32 func_80016B6C(s32 arg0, s32 arg1) {
     s32 r = 0;
     return (*(u8 *)(arg0 + (arg1 >> 3)) & (1 << (arg1 & 7))) ? 1 : r;
@@ -1091,6 +1120,7 @@ extern s32 D_80044088;
 extern s32 D_8004408C;
 extern s32 D_8008DFB8;
 
+/* GGA: picBitsInit */
 void func_80016CB4(s32 arg0) {
     D_80044080 = 0;
     D_80044084 = 0;
@@ -1100,6 +1130,7 @@ void func_80016CB4(s32 arg0) {
 }
 
 
+/* GGA: picReadBit */
 s32 func_80016CE4(void) {
     s32 n;
 
@@ -1119,6 +1150,7 @@ s32 func_80016CE4(void) {
 #define LPC(a, b) a##b
 #define LP(a, b) LPC(a, b)
 #undef func_800158C0
+/* GGA: picReadBits */
 s32 func_80016D50(s32 arg0) {
     s32 x = 0;
 
@@ -1140,6 +1172,7 @@ extern s32 func_80017384(s32 arg0, u16 arg1);
 #define func_800173B8 func_800173B8__decl1139
 extern void func_800173B8(s32, s32);
 
+/* GGA: resClearTable */
 void func_80016DF0(void) {
     s32 var_s0;
 
@@ -1208,6 +1241,7 @@ s32 func_80016F34(u16 arg0, s32 arg1, s32 arg2) {
 
 s32 func_80017014(s32);
 
+/* GGA: resCount */
 s32 func_80016F90(void)
 {
   s32 i;
@@ -1268,6 +1302,7 @@ s32 func_8001703C(s32 arg0) {
 
 volatile unsigned char func_80017014(s32);
 
+/* GGA: resFindFile */
 s32 func_80017064(u16 arg0)
 {
   s32 i;
@@ -1332,6 +1367,7 @@ s32 func_80017120(s32 arg0) {
 
 s32 func_800170C8(s32);                             /* extern */
 
+/* GGA: resFreeList */
 s32 func_80017164(s32 *arg0) {
     s32 temp_v1;
 
@@ -1354,6 +1390,7 @@ u16 func_80017014(s32 arg0);
 s32 func_800170C8(s32);                             /* extern */
 
 
+/* GGA: resFreeAllBut */
 s32 func_800171D0(u16 arg0) {
     s32 temp_v0;
     s32 var_s0;
@@ -1383,6 +1420,7 @@ loop_1:
 
 s32 func_80017480(u16, s32);
 
+/* GGA: resFreeNotInList */
 s32 func_80017254(s32 arg0) {
     u16 temp_s0;
     u16 temp_v0;
@@ -1428,6 +1466,7 @@ s32 func_800172F4(void) {
 #undef func_800174CC
 
 
+/* GGA: resFreeAddr */
 s32 func_80017344(s32 arg0) {
     s32 temp_v0;
 
@@ -1475,6 +1514,7 @@ s32 func_800173B8(s32 arg0, s32 arg1) {
 #undef func_800173E4
 #undef func_800158C0
 
+/* GGA: resRemove */
 s32 func_800173E4(s32 arg0) {
     s32 v;
     s32 i;
@@ -1492,6 +1532,7 @@ s32 func_800173E4(s32 arg0) {
 #undef LP1
 
 
+/* GGA: resInList */
 s32 func_80017480(u16 arg0, s32 arg1) {
 loop_1:
     if ((u16)(*(s32 *)arg1 & 0x0FFFFFFF) == arg0) {
@@ -1508,6 +1549,7 @@ loop_1:
 
 extern s32 func_8001703C(s32 arg0);
 
+/* GGA: resFindAddr */
 s32 func_800174CC(s32 arg0) {
     s32 i;
 

@@ -7,6 +7,7 @@ struct func_80025BD8_Struct {
 };
 extern u8 D_800CBAD0[];
 
+/* GGA: sndCmdFxMix */
 void func_80025BD8(void) {
     s32 var_a0;
     u8 var_a2;

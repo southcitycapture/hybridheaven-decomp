@@ -10,6 +10,7 @@ extern func_80022B6C_Struct D_800CBABC;
 extern func_80022B6C_Struct D_800CBAC0;
 extern s32 D_800CBB48;
 
+/* GGA: sndStartRamp */
 void func_80022B6C(void) {
     if (D_800CBB48 != 0xA) {
         if (D_800CBABC.unk2 == 0) {

@@ -184,7 +184,22 @@ void func_801FEE94(func_801FEE94_Struct *arg0, s32 arg1) {
 }
 #undef func_801FEF20
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801FEAE0/D_80219230.s")
+/* Readonly diagnostics, formerly D_80219230.s. */
+const u8 D_80219230[0x110] =
+    "gover_set\n\000\000"
+    "\245\273\241\274\245\326\244\265\244\354\244\306\244\244\244\353\273\340\313\264\262\363\277\364 %d:\245\341\245\342\245\352\241\274\306\342\244\316\273\340\313\264\262\363\277\364 %d:\271\347\267\327\244\316\273\340\313\264\262\363\277\364 %d\n\000\000"
+    "\245\341\245\342\245\352\241\274\306\342\244\316\300\357\306\256\262\363\277\364 %d\n\000\000\000\000"
+    "cnt %d\n\000"
+    "gover_wait\n\000"
+    "gover_main1\n\000\000\000\000"
+    "gover_main2\n\000\000\000\000"
+    "gover_main3\n\000\000\000\000"
+    "gover_main4\n\000\000\000\000"
+    "gover_main5\n\000\000\000\000"
+    "gover_main7_wait\n\000\000\000"
+    "gover_main7_wait\n\000\000\000"
+    "gover_main8\n\000\000\000\000"
+    "\000\000\000";
 
 #define D_80219340 D_80219340__func_801FEF20
 #define D_80219348 D_80219348__func_801FEF20
@@ -266,4 +281,4 @@ void func_801FEF20(func_801FEF20_Struct *arg0, func_801FEF20_StructB **arg1) {
 /* Readonly constants retained after the last ASM donor became C. */
 static const f64 D_80219340__rodata[] = {1.2};
 static const f64 D_80219348__rodata[] = {1.2};
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801FEAE0/_pad_16.s")
+/* The following 16 alignment bytes are supplied by the linker's pad subsegment. */

@@ -13,6 +13,7 @@ struct func_800250D4_Struct {
 
 extern void func_80025150(void *);
 
+/* GGA: sndCmdVibratoTick */
 void func_800250D4(void)
 {
   u8 temp_v1;

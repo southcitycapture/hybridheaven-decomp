@@ -3,6 +3,7 @@
 extern s32 func_80017384(s32 arg0, u16 arg1);
 extern void func_800173B8(s32, s32);
 
+/* GGA: resClearTable */
 void func_80016DF0(void) {
     s32 var_s0;
 

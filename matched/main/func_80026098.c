@@ -3,6 +3,7 @@
 extern void func_80026140(s32, u8, u8, s32);
 extern u8 *D_800CBDA0;
 
+/* GGA: sndCmdEventArg */
 void func_80026098(void) {
     u8 temp_a1;
     u8 temp_a2;

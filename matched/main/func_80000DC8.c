@@ -14,6 +14,7 @@ extern s32 func_80028F20(void);
 extern void func_80030DC0(s32);
 extern s32 func_80035050(void);
 
+/* GGA: mainSchedSwapThread */
 void func_80000DC8(u8 *arg0) {
     void *sp54;
     func_80000DC8_StructMessage *sp50;

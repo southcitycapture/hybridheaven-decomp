@@ -7,6 +7,7 @@ typedef struct func_80022978_Struct {
     u8 pad4[0xD8 - 0x4];
 } func_80022978_Struct;
 
+/* GGA: sndSetStereo */
 void func_80022978(void) {
     func_80022978_Struct *ptr;
     s32 i;

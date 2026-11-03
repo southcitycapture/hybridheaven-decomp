@@ -4,6 +4,7 @@
 #define func_80015798 func_80015798_ctx
 #include "context.h"
 #undef func_80015798
+/* GGA: picDecode8 */
 s32 func_80015798(s32 arg0, u8 *arg1, struct func_80015B50_Struct *arg2) {
     s32 n;
     s32 i;

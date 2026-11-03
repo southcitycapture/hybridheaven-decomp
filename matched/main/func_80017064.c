@@ -2,6 +2,7 @@
 
 volatile unsigned char func_80017014(s32);
 
+/* GGA: resFindFile */
 s32 func_80017064(u16 arg0)
 {
   s32 i;

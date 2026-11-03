@@ -3,6 +3,7 @@
 #define func_800158C0 LP(fA, __LINE__)
 #include "context.h"
 #undef func_800158C0
+/* GGA: picReadBits */
 s32 func_80016D50(s32 arg0) {
     s32 x = 0;
 

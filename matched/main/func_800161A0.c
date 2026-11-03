@@ -9,6 +9,7 @@ typedef struct func_800161A0_Struct {
     void (*unk24)(struct func_800161A0_Struct *, s32, s32, s32);
 } func_800161A0_Struct;
 
+/* GGA: picChainSkips */
 s32 func_800161A0(func_800161A0_Struct *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 temp_v0;
 

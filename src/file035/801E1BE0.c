@@ -689,8 +689,18 @@ s32 func_801E2EA4(s32 arg0, s32 arg1) {
     return 0x16;
 }
 
-/* hh-block asm/nonmatchings/file035/801E1BE0/_mrg_keep_tail_02edf05c047f292d.s {"functions":["func_801E2F84"],"rodata":[],"rodata_bytes":[2149485464,7748120,28]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/_mrg_keep_tail_02edf05c047f292d.s")
+#define func_8038C17C func_8038C17C__func_801E2F84
+extern s32 func_8038C17C(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+
+s32 func_801E2F84(s32 arg0, s32 arg1) {
+    func_801C7B30(1);
+    if (func_8038C17C(0.0f, 0.299999237f, 2.0f, 5.5f, 1017.20001f, 2.20000005f, 5.5f, 1017.20001f, (-1.20000005f), 15.1999998f, 981.0f, -1.0f, 15.1999998f, 980.0f, 7.0f, 22.7000008f) != 0) {
+        D_8038C158();
+        return 0x18;
+    }
+    return 0x17;
+}
+#undef func_8038C17C
 
 
 

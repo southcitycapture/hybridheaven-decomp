@@ -1,10 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80247A00/D_8025C9B0.s")
+/* Readonly diagnostics, formerly D_8025C9B0.s. */
+const u8 D_8025C9B0[0x20] =
+    "\311\364\262\260\243\261\245\273\245\303\245\310\n\000\000\000"
+    "\311\364\262\260\243\262\245\273\245\303\245\310\n\000\000";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80247A00/D_8025C9D0.s")
+/* Readonly diagnostics, formerly D_8025C9D0.s. */
+const u8 D_8025C9D0[0x38] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s06demo.c";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80247A00/D_8025CA08.s")
+/* Readonly diagnostics, formerly D_8025CA08.s. */
+const u8 D_8025CA08[0x7C] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s06demo.c\000"
+    "\245\323\241\274\245\340\245\267\241\274\245\353\245\311\244\316\277\364 : %d\n\000\000\000\000"
+    "\311\364\262\260\243\262\244\330\302\263\244\257\310\342\312\304\272\277\n\000"
+    "\311\364\262\260\243\261\244\330\302\263\244\257\310\342\312\304\272\277\n";
 
 #define func_802482A0 func_802482A0__func_80247A00
 #define func_8024836C func_8024836C__func_80247A00
@@ -278,7 +288,9 @@ void func_80248334(void) {
 }
 
 /* hh-block asm/nonmatchings/file017/80247A00/_ro_func_8024836C.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80247A00/func_8024836C.s","D_8025CA84"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80247A00/_ro_func_8024836C.s")
+/* Readonly diagnostics, formerly _ro_func_8024836C.s. */
+const u8 D_8025CA84[0x38] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s07demo.c";
 
 #define func_80248538 func_80248538__func_8024836C
 
@@ -300,7 +312,7 @@ extern void func_801C3B10(s32);
 extern void func_801C3B2C(s32);
 struct func_80248538_Args;
 void func_80248538(s32 arg0, struct func_80248538_Args *arg1);
-extern u8 D_8025CA84[];
+extern const u8 D_8025CA84[];
 
 
 void func_8024836C(func_8024836C_Struct *arg0, s32 *arg1) {

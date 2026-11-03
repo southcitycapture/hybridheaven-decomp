@@ -56,34 +56,84 @@ def bars(title, rows, path, note=""):
     open(path, "w").write(svg(w, h, "".join(b), title))
 
 
+XMAS, FORECAST = dt.datetime(2026, 12, 25).timestamp(), (87, 90, 95)   # code % by Christmas: low, mid, high (docs/ENDGAME.md)
+
+
 def progress(path):
-    rows = [json.loads(l) for l in open(os.path.join(HH, "dashboard/history.jsonl"))]
-    pts = sorted((r["t"], 100.0 * r["matched_code"] / TOTAL_CODE) for r in rows if r.get("matched_code"))
-    w, h, left, right, top, bottom = 720, 300, 52, 24, 46, 40
+    """Code, data and fully linked code over time, with the Christmas forecast band for code."""
+    rows = sorted((json.loads(l) for l in open(os.path.join(HH, "dashboard/history.jsonl"))), key=lambda r: r["t"])
+    series = [("Code", COLORS["claude"], [(r["t"], 100.0 * r["matched_code"] / r.get("total_code", TOTAL_CODE))
+                                           for r in rows if r.get("matched_code")]),
+              ("Data", COLORS["openai"], [(r["t"], 100.0 * r["matched_data"] / r["total_data"])
+                                          for r in rows if r.get("matched_data") and r.get("total_data")]),
+              ("Fully linked", COLORS["tool"], [(r["t"], 100.0 * r["complete_code"] / r["total_code"])
+                                                for r in rows if r.get("complete_code") and r.get("total_code")])]
+    pts = series[0][2]
+    w, h, left, right, top, bottom = 720, 320, 52, 24, 64, 40
     pw, ph = w - left - right, h - top - bottom
-    t0, t1 = pts[0][0], pts[-1][0]
-    X = lambda t: left + pw * (t - t0) / max(1, t1 - t0)
+    t0, t1, tx = pts[0][0], pts[-1][0], max(XMAS, pts[-1][0])
+    X = lambda t: left + pw * (t - t0) / max(1, tx - t0)
     Y = lambda v: top + ph * (1 - v / 100)
-    title = "Code matched over time"
+    title = "Progress over time"
     b = ['<text x="16" y="28" font-size="17" font-weight="600" fill="%s">%s</text>' % (INK, title)]
+    lx = 16
+    for name, c, _ in series:
+        b.append('<rect x="%d" y="40" width="14" height="4" rx="2" fill="%s"/>' % (lx, c))
+        b.append('<text x="%d" y="46" font-size="12" fill="%s">%s</text>' % (lx + 19, INK, name))
+        lx += 30 + 7 * len(name)
     for k in range(0, 101, 25):
         b.append('<line x1="%d" y1="%.1f" x2="%d" y2="%.1f" stroke="%s"/>' % (left, Y(k), w - right, Y(k), GRID))
         b.append('<text x="%d" y="%.1f" font-size="11" fill="%s" text-anchor="end">%d%%</text>' % (left - 6, Y(k) + 4, MUTED, k))
     day = dt.datetime.utcfromtimestamp(t0).replace(hour=0, minute=0, second=0)
-    while day.timestamp() <= t1:
-        if day.timestamp() >= t0 and (day.day % 2 == 0):
+    while day.timestamp() <= tx:
+        if day.timestamp() >= t0 and day.weekday() == 0 and X(XMAS) - X(day.timestamp()) > 40:
             b.append('<text x="%.1f" y="%d" font-size="11" fill="%s" text-anchor="middle">%s</text>'
                      % (X(day.timestamp()), h - 16, MUTED, day.strftime("%b %d")))
         day += dt.timedelta(days=1)
-    line = " ".join("%.1f,%.1f" % (X(t), Y(v)) for t, v in pts)
-    area = "%.1f,%.1f %s %.1f,%.1f" % (X(t0), Y(0), line, X(t1), Y(0))
-    b.append('<polygon points="%s" fill="%s" opacity="0.15"/>' % (area, COLORS["claude"]))
-    b.append('<polyline points="%s" fill="none" stroke="%s" stroke-width="2.5"/>' % (line, COLORS["claude"]))
     v = pts[-1][1]
-    b.append('<circle cx="%.1f" cy="%.1f" r="4" fill="%s"/>' % (X(t1), Y(v), COLORS["claude"]))
-    b.append('<text x="%.1f" y="%.1f" font-size="13" font-weight="600" fill="%s" text-anchor="end">%.1f%%</text>' % (X(t1) - 8, Y(v) - 8, INK, v))
+    if XMAS > t1:   # forecast band from today's code figure to Christmas
+        lo, mid, hi = FORECAST
+        b.append('<polygon points="%.1f,%.1f %.1f,%.1f %.1f,%.1f" fill="%s" opacity="0.12"/>'
+                 % (X(t1), Y(v), X(XMAS), Y(hi), X(XMAS), Y(lo), COLORS["claude"]))
+        b.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="2" stroke-dasharray="5,4"/>'
+                 % (X(t1), Y(v), X(XMAS), Y(mid), COLORS["claude"]))
+        b.append('<line x1="%.1f" y1="%d" x2="%.1f" y2="%.1f" stroke="%s" stroke-dasharray="2,3"/>'
+                 % (X(XMAS), top - 4, X(XMAS), Y(0), MUTED))
+        b.append('<text x="%.1f" y="%d" font-size="11" fill="%s" text-anchor="end">Christmas</text>' % (X(XMAS) - 4, h - 16, MUTED))
+        b.append('<text x="%.1f" y="%.1f" font-size="11" fill="%s" text-anchor="end">forecast %d-%d%%</text>'
+                 % (X(XMAS) - 6, Y(hi) - 6, MUTED, lo, hi))
+    for i, (name, c, sp) in enumerate(series):
+        if not sp: continue
+        line = " ".join("%.1f,%.1f" % (X(t), Y(u)) for t, u in sp)
+        if i == 0:
+            b.append('<polygon points="%.1f,%.1f %s %.1f,%.1f" fill="%s" opacity="0.15"/>' % (X(t0), Y(0), line, X(t1), Y(0), c))
+        b.append('<polyline points="%s" fill="none" stroke="%s" stroke-width="%s"/>' % (line, c, "2.5" if i == 0 else "2"))
+        tl, u = sp[-1]
+        b.append('<circle cx="%.1f" cy="%.1f" r="3.5" fill="%s"/>' % (X(tl), Y(u), c))
+        if i == 0:   # left of the point, above the line: the forecast starts here
+            b.append('<text x="%.1f" y="%.1f" font-size="12" font-weight="600" fill="%s" text-anchor="end">%.1f%%</text>'
+                     % (X(tl) - 7, Y(u) - 8, c, u))
+        else:
+            b.append('<text x="%.1f" y="%.1f" font-size="12" font-weight="600" fill="%s">%.1f%%</text>'
+                     % (X(tl) + 7, Y(u) + (4 if i != 1 else -4), c, u))
     open(path, "w").write(svg(w, h, "".join(b), title))
     return v, (t1 - t0) / 86400
+
+
+def matched(name, root=HH):
+    p = os.path.join(root, "queue", name, "results.jsonl")
+    if not os.path.exists(p): return set()
+    out = set()
+    for l in open(p):
+        try: r = json.loads(l)
+        except ValueError: continue
+        if r.get("verified") == "MATCH": out.add((r.get("func"), r.get("segment")))
+    return out
+
+
+def summed(names):
+    got = [x for x in (batch(n) for n in names) if x]
+    return (sum(m for m, _ in got), sum(n for _, n in got)) if got else None
 
 
 def main(out):
@@ -105,15 +155,26 @@ def main(out):
            ("GPT-6.1 Sol (high)", "abSol_high", O), ("GPT-6.1 Sol (max)", "abSol_max", O),
            ("GPT-6.1 Terra (default)", "abTerra", O), ("GPT-6.1 Terra (max)", "abTerra_max", O)]
     rows = [(l, *batch(b), c) for l, b, c in h2h if batch(b)]
+    union = set().union(*(matched(b) for _, b, _ in h2h))
+    if rows: rows.append(("All models combined", len(union), max(n for _, _, n, _ in rows), COLORS["tool"]))
     bars("Head to head: the same 40 functions, same starting point", rows, os.path.join(out, "headtohead.svg"),
-         "Each model started from the best earlier attempt, with the same instructions and checks.")
+         "Each model started from the best earlier attempt. Different models crack different functions.")
     tool_rows = []
     near = batch("nearS")
     if near: tool_rows.append(("Sonnet, open-ended retry", near[0], near[1], C))
     rf = batch("rfix1", os.path.expanduser("~/work/hh-rodata"))
     if rf: tool_rows.append(("Sonnet, narrowed repair task", rf[0], rf[1], COLORS["tool"]))
+    for label, name in [("Opus, without recovered types", "typA"), ("Opus, with recovered types", "typB")]:
+        x = batch(name)
+        if x: tool_rows.append((label, x[0], x[1], C if name == "typA" else COLORS["tool"]))
     bars("Same model, different framing", tool_rows, os.path.join(out, "tooling.svg"),
-         "Narrowed: the working code as a starting point, a note saying what to fix, and an in-file check.")
+         "Narrowing the task helps; adding recovered struct types to the prompt hurt (same 20 functions).")
+    big = [(l, *summed(n), c) for l, n, c in [("Opus alone", ["bigA1", "bigA2", "bigA3", "bigA4"], C),
+                                               ("Sonnet alone (6 functions)", ["bigB1", "bigB2"], C),
+                                               ("Opus lead + Sonnet helpers", ["bigC1", "bigC2", "bigC3", "bigC4"], COLORS["tool"])]
+           if summed(n)]
+    bars("Big functions (2 KB and up): one lead, many helpers", big, os.path.join(out, "bigfunc.svg"),
+         "Opus alone and Opus + Sonnet helpers got the same 22 functions at about the same cost.")
     print("%.1f%% of code after %.0f days" % (v, days))
 
 

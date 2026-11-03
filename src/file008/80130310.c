@@ -15,6 +15,7 @@ extern f32 func_8001EAD0(s16);                             /* extern */
 extern f32 func_8001EB64(s16);                             /* extern */
 extern f32 func_8002FC20(f32);
 extern f32 func_801306D0(s32, f32 *);                      /* extern */
+#define func_80130874 func_80130874__decl
 extern f32 func_80130874(s32, f32 *);
 extern f64 D_8018D688;
 extern f64 D_8018D690;
@@ -27,6 +28,7 @@ extern u8 D_80176BA8[];
 extern void func_80029280(f32);
 extern void func_80032720(f32);
 extern void func_80130F74(f32 *);
+#define func_80131074 func_80131074__decl
 extern void func_80131074(f32 *, f32 *, f32 *);
 extern void func_80131CC4(u16 *arg0, u16 *arg1, u16 *arg2);
 
@@ -207,8 +209,21 @@ f32 func_801307E4(u16 arg0) {
     return *(f32 *)((u8 *)D_801783A4 + (-(temp_v0 * 4)));
 }
 
-/* hh-block asm/nonmatchings/file008/80130310/_mrg_keep_text_func_80130874.s {"functions":["func_80130874"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/_mrg_keep_text_func_80130874.s")
+#undef func_80130874
+
+
+/* GGA: mathSinCos (D_801763A0 = GGA gMathSinTable: (sin, cos) pairs over a quarter turn) */
+f32 func_80130874(u16 angle, f32 *c) {
+    angle = (angle & 0x3FF) * 2;
+    if (angle < 0x200) { angle++; *c = D_801763A0[angle]; angle--; return D_801763A0[angle]; }
+    if (angle < 0x400) { angle = 0x401 - angle; *c = -D_801763A0[angle]; angle--; return D_801763A0[angle]; }
+    if (angle < 0x600) { angle = angle - 0x3FF; *c = -D_801763A0[angle]; angle--; return -D_801763A0[angle]; }
+    angle = 0x801 - angle;
+    *c = D_801763A0[angle];
+    angle--;
+    return -D_801763A0[angle];
+}
+#define func_80130874 func_80130874__decl
 
 
 
@@ -377,11 +392,114 @@ f32 func_80130E34(func_80130E34_Struct *arg0, f32 arg1, f32 arg2, f32 arg3, f32 
 /* hh-block asm/nonmatchings/file008/80130310/_mrg_keep_text_func_80130F74.s {"functions":["func_80130F74"],"rodata":[]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/_mrg_keep_text_func_80130F74.s")
 
-/* hh-block asm/nonmatchings/file008/80130310/_mrg_keep_text_func_80131074.s {"functions":["func_80131074"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/_mrg_keep_text_func_80131074.s")
+#undef func_80131074
+#define D_8018D6B0 D_8018D6B0__func_80131074
+extern f64 D_8018D6B0;
 
-/* hh-block asm/nonmatchings/file008/80130310/_mrg_keep_text_func_801311F8.s {"functions":["func_801311F8"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/_mrg_keep_text_func_801311F8.s")
+s32 func_80131074(f32 *arg0, f32 *arg1, f32 *arg2) {
+    f32 temp[3];
+    f32 temp_fv0_2;
+
+    temp_fv0_2 = func_8002FC20((arg2[0] * arg2[0]) + (arg2[2] * arg2[2]));
+    if ((f64) (temp_fv0_2 < 0.0f ? -temp_fv0_2 : temp_fv0_2) < D_8018D6B0) {
+        arg1[0] = arg0[0];
+        if (arg2[1] > 0.0f) {
+            arg1[1] = -arg0[2];
+            arg1[2] = arg0[1];
+        } else {
+            arg1[1] = arg0[2];
+            arg1[2] = -arg0[1];
+        }
+        return 0;
+    }
+    temp[0] = ((arg0[0] * arg2[2]) - (arg0[2] * arg2[0])) / temp_fv0_2;
+    temp[1] = ((-((arg0[0] * arg2[0]) + (arg0[2] * arg2[2])) * arg2[1]) / temp_fv0_2) + (arg0[1] * temp_fv0_2);
+    temp[2] = arg0[0] * arg2[0] + arg0[1] * arg2[1] + arg0[2] * arg2[2];
+    arg1[0] = temp[0];
+    arg1[1] = temp[1];
+    arg1[2] = temp[2];
+    return 1;
+}
+#undef D_8018D6B0
+#define func_80131074 func_80131074__decl
+
+#undef func_80130874
+#define D_8018D6B8 D_8018D6B8__func_801311F8
+#define func_80130874 func_80130874__func_801311F8
+#define func_801315A8 func_801315A8__func_801311F8
+#define func_8013173C func_8013173C__func_801311F8
+#define func_801318D8 func_801318D8__func_801311F8
+#define func_80131B24 func_80131B24__func_801311F8
+f32 func_80130874(s32, f32 *);
+extern void func_801315A8(void *, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern void func_8013173C(void *, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern void func_801318D8(void *, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, void *, f32, f32);
+extern void func_80131B24(void *, void *, void *, u16, s32, s32);
+extern f64 D_8018D6B8;
+
+typedef struct { u16 a, b, c; } func_801311F8_StructA;
+typedef struct { f32 x, y, z; } func_801311F8_StructB;
+
+void func_801311F8(func_801311F8_StructA *arg0, func_801311F8_StructB *arg1, u16 arg2, u16 arg3, u16 arg4) {
+    f32 fs2;
+    f32 spC0, spBC, spB8;
+    f32 fs1;
+    f32 spB0, spAC, spA8, spA4;
+    f32 fs0, fv1, ft5;
+    f32 sp94;
+    f32 t0, sp60, t3, p1, p2, p3;
+    u16 pu;
+    u16 sp78, sp76, sp74;
+
+    fs2 = func_8002FC20((arg1->y * arg1->y) + (arg1->x * arg1->x));
+    if (arg1->y >= 0.0f) {
+        spC0 = 1.0f;
+    } else {
+        spC0 = -1.0f;
+    }
+    sp74 = arg0->a;
+    sp76 = arg0->b;
+    sp78 = arg0->c;
+    arg0->a = 0x200;
+    spBC = func_80130874(arg2, &spB8);
+    fs1 = func_80130874(arg3, &spB0);
+    spAC = func_80130874(arg4, &spA8);
+    if (fs2 < 0.0f) {
+        fv1 = -fs2;
+    } else {
+        fv1 = fs2;
+    }
+    if ((f64) fv1 < D_8018D6B8) {
+        if (arg1->z > 0.0f) {
+            spA4 = spB0 * spAC;
+            fs0 = spB0 * spA8;
+            func_801315A8(arg0, spA4, func_8002FC20((fs1 * fs1) + (fs0 * fs0)), fs1, fs0, spBC, spB8, fs1, spB0, spAC, spA8);
+            func_80131B24(arg0, &arg0->b, &arg0->c, sp74, sp76, sp78);
+            return;
+        }
+        spA4 = -spB0 * spAC;
+        fs2 = -fs1;
+        fs0 = spB0 * spA8;
+        func_8013173C(arg0, spA4, func_8002FC20((fs2 * fs2) + (fs0 * fs0)), fs2, fs0, spBC, spB8, fs1, spB0, spAC, spA8);
+        func_80131B24(arg0, &arg0->b, &arg0->c, sp74, sp76, sp78);
+        return;
+    }
+    fv1 = spB0 * spAC;
+    t0 = arg1->z;
+    ft5 = fs1 * t0;
+    spA4 = -((t0 * fv1) - (fs1 * fs2 * spC0));
+    fs0 = (arg1->x * fv1) + ((((spB0 * spA8 * arg1->y) + (ft5 * arg1->x)) / fs2) * spC0);
+    sp94 = (arg1->y * fv1) + ((((-spB0 * spA8 * arg1->x) + (ft5 * arg1->y)) / fs2) * spC0);
+    func_801318D8(arg0, spA4, func_8002FC20((sp94 * sp94) + (fs0 * fs0)), sp94, fs0, spBC, spB8, fs1, spB0, spAC, spA8, arg1, fs2, spC0);
+    func_80131B24(arg0, &arg0->b, &arg0->c, sp74, sp76, sp78);
+}
+#undef D_8018D6B8
+#undef func_80130874
+#undef func_801315A8
+#undef func_8013173C
+#undef func_801318D8
+#undef func_80131B24
+#define func_80130874 func_80130874__decl
 
 
 typedef struct func_801315A8_Struct {
@@ -449,6 +567,7 @@ void func_80131B24(u16 *arg0, u16 *arg1, u16 *arg2, u16 arg3, u16 arg4, u16 arg5
 }
 
 
+/* GGA: mathRotAltEuler */
 void func_80131CC4(u16 *arg0, u16 *arg1, u16 *arg2) {
     *arg1 = (0x200 - *arg1) & 0x3FF;
     *arg0 = (*arg0 + 0x200) & 0x3FF;

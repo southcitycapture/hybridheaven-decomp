@@ -19,6 +19,7 @@ extern void func_80024358(void);
 extern void func_80025150(void);
 extern void func_80025694(void);
 
+/* GGA: trkSeTick */
 void func_80023B48(void) {
     struct func_80023B48_Struct *temp_v0;
 

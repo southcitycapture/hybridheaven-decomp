@@ -12,8 +12,9 @@ void func_80241320(u8 *arg0, void *arg1) {
 #undef func_8024134C
 
 /* hh-block asm/nonmatchings/file014/80241320/_ro_func_8024134C.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file014/80241320/func_8024134C.s","D_8024A350"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/80241320/_ro_func_8024134C.s")
-
+/* Readonly diagnostics, formerly _ro_func_8024134C.s. */
+const u8 D_8024A350[0x38] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a02_s05demo.c";
 
 struct func_8024134C_Struct {
     u8 pad[0x3C];
@@ -22,7 +23,7 @@ struct func_8024134C_Struct {
 
 extern void func_80005700(void *);
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
-extern u8 D_8024A350[];
+extern const u8 D_8024A350[];
 
 void func_8024134C(struct func_8024134C_Struct *arg0, s32 arg1) {
     if (arg0->unk3C++ > 0) {

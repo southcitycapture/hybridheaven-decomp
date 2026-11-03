@@ -118,6 +118,7 @@ extern struct func_801D5250_Struct D_801E1640;
 extern s32 D_801DB644;
 extern u8 D_801E1650;
 extern u8 D_801E1660;
+#define func_801D52B8 func_801D52B8__decl120
 extern void func_801D52B8(s32 arg0);
 extern void func_80006214(void *);
 extern u8 D_8008DA88[];
@@ -171,6 +172,7 @@ void func_801D4F1C(struct func_801D4F1C_S *arg0, struct func_801D4F1C_A *arg1) {
         func_801D52B8((s32)arg0);
     }
 }
+#undef func_801D52B8
 
 
 
@@ -207,7 +209,26 @@ u8 *func_801D51E4(void) {
     return &D_801E1630;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D51F0.s")
+#define D_801DB68C D_801DB68C__func_801D51F0
+#define D_801E1678 D_801E1678__func_801D51F0
+#define func_801C0B2C func_801C0B2C__func_801D51F0
+extern u64 func_801C0B2C();
+extern s32 D_801DB68C;
+u64 D_801E1670;
+extern s32 D_801E1678;
+
+void func_801D51F0(s32 arg0) {
+    if ((D_801DB648 = arg0) != 0) {
+        D_801DB68C = 0;
+        D_801E1670 = func_801C0B2C();
+        D_801E1678 = 0;
+        return;
+    }
+    func_8012D844((void *)D_801DB640, 0x118, 0);
+}
+#undef D_801DB68C
+#undef D_801E1678
+#undef func_801C0B2C
 
 
 
@@ -241,5 +262,57 @@ u8 *func_801D52AC(void) {
     return &D_801E1660;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D4C90/func_801D52B8.s")
 
+#define D_801DB690 D_801DB690__func_801D52B8
+#define D_801DD590 D_801DD590__func_801D52B8
+#define D_801E1678 D_801E1678__func_801D52B8
+#define func_80034C24 func_80034C24__func_801D52B8
+#define func_801C0B2C func_801C0B2C__func_801D52B8
+extern f64 func_80034C24(u64);
+extern u64 func_801C0B2C();
+extern f64 D_801DD590;
+u64 D_801E1670;
+extern u32 D_801E1678;
+
+struct func_801D52B8_Struct {
+    f32 unk0;
+    s32 unk4;
+};
+extern struct func_801D52B8_Struct D_801DB690[];
+
+void func_801D52B8(void *arg0) {
+    u64 d;
+    u32 n;
+    s32 t;
+
+    d = func_801C0B2C() - D_801E1670;
+    if (D_801DB690[D_801E1678].unk0 <= func_80034C24(d) / D_801DD590) {
+        t = D_801DB690[D_801E1678].unk4;
+        if (t == 0) goto c0;
+        if (t == 1) goto c1;
+        if (t != 2) goto end;
+        if (1) goto c2;
+    c0:
+        func_8012D844(arg0, 0x118, 0);
+        goto end;
+    c1:
+        func_8012D844(arg0, 0x118, 1);
+        goto end;
+    c2:
+        func_8012D844(arg0, 0x118, 2);
+    end:
+        n = ++D_801E1678;
+        if (n >= 0xF) {
+            D_801E1670 = func_801C0B2C();
+        }
+        D_801E1678 %= 15;
+    }
+}
+#undef D_801DB690
+#undef D_801DD590
+#undef D_801E1678
+#undef func_80034C24
+#undef func_801C0B2C
+
+/* Readonly constants retained after the last ASM donor became C. */
+static const f64 D_801DD590__rodata[] = {1000000.0};

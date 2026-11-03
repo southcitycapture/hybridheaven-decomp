@@ -33,6 +33,7 @@ typedef struct func_80000BF0_Obj {
     s32 unk8A0;
 } func_80000BF0_Obj;
 
+/* GGA: mainSchedGfxThread */
 void func_80000BF0(func_80000BF0_Obj *arg0) {
     void *sp5C;
     func_80000BF0_Msg *sp58;

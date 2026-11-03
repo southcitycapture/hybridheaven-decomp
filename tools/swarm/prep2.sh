@@ -79,11 +79,14 @@ if [ -n "$bk" ] && [ $((n - bk)) -ge 3 ] && ! head -1 .lastcheck | grep -q '^MAT
 fi
 EOC
 chmod +x "$W/check"
+# TYPES=1: context.h also gets the recovered shared types/typed globals this function's asm touches (Task 30,
+# tools/hh/types_db.py; srcbuild.py reads TYPES from the environment) and the prompt gets a short note on them
 "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" context "$SEG" "$FUNC" > "$W/context.h"
 sed -i 's/^#include "common.h"/#include "context.h"/' "$W/draft.c"
 sed "s/{FUNC}/$FUNC/g; s/at most 10 runs/at most ${CHECK_LIMIT:-10} runs/" "$HH/tools/swarm/worker_prompt2.md" > "$W/prompt.md"
 # Query the actual file, including main; a segment-wide allowlist can be stale after a re-split.
 "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" switches "$SEG" "$FUNC" >> "$W/prompt.md"
+if [ -n "$TYPES" ] && [ "$TYPES" != 0 ]; then cat "$HH/tools/swarm/types_note.md" >> "$W/prompt.md"; fi
 # repair mode: PREVIOUS=path to an earlier attempt
 if [ -n "$PREVIOUS" ] && [ -f "$PREVIOUS" ]; then
   sed 's/^#include "common.h"/#include "context.h"/' "$PREVIOUS" > "$W/previous.c"
@@ -105,6 +108,12 @@ if [ -n "$LEVERS" ]; then printf '\n## IDO 7.1 levers (what changed codegen in e
 if [ -n "$WALLNOTE" ] && [ -n "$PREVIOUS" ] && [ -f "$PREVIOUS" ]; then
   wn=$(cd "$HH" && timeout 180 "$HH/.venv/bin/python" tools/hh/wall.py "$FUNC" --seg "$SEG" --source "$PREVIOUS" 2>/dev/null | head -40)
   [ -n "$wn" ] && printf '\n## Why previous.c does not match yet (automatic diagnosis; fix this wall first)\n\n```\n%s\n```\n' "$wn" >> "$W/prompt.md"
+fi
+# REGTRACE=1 (with PREVIOUS): the register tracer's report on the previous attempt (tools/hh/regtrace.py): which C
+# value uopt put in which register, which register the target uses for it, colouring-order conflicts and the levers
+if [ -n "$REGTRACE" ] && [ -n "$PREVIOUS" ] && [ -f "$PREVIOUS" ]; then
+  rt=$(cd "$HH" && timeout 180 "$HH/.venv/bin/python" tools/hh/regtrace.py "$FUNC" --seg "$SEG" --source "$PREVIOUS" 2>/dev/null | head -45)
+  [ -n "$rt" ] && printf '\n## Register trace of previous.c (automatic: which value is in which register, and what moves it)\n\n```\n%s\n```\n' "$rt" >> "$W/prompt.md"
 fi
 # BIGFUNC=1: skeleton-then-fill method for large functions (with DEADLINE_MIN)
 if [ -n "$BIGFUNC" ]; then cat "$HH/tools/swarm/bigfunc_note.md" >> "$W/prompt.md"; fi

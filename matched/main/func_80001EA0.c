@@ -19,6 +19,7 @@ extern void func_80029580(void *);
 extern struct func_80001EA0_Struct D_8005CDA0;
 extern u8 D_8005CDB4[];
 
+/* GGA: dmaSramInit */
 s32 func_80001EA0(void) {
     if (D_8005CDA0.unkC == 0xA8000000) {
         return (s32)&D_8005CDA0;

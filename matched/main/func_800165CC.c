@@ -3,6 +3,7 @@
 extern s32 D_8008DC94;
 extern s32 D_8008DFAC;
 
+/* GGA: picGetDirect */
 s32 func_800165CC(s32 arg0, s32 arg1, s32 arg2) {
     u16 temp_v1;
 

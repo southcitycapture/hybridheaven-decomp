@@ -12,6 +12,7 @@ struct func_80025460_Struct {
     s32 unk84;
 };
 
+/* GGA: sndCmdPortamentoCalc */
 void func_80025460(void)
 {
   struct func_80025460_Struct *p;

@@ -21,6 +21,7 @@ extern void func_80016828();
 extern s32 func_800168C8();
 extern void func_80016950();
 
+/* GGA: picDecode */
 func_80015488_Struct *func_80015488(s32 arg0, s32 arg1, func_80015488_Struct *arg2) {
     switch (arg2->unk8) {
     case 15:

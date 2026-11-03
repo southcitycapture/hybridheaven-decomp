@@ -13,14 +13,27 @@ def text_end(b):
 head = open("tools/hh/splat_head.yaml").read()
 # original source-file boundaries (see NOTES.md); one C file per original file
 SPLITS = {k: [int(x, 16) for x in v] for k, v in json.load(open("tools/hh/file_splits.json")).items()}
+# Entire zero-only alignment blocks after otherwise complete C objects. These
+# are linker padding, not C objects or instructions (Task 31).
+TEXT_PADDING = json.load(open("tools/hh/text_padding.json"))
 # Verified text extents for code files missed by the three-return heuristic.
 # file099: one debug stage/level selector, 0x544 bytes plus 0xC alignment;
 # the remainder is pointer tables and strings, not instructions.
 TEXT_ENDS = {"file099": 0x550}
-def c_lines(seg, start, vram):
+def c_lines(seg, start, vram, end):
     starts = SPLITS.get(seg, [start])
-    return ["      - [0x%X, c, %s/%08X]" % (o, seg, vram + (o - start)) for o in starts]
-head = head.replace("      - {MAIN_C}", "\n".join(c_lines("main", 0x1060, 0x80000460)).lstrip(" ").join(["      ", ""]) if False else "\n".join(c_lines("main", 0x1060, 0x80000460)))
+    out = []
+    for i, o in enumerate(starts):
+        unit = "%s/%08X" % (seg, vram + o - start)
+        out.append("      - [0x%X, c, %s]" % (o, unit))
+        pad = TEXT_PADDING.get(unit, 0)
+        if pad:
+            stop = starts[i + 1] if i + 1 < len(starts) else end
+            assert pad > 0 and pad % 16 == 0 and stop - pad > o and stop % 16 == 0
+            assert img[stop - pad:stop] == b"\0" * pad, "nonzero text padding: " + unit
+            out.append("      - [0x%X, pad]" % (stop - pad))
+    return out
+head = head.replace("      - {MAIN_C}", "\n".join(c_lines("main", 0x1060, 0x80000460, 0x35D20)))
 L = [head.rstrip()]
 files = sorted([f for f in man["files"] if "exp" in f], key=lambda f: f["exp"])
 L.append("  - [0x4E7D0, bin, rom_4E7D0]   # music, sample banks, misc data (uncompressed)")
@@ -36,8 +49,8 @@ for f in files:
           "    vram: 0x%08X" % f["vram"], "    exclusive_ram_id: slot%08X" % f["vram"]]
     if bss > 0: L.append("    bss_size: 0x%X" % bss)
     L.append("    subsegments:")
-    L += c_lines(name, f["exp"], f["vram"])
     te = TEXT_ENDS[name] if name in TEXT_ENDS else text_end(b)
+    L += c_lines(name, f["exp"], f["vram"], f["exp"] + te)
     if te < len(b): L.append("      - [0x%X, data]" % (f["exp"] + te))
     if bss > 0: L += bss_layout.subsegments(name, f['vram'] + f['exp_len'], f['vram_end'], BSS)
 L.append("  - [0x%X]" % len(img))

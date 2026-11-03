@@ -114,8 +114,8 @@ def compiler_ranges(src, obj, out, cc):
         subprocess.run(cc + ["-I", os.path.dirname(src), "-o", o_path, c_path], check=True, capture_output=True)
     except subprocess.CalledProcessError as error:
         raise RuntimeError("data provenance compile failed for " + src + ":\n" + error.stderr.decode(errors="replace")) from error
-    import mulfix
-    mulfix.fix(o_path)  # also adjusts C jump-table addends when it inserts nops
+    import idoflags
+    idoflags.post(o_path)  # mulfix.py only with HH_MULFIX=1 (cc carries -Wab,-r4300_mul otherwise)
     raw, symbols, objects = object_data(o_path)
     final, _, _ = object_data(obj)
     masks = assembly_mask(functions, symbols, raw)

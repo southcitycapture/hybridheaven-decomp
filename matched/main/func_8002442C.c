@@ -9,6 +9,7 @@ struct func_8002442C_Struct {
     s16 unk1E;
 };
 
+/* GGA: sndCmdTempoSlide */
 void func_8002442C(void) {
     struct func_8002442C_Struct *s;
     s32 q;

@@ -1,0 +1,2 @@
+{"func": "func_8036A134", "segment": "file057", "model": "tools/hh/regsweep.py over queue/opusN3/work/func_8036A134/attempt.c (Task 24): swap stmts 36/37", "verified": "MATCH", "note": "srcbuild.infile_check: IN-FILE MATCH"}
+{"func": "func_801C3F48", "segment": "file024", "model": "tools/hh/regsweep.py over queue/sday1/work/func_801C3F48/attempt.c (Task 24): ref alpha after line 5 (`if (alpha) {}`)", "verified": "MATCH", "note": "standalone MATCH; in-file blocked: the file's late_rodata carrier (_ro_named block) gets 'too short .text block' once this function is C"}

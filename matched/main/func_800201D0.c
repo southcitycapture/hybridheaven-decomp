@@ -19,6 +19,7 @@ extern u8 *D_80096A98[];
 extern u8 D_80096AB0[];
 extern u8 D_80191520[];
 
+/* GGA: sndInit */
 void func_800201D0(void) {
     func_800201D0_StructA a;
     func_800201D0_StructB b;

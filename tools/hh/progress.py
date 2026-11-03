@@ -12,7 +12,8 @@ HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../.."))
 os.chdir(HH)
 OUT = "build/progress"; os.makedirs(OUT + "/target", exist_ok=True); os.makedirs(OUT + "/base", exist_ok=True)
 AS = ["mips-linux-gnu-as", "-EB", "-march=vr4300", "-mabi=32", "-G", "0", "-I", "include"]
-CC = ["tools/ido/7.1/cc", "-c", "-G", "0", "-non_shared", "-Xcpluscomm", "-mips2", "-O2", "-I", "include", "-I", "src"]
+sys.path.insert(0, "tools/hh"); import idoflags
+CC = ["tools/ido/7.1/cc", "-c"] + idoflags.CFLAGS     # incl. -Wab,-r4300_mul (Task 26)
 HEAD = '.include "macro.inc"\n.set noat\n.set noreorder\n.set gp=64\n.section .text, "ax"\n\n'
 def lib_base(seg, funcs):
     """Copy of a library object (osSendMesg, ...) with each function renamed to the func_XXXXXXXX name the target
@@ -72,7 +73,7 @@ for seg in source_units(yaml.safe_load(open("hybridheaven.yaml"))):
         result = subprocess.run(CC + ["-o", base_o, base_c], capture_output=True, text=True)
         if result.returncode:
             raise RuntimeError("base compile failed for " + seg + ":\n" + result.stderr)
-        sys.path.insert(0, "tools/hh"); import mulfix; mulfix.fix(base_o)
+        idoflags.post(base_o)
         unit["base_path"] = base_o
     unit["metadata"] = {"progress_categories": ["main" if seg.startswith("main/") else "overlays"]}
     units.append(unit)

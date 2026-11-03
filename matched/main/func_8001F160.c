@@ -1,5 +1,6 @@
 #include "common.h"
 
+/* GGA: heapMemClear */
 void func_8001F160(s32 arg0, s32 arg1) {
     s32 count;
 

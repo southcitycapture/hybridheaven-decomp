@@ -10,6 +10,7 @@ struct func_80024D50_Struct {
     s16 unk5C;
 };
 
+/* GGA: sndCmdPanSlide */
 void func_80024D50(void) {
     s32 diff;
     ((struct func_80024D50_Struct *) D_800CBDA4)->unk5B = *D_800CBDA0;

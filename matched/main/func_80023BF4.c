@@ -21,6 +21,7 @@ extern void func_8002AB10(s32, void *, f32);
 
 #define Q ((func_80023BF4_Struct *) D_800CBDA4)
 
+/* GGA: trkSetPitch */
 void func_80023BF4(void) {
     f32 *tbl;
     f32 v;

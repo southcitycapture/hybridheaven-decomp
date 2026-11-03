@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: sndCmdEventValue */
 void func_800261C4(s32 arg0)
 {
   u8 temp_a1;

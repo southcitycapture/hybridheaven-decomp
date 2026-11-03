@@ -6,6 +6,7 @@ extern s32 func_80032BE0();
 extern s32 D_8005CD98;
 extern s32 D_8005CD9C;
 
+/* GGA: dmaInitHandles */
 void func_80001E70(void) {
     D_8005CD98 = func_80032BE0();
     D_8005CD9C = func_80001EA0();
@@ -31,6 +32,7 @@ extern void func_80029580(void *);
 extern struct func_80001EA0_Struct D_8005CDA0;
 extern u8 D_8005CDB4[];
 
+/* GGA: dmaSramInit */
 s32 func_80001EA0(void) {
     if (D_8005CDA0.unkC == 0xA8000000) {
         return (s32)&D_8005CDA0;
@@ -57,6 +59,7 @@ extern void func_800306C0(s32, s32);
 extern u8 D_8005C268[];
 extern u8 D_8005CD80[];
 
+/* GGA: dmaTransfer */
 void func_80001F30(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     if (arg1 == 0) {
         func_80028A90(arg2, arg4);
@@ -82,12 +85,14 @@ void func_80001FE8(s32 arg0, s32 arg1, s32 arg2) {
 
 
 
+/* GGA: dmaReadSram */
 void func_80002028(s32 arg0, s32 arg1, s32 arg2) {
     func_80001F30(D_8005CD9C, 0, arg1, arg0, arg2);
 }
 
 
 
+/* GGA: dmaWriteSram */
 void func_80002068(s32 arg0, s32 arg1, s32 arg2) {
     func_80001F30(D_8005CD9C, 1, arg0, arg1, arg2);
 }

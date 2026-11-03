@@ -2,7 +2,7 @@
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
 extern s32 func_8012C6B4();
 extern s32 func_800058DC();
-extern void func_80380AF4();
+extern void func_80380AF4(struct func_80380AF4_Struct *arg0, s32 arg1);
 extern f64 D_8038BDF8;
 extern f64 D_8038BE00;
 extern struct func_80380B30_SA *D_8038CFB4;

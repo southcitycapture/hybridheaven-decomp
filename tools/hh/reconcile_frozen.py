@@ -362,6 +362,21 @@ def body_for(seg, cfile, name, snippet, sc, i, alias, literals=True):
     out += ["#undef %s" % n for n in sorted(priv)]
     return out, priv
 
+def linked_size_problem(seg, cfile, text_data, got_ro):
+    """None if an object with .text bytes `text_data` and 16-aligned .rodata size `got_ro` keeps every later section of
+    the linked ROM where it is, else why not.
+    .text: the original's length, or IDO's zero padding up to the 16-byte boundary the linker starts the next section at
+    (S.text_problem). Both sizes must also be the committed file's (S.committed_layout; it links to the matching ROM):
+    a neighbour may own bytes the yaml gives this file, and then a candidate that fits the yaml extent still moves every
+    later section (file010 func_80205A60 grew the ROM by 64 bytes that way, Task 26)."""
+    why = S.text_problem(seg, cfile, text_data)
+    if why: return why
+    ref = S.committed_layout(seg, cfile)
+    mine = ((len(text_data) + 15) & ~15, got_ro)
+    if ref is not None and mine != ref:
+        return "linked size changes: .text 0x%X, .rodata 0x%X; committed file 0x%X, 0x%X" % (mine + ref)
+    return None
+
 def verify(seg, cfile, text, names, td):
     """(ok, why): the file compiles, every name in `names` matches at its address, the .text keeps its size."""
     obj, err = S.compile_file(text, td)
@@ -391,20 +406,21 @@ def verify(seg, cfile, text, names, td):
     start, end = S.file_span(seg, cfile)
     with open(obj, "rb") as fh:
         elf = ELFFile(fh)
-        got = elf.get_section_by_name(".text")["sh_size"]
+        text_data = elf.get_section_by_name(".text").data()
         want_ro = S.file_rodata_size(seg, cfile)
         ro = elf.get_section_by_name(".rodata")
         got_ro = ((ro["sh_size"] if ro is not None else 0) + 15) & ~15
         if want_ro is not None and got_ro != want_ro:
             return False, "file .rodata is 0x%X, original 0x%X" % (got_ro, want_ro)
-    if got != end - start: return False, "file .text is 0x%X, original 0x%X" % (got, end - start)
+    why = linked_size_problem(seg, cfile, text_data, got_ro)
+    if why: return False, why
     # Checking only registered C misses an asm neighbour whose local late-rodata relocations moved, or constants
     # read through absolute D_ names. Require the whole linked file, including asm and data, to stay byte-identical.
     first = min(info.values(), key=lambda e: e[2])
     linked = S.try_func.linked_func_bytes(obj, first[0], first[4], base, S.FILE_RODATA.get((seg, cfile)), want_file=True, bss=bss)
     if linked is None: return False, "cannot link whole file"
     code, data = linked
-    if code != S.IMG[start:end]: return False, "file .text differs (including asm neighbours)"
+    if code != S.IMG[start:start + len(code)]: return False, "file .text differs (including asm neighbours)"
     if want_ro is not None:
         offset = start + S.FILE_RODATA[(seg, cfile)] - base
         if data.ljust(want_ro, b"\0") != S.IMG[offset:offset + want_ro]: return False, "file .rodata differs"

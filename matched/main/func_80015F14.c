@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: picChainDirect */
 void func_80015F14(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 var_s2 = 1;
 

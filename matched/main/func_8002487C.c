@@ -9,6 +9,7 @@ struct func_8002487C_Struct {
     u8 unk47;
 };
 
+/* GGA: sndCmdVolumeSlide */
 void func_8002487C(void)
 {
   s32 new_var;

@@ -11,6 +11,7 @@ struct func_80024180_Struct {
     u16 unk4E;
 };
 
+/* GGA: trkEnvAttack */
 void func_80024180(void) {
     ((struct func_80024180_Struct *) D_800CBDA4)->unk4C = 0;
     if (((struct func_80024180_Struct *) D_800CBDA4)->unk4E != 0) {

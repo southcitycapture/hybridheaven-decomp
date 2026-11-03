@@ -170,7 +170,9 @@ void func_80240BD8(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file014/802408F0/D_8024A270.s")
+/* Readonly diagnostics, formerly D_8024A270.s. */
+const u8 D_8024A270[0xC] =
+    "/bridge.c\000\000";
 
 #define func_80240CD4 func_80240CD4__func_80240BE4
 void func_80240CD4(s32 arg0, s32 arg1);

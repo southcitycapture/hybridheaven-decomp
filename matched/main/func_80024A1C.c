@@ -13,6 +13,7 @@ struct func_80024A1C_Struct {
 
 #define OBJ ((struct func_80024A1C_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdEnvSustain */
 void func_80024A1C(void) {
     u16 temp_a0;
     s32 temp_v0;

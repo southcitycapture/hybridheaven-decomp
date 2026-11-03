@@ -10,6 +10,7 @@ typedef struct func_800229FC_Struct {
     u8 pad[0xD4];
 } func_800229FC_Struct;
 
+/* GGA: sndSetMono */
 void func_800229FC(void) {
     s32 i;
     func_800229FC_Struct *ptr;

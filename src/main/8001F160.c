@@ -1,6 +1,7 @@
 #include "common.h"
 
 
+/* GGA: heapMemClear */
 void func_8001F160(s32 arg0, s32 arg1) {
     s32 count;
 
@@ -24,6 +25,7 @@ void func_8001F160(s32 arg0, s32 arg1) {
 }
 
 
+/* GGA: heapMemCopy */
 void func_8001F1D4(u8 *arg0, u8 *arg1, s32 arg2) {
     while (arg2--) {
         *arg0 = *arg1++;
@@ -31,7 +33,44 @@ void func_8001F1D4(u8 *arg0, u8 *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F160/func_8001F204.s")
+#define D_80091BC0 D_80091BC0__func_8001F204
+#define func_8001F160 func_8001F160__func_8001F204
+#define func_8001F498_Struct func_8001F498_Struct__func_8001F204
+typedef struct func_8001F498_Struct {
+    s32 unk0;
+    s32 unk4;
+    struct func_8001F498_Struct *unk8;
+    struct func_8001F498_Struct *unkC;
+} func_8001F498_Struct;
+extern func_8001F498_Struct D_80091BC0;
+void func_8001F160(s32 arg0, s32 arg1);
+
+
+/* GGA: heapInit */
+void func_8001F204(func_8001F498_Struct *blk, s32 size) {
+    func_8001F498_Struct *head;
+    func_8001F498_Struct *tail;
+
+    func_8001F160((s32)blk, size);
+    D_80091BC0.unk0 = (s32)blk;
+    D_80091BC0.unk4 = size;
+    head = (func_8001F498_Struct *)D_80091BC0.unk0;
+    head->unk8 = NULL;
+    head->unkC = NULL;
+    head->unk4 = 0x10;
+    head->unk0 = D_80091BC0.unk0;
+    tail = (func_8001F498_Struct *)((s32)D_80091BC0.unk0 + D_80091BC0.unk4) - 1;
+    tail->unkC = NULL;
+    tail->unk4 = 0x10;
+    tail->unk8 = head;
+    tail->unk0 = (s32)D_80091BC0.unk0 + D_80091BC0.unk4 - 0x10;
+    head->unkC = tail;
+    D_80091BC0.unkC = tail;
+    D_80091BC0.unk8 = head;
+}
+#undef D_80091BC0
+#undef func_8001F160
+#undef func_8001F498_Struct
 
 extern s32 D_80047940;
 
@@ -44,6 +83,7 @@ typedef struct func_8001F290_Struct {
 
 extern func_8001F290_Struct *D_80091BC8;
 
+/* GGA: heapMalloc */
 s32 func_8001F290(arg0)
     s32 arg0;
 {
@@ -88,6 +128,7 @@ found:
 
 
 
+/* GGA: heapMallocPage */
 void func_8001F334(void) {
     D_80047940 = 0xFFF;
     func_8001F290();
@@ -104,6 +145,7 @@ typedef struct func_8001F364_Struct {
 
 extern func_8001F364_Struct *D_80091BCC;
 
+/* GGA: heapMallocTop */
 s32 func_8001F364(arg0)
     s32 arg0;
 {
@@ -179,6 +221,7 @@ typedef struct func_8001F498_Struct {
 
 extern func_8001F498_Struct D_80091BC0;
 
+/* GGA: heapRepair */
 void func_8001F498(func_8001F498_Struct *arg0) {
     func_8001F498_Struct *var_v1;
     func_8001F498_Struct *temp_v0;
@@ -213,6 +256,7 @@ loop_4:
 }
 
 
+/* GGA: heapFree */
 s32 func_8001F540(s32 arg0) {
     func_8001F498_Struct *n;
     func_8001F498_Struct *next;

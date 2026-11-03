@@ -11,6 +11,7 @@ extern s8 D_8004889C[];
 extern struct func_80024780_Struct *D_800CBDA4;
 extern void func_80024614(s8 *);
 
+/* GGA: sndCmdDrumInstrument */
 void func_80024780(void)
 {
   int new_var;

@@ -263,5 +263,30 @@ extern int D_80000008;
         self.assertEqual(set(reconcile.call_args.args[4]), {'func_80000008'})
 
 
+class LinkedSizeTests(unittest.TestCase):
+    """Task 27: verify compares what the linked ROM depends on: .text up to IDO's 16-byte padding over original zeros
+    (S.text_problem) and both 16-aligned sizes equal to the committed file's object (S.committed_layout)."""
+    def check(self, text_data, got_ro, ref, problem=None):
+        with patch.object(S, 'text_problem', return_value=problem), patch.object(S, 'committed_layout', return_value=ref):
+            return R.linked_size_problem('test', 'file', text_data, got_ro)
+
+    def test_committed_sizes_pass(self):
+        self.assertIsNone(self.check(b"\0" * 0x6880, 0x20, (0x6880, 0x20)))
+
+    def test_rodata_owned_by_a_neighbour_is_a_linked_size_change(self):
+        # file010/80205720.c + func_80205A60: rodata 0x60 fits the yaml extent, but the committed object has 0x20
+        # because 80203830.c emits the strings; the ROM grew by 64 bytes
+        self.assertIn("linked size changes", self.check(b"\0" * 0xA70, 0x60, (0xA70, 0x20)))
+
+    def test_text_growing_into_the_next_16_bytes_is_a_linked_size_change(self):
+        self.assertIn("linked size changes", self.check(b"\0" * 0x6890, 0x20, (0x6880, 0x20)))
+
+    def test_text_problem_is_reported_first(self):
+        self.assertEqual(self.check(b"", 0, (0, 0), problem="file .text is 0x0, original 0x4"), "file .text is 0x0, original 0x4")
+
+    def test_without_a_committed_file_only_the_extent_is_checked(self):
+        self.assertIsNone(self.check(b"\0" * 0x10, 0x30, None))
+
+
 if __name__ == "__main__":
     unittest.main()

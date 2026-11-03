@@ -9,6 +9,7 @@ typedef struct func_8001F290_Struct {
 
 extern func_8001F290_Struct *D_80091BC8;
 
+/* GGA: heapMalloc */
 s32 func_8001F290(arg0)
     s32 arg0;
 {

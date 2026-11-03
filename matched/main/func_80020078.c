@@ -11,6 +11,7 @@ extern struct func_80020078_Struct D_80096020;
 extern u8 D_80096030[];
 extern void func_8001FEFC();
 
+/* GGA: __amDmaNew */
 void *func_80020078(void **arg0) {
     if (D_80096020.unk0 == 0) {
         D_80096020.unk4 = 0;

@@ -2,6 +2,7 @@
 
 extern s32 D_80037C5C[];
 
+/* GGA: fileRamSize */
 s32 func_80005170(s32 arg0)
 {
   unsigned int new_var;

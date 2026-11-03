@@ -3,6 +3,7 @@
 
 extern void func_800166D4(s32, s32);
 
+/* GGA: picClearTransparent */
 void func_80016A9C(func_80016A9C_Struct *arg0) {
     s32 var_s0;
     s32 var_s2;

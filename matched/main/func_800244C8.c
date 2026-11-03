@@ -9,6 +9,7 @@ struct func_800244C8_Struct {
     s16 unk1E;
 };
 
+/* GGA: sndCmdTempoSlideTick */
 void func_800244C8(void) {
     s32 var_v1;
 

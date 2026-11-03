@@ -2,7 +2,7 @@
 u8 func_801CEF20_bss_prefix[0x8];
 extern void func_8012D844(void *, s32, s32);
 
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 extern u64 func_801C0B2C();
 extern f64 D_801DD440;
 u64 D_801E1218;

@@ -24,6 +24,7 @@ struct func_80025500_Struct {
 
 #define OBJ ((struct func_80025500_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdPortamentoCheck */
 void func_80025500(void) {
     s32 valid;
     s32 value;

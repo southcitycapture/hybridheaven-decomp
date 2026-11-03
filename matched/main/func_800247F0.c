@@ -4,6 +4,7 @@ extern void func_80024820(void);
 extern void func_80024540(void);
 extern void func_80024CF8(void);
 
+/* GGA: sndCmdVolInstrumentPan */
 void func_800247F0(void) {
     func_80024820();
     func_80024540();

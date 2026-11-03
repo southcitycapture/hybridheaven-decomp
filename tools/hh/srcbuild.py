@@ -17,11 +17,11 @@ import functools, glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile
 from multiprocessing import Pool
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
 sys.path.insert(0, os.path.join(HH, "tools/hh"))
-import try_func, workdir
+import try_func, workdir, idoflags
 from elftools.elf.elffile import ELFFile
 IMG = open("build/expanded.bin", "rb").read()
 IDO = "tools/ido/7.1/cc"
-CFLAGS = "-G 0 -non_shared -Xcpluscomm -mips2 -O2 -I include -I src".split()
+CFLAGS = idoflags.CFLAGS         # -G 0 -non_shared -Xcpluscomm -mips2 -Wab,-r4300_mul -O2 -I include -I src (Task 26)
 ASFLAGS = "-EB -march=vr4300 -mabi=32 -G 0 -I include -I build/include".split()
 DECL = re.compile(r"^\s*extern\b[^;]*?\b((?:func|D)_[0-9A-F]{8}|[A-Za-z_]\w*)\s*(?:\(|\[|;)")
 DEFN = re.compile(r"^(?!extern\b)[A-Za-z_][\w\s\*]*?\b(func_[0-9A-F]{8})\s*\([^;]*$")
@@ -57,7 +57,7 @@ def _text_ends():
     for l in open("hybridheaven.yaml"):
         m = re.match(r"\s+- \[0x([0-9A-F]+), c, (\w+)/", l)
         if m: cur = m.group(2); continue
-        m = re.match(r"\s+- \[0x([0-9A-F]+), data\]", l)
+        m = re.match(r"\s+- \[0x([0-9A-F]+), \.?data(?:, [^\]]+)?\]", l)
         if m and cur: ends[cur] = int(m.group(1), 16); cur = None
     return ends
 def _file_rodata():
@@ -76,13 +76,66 @@ import bss_layout
 FILE_BSS = bss_layout.owners()
 SPLITS = {k: [int(x, 16) for x in v] for k, v in json.load(open("tools/hh/file_splits.json")).items()}
 TEXT_END = _text_ends()
+LINKER_PADDING = json.load(open("tools/hh/text_padding.json"))
 
 def file_span(seg, cfile):
     """(start, end) expanded-image offsets of one original C file's .text."""
     ents = entries(seg, cfile); start = ents[0][2]
     st = SPLITS[seg]; i = st.index(start)
     end = st[i + 1] if i + 1 < len(st) else TEXT_END.get(seg, ents[-1][2] + ents[-1][3])
-    return start, end
+    # A configured splat `pad` after this object occupies the rest in the linker;
+    # it must not be reproduced by C or credited as a source object.
+    return start, end - LINKER_PADDING.get(seg + "/" + cfile, 0)
+
+def text_extent(seg, cfile):
+    """(span, limit): the original file's .text length (file_span) and the most an object's .text may hold while linking
+    to the same image. IDO pads every object's .text to a multiple of 16 bytes, and the linker script places every input
+    section SUBALIGN(16), so whatever follows starts at the same 16-byte boundary whether the object stops at the original's
+    last instruction or runs on to that boundary. The bytes in between must be zero in the original (they are the
+    padding the original object had too); otherwise limit == span. A file whose span ends at the last function of its
+    segment (no later split) is 4/8/12 bytes short of IDO's padded size: without this, every such file failed the
+    whole-file gate even though `make` linked a matching ROM from it (Task 27: 38 files, e.g. file034 0x6880 vs 0x687C)."""
+    start, end = file_span(seg, cfile)
+    base = min(e[4] for e in entries(seg, cfile))
+    span = end - start
+    limit = ((base + span + 15) & ~15) - base
+    if any(IMG[end:start + limit]): limit = span
+    return span, limit
+
+def text_problem(seg, cfile, data):
+    """None if an object's .text bytes `data` (unlinked is fine: padding has no relocations) give the file's original
+    linked extent: exactly the original's length, or IDO's zero padding up to the next 16-byte boundary when the original
+    has zeros there too (text_extent). Otherwise why not, worded as before for the short-file padding retry."""
+    span, limit = text_extent(seg, cfile)
+    got = len(data)
+    if got == span: return None
+    if span < got <= limit:
+        return None if not any(data[span:]) else "file .text padding past 0x%X is not zero" % span
+    return "file .text is 0x%X, original 0x%X" % (got, span)
+
+_LAYOUT = {}
+def committed_layout(seg, cfile):
+    """16-aligned (.text, .rodata) sizes of the object built from src/SEG/CFILE.c as it stands on disk, or None (no file,
+    or it doesn't compile). The committed file links to a matching ROM, and the linker script starts each input section at
+    a 16-byte boundary, so these are the sizes every later section's position depends on. The yaml extent is not enough:
+    file010/80203830.c's kept block emits the strings yaml gives to 80205720 (0x40 of them), and a candidate that added
+    them to 80205720.c too matched the yaml extent while the ROM grew by 64 bytes (Task 26, func_80205A60)."""
+    path = "src/%s/%s.c" % (seg, cfile)
+    if not os.path.exists(path): return None
+    text = open(path).read()
+    key = (seg, cfile, hashlib.sha1(text.encode()).hexdigest())
+    if key not in _LAYOUT:
+        with tempfile.TemporaryDirectory() as td:
+            obj, _ = compile_file(text, td)
+            _LAYOUT[key] = None if obj is None else section_sizes(obj)
+    return _LAYOUT[key]
+
+def section_sizes(obj):
+    """16-aligned (.text, .rodata) sizes of an object (0 for a missing section)."""
+    with open(obj, "rb") as fh:
+        e = ELFFile(fh)
+        return tuple(((s["sh_size"] if s is not None else 0) + 15) & ~15
+                     for s in (e.get_section_by_name(".text"), e.get_section_by_name(".rodata")))
 
 def pad_asm(seg, cfile, nbytes):
     """An asm file holding the original's end-of-file zero padding (IDO doesn't emit it for C)."""
@@ -561,8 +614,14 @@ def compile_file(text, td):
                         IDO, "--", "mips-linux-gnu-as"] + ASFLAGS +
                        ["--", "-c"] + CFLAGS + ["-o", o, c], capture_output=True, text=True)
     if r.returncode == 0:
-        import mulfix; mulfix.fix(o)        # the original build's VR4300 nop between consecutive float multiplies
+        idoflags.post(o)        # no-op: -Wab,-r4300_mul emits the VR4300 multiply nops (mulfix.py only with HH_MULFIX=1)
     return (o if r.returncode == 0 else None), r.stderr + r.stdout
+
+def file_bss(seg, cfile):
+    """Where the file's own .bss is linked (bss_splits.json), or None. Every exact check must use it, as
+    reconcile_frozen.verify does: without it `srcbuild all` judged file025's BSS-owning files wrong after an add
+    and raised "cannot rebuild registered functions" (Task 23)."""
+    return (FILE_BSS.get((seg, cfile)) or (None,))[0]
 
 def func_ok(obj, name, off, size, vram, base, rodata=None, bss=None):
     """Instructions must match, and every address must resolve to the original's (exact link check).
@@ -605,16 +664,17 @@ def _settle(seg, cfile, snips, td, hoist):
             rejected[bad] = "compile error in file context"; snips.pop(bad); continue
         base = min(e[4] for e in info.values())        # the C file's .text starts at its first function
         ro = FILE_RODATA.get((seg, cfile))
-        wrong = [n for n in snips if not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro)]
+        wrong = [n for n in snips if not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=file_bss(seg, cfile))]
         if not wrong:
             # the whole file must keep its original size, or everything after it shifts
             start, end = file_span(seg, cfile)
             with open(obj, "rb") as fh:
-                got = ELFFile(fh).get_section_by_name(".text")["sh_size"]
-            short = (end - start) - got
+                data = ELFFile(fh).get_section_by_name(".text").data()
+            short = (end - start) - len(data)
             if short > 0 and short % 4 == 0 and not any(IMG[end - short:end]) and pad == 0:
                 pad = short; continue                 # rebuild with the original's zero padding
-            if short != 0: return {}, rejected, None, "file .text is 0x%X, original 0x%X" % (got, end - start)
+            problem = text_problem(seg, cfile, data)
+            if problem: return {}, rejected, None, problem
             return snips, rejected, text, None
         for n in wrong: rejected[n] = "does not match in file context (instructions or addresses)"; snips.pop(n)
     return {}, rejected, None, "gave up"
@@ -698,11 +758,11 @@ def existing_ok(seg, cfile, snips, td, bodies=True, asm_ok=()):
     obj, err = compile_file(text, td)
     if obj is None: return False
     base = min(e[4] for e in info.values()); ro = FILE_RODATA.get((seg, cfile))
-    if not all(n in info and func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro) for n in snips if n in defined): return False
-    start, end = file_span(seg, cfile)
+    if not all(n in info and func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=file_bss(seg, cfile))
+               for n in snips if n in defined): return False
     with open(obj, "rb") as fh:
         e = ELFFile(fh)
-        if e.get_section_by_name(".text")["sh_size"] != end - start: return False
+        if text_problem(seg, cfile, e.get_section_by_name(".text").data()): return False
         # and its whole .rodata: a file kept from an older layout can compile and match function by function while
         # missing a data block the current layout gives it (file009/801C2580: 0x210 bytes short, every later file shifted)
         want = file_rodata_size(seg, cfile)
@@ -969,8 +1029,20 @@ if __name__ == "__main__" and sys.argv[1] == "switches":
         print('\nFile-layout policy: do not use `switch` here; this file has no linked per-file rodata placement.')
 
 
-if __name__ == "__main__" and sys.argv[1] == "context":
-    sys.stdout.write(context_for(sys.argv[2], sys.argv[3]))
+def typed_context(seg, func):
+    """context_for plus, after it, the recovered shared types and typed global externs that func's asm touches
+    (tools/hh/types_db.py, Task 30). Only for workers (TYPES=1): the integration gates keep using context_for."""
+    import types_db
+    base = context_for(seg, func)
+    prev = os.environ.get("PREVIOUS", "")       # prep2.sh repair mode: keep previous.c's own declarations valid
+    return base + types_db.context_types(seg, func, base, open(prev).read() if prev and os.path.exists(prev) else "")
+
+
+if __name__ == "__main__" and sys.argv[1] == "context":       # srcbuild.py context SEG FUNC [--types]; or TYPES=1
+    if os.environ.get("TYPES", "") not in ("", "0") or "--types" in sys.argv[4:]:
+        sys.stdout.write(typed_context(sys.argv[2], sys.argv[3]))
+    else:
+        sys.stdout.write(context_for(sys.argv[2], sys.argv[3]))
 
 if __name__ == "__main__" and sys.argv[1] == "infile":       # srcbuild.py infile SEG FUNC ATTEMPT.c
     ok, msg = infile_check(sys.argv[2], sys.argv[3], sys.argv[4]); print(msg); sys.exit(0 if ok else 1)
@@ -1008,9 +1080,9 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         # A refusal under the old layout or an older integration implementation
         # says nothing about this one, even when the registry text is identical.
         gate_version = sha(''.join(open(p).read() for p in (
-            'tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py', 'tools/hh/mulfix.py',
+            'tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py', 'tools/hh/mulfix.py', 'tools/hh/idoflags.py',
             'tools/hh/kept_blocks.py', 'tools/hh/rodata_owned.py',
-            'tools/hh/bss_layout.py', 'tools/hh/bss_splits.json', 'hybridheaven.yaml')))
+            'tools/hh/bss_layout.py', 'tools/hh/bss_splits.json', 'hybridheaven.yaml')) + ' '.join(idoflags.BASE))
         byfile = {}
         for (seg, n), t in reg.items(): byfile.setdefault((seg, file_of(seg, n)), []).append(n + sha(t))
         def memo_key(key, text):

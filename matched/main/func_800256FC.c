@@ -8,6 +8,7 @@ struct func_800256FC_Struct {
     u8 unk8C;
 };
 
+/* GGA: sndCmdPitchBend */
 void func_800256FC(void) {
     ((struct func_800256FC_Struct *) D_800CBDA4)->unk8C = 0;
     ((struct func_800256FC_Struct *) D_800CBDA4)->unk88 = *D_800CBDA0;

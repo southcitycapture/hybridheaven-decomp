@@ -596,7 +596,64 @@ s32 func_801E2DE0(s32 arg0, s32 arg1) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file053/801E1BE0/func_801E2E38.s")
+#define D_8038D8D0 D_8038D8D0__func_801E2E38
+#define func_801C1088 func_801C1088__func_801E2E38
+#define func_801C10D8 func_801C10D8__func_801E2E38
+#define func_801C1134 func_801C1134__func_801E2E38
+#define func_801E2F88_Struct0 func_801E2F88_Struct0__func_801E2E38
+#define func_801E2F88_Struct1 func_801E2F88_Struct1__func_801E2E38
+#define func_801E2F88_Struct2 func_801E2F88_Struct2__func_801E2E38
+struct func_801E2F88_Struct2 {
+    u8 pad0[4];
+    f32 unk4;
+};
+struct func_801E2F88_Struct1 {
+    u8 pad0[0x30];
+    struct func_801E2F88_Struct2 *unk30;
+};
+struct func_801E2F88_Struct0 {
+    u8 pad0[0x24];
+    struct func_801E2F88_Struct1 *unk24;
+};
+extern struct func_801E2F88_Struct0 *D_8038D8D0;
+s32 func_801C1088(s32 a0, s32 a1, s32 a2);
+void func_801C10D8(s32 a0, s32 a1);
+s32 func_801C1134(s32 a0, s32 a1);
+
+
+struct func_801E2E38_Struct1 {
+    u8 pad0[0x30];
+    struct func_801E2E38_Struct2 *unk30;
+};
+struct func_801E2E38_Struct2 {
+    u8 pad0[4];
+    f32 unk4;
+};
+struct func_801E2E38_Struct0 {
+    u8 pad0[8];
+    struct func_801E2E38_Struct1 *unk8;
+    struct func_801E2E38_Struct1 *unkC;
+};
+
+s32 func_801E2E38(s32 arg0, s32 arg1) {
+    f32 t;
+
+    t = (f32)(u32)func_801C1134(3, 0) / 10.0f;
+    ((struct func_801E2E38_Struct0 *)D_8038D8D0)->unk8->unk30->unk4 = 15.0f * t;
+    ((struct func_801E2E38_Struct0 *)D_8038D8D0)->unkC->unk30->unk4 = -15.0f * t;
+    if (func_801C1088(3, 0, 10) != 0) {
+        func_801C10D8(3, 0);
+        return 4;
+    }
+    return 3;
+}
+#undef D_8038D8D0
+#undef func_801C1088
+#undef func_801C10D8
+#undef func_801C1134
+#undef func_801E2F88_Struct0
+#undef func_801E2F88_Struct1
+#undef func_801E2F88_Struct2
 
 
 s32 func_801E2EF8(s32 arg0, s32 arg1) {
@@ -2406,7 +2463,94 @@ s32 func_801E67E4(s32 arg0, s32 arg1) {
     return 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file053/801E1BE0/func_801E691C.s")
+#undef CH
+#undef ROOT
+#define D_801DAB14 D_801DAB14__func_801E691C
+#define func_801E5188_Struct0 func_801E5188_Struct0__func_801E691C
+#define func_801E5188_Struct1 func_801E5188_Struct1__func_801E691C
+#define func_801E5188_Struct2 func_801E5188_Struct2__func_801E691C
+#define func_801E5188_Struct3 func_801E5188_Struct3__func_801E691C
+#define func_801E5188_Struct4 func_801E5188_Struct4__func_801E691C
+#define func_801E6584_StructA func_801E6584_StructA__func_801E691C
+#define func_801E6584_StructB func_801E6584_StructB__func_801E691C
+#define func_801E6738 func_801E6738__func_801E691C
+#define ROOT (*(struct func_801E6584_StructA **)&D_801DAB14)
+#define CH (ROOT->c8->c8->c8->c24)
+struct func_801E5188_Struct4 {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+};
+struct func_801E5188_Struct3 {
+    u8 pad0[0x2C];
+    struct func_801E5188_Struct4 *unk2C;
+};
+struct func_801E5188_Struct2 {
+    u8 pad0[0x24];
+    struct func_801E5188_Struct3 *unk24;
+};
+struct func_801E5188_Struct1 {
+    u8 pad0[8];
+    struct func_801E5188_Struct2 *unk8;
+};
+struct func_801E5188_Struct0 {
+    u8 pad0[8];
+    struct func_801E5188_Struct1 *unk8;
+};
+extern struct func_801E5188_Struct0 *D_801DAB14;
+struct func_801E6584_StructB {
+    u8 pad0[4];
+    f32 f4;
+    f32 f8;
+    f32 fC;
+    u8 pad10[2];
+    s16 s12;
+};
+struct func_801E6584_StructA {
+    u8 pad0[8];
+    struct func_801E6584_StructA *c8;
+    u8 padC[0x18];
+    struct func_801E6584_StructA *c24;
+    u8 pad28[4];
+    struct func_801E6584_StructB *c2C;
+};
+#define ROOT (*(struct func_801E6584_StructA **)&D_801DAB14)
+#define CH (ROOT->c8->c8->c8->c24)
+void func_801E6738(void);
+
+
+s32 func_801E691C(s32 arg0, s32 arg1) {
+    u32 t;
+    f32 f;
+
+    t = func_801C1134(4, 2);
+    f = (f32)t / 180.0f;
+    CH->c2C->f8 = -5.0f * f;
+    func_801D8ADC((u32)(-127.0f * f + 127.0f) & 0xFF);
+    if (func_801C1088(4, 2, 0xB4) != 0) {
+        func_801C10D8(4, 2);
+        CH->c2C->f4 = 5120.0f;
+        return 6;
+    }
+    func_801E6738();
+    return 5;
+}
+#undef ROOT
+#undef CH
+#undef D_801DAB14
+#undef func_801E5188_Struct0
+#undef func_801E5188_Struct1
+#undef func_801E5188_Struct2
+#undef func_801E5188_Struct3
+#undef func_801E5188_Struct4
+#undef func_801E6584_StructA
+#undef func_801E6584_StructB
+#undef func_801E6738
+#define CH (ROOT->c8->c8->c8->c24)
+#define ROOT (*(struct func_801E6584_StructA **)&D_801DAB14)
 
 
 s32 func_801E6AA0(s32 arg0, s32 arg1) {

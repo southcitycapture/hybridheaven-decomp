@@ -11,7 +11,7 @@ extern s32 func_801C3044();
 extern s32 func_801C3D20(f32, f32, f32);
 extern s32 func_80241790(f32, f32, s32, s32, s32, s32, s32, s32);
 extern u8 D_8017AF38[];
-extern u8 D_8025CAF0[];
+extern const u8 D_8025CAF0[];
 #define func_80248E64 func_80248E64__decl
 extern u8 func_80248E64[];
 extern void func_800058DC(void *, void *);
@@ -166,8 +166,10 @@ void func_80248620(func_80248620_StructP *arg0, func_80248620_StructHold **arg1)
 #undef func_80248CAC
 #undef func_8024915C
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80248620/D_8025CAD0.s")
-
+/* Readonly diagnostics, formerly D_8025CAD0.s. */
+const u8 D_8025CAD0[0x20] =
+    "\311\364\262\260\243\261\245\273\245\303\245\310\n\000\000\000"
+    "\311\364\262\260\243\262\245\273\245\303\245\310\n\000\000";
 
 void func_80248964(func_80248620_StructP *arg0, func_80248620_StructHold **arg1) {
     func_80248620_StructV sp38;
@@ -232,8 +234,9 @@ void func_80248964(func_80248620_StructP *arg0, func_80248620_StructHold **arg1)
 }
 
 /* hh-block asm/nonmatchings/file017/80248620/_ro_func_80248CAC.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80248620/func_80248CAC.s","D_8025CAF0"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80248620/_ro_func_80248CAC.s")
-
+/* Readonly diagnostics, formerly _ro_func_80248CAC.s. */
+const u8 D_8025CAF0[0x38] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s08demo.c";
 
 typedef struct func_80248CAC_StructB { u8 pad[4]; f32 unk4; u8 pad2[4]; f32 unkC; } func_80248CAC_StructB;
 typedef struct func_80248CAC_StructA { u8 pad[0x2C]; func_80248CAC_StructB *unk2C; } func_80248CAC_StructA;
@@ -265,7 +268,9 @@ void func_80248CAC(func_80248CAC_Struct *arg0, s32 arg1)
 
 #undef func_80248E64
 /* hh-block asm/nonmatchings/file017/80248620/_ro_func_80248E64.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/80248620/func_80248E64.s","D_8025CB28"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/80248620/_ro_func_80248E64.s")
+/* Readonly diagnostics, formerly _ro_func_80248E64.s. */
+const u8 D_8025CB28[0x38] =
+    "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s08demo.c";
 
 #define D_801BBCD8 D_801BBCD8__func_80248E64
 #define D_8025CB28 D_8025CB28__func_80248E64
@@ -300,7 +305,7 @@ typedef struct func_80248E64_StructHold {
     func_80248E64_StructVec *unk30;
 } func_80248E64_StructHold;
 extern func_80248E64_StructHold *D_801BBCD8;
-extern u8 D_8025CB28[];
+extern const u8 D_8025CB28[];
 extern s32 func_801C2FF8(void);
 extern s32 func_8012C97C(s32, s32);
 extern void func_802490A4();

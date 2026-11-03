@@ -13,6 +13,7 @@ struct func_80025A38_Struct {
 
 #define THIS ((struct func_80025A38_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdLoop2End */
 void func_80025A38(void)
 {
   u32 temp_v0;

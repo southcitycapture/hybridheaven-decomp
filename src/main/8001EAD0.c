@@ -44,16 +44,35 @@ f32 func_8001EB64(s16 arg0) {
     return D_8003E930[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CE60.s")
+/* Readonly diagnostics, formerly D_8004CE60.s. */
+const u8 D_8004CE60[0xC4] =
+    "fade flag %d\000\000\000\000"
+    "fade out %3d  fade_time %d\n\000"
+    "glist_page_back %d\n\000"
+    "sw.glist_page %d\n\000\000\000"
+    "fade_set\244\307 disp_off \244\313\243\262 \241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\241\366\n\000\000\000\000"
+    "fade wait %3d  fade_time %d\n\000\000\000";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CF24.s")
+/* Readonly diagnostics, formerly D_8004CF24.s. */
+const u8 D_8004CF24[0x8] =
+    "WAIT\000\000\000";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CF2C.s")
+/* Readonly diagnostics, formerly D_8004CF2C.s. */
+const u8 D_8004CF2C[0x4] =
+    "OUT";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CF30.s")
+/* Readonly diagnostics, formerly D_8004CF30.s. */
+const u8 D_8004CF30[0x4] =
+    "IN\000";
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001EAD0/D_8004CF34.s")
-
+/* Readonly diagnostics, formerly D_8004CF34.s. */
+const u8 D_8004CF34[0xEC] =
+    "OUT_IN\000\000"
+    "Error gw.fade_flag \244\313 FADE_LOCK\244\254\316\251\244\303\244\277\244\336\244\336\244\307\244\271\241\243\270\275\272\337 FADE_%s\303\346\244\307\244\271\n\000\000\000\000"
+    "Error gw.fade_g \244\254\302\270\272\337\244\267\244\312\244\244\244\316\244\313 FADE_LOCK\244\265\244\354\244\306\244\244\244\353\244\316\244\307 gw.fade_flag\244\362\276\303\265\356\244\267\244\336\244\271\n\000\000"
+    "fade_set ok\n\000\000\000\000"
+    "Error! GOBJ\311\324\302\255\244\307 Fade task \244\362\310\257\300\270\244\307\244\255\244\336\244\273\244\363\244\307\244\267\244\277\n\000"
+    "\000\000\000";
 
 extern f32 func_8002FC20(f32);
 s16 func_8001EF38(f32 arg0, f32 arg1);

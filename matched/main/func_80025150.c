@@ -17,6 +17,7 @@ struct func_80025150_Struct {
 extern u8 D_80048200[];
 #define P ((struct func_80025150_Struct *)D_800CBDA4)
 
+/* GGA: sndCmdVibratoStep */
 void func_80025150(void *arg0) {
     if (arg0) {}
     if (P->unk94 == 0) {

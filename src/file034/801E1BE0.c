@@ -2916,8 +2916,68 @@ s32 func_801E6A84(s32 arg0, s32 arg1) {
     return 0xF;
 }
 
-/* hh-block asm/nonmatchings/file034/801E1BE0/_mrg_keep_tail_144aff4ff9f535d1.s {"functions":["func_801E6B88"],"rodata":[],"rodata_bytes":[2149488380,7719468,52]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/_mrg_keep_tail_144aff4ff9f535d1.s")
+
+
+#define D_801DAB14 D_801DAB14__func_801E6B88
+#define D_801E96F4 D_801E96F4__func_801E6B88
+#define D_801E96F8 D_801E96F8__func_801E6B88
+#define D_801E96FC D_801E96FC__func_801E6B88
+#define func_801E58F0_StructA func_801E58F0_StructA__func_801E6B88
+#define func_801E58F0_StructB func_801E58F0_StructB__func_801E6B88
+#define func_801E58F0_StructC func_801E58F0_StructC__func_801E6B88
+struct func_801E58F0_StructC {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    s32 unkC;
+};
+struct func_801E58F0_StructB {
+    u8 pad0[0x2C];
+    struct func_801E58F0_StructC *unk2C;
+};
+struct func_801E58F0_StructA {
+    u8 pad0[8];
+    struct func_801E58F0_StructA *unk8;
+    u8 pad1[0x18];
+    struct func_801E58F0_StructB *unk24;
+};
+extern struct func_801E58F0_StructA *D_801DAB14;
+
+
+typedef struct func_801E6B88_Struct {
+    u8 pad0[4];
+    f32 unk4;
+    struct func_801E6B88_Struct *unk8;
+    f32 unkC;
+    u8 pad10[0x14];
+    struct func_801E6B88_Struct *unk24;
+    u8 pad28[4];
+    struct func_801E6B88_Struct *unk2C;
+} func_801E6B88_Struct;
+
+extern f32 D_801E96F4;
+extern f32 D_801E96F8;
+extern f32 D_801E96FC;
+
+s32 func_801E6B88(s32 arg0, s32 arg1) {
+    f32 t;
+
+    if (func_801C1088(4, 2, 0x37) != 0 && func_801D0408() != 0) {
+        func_801C10D8(4, 2);
+        return 0x11;
+    }
+    t = (f32)func_801C1134(4, 2) / 55.0f;
+    ((func_801E6B88_Struct *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unk4 = D_801E96F4 * t + D_801E96F8;
+    ((func_801E6B88_Struct *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unkC = 3.5f * t + D_801E96FC;
+    return 0x10;
+}
+#undef D_801DAB14
+#undef D_801E96F4
+#undef D_801E96F8
+#undef D_801E96FC
+#undef func_801E58F0_StructA
+#undef func_801E58F0_StructB
+#undef func_801E58F0_StructC
 
 
 s32 func_801E6C88(s32 arg0, s32 arg1) {
@@ -2929,8 +2989,78 @@ s32 func_801E6C88(s32 arg0, s32 arg1) {
     return 0x11;
 }
 
-/* hh-block asm/nonmatchings/file034/801E1BE0/_mrg_keep_text_func_801E6CF8.s {"functions":["func_801E6CF8"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/_mrg_keep_text_func_801E6CF8.s")
+
+
+#define D_801DAB14 D_801DAB14__func_801E6CF8
+#define D_801E9700 D_801E9700__func_801E6CF8
+#define D_801E9704 D_801E9704__func_801E6CF8
+#define D_801E9708 D_801E9708__func_801E6CF8
+#define func_801E58F0_StructA func_801E58F0_StructA__func_801E6CF8
+#define func_801E58F0_StructB func_801E58F0_StructB__func_801E6CF8
+#define func_801E58F0_StructC func_801E58F0_StructC__func_801E6CF8
+struct func_801E58F0_StructC {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    s32 unkC;
+};
+struct func_801E58F0_StructB {
+    u8 pad0[0x2C];
+    struct func_801E58F0_StructC *unk2C;
+};
+struct func_801E58F0_StructA {
+    u8 pad0[8];
+    struct func_801E58F0_StructA *unk8;
+    u8 pad1[0x18];
+    struct func_801E58F0_StructB *unk24;
+};
+extern struct func_801E58F0_StructA *D_801DAB14;
+
+
+extern f32 D_801E9700;
+extern f32 D_801E9704;
+extern f32 D_801E9708;
+
+typedef struct func_801E6CF8_StructLeaf {
+    u8 pad[4];
+    f32 unk4;
+    u8 pad8[4];
+    f32 unkC;
+} func_801E6CF8_StructLeaf;
+
+typedef struct func_801E6CF8_StructB {
+    u8 pad[0x2C];
+    func_801E6CF8_StructLeaf *unk2C;
+} func_801E6CF8_StructB;
+
+typedef struct func_801E6CF8_StructA {
+    u8 pad[8];
+    struct func_801E6CF8_StructA *unk8;
+    u8 padC[0x18];
+    func_801E6CF8_StructB *unk24;
+} func_801E6CF8_StructA;
+
+s32 func_801E6CF8(s32 arg0, s32 arg1) {
+    f32 temp_fv0;
+    func_801E6CF8_StructA **root;
+
+    if ((func_801C1088(4, 2, 0x37) != 0) && (func_801D0408() != 0)) {
+        func_801C10D8(4, 2);
+        return 0x13;
+    }
+    temp_fv0 = (f32) func_801C1134(4, 2) / 55.0f;
+    root = (func_801E6CF8_StructA **)&D_801DAB14;
+    (*root)->unk8->unk8->unk8->unk24->unk2C->unk4 = (f32)(D_801E9700 * temp_fv0 + D_801E9704);
+    (*root)->unk8->unk8->unk8->unk24->unk2C->unkC = (f32)(1.5f * temp_fv0 + D_801E9708);
+    return 0x12;
+}
+#undef D_801DAB14
+#undef D_801E9700
+#undef D_801E9704
+#undef D_801E9708
+#undef func_801E58F0_StructA
+#undef func_801E58F0_StructB
+#undef func_801E58F0_StructC
 
 
 extern s32 func_801C1000(s32, s32);
@@ -2944,8 +3074,8 @@ s32 func_801E6DF8(s32 arg0, s32 arg1) {
     return 0x13;
 }
 
-/* hh-block asm/nonmatchings/file034/801E1BE0/_mrg_keep_text_func_801E6E68.s {"functions":["func_801E6E68"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/_mrg_keep_text_func_801E6E68.s")
+/* hh-block asm/nonmatchings/file034/801E1BE0/_mrg_keep_tail_6b256c1f6d8e35f9.s {"functions":["func_801E6E68"],"rodata":[],"rodata_bytes":[2149488380,7719468,52]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/_mrg_keep_tail_6b256c1f6d8e35f9.s")
 
 
 s32 func_801E6F68(s32 arg0, s32 arg1) {
@@ -3884,6 +4014,10 @@ s32 func_801E844C(s32 arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
+
+
+
 
 static const unsigned char rodata_801E1BE0[] = {
     0xC1, 0xD7, 0x33, 0x33, 0xC3, 0xE6, 0x19, 0x9A, 0xC2, 0x48, 0x66, 0x66, 0xC3, 0xE6, 0x73, 0x33,

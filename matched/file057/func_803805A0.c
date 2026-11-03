@@ -51,7 +51,7 @@ extern func_803805A0_StructD D_8038CF70;
 extern u8 D_803897E0[];
 extern u8 D_80389808[];
 extern u8 D_80389880[];
-extern u8 func_803807D8[];
+extern void func_803807D8(func_8038005C_Struct *arg0, s32 arg1);
 
 void func_803805A0(func_803805A0_StructP *arg0, s32 arg1) {
     s32 a, b, c;

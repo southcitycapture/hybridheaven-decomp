@@ -8,6 +8,7 @@ struct func_80024820_Struct {
     u8 unk47;
 };
 
+/* GGA: sndCmdVolume */
 void func_80024820(void) {
     struct func_80024820_Struct *ptr;
     u32 temp_a1;

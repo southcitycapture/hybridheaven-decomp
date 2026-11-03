@@ -7,9 +7,268 @@ void func_8001F820(void) {
     func_80030388(0, 0, 0, 0.0f, 0.0f, 0.0f, 10.0f, 10.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0x20, 0x20);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F820/func_8001F8A0.s")
+#define D_80091BD8 D_80091BD8__func_8001F8A0
+#define D_80096020 D_80096020__func_8001F8A0
+#define D_80096030 D_80096030__func_8001F8A0
+#define D_8009633C D_8009633C__func_8001F8A0
+#define D_80096340 D_80096340__func_8001F8A0
+#define D_80096344 D_80096344__func_8001F8A0
+#define D_80096348 D_80096348__func_8001F8A0
+#define D_80096950 D_80096950__func_8001F8A0
+#define D_80096968 D_80096968__func_8001F8A0
+#define func_8001FBA8 func_8001FBA8__func_8001F8A0
+#define func_80020078 func_80020078__func_8001F8A0
+#define func_80020078_Struct func_80020078_Struct__func_8001F8A0
+#define func_800268C0 func_800268C0__func_8001F8A0
+#define func_8002691C func_8002691C__func_8001F8A0
+#define func_80028260 func_80028260__func_8001F8A0
+#define func_80030610 func_80030610__func_8001F8A0
+#define func_80031670 func_80031670__func_8001F8A0
+#define func_80034A10 func_80034A10__func_8001F8A0
+#define func_80034C90 func_80034C90__func_8001F8A0
+struct func_80020078_Struct {
+    u8 unk0;
+    u8 pad[3];
+    s32 unk4;
+    void *unk8;
+};
+extern struct func_80020078_Struct D_80096020;
+extern u32 D_8009633C;
+extern u8 D_80096950[];
+void *func_80020078(void **arg0);
+extern void func_800268C0(void *a0, void *a1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001F820/func_8001FBA8.s")
+
+/* GGA (CC0) audio manager types (src/audio.c, include/audio.h); libultra's are opaque here */
+typedef union GgaAudioMsg {
+    struct { s16 type; } gen;
+    struct { s16 type; struct GgaAudioInfo *info; } done;
+} GgaAudioMsg;
+typedef struct GgaAudioInfo {
+    /* 0x00 */ s16 *data;
+    /* 0x04 */ s16 frameSamples;
+    /* 0x06 */ s16 pad6;
+    /* 0x08 */ u8 task[0x58]; /* OSScTask */
+    /* 0x60 */ GgaAudioMsg msg;
+} GgaAudioInfo; /* size 0x68 */
+typedef struct GgaAMAudioMgr {
+    /* 0x000 */ void *ACMDList[2];
+    /* 0x008 */ GgaAudioInfo *audioInfo[3];
+    /* 0x018 */ u64 thread[0x1B0 / 8];    /* OSThread */
+    /* 0x1C8 */ u8 audioFrameMsgQ[0x18];  /* OSMesgQueue */
+    /* 0x1E0 */ void *audioFrameMsgBuf[64];
+    /* 0x2E0 */ u8 audioReplyMsgQ[0x18];  /* OSMesgQueue */
+    /* 0x2F8 */ void *audioReplyMsgBuf[64];
+    /* 0x3F8 */ u8 g[1];                  /* ALGlobals */
+} GgaAMAudioMgr;
+extern GgaAMAudioMgr D_80091BD8; /* GGA __am */
+typedef struct GgaAMDMABuffer {
+    /* 0x00 */ struct GgaAMDMABuffer *next, *prev; /* ALLink */
+    /* 0x08 */ u32 startAddr;
+    /* 0x0C */ u32 lastFrame;
+    /* 0x10 */ char *ptr;
+} GgaAMDMABuffer;
+typedef struct GgaALSynConfig {
+    u32 maxVVoices, maxPVoices, maxUpdates, dmaproc_pad; /* 0x0-0xC */
+    /* 0x10 */ void *dmaproc;
+    /* 0x14 */ void *heap;
+    /* 0x18 */ s32 outputRate;
+} GgaALSynConfig;
+typedef struct GgaAmConfig { u32 outputRate; u32 framesPerField; u32 maxACMDSize; } GgaAmConfig;
+
+extern u32 D_80096340;              /* GGA frameSize */
+extern u32 D_80096344;              /* GGA maxFrameSize */
+extern u32 D_80096348;              /* GGA maxRSPCmds */
+extern GgaAMDMABuffer D_80096030[39]; /* GGA dmaBuffs */
+extern void *D_80096968[];          /* GGA audDMAMessageBuf */
+void func_8001FBA8(void *arg);
+s32 func_80031670(u32 rate);
+void func_8002691C(void *g, GgaALSynConfig *c);
+void *func_80034A10(void *file, s32 line, void *heap, s32 num, s32 size);
+void func_80030610(void *mq, void *msg, s32 count);
+void func_80028260(void *t, s32 id, void *entry, void *arg, void *sp, s32 pri);
+void func_80034C90(void *t);
+
+/* GGA: amCreateAudioMgr (HH has no osCartRomInit at the end) */
+void func_8001F8A0(GgaALSynConfig *c, s32 pri, GgaAmConfig *amc) {
+    u32 i;
+    f32 fsize;
+
+    c->dmaproc = func_80020078;
+    c->outputRate = func_80031670(amc->outputRate);
+    i = 16;
+    do {
+        i--;
+    } while (i != 0);
+    fsize = (f32) amc->framesPerField * c->outputRate / 60;
+    D_80096340 = (s32) fsize;
+    if (D_80096340 < fsize) {
+        D_80096340++;
+    }
+    if (D_80096340 & 0xF) {
+        D_80096340 = (D_80096340 & ~0xF) + 0x10;
+    }
+    D_8009633C = D_80096340 - 16;
+    D_80096344 = D_80096340 + 240 + 16;
+    func_8002691C(D_80091BD8.g, c);
+    D_80096030[0].prev = NULL;
+    D_80096030[0].next = NULL;
+    for (i = 0; i < 39 - 1; i++) {
+        func_800268C0(&D_80096030[i + 1], &D_80096030[i]);
+        D_80096030[i].ptr = func_80034A10(NULL, 0, c->heap, 1, 0xA00);
+    }
+    D_80096030[i].ptr = func_80034A10(NULL, 0, c->heap, 1, 0xA00);
+    for (i = 0; i < 2; i++) {
+        D_80091BD8.ACMDList[i] = func_80034A10(NULL, 0, c->heap, 1, amc->maxACMDSize * 8);
+    }
+    D_80096348 = amc->maxACMDSize;
+    for (i = 0; i < 3; i++) {
+        D_80091BD8.audioInfo[i] = func_80034A10(NULL, 0, c->heap, 1, sizeof(GgaAudioInfo));
+        D_80091BD8.audioInfo[i]->msg.done.type = 2;
+        D_80091BD8.audioInfo[i]->msg.done.info = D_80091BD8.audioInfo[i];
+        D_80091BD8.audioInfo[i]->data = func_80034A10(NULL, 0, c->heap, 1, 4 * D_80096344);
+    }
+    func_80030610(D_80091BD8.audioReplyMsgQ, D_80091BD8.audioReplyMsgBuf, 64);
+    func_80030610(D_80091BD8.audioFrameMsgQ, D_80091BD8.audioFrameMsgBuf, 64);
+    func_80030610(D_80096950, D_80096968, 64);
+    func_80028260(D_80091BD8.thread, 3, func_8001FBA8, NULL, &D_80096020, pri);
+    func_80034C90(D_80091BD8.thread);
+}
+#undef D_80091BD8
+#undef D_80096020
+#undef D_80096030
+#undef D_8009633C
+#undef D_80096340
+#undef D_80096344
+#undef D_80096348
+#undef D_80096950
+#undef D_80096968
+#undef func_8001FBA8
+#undef func_80020078
+#undef func_80020078_Struct
+#undef func_800268C0
+#undef func_8002691C
+#undef func_80028260
+#undef func_80030610
+#undef func_80031670
+#undef func_80034A10
+#undef func_80034C90
+
+#define D_80047950 D_80047950__func_8001FBA8
+#define D_8005C4B0 D_8005C4B0__func_8001FBA8
+#define D_80091BD0 D_80091BD0__func_8001FBA8
+#define D_80091BD8 D_80091BD8__func_8001FBA8
+#define GgaAMAudioMgr GgaAMAudioMgr__func_8001FBA8
+#define GgaAudioInfo GgaAudioInfo__func_8001FBA8
+#define GgaAudioMsg GgaAudioMsg__func_8001FBA8
+#define func_800006F4 func_800006F4__func_8001FBA8
+#define func_80000934 func_80000934__func_8001FBA8
+#define func_8001FD14 func_8001FD14__func_8001FBA8
+#define func_8001FD14_Struct func_8001FD14_Struct__func_8001FBA8
+#define func_8001FEBC func_8001FEBC__func_8001FBA8
+#define func_800266B0 func_800266B0__func_8001FBA8
+#define func_800268E4 func_800268E4__func_8001FBA8
+extern u32 D_80047950;
+extern s32 D_80091BD0;
+struct func_8001FD14_Struct {
+    void *unk0;
+    s16 unk4;
+    u8 pad6[2];
+    s32 unk8;
+    u8 padC[0xC];
+    s32 unk18;
+    s32 unk1C;
+    void *unk20;
+    s32 unk24;
+    void *unk28;
+    s32 unk2C;
+    void *unk30;
+    s32 unk34;
+    u8 pad38[0x10];
+    s32 unk48;
+    s32 unk4C;
+    s32 unk50;
+    s32 unk54;
+    void *unk58;
+    void *unk5C;
+};
+s32 func_8001FD14(struct func_8001FD14_Struct *arg0, struct func_8001FD14_Struct *arg1);
+void func_8001FEBC(s32 arg0);
+
+
+/* GGA (CC0) audio manager types (src/audio.c, include/audio.h); libultra's are opaque here */
+typedef union GgaAudioMsg {
+    struct { s16 type; } gen;
+    struct { s16 type; struct GgaAudioInfo *info; } done;
+} GgaAudioMsg;
+typedef struct GgaAudioInfo {
+    /* 0x00 */ s16 *data;
+    /* 0x04 */ s16 frameSamples;
+    /* 0x06 */ s16 pad6;
+    /* 0x08 */ u8 task[0x58]; /* OSScTask */
+    /* 0x60 */ GgaAudioMsg msg;
+} GgaAudioInfo; /* size 0x68 */
+typedef struct GgaAMAudioMgr {
+    /* 0x000 */ void *ACMDList[2];
+    /* 0x008 */ GgaAudioInfo *audioInfo[3];
+    /* 0x018 */ u64 thread[0x1B0 / 8];    /* OSThread */
+    /* 0x1C8 */ u8 audioFrameMsgQ[0x18];  /* OSMesgQueue */
+    /* 0x1E0 */ void *audioFrameMsgBuf[64];
+    /* 0x2E0 */ u8 audioReplyMsgQ[0x18];  /* OSMesgQueue */
+    /* 0x2F8 */ void *audioReplyMsgBuf[64];
+    /* 0x3F8 */ u8 g[1];                  /* ALGlobals */
+} GgaAMAudioMgr;
+extern GgaAMAudioMgr D_80091BD8; /* GGA __am */
+typedef struct GgaOSScClient { struct GgaOSScClient *next; void *msgQ; } GgaOSScClient;
+extern u8 D_8005C4B0[];          /* GGA gMainSched */
+void func_80000934(void *sc, GgaOSScClient *c, void *msgQ);
+s32 func_800006F4(void *sc);
+void func_800268E4(void *g);
+s32 func_800266B0(void *mq, void **msg, s32 flag); /* osRecvMesg */
+
+/* GGA: __amMain */
+void func_8001FBA8(void *arg) {
+    s32 pad;
+    u8 done = 0;
+    GgaAudioMsg *msg;
+    GgaAudioInfo *lastInfo = NULL;
+    GgaOSScClient client;
+
+    func_80000934(D_8005C4B0, &client, D_80091BD8.audioFrameMsgQ);
+    D_80091BD0 = func_800006F4(D_8005C4B0);
+    while (!done) {
+        func_800266B0(D_80091BD8.audioFrameMsgQ, (void **) &msg, 1);
+        switch (msg->gen.type) {
+            case 1:
+                if (func_8001FD14((void *) D_80091BD8.audioInfo[D_80047950 % 3], (void *) lastInfo)) {
+                    func_800266B0(D_80091BD8.audioReplyMsgQ, (void **) &msg, 1);
+                    func_8001FEBC((s32) msg->done.info);
+                    lastInfo = msg->done.info;
+                }
+                break;
+            case 3:
+                break;
+            case 0x20:
+                done = 1;
+                break;
+        }
+    }
+    func_800268E4(D_80091BD8.g);
+}
+#undef D_80047950
+#undef D_8005C4B0
+#undef D_80091BD0
+#undef D_80091BD8
+#undef GgaAMAudioMgr
+#undef GgaAudioInfo
+#undef GgaAudioMsg
+#undef func_800006F4
+#undef func_80000934
+#undef func_8001FD14
+#undef func_8001FD14_Struct
+#undef func_8001FEBC
+#undef func_800266B0
+#undef func_800268E4
 
 
 extern void func_800200B0(void);
@@ -52,6 +311,7 @@ struct func_8001FD14_Struct {
     void *unk5C;
 };
 
+/* GGA: __amHandleFrameMsg */
 s32 func_8001FD14(struct func_8001FD14_Struct *arg0, struct func_8001FD14_Struct *arg1) {
     s32 sp3C;
     s32 sp34[2];
@@ -118,6 +378,7 @@ extern struct func_80020078_Struct D_80096020;
 extern u8 D_80096030[];
 extern void func_8001FEFC();
 
+/* GGA: __amDmaNew */
 void *func_80020078(void **arg0) {
     if (D_80096020.unk0 == 0) {
         D_80096020.unk4 = 0;
@@ -143,6 +404,7 @@ extern u32 D_80047950;
 extern u32 D_80047954;
 extern u8 D_80096950[];
 
+/* GGA: __clearAudioDMA */
 void func_800200B0(void) {
     u32 sp40[2];
     u32 var_s0;

@@ -27,6 +27,7 @@ typedef struct func_8001559C_Struct {
     s32 unk1C;
 } func_8001559C_Struct;
 
+/* GGA: picDecode15 */
 s32 func_8001559C(s32 arg0, s32 arg1, func_8001559C_Struct *arg2) {
     s32 i;
     s32 count;

@@ -285,6 +285,7 @@ extern s32 func_80005144(u16 arg0);
 extern u16 D_800399B8[];
 extern s32 D_80039A78[];
 
+/* GGA: fileRomSize */
 u32 func_80004F98(s32 arg0, s32 arg1) {
     s32 sp34;
     s32 address;
@@ -345,12 +346,14 @@ s32 func_8000511C(u16 arg0) {
 
 extern s32 D_80038FF0[];
 
+/* GGA: fileRomEnd */
 s32 func_80005144(u16 arg0) {
     return D_80038FF0[arg0] & 0x7FFFFFFF & 0x7FFFFFFF;
 }
 
 
 
+/* GGA: fileRamSize */
 s32 func_80005170(s32 arg0)
 {
   unsigned int new_var;
@@ -369,6 +372,7 @@ s32 func_80005170(s32 arg0)
 
 extern u16 D_80037A30[];
 
+/* GGA: fileGroup */
 u8 func_800051A4(u32 arg0) {
     s32 i;
 

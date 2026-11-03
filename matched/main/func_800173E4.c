@@ -6,6 +6,7 @@
 #undef func_800173E4
 #undef func_800158C0
 
+/* GGA: resRemove */
 s32 func_800173E4(s32 arg0) {
     s32 v;
     s32 i;

@@ -1,6 +1,6 @@
 extern struct func_80380B30_SA *D_8038CFB4;
 extern void func_80020744();
-void func_803805A0();
+extern void func_803805A0(func_803805A0_StructP *arg0, s32 arg1);
 #include "context.h"
 
 typedef struct func_8038047C_StructData {

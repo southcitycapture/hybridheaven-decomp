@@ -1,5 +1,6 @@
 #include "context.h"
 
+/* GGA: picCacheGet */
 s32 func_80016500(void *arg0, s32 arg1) {
     func_8001643C_StructEntry *node;
     s32 old;

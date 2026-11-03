@@ -147,7 +147,9 @@ void func_80240930(void *arg0, func_80240930_StructNode **arg1) {
 #undef func_8024443C
 #define func_80240930 func_80240930__decl
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/802408F0/D_802581F0.s")
+/* Readonly diagnostics, formerly D_802581F0.s. */
+const u8 D_802581F0[0x4] =
+    ".c\000";
 
 extern u8 D_801BBBF0[];
 extern s32 D_801BBCD0;

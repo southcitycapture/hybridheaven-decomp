@@ -11,6 +11,7 @@ struct func_8002430C_Struct {
 
 extern s32 func_80023D04();
 
+/* GGA: trkEnvReleaseNow */
 void func_8002430C(void) {
     ((struct func_8002430C_Struct *)D_800CBDA4)->unkF = 1;
     ((struct func_8002430C_Struct *)D_800CBDA4)->unk49 = 3;

@@ -9,7 +9,7 @@ s64 D_801E1358;
 extern u32 D_801E1360;
 extern f64 D_801DD4A0;
 extern u64 func_801C0B2C();
-extern f64 func_80034C24(u64);
+extern f64 func_80034C24();
 
 void func_801D12B8(void *arg0) {
     u64 d;

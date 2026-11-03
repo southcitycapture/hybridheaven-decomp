@@ -24,6 +24,7 @@ typedef struct func_80022A84_Ent {
     u8 pad[0x1C];
 } func_80022A84_Ent;
 
+/* GGA: sndSetPan */
 void func_80022A84(u8 arg0) {
     s16 temp_a0;
     s16 var_v0;

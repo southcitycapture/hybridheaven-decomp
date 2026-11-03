@@ -9,6 +9,7 @@ extern u8 D_800CBAB4;
 extern u8 D_800CBBE0[];
 extern s32 D_800CBE08;
 
+/* GGA: sndCmdFxParams */
 void func_80024B4C(void) {
     u8 temp_v1;
     u8 temp_v1_2;
