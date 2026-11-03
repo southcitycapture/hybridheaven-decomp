@@ -1,0 +1,1 @@
+{"func": "func_801E29F8", "segment": "file030", "model": "strata/deepseek-v4.1-flash", "verified": "FAIL", "claimed": "I'll start by examining the files.", "checks": 3, "turns": 10, "seconds": 10805, "input_tokens": 44158, "output_tokens": 47869, "exit": "124", "cost_usd_equiv": 0.0}

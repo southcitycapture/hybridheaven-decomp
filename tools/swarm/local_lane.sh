@@ -3,10 +3,11 @@
 # One worker at a time (single GPU) through queue/BATCH/functions.txt, from the best earlier attempt with the wall
 # diagnosis and IDO levers; resumes where it left off; stops when queue/BATCH/STOP exists. Matches are integrated by
 # the loop like any other lane. Kept alive by cron through flock (queue/BATCH/lane.lock).
+# LOCAL_MODEL=strata/<id> runs whatever model the workstation is serving (11-03: deepseek-v4.1-flash A/B).
 # Never restarts the workstation or its server (that needs a sign-in there); see docs/NOTEBOOK.md 10-28.
 cd "$(dirname "$0")/../.." || exit 1; . ./env.sh
 B=$1; Q=queue/$B; [ -f "$Q/functions.txt" ] || exit 1
-export BATCH=$B INNER=run_one_oc.sh OC_MODEL=strata/qwen3.8-flash-next FROM=best INFILE=1 DIAG=1 LEARNINGS=1 LEVERS=1 WALLNOTE=1
+export BATCH=$B INNER=run_one_oc.sh OC_MODEL=${LOCAL_MODEL:-strata/qwen3.8-flash-next} FROM=best INFILE=1 DIAG=1 LEARNINGS=1 LEVERS=1 WALLNOTE=1
 export OC_TIMEOUT=${OC_TIMEOUT:-5400} OC_IDLE=${OC_IDLE:-1200} OC_BACKOFF=120 CHECK_LIMIT=${CHECK_LIMIT:-40}
 while read -r FUNC SEG; do
   [ -f "$Q/STOP" ] && { echo "$(date -u +%FT%H:%MZ) STOP file: stopping" >> "$Q/lane.log"; exit 0; }

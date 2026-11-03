@@ -132,7 +132,7 @@ extern void func_800112B0(s32, void *);
 extern u8 D_8017BC58[];
 extern u16 D_80011590(u16);
 #define func_80011590 D_80011590
-extern void func_8036B6D4(void);
+extern void func_8036B6D4();
 
 void func_8036B264(func_8036B264_Arg *arg0, s32 arg1) {
     s32 sp54;
