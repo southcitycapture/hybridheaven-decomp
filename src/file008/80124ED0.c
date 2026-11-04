@@ -1435,8 +1435,91 @@ void func_80127374(func_80127374_StructObj *arg0, s32 arg1) {
 #undef func_80133980
 #undef func_801E5010
 
-/* hh-block asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_9bd788abda8b6e79.s {"functions":["func_80127430"],"rodata":[],"rodata_bytes":[2149108480,5685776,212]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_9bd788abda8b6e79.s")
+
+
+#define D_8018CB00 D_8018CB00__func_80127430
+#define D_8018CB08 D_8018CB08__func_80127430
+#define D_8018CB10 D_8018CB10__func_80127430
+#define D_8018CB18 D_8018CB18__func_80127430
+#define D_801BBCD8 D_801BBCD8__func_80127430
+#define func_8001EAD0 func_8001EAD0__func_80127430
+#define func_8001EF38 func_8001EF38__func_80127430
+#define func_800207D0 func_800207D0__func_80127430
+#define func_8002FC20 func_8002FC20__func_80127430
+#define func_801270C0_StructMid func_801270C0_StructMid__func_80127430
+#define func_801270C0_StructPos func_801270C0_StructPos__func_80127430
+typedef struct func_801270C0_StructPos {
+    u8 pad[0x30];
+    f32 unk30, unk34, unk38, unk3C, unk40, unk44;
+} func_801270C0_StructPos;
+typedef struct func_801270C0_StructMid {
+    u8 pad[0x2C];
+    func_801270C0_StructPos *unk2C;
+} func_801270C0_StructMid;
+extern func_801270C0_StructMid *D_801BBCD8;
+extern f32 func_8001EAD0(s32);
+extern s32 func_8001EF38(f32, f32);
+extern void func_800207D0(u16, s32, s32);
+extern f32 func_8002FC20(f32);
+extern f64 D_8018CB00;
+extern f64 D_8018CB08;
+extern f64 D_8018CB10;
+extern f64 D_8018CB18;
+
+s32 func_80127430(f32 arg0, f32 arg1, f32 arg2, u16 arg3, f32 arg4, f32 arg5) {
+    s16 t;
+    s16 firstAngle;
+    f32 d;
+    f32 m;
+    s16 u;
+    f32 dx, dy, dz;
+    u32 v;
+    func_801270C0_StructPos *p;
+
+    if (arg3 != 0) {
+        p = D_801BBCD8->unk2C;
+        dx = p->unk30 - arg0;
+        dy = p->unk34 - arg1;
+        dz = p->unk38 - arg2;
+        d = dx * dx + dy * dy + dz * dz;
+        d = func_8002FC20(d) * arg5;
+        if (d < 21.0) {
+            v = 0xC8;
+        } else {
+            v = (s32)(D_8018CB00 / (d + D_8018CB08)) & 0xFF;
+        }
+        if ((f64)arg4 < 0.0) {
+            arg4 = 0.0f;
+        }
+        m = (f32)v * arg4;
+        if (D_8018CB10 < (f64)m) {
+            m = 255.0f;
+        }
+        p = D_801BBCD8->unk2C;
+        firstAngle = func_8001EF38(arg2 - p->unk38, arg0 - p->unk30);
+        p = D_801BBCD8->unk2C;
+        do {} while (0);
+        u = firstAngle - func_8001EF38(p->unk44 - p->unk38, p->unk3C - p->unk30);
+        if (u & 0x1000) {
+            t = (u & 0x1FFF) - 0x2000;
+        } else {
+            t = u & 0x1FFF;
+        }
+        func_800207D0(arg3, (u32)((f64)func_8001EAD0(t) * D_8018CB18 + 64.0) & 0xFF, (s32)m & 0xFF);
+    }
+    return 1;
+}
+#undef D_8018CB00
+#undef D_8018CB08
+#undef D_8018CB10
+#undef D_8018CB18
+#undef D_801BBCD8
+#undef func_8001EAD0
+#undef func_8001EF38
+#undef func_800207D0
+#undef func_8002FC20
+#undef func_801270C0_StructMid
+#undef func_801270C0_StructPos
 
 #define D_80125808 D_80125808__func_801276CC
 
@@ -1583,11 +1666,13 @@ void func_80127924(s32 arg0, func_80127924_StructA **arg1) {
     func_800058DC(arg0, func_8012798C);
 }
 
-/* hh-block asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_0feedd24271efa1a.s {"functions":["func_8012798C"],"rodata":[],"rodata_bytes":[2149108692,5685988,76]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_0feedd24271efa1a.s")
+/* hh-block asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_0bcf49c8f0303b85.s {"functions":["func_8012798C"],"rodata":[],"rodata_bytes":[2149108480,5685776,288]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_0bcf49c8f0303b85.s")
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
+
 
 
 

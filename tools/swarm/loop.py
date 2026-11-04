@@ -367,6 +367,7 @@ def cycle(cfg, st):
     return True
 
 def main():
+    os.nice(10)   # model-free tooling yields the CPU to the lanes' compile checks (11-04: unify slowed the local model)
     cfg = dict(DEFAULTS, **load(D + "/config.json", {})); save(D + "/config.json", cfg)
     st = load(D + "/state.json", {})
     while True:
@@ -384,11 +385,17 @@ def main():
         if w >= wcap:
             # over the cap: no agents, but matches other lanes left waiting are still integrated (that costs no model
             # usage; on 2026-10-23 a work-day Sonnet test's matches sat unintegrated all day behind this wait)
-            if not unintegrated() or time.time() - st.get("last_integrate_only", 0) < 3600:
+            # nothing new since the last integration-only cycle (same pending batches and results, same registry): skip
+            # it. 11-04: back-to-back ~35 min cycles re-ran integrate/propagate/unify/protofix on the same 21 stuck
+            # matches all evening, landing nothing and slowing the lanes' compile checks
+            pend = unintegrated()
+            sig = json.dumps([pend, [os.path.getmtime("queue/%s/results.jsonl" % b) for b in pend],
+                              subprocess.run(["git", "rev-parse", "HEAD:matched"], capture_output=True, text=True).stdout.strip()])
+            if not pend or sig == st.get("idle_sig") or time.time() - st.get("last_integrate_only", 0) < 3600:
                 status(cfg, st, "waiting: weekly meter %d%% is at or above the cap %d%% (hard cap %d%%, work-week schedule)"
                        % (w, wcap, cfg["hard_cap"]))
                 time.sleep(1800); continue
-            st["last_integrate_only"] = time.time(); save(D + "/state.json", st)
+            st["last_integrate_only"] = time.time(); st["idle_sig"] = sig; save(D + "/state.json", st)
             cfg = dict(cfg, min_picks=10 ** 9)
             log("weekly meter %d%% over the cap %d%%: integration-only cycle (no agents)" % (w, wcap))
         free_gb = __import__("shutil").disk_usage(HH if "HH" in globals() else ".").free / 1e9
