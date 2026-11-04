@@ -120,14 +120,23 @@ def merged_paths(block):
     seg, cf = parts[root + 1:root + 3]
     text = open(block).read()
     names = re.findall(r"^glabel (func_[0-9A-F]{8})", text, re.M)
-    paths = ["asm/nonmatchings/%s/%s/%s.s" % (seg, cf, n) for n in names]
-    # Splitting a block must not discard named constants previously attached to its asm instruction budget.
-    owned = set(n for p in paths for n in re.findall(r"dlabel (\w+)", S._rd(p)))
-    extra = [(sect, ls) for sect, _, ls in S._ro_items(text)
-             if set(re.findall(r"dlabel (\w+)", "\n".join(ls))) - owned]
+    # A kept block's donors can be text-only even though splat migrated data
+    # into their original function files. Reopening those originals here would
+    # resurrect released pools and shift already matched C neighbours.
+    paths = []
+    for n in names:
+        recipe = dict(functions=[n], rodata=[])
+        p = os.path.join(os.path.dirname(block), '_mrg_keep_text_%s.s' % n)   # beside the block (a test's temp block
+        # must not write into the real asm tree; for real blocks this is asm/nonmatchings/SEG/FILE as before)
+        kept_blocks.rebuild(S, seg, cf, p, recipe)
+        paths.append(p)
+    # Preserve the block's actual readonly bytes, rather than splat's ownership.
+    extra = [(sect, ls) for sect, _, ls in S._ro_items(text)]
     if extra:
         ro = "\n".join(".section " + sect + "\n" + "\n".join(ls) for sect, ls in extra) + "\n.section .text\n"
-        p = "asm/nonmatchings/%s/%s/_ro_named_%s.s" % (seg, cf, hashlib.sha1(ro.encode()).hexdigest()[:16])
+        raw = kept_blocks.BYTE_RANGE.search(text)
+        if raw: ro = raw[0] + '\n' + ro
+        p = os.path.join(os.path.dirname(block), "_ro_named_%s.s" % hashlib.sha1(ro.encode()).hexdigest()[:16])
         with open(p, "w") as fh: fh.write(ro)
         paths.insert(0, p)
     return paths
@@ -142,8 +151,9 @@ def locate(lines, seg, cfile, name):
         if p == own: return i, [], []
         if (os.path.basename(p).startswith("_mrg_") or kept_blocks.custom(p)) and os.path.exists(p):
             ps = merged_paths(p)
-            if own in ps:
-                k = ps.index(own); return i, ps[:k], ps[k + 1:]
+            for k, part in enumerate(ps):
+                if re.search(r'^glabel %s$' % re.escape(name), open(part).read(), re.M):
+                    return i, ps[:k], ps[k + 1:]
     return None
 
 MULTI = re.compile(r"^(\s*extern\s+(?:(?:const|volatile|unsigned|signed|struct|union|enum)\s+)*[A-Za-z_]\w*)\s+(\**\s*[A-Za-z_]\w*(?:\[[^\]]*\])*(?:\s*,\s*\**\s*[A-Za-z_]\w*(?:\[[^\]]*\])*)+)\s*;\s*$")
@@ -156,6 +166,7 @@ def normalize(snippet):
                      lambda m: " ".join(m.group().split()), snippet)
     lines = snippet.splitlines(); out = []
     defs = {m.group(1) for l in lines for m in [re.match(r"^\s*#define\s+((?:func|D)_[0-9A-F]{8})\s+\1_ctx\s*$", l)] if m}
+    defs |= {m.group(1) for l in lines for m in [re.match(r'^\s*#define\s+((?:func|D|B)_[0-9A-F]{8})\s+\1__\w+\s*$', l)] if m}
     # Workers also hide snapshot declarations using arbitrary aliases or token-pasting macros. These aliases
     # bracket context.h only; importing just the used declarations makes that temporary hiding unnecessary.
     include = next((i for i, l in enumerate(lines) if l.strip() == '#include "context.h"'), None)
@@ -167,7 +178,7 @@ def normalize(snippet):
             m = re.match(r"^\s*#undef\s+(\w+)\s*$", l)
             if m and m.group(1) in hidden: defs.add(m.group(1))
     for l in lines:
-        m = re.match(r"^\s*#(define|undef)\s+((?:func|D)_[0-9A-F]{8})\b", l)
+        m = re.match(r"^\s*#(define|undef)\s+((?:func|D|B)_[0-9A-F]{8})\b", l)
         if m and m.group(2) in defs: continue
         m = MULTI.match(l)
         if m and "(" not in l:
@@ -521,25 +532,31 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
     for literals in modes:
         for prefix, sn in ([("context-", contextual)] if contextual != snippet else []) + [("", snippet)]:
             for how, cand in _insert_variants(seg, cfile, lines0, name, sn, loc0, literals):
-                for direction in (False, True) if not literals else (False,):
+                # Splitting a kept raw-tail donor creates a late-only twin even
+                # when the target itself had no migrated late literals. Its
+                # preceding ASM neighbour may be the only remaining budget.
+                for direction in (False, True):
                     merged = merge_kept_lates(seg, cfile, cand, direction)
                     tag = ("named-" if not literals else "") + prefix + how + ("-before" if direction else "")
                     annotated = _annotate(seg, cfile, merged)
                     if annotated is not None: yield tag, annotated
-                    if not _file_alias and how.startswith('isolate') and not direction:
+                    if how.startswith('isolate'):
                         pool_candidates.append((tag, merged))
                     promoted = orphan_lates(merged)
                     if promoted != merged:
                         annotated = _annotate(seg, cfile, promoted)
                         if annotated is not None: yield tag + '-c-lates', annotated
-                        if not _file_alias and how.startswith('isolate') and not direction:
+                        if how.startswith('isolate'):
                             pool_candidates.append((tag + '-c-lates', promoted))
+    import rodata_owned
+    for how, candidate in pool_candidates:
+        # A final named twin may have no following instruction donor. Give
+        # it temporary readonly C storage so the layout planner can compile
+        # the proposal and recover the actual compiler-owned pool ranges.
+        repartitioned = rodata_owned.repartition(S, seg, cfile, orphan_lates(candidate))
+        if repartitioned is not None:
+            yield 'owned-layout-' + how, repartitioned
     if not _file_alias:
-        import rodata_owned
-        for how, candidate in pool_candidates:
-            repartitioned = rodata_owned.repartition(S, seg, cfile, candidate)
-            if repartitioned is not None:
-                yield 'owned-layout-' + how, repartitioned
         released = rodata_owned.release_tail(S, seg, cfile, text, name, snippet)
         if released is not None:
             for how, cand in insert_variants(seg, cfile, released, name, snippet, _file_alias=True):
@@ -583,7 +600,15 @@ def orphan_lates(text):
                 continue
             scalar = S.LATE_ITEM.search('\n'.join(lines))
             if scalar is None:
-                break
+                # Kept byte-range recipes spell readonly scalars as .word,
+                # including doubles and alignment. They still need no ASM text
+                # budget; retain their exact bits as C data, never instructions.
+                words = re.findall(r'\*/\s*\.word\s+0x([0-9A-Fa-f]{8})\s*$', '\n'.join(lines), re.M)
+                labels = re.findall(r'^dlabel (\w+)$', '\n'.join(lines), re.M)
+                if not words or len(labels) != 1 or len(words) != sum('.word ' in l for l in lines):
+                    break
+                pending[labels[0]] = (address, 'u32', ', '.join('0x' + w for w in words))
+                continue
             name, bits, kind = scalar.groups()
             value = struct.unpack('>f' if kind == 'float' else '>d', bytes.fromhex(bits))[0]
             literal = repr(value) + ('f' if kind == 'float' else '')
@@ -634,6 +659,8 @@ def merge_kept_lates(seg, cfile, text, before=False):
             with open(p, 'w') as fh: fh.write(reg)
             keep = '#pragma GLOBAL_ASM("%s")' % p
         late_text = data_block(late)
+        raw = kept_blocks.BYTE_RANGE.search(original)
+        if raw: late_text = raw[0] + '\n' + late_text
         for j in range(i - 1, -1, -1) if before else range(i + 1, len(lines)):
             nxt = PRAGMA.match(lines[j])
             if nxt and S.asm_weights(nxt.group(1))[0]:

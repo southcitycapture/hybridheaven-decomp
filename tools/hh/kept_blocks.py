@@ -36,7 +36,20 @@ def annotate(S, seg, cfile, text):
             label = re.search(r'dlabel (\w+)', '\n'.join(lines)).group(1)
             ro.append([section, items[label][0], label])
         recipe = dict(functions=re.findall(r'^glabel (func_[0-9A-F]{8})', block, re.M), rodata=ro)
-        if raw: recipe['rodata_bytes'] = [int(x, 16) for x in raw.groups()]
+        if raw:
+            address, offset, size = (int(x, 16) for x in raw.groups())
+            # Merging two donors can append more readonly words than the first
+            # range header describes. Record the complete actual block, or a
+            # fresh gen_blocks silently truncates the added twin's constants.
+            readonly, section = [], '.text'
+            for line in block.splitlines():
+                if line.startswith('.section'): section = line.split()[1]
+                if section in ('.rodata', '.late_rodata'): readonly.append(line)
+            spans = [(int(a, 16), len(bits) // 2) for a, bits in re.findall(
+                r'/\* [0-9A-F]+ ([0-9A-F]{8}) ([0-9A-F]+) \*/\s*\.(?:word|float|double)\b', '\n'.join(readonly))]
+            lo = min([address] + [a for a, _ in spans])
+            hi = max([address + size] + [a + n for a, n in spans])
+            recipe['rodata_bytes'] = [lo, offset + lo - address, hi - lo]
         return '/* hh-block %s %s */\n%s' % (path, json.dumps(recipe, separators=(',', ':')), m.group())
     return re.sub(r'^#pragma GLOBAL_ASM\("([^"]+)"\)', one, text, flags=re.M)
 

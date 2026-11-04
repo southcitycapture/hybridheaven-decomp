@@ -4399,14 +4399,94 @@ void func_801D3CC8(func_801D3CC8_StructOuter *arg0, func_801D3CC8_StructInner **
     }
 }
 
-/* hh-block asm/nonmatchings/file009/801CD500/_mrg_keep_tail_443823716468e54b.s {"functions":["func_801D3D5C"],"rodata":[],"rodata_bytes":[2149463656,5853432,56]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/_mrg_keep_tail_443823716468e54b.s")
+/* hh-block asm/nonmatchings/file009/801CD500/_mrg_keep_tail_8bde44fb03879c03.s {"functions":["func_801D3D5C"],"rodata":[],"rodata_bytes":[2149463656,5853432,16]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/_mrg_keep_tail_8bde44fb03879c03.s")
 
-/* hh-block asm/nonmatchings/file009/801CD500/_mrg_keep_text_64a74fb79a1ebe8c.s {"functions":["func_801D3FE0"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/_mrg_keep_text_64a74fb79a1ebe8c.s")
+#define func_801CE0E8 func_801CE0E8__func_801D3FE0
+#define func_801D42BC func_801D42BC__func_801D3FE0
+s32 func_801CE0E8(void *arg0, s8 *a1);
 
-/* hh-block asm/nonmatchings/file009/801CD500/_mrg_keep_text_aab7df94fa882dac.s {"functions":["func_801D42BC"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/_mrg_keep_text_aab7df94fa882dac.s")
+
+typedef struct func_801D3FE0_StructB {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    u8 pad1C[4];
+    f32 unk20;
+    u8 pad24[0x27];
+    u8 unk4B;
+} func_801D3FE0_StructB;
+typedef struct func_801D3FE0_StructC {
+    u8 pad0[0x30];
+    func_801D3FE0_StructB *unk30;
+} func_801D3FE0_StructC;
+typedef struct func_801D3FE0_StructA {
+    u8 pad0[0x60];
+    f32 unk60;
+    u8 pad64[0x30];
+    u8 unk94;
+} func_801D3FE0_StructA;
+#define D_801E3678 0.2
+#define D_801E3680 0.6
+#define D_801E3688 255.0
+extern u8 func_801D42BC[];
+
+void func_801D3FE0(func_801D3FE0_StructA *arg0, func_801D3FE0_StructC **arg1) {
+    f64 e;
+    f32 t;
+    s32 i;
+    f32 sc;
+    f32 t2;
+    s16 ang;
+    s8 sp8D;
+    s32 j;
+    func_801D3FE0_StructB *o;
+
+    sp8D = 0;
+    if (func_801CE0E8(arg0, &sp8D) == 0) {
+        i = 0;
+        if (arg0->unk94 > 0) {
+            j = 0;
+            do {
+                t = (f32)(((f64)(f32)((f64)(u32)i + 1.0)) / ((f64)(u32)arg0->unk94 + 1.0));
+                o = arg1[i]->unk30;
+                o->unk8 += 18.0 * t;
+                e = t * 5.0;
+                ang = (s32)(4096.0f * t);
+                if (e < 2.0) {
+                    e = -(e - 2.0);
+                } else {
+                    e = e - 2.0;
+                }
+                sc = (f32)(e * D_801E3678 + 1.0);
+                o->unk4 += sc * func_8001EAD0(ang);
+                o->unkC += sc * func_8001EB64(ang);
+                t2 = (f32)((f64)(arg0->unk60 * sc) * D_801E3680);
+                o->unk12 = j << 8;
+                o->unk12 = o->unk12 & 0x1FFF;
+                o->unk20 = t2;
+                o->unk18 = t2;
+                o->unk4B = (u32)((1.0 - t) * D_801E3688);
+                i = (i + 1) & 0xFF;
+                j = i;
+            } while (i < arg0->unk94);
+        }
+        func_800058DC(arg0, (s32)func_801D42BC);
+    }
+}
+#undef D_801E3678
+#undef D_801E3680
+#undef D_801E3688
+#undef func_801CE0E8
+#undef func_801D42BC
+
+/* hh-block asm/nonmatchings/file009/801CD500/_mrg_keep_tail_a6f2b2dbcf926d76.s {"functions":["func_801D42BC"],"rodata":[],"rodata_bytes":[2149463696,5853472,16]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801CD500/_mrg_keep_tail_a6f2b2dbcf926d76.s")
 
 
 typedef struct func_801D4618_StructB {
@@ -5318,6 +5398,32 @@ void func_801D5CA8(func_801D5CA8_Struct *arg0, func_801D5CA8_Obj **arg1) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801CD500[] = {
     0x65, 0x66, 0x5F, 0x73, 0x75, 0x75, 0x20, 0x3D, 0x20, 0x25, 0x64, 0x20, 0xA5, 0xEF, 0xA1, 0xBC,
     0xA5, 0xAF, 0xA5, 0xAA, 0xA1, 0xBC, 0xA5, 0xD0, 0xA1, 0xBC, 0xA1, 0xA3, 0x20, 0xA3, 0xB1, 0xA4,
@@ -5351,6 +5457,7 @@ static const unsigned char rodata_801CD500[] = {
 /* hh-owned-pool func_801CFFF4 801E35C0 801E35C8 */
 /* hh-owned-pool func_801D01DC 801E35C8 801E35D0 */
 /* hh-owned-pool func_801D0594 801E35D0 801E35D4 */
+/* hh-owned-pool func_801D09F8 801E35D4 801E35E8 */
 /* hh-owned-pool func_801D0C1C 801E35E8 801E35F0 */
 /* hh-owned-pool func_801D0F54 801E35F0 801E35F8 */
 /* hh-owned-pool func_801D12FC 801E35F8 801E3600 */
@@ -5361,6 +5468,7 @@ static const unsigned char rodata_801CD500[] = {
 /* hh-owned-pool func_801D2C28 801E3648 801E364C */
 /* hh-owned-pool func_801D36C0 801E3650 801E3658 */
 /* hh-owned-pool func_801D3B78 801E3658 801E3668 */
+/* hh-owned-pool func_801D3FE0 801E3678 801E3690 */
 /* hh-owned-pool func_801D5208 801E36A0 801E36A8 */
 /* hh-owned-pool func_801D58B8 801E36A8 801E36B8 */
 /* hh-owned-pool func_801D5CA8 801E36D0 801E36D8 */

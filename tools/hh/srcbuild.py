@@ -865,6 +865,12 @@ def file_of(seg, name):
     hits = _FILES.get((seg, name), [])
     return hits[0] if len(hits) == 1 else None
 
+def source_has_function(seg, name):
+    """Registry membership is not proof that a function is actually built as C."""
+    cf = file_of(seg, name)
+    path = 'src/%s/%s.c' % (seg, cf)
+    return bool(cf and os.path.exists(path) and name in defined_functions(open(path).read()))
+
 LIBFILES = {tuple(k.split("/")) for k in json.load(open("tools/hh/libultra.json"))} if os.path.exists("tools/hh/libultra.json") else set()
 
 def added_times():
@@ -878,18 +884,29 @@ def added_times():
         elif line.strip() and t is not None: first[line.strip()] = min(t, first.get(line.strip(), t))
     return first
 
+def code_layout():
+    """Configured text units, excluding stale/synthetic asm directories."""
+    return {tuple(m.groups()) for line in open('hybridheaven.yaml')
+            for m in [re.match(r'\s+- \[0x[0-9A-F]+, c, (\w+)/(\w+)\]', line)] if m}
+
 def run(cands, new_keys, every_file=False):
     """cands: {(seg, name): text}. Builds every affected file; returns (kept keys, rejected {key: why}).
     Files built from library source (tools/hh/libultra.json) are left alone. every_file (srcbuild all): also process
     C files with no matched function through the committed-input guard, and delete src files the asm layout no
     longer has. Uncommitted/changed-input files still rebuild: after a re-split their old GLOBAL_ASM paths can
     point at the old layout and stop the build."""
-    byfile = {}
+    byfile, unbuildable = {}, {}
     for (seg, name), text in cands.items():
         cf = file_of(seg, name)
-        if cf and (seg, cf) not in LIBFILES: byfile.setdefault((seg, cf), {})[name] = text
+        if not cf:
+            unbuildable[(seg, name)] = "no unique source unit in the asm layout"
+        elif (seg, cf) in LIBFILES:
+            if (seg, name) in new_keys:
+                unbuildable[(seg, name)] = "unit %s/%s is already built from verified libultra C (tools/hh/libultra.json)" % (seg, cf)
+        else:
+            byfile.setdefault((seg, cf), {})[name] = text
     if every_file:
-        layout = {tuple(d.split("/")[2:4]) for d in glob.glob("asm/nonmatchings/*/*") if os.path.isdir(d)}
+        layout = code_layout()
         for key in layout - LIBFILES: byfile.setdefault(key, {})
         for p in glob.glob("src/*/*.c"):
             key = (p.split("/")[1], os.path.basename(p)[:-2])
@@ -933,7 +950,7 @@ def run(cands, new_keys, every_file=False):
             defined = defined_functions(subprocess.check_output(["git", "show", "HEAD:" + path], text=True))
             asm_ok = {n for n, oid in old.items() if oid == head_snips.get((seg, cf), {}).get(n) and n not in defined}
         jobs.append((seg, cf, sn, {n: prio[(seg, n)] for n in sn}, committed, asm_ok))
-    kept, rejected = set(), {}
+    kept, rejected = set(), dict(unbuildable)
     byname = {"%s/%s" % (j[0], j[1]): j for j in jobs}
     lost = lambda fname, rej: sorted(n for n in rej if (fname.split("/")[0], n) not in new_keys)
     with Pool(max(1, os.cpu_count() - 2)) as p:
@@ -955,7 +972,12 @@ def run(cands, new_keys, every_file=False):
         seg = fname.split("/")[0]
         kept |= {(seg, n) for n in snips}; rejected.update({(seg, n): why for n, why in rej.items()})
         if problem: print("PROBLEM", fname, problem)
+    for key in new_keys - kept - set(rejected):
+        rejected[key] = NO_RESULT
     return kept, rejected
+
+# a whole-file failure (possibly transient: disk full, pool crash) is logged but never memoized (Task 32 review)
+NO_RESULT = "integration produced no accepted function or rejection (source unit failed)"
 
 def context_for(seg, func):
     """Declarations already in force in `func`'s C file (excluding func's own snippet): every extern,
@@ -1067,7 +1089,8 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         for b in sys.argv[2:]:
             for l in open("queue/%s/results.jsonl" % b):
                 r = json.loads(l); key = (r["segment"], r["func"])
-                if r["verified"] == "MATCH" and key not in reg and key not in blocked:
+                if r["verified"] == "MATCH" and key not in blocked and (key not in reg or
+                        ((key[0], file_of(*key)) not in LIBFILES and not source_has_function(*key))):
                     a = workdir.attempt(b, r["func"], r["segment"])
                     if a is None: continue     # work dir archived (tools/swarm/housekeep.py): offered and settled before
                     import reconcile_frozen
@@ -1099,7 +1122,7 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         kept, rejected = run(cands, set(new))
         with open(MEMO, "a") as fh:
             for key, why in rejected.items():
-                if key in new: fh.write(json.dumps({"key": memo_key(key, new[key]), "why": why}) + "\n")
+                if key in new and why != NO_RESULT: fh.write(json.dumps({"key": memo_key(key, new[key]), "why": why}) + "\n")
         added = 0
         for key in new:
             if key in kept:

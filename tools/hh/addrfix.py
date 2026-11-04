@@ -436,6 +436,15 @@ def bucket(r):
     if "in-file:" in w: return w.split("in-file:")[0] + "in-file:" + w.split("in-file:")[1][:40]
     return w.split(":")[0] if w.startswith("rewrite") else w[:70]
 
+def wall_candidate(r):
+    """Fresh leftovers include registry recipes still represented by ASM."""
+    import srcbuild
+    if r['class'] not in ('symbols', 'match') or not r.get('attempt_source'): return False
+    seg, name = r['seg'], r['func']
+    return ((seg, name) not in srcbuild.link_blocked() and
+            (seg, srcbuild.file_of(seg, name)) not in srcbuild.LIBFILES and
+            not srcbuild.source_has_function(seg, name))
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true"); ap.add_argument("--jobs", type=int, default=4)
@@ -448,9 +457,8 @@ def main():
         want, files = [], {}
         for line in open(a.walls):
             r = json.loads(line)
-            if r["class"] not in ("symbols", "match") or not r.get("attempt_source"): continue
+            if not wall_candidate(r): continue
             k = r["func"], r["seg"]
-            if os.path.exists("matched/%s/%s.c" % (k[1], k[0])): continue
             src = r["attempt_source"]
             if src.startswith("matched_rejected/"):
                 # Recreate the headers used by wall.py when compiling a rejected

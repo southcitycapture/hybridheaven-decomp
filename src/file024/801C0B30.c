@@ -143,6 +143,7 @@ extern u8 func_8013E850();
 extern u8 func_801C1624[];
 #define func_801C220C func_801C220C__decl
 extern u8 func_801C220C[];
+#define func_801C3F48 func_801C3F48__decl
 extern u8 func_801C3F48[];
 extern void *D_801CC8A0;
 extern void func_80002364(s32, s32, s32, s32);
@@ -1437,7 +1438,7 @@ void func_801C2DB8(s32 arg0, func_801C2DB8_O **A) {
     sp5C = D_801CCA48;
     if (func_80126A0C(arg0, 0x74, 0) != 0) {
         i = 0;
-        k = D_801CF290;
+        k = (0.009999999776482582f);
         do {
             func_80005E44((void *)arg0, &spE8);
             func_80006214((void *)arg0);
@@ -1511,7 +1512,7 @@ void func_801C3090(s32 arg0, func_801C3090_Obj **arg1) {
     f32 k;
 
     sp60 = D_80164F40;
-    for (i = 0, k = D_801CF294; i < 3; i++) {
+    for (i = 0, k = (0.10000000149011612f); i < 3; i++) {
         func_80005E44((void *)arg0, &sp60);
         func_80006214((void *)arg0);
         func_8012C89C(arg0, i, 0x228, 0x2A);
@@ -1903,8 +1904,62 @@ void func_801C3E24(s32 arg0, func_801C3E24_S2 **arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file024/801C0B30/_mrg_keep_tail_2ac8bdf1c44b0000.s {"functions":["func_801C3F48"],"rodata":[],"rodata_bytes":[2149380752,7019696,16]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C0B30/_mrg_keep_tail_2ac8bdf1c44b0000.s")
+#undef func_801C3F48
+
+#define D_801CCAE0 D_801CCAE0__func_801C3F48
+#define D_801CED98 D_801CED98__func_801C3F48
+#define func_800058DC func_800058DC__func_801C3F48
+#define func_801C4018 func_801C4018__func_801C3F48
+#define func_801C4018_Struct func_801C4018_Struct__func_801C3F48
+struct func_801C4018_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+};
+extern void func_801C4018(struct func_801C4018_Struct *arg0, s32 arg1);
+extern void func_800058DC();
+
+typedef struct func_801C3F48_StructTable {
+    s32 w[3];
+} func_801C3F48_StructTable;
+typedef struct func_801C3F48_StructInner {
+    u8 pad[0xB];
+    u8 alpha;
+} func_801C3F48_StructInner;
+typedef struct func_801C3F48_StructObj {
+    u8 pad[0x30];
+    func_801C3F48_StructInner *inner;
+} func_801C3F48_StructObj;
+typedef struct func_801C3F48_StructArg {
+    u8 pad[0x3C];
+    u16 timer;
+} func_801C3F48_StructArg;
+extern func_801C3F48_StructTable D_801CCAE0;
+extern u8 D_801CED98[];
+
+void func_801C3F48(func_801C3F48_StructArg *arg0, func_801C3F48_StructObj **arg1) {
+    u16 alpha;
+    func_801C3F48_StructTable table = D_801CCAE0;
+    u8 value;
+
+    alpha = (*arg1)->inner->alpha + 8;
+    if (alpha) {}
+    if (alpha >= 0x100) {
+        alpha = 0xFF;
+        arg0->timer = 0x50;
+        func_800058DC((s32)arg0, (void *)func_801C4018, arg1);
+    }
+    (*arg1)->inner->alpha = alpha;
+    value = ((u8 *)&table)[func_8013EA54()];
+    if (value != 0) {
+        func_8001B204(0, 0x7D0, 0x55, D_801CED98, 0, alpha, value);
+    }
+}
+#undef D_801CCAE0
+#undef D_801CED98
+#undef func_800058DC
+#undef func_801C4018
+#undef func_801C4018_Struct
+#define func_801C3F48 func_801C3F48__decl
 
 #define func_800058DC func_800058DC__func_801C4018
 #define func_801C1334 func_801C1334__func_801C4018
@@ -2757,6 +2812,9 @@ void func_801C5A00(void) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
+/* Readonly constants retained after the last ASM donor became C. */
+
 static const unsigned char rodata_801C0B30[] = {
     0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
     0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
@@ -2882,3 +2940,5 @@ static const unsigned char rodata_801C0B30[] = {
     0x80, 0x1C, 0x1F, 0x70, 0x80, 0x1C, 0x1F, 0x88, 0x80, 0x1C, 0x1F, 0xB4,
 };
 /* hh-owned-pool func_801C2A44 801CF27C 801CF290 */
+/* hh-owned-pool func_801C2DB8 801CF290 801CF294 */
+/* hh-owned-pool func_801C3090 801CF294 801CF298 */

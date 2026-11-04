@@ -7,6 +7,85 @@ S = R.S
 
 
 class ContextTests(unittest.TestCase):
+    def test_merged_raw_range_recipe_survives_fresh_block_generation(self):
+        import kept_blocks
+        data = ('# hh-rodata-range 80000010 10 4\n.section .late_rodata\n'
+                'nonmatching D_80000010\ndlabel D_80000010\n'
+                '/* 10 80000010 3F800000 */ .word 0x3F800000\n'
+                'nonmatching D_80000014\ndlabel D_80000014\n'
+                '/* 14 80000014 40000000 */ .word 0x40000000\n'
+                '.section .text\nglabel func_80000000\n/* 0 80000000 00000000 */ .word 0x00000000\n')
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            path = os.path.join(td, '_mrg_keep_fixture.s')
+            with open(path, 'w') as fh: fh.write(data)
+            with patch.object(kept_blocks, 'catalog', return_value={}):
+                annotated = kept_blocks.annotate(S, 'test', '80000000', '#pragma GLOBAL_ASM("%s")\n' % path)
+                recipe = json.loads(kept_blocks.RECIPE.search(annotated)[2])
+                self.assertEqual(recipe['rodata_bytes'], [0x80000010, 0x10, 8])
+                with patch.object(S, 'FILE_RODATA', {('test', '80000000'): 0x80000010}), \
+                     patch.object(S, 'file_span', return_value=(0, 0x10)), \
+                     patch.object(S, 'file_rodata_size', return_value=8), \
+                     patch.object(S, 'IMG', b'\0' * 16 + bytes.fromhex('3F80000040000000')), \
+                     patch.object(S, '_rd', return_value='.section .text\nglabel func_80000000\n nop\n'):
+                    kept_blocks.rebuild(S, 'test', '80000000', path, recipe)
+            with open(path) as fh: regenerated = fh.read()
+        self.assertIn('# hh-rodata-range 80000010 10 8', regenerated)
+        self.assertIn('.word 0x40000000', regenerated)
+
+    def test_literal_and_file_alias_paths_try_previous_budget_and_layout(self):
+        with patch.object(R, 'locate', return_value=(0, [], [])), \
+             patch.object(R, 'context_dependencies', side_effect=lambda s,c,n,t,*a:t), \
+             patch.object(S, '_rd', return_value='.section .text\n'), \
+             patch.object(R, '_insert_variants', return_value=[('isolate', 'candidate')]), \
+             patch.object(R, 'merge_kept_lates', side_effect=lambda s,c,t,b: 'before' if b else 'after'), \
+             patch.object(R, '_annotate', side_effect=lambda s,c,t:t), \
+             patch.object(R, 'orphan_lates', side_effect=lambda t:'promoted-' + t), \
+             patch('rodata_owned.repartition', side_effect=lambda S,s,c,t:'planned-' + t):
+            variants = dict(R.insert_variants('test', 'file', '', 'func_80000000',
+                                             'void func_80000000(void) {}', _file_alias=True))
+        self.assertIn('isolate-before', variants)
+        self.assertEqual(variants['owned-layout-isolate-before'], 'planned-promoted-before')
+
+    def test_worker_private_alias_is_regenerated_not_nested(self):
+        snippet = ('#define func_80000004 func_80000004__func_80000000\n'
+                   'extern float func_80000004(float);\n'
+                   'void func_80000000(void) { func_80000004(1.0f); }\n'
+                   '#undef func_80000004\n')
+        normalized = R.normalize(snippet)
+        self.assertNotIn('#define', normalized)
+        self.assertNotIn('#undef', normalized)
+        self.assertIn('extern float func_80000004(float);', normalized)
+        self.assertEqual(R.normalize(normalized), normalized)
+
+    def test_raw_readonly_twin_can_compile_without_instruction_budget(self):
+        data = ('.section .late_rodata\nnonmatching D_80000010\ndlabel D_80000010\n'
+                '/* 10 80000010 3FC99999 */ .word 0x3FC99999\n'
+                '/* 14 80000014 9999999A */ .word 0x9999999A\n.section .text\n')
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            path = os.path.join(td, '_ro_named_test.s')
+            with open(path, 'w') as fh: fh.write(data)
+            promoted = R.orphan_lates('#pragma GLOBAL_ASM("%s")\n' % path)
+        self.assertNotIn('GLOBAL_ASM', promoted)
+        self.assertIn('static const u32 D_80000010__rodata[] = {0x3FC99999, 0x9999999A};', promoted)
+
+    def test_split_text_only_donor_does_not_resurrect_original_rodata(self):
+        original = ('.section .late_rodata\nnonmatching D_80000010\ndlabel D_80000010\n'
+                    '/* 10 80000010 3F800000 */ .float 1.0\n.section .text\n'
+                    'glabel func_80000000\n/* 0 80000000 00000000 */ nop\n')
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            block = os.path.join(td, '_mrg_test.s')
+            with open(block, 'w') as fh: fh.write('.section .text\nglabel func_80000000\n')
+            # Production paths remain under asm/nonmatchings; mock only the
+            # writer so this fixture never creates a real segment directory.
+            def rebuilt(S, seg, cf, path, recipe):
+                self.assertEqual(recipe, {'functions': ['func_80000000'], 'rodata': []})
+            with patch.object(R, 'open', side_effect=lambda p, *a: io.StringIO(
+                    '.section .text\nglabel func_80000000\n'), create=True), \
+                 patch.object(R.kept_blocks, 'rebuild', side_effect=rebuilt), \
+                 patch.object(S, '_rd', return_value=original):
+                paths = R.merged_paths('asm/nonmatchings/test/file/_mrg_test.s')
+        self.assertEqual(paths, ['asm/nonmatchings/test/file/_mrg_keep_text_func_80000000.s'])
+
     def test_b_address_alias_prototype_is_private_like_func_and_data_aliases(self):
         sc = R.Scan('extern void B_80000004(int, float, float);\n')
         snippet = 'extern int B_80000004(void *, float, int);\nvoid func_80000000(void) { B_80000004(0, 1.0f, 0x3F800000); }\n'

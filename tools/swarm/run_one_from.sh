@@ -5,6 +5,9 @@
 # Earlier attempts are found in queue/*/work/FUNC@SEG (and old FUNC-only dirs); archived batches aren't searched.
 { # whole script in one block: bash parses it before running, so editing this file cannot break live runs
 FUNC=$1; SEG=$2; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}; cd "$HH"
+# lane_run.sh has no STOP check of its own; and a function another lane matched meanwhile needs no run (11-04)
+[ -n "$BATCH" ] && [ -f "queue/$BATCH/STOP" ] && exit 0
+[ -f "matched/$SEG/$FUNC.c" ] && exit 0
 PREVIOUS=$("$HH/.venv/bin/python" - "$FUNC" "$SEG" "${FROM:-best}" "${BATCH:-}" <<'PY'
 import glob, json, os, sys
 func, seg, mode, me = sys.argv[1:5]

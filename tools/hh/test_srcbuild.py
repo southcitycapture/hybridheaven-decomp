@@ -11,6 +11,49 @@ def blob(text):
 
 
 class PreservationTests(unittest.TestCase):
+    def test_all_uses_configured_code_units_not_generated_scratch_dirs(self):
+        config = ('      - [0x100, c, main/80000000]\n'
+                  '      - [0x120, .rodata, main/80000000]\n'
+                  '      - [0x200, c, file008/80000020]\n')
+        with patch.object(S, 'open', return_value=io.StringIO(config), create=True):
+            self.assertEqual(S.code_layout(), {('main', '80000000'), ('file008', '80000020')})
+
+    def test_library_and_missing_units_are_explicit_rejections(self):
+        lib = ('main', 'func_80000000')
+        missing = ('main', 'func_80000004')
+        pool = MagicMock()
+        pool.__enter__.return_value.imap_unordered.return_value = []
+        with patch.object(S, 'file_of', side_effect=lambda s, n: 'file' if n == lib[1] else None), \
+             patch.object(S, 'LIBFILES', {('main', 'file')}), \
+             patch.object(S, 'added_times', return_value={}), \
+             patch.object(S.subprocess, 'check_output', return_value=''), \
+             patch.object(S, 'Pool', return_value=pool):
+            kept, rejected = S.run({lib: 'library candidate', missing: 'missing candidate'}, {lib, missing})
+        self.assertFalse(kept)
+        self.assertIn('verified libultra C', rejected[lib])
+        self.assertIn('no unique source unit', rejected[missing])
+        self.assertEqual(pool.__enter__.return_value.imap_unordered.call_args.args[1], [])
+
+    def test_already_registered_library_recipes_are_not_evicted(self):
+        key = ('main', 'func_80000000')
+        pool = MagicMock()
+        pool.__enter__.return_value.imap_unordered.return_value = []
+        with patch.object(S, 'file_of', return_value='file'), \
+             patch.object(S, 'LIBFILES', {('main', 'file')}), \
+             patch.object(S, 'added_times', return_value={}), \
+             patch.object(S.subprocess, 'check_output', return_value=''), \
+             patch.object(S, 'Pool', return_value=pool):
+            _, rejected = S.run({key: 'library recipe'}, set())
+        self.assertFalse(rejected)
+
+    def test_source_presence_is_not_registry_membership(self):
+        with patch.object(S, 'file_of', return_value='file'), \
+             patch.object(S.os.path, 'exists', return_value=True), \
+             patch.object(S, 'open', side_effect=lambda p: io.StringIO(
+                 '#pragma GLOBAL_ASM("function.s")\nvoid func_80000004(void) {}\n'), create=True):
+            self.assertFalse(S.source_has_function('main', 'func_80000000'))
+            self.assertTrue(S.source_has_function('main', 'func_80000004'))
+
     def test_file_span_excludes_linker_owned_zero_padding(self):
         with patch.object(S, 'entries', return_value=[('func_80000000', 'x.s', 0x100, 0x20)]), \
              patch.object(S, 'SPLITS', {'test': [0x100, 0x140]}), \
@@ -73,6 +116,7 @@ class PreservationTests(unittest.TestCase):
         def opened(path, *args, **kwargs):
             return io.StringIO(blocklist if path == S.LINK_BLOCKLIST else src if source is None else source)
         with patch.object(S, "file_of", return_value="file"), patch.object(S, "added_times", return_value={}), \
+             patch.object(S, 'code_layout', return_value={('main', 'file')}), \
              patch.object(S, "link_blocked", return_value=set()), patch.object(S, "LIBFILES", set()), \
              patch.object(S.subprocess, "check_output", side_effect=lambda cmd, **kw: tree if cmd[1] == "ls-tree" else src), \
              patch.object(S, "Pool", return_value=pool), \
@@ -177,7 +221,8 @@ class AllFilesTests(unittest.TestCase):
             put('tools/hh/file_splits.json', '{}')
             put('tools/hh/text_padding.json', '{}')
             put('tools/hh/bss_splits.json', '{}')
-            put('hybridheaven.yaml', '')
+            put('hybridheaven.yaml', ''.join('      - [0x%X, c, test/%08X]\n' % (i, 0x80000000+i)
+                                           for i in (0, 0x10, 0x20)))
             (root / 'queue').mkdir()
             sources = {
                 '80000000': '#include "common.h"\n\n'

@@ -27,6 +27,7 @@ extern u16 D_80178BAC[];
 extern u8 D_80176BA8[];
 extern void func_80029280(f32);
 extern void func_80032720(f32);
+#define func_80130F74 func_80130F74__decl
 extern void func_80130F74(f32 *);
 #define func_80131074 func_80131074__decl
 extern void func_80131074(f32 *, f32 *, f32 *);
@@ -389,8 +390,28 @@ f32 func_80130E34(func_80130E34_Struct *arg0, f32 arg1, f32 arg2, f32 arg3, f32 
 #undef func_80130CBC
 #undef func_80130CBC_Struct
 
-/* hh-block asm/nonmatchings/file008/80130310/_mrg_keep_text_func_80130F74.s {"functions":["func_80130F74"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80130310/_mrg_keep_text_func_80130F74.s")
+#undef func_80130F74
+
+s32 func_80130F74(f32 *a) {
+    f32 d;
+    d = a[0] * a[0] + a[1] * a[1] + a[2] * a[2];
+    if (d != 0.0f && d != 1.0f) {
+        if (d < 0.0) {
+            func_8002FC20(d);
+        }
+        if (-d > 0.0) {
+        }
+        d = 1.0f / func_8002FC20(d);
+        a[0] = a[0] * d;
+        a[1] = a[1] * d;
+        a[2] = a[2] * d;
+    }
+    if (d == 0.0f) {
+        return 0;
+    }
+    return 1;
+}
+#define func_80130F74 func_80130F74__decl
 
 #undef func_80131074
 #define D_8018D6B0 D_8018D6B0__func_80131074

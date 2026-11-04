@@ -440,7 +440,7 @@ void func_80137E10(func_80137E10_Struct *arg0, s32 arg1) {
         if (1) goto common;
     common:
         arg0->unk94 = (f32) ((f64) arg0->unk94 + D_8018DCD0);
-        arg0->unk98 = (f32) ((f64) arg0->unk98 + D_8018DCD8);
+        arg0->unk98 = (f32) ((f64) arg0->unk98 + (3.225));
         sp5C = func_8012C6B4(0x14);
         sp60 = func_8012C6B4(0x14);
         sp64 = func_8012C6B4(0x14);
@@ -520,13 +520,13 @@ e2:
 c3:
         sp6C = 5;
 join:
-        arg0->unk94 = (f32) ((f64) arg0->unk94 + D_8018DCE0);
-        arg0->unk98 = (f32) ((f64) arg0->unk98 + D_8018DCE8);
+        arg0->unk94 = (f32) ((f64) arg0->unk94 + (-0.152));
+        arg0->unk98 = (f32) ((f64) arg0->unk98 + (0.258));
         sp58 = func_8012C6B4(0x80);
         sp5C = func_8012C6B4(0x1F);
         sp60 = func_8012C6B4(0x1F);
         sp64 = func_8012C6B4(0x1F);
-        func_80129FB8(arg0->unk94, 10.0f, arg0->unk98, -0.152f, 0.0f, D_8018DCF0, 0.0f, 0xFF, 0xFF, sp58, sp5C + 0xE0, sp60, sp64, 0xFF, 8, (f32) ((f64) (f32) func_8012C6B4(0xF) / 10.0), sp6C, 0);
+        func_80129FB8(arg0->unk94, 10.0f, arg0->unk98, -0.152f, 0.0f, (0.257999986410141f), 0.0f, 0xFF, 0xFF, sp58, sp5C + 0xE0, sp60, sp64, 0xFF, 8, (f32) ((f64) (f32) func_8012C6B4(0xF) / 10.0), sp6C, 0);
     }
     if (func_80133A24(arg0->unk38->unk10 >> 0x10) == 0) {
         func_800058DC(arg0, func_801383C0);
@@ -575,13 +575,13 @@ void func_801383CC(func_801383CC_Struct *arg0, s32 arg1) {
     c = func_8012C6B4(0x1F);
     d = func_8012C6B4(0x1F);
     p = arg0->unk38;
-    func_80129FB8((f32) ((f64) (f32) p->unk6 / 10.0), (f32) (((f64) (f32) p->unk8 / 10.0) + 20.0), (f32) ((f64) (f32) p->unkA / 10.0), z, z, z, z, 0xFF, 0xFF, a, b + 0xE0, c, d, 0xFF, 8, D_8018DCF4, 0xB, 0);
+    func_80129FB8((f32) ((f64) (f32) p->unk6 / 10.0), (f32) (((f64) (f32) p->unk8 / 10.0) + 20.0), (f32) ((f64) (f32) p->unkA / 10.0), z, z, z, z, 0xFF, 0xFF, a, b + 0xE0, c, d, 0xFF, 8, (0.30000001192092896f), 0xB, 0);
     a = func_8012C6B4(0x80);
     b = func_8012C6B4(0x1F);
     c = func_8012C6B4(0x1F);
     d = func_8012C6B4(0x1F);
     p = arg0->unk38;
-    func_80129FB8((f32) ((f64) (f32) p->unk6 / 10.0), (f32) ((f64) (f32) p->unk8 / 10.0), (f32) ((f64) (f32) p->unkA / 10.0), z, z, z, z, 0xFF, 0xFF, a, b + 0xE0, c, d, 0xFF, 8, D_8018DCF8, 8, 0);
+    func_80129FB8((f32) ((f64) (f32) p->unk6 / 10.0), (f32) ((f64) (f32) p->unk8 / 10.0), (f32) ((f64) (f32) p->unkA / 10.0), z, z, z, z, 0xFF, 0xFF, a, b + 0xE0, c, d, 0xFF, 8, (0.30000001192092896f), 8, 0);
     p = arg0->unk38;
     func_80129FB8((f32) ((f64) (f32) p->unk6 / 10.0), (f32) (((f64) (f32) p->unk8 / 10.0) + 20.0), (f32) ((f64) (f32) p->unkA / 10.0), z, z, z, z, 0x4B, 0x4B, 0x4B, 0x32, 0x32, 0x32, 0x80, 8, 1.0f, 0xA, 0);
     func_800058DC(arg0, func_801387C0);
@@ -595,8 +595,90 @@ void func_801387C0(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-/* hh-block asm/nonmatchings/file008/80136E10/_mrg_keep_tail_84e3899b3da4f835.s {"functions":["func_801387CC"],"rodata":[],"rodata_bytes":[2149113048,5690344,40]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80136E10/_mrg_keep_tail_84e3899b3da4f835.s")
+
+#define func_80138B84 func_80138B84__func_801387CC
+extern void func_80138B84(s32 arg0, s32 arg1);
+
+
+typedef struct func_801387CC_StructInner {
+    u8 pad0[6];
+    s16 unk6;
+    s16 unk8;
+    s16 unkA;
+    u8 padC[4];
+    u32 unk10;
+} func_801387CC_StructInner;
+
+typedef struct func_801387CC_Struct {
+    u8 pad0[0x38];
+    func_801387CC_StructInner *unk38;
+    u8 pad3C[0x60];
+    u16 unk9C;
+    u16 unk9E;
+} func_801387CC_Struct;
+
+void func_801387CC(func_801387CC_Struct *arg0, s32 arg1) {
+    s32 sp7C;
+    s32 sp78;
+    s32 sp74;
+    s32 sp70;
+    s32 sp6C;
+    s32 sp68;
+    s32 sp64;
+    s32 sp60;
+    s32 sp5C;
+    s32 temp_v1;
+    u16 temp_t7;
+    func_801387CC_StructInner *temp_v1_2;
+    func_801387CC_StructInner *temp_v1_3;
+
+    arg0->unk9E++;
+    if ((s32)arg0->unk9E % 3 == 0) {
+        arg0->unk9C--;
+        temp_v1 = func_8012C6B4(0x7B) & 3;
+        switch (temp_v1) {
+        case 0:
+        sp6C = func_8012C6B4(0xA);
+        sp70 = func_8012C6B4(0xA);
+        sp74 = func_8012C6B4(0xA);
+        sp78 = func_8012C6B4(15);
+        temp_v1_2 = arg0->unk38;
+        func_80129FB8((f32)(((f64)sp6C + (f64)(f32)temp_v1_2->unk6 / 10.0) - 5.0),
+                     (f32)(((f64)sp70 + (f64)(f32)temp_v1_2->unk8 / 10.0) - 5.0),
+                     (f32)(((f64)sp74 + (f64)(f32)temp_v1_2->unkA / 10.0) - 5.0),
+                     0.0f, 0.0f, 0.0f, 0.0f, 75, 75, 75, 50, 50, 50, 128, 8,
+                     (f32)((f64)(f32)sp78 / 20.0), 10, 0);
+        return;
+        case 1:
+            sp7C = 9;
+            break;
+        case 2:
+            sp7C = 0xC;
+            break;
+        case 3:
+            sp7C = 0xD;
+            break;
+        }
+        sp5C = func_8012C6B4(10);
+        sp60 = func_8012C6B4(10);
+        sp64 = func_8012C6B4(10);
+        sp68 = func_8012C6B4(128);
+        sp6C = func_8012C6B4(31);
+        sp70 = func_8012C6B4(31);
+        sp74 = func_8012C6B4(31);
+        sp78 = func_8012C6B4(15);
+        temp_v1_3 = arg0->unk38;
+        func_80129FB8((f32)(((f64)sp5C + (f64)(f32)temp_v1_3->unk6 / 10.0) - 5.0),
+                     (f32)(((f64)sp60 + (f64)(f32)temp_v1_3->unk8 / 10.0) - 5.0),
+                     (f32)(((f64)sp64 + (f64)(f32)temp_v1_3->unkA / 10.0) - 5.0),
+                     0.0f, 0.0f, 0.0f, 0.0f, 255, 255, sp68, sp6C + 224, sp70, sp74, 255, 8,
+                     (f32)((f64)(f32)sp78 / 30.0), sp7C, 0);
+    }
+    if (func_80133A24(arg0->unk38->unk10 >> 16) == 0) {
+        func_800058DC(arg0, func_80138B84);
+    }
+}
+#undef func_80138B84
 
 
 void func_80138B84(s32 arg0, s32 arg1) {
@@ -700,6 +782,9 @@ void func_80138F48(s32 arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
+/* Readonly constants retained after the last ASM donor became C. */
+
 static const unsigned char rodata_80136E10[] = {
     0x61, 0x72, 0x65, 0x61, 0x31, 0x30, 0x64, 0x65, 0x6D, 0x6F, 0x20, 0x66, 0x69, 0x72, 0x65, 0x20,
     0x73, 0x74, 0x61, 0x72, 0x74, 0x0A, 0x00, 0x00, 0x61, 0x72, 0x65, 0x61, 0x31, 0x30, 0x5F, 0x62,
@@ -718,3 +803,6 @@ static const unsigned char rodata_80136E10[] = {
     0x6F, 0x6D, 0x34, 0x33, 0x0A, 0x00, 0x00, 0x00,
 };
 /* hh-owned-pool func_80137418 8018DC68 8018DC88 */
+/* hh-owned-pool func_80137E10 8018DCD8 8018DCE0 */
+/* hh-owned-pool func_801381D0 8018DCE0 8018DCF4 */
+/* hh-owned-pool func_801383CC 8018DCF4 8018DCFC */

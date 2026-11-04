@@ -1388,8 +1388,110 @@ void func_80378034(struct func_80378034_Struct *arg0, s32 arg1) {
     func_80005700((s32) arg0);
 }
 
-/* hh-block asm/nonmatchings/file056/80376160/_mrg_keep_text_func_80378064.s {"functions":["func_80378064"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/80376160/_mrg_keep_text_func_80378064.s")
+#define D_803893B8 D_803893B8__func_80378064
+#define func_80006214 func_80006214__func_80378064
+#define func_8012D814 func_8012D814__func_80378064
+#define func_801CD924 func_801CD924__func_80378064
+#define func_80377FC4 func_80377FC4__func_80378064
+#define func_80378034 func_80378034__func_80378064
+#define func_80378034_Struct func_80378034_Struct__func_80378064
+#define func_80378034_Sub func_80378034_Sub__func_80378064
+#define func_80378190 func_80378190__func_80378064
+#define func_80378190_Ctx func_80378190_Ctx__func_80378064
+#define func_80378190_Inner func_80378190_Inner__func_80378064
+#define HZC2(a, b) a##b
+#define HZC(a, b) HZC2(a, b)
+extern void func_80006214(void *);
+struct func_80378034_Sub {
+    u8 pad[0x2C];
+    u16 unk2C;
+};
+struct func_80378034_Struct {
+    u8 pad[0xC];
+    struct func_80378034_Sub *unkC;
+};
+void func_80378034(struct func_80378034_Struct *arg0, s32 arg1);
+struct func_80378190_Inner {
+    u8 pad0[0x2C];
+    u16 unk2C;
+};
+struct func_80378190_Ctx {
+    u8 pad0[0xC];
+    struct func_80378190_Inner *unkC;
+    u8 pad10[0x68];
+    u8 unk78[4];
+    u8 unk7C[4];
+    u8 unk80[4];
+    u8 unk84[4];
+    u8 pad88[8];
+    u16 unk90;
+    u16 unk92;
+};
+void func_80378190(struct func_80378190_Ctx *arg0, void **arg1);
+extern s32 func_80377FC4(void *, s32, s32, s8 *);
+extern void func_8012D814(void *, s32, s32, s32, s32);
+extern void func_801CD924(u8, u8, u8, f32);
+extern f64 D_803893B8;
+
+struct func_80378064_Struct_Sub {
+    u8 pad0[0x18];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+};
+struct func_80378064_Struct_Mid {
+    u8 pad0[0x30];
+    struct func_80378064_Struct_Sub *unk30;
+};
+struct func_80378064_Struct {
+    u8 pad0[0x78];
+    u8 unk78;
+    u8 unk79;
+    u8 unk7A;
+    u8 pad7B[0x19];
+    u8 unk94;
+};
+
+void func_80378064(struct func_80378064_Struct *arg0, struct func_80378064_Struct_Mid **arg1) {
+    f64 pad_38;
+    s8 sp37;
+    s32 i;
+    struct func_80378064_Struct_Sub *p;
+
+    sp37 = 0;
+    arg0->unk94 = 1;
+    if (func_80377FC4(arg0, 0x371, 1, &sp37) != 0) {
+        func_800058DC(arg0, func_80378034);
+    }
+    func_8012D814(arg0, 0x371, 0, 0x3F800000, 1);
+    func_80006214(arg0);
+    i = 0;
+    if (arg0->unk94 > 0) {
+    do {
+        p = arg1[i]->unk30;
+        p->unk18 = (f32) (p->unk18 * 0.45);
+        p->unk1C = (f32) (p->unk1C * 2.5);
+        p->unk20 = (f32) (p->unk20 * 0.45);
+        i++;
+    } while (i < arg0->unk94);
+    }
+    func_801CD924(arg0->unk78, arg0->unk79, arg0->unk7A, 0.8f);
+    D_8038A8F8 = 0;
+    func_800058DC(arg0, func_80378190);
+}
+#undef HZC2
+#undef HZC
+#undef D_803893B8
+#undef func_80006214
+#undef func_8012D814
+#undef func_801CD924
+#undef func_80377FC4
+#undef func_80378034
+#undef func_80378034_Struct
+#undef func_80378034_Sub
+#undef func_80378190
+#undef func_80378190_Ctx
+#undef func_80378190_Inner
 
 #define func_80378034 func_80378034__func_80378190
 
@@ -1478,6 +1580,7 @@ void func_80378330(void) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_80376160[] = {
     0x73, 0x61, 0x76, 0x65, 0x5F, 0x70, 0x6F, 0x69, 0x6E, 0x74, 0x33, 0x00, 0x2F, 0x68, 0x64, 0x69,
     0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31,
@@ -1522,5 +1625,6 @@ static const unsigned char rodata_80376160[] = {
     0x40, 0x51, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x51, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x40, 0x51, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x51, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x40, 0x51, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xD6, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66,
-    0x3C, 0x23, 0xD7, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xDC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCD,
+    0x3C, 0x23, 0xD7, 0x0A, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-owned-pool func_80378064 803893B8 803893C0 */
