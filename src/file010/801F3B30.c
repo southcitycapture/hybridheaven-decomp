@@ -900,8 +900,111 @@ void func_801F5078(void *arg0, s32 arg1) {
 }
 #undef func_801F8A44
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F5104.s {"functions":["func_801F5104"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F5104.s")
+#define D_80216EC4 D_80216EC4__func_801F5104
+#define func_80010550 func_80010550__func_801F5104
+#define func_801F3B5C func_801F3B5C__func_801F5104
+#define func_801F8E4C func_801F8E4C__func_801F5104
+#define func_801F8E4C_Struct func_801F8E4C_Struct__func_801F5104
+#define func_801F908C func_801F908C__func_801F5104
+#define func_801F908C_Struct func_801F908C_Struct__func_801F5104
+#define func_801F94AC func_801F94AC__func_801F5104
+#define func_801F94AC_Struct func_801F94AC_Struct__func_801F5104
+extern s32 func_80010550();
+void func_801F3B5C(s32 arg0);
+typedef struct func_801F8E4C_Struct {
+    u8 pad0[0x90];
+    u8 unk90;
+    u8 unk91;
+    u8 unk92;
+    u8 pad93[0x98 - 0x93];
+    s16 unk98;
+    u8 pad9A[0xAE - 0x9A];
+    u8 unkAE;
+} func_801F8E4C_Struct;
+void func_801F8E4C(func_801F8E4C_Struct *arg0, s32 arg1);
+typedef struct func_801F908C_Struct {
+    u8 pad0[0xAE];
+    u8 unkAE;
+} func_801F908C_Struct;
+void func_801F908C(func_801F908C_Struct *arg0, s32 arg1);
+typedef struct func_801F94AC_Struct {
+    u8 pad0[0xAE];
+    u8 unkAE;
+} func_801F94AC_Struct;
+void func_801F94AC(func_801F94AC_Struct *arg0, s32 arg1);
+
+
+struct func_801F5104_StructInner {
+    u8 pad[0x18];
+    u32 unk18;
+};
+
+struct func_801F5104_StructSub {
+    u8 pad[0x78];
+    s16 unk78;
+};
+
+struct func_801F5104_StructArg {
+    u8 pad0[0x38];
+    struct func_801F5104_StructInner *unk38;
+    s16 unk3C;
+    u8 pad3E[0x5C - 0x3E];
+    struct func_801F5104_StructSub *unk5C;
+    u8 pad60[0x92 - 0x60];
+    u8 unk92;
+    u8 pad93[0xAE - 0x93];
+    u8 unkAE;
+    u8 padAF;
+    void *unkB0;
+};
+
+struct func_801F5104_StructVec {
+    s32 unk0;
+    s32 unk4;
+    f32 unk8;
+};
+
+extern struct func_801F5104_StructVec D_80216EC4;
+
+void func_801F5104(struct func_801F5104_StructArg *arg0, s32 arg1) {
+    struct func_801F5104_StructSub *sub;
+
+    sub = arg0->unk5C;
+    sub->unk78 = 1;
+    arg0->unk3C = 100;
+    arg0->unk92 = 0;
+    if (arg0->unkAE == 0) {
+        arg0->unkAE = 40;
+    }
+    D_80216EC4.unk8 = 0.7f;
+    switch ((s32)((arg0->unk38->unk18 >> 16) & 0xFF)) {
+    default:
+        arg0->unkB0 = (void *)func_801F8E4C;
+        break;
+    case 0:
+        arg0->unkB0 = (void *)func_801F908C;
+        break;
+    case 1:
+        arg0->unkB0 = (void *)func_801F8E4C;
+        break;
+    case 2:
+        D_80216EC4.unk8 = 1.5f;
+        arg0->unkB0 = (void *)func_801F94AC;
+        break;
+    }
+    func_8013A1B4(arg1, D_80216EC4, 0x1FFFFF);
+    func_80010550(arg1, sub);
+    func_801F3B5C(0);
+}
+#undef D_80216EC4
+#undef func_80010550
+#undef func_801F3B5C
+#undef func_801F8E4C
+#undef func_801F8E4C_Struct
+#undef func_801F908C
+#undef func_801F908C_Struct
+#undef func_801F94AC
+#undef func_801F94AC_Struct
 
 
 typedef struct func_801F5210_Struct {
@@ -1184,8 +1287,8 @@ s32 func_801F55EC(func_801F55EC_Struct *arg0) {
     return var_v0;
 }
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F5630.s {"functions":["func_801F5630"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F5630.s")
+/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_1e8c4b74924df820.s {"functions":["func_801F5630"],"rodata":[],"rodata_bytes":[2149682340,6069412,28]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_1e8c4b74924df820.s")
 
 #define func_801F57EC func_801F57EC__func_801F56A8
 #define func_801FA074 func_801FA074__func_801F56A8
@@ -2383,8 +2486,8 @@ void func_801F75B0(struct func_801F75B0_Struct *arg0, s32 arg1)
 }
 #undef func_801C3B3C
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F7638.s {"functions":["func_801F7638"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F7638.s")
+/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_431af51bf9b8b1a8.s {"functions":["func_801F7638"],"rodata":[],"rodata_bytes":[2149682368,6069440,32]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_431af51bf9b8b1a8.s")
 
 #define func_801F7A5C func_801F7A5C__func_801F7928
 
@@ -3585,6 +3688,8 @@ void func_801FA074(s32 arg0, s32 arg1) {
 
 /* Original readonly objects; named loads retain their original addresses. */
 
+
+
 static const unsigned char rodata_801F3B30[] = {
     0xA5, 0xAC, 0xA5, 0xE9, 0xA5, 0xB9, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0x21, 0x21, 0x21, 0x21,
     0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21,
@@ -3664,9 +3769,6 @@ static const unsigned char rodata_801F3B30[] = {
     0x80, 0x1F, 0x4F, 0x28, 0x80, 0x1F, 0x50, 0x58, 0x80, 0x1F, 0x4F, 0x4C, 0x80, 0x1F, 0x4F, 0x68,
     0x80, 0x1F, 0x4F, 0x84, 0x80, 0x1F, 0x4F, 0xDC, 0x80, 0x1F, 0x4F, 0xFC, 0x80, 0x1F, 0x50, 0x28,
     0x80, 0x1F, 0x50, 0x40, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x19, 0x99, 0x9A,
-    0x3F, 0x33, 0x33, 0x33, 0x00, 0x00, 0x00, 0x00, 0x40, 0x6F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
-    0x3E, 0x19, 0x99, 0x9A, 0x3E, 0x19, 0x99, 0x9A, 0x3E, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xB9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x40, 0x32, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCD,
 };
+/* hh-owned-pool func_801F5104 80218CA0 80218CA4 */
 /* hh-owned-pool func_801F7DB4 80218CE0 80218D08 */

@@ -474,7 +474,21 @@ s32 func_801E2C18(s32 arg0, s32 arg1) {
     return 0x28;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file039/801E1BE0/func_801E2D00.s")
+
+s32 func_801E2D00(s32 arg0, s32 arg1) {
+    f32 b;
+    f32 a;
+    f32 k;
+    a = (-31.6000004f);
+
+    k = 1.5f;
+    b = 67.9000015f;
+
+    if (D_8038C17C(0.0f, 1.60000038f, 0x40C00000, 0xC44BB99A, 30.2999992f, 12.3999996f, (-1121.09998f), -13.0f, a, (-772.099976f), k, a, (-1077.09998f), k, b, b) != 0) {
+        return 0x2A;
+    }
+    return 0x29;
+}
 
 
 
@@ -4616,4 +4630,3 @@ s32 func_801E9DC8(s32 arg0, s32 arg1) {
 s32 func_801E9DD8(s32 arg0, s32 arg1) {
     return 99;
 }
-

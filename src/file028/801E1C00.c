@@ -10552,8 +10552,57 @@ s32 func_801F3E68(s32 arg0, s32 arg1) {
     return 3;
 }
 
-/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_4fd25cb44a311883.s {"functions":["func_801F3EB4"],"rodata":[],"rodata_bytes":[2149616312,7500152,44]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_4fd25cb44a311883.s")
+
+
+#define D_80208AB8 D_80208AB8__func_801F3EB4
+#define D_80208ABC D_80208ABC__func_801F3EB4
+#define D_80208AC0 D_80208AC0__func_801F3EB4
+#define D_80208AC4 D_80208AC4__func_801F3EB4
+#define D_80208AC8 D_80208AC8__func_801F3EB4
+#define D_80208ACC D_80208ACC__func_801F3EB4
+#define D_80208AD0 D_80208AD0__func_801F3EB4
+#define D_80208AD4 D_80208AD4__func_801F3EB4
+#define D_80208AD8 D_80208AD8__func_801F3EB4
+#define D_80208ADC D_80208ADC__func_801F3EB4
+#define D_80208AE0 D_80208AE0__func_801F3EB4
+
+
+extern f32 D_80208AB8;
+extern f32 D_80208ABC;
+extern f32 D_80208AC0;
+extern f32 D_80208AC4;
+extern f32 D_80208AC8;
+extern f32 D_80208ACC;
+extern f32 D_80208AD0;
+extern f32 D_80208AD4;
+extern f32 D_80208AD8;
+extern f32 D_80208ADC;
+extern f32 D_80208AE0;
+
+s32 func_801F3EB4(s32 arg0, s32 arg1) {
+    f32 a = (-185.6999969482422f);
+    f32 b = (15.800000190734863f);
+    f32 c = (-159.1999969482422f);
+
+
+    if (func_8038BEF8(0.0f, 4.0f, a, b, -6.0f, a, b, -6.0f, c, (0.699999988079071f), (-6.599999904632568f), c, (6.800000190734863f), (-6.599999904632568f)) != 0) {
+        func_8038BD50((176.39999389648438f), (2.0999999046325684f), 0x41800000);
+        D_8038BD88((199.8000030517578f), (0.20000000298023224f), 0x40333333);
+        return 5;
+    }
+    return 4;
+}
+#undef D_80208AB8
+#undef D_80208ABC
+#undef D_80208AC0
+#undef D_80208AC4
+#undef D_80208AC8
+#undef D_80208ACC
+#undef D_80208AD0
+#undef D_80208AD4
+#undef D_80208AD8
+#undef D_80208ADC
+#undef D_80208AE0
 
 
 
@@ -11152,7 +11201,8 @@ s32 func_801F4EB4(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/func_801F4F48.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_text_bbd1f01b1c7c3824.s {"functions":["func_801F4F48"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_text_bbd1f01b1c7c3824.s")
 
 
 extern s32 func_801C3808(s32, s32, s32, s32, s32, s32, s32, s32, s32);
@@ -17289,6 +17339,102 @@ s32 func_80201130(s32 arg0, s32 arg1) {
 
 /* Readonly constants retained after the last ASM donor became C. */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801E1C00[] = {
     0x70, 0x61, 0x73, 0x73, 0x65, 0x64, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00,
 };
@@ -17331,6 +17477,7 @@ static const unsigned char rodata_801E1C00[] = {
 /* hh-owned-pool func_801EA604 80208940 8020894C */
 /* hh-owned-pool func_801EA710 8020894C 80208964 */
 /* hh-owned-pool func_801EA874 80208964 8020896C */
+/* hh-owned-pool func_801EA980 8020896C 80208980 */
 /* hh-owned-pool func_801EAACC 80208980 80208988 */
 /* hh-owned-pool func_801EB470 802089A0 802089A8 */
 /* hh-owned-pool func_801EB798 802089A8 802089B0 */
@@ -17347,12 +17494,15 @@ static const unsigned char rodata_801E1C00[] = {
 /* hh-owned-pool func_801F3640 80208A50 80208A54 */
 /* hh-owned-pool func_801F3C80 80208A54 80208A84 */
 /* hh-owned-pool func_801F3D74 80208A84 80208AB8 */
+/* hh-owned-pool func_801F3EB4 80208AB8 80208AE4 */
 /* hh-owned-pool func_801F3FE4 80208AE4 80208B08 */
 /* hh-owned-pool func_801F4124 80208B08 80208B30 */
+/* hh-owned-pool func_801F4264 80208B30 80208B40 */
 /* hh-owned-pool func_801F4D18 80208B40 80208B48 */
 /* hh-owned-pool func_801F51B0 80208B48 80208B54 */
 /* hh-owned-pool func_801F52AC 80208B54 80208B5C */
 /* hh-owned-pool func_801F5340 80208B5C 80208B7C */
+/* hh-owned-pool func_801F540C 80208B7C 80208B8C */
 /* hh-owned-pool func_801F54AC 80208B8C 80208B9C */
 /* hh-owned-pool func_801F5630 80208BB0 80208BD4 */
 /* hh-owned-pool func_801F5744 80208BD4 80208BE0 */
@@ -17372,6 +17522,7 @@ static const unsigned char rodata_801E1C00[] = {
 /* hh-owned-pool func_801FB434 80208CC8 80208CE0 */
 /* hh-owned-pool func_801FB500 80208CE0 80208CF0 */
 /* hh-owned-pool func_801FB5BC 80208CF0 80208D10 */
+/* hh-owned-pool func_801FB690 80208D10 80208D24 */
 /* hh-owned-pool func_801FB74C 80208D24 80208D30 */
 /* hh-owned-pool func_801FDB00 80208DC0 80208DC4 */
 /* hh-owned-pool func_801FE1D4 80208DC4 80208DC8 */

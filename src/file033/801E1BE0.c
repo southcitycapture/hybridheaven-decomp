@@ -6462,8 +6462,28 @@ s32 func_801EDF98(s32 arg0, s32 arg1) {
     return 0x17;
 }
 
-/* hh-block asm/nonmatchings/file033/801E1BE0/_mrg_keep_text_func_801EDFB4.s {"functions":["func_801EDFB4"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file033/801E1BE0/_mrg_keep_text_func_801EDFB4.s")
+
+
+s32 func_801EDFB4(s32 arg0, s32 arg1) {
+    switch (D_801F362C) {
+    case 0:
+        D_801F362C = 1;
+        break;
+    case 1:
+        D_801F362C = 2;
+        break;
+    case 2:
+        D_801F362C = 3;
+        break;
+    case 3:
+        if (func_801D58DC() == 0) {
+            func_801CC470(2, 0x03200051, 0, 0x100, 6.0f);
+            return 0x18;
+        }
+        break;
+    }
+    return 0x17;
+}
 
 /* starting point: func_801E63A8 (file045), whose assembly is 95% the same as this function's */
 

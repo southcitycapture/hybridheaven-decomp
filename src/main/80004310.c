@@ -126,7 +126,54 @@ s32 func_800044FC(s32 arg0) {
     return *(s32 *)((u8 *)&D_800892B0 + 0x42A8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80004310/func_80004560.s")
+#define D_80037C5C D_80037C5C__func_80004560
+#define D_800892B0 D_800892B0__func_80004560
+#define D_8008D558 D_8008D558__func_80004560
+#define func_80004310_Struct func_80004310_Struct__func_80004560
+#define func_8001752C func_8001752C__func_80004560
+#define func_8001F290 func_8001F290__func_80004560
+extern s32 D_80037C5C[];
+typedef struct func_80004310_Struct {
+    u8 pad[0x1BD];
+    u8 unk1BD;
+} func_80004310_Struct;
+extern func_80004310_Struct D_800892B0;
+extern s32 func_8001F290();
+
+
+typedef struct func_80004560_StructEntry {
+    s32 start;
+    s32 end;
+} func_80004560_StructEntry;
+
+typedef struct func_80004560_StructState {
+    u8 pad[0x42A8];
+    s32 data;
+} func_80004560_StructState;
+
+extern s32 D_8008D558;
+extern void func_8001752C(u16, s32);
+
+s32 func_80004560(s32 arg0) {
+    func_80004560_StructEntry *entry;
+
+    if (D_8008D558 == 0) {
+        entry = (func_80004560_StructEntry *) ((s32) &D_80037C5C[arg0 * 2] - 8);
+        ((func_80004560_StructState *) &D_800892B0)->data =
+            func_8001F290(entry->end - entry->start);
+        func_8001752C(arg0, ((func_80004560_StructState *) &D_800892B0)->data);
+    }
+    if (func_80004838(arg0, ((func_80004560_StructState *) &D_800892B0)->data) == 0) {
+        return 0;
+    }
+    return ((func_80004560_StructState *) &D_800892B0)->data;
+}
+#undef D_80037C5C
+#undef D_800892B0
+#undef D_8008D558
+#undef func_80004310_Struct
+#undef func_8001752C
+#undef func_8001F290
 
 extern s32 D_80037C5C[];
 extern s32 func_8001F290();

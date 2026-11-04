@@ -417,7 +417,13 @@ def stage_seed(source, directory, seg, func):
     return dst
 
 
-def search(func, seg, source, width=8, depth=4, seconds=90, jobs=8, log=print, alternative_source=None):
+def search_moves(text, func, context='', natural=False):
+    """Optional source-quality restriction shared by single and batch searches."""
+    return [(label, source) for label, source in variants(text, func, context)
+            if not natural or not label.startswith('ref ')]
+
+
+def search(func, seg, source, width=8, depth=4, seconds=90, jobs=8, log=print, alternative_source=None, natural=False):
     started = time.monotonic()
     deadline = started + seconds
     jobs = min(jobs, max(1, (os.cpu_count() or 2) // 2))
@@ -469,7 +475,8 @@ def search(func, seg, source, width=8, depth=4, seconds=90, jobs=8, log=print, a
                         results.extend([None] * (len(candidates) - len(results))); break
                 return results
             res = beam(staged.joinpath('attempt.c').read_text(), evaluate,
-                       moves=lambda text, name: variants(text, name, context), func=func, width=width, depth=depth,
+                       moves=lambda text, name: search_moves(text, name, context, natural),
+                       func=func, width=width, depth=depth,
                        deadline=deadline, log=log)
         res.update(func=func, seg=seg, source=str(source), seconds=round(time.monotonic() - started, 3), jobs=jobs,
                    width=width, max_depth=depth, seed_scores=seed_scores)
@@ -500,7 +507,7 @@ def batch(args):
         log = lambda s: print(name + ': ' + s, flush=True)
         log('source ' + str(source.relative_to(HH)))
         res = search(func, seg, source, args.width, args.depth, min(args.seconds, end - time.monotonic()), args.jobs, log,
-                     alternative_source=HH / row['attempt_source'] if preferred.exists() else None)
+                     alternative_source=HH / row['attempt_source'] if preferred.exists() else None, natural=args.natural)
         source = Path(res['source'])
         # Save a standalone workdir with the original headers for replay/infile.
         saved = out / 'work' / name
@@ -522,6 +529,7 @@ def main():
     ap.add_argument('--jobs', type=int, default=min(8, max(1, (os.cpu_count() or 2) // 2)))
     ap.add_argument('--seconds', type=float, default=90); ap.add_argument('--total-seconds', type=float, default=10800)
     ap.add_argument('--save'); ap.add_argument('--json'); ap.add_argument('--walls'); ap.add_argument('--out')
+    ap.add_argument('--natural', action='store_true', help='exclude artificial dead-reference mutations')
     a = ap.parse_args()
     if min(a.width, a.depth, a.jobs, a.seconds, a.total_seconds) <= 0:
         ap.error('width/depth/jobs/time limits must be positive')
@@ -531,7 +539,7 @@ def main():
         batch(a); return 0
     if not (a.func and a.seg and a.source):
         ap.error('FUNC, --seg and --source are required')
-    res = search(a.func, a.seg, a.source, a.width, a.depth, a.seconds, a.jobs)
+    res = search(a.func, a.seg, a.source, a.width, a.depth, a.seconds, a.jobs, natural=a.natural)
     if a.save:
         Path(a.save).write_text(res['text'])
     if a.json:

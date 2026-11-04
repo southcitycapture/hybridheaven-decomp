@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.join(HH, "tools/hh")); import workdir
 PERM = os.path.join(HH, "tools/decomp-permuter")
 OUT = os.path.join(HH, "queue/permute")
 BATCH = "permute"          # --out queue/NAME changes both (a sweep writes its own batch: tools/swarm/loop.py integrates it)
+NATURAL = False
 PY = os.path.join(HH, ".venv/bin/python")
 CC = os.path.join(HH, "tools/ido/7.1/cc")
 
@@ -147,6 +148,15 @@ def setup(func, seg, src, d):
     open(d + "/compile.sh", "w").write('#!/bin/bash\n"%s" -c %s -O2 "$1" -o "$3"%s\n' % (CC, " ".join(idoflags.BASE), idoflags.shell_post(PY)))
     os.chmod(d + "/compile.sh", 0o755)
     open(d + "/settings.toml", "w").write('func_name = "%s"\ncompiler_type = "ido"\n' % func)
+    if NATURAL:
+        # Keep allocation searches useful without manufacturing dead uses or
+        # stack slots. Winners still require human source review and ROM gates.
+        disabled = ('perm_xor_zero', 'perm_refer_to_var', 'perm_empty_stmt',
+                    'perm_mult_zero', 'perm_dummy_comma_expr', 'perm_add_self_assignment',
+                    'perm_duplicate_assignment', 'perm_pad_var_decl', 'perm_var_cond_block', 'perm_ins_block')
+        with open(d + '/settings.toml', 'a') as fh:
+            fh.write('\n[weight_overrides]\n')
+            fh.writelines('%s = 0.0\n' % name for name in disabled)
 
 _PROC = None
 
@@ -303,11 +313,13 @@ if __name__ == "__main__":
     ap.add_argument("--jobs", type=int, default=2); ap.add_argument("--parallel", type=int, default=3)
     ap.add_argument("--limit", type=int, default=0); ap.add_argument("--batches", default="")
     ap.add_argument("--no-triage", action="store_true", help="don't classify with N64 Decomp Workbench")
+    ap.add_argument('--natural', action='store_true', help='disable dead-use, dummy-expression and padding mutations')
     ap.add_argument("--out", default="queue/permute", help="batch directory for results.jsonl and work/ (queue/NAME)")
     ap.add_argument("--sweep", action="store_true", help="every unmatched function from its best attempt by .ali "
                     "(not just failed results), never-permuted first; resumes, skipping what --out already recorded")
     ap.add_argument("--walls", help="wall.py JSONL: permute only register/schedule walls, closest first, using the classified source")
     a = ap.parse_args()
+    NATURAL = a.natural
     if a.walls:
         cpus = len(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else (os.cpu_count() or 2)
         if a.jobs < 1 or a.parallel < 1 or a.jobs * a.parallel > max(1, cpus // 2):

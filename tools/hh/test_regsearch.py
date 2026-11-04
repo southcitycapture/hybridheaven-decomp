@@ -79,6 +79,14 @@ s32 f(s32 arg) {
 
 
 class MoveTests(unittest.TestCase):
+    def test_natural_search_omits_dead_uses_and_retains_real_rewrites(self):
+        all_moves = B.search_moves(SOURCE, 'f')
+        natural = B.search_moves(SOURCE, 'f', natural=True)
+        self.assertTrue(any(label.startswith('ref ') for label, _ in all_moves))
+        self.assertTrue(natural)
+        self.assertEqual(natural, [(label, text) for label, text in all_moves
+                                   if not label.startswith('ref ')])
+
     def test_excludes_unsafe_width_alias_and_statement_moves(self):
         source = '''s32 f(s32 arg) {
     s32 x;

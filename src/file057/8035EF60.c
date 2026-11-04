@@ -673,7 +673,31 @@ void *func_8035FF0C(u8 arg0) {
     func_8035FEC8(arg0, D_80385E6C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/8035EF60/func_8035FF38.s")
+#define D_8038638C D_8038638C__func_8035FF38
+
+
+extern u8 D_8038638C[];
+
+u8 func_8035FF38(arg0)
+u8 arg0;
+{
+    u8 *p;
+
+    p = D_8038638C;
+    while (p[0] != 0x57) {
+        if (arg0 == p[0]) {
+            arg0 = p[1];
+            break;
+        }
+        if (arg0 == p[1]) {
+            arg0 = p[0];
+            break;
+        }
+        p += 2;
+    }
+    return arg0;
+}
+#undef D_8038638C
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/8035EF60/func_8035FFA8.s")
 

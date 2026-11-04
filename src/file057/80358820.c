@@ -40,6 +40,7 @@ extern s32 D_8035A3D8(u8);
 extern s32 D_8038CC14;
 extern s32 func_8012C6B4();
 extern s32 func_80224AC4();
+#define func_8035A380 func_8035A380__decl
 extern s32 func_8035A380(u8, void *);
 extern s32 func_8035A3D8(u8, void *);
 extern s32 func_8035A434(void *arg0);
@@ -1147,11 +1148,30 @@ void func_8035A310(func_8035A310_Arg *arg0, s32 arg1) {
     func_80005700();
 }
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035A380.s {"functions":["func_8035A380"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035A380.s")
+#undef func_8035A380
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035A3D8.s {"functions":["func_8035A3D8"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035A3D8.s")
+s32 func_8035A380(u8 arg0) {
+    switch (arg0) {
+    case 20:
+    case 21:
+        return 1;
+    case 22:
+    case 23:
+        return 2;
+    case 26:
+    case 27:
+        return 3;
+    case 28:
+    case 29:
+        return 4;
+    default:
+        return 0;
+    }
+}
+#define func_8035A380 func_8035A380__decl
+
+/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_c38f0ce62b3bed81.s {"functions":["func_8035A3D8"],"rodata":[],"rodata_bytes":[2151194624,8576032,16]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_c38f0ce62b3bed81.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035A428.s")
 
@@ -1392,8 +1412,8 @@ void func_8035A914(s32 arg0, s32 arg1) {
 }
 #undef func_8035A7F4
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035A938.s {"functions":["func_8035A938"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035A938.s")
+/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_88632a094b3e8f00.s {"functions":["func_8035A938"],"rodata":[],"rodata_bytes":[2151194640,8576048,36]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_88632a094b3e8f00.s")
 
 
 
@@ -1446,9 +1466,9 @@ void func_8035AA44(func_8035AA44_Struct *arg0, s32 arg1) {
     arg0->unk4C = 0;
     func_8035A938();
     if (arg0->unkC->unk36 != 0x148) {
-        func_801CE4D4(arg0, 0xD, arg0->unk6C, arg0->unk70, arg0->unk74, (s32) arg0->unk34, (s32) arg0->unk35, (s32) arg0->unk36, 0xFF, 0, (s32) arg0->unk38, (s32) arg0->unk39, (s32) arg0->unk3A, 0xFF, 0, 1, 0x18, D_8038A034, 5);
+        func_801CE4D4(arg0, 0xD, arg0->unk6C, arg0->unk70, arg0->unk74, (s32) arg0->unk34, (s32) arg0->unk35, (s32) arg0->unk36, 0xFF, 0, (s32) arg0->unk38, (s32) arg0->unk39, (s32) arg0->unk3A, 0xFF, 0, 1, 0x18, (0.10000000149011612f), 5);
     }
-    func_801CE4D4(arg0, 0x1B, arg0->unk6C, arg0->unk70, arg0->unk74, (s32) arg0->unk34, (s32) arg0->unk35, (s32) arg0->unk36, 0xFF, 0, (s32) arg0->unk38, (s32) arg0->unk39, (s32) arg0->unk3A, 0xFF, 0, 1, 0xA, D_8038A038, 5);
+    func_801CE4D4(arg0, 0x1B, arg0->unk6C, arg0->unk70, arg0->unk74, (s32) arg0->unk34, (s32) arg0->unk35, (s32) arg0->unk36, 0xFF, 0, (s32) arg0->unk38, (s32) arg0->unk39, (s32) arg0->unk3A, 0xFF, 0, 1, 0xA, (0.009999999776482582f), 5);
     arg0->unk7D = 0;
     func_800058DC(arg0, (void *) func_8035ABAC);
 }
@@ -1506,13 +1526,13 @@ void func_8035ABAC(func_8035ABAC_Struct *arg0, s32 arg1) {
             *(u8 *)(D_8038CC14 + 0x31) = 1;
         }
         func_8035C638(arg0);
-        func_801CE4D4(arg0, 0x11, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xC0, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xC0, 0, 0xA, 0x28, D_8038A03C, 1);
+        func_801CE4D4(arg0, 0x11, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xC0, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xC0, 0, 0xA, 0x28, (0.004999999888241291f), 1);
         if (arg0->unkC->unk36 == 0x148) {
-            func_801CE4D4(arg0, 0x1F, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xFF, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xFF, 0, 1, 0x18, D_8038A040, 5);
-            func_801CE4D4(arg0, 0x20, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xFF, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xFF, 0, 1, 0x1E, D_8038A044, 1);
+            func_801CE4D4(arg0, 0x1F, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xFF, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xFF, 0, 1, 0x18, (0.019999999552965164f), 5);
+            func_801CE4D4(arg0, 0x20, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xFF, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xFF, 0, 1, 0x1E, (0.029999999329447746f), 1);
         } else {
-            func_801CE4D4(arg0, 0x1D, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xFF, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xFF, 0, 1, 0x18, D_8038A048, 5);
-            func_801CE4D4(arg0, 0x1E, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xFF, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xFF, 0, 1, 0x1E, D_8038A04C, 1);
+            func_801CE4D4(arg0, 0x1D, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xFF, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xFF, 0, 1, 0x18, (0.009999999776482582f), 5);
+            func_801CE4D4(arg0, 0x1E, arg0->unk80, arg0->unk84, arg0->unk88, arg0->unk34, arg0->unk35, arg0->unk36, 0xFF, 0, arg0->unk38, arg0->unk39, arg0->unk3A, 0xFF, 0, 1, 0x1E, (0.009999999776482582f), 1);
         }
         func_800058DC(arg0, func_8035AF30);
     }
@@ -1625,8 +1645,8 @@ void *func_8035AFEC(s32 arg0, u8 arg1)
 #undef D_801BBBF0
 #define func_8035AFEC func_8035AFEC__decl
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035B0E0.s {"functions":["func_8035B0E0"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035B0E0.s")
+/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_e67d922f55265386.s {"functions":["func_8035B0E0"],"rodata":[],"rodata_bytes":[2151194704,8576112,20]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_e67d922f55265386.s")
 
 
 struct func_8035B234_Struct {
@@ -1658,8 +1678,8 @@ void func_8035B270(struct func_8035B270_S0 *arg0, s32 arg1) {
         ((u8 *)D_8038CC14)[0x31] = 2;
     }
     if (arg0->f3E == 0) {
-        func_801CE4D4(arg0, 0x21, p->f4, p->f8, p->fC, 0xFF, 0xFF, 0x40, 0xC0, 0, 0xFF, 0x20, 0, 0xFF, 0, 0x20, 0x32, D_8038A064, 2);
-        func_801CE4D4(arg0, 0x22, p->f4, p->f8, p->fC, 0xFF, 0xFF, 0x40, 0xC0, 0, 0xFF, 0x20, 0, 0xFF, 0, 0xA, 0x32, D_8038A068, 1);
+        func_801CE4D4(arg0, 0x21, p->f4, p->f8, p->fC, 0xFF, 0xFF, 0x40, 0xC0, 0, 0xFF, 0x20, 0, 0xFF, 0, 0x20, 0x32, (0.10000000149011612f), 2);
+        func_801CE4D4(arg0, 0x22, p->f4, p->f8, p->fC, 0xFF, 0xFF, 0x40, 0xC0, 0, 0xFF, 0x20, 0, 0xFF, 0, 0xA, 0x32, (0.009999999776482582f), 1);
     }
     if (arg0->f3E++ >= 0x33) {
         func_800058DC(arg0, func_8035B234);
@@ -1715,11 +1735,11 @@ void func_8035B438(func_8035B438_Struct *arg0, s32 arg1) {
 
     v = arg0->unkC->unk24->unk2C;
     if (arg0->unk3E == 1) {
-        func_801CE4D4(arg0, 0x23, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0x80, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, 0xA, 0x32, D_8038A06C, 1);
+        func_801CE4D4(arg0, 0x23, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0x80, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, 0xA, 0x32, (0.05000000074505806f), 1);
     }
     if (arg0->unk3E++ >= 5) {
-        func_801CE4D4(arg0, 0x2D, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0x80, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, 1, 0x1E, D_8038A070, 4);
-        func_801CE4D4(arg0, 0x24, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, 1, 0x28, D_8038A074, 4);
+        func_801CE4D4(arg0, 0x2D, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0x80, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, 1, 0x1E, (0.009999999776482582f), 4);
+        func_801CE4D4(arg0, 0x24, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, 1, 0x28, (0.009999999776482582f), 4);
         arg0->unk3E = 0;
         func_800058DC(arg0, func_8035B650);
     }
@@ -1758,8 +1778,8 @@ void func_8035B650(func_8035B650_StructA *arg0, s32 arg1)
   t = 8;
   if (c)
   {
-    func_801CE4D4(arg0, 0xC, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, t, 0x1C, D_8038A078, 1);
-    func_801CE4D4(arg0, 0x26, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, 0xA, 0x1E, D_8038A07C, 4);
+    func_801CE4D4(arg0, 0xC, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, t, 0x1C, (0.009999999776482582f), 1);
+    func_801CE4D4(arg0, 0x26, v->unk4, v->unk8, v->unkC, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x80, 0xA0, 0xC0, 0xFF, 0, 0xA, 0x1E, (0.009999999776482582f), 4);
     arg0->unk3E = 0;
     func_800058DC(arg0, func_8035B820);
   }
@@ -1819,7 +1839,7 @@ void func_8035B864(func_8035B864_Arg *arg0, s32 arg1) {
         func_802254F8(arg0, 0x32, 0);
     }
     if (arg0->unk3E == 0) {
-        func_801CE4D4(arg0, 0x23, temp->unk4, temp->unk8, temp->unkC, 0xA0, 0x40, 0xFF, 0xFF, 0x80, 0x80, 0xA0, 0xC0, 0xFF, 0x20, 0x18, 0x32, D_8038A080, 1);
+        func_801CE4D4(arg0, 0x23, temp->unk4, temp->unk8, temp->unkC, 0xA0, 0x40, 0xFF, 0xFF, 0x80, 0x80, 0xA0, 0xC0, 0xFF, 0x20, 0x18, 0x32, (0.10000000149011612f), 1);
     }
     if (arg0->unk3E++ >= 0x33) {
         func_800058DC(arg0, func_8035B234);
@@ -1871,16 +1891,16 @@ void func_8035B9AC(func_8035B9AC_Arg *arg0, s32 arg1) {
     sp9C = h->unk24->p;
     func_80223B2C((s32)h, (func_80358C6C_Out *)&sp88, *(func_80358C6C_Vec6 *)&h->unk5C->a, *(func_80358C6C_Vec6 *)&h->unk5C->b);
     big = sp88.unkC < sp88.unk8 ? sp88.unk8 : sp88.unkC;
-    big = (f32)((f64)big * D_8038A088);
-    if ((f64)big < D_8038A090) {
-        big = D_8038A098;
+    big = (f32)((f64)big * (0.0018));
+    if ((f64)big < (0.01)) {
+        big = (0.009999999776482582f);
     }
     arg0->unk6C = sp9C->unk4 + sp88.unk0;
     arg0->unk70 = sp9C->unk8;
     arg0->unk74 = sp9C->unkC + sp88.unk4;
-    func_801CE1C8(arg0, 0x28, *(s32 *)&arg0->unk6C, *(s32 *)&arg0->unk70, arg0->unk74, 0xFF, 0xFF, 0xFF, 0xC0, 0xFF, 0xFF, 0xFF, 0, 0x4D, 0x73, 0xA5, 0xFF, 0x4D, 0x73, 0xA5, 0, 6, 0x3C, big, D_8038A09C, big, 0.0f, 4);
-    func_801CE4D4(arg0, 0x2A, *(s32 *)&arg0->unk6C, *(s32 *)&arg0->unk70, arg0->unk74, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x4D, 0x73, 0xA5, 0xFF, 0, 3, 0x32, D_8038A0A0, 5);
-    func_801CE1C8(arg0, 0x29, *(s32 *)&arg0->unk6C, *(s32 *)&arg0->unk70, arg0->unk74, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 2, 0x28, D_8038A0A4, D_8038A0A4, D_8038A0A4, 0.0f, 5);
+    func_801CE1C8(arg0, 0x28, *(s32 *)&arg0->unk6C, *(s32 *)&arg0->unk70, arg0->unk74, 0xFF, 0xFF, 0xFF, 0xC0, 0xFF, 0xFF, 0xFF, 0, 0x4D, 0x73, 0xA5, 0xFF, 0x4D, 0x73, 0xA5, 0, 6, 0x3C, big, (0.009999999776482582f), big, 0.0f, 4);
+    func_801CE4D4(arg0, 0x2A, *(s32 *)&arg0->unk6C, *(s32 *)&arg0->unk70, arg0->unk74, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x4D, 0x73, 0xA5, 0xFF, 0, 3, 0x32, (0.009999999776482582f), 5);
+    func_801CE1C8(arg0, 0x29, *(s32 *)&arg0->unk6C, *(s32 *)&arg0->unk70, arg0->unk74, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 2, 0x28, (0.05000000074505806f), (0.05000000074505806f), (0.05000000074505806f), 0.0f, 5);
     func_802254F8(arg0, 0x3C, 4);
     arg0->unk3E = 0;
     func_800058DC(arg0, func_8035BCCC);
@@ -1932,13 +1952,13 @@ void func_8035BD6C(func_8035BD6C_O *arg0, s32 arg1) {
 
     s = arg0->p->p->p;
     if (arg0->f3E == 0) {
-        func_801CE4D4(arg0, 0x2B, s->f4, s->f8, s->fC, 0xFF, 0xFF, 0, 0xFF, 0, 0xFF, 0, 0, 0xFF, 0, 0xC, 0x19, D_8038A0A8, 1);
+        func_801CE4D4(arg0, 0x2B, s->f4, s->f8, s->fC, 0xFF, 0xFF, 0, 0xFF, 0, 0xFF, 0, 0, 0xFF, 0, 0xC, 0x19, (0.07000000029802322f), 1);
         func_802254F8(arg0, 0x19, 7);
         arg0->f3C++;
     }
     if (arg0->f3E == 0xF) {
-        D_801CE4D4(arg0, 0x2C, s->f4, *(f32 *)&s->f8 + 10.0, s->fC, 0xFF, 0xFF, 0, 0xFF, 0, 0xFF, 0, 0, 0xFF, 0, 1, 0x1E, D_8038A0AC, 1);
-        func_801CE4D4(arg0, 0x2D, s->f4, s->f8, s->fC, 0xFF, 0xFF, 0, 0x80, 0, 0xFF, 0, 0, 0xFF, 0, 1, 0x28, D_8038A0B0, 4);
+        D_801CE4D4(arg0, 0x2C, s->f4, *(f32 *)&s->f8 + 10.0, s->fC, 0xFF, 0xFF, 0, 0xFF, 0, 0xFF, 0, 0, 0xFF, 0, 1, 0x1E, (0.20000000298023224f), 1);
+        func_801CE4D4(arg0, 0x2D, s->f4, s->f8, s->fC, 0xFF, 0xFF, 0, 0x80, 0, 0xFF, 0, 0, 0xFF, 0, 1, 0x28, (0.009999999776482582f), 4);
     }
     c = arg0->f3E++ >= 0x15;
     if (c) {
@@ -2088,8 +2108,8 @@ void func_8035C11C(func_8035C11C_Obj *arg0, s32 arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035C230.s {"functions":["func_8035C230"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035C230.s")
+/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_117088223772e81b.s {"functions":["func_8035C230"],"rodata":[],"rodata_bytes":[2151194804,8576212,44]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_117088223772e81b.s")
 
 
 #undef func_8035A5B0
@@ -2119,21 +2139,14 @@ static const unsigned char rodata_80358820[] = {
     0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0,
     0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0,
     0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0,
-    0x80, 0x35, 0x97, 0x90, 0x80, 0x35, 0x97, 0x90, 0x80, 0x35, 0xA3, 0xAC, 0x80, 0x35, 0xA3, 0xAC,
-    0x80, 0x35, 0xA3, 0xB4, 0x80, 0x35, 0xA3, 0xB4, 0x80, 0x35, 0xA3, 0xCC, 0x80, 0x35, 0xA3, 0xCC,
-    0x80, 0x35, 0xA3, 0xBC, 0x80, 0x35, 0xA3, 0xBC, 0x80, 0x35, 0xA3, 0xC4, 0x80, 0x35, 0xA3, 0xC4,
-    0x80, 0x35, 0xA4, 0x00, 0x80, 0x35, 0xA4, 0x08, 0x80, 0x35, 0xA4, 0x28, 0x80, 0x35, 0xA4, 0x10,
-    0x80, 0x35, 0xA4, 0x18, 0x80, 0x35, 0xA4, 0x00, 0x80, 0x35, 0xA4, 0x08, 0x80, 0x35, 0xA4, 0x28,
-    0x80, 0x35, 0xA9, 0xB0, 0x80, 0x35, 0xA9, 0x5C, 0x80, 0x35, 0xA9, 0x84, 0x80, 0x35, 0xA9, 0xE0,
-    0x80, 0x35, 0xAA, 0x14, 0x3D, 0xCC, 0xCC, 0xCD, 0x3C, 0x23, 0xD7, 0x0A, 0x3B, 0xA3, 0xD7, 0x0A,
-    0x3C, 0xA3, 0xD7, 0x0A, 0x3C, 0xF5, 0xC2, 0x8F, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
-    0x80, 0x35, 0xB2, 0x08, 0x80, 0x35, 0xB1, 0x6C, 0x80, 0x35, 0xB1, 0x90, 0x80, 0x35, 0xB1, 0xB4,
-    0x80, 0x35, 0xB1, 0xD8, 0x3D, 0xCC, 0xCC, 0xCD, 0x3C, 0x23, 0xD7, 0x0A, 0x3D, 0x4C, 0xCC, 0xCD,
-    0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
-    0x3D, 0xCC, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x5D, 0x7D, 0xBF, 0x48, 0x7F, 0xCB, 0x92,
-    0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
-    0x3C, 0x23, 0xD7, 0x0A, 0x3D, 0x4C, 0xCC, 0xCD, 0x3D, 0x8F, 0x5C, 0x29, 0x3E, 0x4C, 0xCC, 0xCD,
-    0x3C, 0x23, 0xD7, 0x0A, 0x80, 0x35, 0xC4, 0x20, 0x80, 0x35, 0xC4, 0x18, 0x80, 0x35, 0xC4, 0x20,
-    0x80, 0x35, 0xC4, 0x18, 0x80, 0x35, 0xC4, 0x20, 0x80, 0x35, 0xC4, 0x18, 0x80, 0x35, 0xC4, 0x20,
-    0x80, 0x35, 0xC4, 0x18, 0x80, 0x35, 0xC4, 0x20, 0x80, 0x35, 0xC4, 0x18, 0x00, 0x00, 0x00, 0x00,
+    0x80, 0x35, 0x97, 0x90, 0x80, 0x35, 0x97, 0x90,
 };
+/* hh-owned-pool func_8035A380 80389FD8 8038A000 */
+/* hh-owned-pool func_8035AA44 8038A034 8038A03C */
+/* hh-owned-pool func_8035ABAC 8038A03C 8038A050 */
+/* hh-owned-pool func_8035B270 8038A064 8038A06C */
+/* hh-owned-pool func_8035B438 8038A06C 8038A078 */
+/* hh-owned-pool func_8035B650 8038A078 8038A080 */
+/* hh-owned-pool func_8035B864 8038A080 8038A084 */
+/* hh-owned-pool func_8035B9AC 8038A088 8038A0A8 */
+/* hh-owned-pool func_8035BD6C 8038A0A8 8038A0B4 */

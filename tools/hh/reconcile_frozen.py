@@ -810,6 +810,12 @@ if __name__ == "__main__" and sys.argv[1] == "scan":
             key = "%s/%s" % (seg, cf)
             out[key] = dict(seg=seg, cfile=cf, text=text, accepted=acc, rejected=rej, registered=sorted(old),
                             attempts={n: byfile[(seg, cf)][n] for n in acc})
+            # Preserve finished units when a long inventory scan is interrupted.
+            # An atomic replacement prevents readers seeing half a source file.
+            checkpoint = sys.argv[3] + '.tmp'
+            with open(checkpoint, 'w') as fh:
+                json.dump(out, fh, indent=1)
+            os.replace(checkpoint, sys.argv[3])
             print(key, "accepted", sorted(acc.items()), "rejected", len(rej), flush=True)
     json.dump(out, open(sys.argv[3], "w"), indent=1)
     print(sum(len(v["accepted"]) for v in out.values()), "accepted,", sum(len(v["rejected"]) for v in out.values()), "rejected")

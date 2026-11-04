@@ -697,8 +697,10 @@ def _seg_bss():
     for l in open("hybridheaven.yaml"):
         m = re.match(r"  - name: (\w+)", l)
         if m: cur = m.group(1); continue
-        m = re.match(r"\s+- \{ type: bss, vram: 0x([0-9A-F]+)", l)
-        if m and cur: out[cur] = int(m.group(1), 16)
+        m = re.match(r"\s+- \{ type: \.?bss, vram: 0x([0-9A-F]+)", l)
+        # A split BSS has several named/generic blocks. Only the first
+        # boundary ends readonly storage; later blocks cannot extend it.
+        if m and cur: out.setdefault(cur, int(m.group(1), 16))
     # Also bound the last per-file readonly subsegment in overlays with no BSS.
     for f in json.load(open("build/expanded.json"))["files"]:
         if "exp_len" in f:
@@ -953,7 +955,7 @@ def run(cands, new_keys, every_file=False):
     kept, rejected = set(), dict(unbuildable)
     byname = {"%s/%s" % (j[0], j[1]): j for j in jobs}
     lost = lambda fname, rej: sorted(n for n in rej if (fname.split("/")[0], n) not in new_keys)
-    with Pool(max(1, os.cpu_count() - 2)) as p:
+    with Pool(int(os.environ.get('SRCBUILD_JOBS', max(1, os.cpu_count() - 2)))) as p:
         results = list(p.imap_unordered(build_one, jobs))
     for i, (fname, snips, rej, problem) in enumerate(results):
         if lost(fname, rej):

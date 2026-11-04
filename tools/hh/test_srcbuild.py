@@ -11,6 +11,18 @@ def blob(text):
 
 
 class PreservationTests(unittest.TestCase):
+    def test_split_bss_bounds_rodata_at_first_block(self):
+        config = ('  - name: test\n'
+                  '      - { type: bss, vram: 0x80000040 }\n'
+                  '      - { type: .bss, vram: 0x80000060, name: test/80000000 }\n'
+                  '      - { type: bss, vram: 0x80000080 }\n'
+                  '  - name: owned\n'
+                  '      - { type: .bss, vram: 0x80000020, name: owned/80000000 }\n')
+        def fake_open(path):
+            return io.StringIO(config if path == 'hybridheaven.yaml' else '{"files": []}')
+        with patch.object(S, 'open', side_effect=fake_open, create=True):
+            self.assertEqual(S._seg_bss(), {'test': 0x80000040, 'owned': 0x80000020})
+
     def test_all_uses_configured_code_units_not_generated_scratch_dirs(self):
         config = ('      - [0x100, c, main/80000000]\n'
                   '      - [0x120, .rodata, main/80000000]\n'

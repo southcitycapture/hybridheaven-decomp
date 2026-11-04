@@ -245,12 +245,12 @@ s32 func_801E1E9C(s32 arg0, s32 arg1) {
 
 
 s32 func_801E1EE8(s32 arg0, s32 arg1) {
-    f32 a = D_801EB2F8;
-    f32 b = D_801EB2FC;
-    f32 c = D_801EB300;
-    f32 d = D_801EB304;
+    f32 a = (-38.29999923706055f);
+    f32 b = (23.299999237060547f);
+    f32 c = (-38.400001525878906f);
+    f32 d = (23.100000381469727f);
 
-    if (D_8038C17C(0.0f, 1.0f, a, b, D_801EB308, a, b, D_801EB30C, c, d, D_801EB310, c, d, D_801EB314, D_801EB318, D_801EB31C) != 0) {
+    if (D_8038C17C(0.0f, 1.0f, a, b, (182.39999389648438f), a, b, (183.8000030517578f), c, d, (208.6999969482422f), c, d, (208.6999969482422f), (33.29999923706055f), (33.29999923706055f)) != 0) {
         return 6;
     }
     return 5;
@@ -269,9 +269,9 @@ s32 func_801E1FBC(s32 arg0, s32 arg1) {
 
 
 s32 func_801E1FCC(s32 arg0, s32 arg1) {
-    func_8038BE98(D_801EB320);
-    func_8038BD50(D_801EB324, D_801EB328, 0x42613333);
-    D_8038BD88(D_801EB32C, 10.5f, 0x42CA6666);
+    func_8038BE98((33.29999923706055f));
+    func_8038BD50((0.4000000059604645f), (9.100000381469727f), 0x42613333);
+    D_8038BD88((0.30000001192092896f), 10.5f, 0x42CA6666);
     return 9;
 }
 
@@ -299,9 +299,9 @@ s32 func_801E2088(s32 arg0, s32 arg1) {
 
 
 s32 func_801E20DC(s32 arg0, s32 arg1) {
-    func_8038BE98(D_801EB330);
-    func_8038BD50(18.5f, D_801EB334, 0x4348999A);
-    D_8038BD88(D_801EB338, 25.0f, 0x43508000);
+    func_8038BE98((33.29999923706055f));
+    func_8038BD50(18.5f, (25.299999237060547f), 0x4348999A);
+    D_8038BD88((32.70000076293945f), 25.0f, 0x43508000);
     return 0xC;
 }
 
@@ -337,9 +337,9 @@ s32 func_801E21A8(s32 arg0, s32 arg1) {
 
 s32 func_801E21B8(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0x16E360) != 0) {
-        func_8038BE98(D_801EB33C);
-        func_8038BD50(D_801EB340, D_801EB344, 0x433A0000);
-        D_8038BD88(D_801EB348, D_801EB34C, 0x434F0000);
+        func_8038BE98((33.29999923706055f));
+        func_8038BD50((26.299999237060547f), (10.800000190734863f), 0x433A0000);
+        D_8038BD88((35.900001525878906f), (15.899999618530273f), 0x434F0000);
         return 0x10;
     }
     return 0xF;
@@ -360,8 +360,19 @@ s32 func_801E2234(s32 arg0, s32 arg1) {
     return 0x10;
 }
 
-/* hh-block asm/nonmatchings/file046/801E1BE0/_mrg_keep_tail_386b2140f8783da5.s {"functions":["func_801E2280"],"rodata":[],"rodata_bytes":[2149495544,8066056,52]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file046/801E1BE0/_mrg_keep_tail_386b2140f8783da5.s")
+
+
+
+
+s32 func_801E2280(s32 arg0, s32 arg1) {
+    if (D_8038C17C(0.0f, 2.0f, 26.3f, 10.8f,
+                   186.0f, 26.3f, 18.8f, 186.0f,
+                   35.9f, 15.9f, 207.0f, 35.9f,
+                   24.0f, 207.0f, 33.3f, 33.3f) != 0) {
+        return 0x12;
+    }
+    return 0x11;
+}
 
 
 s32 func_801E2340(s32 arg0, s32 arg1) {
@@ -887,8 +898,8 @@ s32 func_801E35B0(s32 arg0, s32 arg1) {
     return 1;
 }
 
-/* hh-block asm/nonmatchings/file046/801E1BE0/_mrg_keep_tail_a54b386c19a6a522.s {"functions":["func_801E361C"],"rodata":[],"rodata_bytes":[2149495596,8066108,164]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file046/801E1BE0/_mrg_keep_tail_a54b386c19a6a522.s")
+/* hh-block asm/nonmatchings/file046/801E1BE0/_mrg_keep_tail_0810bf2740a592bd.s {"functions":["func_801E361C"],"rodata":[],"rodata_bytes":[2149495656,8066168,104]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file046/801E1BE0/_mrg_keep_tail_0810bf2740a592bd.s")
 
 extern struct func_801E4D04_StructOuter *D_8038D8D0;
 struct func_801E4D04_StructInner {
@@ -4380,6 +4391,8 @@ s32 func_801E945C(s32 arg0, s32 arg1) {
 
 /* Original readonly objects; named loads retain their original addresses. */
 
+
+
 static const unsigned char rodata_801E1BE0[] = {
     0x40, 0xDD, 0xA1, 0xCB, 0xBF, 0xF3, 0x33, 0x33, 0xBF, 0x99, 0x99, 0x9A, 0x42, 0x05, 0x33, 0x33,
     0x41, 0x0B, 0x33, 0x33, 0x41, 0x09, 0x99, 0x9A, 0x41, 0x66, 0x66, 0x66, 0x42, 0x14, 0xCC, 0xCD,
@@ -4387,3 +4400,8 @@ static const unsigned char rodata_801E1BE0[] = {
     0x41, 0x79, 0x99, 0x9A,
 };
 /* hh-owned-pool func_801E1DD8 801EB2D4 801EB2F8 */
+/* hh-owned-pool func_801E1EE8 801EB2F8 801EB320 */
+/* hh-owned-pool func_801E1FCC 801EB320 801EB330 */
+/* hh-owned-pool func_801E20DC 801EB330 801EB33C */
+/* hh-owned-pool func_801E21B8 801EB33C 801EB350 */
+/* hh-owned-pool func_801E2280 801EB350 801EB368 */
