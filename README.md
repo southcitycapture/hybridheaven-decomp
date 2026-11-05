@@ -19,7 +19,7 @@ good tooling get on real work, and what it costs. Every function is checked by t
 | Data | 94.32% | 1,005,404 of 1,065,936 bytes |
 | Fully linked | 12.96% | 174 of 538 source files complete |
 
-_Updated 2026-11-05 15:44 UTC by the publishing loop._
+_Updated 2026-11-05 21:44 UTC by the publishing loop._
 
 ![Progress over time, with the Christmas forecast](docs/img/progress.svg)
 

@@ -2,7 +2,7 @@
 
 Progress as of 2026-11-05: **78.71% of the code** (15284 of 15891 functions, including duplicates).
 
-**22984 model runs, $6734.18 API-equivalent in total** (local and cloud). Of the **15230 functions now in C**, **7115 were matched by AI workers** (≈ $0.946 per function, failures included), **7574 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 261 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**22987 model runs, $6734.18 API-equivalent in total** (local and cloud). Of the **15230 functions now in C**, **7115 were matched by AI workers** (≈ $0.946 per function, failures included), **7574 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 261 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -439,7 +439,7 @@ Progress as of 2026-11-05: **78.71% of the code** (15284 of 15891 functions, inc
 | `unify_loop0249` | unify_loop0249 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0250` | unify_loop0250 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0251` | unify_loop0251 | unify (no model) | 9 | 0 | 0% | $0.00 | – |  |
-| `localU1` | localU1 | strata/qwen3.8-flash-next | 142 | 14 | 10% | $0.00 | – |  |
 | `terraW0` | terraW0 | openai/gpt-6.1-terra | 260 | 51 | 20% | $0.00 | – |  |
+| `localU1` | localU1 | strata/qwen3.8-flash-next | 145 | 14 | 10% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
