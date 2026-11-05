@@ -2116,8 +2116,119 @@ void func_80245564(func_80245564_Struct *arg0, s32 arg1) {
 #undef D_80247FDC
 #undef func_802456C8
 
-/* hh-block asm/nonmatchings/file054/802408F0/_mrg_keep_tail_3e7c70d3037c5ec4.s {"functions":["func_802456C8"],"rodata":[],"rodata_bytes":[2149877544,8246920,40]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/_mrg_keep_tail_3e7c70d3037c5ec4.s")
+
+
+#define D_801BBBF0 D_801BBBF0__func_802456C8
+#define D_80248018 D_80248018__func_802456C8
+#define D_80248728 D_80248728__func_802456C8
+#define D_80248730 D_80248730__func_802456C8
+#define D_80248738 D_80248738__func_802456C8
+#define D_8024873C D_8024873C__func_802456C8
+#define D_80248740 D_80248740__func_802456C8
+#define D_80248744 D_80248744__func_802456C8
+#define D_80248748 D_80248748__func_802456C8
+#define D_8024874C D_8024874C__func_802456C8
+#define func_80244874_Obj func_80244874_Obj__func_802456C8
+#define func_802458F0 func_802458F0__func_802456C8
+#define func_80246730_Struct func_80246730_Struct__func_802456C8
+struct func_80246730_Struct {
+    u8 pad0[4];
+    u16 unk4;
+    u8 pad6[0x34D - 6];
+    u8 unk34D;
+    u8 pad34E[0x3A6 - 0x34E];
+    u8 unk3A6;
+    u8 unk3A7;
+};
+extern struct func_80246730_Struct D_801BBBF0;
+typedef struct func_80244874_Obj {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad3E[0x90 - 0x3E];
+    u8 unk90;
+} func_80244874_Obj;
+void func_802458F0(func_80244874_Obj *arg0, s32 arg1);
+
+
+typedef struct func_802456C8_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_802456C8_Struct;
+
+typedef struct func_802456C8_StructCamera {
+    u8 pad[0x1E8];
+    f32 unk1E8;
+    f32 unk1EC;
+    f32 unk1F0;
+    f32 unk1F4;
+    f32 unk1F8;
+    f32 unk1FC;
+} func_802456C8_StructCamera;
+
+extern u8 D_80248018[];
+extern f64 D_80248728;
+extern f64 D_80248730;
+extern f32 D_80248738;
+extern f32 D_8024873C;
+extern f32 D_80248740;
+extern f32 D_80248744;
+extern f32 D_80248748;
+extern f32 D_8024874C;
+
+#define CAMERA ((func_802456C8_StructCamera *)&D_801BBBF0)
+
+void func_802456C8(func_802456C8_Struct *arg0, s32 arg1) {
+    s32 timer;
+    f64 step;
+
+    timer = arg0->unk3C;
+    arg0->unk3C++;
+    if (arg0->unk3C >= 0x1000) {
+        arg0->unk3C -= 0x100;
+    }
+    func_8011AAF4(D_80248018, 0x7D2, arg0, 0, 1, 0.0f,
+                  CAMERA->unk1E8, CAMERA->unk1EC, CAMERA->unk1F0,
+                  0.0f, CAMERA->unk1F4, CAMERA->unk1F8, CAMERA->unk1FC,
+                  0.0f, 25.5f, -1, -1);
+    if (timer < 30) {
+        CAMERA->unk1E8 += (0.3766666666666667);
+        CAMERA->unk1EC += (0.08000000000000002);
+        CAMERA->unk1F0 += 0.0f;
+        CAMERA->unk1F4 += 0.0;
+        CAMERA->unk1F8 += 0.0;
+        CAMERA->unk1FC += 0.0;
+    }
+    if ((u32)(timer % 2) < 1U) {
+        step = 0.5;
+    } else {
+        step = -0.5;
+    }
+    CAMERA->unk1EC += step;
+    if (func_800178E8() && !func_80151790(D_80248804)) {
+        CAMERA->unk1E8 = (9.699999809265137f);
+        CAMERA->unk1EC = (8.600000381469727f);
+        CAMERA->unk1F0 = (-120.19999694824219f);
+        CAMERA->unk1F4 = (6.099999904632568f);
+        CAMERA->unk1F8 = (17.600000381469727f);
+        CAMERA->unk1FC = (-140.8000030517578f);
+        arg0->unk3C = 0;
+        func_800058DC(arg0, (void (*)(void))func_802458F0);
+    }
+}
+#undef CAMERA
+#undef D_801BBBF0
+#undef D_80248018
+#undef D_80248728
+#undef D_80248730
+#undef D_80248738
+#undef D_8024873C
+#undef D_80248740
+#undef D_80248744
+#undef D_80248748
+#undef D_8024874C
+#undef func_80244874_Obj
+#undef func_802458F0
+#undef func_80246730_Struct
 
 
 extern u8 D_80248054[];
@@ -2538,6 +2649,32 @@ void func_80246730(void) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_802408F0[] = {
     0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x00, 0x00, 0x00, 0x44, 0x2E, 0xC0, 0x00, 0xC0, 0x33, 0x33, 0x33,
     0xBF, 0x66, 0x66, 0x66, 0x40, 0x8C, 0xCC, 0xCD, 0x41, 0x1C, 0xCC, 0xCD, 0xC0, 0x33, 0x33, 0x33,
@@ -2585,5 +2722,6 @@ static const unsigned char rodata_802408F0[] = {
 /* hh-owned-pool func_8024506C 802486EC 80248704 */
 /* hh-owned-pool func_80245250 80248704 80248718 */
 /* hh-owned-pool func_8024541C 80248718 80248728 */
+/* hh-owned-pool func_802456C8 80248728 80248750 */
 /* hh-owned-pool func_802458F0 80248750 80248790 */
 /* hh-owned-pool func_80245E94 802487C8 80248800 */
