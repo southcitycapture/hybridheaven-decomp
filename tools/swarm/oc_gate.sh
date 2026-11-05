@@ -12,6 +12,10 @@ while pgrep -f "oc_[b]atch.sh" > /dev/null; do
     for f in $HOME/.oc/COOLDOWN*; do
       [ -f "$f" ] || continue
       read -r since model < "$f"; model=${model:-opencode/deepseek-v4.1-flash-free}
+      # Zach's own ChatGPT plan (openai/*, codex/*): a usage limit is never cleared automatically. 11-05: Terra lanes
+      # drained the week by 03:00 ET; Zach redeemed a reset credit for his own work and the probe reopened Terra on it.
+      # Clear the cooldown file by hand only when Zach says the lanes may use the plan again.
+      case $model in openai/*|codex/*) continue;; esac
       case $model in openrouter/*) OPENROUTER_API_KEY=$(tr -d '\n\r ' < $HOME/.oc/openrouter.key); export OPENROUTER_API_KEY;; esac
       if [ "${model%%/*}" = codex ]; then
         probe() { CODEX_HOME=$HOME/.cx timeout 90 $HOME/.local/bin/codex exec --skip-git-repo-check --sandbox read-only \
