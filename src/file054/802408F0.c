@@ -2262,8 +2262,129 @@ void func_802458F0(func_80244874_Obj *arg0, s32 arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file054/802408F0/_mrg_keep_tail_9f8237e6270c8203.s {"functions":["func_80245AF4"],"rodata":[],"rodata_bytes":[2149877648,8247024,56]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file054/802408F0/_mrg_keep_tail_9f8237e6270c8203.s")
+
+#define D_801BBBF0 D_801BBBF0__func_80245AF4
+#define D_80248090 D_80248090__func_80245AF4
+#define func_80244874_Args func_80244874_Args__func_80245AF4
+#define func_80244874_Inner func_80244874_Inner__func_80245AF4
+#define func_80244874_Node func_80244874_Node__func_80245AF4
+#define func_802456C8_StructCamera func_802456C8_StructCamera__func_80245AF4
+#define func_80245E94 func_80245E94__func_80245AF4
+#define func_802465F8 func_802465F8__func_80245AF4
+#define func_80246730_Struct func_80246730_Struct__func_80245AF4
+#define CAMERA ((func_802456C8_StructCamera *)&D_801BBBF0)
+struct func_80246730_Struct {
+    u8 pad0[4];
+    u16 unk4;
+    u8 pad6[0x34D - 6];
+    u8 unk34D;
+    u8 pad34E[0x3A6 - 0x34E];
+    u8 unk3A6;
+    u8 unk3A7;
+};
+extern struct func_80246730_Struct D_801BBBF0;
+typedef struct func_802456C8_StructCamera {
+    u8 pad[0x1E8];
+    f32 unk1E8;
+    f32 unk1EC;
+    f32 unk1F0;
+    f32 unk1F4;
+    f32 unk1F8;
+    f32 unk1FC;
+} func_802456C8_StructCamera;
+#define CAMERA ((func_802456C8_StructCamera *)&D_801BBBF0)
+typedef struct func_80244874_Inner {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+} func_80244874_Inner;
+typedef struct func_80244874_Node {
+    u8 pad0[0x22];
+    u8 unk22;
+    u8 pad23[0xD];
+    func_80244874_Inner *unk30;
+} func_80244874_Node;
+typedef struct func_80244874_Args {
+    u8 pad0[0xC];
+    func_80244874_Node *unkC;
+    func_80244874_Node *unk10;
+} func_80244874_Args;
+void func_80245E94(u8 *arg0, u8 *arg1);
+void func_802465F8(f32 arg0, f32 arg1, f32 arg2, f32 arg3);
+
+
+extern u8 D_80248090[];
+
+struct func_80245AF4_Obj {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad3E[0x98 - 0x3E];
+    f32 unk98;
+    f32 unk9C;
+};
+
+void func_80245AF4(struct func_80245AF4_Obj *arg0, func_80244874_Args *arg1) {
+    s32 sp5C;
+    f64 sp58;
+
+    sp5C = arg0->unk3C;
+    arg0->unk3C++;
+    if (sp5C < 0x2A) {
+        arg1->unkC->unk30->unk14 = (s16)(u32) arg0->unk98;
+        arg0->unk98 = arg0->unk98 + arg0->unk9C;
+        arg0->unk9C = (f32)((f64) arg0->unk9C + 0.7590000000000001);
+    }
+    if (sp5C >= 0x2A) {
+        if (sp5C == 0x2A) {
+            func_80020718(0x19F);
+        }
+        switch ((sp5C - 0x2A) % 12) {
+        case 0:
+            func_802465F8(7.0f, 11.0f, 44.0f, 0.3f);
+            break;
+        case 4:
+            func_802465F8(-17.0f, 11.0f, 45.0f, 0.3f);
+            break;
+        case 8:
+            func_802465F8(-2.0f, 18.0f, 47.0f, 0.3f);
+            break;
+        }
+    }
+    func_8011AAF4(&D_80248090, 0x83C, arg0, 0, 1, 0.0f, CAMERA->unk1E8, CAMERA->unk1EC, CAMERA->unk1F0, 0.0f, CAMERA->unk1F4, CAMERA->unk1F8, CAMERA->unk1FC, 0.0f, 29.5f, -1, -1);
+    CAMERA->unk1E8 = (f32)((f64) CAMERA->unk1E8 + -0.018333333333333333);
+    CAMERA->unk1EC = (f32)((f64) CAMERA->unk1EC + 0.1);
+    CAMERA->unk1F0 = (f32)((f64) CAMERA->unk1F0 + 0.35833333333333334);
+    CAMERA->unk1F4 = (f32)(f64) CAMERA->unk1F4;
+    CAMERA->unk1F8 = (f32)(f64) CAMERA->unk1F8;
+    CAMERA->unk1FC = (f32)(f64) CAMERA->unk1FC;
+    sp58 = (!(sp5C % 2)) ? 0.5 : -0.5;
+    CAMERA->unk1EC = (f32)((f64) CAMERA->unk1EC + sp58);
+    if (sp5C >= 0x3C) {
+        CAMERA->unk1E8 = 22.8f;
+        CAMERA->unk1EC = 1.9f;
+        CAMERA->unk1F0 = -125.7f;
+        CAMERA->unk1F4 = 5.9f;
+        CAMERA->unk1F8 = 18.4f;
+        CAMERA->unk1FC = -140.6f;
+        func_8015115C(D_80248800, D_802468A0);
+        arg0->unk3C = 0;
+        func_800058DC(arg0, (void (*)(void)) func_80245E94);
+    }
+}
+#undef CAMERA
+#undef D_801BBBF0
+#undef D_80248090
+#undef func_80244874_Args
+#undef func_80244874_Inner
+#undef func_80244874_Node
+#undef func_802456C8_StructCamera
+#undef func_80245E94
+#undef func_802465F8
+#undef func_80246730_Struct
 
 #define func_802460D0 func_802460D0__func_80245E94
 
@@ -2675,6 +2796,34 @@ void func_80246730(void) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Readonly constants retained after the last ASM donor became C. */
+
 static const unsigned char rodata_802408F0[] = {
     0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x00, 0x00, 0x00, 0x44, 0x2E, 0xC0, 0x00, 0xC0, 0x33, 0x33, 0x33,
     0xBF, 0x66, 0x66, 0x66, 0x40, 0x8C, 0xCC, 0xCD, 0x41, 0x1C, 0xCC, 0xCD, 0xC0, 0x33, 0x33, 0x33,
@@ -2724,4 +2873,5 @@ static const unsigned char rodata_802408F0[] = {
 /* hh-owned-pool func_8024541C 80248718 80248728 */
 /* hh-owned-pool func_802456C8 80248728 80248750 */
 /* hh-owned-pool func_802458F0 80248750 80248790 */
+/* hh-owned-pool func_80245AF4 80248790 802487C8 */
 /* hh-owned-pool func_80245E94 802487C8 80248800 */
