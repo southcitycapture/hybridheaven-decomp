@@ -10,7 +10,8 @@ B=$1; Q=queue/$B; [ -f "$Q/functions.txt" ] || exit 1
 export BATCH=$B INNER=run_one_oc.sh OC_MODEL=${LOCAL_MODEL:-strata/qwen3.8-flash-next} FROM=best INFILE=1 DIAG=1 LEARNINGS=1 LEVERS=1 WALLNOTE=1
 export OC_TIMEOUT=${OC_TIMEOUT:-5400} OC_IDLE=${OC_IDLE:-1200} OC_BACKOFF=120 CHECK_LIMIT=${CHECK_LIMIT:-40}
 while read -r FUNC SEG; do
-  [ -f "$Q/STOP" ] && { echo "$(date -u +%FT%H:%MZ) STOP file: stopping" >> "$Q/lane.log"; exit 0; }
+  # queue/localU1/STOP pauses every local batch (the workstation sessions use it for model swaps and Strata updates)
+  [ -f "$Q/STOP" ] || [ -f queue/localU1/STOP ] && { echo "$(date -u +%FT%H:%MZ) STOP file: stopping" >> "$Q/lane.log"; exit 0; }
   [ -z "$FUNC" ] && continue
   grep -q "\"func\": \"$FUNC\", \"segment\": \"$SEG\"" "$Q/results.jsonl" 2>/dev/null && continue   # resume
   [ -f "matched/$SEG/$FUNC.c" ] && continue                                                           # matched meanwhile
@@ -20,3 +21,20 @@ while read -r FUNC SEG; do
   tail -1 "$Q/results.jsonl" 2>/dev/null | cut -c1-200 >> "$Q/lane.log"
 done < "$Q/functions.txt"
 echo "$(date -u +%FT%H:%MZ) list finished" >> "$Q/lane.log"; touch "$Q/DONE"
+# Second pass (11-05): rerun the functions whose first run hit the OC_TIMEOUT cap (exit 124) and are still unmatched,
+# from their best attempt (FROM=best). exec keeps this process's flock, so it stays one lane.
+if [ -z "$PASS2" ]; then
+  P2=${B%[0-9]}2; mkdir -p "queue/$P2"
+  python3 - "$Q/results.jsonl" > "queue/$P2/functions.txt" <<'PY2'
+import json, os, sys
+seen = set()
+for l in open(sys.argv[1]):
+    try: r = json.loads(l)
+    except ValueError: continue
+    k = (r["func"], r["segment"])
+    if r.get("verified") == "FAIL" and str(r.get("exit")) == "124" and k not in seen and not os.path.exists("matched/%s/%s.c" % (k[1], k[0])):
+        seen.add(k); print("%s %s" % k)
+PY2
+  echo "$(date -u +%FT%H:%MZ) second pass: $(grep -c . "queue/$P2/functions.txt") capped functions -> $P2" >> "$Q/lane.log"
+  PASS2=1 exec "$0" "$P2"
+fi

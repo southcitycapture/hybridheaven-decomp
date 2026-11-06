@@ -532,6 +532,14 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
     for literals in modes:
         for prefix, sn in ([("context-", contextual)] if contextual != snippet else []) + [("", snippet)]:
             for how, cand in _insert_variants(seg, cfile, lines0, name, sn, loc0, literals):
+                # A raw readonly tail can outlive its last instruction donor.
+                # Promote it before borrowing another function's budget: a tiny
+                # neighbour may not have enough instructions for the whole tail.
+                promoted = orphan_lates(cand)
+                if promoted != cand:
+                    tag = ("named-" if not literals else "") + prefix + how + '-orphan-lates'
+                    annotated = _annotate(seg, cfile, promoted)
+                    if annotated is not None: yield tag, annotated
                 # Splitting a kept raw-tail donor creates a late-only twin even
                 # when the target itself had no migrated late literals. Its
                 # preceding ASM neighbour may be the only remaining budget.

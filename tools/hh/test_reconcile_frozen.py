@@ -7,6 +7,32 @@ S = R.S
 
 
 class ContextTests(unittest.TestCase):
+    def test_orphan_tail_can_promote_before_borrowing_tiny_neighbour(self):
+        data = ('.section .late_rodata\nnonmatching D_80000010\ndlabel D_80000010\n'
+                '/* 10 80000010 3F800000 */ .word 0x3F800000\n'
+                '/* 14 80000014 40000000 */ .word 0x40000000\n.section .text\n')
+        with tempfile.TemporaryDirectory(dir='build') as td:
+            tail = os.path.join(td, '_ro_tail.s')
+            neighbour = os.path.join(td, 'func_80000004.s')
+            with open(tail, 'w') as fh: fh.write(data)
+            with open(neighbour, 'w') as fh:
+                fh.write('.section .text\nglabel func_80000004\n jr $ra\n nop\n')
+            candidate = ('void func_80000000(void) {}\n'
+                         '#pragma GLOBAL_ASM("%s")\n#pragma GLOBAL_ASM("%s")\n' % (tail, neighbour))
+            with patch.object(R, 'locate', return_value=(0, [], [])), \
+                 patch.object(S, '_rd', side_effect=lambda p: data if p == tail else '.section .text\nglabel func_80000004\n jr $ra\n nop\n'), \
+                 patch.object(R, 'context_dependencies', side_effect=lambda s,c,n,t,*a:t), \
+                 patch.object(R, '_insert_variants', return_value=[('isolate', candidate)]), \
+                 patch.object(R, 'merge_kept_lates', side_effect=lambda s,c,t,b:t), \
+                 patch.object(R, '_annotate', side_effect=lambda s,c,t:t), \
+                 patch('rodata_owned.repartition', return_value=None):
+                variants = dict(R.insert_variants('test', 'file', '', 'func_80000000',
+                                                 'void func_80000000(void) {}', _file_alias=True))
+            promoted = variants['isolate-orphan-lates']
+            self.assertIn('static const u32 D_80000010__rodata[]', promoted)
+            self.assertNotIn('#pragma GLOBAL_ASM("%s")' % tail, promoted)
+            self.assertIn('#pragma GLOBAL_ASM("%s")' % neighbour, promoted)
+
     def test_merged_raw_range_recipe_survives_fresh_block_generation(self):
         import kept_blocks
         data = ('# hh-rodata-range 80000010 10 4\n.section .late_rodata\n'

@@ -56,6 +56,35 @@ while kill -0 $pid 2>/dev/null; do
 done
 wait $pid
 echo $? > exit.txt
+# Auto-nudge (11-05, local model only by default: OC_NUDGES): Qwen often ends its turn asking "continue?" with time
+# left (42 of 137 failed localU1 runs stopped early without a RESULT line). Re-prompt the same session, up to OC_NUDGES
+# times, inside the same OC_TIMEOUT budget; never after an idle kill, a timeout, a RESULT line or a standalone match.
+NUDGES=${OC_NUDGES:-$([ "${MODEL%%/*}" = strata ] && echo 2 || echo 0)}
+last_text() { "$HH/.venv/bin/python" -c '
+import json, sys
+last = ""
+for l in open("result.jsonl", errors="replace"):
+    try: p = (json.loads(l).get("part") or {})
+    except Exception: continue
+    if p.get("type") == "text" and p.get("text"): last = p["text"]
+print(last)'; }
+while [ "$NUDGES" -gt 0 ] && [ "$(cat exit.txt)" = 0 ] && [ ! -f .idle_killed ] && [ "${MODEL%%/*}" != codex ]; do
+  last_text | grep -q '^RESULT' && break
+  [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" attempt.c --seg "$SEG" 2>/dev/null | grep -q '^MATCH' && break
+  left=$(( ${OC_TIMEOUT:-1200} - ($(date +%s) - start) )); [ $left -lt 300 ] && break
+  sid=$(grep -o '"sessionID":"[^"]*"' result.jsonl | head -1 | cut -d'"' -f4); [ -z "$sid" ] && break
+  echo "$(date -Is) nudge ($left s left)" >> .nudges
+  timeout $left "$HOME/.local/bin/opencode" run --pure -m "$MODEL" ${OC_VARIANT:+--variant "$OC_VARIANT"} --format json --dir "$OW" \
+    --session "$sid" "Continue working on the task without asking: use ./check, keep improving attempt.c, and finish with the RESULT line when you are done or truly stuck." >> result.jsonl 2>> stderr.txt < /dev/null &
+  pid=$!
+  while kill -0 $pid 2>/dev/null; do
+    sleep 15
+    idle=$(( $(date +%s) - $(stat -c %Y result.jsonl 2>/dev/null || echo $start) ))
+    if [ $idle -gt $IDLE ]; then kill $pid 2>/dev/null; echo idle > .idle_killed; break; fi
+  done
+  wait $pid; echo $? > exit.txt
+  NUDGES=$((NUDGES - 1))
+done
 # provider trouble (rate limit, overload, quota) is not a failed match: record ERROR so the runner retries it
 checks_used=$(cat .check_calls 2>/dev/null || cat .checks 2>/dev/null || echo 0)
 api_err=0

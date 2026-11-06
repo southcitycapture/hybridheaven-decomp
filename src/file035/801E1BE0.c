@@ -1046,8 +1046,59 @@ s32 func_801E3C70(s32 arg0, s32 arg1) {
     return 1;
 }
 
-/* hh-block asm/nonmatchings/file035/801E1BE0/_mrg_keep_tail_7c3ab28a2e2b857a.s {"functions":["func_801E3CA4"],"rodata":[],"rodata_bytes":[2149485700,7748356,52]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/_mrg_keep_tail_7c3ab28a2e2b857a.s")
+
+
+#define D_8017AE98 D_8017AE98__func_801E3CA4
+#define D_801E8460 D_801E8460__func_801E3CA4
+#define D_8038D850 D_8038D850__func_801E3CA4
+#define D_8038D854 D_8038D854__func_801E3CA4
+#define func_80005E44 func_80005E44__func_801E3CA4
+#define func_80006214 func_80006214__func_801E3CA4
+#define func_8012C89C func_8012C89C__func_801E3CA4
+
+typedef struct { s32 words[4]; } func_801E3CA4_Config;
+typedef struct {
+    u8 pad0[4];
+    f32 x, y, z;
+    u8 pad10[2];
+    s16 angle;
+    u8 pad14[4];
+    f32 scaleX, scaleY, scaleZ;
+    u8 pad24[0xC];
+    void *resource;
+} func_801E3CA4_Transform;
+typedef struct { u8 pad0[0x2C]; func_801E3CA4_Transform *transform; } func_801E3CA4_Model;
+extern func_801E3CA4_Config D_801E8460;
+extern u8 D_8017AE98[];
+extern s32 D_8038D850;
+extern func_801E3CA4_Model **D_8038D854;
+extern void func_80005E44(s32, func_801E3CA4_Config *);
+extern void func_80006214(s32);
+extern void func_8012C89C(s32, s32, s32, s32);
+
+s32 func_801E3CA4(s32 arg0, s32 arg1) {
+    func_801E3CA4_Config config = D_801E8460;
+
+    func_80005E44(D_8038D850, &config);
+    func_80006214(D_8038D850);
+    func_8012C89C(D_8038D850, 0, 0x43E, 0);
+    (*D_8038D854)->transform->x = 0.0f;
+    (*D_8038D854)->transform->y = 0.0f;
+    (*D_8038D854)->transform->z = 0.0f;
+    (*D_8038D854)->transform->scaleX = 0.05f;
+    (*D_8038D854)->transform->scaleY = 0.05f;
+    (*D_8038D854)->transform->scaleZ = 0.05f;
+    (*D_8038D854)->transform->angle = 0;
+    (*D_8038D854)->transform->resource = D_8017AE98;
+    return 2;
+}
+#undef D_8017AE98
+#undef D_801E8460
+#undef D_8038D850
+#undef D_8038D854
+#undef func_80005E44
+#undef func_80006214
+#undef func_8012C89C
 
 
 s32 func_801E3DC0(s32 arg0, s32 arg1) {
@@ -1097,8 +1148,8 @@ s32 func_801E3E00(s32 arg0, s32 arg1) {
     return 1;
 }
 
-/* hh-block asm/nonmatchings/file035/801E1BE0/_mrg_keep_tail_dcf8710bc16590fe.s {"functions":["func_801E3F20"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/_mrg_keep_tail_dcf8710bc16590fe.s")
+/* hh-block asm/nonmatchings/file035/801E1BE0/_mrg_keep_tail_1aa02601fc628455.s {"functions":["func_801E3F20"],"rodata":[],"rodata_bytes":[2149485704,7748360,48]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file035/801E1BE0/_mrg_keep_tail_1aa02601fc628455.s")
 
 
 s32 func_801E46E4(s32 arg0, s32 arg1) {
@@ -3060,17 +3111,55 @@ s32 func_801E7EC8(s32 arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801E1BE0[] = {
     0x42, 0x80, 0xCC, 0xCD, 0x44, 0x0E, 0xC6, 0x66, 0x43, 0xBA, 0x33, 0x33, 0x41, 0x63, 0x33, 0x33,
     0x42, 0x87, 0x66, 0x66, 0x44, 0x04, 0x13, 0x33, 0x44, 0x04, 0x46, 0x66, 0x42, 0x6C, 0x66, 0x66,
     0x43, 0xFB, 0x19, 0x9A, 0x43, 0xC3, 0x26, 0x66, 0x43, 0xF7, 0xA6, 0x66, 0x43, 0xC5, 0x99, 0x9A,
     0xC2, 0x46, 0x66, 0x66, 0x43, 0xF8, 0x59, 0x9A,
 };
-
 /* hh-owned-pool func_801E1DEC 801E8908 801E8938 */
 /* hh-owned-pool func_801E1F74 801E8938 801E8964 */
 /* hh-owned-pool func_801E2098 801E8964 801E8984 */
 /* hh-owned-pool func_801E21B0 801E8984 801E89B0 */
+/* hh-owned-pool func_801E22D4 801E89B0 801E89CC */
 /* hh-owned-pool func_801E2384 801E89CC 801E89E0 */
 /* hh-owned-pool func_801E2434 801E89E0 801E8A0C */
 /* hh-owned-pool func_801E254C 801E8A0C 801E8A28 */
@@ -3084,6 +3173,7 @@ static const unsigned char rodata_801E1BE0[] = {
 /* hh-owned-pool func_801E2CBC 801E8B18 801E8B4C */
 /* hh-owned-pool func_801E2DA4 801E8B4C 801E8B74 */
 /* hh-owned-pool func_801E2EA4 801E8B74 801E8B98 */
+/* hh-owned-pool func_801E2F84 801E8B98 801E8BB4 */
 /* hh-owned-pool func_801E3060 801E8BB4 801E8BD4 */
 /* hh-owned-pool func_801E3148 801E8BD4 801E8BF8 */
 /* hh-owned-pool func_801E3234 801E8BF8 801E8C14 */
@@ -3092,6 +3182,7 @@ static const unsigned char rodata_801E1BE0[] = {
 /* hh-owned-pool func_801E34C4 801E8C48 801E8C64 */
 /* hh-owned-pool func_801E3598 801E8C64 801E8C68 */
 /* hh-owned-pool func_801E35EC 801E8C68 801E8C84 */
+/* hh-owned-pool func_801E3CA4 801E8C84 801E8C88 */
 /* hh-owned-pool func_801E4D5C 801E8CB8 801E8CD0 */
 /* hh-owned-pool func_801E4F4C 801E8CD0 801E8CEC */
 /* hh-owned-pool func_801E526C 801E8CF0 801E8D0C */
