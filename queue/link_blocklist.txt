@@ -13,3 +13,4 @@ file036 func_801E2D2C  reserved: Christmas finale
 # approved switch gaps (Zach, 2026-10-26): registered under the old layout, do not build in the per-file rodata layout yet
 file028 func_801F8008  approved switch gap
 file028 func_801FC490  approved switch gap
+file010 func_80205A60  # matches in file but its duplicate string literals grow file010 by 64 B and overflow its ROM slot (11-02 Task 26 hold; re-matched by rampO2, paused the loop 11-07)
