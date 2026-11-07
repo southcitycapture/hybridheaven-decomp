@@ -96,6 +96,8 @@ def cap(kind, fallback, now=None):
             t = o["from_value"] + (t - o["from_value"]) * f
         # "mode": "hold" can also lower the cap (2026-10-26: loop integration-only while one Opus Max agent runs alone)
         v = t if o.get("mode") == "hold" else max(v, t)
+        # "max": a ceiling on the ramp (2026-11-07: ramp toward the reset but keep ~15% for Zach's Monday work)
+        if o.get("max") is not None: v = min(v, o["max"])
     return min(fallback, int(v))
 
 
