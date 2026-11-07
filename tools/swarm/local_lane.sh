@@ -11,6 +11,8 @@ export BATCH=$B INNER=run_one_oc.sh OC_MODEL=${LOCAL_MODEL:-strata/qwen3.8-flash
 export OC_TIMEOUT=${OC_TIMEOUT:-5400} OC_IDLE=${OC_IDLE:-1200} OC_BACKOFF=120 CHECK_LIMIT=${CHECK_LIMIT:-40}
 while read -r FUNC SEG; do
   # queue/localU1/STOP pauses every local batch (the workstation sessions use it for model swaps and Strata updates)
+  # queue/localU1/HOLD pauses only the cron-kept main lane (11-07: the harness A/B needs the GPU to itself)
+  [ "$B" != localAB ] && [ -f queue/localU1/HOLD ] && { echo "$(date -u +%FT%H:%MZ) HOLD: paused for the A/B" >> "$Q/lane.log"; exit 0; }
   [ -f "$Q/STOP" ] || [ -f queue/localU1/STOP ] && { echo "$(date -u +%FT%H:%MZ) STOP file: stopping" >> "$Q/lane.log"; exit 0; }
   [ -z "$FUNC" ] && continue
   grep -q "\"func\": \"$FUNC\", \"segment\": \"$SEG\"" "$Q/results.jsonl" 2>/dev/null && continue   # resume

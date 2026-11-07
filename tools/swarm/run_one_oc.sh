@@ -19,7 +19,10 @@ case $MODEL in openrouter/*)
   OPENCODE_CONFIG_CONTENT=$(printf '{"small_model":"%s"}' "$MODEL"); export OPENCODE_CONFIG_CONTENT;;
 strata/*)   # the workstation's local model (Strata, OpenAI-compatible, 256K context; 10-28): free, one GPU, its own cooldown
   CD=$HOME/.oc/COOLDOWN.strata; STRATA_API_KEY=$(tr -d '\n\r ' < "$HOME/.oc/strata.key"); export STRATA_API_KEY
-  OPENCODE_CONFIG_CONTENT=$(printf '{"provider":{"strata":{"npm":"@ai-sdk/openai-compatible","name":"Strata (workstation)","options":{"baseURL":"%s","apiKey":"{env:STRATA_API_KEY}"},"models":{"%s":{"name":"%s","limit":{"context":262144,"output":16384}}}}},"small_model":"%s"}' "${STRATA_URL:-$(cat "$HOME/.oc/strata.url")}" "${MODEL#strata/}" "${MODEL#strata/}" "$MODEL"); export OPENCODE_CONFIG_CONTENT;;
+  # the context window the server is actually running (11-07: raised to 256K), so the two can't drift; fallback 256K
+  SCTX=$(curl -s -m 10 -H "Authorization: Bearer $STRATA_API_KEY" "${STRATA_URL:-$(cat "$HOME/.oc/strata.url")}/models" 2>/dev/null \
+         | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"][0]["meta"]["n_ctx"])' 2>/dev/null); SCTX=${SCTX:-262144}
+  OPENCODE_CONFIG_CONTENT=$(printf '{"provider":{"strata":{"npm":"@ai-sdk/openai-compatible","name":"Strata (workstation)","options":{"baseURL":"%s","apiKey":"{env:STRATA_API_KEY}"},"models":{"%s":{"name":"%s","limit":{"context":%s,"output":16384}}}}},"small_model":"%s"}' "${STRATA_URL:-$(cat "$HOME/.oc/strata.url")}" "${MODEL#strata/}" "${MODEL#strata/}" "$SCTX" "$MODEL"); export OPENCODE_CONFIG_CONTENT;;
 codex/*)    # Codex CLI on the ChatGPT Plus sign-in: shares the plan's usage windows with openai/*
   CD=$HOME/.oc/COOLDOWN.cx-${MODEL#codex/};;
 openai/*)   # ChatGPT Plus sign-in (opencode auth login, headless): its own usage windows, so its own cooldown
@@ -33,17 +36,20 @@ BATCH=${BATCH:-ocpilot}; W=$HH/$(python3 "$HH/tools/hh/workdir.py" dir "$BATCH" 
 # outside it does external_directory=deny keep the worker inside its own directory. Results are copied back to $W.
 . "$HH/env.sh" > /dev/null 2>&1
 OW=$HOME/.oc/w/$BATCH/${FUNC}_$SEG   # no "@": weak models split the path at it and read the wrong directory
-rm -rf "$W" "$OW"; "$HH/tools/swarm/prep2.sh" "$FUNC" "$SEG" "$OW"
+rm -rf "$W" "$OW" "$OW.log"; "$HH/tools/swarm/prep2.sh" "$FUNC" "$SEG" "$OW"
+# the event log and stderr live beside the worker's directory, not in it (11-07: 61 of 80 Qwen runs read their own
+# result.jsonl, ~13K tokens each); they are moved into the work dir before it is copied back to $W
+LOGD="$OW.log"; mkdir -p "$LOGD"
 cd "$OW"
 start=$(date +%s)
 if [ "${MODEL%%/*}" = codex ]; then
   CODEX_HOME=$HOME/.cx timeout ${OC_TIMEOUT:-1200} "$HOME/.local/bin/codex" exec --json --skip-git-repo-check \
     --sandbox workspace-write -m "${MODEL#codex/}" ${CX_EFFORT:+-c model_reasoning_effort=$CX_EFFORT} -C "$OW" \
-    "$(cat prompt.md)" > result.jsonl 2> stderr.txt < /dev/null &
+    "$(cat prompt.md)" > $LOGD/result.jsonl 2> $LOGD/stderr.txt < /dev/null &
   IDLE=${OC_IDLE:-600}; DONE_EV='"type":"turn.completed"'      # long reasoning steps emit nothing until done
 else
   timeout ${OC_TIMEOUT:-1200} "$HOME/.local/bin/opencode" run --pure -m "$MODEL" ${OC_VARIANT:+--variant "$OC_VARIANT"} --format json --dir "$OW" \
-    "$(cat prompt.md)" > result.jsonl 2> stderr.txt < /dev/null &
+    "$(cat prompt.md)" > $LOGD/result.jsonl 2> $LOGD/stderr.txt < /dev/null &
   IDLE=${OC_IDLE:-240}; DONE_EV='"step_finish"'
 fi
 pid=$!
@@ -51,7 +57,7 @@ pid=$!
 # a run that never got a first reply is recorded as ERROR (retried later), not as a failed match
 while kill -0 $pid 2>/dev/null; do
   sleep 15
-  idle=$(( $(date +%s) - $(stat -c %Y result.jsonl 2>/dev/null || echo $start) ))
+  idle=$(( $(date +%s) - $(stat -c %Y $LOGD/result.jsonl 2>/dev/null || echo $start) ))
   if [ $idle -gt $IDLE ]; then pkill -TERM -P $pid 2>/dev/null; kill $pid 2>/dev/null; echo idle > .idle_killed; break; fi
 done
 wait $pid
@@ -60,10 +66,10 @@ echo $? > exit.txt
 # left (42 of 137 failed localU1 runs stopped early without a RESULT line). Re-prompt the same session, up to OC_NUDGES
 # times, inside the same OC_TIMEOUT budget; never after an idle kill, a timeout, a RESULT line or a standalone match.
 NUDGES=${OC_NUDGES:-$([ "${MODEL%%/*}" = strata ] && echo 2 || echo 0)}
-last_text() { "$HH/.venv/bin/python" -c '
+last_text() { RJ="$LOGD/result.jsonl" "$HH/.venv/bin/python" -c '
 import json, sys
 last = ""
-for l in open("result.jsonl", errors="replace"):
+for l in open(__import__("os").environ["RJ"], errors="replace"):
     try: p = (json.loads(l).get("part") or {})
     except Exception: continue
     if p.get("type") == "text" and p.get("text"): last = p["text"]
@@ -72,14 +78,14 @@ while [ "$NUDGES" -gt 0 ] && [ "$(cat exit.txt)" = 0 ] && [ ! -f .idle_killed ] 
   last_text | grep -q '^RESULT' && break
   [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" attempt.c --seg "$SEG" 2>/dev/null | grep -q '^MATCH' && break
   left=$(( ${OC_TIMEOUT:-1200} - ($(date +%s) - start) )); [ $left -lt 300 ] && break
-  sid=$(grep -o '"sessionID":"[^"]*"' result.jsonl | head -1 | cut -d'"' -f4); [ -z "$sid" ] && break
+  sid=$(grep -o '"sessionID":"[^"]*"' $LOGD/result.jsonl | head -1 | cut -d'"' -f4); [ -z "$sid" ] && break
   echo "$(date -Is) nudge ($left s left)" >> .nudges
   timeout $left "$HOME/.local/bin/opencode" run --pure -m "$MODEL" ${OC_VARIANT:+--variant "$OC_VARIANT"} --format json --dir "$OW" \
-    --session "$sid" "Continue working on the task without asking: use ./check, keep improving attempt.c, and finish with the RESULT line when you are done or truly stuck." >> result.jsonl 2>> stderr.txt < /dev/null &
+    --session "$sid" "Continue working on the task without asking: use ./check, keep improving attempt.c, and finish with the RESULT line when you are done or truly stuck." >> $LOGD/result.jsonl 2>> $LOGD/stderr.txt < /dev/null &
   pid=$!
   while kill -0 $pid 2>/dev/null; do
     sleep 15
-    idle=$(( $(date +%s) - $(stat -c %Y result.jsonl 2>/dev/null || echo $start) ))
+    idle=$(( $(date +%s) - $(stat -c %Y $LOGD/result.jsonl 2>/dev/null || echo $start) ))
     if [ $idle -gt $IDLE ]; then kill $pid 2>/dev/null; echo idle > .idle_killed; break; fi
   done
   wait $pid; echo $? > exit.txt
@@ -88,11 +94,11 @@ done
 # provider trouble (rate limit, overload, quota) is not a failed match: record ERROR so the runner retries it
 checks_used=$(cat .check_calls 2>/dev/null || cat .checks 2>/dev/null || echo 0)
 api_err=0
-grep -q "$DONE_EV" result.jsonl 2>/dev/null || grep -q '"item.completed"' result.jsonl 2>/dev/null || api_err=1
-if [ "$checks_used" -eq 0 ] && grep -qiE 'rate.?limit|usage limit|overloaded|429|quota|too many requests|"type":"error"|APIError|ProviderError' result.jsonl stderr.txt 2>/dev/null; then api_err=1; fi
+grep -q "$DONE_EV" $LOGD/result.jsonl 2>/dev/null || grep -q '"item.completed"' $LOGD/result.jsonl 2>/dev/null || api_err=1
+if [ "$checks_used" -eq 0 ] && grep -qiE 'rate.?limit|usage limit|overloaded|429|quota|too many requests|"type":"error"|APIError|ProviderError' $LOGD/result.jsonl $LOGD/stderr.txt 2>/dev/null; then api_err=1; fi
 # a plan's usage window running out mid-run is not a failed match either, however far the worker got
-grep -qiE 'usage.?limit|usage_limit_reached|hit your limit' stderr.txt 2>/dev/null || \
-  grep -E '"type":"error"|"error"' result.jsonl 2>/dev/null | grep -qiE 'usage.?limit|usage_limit_reached|hit your limit' && api_err=1
+grep -qiE 'usage.?limit|usage_limit_reached|hit your limit' $LOGD/stderr.txt 2>/dev/null || \
+  grep -E '"type":"error"|"error"' $LOGD/result.jsonl 2>/dev/null | grep -qiE 'usage.?limit|usage_limit_reached|hit your limit' && api_err=1
 if [ "$api_err" = 1 ]; then v=ERROR
 elif [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" attempt.c --seg "$SEG" > verify.txt 2>&1 && grep -q '^MATCH' verify.txt; then
   v=MATCH; else v=FAIL; fi
@@ -106,6 +112,7 @@ if [ "$v" = FAIL ] && [ -d .attempts ]; then
     fi
   done
 fi
+mv "$LOGD"/* "$OW"/ 2>/dev/null; rmdir "$LOGD" 2>/dev/null
 mkdir -p "$(dirname "$W")"; cp -a "$OW" "$W"; cd "$W"; rm -rf "$OW"
 [ "$v" = ERROR ] && { echo "$(date -Is) $MODEL" > "$CD"; sleep ${OC_BACKOFF:-60}; }
 "$HH/.venv/bin/python" - "$FUNC" "$SEG" "$MODEL" "$v" "$start" <<'PY'

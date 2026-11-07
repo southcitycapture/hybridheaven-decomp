@@ -7,7 +7,7 @@
 FUNC=$1; SEG=$2; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}; cd "$HH"
 # lane_run.sh has no STOP check of its own; and a function another lane matched meanwhile needs no run (11-04)
 [ -n "$BATCH" ] && [ -f "queue/$BATCH/STOP" ] && exit 0
-[ -f "matched/$SEG/$FUNC.c" ] && exit 0
+[ -z "$AB_NOSKIP" ] && [ -f "matched/$SEG/$FUNC.c" ] && exit 0   # AB_NOSKIP=1: paired A/B arms run every function
 PREVIOUS=$("$HH/.venv/bin/python" - "$FUNC" "$SEG" "${FROM:-best}" "${BATCH:-}" <<'PY'
 import glob, json, os, sys
 func, seg, mode, me = sys.argv[1:5]
