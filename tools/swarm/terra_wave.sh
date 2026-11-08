@@ -19,7 +19,10 @@ def results(pattern):
             except (ValueError, KeyError): pass
     return out
 allr = results("queue/*/results.jsonl")
-terra = {k for k, rs in allr.items() if any("terra" in (r.get("model") or "") for r in rs)}
+terra_n = {k: sum("terra" in (r.get("model") or "") for r in rs) for k, rs in allr.items()}
+terra = {k for k, n in terra_n.items() if n}
+if os.environ.get("RETRY"):   # second pass (11-08): functions Terra tried exactly once and failed, from their best attempt
+    terra = {k for k, n in terra_n.items() if n != 1}
 strong = {k for k, rs in allr.items() if any(r.get("verified") == "FAIL" and ("opus" in (r.get("model") or "") or "sonnet" in (r.get("model") or "")) for r in rs)}
 held = set()   # only other Terra waves' unattempted entries; Opus/local lists skip whatever Terra matches first
 for d in glob.glob("queue/terra*/functions.txt"):

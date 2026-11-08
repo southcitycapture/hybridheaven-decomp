@@ -7,6 +7,8 @@
 FUNC=$1; SEG=$2; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}; cd "$HH"
 # lane_run.sh has no STOP check of its own; and a function another lane matched meanwhile needs no run (11-04)
 [ -n "$BATCH" ] && [ -f "queue/$BATCH/STOP" ] && exit 0
+# queue/BATCH/PAUSE: wait (don't skip) until it's gone; chatgpt_pacer.sh paces plan lanes this way (11-08)
+while [ -n "$BATCH" ] && [ -f "queue/$BATCH/PAUSE" ]; do sleep 60; [ -f "queue/$BATCH/STOP" ] && exit 0; done
 [ -z "$AB_NOSKIP" ] && [ -f "matched/$SEG/$FUNC.c" ] && exit 0   # AB_NOSKIP=1: paired A/B arms run every function
 PREVIOUS=$("$HH/.venv/bin/python" - "$FUNC" "$SEG" "${FROM:-best}" "${BATCH:-}" <<'PY'
 import glob, json, os, sys
