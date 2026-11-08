@@ -1,5 +1,6 @@
 #include "common.h"
 
+extern const f32 D_801E76DC;
 extern f32 D_801E7630;
 extern f32 D_801E7634;
 extern f32 D_801E7638;
@@ -36,9 +37,15 @@ extern f32 D_801E770C;
 extern f32 D_801E7710;
 extern f32 D_801E7714;
 extern f32 D_801E7718;
+extern f32 D_801E771C;
+extern f32 D_801E7720;
 extern f32 D_801E7724;
 extern f32 D_801E7728;
 extern f32 D_801E772C;
+extern f32 D_801E7730;
+extern f32 D_801E7734;
+extern f32 D_801E7738;
+extern f32 D_801E773C;
 extern f32 D_801E7740;
 extern f32 D_801E7744;
 extern f32 D_801E7748;
@@ -46,6 +53,7 @@ extern f32 D_801E774C;
 extern f32 D_801E7750;
 extern f32 D_801E7754;
 extern f32 D_801E7758;
+extern f32 D_801E7768;
 extern f32 D_801E7770[];
 extern f32 D_801E7780[];
 extern s16 D_80089354;
@@ -55,6 +63,8 @@ extern s32 D_801DABBC;
 extern s32 D_801E703C;
 extern s32 D_801E7144;
 extern s32 D_801E72FC;
+extern s32 D_8038D8CC;
+extern s32 func_8012C89C(s32, s32, s32, s32);
 extern s32 func_801C1974();
 extern s32 func_801C1B1C();
 extern s32 func_801CD044();
@@ -70,6 +80,11 @@ extern s32 func_801D2F40();
 extern s32 func_8038CBF0(void);
 extern u8 *D_801DAB14;
 extern u8 D_801BBD54;
+extern u8 D_801D9628[];
+extern u8 D_801D96C8[];
+extern u8 D_801D9768[];
+extern u8 D_801D97C0[];
+extern u8 D_801D9FE8[];
 extern u8 D_801DAD14[];
 extern u8 D_801DAD28[];
 extern u8 D_801DAD2C[];
@@ -87,15 +102,20 @@ extern u8 D_801E6810[];
 extern u8 D_801E690C[];
 extern u8 D_801E6B18[];
 extern u8 D_801E6EE4[];
+extern u8 D_801E70CC[];
+extern u8 D_8038D89C[];
 extern u8 D_8038DD90[];
 extern u8 D_8038DDA8[];
 extern u8 func_801DAAF0[];
 extern u8 func_801DAC30[];
+extern u8 func_8038D830[];
 extern void D_801CCF48(s32, s32);
 extern void D_8038BA70(void);
 extern void D_8038BD88(f32, f32, f32);
 extern void D_8038C97C(s32, s32, s32, s32, s32, s32, s32);
 extern void func_80005670(s32, void *);
+extern void func_80005E44(s32, void *);
+extern void func_80006214(s32);
 extern void func_801BF628(s32 arg0, s32 *arg1);
 extern void func_801C1000(s32, s32);
 extern void func_801C2420(s32, void *);
@@ -460,8 +480,6 @@ s32 func_801E2914(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file049/801E1BE0/func_801E2968.s")
-
 typedef struct func_801E3A38_StructC {
     u8 pad[0xC];
     f32 unkC;
@@ -475,6 +493,158 @@ typedef struct func_801E3A38_StructA {
     func_801E3A38_StructB *unkC;
 } func_801E3A38_StructA;
 extern func_801E3A38_StructA *D_8038D8D0;
+
+
+typedef struct func_801E2968_StructC {
+    u8 pad0[4];
+    f32 x;
+    f32 y;
+    f32 z;
+    u8 pad10[2];
+    s16 angle;
+    u8 pad14[4];
+    f32 scaleX;
+    f32 scaleY;
+    f32 scaleZ;
+    u32 size;
+    u8 pad28[8];
+    s32 image;
+    u8 pad34[0x14];
+    u8 color[8];
+} func_801E2968_StructC;
+
+typedef struct func_801E2968_StructB {
+    u8 pad0[0x22];
+    u8 visible;
+    u8 pad23[0xD];
+    func_801E2968_StructC *data;
+} func_801E2968_StructB;
+
+typedef struct func_801E2968_StructA {
+    func_801E2968_StructB *items[16];
+} func_801E2968_StructA;
+
+#define OBJ(i) ((*(func_801E2968_StructA **)&D_8038D8D0)->items[(i)])
+#define DATA(i) (OBJ(i)->data)
+#define SETUP(i, tex, sz) \
+    do { } while (0); \
+    DATA(i)->image = (s32)(tex) | 0x40000000; \
+    DATA(i)->size = (sz); \
+    DATA(i)->color[0] = 0xFF; \
+    DATA(i)->color[1] = 0xFF; \
+    DATA(i)->color[2] = 0xFF; \
+    DATA(i)->color[3] = 0xFF
+#define INIT(i, vx, vy, vz, rot, sc) \
+    DATA(i)->x = (vx); \
+    DATA(i)->y = (vy); \
+    DATA(i)->z = (vz); \
+    DATA(i)->angle = (rot); \
+    DATA(i)->scaleX = (sc); \
+    DATA(i)->scaleY = (sc); \
+    DATA(i)->scaleZ = (sc)
+
+s32 func_801E2968(s32 arg0, f32 arg1)
+{
+    s32 i;
+
+    func_80005E44(D_8038D8CC, func_8038D830 + 0x5C);
+    func_80005E44(D_8038D8CC, func_8038D830 + 0x5C);
+    func_80005E44(D_8038D8CC, D_801E70CC);
+    func_80005E44(D_8038D8CC, D_801E70CC);
+    func_80005E44(D_8038D8CC, D_801E70CC);
+    func_80005E44(D_8038D8CC, D_801E70CC);
+    func_80005E44(D_8038D8CC, D_8038D89C);
+    for (i = 0; i < 5; i++) {
+        func_80005E44(D_8038D8CC, D_801E70CC);
+    }
+    i = 0;
+    do {
+        func_80005E44(D_8038D8CC, D_8038D89C);
+        i++;
+    } while (i < 4);
+    func_80006214(D_8038D8CC);
+    func_8012C89C(D_8038D8CC, 0, 0x46A, 0);
+    func_8012C89C(D_8038D8CC, 1, 0x46A, 1);
+    SETUP(1, D_801D9768, 0x100);
+    func_8012C89C(D_8038D8CC, 2, 0x46A, 2);
+    SETUP(2, D_801D97C0, 0x100);
+    func_8012C89C(D_8038D8CC, 3, 0x46A, 3);
+    SETUP(3, D_801D97C0, 0x100);
+    func_8012C89C(D_8038D8CC, 4, 0x46A, 4);
+    SETUP(4, D_801D9628, 0x100);
+    func_8012C89C(D_8038D8CC, 5, 0x4D9, 0);
+    SETUP(5, D_801D96C8, 0x100);
+    func_8012C89C(D_8038D8CC, 6, 0x46A, 9);
+    DATA(6)->image = (s32)D_801D9FE8 | 0x40000000;
+    DATA(6)->size = 0x300;
+    DATA(6)->color[0] = 0xFF;
+    DATA(6)->color[1] = 0xFF;
+    DATA(6)->color[2] = 0xFF;
+    DATA(6)->color[3] = 0x7F;
+    DATA(6)->color[4] = 0xFF;
+    DATA(6)->color[5] = 0xFF;
+    DATA(6)->color[6] = 0xFF;
+    DATA(6)->color[7] = 0x7F;
+    func_8012C89C(D_8038D8CC, 7, 0x46A, 0xE);
+    SETUP(7, D_801D9628, 0x100);
+    func_8012C89C(D_8038D8CC, 8, 0x46A, 0xF);
+    SETUP(8, D_801D9628, 0x100);
+    func_8012C89C(D_8038D8CC, 9, 0x46A, 0x10);
+    SETUP(9, D_801D9628, 0x100);
+    func_8012C89C(D_8038D8CC, 0xA, 0x46A, 0x11);
+    SETUP(10, D_801D9628, 0x100);
+    func_8012C89C(D_8038D8CC, 0xB, 0x46A, 0x12);
+    SETUP(11, D_801D9628, 0x100);
+    func_8012C89C(D_8038D8CC, 0xC, 0x46A, 0xA);
+    SETUP(12, D_801D9628, 0x100);
+    OBJ(12)->visible = 0;
+    func_8012C89C(D_8038D8CC, 0xD, 0x46A, 0xB);
+    SETUP(13, D_801D9628, 0x100);
+    OBJ(13)->visible = 0;
+    func_8012C89C(D_8038D8CC, 0xE, 0x46A, 0xC);
+    SETUP(14, D_801D9628, 0x100);
+    OBJ(14)->visible = 0;
+    func_8012C89C(D_8038D8CC, 0xF, 0x46A, 0xD);
+    do { } while (0);
+    DATA(15)->image = (arg1 = 0.00999999978f, (s32)D_801D9628 | 0x40000000);
+    DATA(15)->size = 0x100;
+    DATA(15)->color[0] = 0xFF;
+    DATA(15)->color[1] = 0xFF;
+    DATA(15)->color[2] = 0xFF;
+    DATA(15)->color[3] = 0xFF;
+    OBJ(15)->visible = 0;
+
+    INIT(0, 0.0f, 0.0f, 0.0f, 0, 1.0f);
+    INIT(1, 0.0f, 0.0f, 0.0f, 0, 1.0f);
+    INIT(2, 0.0f, 0.0f, 0.0f, 0, 1.0f);
+    INIT(3, -19.0f, 0.0f, 65.0f, 0, 1.0f);
+    INIT(4, 0.0f, 0.0f, 0.0f, 0, 1.0f);
+    INIT(5, 0.0f, -20.0f, 0.0f, 0x800, arg1);
+    INIT(6, 0.0f, 0.0f, 0.0f, 0, 1.0f);
+    for (i = 0; i < 5; i++) {
+        INIT(i + 7, 0.0f, 0.0f, 0.0f, 0, 1.0f);
+    }
+    for (i = 0; i < 4; i++) {
+        INIT(i + 12, 0.0f, 0.0f, 0.0f, 0, 1.0f);
+    }
+    return 2;
+}
+
+#define func_801E3A38_StructA func_801E3A38_StructA__func_801E3814
+#define func_801E3A38_StructB func_801E3A38_StructB__func_801E3814
+#define func_801E3A38_StructC func_801E3A38_StructC__func_801E3814
+typedef struct func_801E3A38_StructC {
+    u8 pad[0xC];
+    f32 unkC;
+} func_801E3A38_StructC;
+typedef struct func_801E3A38_StructB {
+    u8 pad[0x30];
+    func_801E3A38_StructC *unk30;
+} func_801E3A38_StructB;
+typedef struct func_801E3A38_StructA {
+    u8 pad[0xC];
+    func_801E3A38_StructB *unkC;
+} func_801E3A38_StructA;
 
 typedef struct func_801E3814_StructC {
     u8 pad[0x12];
@@ -498,6 +668,9 @@ s32 func_801E3814(s32 arg0, s32 arg1) {
     temp_v1->unk12 = (s16) (temp_v1->unk12 + 0x22);
     return 3;
 }
+#undef func_801E3A38_StructA
+#undef func_801E3A38_StructB
+#undef func_801E3A38_StructC
 
 
 typedef struct func_801E3840_StructC {
@@ -1009,8 +1182,6 @@ s32 func_801E4780(s32 arg0, s32 arg1) {
     return 0x15;
 }
 
-#define D_801E7768 D_801E7768__func_801E47EC
-extern f32 D_801E7768;
 
 #define CHAIN (*(u8 **)(*(u8 **)(*(u8 **)(D_801DAB14 + 8) + 0x24) + 0x2C))
 
@@ -1051,8 +1222,6 @@ after:
     }
     return 0x16;
 }
-#undef CHAIN
-#undef D_801E7768
 
 
 s32 func_801E49D0(s32 arg0, s32 arg1) {
@@ -1429,7 +1598,6 @@ s32 func_801E527C(s32 arg0, s32 arg1) {
     }
     return 0x17;
 }
-#undef NODE
 
 
 struct func_801E53D0_Struct3 {

@@ -10,7 +10,8 @@ L=queue/localAB/ab.log; touch queue/localU1/HOLD
 export BEST_BEFORE=${BEST_BEFORE:-$(date +%s)} FROM=best INFILE=1 DIAG=1 LEARNINGS=1 LEVERS=1 WALLNOTE=1 AB_NOSKIP=1
 export OC_TIMEOUT=5400 OC_IDLE=1200 OC_BACKOFF=120 CHECK_LIMIT=40 OC_MODEL=strata/qwen3.8-flash-next
 echo "$(date -u +%FT%H:%MZ) start, BEST_BEFORE=$BEST_BEFORE" >> "$L"
-busy() { ps -eo args | grep -q '^/home/claude/.local/bin/opencode run --pure -m strata/\|/pi/node_modules/.bin/pi '; }
+# the bracketed letters keep grep from matching its own command line (11-07: busy() matched itself and waited forever)
+busy() { ps -eo args | grep -q -e '^/home/claude/.local/bin/[o]pencode run --pure -m strata/' -e '[/]pi/node_modules/.bin/pi '; }
 i=0
 while read -r FUNC SEG; do
   [ -z "$FUNC" ] && continue

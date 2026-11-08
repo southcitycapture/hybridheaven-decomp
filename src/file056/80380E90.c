@@ -1028,8 +1028,84 @@ void func_80382B80(struct func_80382B80_StructArg0 *arg0, struct func_803813A8_S
 }
 #undef D_80388E98
 
-/* hh-block asm/nonmatchings/file056/80380E90/_mrg_keep_tail_48496dbbdb8820ad.s {"functions":["func_80382CF8"],"rodata":[],"rodata_bytes":[2151193404,8372380,20]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/80380E90/_mrg_keep_tail_48496dbbdb8820ad.s")
+
+
+#undef func_80380F94
+#define D_80389B3C D_80389B3C__func_80382CF8
+#define D_80389B40 D_80389B40__func_80382CF8
+#define D_80389B44 D_80389B44__func_80382CF8
+#define D_80389B48 D_80389B48__func_80382CF8
+#define D_80389B4C D_80389B4C__func_80382CF8
+#define func_80005700 func_80005700__func_80382CF8
+#define func_8001EAD0 func_8001EAD0__func_80382CF8
+#define func_8001EB64 func_8001EB64__func_80382CF8
+#define func_80129FB8 func_80129FB8__func_80382CF8
+#define func_8012C6B4 func_8012C6B4__func_80382CF8
+#define func_80380F94 func_80380F94__func_80382CF8
+extern void func_80005700();
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
+extern s32 func_8012C6B4(s32);
+s32 func_80380F94(f32 arg0, f32 arg1, s32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6);
+
+
+extern f32 D_80389B3C;
+extern f32 D_80389B40;
+extern f32 D_80389B44;
+extern f32 D_80389B48;
+extern f32 D_80389B4C;
+
+struct func_80382CF8_Struct {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad1[0x56];
+    f32 unk94;
+    f32 unk98;
+    f32 unk9C;
+};
+
+void func_80382CF8(struct func_80382CF8_Struct *arg0, s32 arg1) {
+    s32 var_s0;
+    s32 temp_s1;
+    s32 temp_s3;
+    s32 temp_v1;
+    s32 temp_v0;
+
+    temp_v0 = arg0->unk3C++;
+    temp_s1 = func_8012C6B4(0x3E8);
+    temp_s3 = func_8012C6B4(0x320);
+    temp_v1 = func_8012C6B4(0x3E8);
+    func_80129FB8((f32) (((f64) (temp_s1 - 0x1F4) / 100.0) + (f64) arg0->unk94), (f32) (((f64) (temp_s3 - 0x190) / 100.0) + (f64) (arg0->unk98 + 1.0f)), (f32) (((f64) (temp_v1 - 0x1F4) / 100.0) + (f64) arg0->unk9C), 0.0f, 0.0f, 0.0f, 0.0f, 0xFF, 0xFF, 0x1E, 0xC8, 0x64, 0, 0x46, -4, (0.10000000149011612f), 0xB, 0);
+    if (temp_v0 == 0) {
+        func_80380F94(arg0->unk94, arg0->unk98, *(s32 *)&arg0->unk9C, 0.0f, 0.0f, 0.0f, 0x14);
+        func_80129FB8(arg0->unk94, arg0->unk98 + 6.0f, arg0->unk9C, 0.0f, 0.0f, 0.0f, 0.0f, 0xFF, 0x84, 0, 0x94, 0x14, 0, 0xA0, -5, (0.11999999731779099f), 0xE, 0);
+    }
+    if (temp_v0 == 2) {
+        func_80129FB8(arg0->unk94, arg0->unk98 + 9.0f, arg0->unk9C, 0.0f, (0.20000000298023224f), 0.0f, 0.0f, 0x40, 0x40, 0x40, 0x20, 0x20, 0x20, 0xF0, -2, (0.17000000178813934f), 0xA, 0);
+    }
+    if ((s32) temp_v0 >= 4) {
+        f32 effect_scale = (0.07000000029802322f);
+        var_s0 = 0;
+        do {
+            func_80129FB8(arg0->unk94, arg0->unk98 + 1.0f, arg0->unk9C, (f32) ((f64) func_8001EAD0(var_s0) * 0.5), 0.0f, (f32) ((f64) func_8001EB64(var_s0) * 0.5), 0.0f, 0x4B, 0x4B, 0x4B, 0x32, 0x32, 0x32, 0x82, -3, effect_scale, 0xC, 0);
+            var_s0 += 0x2AA;
+        } while (var_s0 != 0x22A2);
+        func_80005700(arg0);
+    }
+}
+#undef D_80389B3C
+#undef D_80389B40
+#undef D_80389B44
+#undef D_80389B48
+#undef D_80389B4C
+#undef func_80005700
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_80129FB8
+#undef func_8012C6B4
+#undef func_80380F94
+#define func_80380F94 func_80380F94__merge_frozen
 
 
 extern void func_80005700();
@@ -2626,6 +2702,50 @@ void func_803877F0(struct func_803877F0_Struct *arg0, s32 arg1)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_80380E90[] = {
     0x53, 0x45, 0x54, 0xA1, 0xB8, 0x43, 0x4F, 0x4D, 0x42, 0x4F, 0x31, 0x00, 0x53, 0x45, 0x54, 0xA1,
     0xB8, 0x43, 0x4F, 0x4D, 0x42, 0x4F, 0x32, 0x00, 0x43, 0x55, 0x53, 0x54, 0x4F, 0x4D, 0x20, 0x31,
@@ -2672,6 +2792,7 @@ static const unsigned char rodata_80380E90[] = {
 /* hh-owned-pool func_80382724 80389B28 80389B2C */
 /* hh-owned-pool func_803828BC 80389B2C 80389B34 */
 /* hh-owned-pool func_80382B80 80389B34 80389B3C */
+/* hh-owned-pool func_80382CF8 80389B3C 80389B50 */
 /* hh-owned-pool func_80383098 80389B50 80389B58 */
 /* hh-owned-pool func_803831D0 80389B58 80389B74 */
 /* hh-owned-pool func_80383490 80389B78 80389B80 */
