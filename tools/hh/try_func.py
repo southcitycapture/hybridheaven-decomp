@@ -123,14 +123,19 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
         if bss is not None: ro += ['--section-start=.bss=0x%X' % bss]
         r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-Ttext=0x%X" % base, "-e", "0", "--no-check-sections",
                             "-z", "muldefs"] + ro + ["-o", out, obj] + defs, capture_output=True, text=True)
-        if r.returncode:
+        if r.returncode or rodata is not None or base % 16:
             # The default MIPS linker script can crash on overlays even without an explicitly placed .rodata.
             # Use just the game's section placement, without the default script's segment/stub layout.
             script = obj + ".ld"
             with open(script, "w") as fh:
                 ro_addr = " 0x%X" % rodata if rodata is not None else ""
                 bss_addr = ' 0x%X' % bss if bss is not None else ''
-                fh.write("SECTIONS { .text 0x%X : { *(.text) } .rodata%s : { *(.rodata) } .bss%s : { *(.bss) *(COMMON) } "
+                # --section-start alone rounds an input section up to its ELF
+                # sh_addralign (IDO uses 16 even for a standalone 8-aligned
+                # table). The caller supplies the original pool address; place
+                # the input there without changing its contents or internal
+                # offsets. This is a comparison link, not a ROM layout change.
+                fh.write("SECTIONS { .text 0x%X : SUBALIGN(4) { *(.text) } .rodata%s : SUBALIGN(4) { *(.rodata) } .bss%s : { *(.bss) *(COMMON) } "
                          "/DISCARD/ : { *(.reginfo) *(.MIPS.abiflags) *(.pdr) *(.mdebug*) *(.comment) } }\n" % (base, ro_addr, bss_addr))
             r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-T", script, "-e", "0", "--no-check-sections",
                                 "-z", "muldefs", "-o", out, obj] + defs, capture_output=True, text=True)
@@ -144,9 +149,10 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
             _linked[key] = (vals, t["sh_addr"], t.data(), (rs.data() if rs is not None else b""))
         if name not in vals: return None
         return (vals[name][0], t["sh_addr"], _linked[key][2], _linked[key][3])
-    # The function's own address doesn't affect its bytes (branches are PC-relative, and jal / %hi / %lo
-    # targets are absolute), so link near vram and just read it back by its symbol.
-    got = link(base if base is not None else vram & ~0xF)   # base: where the object's .text really starts
+    # Standalone tables contain absolute pointers to local code labels. Put the
+    # function at its exact original address too, including functions starting
+    # inside an object's .text. A supplied base is the real whole-file placement.
+    got = link(base if base is not None else vram - syms[name][0])
     if not got: return None
     v, addr, data, rodata_bytes = got
     if want_file: return data, rodata_bytes

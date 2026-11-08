@@ -299,7 +299,15 @@ s32 func_801E1BE0(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file044/801E1BE0/func_801E1C74.s")
+
+
+s32 func_801E1C74(s32 arg0, s32 arg1) {
+    if (D_8038C17C(0.0f, 2.0f, 48.0f, 6.7, -106.0f, 48.0f, 2.1f, -106.0f, 48.0f,
+                   14.9f, -48.0f, 48.0f, 14.9f, -48.0f, 33.3f, 33.3f) != 0) {
+        return 2;
+    }
+    return 1;
+}
 
 
 s32 func_801E1D24(s32 arg0, s32 arg1) {
@@ -704,7 +712,15 @@ s32 func_801E29B8(s32 arg0, s32 arg1) {
 }
 #undef D_8038C158
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file044/801E1BE0/func_801E2A04.s")
+
+
+s32 func_801E2A04(s32 arg0, s32 arg1) {
+    if (D_8038C17C(0.0f, 0.15999997f, 93.7f, 8.6f, -4.8f, 63.0f, 11.1f, -1.0f,
+                   46.0f, 12.6f, 1.1f, 46.0f, 12.6f, 1.1f, 33.3f, 33.3f) != 0) {
+        return 0x2D;
+    }
+    return 0x2C;
+}
 
 
 

@@ -1,7 +1,73 @@
 #include "common.h"
 
-/* hh-block asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012A0F0.s {"functions":["func_8012A0F0"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012A0F0.s")
+#define D_80175BA0 D_80175BA0__func_8012A0F0
+#define D_80175BB4 D_80175BB4__func_8012A0F0
+#define D_80175BC8 D_80175BC8__func_8012A0F0
+#define D_80175BDC D_80175BDC__func_8012A0F0
+#define D_80175BF0 D_80175BF0__func_8012A0F0
+#define D_80175C04 D_80175C04__func_8012A0F0
+#define D_80175C18 D_80175C18__func_8012A0F0
+#define D_80175C2C D_80175C2C__func_8012A0F0
+#define func_800062F8 func_800062F8__func_8012A0F0
+#define func_8012C5F0 func_8012C5F0__func_8012A0F0
+#define func_8012C71C func_8012C71C__func_8012A0F0
+
+
+typedef struct func_8012A0F0_StructData {
+    s32 words[5];
+} func_8012A0F0_StructData;
+typedef struct func_8012A0F0_StructObj {
+    u8 pad[0x24];
+    void *obj;
+} func_8012A0F0_StructObj;
+extern func_8012A0F0_StructData D_80175BA0;
+extern func_8012A0F0_StructData D_80175BB4;
+extern func_8012A0F0_StructData D_80175BC8;
+extern func_8012A0F0_StructData D_80175BDC;
+extern func_8012A0F0_StructData D_80175BF0;
+extern func_8012A0F0_StructData D_80175C04;
+extern func_8012A0F0_StructData D_80175C18;
+extern func_8012A0F0_StructData D_80175C2C;
+extern func_8012A0F0_StructObj *func_8012C5F0(s32, func_8012A0F0_StructData, s32, f32, f32, f32);
+extern void func_800062F8(void *, u32);
+extern void func_8012C71C(func_8012A0F0_StructObj *, s32);
+
+#define CREATE(data, count) \
+    result = func_8012C5F0(arg0, data, count, arg1, arg2, arg3); \
+    if (result != NULL) { \
+        func_800062F8(result->obj, 0x80000300); \
+        func_8012C71C(result, arg4); \
+        return result; \
+    } \
+    break;
+
+func_8012A0F0_StructObj *func_8012A0F0(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4, u32 arg5)
+{
+    func_8012A0F0_StructObj *result;
+    switch (arg5) {
+    case 0: CREATE(D_80175BA0, 4)
+    case 1: CREATE(D_80175BB4, 4)
+    case 2: CREATE(D_80175BC8, 4)
+    case 3: CREATE(D_80175BDC, 6)
+    case 4: CREATE(D_80175BF0, 4)
+    case 5: CREATE(D_80175C04, 4)
+    case 6: CREATE(D_80175C18, 4)
+    case 7: CREATE(D_80175C2C, 6)
+    }
+    return NULL;
+}
+#undef CREATE
+#undef D_80175BA0
+#undef D_80175BB4
+#undef D_80175BC8
+#undef D_80175BDC
+#undef D_80175BF0
+#undef D_80175C04
+#undef D_80175C18
+#undef D_80175C2C
+#undef func_800062F8
+#undef func_8012C5F0
+#undef func_8012C71C
 
 #define D_801BBCD0 D_801BBCD0__func_8012A564
 #define func_8012A72C_Obj func_8012A72C_Obj__func_8012A564
@@ -204,8 +270,8 @@ s32 func_8012A774(func_8012A774_Arg *arg0, s16 arg1, s16 arg2) {
     return 0;
 }
 
-/* hh-block asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012A7F4.s {"functions":["func_8012A7F4"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012A7F4.s")
+/* hh-block asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_b1ab65e564a354d1.s {"functions":["func_8012A7F4"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_b1ab65e564a354d1.s")
 
 
 extern void func_8012A7F4(s32, s32, s32, s16);
@@ -474,8 +540,166 @@ s32 func_8012AF88(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, u8
 #undef func_8012A72C_Obj
 #undef func_8012A72C_Vec
 
-/* hh-block asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012B1E4.s {"functions":["func_8012B1E4"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012B1E4.s")
+
+
+#define D_80176020 D_80176020__func_8012B1E4
+#define D_801BC798 D_801BC798__func_8012B1E4
+#define D_801BC7D8 D_801BC7D8__func_8012B1E4
+#define D_801BC818 D_801BC818__func_8012B1E4
+#define D_801BC858 D_801BC858__func_8012B1E4
+#define D_801BC898 D_801BC898__func_8012B1E4
+#define D_801BC8D8 D_801BC8D8__func_8012B1E4
+#define D_801BC918 D_801BC918__func_8012B1E4
+#define func_80130C40 func_80130C40__func_8012B1E4
+
+
+typedef struct func_8012B1E4_StructVec {
+    u8 pad[4];
+    f32 x, y, z;
+    s16 unk10, angle;
+} func_8012B1E4_StructVec;
+typedef struct func_8012B1E4_StructObj {
+    u8 pad[0x2C];
+    func_8012B1E4_StructVec *a, *b;
+} func_8012B1E4_StructObj;
+typedef struct func_8012B1E4_StructArg {
+    u8 pad[0x24];
+    func_8012B1E4_StructObj *obj;
+    u8 pad28[4];
+    u32 flags;
+    u8 pad30[0x1C];
+    u8 width, height, depth;
+    s8 y, z;
+    u8 pad51[3];
+    u32 mask;
+} func_8012B1E4_StructArg;
+typedef struct func_8012B1E4_StructEntry {
+    u16 flag, index;
+} func_8012B1E4_StructEntry;
+extern func_8012B1E4_StructEntry D_80176020[];
+extern u32 D_801BC918;
+extern f32 D_801BC858[];
+extern f32 D_801BC898[];
+extern f32 D_801BC8D8[];
+extern f32 D_801BC798[];
+extern f32 D_801BC7D8[];
+extern f32 D_801BC818[];
+extern void func_80130C40(s16, f32 *, f32 *);
+
+void func_8012B1E4(func_8012B1E4_StructArg *arg0, s32 arg1)
+{
+    f32 *baseX, *baseY, *baseZ;
+    s16 *angle;
+    func_8012B1E4_StructEntry *entry = D_80176020;
+    func_8012B1E4_StructObj *obj;
+    f32 x, y, z;
+    f32 *outX, *outY, *outZ;
+    func_8012B1E4_StructVec *vec;
+    f32 divisor = 2.0f;
+
+    if (arg0->flags & 0x100) {
+        D_801BC918 = arg0->mask;
+        if (arg1) {
+            outX = D_801BC858;
+            outY = D_801BC898;
+            outZ = D_801BC8D8;
+        } else {
+            outX = D_801BC798;
+            outY = D_801BC7D8;
+            outZ = D_801BC818;
+        }
+        obj = arg0->obj;
+        if (obj != NULL) {
+            vec = obj->a;
+            if (vec != NULL) {
+                baseX = &vec->x;
+                baseY = &vec->y;
+                baseZ = &vec->z;
+                angle = &vec->angle;
+            } else {
+                baseX = &obj->b->x;
+                baseY = &obj->b->y;
+                baseZ = &obj->b->z;
+                angle = &obj->b->angle;
+            }
+            while (entry->flag != 0) {
+                if (entry->flag & D_801BC918) {
+                    switch (entry->flag) {
+                    case 1:
+                        x = 0.0f;
+                        y = arg0->y;
+                        z = arg0->z;
+                        break;
+                    case 2:
+                        x = 0.0f;
+                        y = arg0->y;
+                        z = arg0->z + (f32)(u32)arg0->depth;
+                        break;
+                    case 4:
+                        x = -(f32)(u32)arg0->width;
+                        y = arg0->y;
+                        z = arg0->z;
+                        break;
+                    case 8:
+                        x = (f32)(u32)arg0->width;
+                        y = arg0->y;
+                        z = arg0->z;
+                        break;
+                    case 16:
+                        x = 0.0f;
+                        y = arg0->y;
+                        z = arg0->z - (f32)(u32)arg0->depth;
+                        break;
+                    case 32:
+                        x = 0.0f;
+                        y = arg0->y + (f32)(u32)arg0->height / divisor;
+                        z = arg0->z + (f32)(u32)arg0->depth;
+                        break;
+                    case 64:
+                        x = -(f32)(u32)arg0->width;
+                        y = arg0->y + (f32)(u32)arg0->height / divisor;
+                        z = arg0->z;
+                        break;
+                    case 128:
+                        x = (f32)(u32)arg0->width;
+                        y = arg0->y + (f32)(u32)arg0->height / divisor;
+                        z = arg0->z;
+                        break;
+                    case 256:
+                        x = 0.0f;
+                        y = arg0->y + (f32)(u32)arg0->height / divisor;
+                        z = arg0->z - (f32)(u32)arg0->depth;
+                        break;
+                    case 512:
+                        x = 0.0f;
+                        y = arg0->y + (f32)(u32)arg0->height;
+                        z = arg0->z;
+                        break;
+                    case 1024:
+                        x = 0.0f;
+                        y = arg0->y;
+                        z = arg0->z;
+                        break;
+                    }
+                    func_80130C40(-*angle, &x, &z);
+                    outX[entry->index] = *baseX + x;
+                    outY[entry->index] = *baseY + y;
+                    outZ[entry->index] = *baseZ + z;
+                }
+                entry++;
+            }
+        }
+    }
+}
+#undef D_80176020
+#undef D_801BC798
+#undef D_801BC7D8
+#undef D_801BC818
+#undef D_801BC858
+#undef D_801BC898
+#undef D_801BC8D8
+#undef D_801BC918
+#undef func_80130C40
 
 
 typedef struct func_8012B7C0_Vec {
@@ -544,8 +768,8 @@ s32 func_8012B81C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 0;
 }
 
-/* hh-block asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012B85C.s {"functions":["func_8012B85C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/_mrg_keep_text_func_8012B85C.s")
+/* hh-block asm/nonmatchings/file008/8012A0F0/_mrg_keep_tail_355d9c0c7e4db3e6.s {"functions":["func_8012B85C"],"rodata":[],"rodata_bytes":[2149109560,5686856,136]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012A0F0/_mrg_keep_tail_355d9c0c7e4db3e6.s")
 
 extern u8 D_801BBBF0[];
 
@@ -769,6 +993,9 @@ void func_8012C378(s32 arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
+
+
 static const unsigned char rodata_8012A0F0[] = {
     0xB6, 0xF5, 0xA4, 0xAD, 0x44, 0x4F, 0x42, 0x4A, 0xA4, 0xAC, 0xA4, 0xA2, 0xA4, 0xEA, 0xA4, 0xDE,
     0xA4, 0xBB, 0xA4, 0xF3, 0x0A, 0x00, 0x00, 0x00, 0x65, 0x78, 0x70, 0x6C, 0x6F, 0x64, 0x65, 0x20,
@@ -780,23 +1007,7 @@ static const unsigned char rodata_8012A0F0[] = {
     0xC0, 0xB5, 0xCC, 0xCC, 0xA4, 0xCB, 0xCD, 0xE8, 0xA4, 0xC6, 0xA4, 0xA4, 0xA4, 0xEB, 0xA4, 0xAB,
     0xA4, 0xCE, 0xA5, 0xC6, 0xA5, 0xB9, 0xA5, 0xC8, 0x25, 0x78, 0x0A, 0x00, 0xC0, 0xB5, 0xCC, 0xCC,
     0xA4, 0xF2, 0xB8, 0xFE, 0xA4, 0xA4, 0xA4, 0xC6, 0xA4, 0xA4, 0xA4, 0xEB, 0xA4, 0xAB, 0xA5, 0xC6,
-    0xA5, 0xB9, 0xA5, 0xC8, 0x25, 0x78, 0x0A, 0x00, 0x80, 0x12, 0xA1, 0x2C, 0x80, 0x12, 0xA1, 0xB0,
-    0x80, 0x12, 0xA2, 0x34, 0x80, 0x12, 0xA2, 0xB8, 0x80, 0x12, 0xA3, 0x3C, 0x80, 0x12, 0xA3, 0xC0,
-    0x80, 0x12, 0xA4, 0x44, 0x80, 0x12, 0xA4, 0xC8, 0x80, 0x12, 0xB3, 0x7C, 0x80, 0x12, 0xB3, 0xA0,
-    0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB3, 0xE8, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC,
-    0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB4, 0x30, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC,
-    0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC,
-    0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB4, 0x74, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC,
-    0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC,
-    0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC,
-    0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB6, 0xEC,
-    0x80, 0x12, 0xB6, 0xEC, 0x80, 0x12, 0xB4, 0xBC, 0x80, 0x12, 0xBA, 0x34, 0x80, 0x12, 0xBA, 0x34,
-    0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBA, 0x34, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18,
-    0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBA, 0x34, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18,
-    0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18,
-    0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBA, 0x34, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18,
-    0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18,
-    0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18,
-    0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBF, 0x18,
-    0x80, 0x12, 0xBF, 0x18, 0x80, 0x12, 0xBB, 0x98, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0xA5, 0xB9, 0xA5, 0xC8, 0x25, 0x78, 0x0A, 0x00,
 };
+/* hh-owned-pool func_8012A0F0 8018CE98 8018CEB8 */
+/* hh-owned-pool func_8012B1E4 8018CEB8 8018CF38 */
