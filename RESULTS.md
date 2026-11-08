@@ -2,7 +2,7 @@
 
 Progress as of 2026-11-08: **79.97% of the code** (15307 of 15891 functions, including duplicates).
 
-**23152 model runs, $6833.18 API-equivalent in total** (local and cloud). Of the **15253 functions now in C**, **7136 were matched by AI workers** (≈ $0.958 per function, failures included), **7575 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 262 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**23162 model runs, $6833.18 API-equivalent in total** (local and cloud). Of the **15253 functions now in C**, **7136 were matched by AI workers** (≈ $0.958 per function, failures included), **7575 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 262 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -457,8 +457,8 @@ Progress as of 2026-11-08: **79.97% of the code** (15307 of 15891 functions, inc
 | `ocM_dsf` | ocM_dsf | opencode/deepseek-v4.1-flash-free | 71 | 6 | 8% | $0.00 | – |  |
 | `unify_loop0266` | unify_loop0266 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0267` | unify_loop0267 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
-| `ocAB` | ocAB | strata/qwen3.8-flash-next | 8 | 1 | 12% | $0.00 | – |  |
-| `terraW3` | terraW3 | openai/gpt-6.1-terra | 55 | 8 | 15% | $0.00 | – |  |
-| `piAB` | piAB | pi/strata/qwen3.8-flash-next-iq3_xxs | 9 | 1 | 11% | $0.00 | – |  |
+| `ocAB` | ocAB | strata/qwen3.8-flash-next | 10 | 1 | 10% | $0.00 | – |  |
+| `terraW3` | terraW3 | openai/gpt-6.1-terra | 61 | 8 | 13% | $0.00 | – |  |
+| `piAB` | piAB | pi/strata/qwen3.8-flash-next-iq3_xxs | 11 | 1 | 9% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
