@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-09: **81.24% of the code** (15342 of 15891 functions, including duplicates).
+Progress as of 2026-11-09: **82.06% of the code** (15359 of 15891 functions, including duplicates).
 
-**23245 model runs, $6833.18 API-equivalent in total** (local and cloud). Of the **15288 functions now in C**, **7146 were matched by AI workers** (≈ $0.956 per function, failures included), **7575 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 287 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**23257 model runs, $6833.18 API-equivalent in total** (local and cloud). Of the **15305 functions now in C**, **7163 were matched by AI workers** (≈ $0.954 per function, failures included), **7575 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 287 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -467,8 +467,12 @@ Progress as of 2026-11-09: **81.24% of the code** (15342 of 15891 functions, inc
 | `unify_loop0272` | unify_loop0272 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0273` | unify_loop0273 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0274` | unify_loop0274 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
-| `localU1` | localU1 | strata/qwen3.8-flash-next | 189 | 18 | 10% | $0.00 | – |  |
-| `terraP2` | terraP2 | openai/gpt-6.1-terra | 39 | 2 | 5% | $0.00 | – |  |
 | `unify_loop0275` | unify_loop0275 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0276` | unify_loop0276 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0277` | unify_loop0277 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
+| `terraP2` | terraP2 | openai/gpt-6.1-terra | 45 | 4 | 9% | $0.00 | – |  |
+| `unify_loop0278` | unify_loop0278 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
+| `hidden35` | hidden35 | hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/allO1/work/func_801256C4/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/allO1/work/func_801CBEF8/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/allO1/work/func_801CC078/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_80229524/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_8022ABD8/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_8022AF94/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_8024CA4C/.attempts/11.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_8038D33C/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/ocM_dsf/work/func_80378E3C/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/rampC1/work/func_801C8E84/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/rampO1/work/func_80239048/.attempts/17.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/rampO1/work/func_80248F7C/.attempts/2.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/rampO2/work/func_802393F8/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/terraL2/work/func_801EBE68/.attempts/25.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/terraL2/work/func_801F2458/.attempts/31.c) | 15 | 15 | 100% | $0.00 | – |  |
+| `localU1` | localU1 | strata/qwen3.8-flash-next | 195 | 19 | 10% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

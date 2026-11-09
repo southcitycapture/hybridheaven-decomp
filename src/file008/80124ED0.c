@@ -139,11 +139,41 @@ void func_80124ED0(s32 arg0)
 #undef func_80125808
 #undef func_801276CC
 
-/* hh-block asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_c2df915e20d50780.s {"functions":["func_801251BC"],"rodata":[],"rodata_bytes":[2149107920,5685216,416]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_c2df915e20d50780.s")
+/* hh-block asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_ad8005927a8ff8c2.s {"functions":["func_801251BC"],"rodata":[],"rodata_bytes":[2149107920,5685216,256]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_ad8005927a8ff8c2.s")
 
-/* hh-block asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_bb5a03723fb7bf08.s {"functions":["func_801256C4"],"rodata":[],"rodata_bytes":[2149108336,5685632,8]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80124ED0/_mrg_keep_tail_bb5a03723fb7bf08.s")
+
+
+#define D_801BBC1C D_801BBC1C__func_801256C4
+#define func_80004484 func_80004484__func_801256C4
+#define func_80016E40 func_80016E40__func_801256C4
+
+
+extern u16 D_801BBC1C;
+extern void func_80016E40(s32);
+extern void func_80004484(s32);
+
+s32 func_801256C4(void) {
+    switch (D_801BBC1C) {
+    case 0x64: case 0x65: case 0x66: case 0x67: case 0x68: case 0x69: case 0x6A:
+    case 0x6B: case 0x6C: case 0x6D: case 0x6E: case 0x6F: case 0x70: case 0x71:
+    case 0x72: case 0x73: case 0x74: case 0x75: case 0x76: case 0x77: case 0x78:
+    case 0x79: case 0x7A: case 0x7B: case 0x7C: case 0x7D: case 0x7E: case 0x7F:
+        func_80016E40(0x4000);
+        func_80004484(0x64);
+        break;
+    case 0x4: case 0x5: case 0xA: case 0xB: case 0xF: case 0x11:
+        func_80016E40(0x1A000);
+        func_80004484(0x38);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
+#undef D_801BBC1C
+#undef func_80004484
+#undef func_80016E40
 
 
 typedef struct func_80125774_Struct {
@@ -1814,6 +1844,9 @@ void func_80127924(s32 arg0, func_80127924_StructA **arg1) {
 
 
 
+
+
+
 static const unsigned char rodata_80124ED0[] = {
     0xA5, 0xB9, 0xA5, 0xC6, 0xA1, 0xBC, 0xA5, 0xB8, 0xA4, 0xCE, 0xBC, 0xEF, 0xCE, 0xE0, 0xCA, 0xCC,
     0xC5, 0xBE, 0xC1, 0xF7, 0xBD, 0xE8, 0xCD, 0xFD, 0x20, 0x20, 0x00, 0x00, 0xA5, 0xAA, 0xA1, 0xBC,
@@ -2012,4 +2045,5 @@ static const unsigned char rodata_80124ED0[] = {
     0x6C, 0x65, 0x20, 0x6F, 0x77, 0x61, 0x72, 0x69, 0x0A, 0x00, 0x00, 0x00,
 };
 /* hh-owned-pool func_80124ED0 8018C81C 8018C8D0 */
+/* hh-owned-pool func_801256C4 8018C9D0 8018CA78 */
 /* hh-owned-pool func_80125968 8018CA78 8018CB00 */

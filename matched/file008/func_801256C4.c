@@ -1,0 +1,25 @@
+#include "common.h"
+
+
+extern u16 D_801BBC1C;
+extern void func_80016E40(s32);
+extern void func_80004484(s32);
+
+s32 func_801256C4(void) {
+    switch (D_801BBC1C) {
+    case 0x64: case 0x65: case 0x66: case 0x67: case 0x68: case 0x69: case 0x6A:
+    case 0x6B: case 0x6C: case 0x6D: case 0x6E: case 0x6F: case 0x70: case 0x71:
+    case 0x72: case 0x73: case 0x74: case 0x75: case 0x76: case 0x77: case 0x78:
+    case 0x79: case 0x7A: case 0x7B: case 0x7C: case 0x7D: case 0x7E: case 0x7F:
+        func_80016E40(0x4000);
+        func_80004484(0x64);
+        break;
+    case 0x4: case 0x5: case 0xA: case 0xB: case 0xF: case 0x11:
+        func_80016E40(0x1A000);
+        func_80004484(0x38);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}

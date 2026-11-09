@@ -477,8 +477,76 @@ void func_80378CF0(void) {
 /* hh-block asm/nonmatchings/file057/80376D10/_mrg_keep_text_func_80378D84.s {"functions":["func_80378D84"],"rodata":[]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80376D10/_mrg_keep_text_func_80378D84.s")
 
-/* hh-block asm/nonmatchings/file057/80376D10/_mrg_keep_text_func_80378E3C.s {"functions":["func_80378E3C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80376D10/_mrg_keep_text_func_80378E3C.s")
+#define D_8017DC40 D_8017DC40__func_80378E3C
+#define func_80376D48_Player func_80376D48_Player__func_80378E3C
+#define func_8037865C_Struct func_8037865C_Struct__func_80378E3C
+#define P (*(struct func_80376D48_Player *)&D_8017DC40)
+struct func_8037865C_Struct {
+    u8 pad4[4];
+    u8 unk4;
+    u8 pad5[5];
+    u8 unkA;
+    u8 pad0B[0x3D];
+    u16 unk48;
+    u8 pad4A[8];
+    u8 unk52;
+    u8 unk53;
+    u8 unk54;
+    u8 unk55;
+};
+extern struct func_8037865C_Struct D_8017DC40;
+struct func_80376D48_Player {
+    u16 unk0;
+    u16 unk2;
+    u8 unk4;
+    u8 pad5;
+    u16 unk6;
+    u16 unk8;
+    u8 unkA;
+    u8 padB;
+    u16 unkC;
+    u8 padE[0x32];
+    u16 unk40;
+    u16 unk42;
+    u16 unk44;
+    u16 unk46;
+    u16 unk48;
+    u16 unk4A;
+    u16 unk4C;
+    u16 unk4E;
+    u16 unk50;
+    u8 unk52;
+    u8 unk53;
+    u8 unk54;
+    u8 unk55;
+};
+#define P (*(struct func_80376D48_Player *)&D_8017DC40)
+
+
+u16 func_80378E3C(s32 arg0) {
+    s32 *p = &arg0;
+    arg0 &= 0xFF;
+    switch (arg0) {
+    case 0:
+        return P.unk0;
+    case 1:
+        return P.unk8;
+    case 2:
+        return P.unk40;
+    case 3:
+        return P.unk42;
+    case 4:
+        return P.unk46;
+    case 5:
+        return P.unk44;
+    default:
+        return P.unk0;
+    }
+}
+#undef P
+#undef D_8017DC40
+#undef func_80376D48_Player
+#undef func_8037865C_Struct
 
 extern u8 D_80388410[];
 
@@ -620,6 +688,7 @@ void func_80379054(u8 *arg0) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_80376D10[] = {
     0xC0, 0xB5, 0xCC, 0xCC, 0xC4, 0xCF, 0xA4, 0xDF, 0x00, 0x00, 0x00, 0x00, 0xC7, 0xD8, 0xB8, 0xE5,
     0xC4, 0xCF, 0xA4, 0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -640,6 +709,6 @@ static const unsigned char rodata_80376D10[] = {
     0x80, 0x37, 0x7B, 0xE4, 0x80, 0x37, 0x82, 0x60, 0x80, 0x37, 0x82, 0x6C, 0x80, 0x37, 0x82, 0x78,
     0x80, 0x37, 0x82, 0x84, 0x80, 0x37, 0x82, 0x90, 0x80, 0x37, 0x82, 0x9C, 0x80, 0x37, 0x8D, 0xB0,
     0x80, 0x37, 0x8D, 0xC4, 0x80, 0x37, 0x8D, 0xD8, 0x80, 0x37, 0x8D, 0xEC, 0x80, 0x37, 0x8E, 0x00,
-    0x80, 0x37, 0x8E, 0x14, 0x80, 0x37, 0x8E, 0x68, 0x80, 0x37, 0x8E, 0x74, 0x80, 0x37, 0x8E, 0x80,
-    0x80, 0x37, 0x8E, 0x8C, 0x80, 0x37, 0x8E, 0x98, 0x80, 0x37, 0x8E, 0xA4, 0x00, 0x00, 0x00, 0x00,
+    0x80, 0x37, 0x8E, 0x14,
 };
+/* hh-owned-pool func_80378E3C 8038B984 8038B9A0 */

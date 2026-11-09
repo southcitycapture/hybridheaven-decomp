@@ -4658,11 +4658,198 @@ void func_8024C58C(func_8024C58C_StructArg0 *arg0, func_8024C58C_StructObj **arg
     func_800058DC(arg0, func_8024CA4C);
 }
 
-/* hh-block asm/nonmatchings/file018/80244AB0/_mrg_keep_tail_baca2d6b197ba099.s {"functions":["func_8024CA4C"],"rodata":[],"rodata_bytes":[2149959320,6745672,72]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/_mrg_keep_tail_baca2d6b197ba099.s")
+
+#define D_8012C89C D_8012C89C__func_8024CA4C
+#define D_8012D8C8 D_8012D8C8__func_8024CA4C
+#define func_80245010 func_80245010__func_8024CA4C
+#define func_802474E4_StructNode func_802474E4_StructNode__func_8024CA4C
+#define func_80248E34 func_80248E34__func_8024CA4C
+#define func_80248E34_StructA func_80248E34_StructA__func_8024CA4C
+#define func_80248E34_StructB func_80248E34_StructB__func_8024CA4C
+s32 func_80245010(s32 arg0);
+typedef struct func_802474E4_StructNode {
+    u8 pad0[0x4];
+    f32 unk4;
+    u8 pad8[0x4];
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_802474E4_StructNode;
+typedef struct func_80248E34_StructB {
+    u8 pad0[0x30];
+    func_802474E4_StructNode *unk30;
+} func_80248E34_StructB;
+typedef struct func_80248E34_StructA {
+    u8 pad0[0x24];
+    func_80248E34_StructB *unk24;
+} func_80248E34_StructA;
+void func_80248E34(func_80248E34_StructA *arg0);
+
+
+typedef struct func_8024CA4C_Sub {
+    u8 pad0[4];
+    f32 f4;
+    f32 f8;
+    f32 fC;
+    s16 f10;
+    s16 f12;
+    s16 f14;
+    u8 pad16[2];
+    f32 f18;
+    f32 f1C;
+    f32 f20;
+    s32 f24;
+    u8 pad28[8];
+    s32 f30;
+    u8 pad34[0x14];
+    u8 b48;
+    u8 b49;
+    u8 b4A;
+    u8 b4B;
+    u8 b4C;
+    u8 b4D;
+    u8 b4E;
+} func_8024CA4C_Sub;
+
+typedef struct func_8024CA4C_Obj {
+    u8 pad0[0x30];
+    func_8024CA4C_Sub *p;
+} func_8024CA4C_Obj;
+
+typedef struct func_8024CA4C_Arg0 {
+    u8 pad0[0x92];
+    s16 s92;
+    s16 s94;
+    s16 s96;
+} func_8024CA4C_Arg0;
+
+extern void D_8012C89C(void *, s32, s32, s32);
+extern void D_8012D8C8(void *, s32, s32, f32, s32, s32);
+
+void func_8024CA4C(func_8024CA4C_Arg0 *arg0, func_8024CA4C_Obj **arg1) {
+    s32 i;
+
+    if (func_80245010((s32)arg0) != 0) {
+        return;
+    }
+    func_80248E34((void *)arg0);
+    if (arg1[0]->p->b4B >= 0x11) {
+        arg1[0]->p->f18 = arg1[0]->p->f18 + 0.005;
+        arg1[0]->p->f1C = arg1[0]->p->f1C + 0.005;
+        arg1[0]->p->f20 = arg1[0]->p->f20 + 0.005;
+        arg1[0]->p->b4B -= 8;
+        arg1[0]->p->f12 -= 0x300;
+    } else {
+        arg1[0]->p->b4B = 0;
+    }
+    if (arg1[2]->p->b4B >= 0x11) {
+        arg1[2]->p->f18 = arg1[2]->p->f18 + 0.01;
+        arg1[2]->p->f1C = arg1[2]->p->f1C + 0.01;
+        arg1[2]->p->f20 = arg1[2]->p->f20 + 0.01;
+        arg1[2]->p->b4B -= 8;
+        arg1[2]->p->f10 = 0;
+        arg1[2]->p->f12 += 0x800;
+        arg1[2]->p->f14 = 0;
+    } else {
+        arg1[2]->p->b4B = 0;
+    }
+    if (arg0->s94++ % 3 == 0) {
+        i = arg0->s96;
+        D_8012C89C(arg0, i, 3, 4);
+        D_8012D8C8(arg0, 0x3D0, 7, i * 1e-2, 2, i);
+        arg1[i]->p->f24 = 0x60300;
+        arg1[i]->p->f30 = (s32)D_80258FE0 | 0x40000000;
+        func_800062F8(arg1[i], 0x800005FF);
+        arg1[i]->p->f18 = 0.4f;
+        arg1[i]->p->f1C = 0.4f;
+        arg1[i]->p->f20 = 0.4f;
+        arg1[i]->p->b48 = 0xFF;
+        arg1[i]->p->b49 = 0xFF;
+        arg1[i]->p->b4A = 0xFF;
+        arg1[i]->p->b4B = arg1[3]->p->b4B;
+        arg1[i]->p->b4C = 0xFF;
+        arg1[i]->p->b4D = 0;
+        arg1[i]->p->b4E = 0;
+        arg1[i]->p->f4 = arg1[1]->p->f4 + ((f32)func_8012C6B4(200) - 100.0) / 5.0;
+        arg1[i]->p->f8 = (arg1[1]->p->f8 + 10.0f) + ((f32)func_8012C6B4(200) - 100.0) / 5.0 + 40.0;
+        arg1[i]->p->fC = arg1[1]->p->fC + ((f32)func_8012C6B4(200) - 100.0) / 5.0;
+        arg0->s96 += 1;
+        if (arg0->s96 == 0xB) {
+            arg0->s96 = 6;
+        }
+    }
+    if (arg0->s92-- == 0) {
+        arg0->s92 += 1;
+        arg1[5]->p->f18 = arg1[5]->p->f18 - (arg1[5]->p->f18 - 1.26) / 30.0;
+        arg1[5]->p->f1C = arg1[5]->p->f1C - (arg1[5]->p->f1C - 0.525) / 30.0;
+        arg1[5]->p->f8 = (142.0 - arg1[5]->p->f8) / 30.0 + arg1[5]->p->f8;
+        arg1[5]->p->b4B = 0xFF;
+        return;
+    }
+    if (arg0->s92 < 0x38) {
+        if (arg1[5]->p->f1C < 2.0) {
+            arg1[5]->p->f1C = arg1[5]->p->f1C + 0.2;
+            arg1[5]->p->f18 = arg1[5]->p->f18 + 0.2;
+        }
+    }
+    if (arg0->s92 == 0x38) {
+        D_8012C89C(arg0, 5, 0x3D0, 0xB);
+        D_8012D8C8(arg0, 0x3D0, 0xA, 0.5f, 1, 5);
+        arg1[5]->p->f24 = 0x80300;
+        arg1[5]->p->f30 = (s32)D_80258FE0 | 0x40000000;
+        func_800062F8(arg1[5], 0x80000600);
+        arg1[5]->p->f18 = 0.2f;
+        arg1[5]->p->f1C = 0.0f;
+        arg1[5]->p->f20 = 0.2f;
+        arg1[5]->p->b48 = 0xFF;
+        arg1[5]->p->b49 = 0xFF;
+        arg1[5]->p->b4A = 0xFF;
+        arg1[5]->p->b4B = 0xFF;
+        arg1[5]->p->b4C = 0xFF;
+        arg1[5]->p->b4D = 0;
+        arg1[5]->p->b4E = 0xFF;
+        arg1[5]->p->f4 = arg1[1]->p->f4;
+        arg1[5]->p->f8 = arg1[1]->p->f8;
+        arg1[5]->p->fC = arg1[1]->p->fC;
+    }
+}
+#undef D_8012C89C
+#undef D_8012D8C8
+#undef func_80245010
+#undef func_802474E4_StructNode
+#undef func_80248E34
+#undef func_80248E34_StructA
+#undef func_80248E34_StructB
 
 
 /* C-owned readonly prefix; private load aliases retain IDO scheduling. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Readonly constants retained after the last ASM donor became C. */
 
 static const unsigned char rodata_80244AB0[] = {
     0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
@@ -4787,3 +4974,4 @@ static const unsigned char rodata_80244AB0[] = {
 /* hh-owned-pool func_8024B2FC 8025C640 8025C644 */
 /* hh-owned-pool func_8024B5B0 8025C644 8025C648 */
 /* hh-owned-pool func_8024C58C 8025C694 8025C698 */
+/* hh-owned-pool func_8024CA4C 8025C698 8025C6DC */
