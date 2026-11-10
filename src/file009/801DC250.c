@@ -205,8 +205,40 @@ void func_801DC9C4(func_801DE6F4_StructVec pos, u16 arg3, f32 arg4) {
 #undef func_801DE6F4_StructVec
 #define func_801DC9C4 func_801DC9C4__merge_frozen
 
-/* hh-block asm/nonmatchings/file009/801DC250/_mrg_keep_tail_a1736a2c804b7c52.s {"functions":["func_801DCC50"],"rodata":[],"rodata_bytes":[2149465424,5855200,20]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/_mrg_keep_tail_a1736a2c804b7c52.s")
+
+
+
+
+s32 func_801DCC50(arg0, arg1, arg2)
+u16 arg0;
+s32 arg1;
+u16 *arg2;
+{
+    switch (arg0 + (arg1 != 0 ? 0 : 0) + (arg2 != NULL ? 0 : 0)) {
+    case 0x674:
+    case 0x675:
+        return 5;
+    case 0x672:
+    case 0x673:
+        return 4;
+    case 0x67C:
+    case 0x67D:
+        return 3;
+    case 0x67A:
+    case 0x67B:
+    case 0x67E:
+    case 0x67F:
+        return 2;
+    case 0x670:
+    case 0x671:
+    case 0x678:
+    case 0x679:
+        return 1;
+    case 0x661:
+    default:
+        return 0;
+    }
+}
 
 
 
@@ -286,8 +318,8 @@ end:;
 
 
 
-/* hh-block asm/nonmatchings/file009/801DC250/_mrg_keep_tail_9ff10494b99963b5.s {"functions":["func_801DCDBC"],"rodata":[],"rodata_bytes":[2149465444,5855220,456]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/_mrg_keep_tail_9ff10494b99963b5.s")
+/* hh-block asm/nonmatchings/file009/801DC250/_mrg_keep_tail_5aa6dbe69c972ce9.s {"functions":["func_801DCDBC"],"rodata":[],"rodata_bytes":[2149465548,5855324,352]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file009/801DC250/_mrg_keep_tail_5aa6dbe69c972ce9.s")
 
 #define func_801DC250 func_801DC250__func_801DE464
 
@@ -841,10 +873,17 @@ c:
 
 #undef func_801DC9C4
 
+
+
+
+
+
+
 static const unsigned char rodata_801DC250[] = {
     0x74, 0x79, 0x70, 0x65, 0x20, 0x3D, 0x20, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 /* hh-owned-pool func_801DC9C4 801E3D30 801E3D50 */
+/* hh-owned-pool func_801DCC50 801E3D50 801E3DCC */
 /* hh-owned-pool func_801DE464 801E3F2C 801E3F30 */
 /* hh-owned-pool func_801DE5E4 801E3F30 801E3F34 */
 /* hh-owned-pool func_801DE7EC 801E3F34 801E3FAC */

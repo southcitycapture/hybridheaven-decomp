@@ -544,8 +544,18 @@ s32 func_801E2BBC(s32 arg0, s32 arg1)
  do { if (D_8038C17C(0.0f, (0.33333349227905273f), 0xC21A6666, 0x422CCCCD, (26.200000762939453f), (-35.400001525878906f), (48.29999923706055f), (32.099998474121094f), x, y, z, x, y, z, 50.5f, 50.5f) != 0) { D_8038C158(); return 0x1D; } return 0x1C; } while (0);
 }
 
-/* hh-block asm/nonmatchings/file038/801E1BE0/_mrg_keep_tail_29256b3f52e8feb6.s {"functions":["func_801E2C88"],"rodata":[],"rodata_bytes":[2149478860,7805468,32]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/_mrg_keep_tail_29256b3f52e8feb6.s")
+
+
+#define func_8038C17C func_8038C17C__func_801E2C88
+extern s32 func_8038C17C(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+
+s32 func_801E2C88(s32 arg0, s32 arg1) {
+    if (func_8038C17C(0.0f, 0.7333336f, -30.7f, 0.0f, 51.1f, -27.7f, 3.2f, 39.8f, -57.1f, 11.0f, 57.1f, -57.1f, 11.0f, 57.1f, 41.5f, 23.1f) != 0) {
+        return 0x1E;
+    }
+    return 0x1D;
+}
+#undef func_8038C17C
 
 
 
@@ -1630,8 +1640,8 @@ s32 func_801E4E80(s32 arg0, s32 arg1) {
     return 0x18;
 }
 
-/* hh-block asm/nonmatchings/file038/801E1BE0/_mrg_keep_17307f5c9109e2f2.s {"functions":["func_801E4EEC"],"rodata":[[".late_rodata","asm/nonmatchings/file038/801E1BE0/func_801E4EEC.s","jtbl_801E729C"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/_mrg_keep_17307f5c9109e2f2.s")
+/* hh-block asm/nonmatchings/file038/801E1BE0/_mrg_keep_tail_1f1f42e0636a786b.s {"functions":["func_801E4EEC"],"rodata":[],"rodata_bytes":[2149479068,7805676,20]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/_mrg_keep_tail_1f1f42e0636a786b.s")
 
 
 s32 func_801E5070(s32 arg0, s32 arg1) {
@@ -2570,6 +2580,27 @@ s32 func_801E68A4(s32 arg0, s32 arg1) {
 
 /* Original readonly objects; named loads retain their original addresses. */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801E1BE0[] = {
     0x42, 0x1D, 0x33, 0x33, 0xC2, 0x62, 0xCC, 0xCD, 0x41, 0x04, 0xCC, 0xCD, 0xC2, 0x5F, 0x33, 0x33,
     0x41, 0x84, 0xCC, 0xCD, 0x42, 0x50, 0xCC, 0xCD, 0xC2, 0x65, 0x99, 0x9A, 0x41, 0x7C, 0xCC, 0xCD,
@@ -2589,12 +2620,14 @@ static const unsigned char rodata_801E1BE0[] = {
 /* hh-owned-pool func_801E21F0 801E70AC 801E70C8 */
 /* hh-owned-pool func_801E235C 801E70C8 801E70D8 */
 /* hh-owned-pool func_801E24A0 801E70D8 801E7104 */
+/* hh-owned-pool func_801E2624 801E7104 801E711C */
 /* hh-owned-pool func_801E26EC 801E711C 801E7138 */
 /* hh-owned-pool func_801E27D0 801E7138 801E7150 */
 /* hh-owned-pool func_801E2888 801E7150 801E7160 */
 /* hh-owned-pool func_801E29FC 801E7160 801E718C */
 /* hh-owned-pool func_801E2AD8 801E718C 801E71AC */
 /* hh-owned-pool func_801E2BBC 801E71AC 801E71CC */
+/* hh-owned-pool func_801E2C88 801E71CC 801E71EC */
 /* hh-owned-pool func_801E2D94 801E71EC 801E7218 */
 /* hh-owned-pool func_801E2E78 801E7218 801E7248 */
 /* hh-owned-pool func_801E3A34 801E7248 801E7250 */
@@ -2604,5 +2637,6 @@ static const unsigned char rodata_801E1BE0[] = {
 /* hh-owned-pool func_801E4130 801E7278 801E7284 */
 /* hh-owned-pool func_801E42C8 801E7288 801E7294 */
 /* hh-owned-pool func_801E43CC 801E7294 801E7298 */
+/* hh-owned-pool func_801E4558 801E7298 801E729C */
 /* hh-owned-pool func_801E5574 801E72B0 801E72B8 */
 /* hh-owned-pool func_801E5A20 801E72B8 801E72BC */

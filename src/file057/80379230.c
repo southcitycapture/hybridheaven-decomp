@@ -1,7 +1,127 @@
 #include "common.h"
 
-/* hh-block asm/nonmatchings/file057/80379230/_mrg_keep_text_func_80379230.s {"functions":["func_80379230"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/_mrg_keep_text_func_80379230.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/D_8038B9A0.s")
+
+
+
+struct func_80379230_Struct {
+    s16 unk0;
+    u8 pad2[6];
+    s16 unk8;
+};
+
+s32 func_80379230(struct func_80379230_Struct *arg0, u8 arg1) {
+    s16 v;
+
+    switch (arg1) {
+    case 1:
+        if (arg0->unk0 >= 0x191) {
+            return 1;
+        }
+        break;
+    case 2:
+        v = arg0->unk0;
+        if ((v < 0x12C) || (v >= 0x4B1)) {
+            return 1;
+        }
+        break;
+    case 3:
+        if (arg0->unk0 < 0x2BC) {
+            return 1;
+        }
+        break;
+    case 4:
+        if (arg0->unk0 < 0x4B0) {
+            return 1;
+        }
+        break;
+    case 5:
+        if (arg0->unk8 >= 0x12D) {
+            return 1;
+        }
+        break;
+    case 6:
+        if (arg0->unk8 >= 0x1F5) {
+            return 1;
+        }
+        break;
+    case 7:
+        if (arg0->unk8 < 0x12C) {
+            return 1;
+        }
+        break;
+    case 8:
+        if (arg0->unk8 < 0x1F4) {
+            return 1;
+        }
+        break;
+    case 9:
+        v = arg0->unk0;
+        if ((v < 0xC8) || (v >= 0x259)) {
+            return 1;
+        }
+        break;
+    case 10:
+        v = arg0->unk0;
+        if ((v < 0x190) || (v >= 0x4B1)) {
+            return 1;
+        }
+        break;
+    case 11:
+        if (arg0->unk0 < 0x320) {
+            return 1;
+        }
+        break;
+    case 12:
+        if (arg0->unk0 < 0x5DC) {
+            return 1;
+        }
+        break;
+    case 15:
+        if (arg0->unk0 < 0x12C) {
+            return 1;
+        }
+        break;
+    case 16:
+    case 17:
+    case 18:
+        return 1;
+    case 20:
+        if (arg0->unk0 >= 0x1F5) {
+            return 1;
+        }
+        break;
+    case 22:
+        if (arg0->unk0 >= 0x2BD) {
+            return 1;
+        }
+        break;
+    case 24:
+        if (arg0->unk0 >= 0x385) {
+            return 1;
+        }
+        break;
+    case 21:
+    case 23:
+    case 25:
+    case 26:
+    case 27:
+    case 28:
+    case 29:
+        return 1;
+    case 30:
+    case 31:
+    case 32:
+    case 33:
+    case 34:
+    case 35:
+    case 36:
+    case 37:
+    default:
+        break;
+    }
+    return 0;
+}
 
 
 extern u8 D_8017E004[];
@@ -27,8 +147,6 @@ void func_80379410(u8 *arg0, u8 arg1) {
 
 extern u8 D_801BBBF0[];
 
-extern f32 D_8038BA70;
-
 u16 func_80379490(u8 *arg0, u16 arg1, u8 arg2, f32 arg3) {
     f32 k = 1.0f;
     if ((D_801BBBF0[0x1033] & 8) && (arg0 == D_801BBBF0 + 0x7E8)) {
@@ -36,7 +154,7 @@ u16 func_80379490(u8 *arg0, u16 arg1, u8 arg2, f32 arg3) {
     }
     if ((arg0 == D_801BBBF0 + 0x7E8) && (*(u16 *)(D_801BBBF0 + 0x2C) != 0xA)) {
         if (D_801BBBF0[0x1D] == 1) {
-            k = D_8038BA70;
+            k = 1.20000005f;
         } else if (D_801BBBF0[0x1D] == 2) {
             k = 1.5f;
         }
@@ -97,13 +215,6 @@ u16 func_803797F8(s16 *arg0, u8 arg1, u16 arg2) {
     return (u32) t;
 }
 
-#define D_801BC03C D_801BC03C__func_80379904
-#define D_801BC3D8 D_801BC3D8__func_80379904
-#define D_802176F0 D_802176F0__func_80379904
-#define D_803896DC D_803896DC__func_80379904
-#define D_8038BA78 D_8038BA78__func_80379904
-#define func_80005670 func_80005670__func_80379904
-#define func_8023011C func_8023011C__func_80379904
 #define func_80379490 func_80379490__func_80379904
 #define func_803795D8 func_803795D8__func_80379904
 #define func_803795D8_Struct func_803795D8_Struct__func_80379904
@@ -158,7 +269,7 @@ extern u8 D_801BC3D8[];
 extern u8 D_801BC03C[];
 extern u8 D_802176F0[];
 extern u8 D_803896DC[];
-extern f64 D_8038BA78;
+
 extern void *func_80005670(void *, void *);
 extern void func_8023011C(u16, void *);
 
@@ -174,7 +285,7 @@ extern void func_803796C8();
     out = NULL;
     if ((D_801BBBF0 == (u8 *)a - 0x44C)) enemy = (func_80379904_Struct *)D_801BC3D8;
     else enemy = (func_80379904_Struct *)D_801BC03C;
-    factor = (enemy->state == 13) ? D_8038BA78 : 1.0;
+    factor = (enemy->state == 13) ? 0.6 : 1.0;
 
     switch (a->item) {
     case 1:
@@ -618,13 +729,6 @@ extern void func_803796C8();
     if (out != NULL) return out->amount;
     return 0;
 }
-#undef D_801BC03C
-#undef D_801BC3D8
-#undef D_802176F0
-#undef D_803896DC
-#undef D_8038BA78
-#undef func_80005670
-#undef func_8023011C
 #undef func_80379490
 #undef func_803795D8
 #undef func_803795D8_Struct
@@ -635,26 +739,5 @@ extern void func_803796C8();
 #undef func_803796EC
 #undef func_803797F8
 
-/* hh-block asm/nonmatchings/file057/80379230/_mrg_keep_tail_c65fc26144370332.s {"functions":["func_8037A884"],"rodata":[],"rodata_bytes":[2151201560,8582968,56]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/_mrg_keep_tail_c65fc26144370332.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80379230/func_8037A884.s")
 
-
-/* Original readonly objects; named loads retain their original addresses. */
-
-static const unsigned char rodata_80379230[] = {
-    0xCC, 0xB5, 0xC5, 0xA8, 0xA5, 0xE2, 0xA1, 0xBC, 0xA5, 0xC9, 0x0A, 0x00, 0xA5, 0xA2, 0xA5, 0xA4,
-    0xA5, 0xB9, 0xA4, 0xCE, 0xB8, 0xFA, 0xB2, 0xCC, 0x20, 0xB9, 0xC5, 0xC4, 0xBE, 0xBB, 0xFE, 0xB4,
-    0xD6, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0x20, 0x25, 0x64, 0x0A, 0x00, 0xC6, 0xC7, 0xA4, 0xAC,
-    0xA4, 0xAD, 0xA4, 0xAB, 0xA4, 0xCA, 0xA4, 0xA4, 0x0A, 0x00, 0x00, 0x00, 0x80, 0x37, 0x92, 0x5C,
-    0x80, 0x37, 0x92, 0x74, 0x80, 0x37, 0x92, 0x94, 0x80, 0x37, 0x92, 0xAC, 0x80, 0x37, 0x92, 0xC4,
-    0x80, 0x37, 0x92, 0xDC, 0x80, 0x37, 0x92, 0xF4, 0x80, 0x37, 0x93, 0x0C, 0x80, 0x37, 0x93, 0x24,
-    0x80, 0x37, 0x93, 0x44, 0x80, 0x37, 0x93, 0x64, 0x80, 0x37, 0x93, 0x7C, 0x80, 0x37, 0x94, 0x04,
-    0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x93, 0x94, 0x80, 0x37, 0x93, 0xAC, 0x80, 0x37, 0x93, 0xAC,
-    0x80, 0x37, 0x93, 0xAC, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x93, 0xB4, 0x80, 0x37, 0x93, 0xFC,
-    0x80, 0x37, 0x93, 0xCC, 0x80, 0x37, 0x93, 0xFC, 0x80, 0x37, 0x93, 0xE4, 0x80, 0x37, 0x93, 0xFC,
-    0x80, 0x37, 0x93, 0xFC, 0x80, 0x37, 0x93, 0xFC, 0x80, 0x37, 0x93, 0xFC, 0x80, 0x37, 0x93, 0xFC,
-    0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04,
-    0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04, 0x80, 0x37, 0x94, 0x04,
-    0x3F, 0x99, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xE3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33,
-};
-/* hh-owned-pool func_80379904 8038BA80 8038BB18 */
