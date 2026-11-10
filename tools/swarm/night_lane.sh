@@ -13,7 +13,8 @@ import datetime as dt, sys
 from zoneinfo import ZoneInfo
 t = dt.datetime.now(ZoneInfo("America/New_York")); d, h = t.weekday(), t.hour      # Mon=0 .. Sun=6
 weekend = d in (5, 6) or (d == 0 and h < 7) or (d == 4 and h >= 19)
-sys.exit(0 if weekend or h >= 19 or h < 7 else 1)
+import os
+sys.exit(0 if weekend or h >= 19 or h < 7 or os.path.exists("queue/loop/NIGHT_ANYTIME") else 1)   # NIGHT_ANYTIME: Zach says run now
 PY
 }
 meter() { $(command -v ~/bin/usage-gate || echo true) --brief 100 100 >/dev/null 2>&1

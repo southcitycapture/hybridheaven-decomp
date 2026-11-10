@@ -15,14 +15,17 @@ busy() { ps -eo args | grep -q -e '^/home/claude/.local/bin/[o]pencode run --pur
 i=0
 while read -r FUNC SEG; do
   [ -z "$FUNC" ] && continue
-  for a in $( [ $((i % 2)) = 0 ] && echo "pi oc" || echo "oc pi" ); do
+  # ARMS (11-10): which arms to run, e.g. ARMS=pimod reuses the earlier pi/oc results with the same BEST_BEFORE
+  arms=${ARMS:-pi oc}; set -- $arms; [ $# -eq 2 ] && [ $((i % 2)) = 1 ] && arms="$2 $1"
+  for a in $arms; do
     [ -f queue/localAB/STOP ] || [ -f queue/localU1/STOP ] && { echo "$(date -u +%FT%H:%MZ) STOP" >> "$L"; rm -f queue/localU1/HOLD; exit 0; }
-    B=${a}AB; grep -q "\"func\": \"$FUNC\", \"segment\": \"$SEG\"" "queue/$B/results.jsonl" 2>/dev/null && continue   # resume
+    B=${a}AB; [ $a = pimod ] && B=pimAB; grep -q "\"func\": \"$FUNC\", \"segment\": \"$SEG\"" "queue/$B/results.jsonl" 2>/dev/null && continue   # resume
     while busy; do sleep 60; done
     rm -f "$HOME/.oc/COOLDOWN.strata"
     echo "$(date -u +%FT%H:%MZ) $a $FUNC $SEG" >> "$L"
     mkdir -p "queue/$B"
-    INNER=$([ $a = pi ] && echo run_one_pi.sh || echo run_one_oc.sh) BATCH=$B tools/swarm/run_one_from.sh "$FUNC" "$SEG" > /dev/null 2>&1
+    INNER=$([ $a = oc ] && echo run_one_oc.sh || echo run_one_pi.sh) PI_MOD=$([ $a = pimod ] && echo 1) BATCH=$B \
+      tools/swarm/run_one_from.sh "$FUNC" "$SEG" > /dev/null 2>&1
     tail -1 "queue/$B/results.jsonl" 2>/dev/null | cut -c1-220 >> "$L"
   done
   i=$((i + 1))

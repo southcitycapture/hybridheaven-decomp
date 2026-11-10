@@ -34,6 +34,12 @@ BW+=(--ro-bind /etc /etc --proc /proc --dev /dev --tmpfs /tmp --tmpfs "$HOME"
      --setenv PI_TELEMETRY 0 --setenv STRATA_API_KEY "$KEY" --setenv PATH "$PATH" --setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH")
 PIARGS=(-p --mode json --no-context-files --no-extensions --no-skills --no-prompt-templates --no-themes --no-mcp
         --tools read,bash,edit,write,grep,ls --model "strata/$MODEL_ID" --session-dir "$LOGD/sessions")
+# PI_MOD=1 (11-10): the decomp extension (check tool, deterministic compaction) and the decomp system prompt
+if [ -n "$PI_MOD" ]; then
+  PIARGS=(-p --mode json --no-context-files --no-extensions --no-skills --no-prompt-templates --no-themes --no-mcp
+          -e "$HH/tools/swarm/pi/decomp.ts" --tools read,bash,edit,write,grep,ls,check
+          --system-prompt "$(cat "$HH/tools/swarm/pi/SYSTEM.md")" --model "strata/$MODEL_ID" --session-dir "$LOGD/sessions")
+fi
 watch_run() {   # $1 = pid: idle watchdog (no new output for OC_IDLE seconds = kill)
   while kill -0 "$1" 2>/dev/null; do
     sleep 15
@@ -89,7 +95,7 @@ claimed=$(last_text | grep '^RESULT' | tail -1); [ -z "$claimed" ] && claimed=$(
 secs=$(( $(date +%s) - start ))
 mv "$LOGD/result.jsonl" "$LOGD/stderr.txt" "$OW"/ 2>/dev/null; rm -rf "$LOGD"
 mkdir -p "$(dirname "$W")"; cp -a "$OW" "$W"; cd "$W"; rm -rf "$OW"
-"$HH/.venv/bin/python" - "$FUNC" "$SEG" "pi/strata/$MODEL_ID" "$v" "$claimed" "$checks_used" "$secs" "$(cat exit.txt)" <<'PY' >> "$HH/queue/$BATCH/results.jsonl"
+"$HH/.venv/bin/python" - "$FUNC" "$SEG" "pi${PI_MOD:+mod}/strata/$MODEL_ID" "$v" "$claimed" "$checks_used" "$secs" "$(cat exit.txt)" <<'PY' >> "$HH/queue/$BATCH/results.jsonl"
 import json, sys
 f, seg, model, v, claimed, checks, secs, ex = sys.argv[1:9]
 inp = out = turns = 0

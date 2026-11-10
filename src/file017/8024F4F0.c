@@ -337,6 +337,7 @@ extern void D_80151700(s32, u8, void *);
 extern s32 func_801517CC(s32);
 extern u8 D_8017BAD8[];
 
+#define func_8025006C func_8025006C__decl339
 extern u8 func_8025006C[];
 
 void func_8024FEC4(func_8024FEC4_Struct *arg0, s32 arg1) {
@@ -371,8 +372,68 @@ void func_8024FEC4(func_8024FEC4_Struct *arg0, s32 arg1) {
         func_800058DC(arg0, func_8025006C);
     }
 }
+#undef func_8025006C
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/8024F4F0/func_8025006C.s")
+#define func_8012C6B4 func_8012C6B4__func_8025006C
+#define func_8025022C func_8025022C__func_8025006C
+#define func_8025022C_Struct func_8025022C_Struct__func_8025006C
+#define func_80251574 func_80251574__func_8025006C
+#define func_80380F94 func_80380F94__func_8025006C
+extern s32 func_8012C6B4(s32);
+typedef struct func_8025022C_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_8025022C_Struct;
+void func_8025022C(func_8025022C_Struct *arg0, s32 arg1);
+extern void func_80251574();
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
+
+typedef struct func_8025006C_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_8025006C_Struct;
+
+void func_8025006C(func_8025006C_Struct *arg0, s32 arg1) {
+    f32 sp4C;
+    f32 sp48;
+    u8 pad[12];
+    s32 sp38;
+    f32 sp34;
+    s32 sp30;
+    s32 t;
+    s32 d;
+    u16 s;
+
+    s = arg0->unk3C;
+    arg0->unk3C = s + 1;
+    func_80251574(arg0, arg1);
+    if (s == 5) {
+        func_80020718(0x183);
+    }
+    if (s < 0x19) {
+        d = 10;
+    } else {
+        d = 2;
+    }
+    if ((s % d) == 0) {
+        sp4C = (f32)func_8012C6B4(0x2000);
+        sp48 = (f32)(1.0 + ((f64)func_8012C6B4(0x64) / 100.0));
+        t = (s32)sp4C;
+        sp30 = (s16)t;
+        sp34 = func_8001EAD0((s16)t);
+        sp38 = func_8012C6B4(0x64);
+        func_80380F94((f32)((f64)(sp34 * sp48) + 125.0), (f32)(((f64)(f32)sp38 / 10.0) + 10.0f), (f32)((f64)(func_8001EB64(*(s16 *)((u8 *)&sp30 + 2)) * sp48) + -142.0), 0.0f, 0.0f, 0.0f, 9);
+    }
+    if (s >= 0x28) {
+        arg0->unk3C = 0;
+        func_800058DC(arg0, func_8025022C);
+    }
+}
+#undef func_8012C6B4
+#undef func_8025022C
+#undef func_8025022C_Struct
+#undef func_80251574
+#undef func_80380F94
 
 #define func_80251574 func_80251574__func_8025022C
 

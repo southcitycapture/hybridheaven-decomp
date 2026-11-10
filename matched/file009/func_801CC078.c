@@ -18,7 +18,7 @@ extern void func_8013A334(s32 *, u8 *, s32, s32);
 struct func_801CC078_StructInner { u8 pad[0x5C]; s32 unk5C; };
 struct func_801CC078_StructOuter { u8 pad[0xC]; struct func_801CC078_StructInner *unkC; };
 struct func_801CC078_StructVec { f32 x, y, z; };
-extern void func_801CC260(void);
+extern void func_801CC260();
 
 void func_801CC078(struct func_801CC078_StructOuter *arg0, s32 arg1)
 {

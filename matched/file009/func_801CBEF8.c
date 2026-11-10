@@ -21,7 +21,7 @@ extern void func_800058DC(void *, void *);
 void func_801CC6F0(void *arg0, s32 arg1);
 void func_801CC830(u8 *arg0, s32 arg1);
 
-extern void func_801CC260(void *, s32);
+extern void func_801CC260();
 extern void func_801CC078(void *, s32);
 
 #define OBJ ((T_func_801CC9B0_ret_801CC9EC *)D_801E4080)

@@ -747,7 +747,42 @@ s32 func_801E3010(s32 arg0, s32 arg1) {
     return 9;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file030/801E1BE0/func_801E305C.s")
+#define func_801C0EB0 func_801C0EB0__func_801E305C
+#define func_801C0F18 func_801C0F18__func_801E305C
+
+extern s32 func_801C0EB0(s32, s32);
+extern u64 func_801C0F18(s32, s32);
+
+s32 func_801E305C(s32 arg0, s32 arg1) {
+    s64 time;
+    f32 x;
+    f32 r;
+    f32 g;
+    f32 b;
+
+    if (func_801C0B8C(0x90F560) != 0) {
+        func_801C0EB0(1, 0);
+        func_801CCEC8(0, 0, -13, 0);
+        func_801CCEC8(1, 0, 115, 0);
+        func_801CD5C8(0, 1, 2, 4);
+        func_801CD5C8(1, 1, 2, 4);
+        func_801CCE88(0, 0, 0, 0);
+        func_801CCE88(1, 0, 0, 0);
+        return 11;
+    }
+    time = func_801C0F18(1, 0);
+    x = ((func_80034C24(time) / 1000000.0) / 7) * -11.0 + 17.0;
+    r = ((func_80034C24(time) / 1000000.0) / 7) * 0;
+    g = ((func_80034C24(time) / 1000000.0) / 7) * -255.0 + 255.0;
+    b = ((func_80034C24(time) / 1000000.0) / 7) * -255.0 + 255.0;
+    func_801CD5C8(0, 1, 2, (s8)(s32)(x * 0.7111111283f));
+    func_801CD5C8(1, 1, 2, (s8)(s32)(x * 0.7111111283f));
+    func_801CCE88(0, (u32)r & 0xFF, (u32)g & 0xFF, (u32)b & 0xFF);
+    func_801CCE88(1, (u32)r & 0xFF, (u32)g & 0xFF, (u32)b & 0xFF);
+    return 10;
+}
+#undef func_801C0EB0
+#undef func_801C0F18
 
 
 
