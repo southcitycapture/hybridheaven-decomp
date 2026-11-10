@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-10: **83.16% of the code** (15386 of 15891 functions, including duplicates).
+Progress as of 2026-11-10: **83.28% of the code** (15390 of 15891 functions, including duplicates).
 
-**23436 model runs, $7008.07 API-equivalent in total** (local and cloud). Of the **15332 functions now in C**, **7192 were matched by AI workers** (≈ $0.974 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**23473 model runs, $7028.14 API-equivalent in total** (local and cloud). Of the **15336 functions now in C**, **7196 were matched by AI workers** (≈ $0.977 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -472,17 +472,21 @@ Progress as of 2026-11-10: **83.16% of the code** (15386 of 15891 functions, inc
 | `ocM_dsf` | ocM_dsf | opencode/deepseek-v4.1-flash-free | 88 | 9 | 10% | $0.00 | – |  |
 | `unify_loop0280` | unify_loop0280 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
 | `hidden35b` | hidden35b | hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/allO1/work/func_801251BC/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/permsweep/work/func_801E2FEC@file043/start.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/permsweep/work/func_801F5574@file028/start.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/permsweep/work/func_801FB144/start.c) | 4 | 4 | 100% | $0.00 | – |  |
-| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 199 | 19 | 10% | $0.00 | – |  |
 | `unify_loop0281` | unify_loop0281 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0282` | unify_loop0282 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0283` | unify_loop0283 | unify (no model) | 9 | 1 | 11% | $0.00 | – |  |
 | `unify_loop0284` | unify_loop0284 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0285` | unify_loop0285 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
-| `pimAB` | pimAB | pimod/strata/qwen3.8-flash-next-iq3_xxs | 15 | 10 | 67% | $0.00 | – |  |
 | `unify_loop0286` | unify_loop0286 | unify (no model) | 10 | 1 | 10% | $0.00 | – |  |
-| `rampC1` | rampC1 | opus-5-5, sonnet-5-5 | 33 | 9 | 27% | $216.30 | $24.033 |  |
-| `terraP2` | terraP2 | openai/gpt-6.1-terra | 77 | 10 | 13% | $0.00 | – |  |
-| `rampO2` | rampO2 | opus-5-5, sonnet-5-5 | 63 | 19 | 30% | $83.62 | $4.401 |  |
-| `rampO1` | rampO1 | opus-5-5, sonnet-5-5 | 80 | 24 | 30% | $110.81 | $4.617 |  |
+| `rampO1` | rampO1 | opus-5-5, sonnet-5-5 | 87 | 24 | 28% | $112.82 | $4.701 |  |
+| `rampO2` | rampO2 | opus-5-5, sonnet-5-5 | 67 | 21 | 31% | $88.14 | $4.197 |  |
+| `unify_loop0287` | unify_loop0287 | unify (no model) | 9 | 0 | 0% | $0.00 | – |  |
+| `rampC1` | rampC1 | opus-5-5, sonnet-5-5 | 34 | 9 | 26% | $229.84 | $25.538 |  |
+| `unify_loop0288` | unify_loop0288 | unify (no model) | 9 | 0 | 0% | $0.00 | – |  |
+| `pimAB` | pimAB | pimod/strata/qwen3.8-flash-next-iq3_xxs | 18 | 11 | 61% | $0.00 | – |  |
+| `unify_loop0289` | unify_loop0289 | unify (no model) | 10 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0290` | unify_loop0290 | unify (no model) | 11 | 0 | 0% | $0.00 | – |  |
+| `terraP2` | terraP2 | openai/gpt-6.1-terra | 92 | 12 | 13% | $0.00 | – |  |
+| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 206 | 23 | 11% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
