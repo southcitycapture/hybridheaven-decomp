@@ -156,7 +156,54 @@ void func_80383BCC(void) {
 #undef D_8038DBBC
 #undef D_8038DBD8
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file055/803839A0/func_80383D08.s")
+#define D_8038DBD0 D_8038DBD0__func_80383D08
+#define D_8038DBD8 D_8038DBD8__func_80383D08
+extern s32 D_8038DBD0;
+extern s32 D_8038DBD8;
+
+
+void func_80383D08(void) {
+    switch (D_8038DBCC) {
+    case 0:
+        D_8038DBD0 = 0;
+        return;
+    case 1:
+        D_8038DBD0 = 1;
+        D_8038DBD4 += 3;
+        if (D_8038DBD4 >= 0xF1) {
+            D_8038DBD4 = 0xFF;
+            D_8038DBCC += 1;
+        }
+        D_8038DBC4 = 0;
+        return;
+    case 2:
+        D_8038DBD0 = 1;
+        D_8038DBD4 = 0xFF;
+        D_8038DBC4 += 1;
+        D_8038DBD8 = 0;
+        if (D_8038DBC4 >= 0x61) {
+            D_8038DBCC += 1;
+            return;
+        }
+    default:
+        return;
+    case 3:
+        D_8038DBD0 = 1;
+        D_8038DBD4 -= 0xC;
+        if (D_8038DBD4 < 0xA) {
+            D_8038DBD4 = 0;
+            D_8038DBCC += 1;
+        }
+        D_8038DBC4 = 0;
+        return;
+    case 4:
+        D_8038DBB0 = 1;
+        func_80020744(1);
+        break;
+    }
+}
+#undef D_8038DBD0
+#undef D_8038DBD8
 
 
 typedef struct func_80383E54_Struct {

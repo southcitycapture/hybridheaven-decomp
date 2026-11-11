@@ -534,8 +534,111 @@ void func_80359520(struct func_80359520_Struct *arg0, s32 arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_func_80359560.s {"functions":["func_80359560"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_func_80359560.s")
+#define D_80385540 D_80385540__func_80359560
+#define D_8038CC10 D_8038CC10__func_80359560
+#define func_80005670 func_80005670__func_80359560
+#define func_801CC9B0 func_801CC9B0__func_80359560
+#define func_80358964_StructA func_80358964_StructA__func_80359560
+#define func_803596BC func_803596BC__func_80359560
+#define func_80359858 func_80359858__func_80359560
+#define func_8035991C func_8035991C__func_80359560
+#define func_8035991C_Globals func_8035991C_Globals__func_80359560
+#define func_8035A434_Struct func_8035A434_Struct__func_80359560
+typedef struct func_80358964_StructA {
+    u8 pad0[0x30];
+    u8 unk30;
+    u8 pad1[0x4C - 0x31];
+    s16 unk4C;
+} func_80358964_StructA;
+extern func_80358964_StructA *D_8038CC10;
+extern void *func_80005670(void *, void *);
+extern void func_80359858();
+void func_8035991C(void *arg0, s32 arg1);
+typedef struct func_8035991C_Globals {
+    u8 pad0[0xDC];
+    void *unkDC;
+    u8 pad1[0xEC - 0xE0];
+    void *unkEC;
+} func_8035991C_Globals;
+typedef struct func_8035A434_Struct {
+    u8 pad0[0x2D8];
+    u8 unk2D8;
+    u8 unk2D9;
+} func_8035A434_Struct;
+extern void func_801CC9B0(void *);
+extern void func_803596BC(void);
+extern u8 D_80385540[];
+
+void func_80359560(void *arg0)
+{
+    void *other;
+    func_8035A434_Struct *state;
+    u8 type;
+
+    if (arg0 != ((func_8035991C_Globals *) D_801BBBF0)->unkDC) {
+        other = ((func_8035991C_Globals *) D_801BBBF0)->unkDC;
+    } else {
+        other = ((func_8035991C_Globals *) D_801BBBF0)->unkEC;
+    }
+
+    if (arg0 == ((func_8035991C_Globals *) D_801BBBF0)->unkDC) {
+        state = (func_8035A434_Struct *) D_801BC03C;
+    } else {
+        state = (func_8035A434_Struct *) D_801BC3D8;
+    }
+    type = state->unk2D9;
+    switch (type) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 16:
+    case 17:
+    case 18:
+    case 30:
+    case 31:
+    case 32:
+        func_801CC9B0(arg0);
+        return;
+    case 13:
+    case 14:
+    case 15:
+    case 33:
+    case 34:
+        D_8038CC10 = func_80005670(arg0, D_80385540);
+        func_800058DC(arg0, func_803596BC);
+        break;
+    case 19:
+    case 35:
+    case 36:
+    case 37:
+        D_8038CC10 = func_80005670(other, D_80385540);
+        func_800058DC(arg0, func_8035991C);
+        break;
+    default:
+        func_800058DC(arg0, func_80359858);
+        break;
+    }
+    D_8038CC10->unk30 = type;
+}
+#undef D_80385540
+#undef D_8038CC10
+#undef func_80005670
+#undef func_801CC9B0
+#undef func_80358964_StructA
+#undef func_803596BC
+#undef func_80359858
+#undef func_8035991C
+#undef func_8035991C_Globals
+#undef func_8035A434_Struct
 
 
 typedef struct func_80359674_StructInner {
@@ -589,8 +692,8 @@ void func_80359698(void *arg0, void *arg1) {
     temp_v0->unk82 = temp_v0->unk9A;
 }
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_func_803596BC.s {"functions":["func_803596BC"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_func_803596BC.s")
+/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_ff7e56d2f10ae900.s {"functions":["func_803596BC"],"rodata":[],"rodata_bytes":[2151194496,8575904,84]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_ff7e56d2f10ae900.s")
 
 #define func_80359858 func_80359858__func_803597DC
 
@@ -1117,8 +1220,8 @@ void func_8035A070(func_8035A070_StructArg *arg0, s32 arg1) {
     func_800058DC(arg0, func_8035A120);
 }
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035A120.s {"functions":["func_8035A120"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_func_8035A120.s")
+/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_00a50dcfc29bd3cd.s {"functions":["func_8035A120"],"rodata":[],"rodata_bytes":[2151194580,8575988,4]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_00a50dcfc29bd3cd.s")
 
 typedef struct func_8035A310_V {
     u8 pad0[0x33];
@@ -2306,6 +2409,17 @@ void func_8035C11C(func_8035C11C_Obj *arg0, s32 arg1) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_80358820[] = {
     0x64, 0x0A, 0x00, 0x00, 0x80, 0x35, 0x88, 0xE4, 0x80, 0x35, 0x88, 0xE4, 0x80, 0x35, 0x88, 0xF8,
     0x80, 0x35, 0x89, 0x48, 0x80, 0x35, 0x89, 0x48, 0x80, 0x35, 0x89, 0x48, 0x80, 0x35, 0x89, 0x20,
@@ -2315,23 +2429,9 @@ static const unsigned char rodata_80358820[] = {
     0x80, 0x35, 0x89, 0x48, 0x80, 0x35, 0x89, 0x0C, 0x80, 0x35, 0x89, 0x0C, 0x80, 0x35, 0x89, 0x34,
     0x80, 0x35, 0x89, 0x34, 0x80, 0x35, 0x89, 0x34, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
     0x3C, 0x23, 0xD7, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xAE, 0xB8, 0x51, 0xEB, 0x85, 0x1E, 0xB8,
-    0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x80, 0x35, 0x95, 0xD0,
-    0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0,
-    0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0,
-    0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xE0,
-    0x80, 0x35, 0x95, 0xE0, 0x80, 0x35, 0x95, 0xE0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0,
-    0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x96, 0x14, 0x80, 0x35, 0x96, 0x44, 0x80, 0x35, 0x96, 0x44,
-    0x80, 0x35, 0x96, 0x44, 0x80, 0x35, 0x96, 0x44, 0x80, 0x35, 0x96, 0x44, 0x80, 0x35, 0x96, 0x44,
-    0x80, 0x35, 0x96, 0x44, 0x80, 0x35, 0x96, 0x44, 0x80, 0x35, 0x96, 0x44, 0x80, 0x35, 0x96, 0x44,
-    0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xD0, 0x80, 0x35, 0x95, 0xE0,
-    0x80, 0x35, 0x95, 0xE0, 0x80, 0x35, 0x96, 0x14, 0x80, 0x35, 0x96, 0x14, 0x80, 0x35, 0x96, 0x14,
-    0x80, 0x35, 0x97, 0x80, 0x80, 0x35, 0x97, 0x80, 0x80, 0x35, 0x97, 0x80, 0x80, 0x35, 0x97, 0xA0,
-    0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0,
-    0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0,
-    0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0,
-    0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0, 0x80, 0x35, 0x97, 0xA0,
-    0x80, 0x35, 0x97, 0x90, 0x80, 0x35, 0x97, 0x90,
+    0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
 };
+/* hh-owned-pool func_80359560 80389EEC 80389F80 */
 /* hh-owned-pool func_8035A380 80389FD8 8038A000 */
 /* hh-owned-pool func_8035AA44 8038A034 8038A03C */
 /* hh-owned-pool func_8035ABAC 8038A03C 8038A050 */

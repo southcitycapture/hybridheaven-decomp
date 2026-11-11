@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-11: **83.40% of the code** (15398 of 15891 functions, including duplicates).
+Progress as of 2026-11-11: **83.49% of the code** (15405 of 15891 functions, including duplicates).
 
-**23509 model runs, $7028.14 API-equivalent in total** (local and cloud). Of the **15344 functions now in C**, **7204 were matched by AI workers** (≈ $0.976 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**23531 model runs, $7028.14 API-equivalent in total** (local and cloud). Of the **15351 functions now in C**, **7211 were matched by AI workers** (≈ $0.975 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -489,8 +489,12 @@ Progress as of 2026-11-11: **83.40% of the code** (15398 of 15891 functions, inc
 | `unify_loop0292` | unify_loop0292 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0293` | unify_loop0293 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0294` | unify_loop0294 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
-| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 213 | 25 | 12% | $0.00 | – |  |
-| `terraP2` | terraP2 | openai/gpt-6.1-terra | 108 | 18 | 17% | $0.00 | – |  |
-| `ocM_dsf` | ocM_dsf | opencode/deepseek-v4.1-flash-free | 101 | 9 | 9% | $0.00 | – |  |
+| `ocM_dsf` | ocM_dsf | opencode/deepseek-v4.1-flash-free | 106 | 10 | 9% | $0.00 | – |  |
+| `unify_loop0295` | unify_loop0295 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0296` | unify_loop0296 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0297` | unify_loop0297 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `terraP2` | terraP2 | openai/gpt-6.1-terra | 118 | 21 | 18% | $0.00 | – |  |
+| `unify_loop0298` | unify_loop0298 | unify (no model) | 9 | 0 | 0% | $0.00 | – |  |
+| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 220 | 28 | 13% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
