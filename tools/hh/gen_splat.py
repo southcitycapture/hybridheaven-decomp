@@ -34,6 +34,38 @@ def c_lines(seg, start, vram, end):
             out.append("      - [0x%X, pad]" % (stop - pad))
     return out
 head = head.replace("      - {MAIN_C}", "\n".join(c_lines("main", 0x1060, 0x80000460, 0x35D20)))
+# Library writable sections have real original storage, just like drvrnew's
+# parameter arrays and sptask's tmp_task. Do not append a second copy of them
+# to the generic main data/BSS spans. Addresses are constrained by the compiled
+# objects' HI16/LO16 relocations and verified by the whole-ROM build.
+LIBRARY = json.load(open('tools/hh/libultra.json'))
+data_spans = [(0x8004AB60, 0x190, 'main/8002C850')]
+bss_spans = [(0x800CBE20, 0x40, 'main/800269F0')]
+for unit, entry in LIBRARY.items():
+    for section, span in entry.get('storage', {}).items():
+        assert unit.startswith('main/') and section in ('.data', '.bss')
+        address, size = (int(value, 16) for value in span)
+        (data_spans if section == '.data' else bss_spans).append((address, size, unit))
+main_data, cursor = [], 0x80035120
+for address, size, unit in sorted(data_spans):
+    assert cursor <= address and address % 16 == size % 16 == 0
+    if cursor < address:
+        main_data.append('      - [0x%X, data]' % (cursor - 0x80000000 + 0xC00))
+    main_data.append('      - [0x%X, .data, %s]' % (address - 0x80000000 + 0xC00, unit))
+    cursor = address + size
+main_data.append('      - [0x%X, data]' % (cursor - 0x80000000 + 0xC00))
+main_bss, cursor = [], 0x8004DBD0
+for address, size, unit in sorted(bss_spans):
+    assert cursor <= address < address + size <= 0x800CE990 and address % 16 == size % 16 == 0
+    if cursor < address:
+        name = 'main_bss_head' if cursor == 0x8004DBD0 else 'main_bss_%08X' % cursor
+        main_bss.append('      - { type: bss, vram: 0x%08X, name: %s }' % (cursor, name))
+    main_bss.append('      - { type: .bss, vram: 0x%08X, name: %s }' % (address, unit))
+    cursor = address + size
+if cursor < 0x800CE990:
+    main_bss.append('      - { type: bss, vram: 0x%08X, name: main_bss_tail }' % cursor)
+head = head.replace('      - {MAIN_DATA}', '\n'.join(main_data))
+head = head.replace('      - {MAIN_BSS}', '\n'.join(main_bss))
 L = [head.rstrip()]
 files = sorted([f for f in man["files"] if "exp" in f], key=lambda f: f["exp"])
 L.append("  - [0x4E7D0, bin, rom_4E7D0]   # music, sample banks, misc data (uncompressed)")

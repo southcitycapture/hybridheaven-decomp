@@ -10,10 +10,11 @@ name_re = re.compile(r'((?:\.L|func_|D_|jtbl_|B_)[0-9A-F]{8})\b')
 def_re = re.compile(r'^\s*(?:glabel|dlabel|jlabel|alabel|\.L[0-9A-F]{8}:|nonmatching)\s*([.\w]+)|^(\.L[0-9A-F]{8}):', re.M)
 local_missing = set()
 LIBUNITS = list(json.load(open("tools/hh/libultra.json"))) if os.path.exists("tools/hh/libultra.json") else []
+LIB_DATA_INPUTS = {'asm/data/%s.%s.s' % (unit, section) for unit in LIBUNITS for section in ('data', 'bss')}
 for p in glob.glob("asm/**/*.s", recursive=True):
     if p.endswith(".rodata.s"): continue      # per-file rodata splat also dumps to asm/data: not linked (the C file owns it)
     if p.startswith("asm/data/data/"): continue   # splat's dump of a generated-C .data unit (data_to_c.py): not linked
-    if p in BSS_INPUTS:
+    if p in BSS_INPUTS or p in LIB_DATA_INPUTS:
         continue  # source-owned BSS labels are comparison inputs, not linked definitions
     s = open(p).read()
     here = set()

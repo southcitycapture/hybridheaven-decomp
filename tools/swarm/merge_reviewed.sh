@@ -12,6 +12,8 @@ regen() { make setup > build/merge_setup.log 2>&1; .venv/bin/python tools/hh/gen
 .venv/bin/python tools/hh/progress.py 2>&1 | grep -E '^(code|data|fully)'
 if ! git merge --no-ff --no-commit "$C" > build/merge.out 2>&1; then
   c=$(git diff --name-only --diff-filter=U); echo "conflicts: $c"
+  # no conflicted files means git refused to start the merge (e.g. local changes in the way): stop, don't build
+  [ -z "$c" ] && { echo "MERGE REFUSED:"; tail -5 build/merge.out; exit 1; }
   for f in $c; do   # KEEP_OURS="a b": files where master's side wins (e.g. docs/HARD_FUNCTIONS_PLAN.md statuses)
     if [ "$f" = SOL_REPORT.md ]; then git checkout --theirs "$f"; git add "$f"
     elif [[ " $KEEP_OURS " == *" $f "* ]]; then git checkout --ours "$f"; git add "$f"

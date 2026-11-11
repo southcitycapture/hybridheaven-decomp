@@ -1,4 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800329F0/func_800329F0.s")
-
+/* libultra 2.0J: built from ultralib's src/io/visetevent.c (tools/hh/libultra.json) */

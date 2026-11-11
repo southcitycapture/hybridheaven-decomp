@@ -1,10 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80031220/func_80031220.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80031220/func_800312AC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80031220/func_80031424.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80031220/func_80031498.s")
-
+/* libultra 2.0J: built from ultralib's src/os/timerintr.c (tools/hh/libultra.json) */

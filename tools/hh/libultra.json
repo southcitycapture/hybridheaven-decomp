@@ -44,6 +44,16 @@
   "opt": "-O1",
   "src": "src/os/createthread.c"
  },
+ "main/800283B0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/contreaddata.c"
+ },
+ "main/80028590": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/audio/bnkf.c"
+ },
  "main/800287E0": {
   "mips": "-mips2 -o32",
   "opt": "-O3",
@@ -53,6 +63,26 @@
   "mips": "-mips2 -o32",
   "opt": "-O1",
   "src": "src/os/virtualtophysical.c"
+ },
+ "main/80028B10": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/initialize.c",
+  "storage": {
+   ".data": ["0x80049970", "0x20"],
+   ".bss": ["0x800CC010", "0x10"]
+  }
+ },
+ "main/80028EE0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/audio/synsetfxparam.c",
+  "additional": [
+   {
+    "src": "src/io/vigetnextframebuf.c",
+    "opt": "-O1"
+   }
+  ]
  },
  "main/80028F60": {
   "mips": "-mips2 -o32",
@@ -64,25 +94,85 @@
   "opt": "-O2",
   "src": "src/gu/perspective.c"
  },
+ "main/80029280": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "flags": "-DNDEBUG",
+  "src": "src/gu/sinf.c",
+  "additional": [
+   {
+    "src": "src/io/sprawdma.c"
+   }
+  ]
+ },
+ "main/800294D0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/sirawdma.c",
+  "flags": "-DNDEBUG"
+ },
+ "main/800295D0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "flags": "-DNDEBUG",
+  "src": "src/io/viblack.c",
+  "additional": [
+   {
+    "src": "src/io/sirawread.c",
+    "opt": "-O2"
+   }
+  ]
+ },
  "main/80029690": {
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/io/sptaskyield.c"
+ },
+ "main/800296B0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/pfsreadwritefile.c"
  },
  "main/80029B00": {
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/io/pfsgetstatus.c"
  },
+ "main/80029FA0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/visetmode.c"
+ },
+ "main/8002A010": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/gu/lookat.c"
+ },
  "main/8002A350": {
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/io/pfsallocatefile.c"
  },
+ "main/8002A7D0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/pfsisplug.c",
+  "storage": {
+   ".bss": [
+    "0x800CC1D0",
+    "0x40"
+   ]
+  }
+ },
  "main/8002AB10": {
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/audio/synsetpitch.c"
+ },
+ "main/8002AEA0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/devmgr.c"
  },
  "main/8002B2B0": {
   "mips": "-mips2 -o32",
@@ -93,6 +183,22 @@
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/audio/synsetpan.c"
+ },
+ "main/8002B410": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/contpfs.c",
+  "storage": {
+   ".data": [
+    "0x8004AB50",
+    "0x10"
+   ],
+   ".bss": [
+    "0x800CD4F0",
+    "0x100"
+   ]
+  },
+  "flags": "-DNDEBUG"
  },
  "main/8002BFA0": {
   "mips": "-mips2 -o32",
@@ -109,10 +215,30 @@
   "opt": "-O2",
   "src": "src/audio/drvrnew.c"
  },
+ "main/8002D000": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "flags": "-DNDEBUG",
+  "src": "src/audio/mainbus.c",
+  "additional": [{"src": "src/audio/reverb.c", "opt": "-O2"}],
+  "storage": {".data": ["0x8004ACF0", "0x20"]}
+ },
  "main/8002DDB0": {
   "mips": "-mips2 -o32",
   "opt": "-O3",
   "src": "src/audio/auxbus.c"
+ },
+ "main/8002DEC0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/audio/env.c",
+  "storage": {
+   ".data": [
+    "0x8004AD10",
+    "0x140"
+   ]
+  },
+  "flags": "-DNDEBUG"
  },
  "main/8002EB40": {
   "mips": "-mips2 -o32",
@@ -124,10 +250,36 @@
   "opt": "-O2",
   "src": "src/io/pfssearchfile.c"
  },
+ "main/8002F010": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/audio/load.c"
+ },
+ "main/8002FB60": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/seteventmesg.c",
+  "storage": {
+   ".data": [
+    "0x8004AE50",
+    "0x10"
+   ],
+   ".bss": [
+    "0x800CD5F0",
+    "0x80"
+   ]
+  },
+  "flags": "-DNDEBUG"
+ },
  "main/8002FC30": {
   "mips": "-mips2 -o32",
   "opt": "-O1",
   "src": "src/os/afterprenmi.c"
+ },
+ "main/8002FC50": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/gu/lookathil.c"
  },
  "main/80030440": {
   "mips": "-mips2 -o32",
@@ -194,6 +346,12 @@
   "opt": "-O1",
   "src": "src/os/getthreadpri.c"
  },
+ "main/80030C60": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/epirawread.c",
+  "flags": "-DNDEBUG"
+ },
  "main/80030E10": {
   "mips": "-mips2 -o32",
   "opt": "-O2",
@@ -203,6 +361,22 @@
   "mips": "-mips2 -o32",
   "opt": "-O1",
   "src": "src/os/gettime.c"
+ },
+ "main/80031220": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/os/timerintr.c",
+  "storage": {
+   ".data": [
+    "0x8004AE60",
+    "0x10"
+   ],
+   ".bss": [
+    "0x800CD670",
+    "0x40"
+   ]
+  },
+  "flags": "-DNDEBUG"
  },
  "main/80031620": {
   "mips": "-mips2 -o32",
@@ -234,10 +408,20 @@
   "opt": "-O2",
   "src": "src/io/viswapcontext.c"
  },
+ "main/800326F0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/pigetcmdq.c"
+ },
  "main/80032890": {
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/io/visetspecial.c"
+ },
+ "main/800329F0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/visetevent.c"
  },
  "main/80032A60": {
   "mips": "-mips2 -o32",
@@ -248,6 +432,22 @@
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/io/pfsnumfiles.c"
+ },
+ "main/80032BE0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/cartrominit.c",
+  "storage": {
+   ".data": [
+    "0x8004AFD0",
+    "0x10"
+   ],
+   ".bss": [
+    "0x800CD6F0",
+    "0x80"
+   ]
+  },
+  "flags": "-DNDEBUG"
  },
  "main/80032D40": {
   "mips": "-mips2 -o32",
@@ -274,6 +474,18 @@
   "opt": "-O2",
   "src": "src/io/contramwrite.c"
  },
+ "main/80034060": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/contramread.c",
+  "storage": {
+   ".data": [
+    "0x8004AFE0",
+    "0x10"
+   ]
+  },
+  "flags": "-DNDEBUG"
+ },
  "main/80034290": {
   "mips": "-mips2 -o32",
   "opt": "-O2",
@@ -288,6 +500,38 @@
   "mips": "-mips2 -o32",
   "opt": "-O1",
   "src": "src/os/settimer.c"
+ },
+ "main/80034640": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/sirawwrite.c",
+  "flags": "-DNDEBUG"
+ },
+ "main/80034690": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/spsetstat.c"
+ },
+ "main/800346A0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/spgetstat.c"
+ },
+ "main/800346C0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/vimgr.c",
+  "storage": {
+   ".data": [
+    "0x8004AFF0",
+    "0x20"
+   ],
+   ".bss": [
+    "0x800CD770",
+    "0x1220"
+   ]
+  },
+  "flags": "-DNDEBUG"
  },
  "main/80034A10": {
   "mips": "-mips2 -o32",
@@ -304,6 +548,11 @@
   "opt": "-O1",
   "src": "src/os/startthread.c"
  },
+ "main/80034DE0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/visetyscale.c"
+ },
  "main/80034E40": {
   "mips": "-mips2 -o32",
   "opt": "-O3",
@@ -313,5 +562,25 @@
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/audio/synstopvoice.c"
+ },
+ "main/80034F70": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "version": "I",
+  "src": "src/io/aisetnextbuf.c",
+  "storage": {".data": ["0x8004B010", "0x10"]}
+ },
+ "main/80035020": {
+  "mips": "-mips2 -o32",
+  "opt": "-O1",
+  "src": "src/io/ai.c",
+  "additional": [
+   {
+    "src": "src/io/vigetcurrframebuf.c"
+   },
+   {
+    "src": "src/io/spsetpc.c"
+   }
+  ]
  }
 }

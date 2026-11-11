@@ -1,10 +1,18 @@
 """Explicit source-owned BSS spans, shared by splat and the in-file linker."""
 import json
+import os
 
 
 def owners():
-    return {tuple(key.split('/')): tuple(int(v, 16) for v in value)
-            for key, value in json.load(open('tools/hh/bss_splits.json')).items()}
+    layout = {tuple(key.split('/')): tuple(int(v, 16) for v in value)
+              for key, value in json.load(open('tools/hh/bss_splits.json')).items()}
+    if not os.path.exists('tools/hh/libultra.json'):
+        return layout  # isolated layouts can have no library build configured
+    for unit, entry in json.load(open('tools/hh/libultra.json')).items():
+        span = entry.get('storage', {}).get('.bss')
+        if span:
+            layout[tuple(unit.split('/'))] = tuple(int(v, 16) for v in span)
+    return layout
 
 
 def subsegments(segment, start, end, layout):

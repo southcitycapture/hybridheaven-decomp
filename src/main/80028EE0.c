@@ -1,6 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80028EE0/func_80028EE0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80028EE0/func_80028F20.s")
-
+/* libultra 2.0J: built from ultralib's src/audio/synsetfxparam.c, src/io/vigetnextframebuf.c (tools/hh/libultra.json) */

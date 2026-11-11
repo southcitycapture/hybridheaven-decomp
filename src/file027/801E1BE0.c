@@ -3142,7 +3142,41 @@ s32 func_801E6774(s32 arg0, s32 arg1) {
     return 0xA;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file027/801E1BE0/func_801E678C.s")
+
+
+s32 func_801E678C(s32 arg0, s32 arg1) {
+    switch (D_801F3F08) {
+    case 0:
+        func_801CC4D8(2, 0x03200016, 0, 0, 5.0f);
+        D_801F3F08 = 1;
+        break;
+    case 1:
+        if (func_801D277C() == 0) {
+            func_801CC470(2, 0x03200016, 0, 0, 6.0f);
+            D_801F3F08 = 2;
+        }
+        break;
+    case 2:
+        if (func_801D278C() != 0) {
+            func_801CC470(2, 0x03200016, 0, 0, 6.0f);
+            D_801F3F08 = 3;
+        }
+        break;
+    case 3:
+        if (func_801D278C() != 0) {
+            func_801D271C(0);
+            func_801CC4D8(2, 0x03200000, 0, 0, 5.0f);
+            D_801F3F08 = 4;
+        }
+        break;
+    case 4:
+        if (func_801D277C() == 0) {
+            return 11;
+        }
+        break;
+    }
+    return 10;
+}
 
 
 s32 func_801E68EC(s32 arg0, s32 arg1) {
@@ -3284,7 +3318,41 @@ s32 func_801E6CEC(s32 arg0, s32 arg1) {
     return 0x19;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file027/801E1BE0/func_801E6D04.s")
+
+
+s32 func_801E6D04(s32 arg0, s32 arg1) {
+    switch (D_801F3F08) {
+    case 0:
+        func_801CC4D8(2, 0x03200016, 0, 0, 5.0f);
+        D_801F3F08 = 1;
+        break;
+    case 1:
+        if (func_801D277C() == 0) {
+            func_801CC470(2, 0x03200016, 0, 0, 6.0f);
+            D_801F3F08 = 2;
+        }
+        break;
+    case 2:
+        if (func_801D278C() != 0) {
+            func_801CC470(2, 0x03200016, 0, 0, 6.0f);
+            D_801F3F08 = 3;
+        }
+        break;
+    case 3:
+        if (func_801D278C() != 0) {
+            func_801D271C(0);
+            func_801CC4D8(2, 0x03200000, 0, 0, 5.0f);
+            D_801F3F08 = 4;
+        }
+        break;
+    case 4:
+        if (func_801D277C() == 0) {
+            return 0x1A;
+        }
+        break;
+    }
+    return 0x19;
+}
 
 
 s32 func_801E6E64(s32 arg0, s32 arg1) {
@@ -7190,7 +7258,42 @@ s32 func_801ED5C4(s32 arg0, s32 arg1) {
     return 0xD;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file027/801E1BE0/func_801ED5DC.s")
+
+
+s32 func_801ED5DC(s32 arg0, s32 arg1) {
+    switch (D_801F488C) {
+    case 0:
+        func_801D271C(1);
+        func_801CC470(2, 0x0320000A, 0, 0, 5.0f);
+        D_801F488C = 1;
+        break;
+    case 1:
+        if (func_801D278C() != 0) {
+            func_801CC470(2, 0x0320000B, 0, 0, 6.0f);
+            D_801F488C = 2;
+        }
+        break;
+    case 2:
+        if (func_801D278C() != 0) {
+            func_801CC470(2, 0x0320000B, 0, 0, 6.0f);
+            D_801F488C = 3;
+        }
+        break;
+    case 3:
+        if (func_801D278C() != 0) {
+            func_801CC470(2, 0x0320000C, 0, 0, 5.0f);
+            D_801F488C = 4;
+        }
+        break;
+    case 4:
+        if (func_801D278C() != 0) {
+            func_801D271C(0);
+            return 14;
+        }
+        break;
+    }
+    return 13;
+}
 
 
 s32 func_801ED744(s32 arg0, s32 arg1) {
@@ -9100,7 +9203,42 @@ s32 func_801F0E5C(s32 arg0, s32 arg1) {
     return 0xD;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file027/801E1BE0/func_801F0E74.s")
+
+
+s32 func_801F0E74(s32 arg0, s32 arg1) {
+    switch (D_801F4D08) {
+    case 0:
+        func_801D271C(1);
+        func_801CC470(2, 0x0320000A, 0, 0x1000, 5.0f);
+        D_801F4D08 = 1;
+        break;
+    case 1:
+        if (func_801D278C() != 0) {
+            func_801CC470(2, 0x0320000B, 0, 0x1000, 6.0f);
+            D_801F4D08 = 2;
+        }
+        break;
+    case 2:
+        if (func_801D278C() != 0) {
+            func_801CC470(2, 0x0320000B, 0, 0x1000, 6.0f);
+            D_801F4D08 = 3;
+        }
+        break;
+    case 3:
+        if (func_801D278C() != 0) {
+            func_801CC470(2, 0x0320000C, 0, 0x1000, 5.0f);
+            D_801F4D08 = 4;
+        }
+        break;
+    case 4:
+        if (func_801D278C() != 0) {
+            func_801D271C(0);
+            return 0xE;
+        }
+        break;
+    }
+    return 0xD;
+}
 
 
 s32 func_801F0FDC(s32 arg0, s32 arg1) {
