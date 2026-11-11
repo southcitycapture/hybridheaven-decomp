@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-10: **83.28% of the code** (15390 of 15891 functions, including duplicates).
+Progress as of 2026-11-11: **83.40% of the code** (15398 of 15891 functions, including duplicates).
 
-**23473 model runs, $7028.14 API-equivalent in total** (local and cloud). Of the **15336 functions now in C**, **7196 were matched by AI workers** (≈ $0.977 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**23509 model runs, $7028.14 API-equivalent in total** (local and cloud). Of the **15344 functions now in C**, **7204 were matched by AI workers** (≈ $0.976 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -469,7 +469,6 @@ Progress as of 2026-11-10: **83.28% of the code** (15390 of 15891 functions, inc
 | `unify_loop0278` | unify_loop0278 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
 | `hidden35` | hidden35 | hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/allO1/work/func_801256C4/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/allO1/work/func_801CBEF8/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/allO1/work/func_801CC078/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_80229524/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_8022ABD8/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_8022AF94/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_8024CA4C/.attempts/11.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/localU1/work/func_8038D33C/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/ocM_dsf/work/func_80378E3C/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/rampC1/work/func_801C8E84/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/rampO1/work/func_80239048/.attempts/17.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/rampO1/work/func_80248F7C/.attempts/2.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/rampO2/work/func_802393F8/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/terraL2/work/func_801EBE68/.attempts/25.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/terraL2/work/func_801F2458/.attempts/31.c) | 15 | 15 | 100% | $0.00 | – |  |
 | `unify_loop0279` | unify_loop0279 | unify (no model) | 9 | 2 | 22% | $0.00 | – |  |
-| `ocM_dsf` | ocM_dsf | opencode/deepseek-v4.1-flash-free | 88 | 9 | 10% | $0.00 | – |  |
 | `unify_loop0280` | unify_loop0280 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
 | `hidden35b` | hidden35b | hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/allO1/work/func_801251BC/attempt.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/permsweep/work/func_801E2FEC@file043/start.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/permsweep/work/func_801F5574@file028/start.c), hidden_matches.py (saved attempt /home/claude/work/hybrid-heaven-decomp/queue/permsweep/work/func_801FB144/start.c) | 4 | 4 | 100% | $0.00 | – |  |
 | `unify_loop0281` | unify_loop0281 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
@@ -486,7 +485,12 @@ Progress as of 2026-11-10: **83.28% of the code** (15390 of 15891 functions, inc
 | `pimAB` | pimAB | pimod/strata/qwen3.8-flash-next-iq3_xxs | 18 | 11 | 61% | $0.00 | – |  |
 | `unify_loop0289` | unify_loop0289 | unify (no model) | 10 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0290` | unify_loop0290 | unify (no model) | 11 | 0 | 0% | $0.00 | – |  |
-| `terraP2` | terraP2 | openai/gpt-6.1-terra | 92 | 12 | 13% | $0.00 | – |  |
-| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 206 | 23 | 11% | $0.00 | – |  |
+| `unify_loop0291` | unify_loop0291 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0292` | unify_loop0292 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0293` | unify_loop0293 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0294` | unify_loop0294 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 213 | 25 | 12% | $0.00 | – |  |
+| `terraP2` | terraP2 | openai/gpt-6.1-terra | 108 | 18 | 17% | $0.00 | – |  |
+| `ocM_dsf` | ocM_dsf | opencode/deepseek-v4.1-flash-free | 101 | 9 | 9% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

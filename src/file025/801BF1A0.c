@@ -1017,11 +1017,53 @@ void func_801C08F0(void) {
     D_801BBBF6 = (s16) D_801DCD54[D_801D8CE4];
 }
 
-/* hh-block asm/nonmatchings/file025/801BF1A0/_mrg_keep_921e721236f98a54.s {"functions":["func_801C0914"],"rodata":[],"rodata_bytes":[2149436944,7144320,96]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801BF1A0/_mrg_keep_921e721236f98a54.s")
 
+
+
+void func_801C0914(void) {
+    switch (D_801D8CE4) {
+    case 13:
+    case 18:
+    case 20:
+    case 25:
+    case 26:
+        func_8012FE50(0xF, *(u16 *)&D_801BBBF4, 1, 6, 2);
+        return;
+    case 4:
+    case 9:
+    case 11:
+    case 12:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    case 19:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 27:
+        func_8012FE50(0xF, *(u16 *)&D_801BBBF4, 6, 6, 2);
+        return;
+    case 7:
+        func_8012FE50(0xF, *(u16 *)&D_801BBBF4, 6, 6, 0);
+        return;
+    case 8:
+        func_8012FE50(0x1D, *(u16 *)&D_801BBBF4, 6, 6, 2);
+        return;
+    default:
+        func_8012FE50(0xF, *(u16 *)&D_801BBBF4, 1, 6, 2);
+        return;
+    }
+}
+
+
+
+/* Readonly constants retained after the last ASM donor became C. */
 
 static const unsigned char rodata_801BF1A0[] = {
     0x00, 0x00, 0x00, 0x00,
 };
 /* hh-owned-pool func_801C039C 801DCDC4 801DCE10 */
+/* hh-owned-pool func_801C0914 801DCE10 801DCE70 */
+#pragma GLOBAL_ASM("asm/nonmatchings/file025/801BF1A0/_pad_16.s")
