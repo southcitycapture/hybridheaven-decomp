@@ -56,7 +56,7 @@ def bars(title, rows, path, note=""):
     open(path, "w").write(svg(w, h, "".join(b), title))
 
 
-XMAS, FORECAST = dt.datetime(2026, 12, 25).timestamp(), (87, 90, 95)   # code % by Christmas: low, mid, high (docs/ENDGAME.md)
+XMAS, FORECAST = dt.datetime(2026, 12, 25).timestamp(), (90, 93, 96)   # re-estimated 11-11 at 84.2%   # code % by Christmas: low, mid, high (docs/ENDGAME.md)
 
 
 def progress(path):
@@ -175,6 +175,15 @@ def main(out):
            if summed(n)]
     bars("Big functions (2 KB and up): one lead, many helpers", big, os.path.join(out, "bigfunc.svg"),
          "Opus alone and Opus + Sonnet helpers got the same 22 functions at about the same cost.")
+    hp = os.path.join(HH, "queue/localAB/rescored.json")   # 11-11 harness A/B, re-scored with the fixed checker
+    if os.path.exists(hp):
+        h = json.load(open(hp))
+        rows = [("%s (%d min each)" % (k, h[k]["median_min"]), h[k]["matches"], h[k]["runs"], COLORS["tool"] if k == "Pi" else O)
+                for k in ("Pi", "OpenCode") if k in h]
+        per_h = {k: h[k]["matches"] / (h[k]["runs"] * h[k]["median_min"] / 60.0) for k in ("Pi", "OpenCode") if k in h}
+        bars("Same local model, different harness", rows, os.path.join(out, "harness.svg"),
+             "Qwen 3.8 Flash on one workstation GPU, same 20 functions. Pi: %.1f matches per GPU-hour, OpenCode: %.1f."
+             % (per_h.get("Pi", 0), per_h.get("OpenCode", 0)))
     print("%.1f%% of code after %.0f days" % (v, days))
 
 

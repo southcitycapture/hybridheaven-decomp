@@ -1640,8 +1640,47 @@ s32 func_801E4E80(s32 arg0, s32 arg1) {
     return 0x18;
 }
 
-/* hh-block asm/nonmatchings/file038/801E1BE0/_mrg_keep_tail_1f1f42e0636a786b.s {"functions":["func_801E4EEC"],"rodata":[],"rodata_bytes":[2149479068,7805676,20]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file038/801E1BE0/_mrg_keep_tail_1f1f42e0636a786b.s")
+
+#define func_801CC4D8 func_801CC4D8__func_801E4EEC
+extern s32 func_801CC4D8(s32 a, s32 b, s32 c, s32 d, f32 e);
+
+
+s32 func_801E4EEC(s32 arg0, s32 arg1) {
+    switch (D_801E6B48) {
+    case 0:
+        if (func_801CE274() == 0) {
+            func_801CC470(0, 0x03480061, 0, 0, 5.0f);
+            D_801E6B48 = 1;
+        }
+        break;
+    case 1:
+        if (func_801CE284() != 0) {
+            func_801CC4D8(0, 0x03480062, 0, 0, 3.0f);
+            D_801E6B48 = 2;
+        }
+        break;
+    case 2:
+        if (func_801CE274() == 0) {
+            func_801CC470(0, 0x03480062, 0, 0, 6.0f);
+            D_801E6B48 = 3;
+        }
+        break;
+    case 3:
+        if (func_801CE284() != 0) {
+            func_801CC4D8(0, 0x0348005E, 0, 0, 3.0f);
+            D_801E6B48 = 4;
+        }
+        break;
+    case 4:
+        if (func_801CE274() == 0) {
+            func_801CC470(0, 0x0348005E, 0, 0x100, 10.0f);
+            return 0x1A;
+        }
+        break;
+    }
+    return 0x19;
+}
+#undef func_801CC4D8
 
 
 s32 func_801E5070(s32 arg0, s32 arg1) {
@@ -2601,6 +2640,31 @@ s32 func_801E68A4(s32 arg0, s32 arg1) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Readonly constants retained after the last ASM donor became C. */
+
 static const unsigned char rodata_801E1BE0[] = {
     0x42, 0x1D, 0x33, 0x33, 0xC2, 0x62, 0xCC, 0xCD, 0x41, 0x04, 0xCC, 0xCD, 0xC2, 0x5F, 0x33, 0x33,
     0x41, 0x84, 0xCC, 0xCD, 0x42, 0x50, 0xCC, 0xCD, 0xC2, 0x65, 0x99, 0x9A, 0x41, 0x7C, 0xCC, 0xCD,
@@ -2638,5 +2702,6 @@ static const unsigned char rodata_801E1BE0[] = {
 /* hh-owned-pool func_801E42C8 801E7288 801E7294 */
 /* hh-owned-pool func_801E43CC 801E7294 801E7298 */
 /* hh-owned-pool func_801E4558 801E7298 801E729C */
+/* hh-owned-pool func_801E4EEC 801E729C 801E72B0 */
 /* hh-owned-pool func_801E5574 801E72B0 801E72B8 */
 /* hh-owned-pool func_801E5A20 801E72B8 801E72BC */

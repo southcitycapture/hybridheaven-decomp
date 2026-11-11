@@ -2000,7 +2000,48 @@ s32 func_801E5B24(s32 arg0, s32 arg1) {
     return 8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E5B8C.s")
+#define func_801CE274 func_801CE274__func_801E5B8C
+#define func_801CE284 func_801CE284__func_801E5B8C
+extern s32 func_801CE274(void);
+extern s32 func_801CE284(void);
+
+s32 func_801E5B8C(s32 arg0, s32 arg1) {
+    switch (D_801E81C8) {
+    case 0:
+        if (func_801CE274() == 0) {
+            func_801CC470(0, 0x03480049, 0, 0, 4.0f);
+            D_801E81C8 = 1;
+        }
+        break;
+    case 1:
+        if (func_801CE284() != 0) {
+            func_801CC4D8(0, 0x0348004A, 0, 0, 5.0f);
+            D_801E81C8 = 2;
+        }
+        break;
+    case 2:
+        if (func_801CE274() == 0) {
+            func_801CC470(0, 0x0348004A, 0, 0x100, 4.0f);
+            return 11;
+        }
+        break;
+    case 3:
+        if (func_801C0B8C(0x81B320) != 0) {
+            func_801CC4D8(0, 0x03480048, 0, 0, 5.0f);
+            D_801E81C8 = 4;
+        }
+        break;
+    case 4:
+        if (func_801CE274() == 0) {
+            func_801CC470(0, 0x03480048, 0, 0x100, 7.0f);
+            return 10;
+        }
+        break;
+    }
+    return 9;
+}
+#undef func_801CE274
+#undef func_801CE284
 
 
 s32 func_801E5D10(s32 arg0, s32 arg1) {
@@ -2340,7 +2381,50 @@ s32 func_801E655C(s32 arg0, s32 arg1) {
     return 0xF;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E65B4.s")
+
+
+s32 func_801E65B4(s32 arg0, s32 arg1)
+{
+    switch (D_801E8220) {
+    case 0:
+        if (func_801CEDD4() == 0) {
+            func_801CC470(1, 0x02A8003C, 0, 0, 4.0f);
+            D_801E8220 = 1;
+        }
+        break;
+    case 1:
+        if (func_801CEDE4() != 0) {
+            func_801CC4D8(1, 0x02A8003E, 0, 0, 5.0f);
+            D_801E8220 = 2;
+        }
+        break;
+    case 2:
+        if (func_801CEDD4() == 0) {
+            func_801CC470(1, 0x02A8003E, 0, 0, 5.0f);
+            D_801E8220 = 3;
+        }
+        break;
+    case 3:
+        if (func_801CEDE4() != 0) {
+            func_801CC4D8(1, 0x02A8003D, 0, 0, 5.0f);
+            D_801E8220 = 4;
+        }
+        break;
+    case 4:
+        if (func_801CEDD4() == 0) {
+            func_801CC470(1, 0x02A8003D, 0, 0, 10.0f);
+            D_801E8220 = 5;
+        }
+        break;
+    case 5:
+        if (func_801CEDE4() != 0) {
+            func_801CED5C(0);
+            return 16;
+        }
+        break;
+    }
+    return 15;
+}
 
 
 s32 func_801E6760(s32 arg0, s32 arg1) {

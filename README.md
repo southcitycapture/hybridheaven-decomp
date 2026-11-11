@@ -14,12 +14,12 @@ good tooling get on real work, and what it costs. Every function is checked by t
 
 | | Matched | |
 |---|---:|---|
-| **Code** | **84.21%** | 2,380,500 of 2,826,840 bytes |
-| Functions | 97.3% | 15,460 of 15,891 |
-| Data | 94.63% | 1,008,684 of 1,065,936 bytes |
-| Fully linked | 21.24% | 210 of 539 source files complete |
+| **Code** | **84.37%** | 2,384,896 of 2,826,840 bytes |
+| Functions | 97.3% | 15,469 of 15,891 |
+| Data | 94.64% | 1,008,852 of 1,065,936 bytes |
+| Fully linked | 24.23% | 212 of 539 source files complete |
 
-_Updated 2026-11-11 14:46 UTC by the publishing loop._
+_Updated 2026-11-11 18:47 UTC by the publishing loop._
 
 ![Progress over time, with the Christmas forecast](docs/img/progress.svg)
 
@@ -28,17 +28,18 @@ the code number because one unmatched function holds back its whole file.
 
 ## When will it be done?
 
-Forecast as of 2026-11-03, re-estimated as the rate changes:
+Forecast as of 2026-11-11, re-estimated as the rate changes:
 
 | Milestone | Estimate | Why |
 |---|---|---|
-| 85% of code | late November | The small and medium functions left are mostly within reach of the current lanes. |
-| **90% of code** | **around Christmas 2026** (forecast range 87-95%) | Needs a good share of the big functions; the rate falls as the easier functions run out. |
-| 100% of code | stretch goal for Christmas; more likely Q1 2027 | Every big function, including five of 8 KB or more, and the hardest register-allocation cases. |
+| ~~80% of code~~ | reached 2026-11-08 | Fixing a bug in our match checker landed 28 already-solved functions at once. |
+| 90% of code | early to mid December | The weekly gain is slowing from ~5 points toward 2-3 as the easier work runs out. |
+| **Christmas 2026** | **about 93% (90-96%)** | What is left is mostly big functions and tangled control flow. |
+| 100% of code | stretch goal; more likely Q1 2027 | The giants: five functions of 7.7-13.8 KB, thousands of instructions and float math each. |
 
 Data and fully-linked progress follow the code: the remaining data sits in the same files as the unmatched functions.
 
-The hard end is concentrated: functions of 2 KB or more hold about 41% of the bytes still to match, and our best method
+The hard end is concentrated: functions of 2 KB or more hold about 46% of the bytes still to match, and our best method
 for them currently lands between 1 in 8 and 1 in 4 per pass. That is where most of the remaining effort goes.
 
 ## What we've learned so far
@@ -56,6 +57,19 @@ for them currently lands between 1 in 8 and 1 in 4 per pass. That is where most 
 - **Sister games pay off.** *Goemon's Great Adventure* comes from the same studio (KCE Osaka) and shares the sound,
   heap and file-loading code. Its build showed the original compiler flag (`-Wab,-r4300_mul`) that we had been
   imitating with a post-processing tool; switching to it landed 50 floating-point functions at once.
+- **Check your checker.** Our standalone match check placed each function at a slightly wrong address, so jump
+  tables came out a few bytes off and real matches were scored as near misses. Fixing it, then re-checking every saved
+  attempt, landed **47 already-solved functions** (about 3 points) without a single new model run.
+- **The harness matters too, mostly for speed.** The same local model in the minimal [Pi](https://pi.dev) agent and in
+  OpenCode matched about the same share of 20 functions (12 vs 10), but Pi finished each in 28 minutes instead of 68:
+  roughly three times the matches per GPU-hour. Our first Pi customizations (a structured check tool, compaction built
+  from the work directory) cut wasted steps but did not add matches yet.
+- **Don't let the agent see its own log.** 61 of 80 local-model runs opened their own event log, which sat in their
+  working folder, and spent ~13K tokens of context on it.
+- **Identify the library, don't decompile it.** 44 leftover SDK functions turned out to be standard library code built
+  with other revisions or flags; matching them was a compiler sweep, not model work.
+- **Pace shared budgets from the meter.** Workers on a subscription now run against a usage line read from the real
+  meter every 15 minutes, after one open-ended overnight run used up a week's quota.
 - **Model-free tools multiply every match.** Copying a match onto identical code elsewhere, and fitting matches into
   their files automatically, placed a large share of the functions in C without any model calls.
 - **Small local models help at the edges.** A quantized Qwen 3.8 Flash on one workstation GPU (RTX A4000) matched
@@ -63,6 +77,7 @@ for them currently lands between 1 in 8 and 1 in 4 per pass. That is where most 
 - **Running a swarm is an operations problem too.** Usage pacing across the week, failure recovery, integration checks
   and a privacy scan on every publish decided as much of the progress as model choice did.
 
+![Same local model, different harness](docs/img/harness.svg)
 ![Big functions: one lead, many helpers](docs/img/bigfunc.svg)
 ![Head to head](docs/img/headtohead.svg)
 ![Same model, different framing](docs/img/tooling.svg)
