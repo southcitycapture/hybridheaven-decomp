@@ -3140,7 +3140,46 @@ s32 func_801E7A28(s32 arg0, s32 arg1) {
     return 0x26;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file039/801E1BE0/func_801E7A80.s")
+#define func_801D51F0 func_801D51F0__func_801E7A80
+extern s32 func_801D51F0(s32);
+
+s32 func_801E7A80(s32 arg0, s32 arg1) {
+    switch (D_801EA7AC) {
+    case 0:
+        if (func_801D5194() == 0) {
+            func_801CC470(1, 0x348007F, 0, 0, 10.0f);
+            D_801EA7AC = 1;
+        }
+        break;
+    case 1:
+        if (func_801D51A4() != 0) {
+            func_801CC4D8(1, 0x3480071, 0, 0, 3.0f);
+            D_801EA7AC = 2;
+        }
+        break;
+    case 2:
+        if (func_801D5194() == 0) {
+            func_801CC470(1, 0x3480071, 0, 0, 6.0f);
+            D_801EA7AC = 3;
+        }
+        break;
+    case 3:
+        if (func_801D51A4() != 0) {
+            func_801D51F0(0);
+            func_801CC4D8(1, 0x348007F, 0, 0, 3.0f);
+            D_801EA7AC = 4;
+        }
+        break;
+    case 4:
+        if (func_801D5194() == 0) {
+            func_801CC470(1, 0x348007F, 0, 0x100, 10.0f);
+            return 0x27;
+        }
+        break;
+    }
+    return 0x26;
+}
+#undef func_801D51F0
 
 
 s32 func_801E7C10(s32 arg0, s32 arg1) {
