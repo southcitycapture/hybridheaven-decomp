@@ -1751,11 +1751,109 @@ void func_8036B7EC(s32 arg0, s32 arg1) {
     func_80368E58(arg0, arg1, temp_v0->unkC, (temp_v0->unk0 << 13) >> 30);
 }
 
-/* hh-block asm/nonmatchings/file057/803698D0/_mrg_keep_text_func_8036B854.s {"functions":["func_8036B854"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/_mrg_keep_text_func_8036B854.s")
+#define D_801BBBF0 D_801BBBF0__func_8036B854
+#define func_80369C7C_Obj1 func_80369C7C_Obj1__func_8036B854
+#define func_80369C7C_Obj2 func_80369C7C_Obj2__func_8036B854
+#define func_80369C7C_Obj3 func_80369C7C_Obj3__func_8036B854
+#define func_80369C7C_Struct func_80369C7C_Struct__func_8036B854
+#define ABS(x) (((x) < 0) ? -(x) : (x))
+#define WRAP(x) (((x) & 0x1000) ? ((x) & 0x1FFF) - 0x2000 : ((x) & 0x1FFF))
+#define ABS(x) (((x) < 0) ? -(x) : (x))
+struct func_80369C7C_Obj3 {
+    u8 pad0[0x12];
+    s16 unk12;
+};
+struct func_80369C7C_Obj2 {
+    u8 pad0[0x2C];
+    struct func_80369C7C_Obj3 *unk2C;
+};
+struct func_80369C7C_Obj1 {
+    u8 pad0[0x24];
+    struct func_80369C7C_Obj2 *unk24;
+};
+struct func_80369C7C_Struct {
+    u8 pad0[0xDC];
+    struct func_80369C7C_Obj1 *unkDC;
+    u8 pad1[0xEC - 0xE0];
+    struct func_80369C7C_Obj1 *unkEC;
+    u8 pad2[0xB98 - 0xF0];
+    s16 unkB98;
+};
+extern struct func_80369C7C_Struct D_801BBBF0;
+#define WRAP(x) (((x) & 0x1000) ? ((x) & 0x1FFF) - 0x2000 : ((x) & 0x1FFF))
 
-/* hh-block asm/nonmatchings/file057/803698D0/_mrg_keep_text_func_8036BA40.s {"functions":["func_8036BA40"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/_mrg_keep_text_func_8036BA40.s")
+#undef D_801BBBF0
+
+typedef struct func_8036B854_StructState {
+    u8 pad0[0x30];
+    u32 unk30;
+    u8 pad1[0x2D8 - 0x34];
+    u8 unk2D8;
+} func_8036B854_StructState;
+
+s32 func_8036B854(struct func_80369C7C_Obj1 *arg0) {
+    func_8036B854_StructState *var_v1;
+    func_8036B854_StructState *var_a1;
+    s16 var_v0;
+    s32 result;
+    s32 var_v1b;
+    s16 temp_a1;
+    s16 temp_a2;
+
+    if ((void *) arg0 == (void *) D_801BBBF0.unkDC) {
+        var_v1 = (func_8036B854_StructState *) D_801BC03C;
+    } else {
+        var_v1 = (func_8036B854_StructState *) D_801BC3D8;
+    }
+    if ((void *) arg0 != (void *) D_801BBBF0.unkDC) {
+        var_a1 = (func_8036B854_StructState *) D_801BC03C;
+    } else {
+        var_a1 = (func_8036B854_StructState *) D_801BC3D8;
+    }
+    switch (var_a1->unk2D8) {
+    case 8:
+        var_v0 = ((void *) arg0 == (void *) D_801BBBF0.unkDC) ? 0 : 0x1000;
+        temp_a1 = var_v0;
+        temp_a1 = (s16) (temp_a1 + D_801BBBF0.unkB98) & 0x1FFF;
+        temp_a2 = arg0->unk24->unk2C->unk12;
+        if ((((u32) var_v1->unk30 << 0xB) >> 0x1E) == 1) {
+            result = (s16) (temp_a1 - temp_a2);
+            result = ABS(WRAP(result));
+            if (result >= 0x801) {
+                return 0;
+            }
+            return 2;
+        } else {
+            result = (s16) (temp_a1 - temp_a2);
+            result = ABS(WRAP(result));
+            if ((f64) result > 3276.8) {
+                var_v1b = 3;
+            } else {
+                var_v1b = 1;
+            }
+            return var_v1b;
+        }
+    case 7:
+        return 3;
+    case 5:
+        return 2;
+    case 6:
+        return 1;
+    case 4:
+    default:
+        return 0;
+    }
+}
+#undef ABS
+#undef WRAP
+#undef D_801BBBF0
+#undef func_80369C7C_Obj1
+#undef func_80369C7C_Obj2
+#undef func_80369C7C_Obj3
+#undef func_80369C7C_Struct
+
+/* hh-block asm/nonmatchings/file057/803698D0/_mrg_keep_tail_20baa73ae2912622.s {"functions":["func_8036BA40"],"rodata":[],"rodata_bytes":[2151198984,8580392,56]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/_mrg_keep_tail_20baa73ae2912622.s")
 
 #define AnimEarly0 AnimEarly0__func_8036BBBC
 #define D_801BBBF0 D_801BBBF0__func_8036BBBC
@@ -3192,6 +3290,7 @@ void func_8036E780(void *arg0, struct func_80369C7C_Obj2 **arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_803698D0[] = {
     0xBF, 0xB2, 0xB5, 0xBB, 0xA5, 0xE2, 0xA1, 0xBC, 0xA5, 0xB7, 0xA5, 0xE7, 0xA5, 0xF3, 0x20, 0x25,
     0x64, 0x20, 0xA4, 0xAC, 0xB8, 0xAB, 0xA4, 0xC4, 0xA4, 0xAB, 0xA4, 0xEA, 0xA4, 0xDE, 0xA4, 0xBB,
@@ -3248,10 +3347,6 @@ static const unsigned char rodata_803698D0[] = {
     0x40, 0xBE, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x40, 0x79, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
     0x40, 0xAC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCD, 0x40, 0x0A, 0xF6, 0x34, 0x54, 0x9B, 0x62, 0xC7,
     0x40, 0x29, 0x53, 0x99, 0x4E, 0x1A, 0x3F, 0x46, 0x40, 0x29, 0x53, 0x99, 0x4E, 0x1A, 0x3F, 0x46,
-    0x3F, 0xB9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x80, 0x36, 0xBA, 0x34, 0x80, 0x36, 0xBA, 0x24,
-    0x80, 0x36, 0xBA, 0x2C, 0x80, 0x36, 0xBA, 0x1C, 0x80, 0x36, 0xB8, 0xB8, 0x00, 0x00, 0x00, 0x00,
-    0x40, 0xA9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
-    0x3F, 0xFB, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
-    0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3F, 0xFB, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33,
-    0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3F, 0x99, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00,
+    0x3F, 0xB9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
 };
+/* hh-owned-pool func_8036B854 8038B0E8 8038B108 */

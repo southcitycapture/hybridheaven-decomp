@@ -946,8 +946,130 @@ void func_801C1D7C(func_801C1D7C_Struct *arg0, s32 arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file024/801C0B30/_mrg_keep_text_func_801C1DB8.s {"functions":["func_801C1DB8"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file024/801C0B30/_mrg_keep_text_func_801C1DB8.s")
+#define D_800892B0 D_800892B0__func_801C1DB8
+#define D_801BBD54 D_801BBD54__func_801C1DB8
+#define D_801CECEC D_801CECEC__func_801C1DB8
+#define D_801CECFC D_801CECFC__func_801C1DB8
+#define D_801CED0C D_801CED0C__func_801C1DB8
+#define func_800058DC func_800058DC__func_801C1DB8
+#define func_801BF1A0 func_801BF1A0__func_801C1DB8
+#define func_801C1340 func_801C1340__func_801C1DB8
+#define func_801C2050 func_801C2050__func_801C1DB8
+#define func_801C3940 func_801C3940__func_801C1DB8
+#define func_801C3CDC func_801C3CDC__func_801C1DB8
+#define func_801C40F8 func_801C40F8__func_801C1DB8
+#define func_801C4960 func_801C4960__func_801C1DB8
+#define func_801C5108 func_801C5108__func_801C1DB8
+#define func_801C5A00 func_801C5A00__func_801C1DB8
+extern void func_800058DC(s32, void *);
+u16 func_801C1340(void);
+extern void func_801BF1A0(void);
+extern void func_801C2050(s32, s32);
+extern void func_801C3940(s32, s32);
+extern void func_801C3CDC(s32, s32);
+extern void func_801C40F8(s32, s32);
+extern void func_801C4960(s32, s32);
+extern void func_801C5108(s32, s32);
+extern void func_801C5A00(void);
+
+extern u8 D_801BBD54;
+extern u16 D_800892B0[];
+extern u8 D_801CED0C[];
+extern u8 D_801CECFC[];
+extern u8 D_801CECEC[];
+
+
+typedef struct func_801C1DB8_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_801C1DB8_Struct;
+
+void func_801C1DB8(arg0, arg1)
+func_801C1DB8_Struct *arg0;
+s32 arg1;
+{
+    s32 var_s0;
+
+    if (D_801BBD54 == 0) {
+        if (((D_800892B0[0xE3] & 0xF) == 0xF) && ((D_800892B0[0xF3] & 0xF) == 0xF) && ((D_800892B0[0x103] & 0xF) == 0xF)) {
+            func_8001B204(0xA, 0x14, 0x14, D_801CECEC);
+        }
+        if (func_801C1340() & 0x800) {
+            if (D_801CC8C4 == 0) {
+                D_801CC8C4 = 4;
+            } else {
+                D_801CC8C4--;
+            }
+            arg0->unk3C = 0x384;
+        }
+        if (func_801C1340() & 0x400) {
+            if (D_801CC8C4 == 4) {
+                D_801CC8C4 = 0;
+            } else {
+                D_801CC8C4++;
+            }
+            arg0->unk3C = 0x384;
+        }
+        func_8001B204(0, 0x7D0, (s16) ((D_801CC8C4 * 10) + 0x76), D_801CECFC);
+        if (func_801C1334() & 0xB000) {
+            switch (D_801CC8C4) {
+            case 0:
+                D_801BBC0D = 0;
+                func_800058DC((s32)arg0, (void *)func_801C3940);
+                break;
+            case 1:
+                func_800023A8(0);
+                func_80020718(8);
+                func_800058DC((s32)arg0, (void *)func_801C3CDC);
+                break;
+            case 2:
+                func_800058DC((s32)arg0, (void *)func_801C40F8);
+                break;
+            case 3:
+                func_800058DC((s32)arg0, (void *)func_801C4960);
+                break;
+            case 4:
+                if (D_80037754 & 1) {
+                    func_800058DC((s32)arg0, (void *)func_801C5108);
+                }
+                break;
+            case 5:
+                var_s0 = 0;
+                do {
+                    func_8001B204(var_s0 & 0xFF, 0, 0, D_801CED0C);
+                    var_s0++;
+                } while (var_s0 != 6);
+                func_801BF1A0();
+                func_800058DC((s32)arg0, (void *)func_801C2050);
+                break;
+            default:
+                D_801CC8C4 = 0;
+                break;
+            }
+        }
+        if (arg0->unk3C--) {
+        } else {
+            func_80020718(8);
+            func_801C5A00();
+            func_800058DC((s32)arg0, (void *)func_801C2050);
+        }
+    }
+}
+#undef D_800892B0
+#undef D_801BBD54
+#undef D_801CECEC
+#undef D_801CECFC
+#undef D_801CED0C
+#undef func_800058DC
+#undef func_801BF1A0
+#undef func_801C1340
+#undef func_801C2050
+#undef func_801C3940
+#undef func_801C3CDC
+#undef func_801C40F8
+#undef func_801C4960
+#undef func_801C5108
+#undef func_801C5A00
 
 
 void func_801C2050(s32 arg0, s32 arg1) {
@@ -2815,6 +2937,10 @@ void func_801C5A00(void) {
 
 /* Readonly constants retained after the last ASM donor became C. */
 
+
+
+
+
 static const unsigned char rodata_801C0B30[] = {
     0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
     0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
@@ -2936,9 +3062,9 @@ static const unsigned char rodata_801C0B30[] = {
     0xF3, 0xA5, 0xC8, 0x20, 0x3A, 0x20, 0x25, 0x64, 0x5D, 0x0A, 0x00, 0x00, 0x5B, 0xC1, 0xFD, 0xB2,
     0xC3, 0xB8, 0xE5, 0xA5, 0xEB, 0xA1, 0xBC, 0xA5, 0xD7, 0xA5, 0xC7, 0xA5, 0xE2, 0xA5, 0xAB, 0xA5,
     0xA6, 0xA5, 0xF3, 0xA5, 0xC8, 0x20, 0x3A, 0x20, 0x25, 0x64, 0x5D, 0x0A, 0x00, 0x00, 0x00, 0x00,
-    0x3D, 0x4C, 0xCC, 0xCD, 0x80, 0x1C, 0x1F, 0x10, 0x80, 0x1C, 0x1F, 0x30, 0x80, 0x1C, 0x1F, 0x58,
-    0x80, 0x1C, 0x1F, 0x70, 0x80, 0x1C, 0x1F, 0x88, 0x80, 0x1C, 0x1F, 0xB4,
+    0x3D, 0x4C, 0xCC, 0xCD,
 };
+/* hh-owned-pool func_801C1DB8 801CF264 801CF27C */
 /* hh-owned-pool func_801C2A44 801CF27C 801CF290 */
 /* hh-owned-pool func_801C2DB8 801CF290 801CF294 */
 /* hh-owned-pool func_801C3090 801CF294 801CF298 */

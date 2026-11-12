@@ -193,12 +193,14 @@ extern f32 D_801E8858;
 extern f32 D_801E88B8;
 extern f32 D_801E88BC;
 extern f32 D_801E88C0;
+extern f32 D_801E88F0;
 extern f64 D_801E87D8;
 extern f64 D_801E87E8;
 extern f64 D_801E87F0;
 extern f64 D_801E87F8;
 extern f64 D_801E8808;
 extern f64 D_801E8810;
+extern f64 D_801E88E8;
 extern f64 D_801E88F8;
 extern f64 D_801E8900;
 extern f64 func_80034C24();
@@ -2255,7 +2257,52 @@ s32 func_801E6F6C(s32 arg0, s32 arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file040/801E1BE0/func_801E6FE4.s")
+struct func_801E71F4_StructE { u8 pad[8]; f32 unk8; };
+struct func_801E71F4_StructD { u8 pad[0x2C]; struct func_801E71F4_StructE *unk2C; };
+struct func_801E71F4_StructC { u8 pad[0x24]; struct func_801E71F4_StructD *unk24; };
+struct func_801E71F4_StructB { u8 pad[8]; struct func_801E71F4_StructC *unk8; };
+struct func_801E71F4_StructA { u8 pad[8]; struct func_801E71F4_StructB *unk8; };
+
+s32 func_801E6FE4(s32 arg0, s32 arg1) {
+    f64 elapsed;
+
+    switch (D_801E8468) {
+    case 0:
+        D_801E8468 = 1;
+        break;
+    case 1:
+        D_801E8468 = 2;
+        break;
+    case 2:
+        D_801E8468 = 3;
+        break;
+    case 3:
+        if (func_801C0B8C(0x1AABCCB) != 0) {
+            D_801E8468 = 4;
+        }
+        break;
+    case 4:
+        D_801E8468 = 5;
+        break;
+    case 5:
+        if (func_801C0B8C(0x1D8838B) != 0) {
+            D_801E8468 = 6;
+        }
+        break;
+    case 6:
+        D_801E8468 = 7;
+        break;
+    case 7:
+        func_801C0EB0(4, 1);
+        return 5;
+    }
+    if (D_801E8468 < 6) {
+        elapsed = func_80034C24(func_801C0F18(4, 1));
+        ((struct func_801E71F4_StructA **)func_801DAAF0)[9]->unk8->unk8->unk24->unk2C->unk8 =
+            (25.0f - D_801E846C) * ((f32)(elapsed / 1000000.0) / 9.03333282f) + D_801E846C;
+    }
+    return 4;
+}
 
 
 
@@ -2270,6 +2317,11 @@ s32 func_801E7158(s32 arg0, s32 arg1) {
     return 5;
 }
 
+#define func_801E71F4_StructA func_801E71F4_StructA__func_801E71F4
+#define func_801E71F4_StructB func_801E71F4_StructB__func_801E71F4
+#define func_801E71F4_StructC func_801E71F4_StructC__func_801E71F4
+#define func_801E71F4_StructD func_801E71F4_StructD__func_801E71F4
+#define func_801E71F4_StructE func_801E71F4_StructE__func_801E71F4
 
 struct func_801E71F4_StructE { u8 pad[8]; f32 unk8; };
 struct func_801E71F4_StructD { u8 pad[0x2C]; struct func_801E71F4_StructE *unk2C; };
@@ -2305,6 +2357,11 @@ tail:
     ((struct func_801E71F4_StructA *)D_801DAB14)->unk8->unk8->unk24->unk2C->unk8 = (147.0f - D_801E846C) * ((f32)(r / 1000000.0) / four) + D_801E846C;
     return 6;
 }
+#undef func_801E71F4_StructA
+#undef func_801E71F4_StructB
+#undef func_801E71F4_StructC
+#undef func_801E71F4_StructD
+#undef func_801E71F4_StructE
 
 
 
