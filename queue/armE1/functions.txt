@@ -1,0 +1,4 @@
+func_801149C4 file008
+func_8010DD4C file008
+func_80242A90 file014
+func_8000C768 main

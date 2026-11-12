@@ -53,7 +53,9 @@ fi
 EOC
 # INFILE=1: a match also has to hold inside the function's real C file, next to its already-matched neighbours
 [ -n "$INFILE" ] && cat >> "$W/check" <<EOC
-if head -1 .lastcheck | grep -q '^MATCH'; then
+# also when only an address / readonly placement differs: the standalone link can misplace shared rodata, and the
+# function may already match in its real file (11-12: Arm E func_801149C4, 571/573 standalone, IN-FILE MATCH)
+if head -1 .lastcheck | grep -qE '^MATCH|instructions match but an address is wrong|code matches but'; then
   "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" infile $SEG $FUNC \$PWD/attempt.c 2>&1 | head -30 | tee -a .lastcheck
 fi
 EOC
@@ -99,7 +101,9 @@ if [ -n "$LEARNINGS" ]; then cat "$HH/tools/swarm/learnings_note.md" >> "$W/prom
 # SYMFIX=1 (with WALLNOTE=1): instructions already match, only references differ: a narrow-fix note (tools/swarm/symfix_note.md)
 if [ -n "$SYMFIX" ]; then cat "$HH/tools/swarm/symfix_note.md" >> "$W/prompt.md"; fi
 # LEAD=1: this session leads Sonnet region workers (tools/swarm/lead_note.md, agents/region-worker.md; 10-30, Arm C)
-if [ -n "$LEAD" ]; then mkdir -p "$W/.claude/agents"; cp "$HH/tools/swarm/agents/region-worker.md" "$W/.claude/agents/"; cat "$HH/tools/swarm/lead_note.md" >> "$W/prompt.md"; fi
+# LEAD=terra (11-12, Arm E): an OpenCode lead (e.g. Sol) with Terra region helpers in Pi (./helper, terra_helper.sh)
+if [ "$LEAD" = terra ]; then cp "$HH/tools/swarm/terra_helper.sh" "$W/helper"; chmod +x "$W/helper"; cat "$HH/tools/swarm/lead_note_terra.md" >> "$W/prompt.md"
+elif [ -n "$LEAD" ]; then mkdir -p "$W/.claude/agents"; cp "$HH/tools/swarm/agents/region-worker.md" "$W/.claude/agents/"; cat "$HH/tools/swarm/lead_note.md" >> "$W/prompt.md"; fi
 # PERSIST=1: ask the worker to keep searching systematically instead of stopping early (tools/swarm/persist_note.md, 10-28)
 if [ -n "$PERSIST" ]; then cat "$HH/tools/swarm/persist_note.md" >> "$W/prompt.md"; fi
 # LEVERS=1: the IDO 7.1 source-shape levers built from this repo's evidence (tools/swarm/ido_levers.md, Sol Task 15)

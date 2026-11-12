@@ -80,7 +80,11 @@ done
 checks_used=$(cat .checks 2>/dev/null || echo 0)
 if ! grep -q '"agent_settled"\|"agent_end"' "$LOGD/result.jsonl" 2>/dev/null && [ "$checks_used" -eq 0 ]; then v=ERROR
 elif [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" attempt.c --seg "$SEG" > verify.txt 2>&1 && grep -q '^MATCH' verify.txt; then
-  v=MATCH; else v=FAIL; fi
+  v=MATCH
+# in-file match (11-12): the standalone link can misplace shared rodata; srcbuild's in-file gate is the real test
+elif [ -n "$INFILE" ] && [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" infile "$SEG" "$FUNC" "$PWD/attempt.c" 2>/dev/null | grep -q '^IN-FILE MATCH'; then
+  v=MATCH; echo "in-file match" > recovered.txt
+else v=FAIL; fi
 # keep-best: a snapshot that matched counts even if the worker edited attempt.c afterwards (as run_one_oc.sh)
 if [ "$v" = FAIL ] && [ -d .attempts ]; then
   for r in $(grep -l '^MATCH' .attempts/*.res 2>/dev/null | sort -t/ -k2 -n -r); do

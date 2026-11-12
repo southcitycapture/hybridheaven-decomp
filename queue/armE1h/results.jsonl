@@ -1,0 +1,1 @@
+{"func": "func_801149C4", "segment": "file008", "model": "openai/gpt-6.1-sol (Arm E lead + Terra helpers)", "verified": "MATCH", "claimed": "in-file match (standalone checker rodata blind spot)", "checks": 1, "turns": 17, "seconds": 495, "exit": "0", "cost_usd_equiv": 0.0}
