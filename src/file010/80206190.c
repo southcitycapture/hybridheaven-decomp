@@ -2275,8 +2275,8 @@ s32 func_80209698(struct func_80209698_Arg0 *arg0, struct func_80209698_Outer **
 #undef func_8020C39C_StructPlayer
 #undef func_8020FB98_Struct
 
-/* hh-block asm/nonmatchings/file010/80206190/_mrg_keep_tail_153f31298d610c9e.s {"functions":["func_8020A7D4"],"rodata":[],"rodata_bytes":[2149689668,6076740,772]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/_mrg_keep_tail_153f31298d610c9e.s")
+/* hh-block asm/nonmatchings/file010/80206190/_mrg_keep_tail_51e5c2b8c51de741.s {"functions":["func_8020A7D4"],"rodata":[],"rodata_bytes":[2149689668,6076740,256]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/_mrg_keep_tail_51e5c2b8c51de741.s")
 
 
 struct func_8020BCE0_Struct {
@@ -2518,11 +2518,122 @@ end:
 #undef D_8021AA40
 #undef func_801C3D20
 
-/* hh-block asm/nonmatchings/file010/80206190/_mrg_keep_text_func_8020C61C.s {"functions":["func_8020C61C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/_mrg_keep_text_func_8020C61C.s")
+#define D_801BBCD0 D_801BBCD0__func_8020C61C
+#define func_8012C6B4 func_8012C6B4__func_8020C61C
+#define func_801C3B94 func_801C3B94__func_8020C61C
+#define func_801C3BA0 func_801C3BA0__func_8020C61C
+#define func_80206598_Inner func_80206598_Inner__func_8020C61C
+#define func_80206598_Outer func_80206598_Outer__func_8020C61C
+#define func_8020C39C_StructInner func_8020C39C_StructInner__func_8020C61C
+#define func_8020C39C_StructPlayer func_8020C39C_StructPlayer__func_8020C61C
+struct func_8020C39C_StructInner {
+    u8 pad0[4];
+    f32 x, y, z;
+    u8 pad10[2];
+    s16 angle;
+};
+struct func_8020C39C_StructPlayer {
+    u8 pad0[0x2C];
+    struct func_8020C39C_StructInner *inner;
+};
+extern struct func_8020C39C_StructPlayer *D_801BBCD0;
+extern s32 func_8012C6B4();
+struct func_80206598_Inner {
+    u8 pad0[0x18];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    s32 unk24;
+    u8 pad28[8];
+    s32 unk30;
+    u8 pad34[0x18];
+    u8 unk4C;
+    u8 unk4D;
+    u8 unk4E;
+    u8 unk4F;
+};
+struct func_80206598_Outer {
+    u8 pad0[0x30];
+    struct func_80206598_Inner *unk30;
+};
 
-/* hh-block asm/nonmatchings/file010/80206190/_mrg_keep_text_func_8020CBC0.s {"functions":["func_8020CBC0"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/_mrg_keep_text_func_8020CBC0.s")
+
+struct func_8020C61C_StructActor {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad3E[0x52];
+    u8 unk90;
+    u8 pad91;
+    s16 unk92;
+    f32 unk94, unk98, unk9C;
+    u8 padA0[0xC];
+    u8 unkAC;
+};
+extern void *func_801C3BA0(void);
+extern void func_801C3B94(s32);
+
+#define COUNT (*(u16 *)&D_80217CAC)
+
+s32 func_8020C61C(struct func_8020C61C_StructActor *arg0, struct func_80206598_Outer **arg1) {
+    struct func_8020C61C_StructRandom { s32 x, z; } random;
+
+    switch (arg0->unk90) {
+    case 2:
+        if (COUNT != 0) {
+            arg0->unk90 = 4;
+            arg0->unk3C = 0;
+        }
+        if (func_801C3BA0() == arg0) {
+            func_801C3B94(0);
+            arg0->unkAC |= 1;
+            COUNT = 0xEF;
+            func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 15.0f,
+                (u16)((u16)(D_801BBCD0->inner->angle + 0x1000) & 0x1FFF), 3.0f, 0.4f, 0xF);
+        }
+        if (arg0->unk92-- == 0) {
+            random.x = func_8012C6B4(0x190);
+            random.z = func_8012C6B4(0x190);
+            func_80129FB8((f32)(((f64)(random.x - 0xC8) / 100.0) + arg0->unk94),
+                arg0->unk98 + 5.0f,
+                (f32)(((f64)(random.z - 0xC8) / 100.0) + arg0->unk9C),
+                0.0f, 0.0f, 0.0f, 0.0f, 0xFF, 0xFF, 0x80, 0x80, 0x80, 0, 0xA0, -6, 0.07f, 0x12, 0);
+            arg0->unk92 = func_8012C6B4(0x3C) + 0x1E;
+        }
+        break;
+    case 4:
+        if (COUNT == 0) {
+            arg0->unk90 = 2;
+            arg0->unk3C = 0;
+        } else if (arg0->unkAC & 1) {
+            COUNT--;
+        }
+        break;
+    }
+    if (!(arg0->unk3C++ & 1)) {
+        (*arg1)->unk30->unk4C = (u32)((f64)(f32)(u32)COUNT * 0.26666666666666666 + 192.0);
+        (*arg1)->unk30->unk4D = (u32)((f64)(f32)(u32)COUNT * 0.26666666666666666 + 192.0);
+        (*arg1)->unk30->unk4E = (u32)((f64)(f32)(u32)COUNT * 0.26666666666666666 + 192.0);
+        (*arg1)->unk30->unk4F = (u32)((f64)(f32)(u32)COUNT * 0.26666666666666666 + 192.0);
+    } else {
+        (*arg1)->unk30->unk4C = 0xFF;
+        (*arg1)->unk30->unk4D = 0xFF;
+        (*arg1)->unk30->unk4E = 0xFF;
+        (*arg1)->unk30->unk4F = 0xFF;
+    }
+    return 1;
+}
+#undef COUNT
+#undef D_801BBCD0
+#undef func_8012C6B4
+#undef func_801C3B94
+#undef func_801C3BA0
+#undef func_80206598_Inner
+#undef func_80206598_Outer
+#undef func_8020C39C_StructInner
+#undef func_8020C39C_StructPlayer
+
+/* hh-block asm/nonmatchings/file010/80206190/_mrg_keep_tail_90b673598fb18261.s {"functions":["func_8020CBC0"],"rodata":[],"rodata_bytes":[2149689944,6077016,496]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/_mrg_keep_tail_90b673598fb18261.s")
 
 
 struct func_8020D358_Struct_In {
@@ -4295,8 +4406,83 @@ s32 func_80215D84(func_8020FB98_Struct *arg0, func_80215D84_Outer **arg1) {
     return 1;
 }
 
-/* hh-block asm/nonmatchings/file010/80206190/_mrg_keep_text_func_80216188.s {"functions":["func_80216188"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/_mrg_keep_text_func_80216188.s")
+#define D_8021AF78 D_8021AF78__func_80216188
+
+
+extern f64 D_8021AF78;
+
+struct func_80216188_StructInner {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[8];
+    f32 unk18;
+    f32 unk1C;
+    u8 pad20[0x48 - 0x20];
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+    u8 unk4C;
+    u8 unk4D;
+    u8 unk4E;
+};
+
+struct func_80216188_StructOuter {
+    u8 pad0[0x30];
+    struct func_80216188_StructInner *unk30;
+};
+
+struct func_80216188_StructArg0 {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad3E[0x94 - 0x3E];
+    f32 unk94;
+    f32 unk98;
+    f32 unk9C;
+};
+
+s32 func_80216188(arg0, arg1, incoming, increment)
+    struct func_80216188_StructArg0 *arg0;
+    struct func_80216188_StructOuter **arg1;
+    s32 incoming;
+    f64 increment;
+{
+    s32 count;
+    s16 angle;
+
+    incoming = arg0->unk3C++;
+    count = incoming;
+    incoming = 0;
+    if (count < 10) {
+        (*arg1)->unk30->unk4B += 20;
+    } else if (count >= 18) {
+        (*arg1)->unk30->unk4B -= 6;
+        if ((*arg1)->unk30->unk4B < 6) {
+            return 0;
+        }
+    }
+
+    angle = (s16)(count * 0x190) & 0x1FFF;
+    increment = D_8021AF78;
+    (*arg1)->unk30->unk18 += increment;
+    (*arg1)->unk30->unk1C += increment;
+    (*arg1)->unk30->unk4C = (u32)(func_8001EAD0(angle) * 127.0f + 128.0f);
+    (*arg1)->unk30->unk4D = (u32)(func_8001EAD0(angle) * 64.0f + 64.0f);
+    (*arg1)->unk30->unk4E = (u32)(func_8001EB64(angle) * 127.0f + 128.0f);
+    (*arg1)->unk30->unk48 = ((*arg1)->unk30->unk4C + 255) / 2;
+    (*arg1)->unk30->unk49 = ((*arg1)->unk30->unk4D + 255) / 2;
+    (*arg1)->unk30->unk4A = ((*arg1)->unk30->unk4E + 255) / 2;
+    if (func_801FD5BC(arg0->unk94, arg0->unk98, arg0->unk9C) != 0) {
+        return 0;
+    }
+    (*arg1)->unk30->unk4 = arg0->unk94;
+    (*arg1)->unk30->unk8 = arg0->unk98;
+    (*arg1)->unk30->unkC = arg0->unk9C;
+    return 1;
+}
+#undef D_8021AF78
 
 #define D_801BBCD0 D_801BBCD0__func_80216550
 #define func_8013D4A0 func_8013D4A0__func_80216550
@@ -4554,6 +4740,18 @@ end:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_80206190[] = {
     0xB4, 0xC6, 0xBB, 0xEB, 0xA5, 0xED, 0xA5, 0xDC, 0xA5, 0xC3, 0xA5, 0xC8, 0xB6, 0xF5, 0xC3, 0xE6,
     0xCD, 0xD1, 0x0A, 0x00, 0xB4, 0xC6, 0xBB, 0xEB, 0xA5, 0xED, 0xA5, 0xDC, 0xA5, 0xC3, 0xA5, 0xC8,
@@ -4600,6 +4798,7 @@ static const unsigned char rodata_80206190[] = {
 /* hh-owned-pool func_802091D8 8021A87C 8021A880 */
 /* hh-owned-pool func_802093AC 8021A880 8021A888 */
 /* hh-owned-pool func_80209698 8021A888 8021A944 */
+/* hh-owned-pool func_8020C61C 8021AA44 8021AA58 */
 /* hh-owned-pool func_80210160 8021AC48 8021ACC0 */
 /* hh-owned-pool func_80213044 8021ADC4 8021ADD4 */
 /* hh-owned-pool func_80213430 8021ADD4 8021ADD8 */

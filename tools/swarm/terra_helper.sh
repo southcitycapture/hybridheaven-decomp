@@ -24,6 +24,9 @@ PY
 }
 run_one() {   # $1 = N, $2 = brief
   local N=$1 BRIEF=$2 D="$LEAD_DIR/w$1" A
+  # 11-12: helpers outlived killed leads (orphans kept using quota) and left their token copies behind
+  local TP=""
+  trap 'rm -rf "$A"' EXIT; trap '[ -n "$TP" ] && kill -TERM $TP 2>/dev/null; rm -rf "$A"; exit 1' TERM INT
   mkdir -p "$D"; for f in attempt.c check context.h known.h target.s; do [ -f "$LEAD_DIR/$f" ] && cp "$LEAD_DIR/$f" "$D/"; done
   rm -rf "$D/.attempts"; echo 0 > "$D/.checks"; A=$(mktemp -d "$HOME/.oc/w/helper.XXXXXX"); fresh_auth "$A"
   # the lead's check enforces a time budget through .deadline (11-12: helpers' checks refused without it)
@@ -48,7 +51,8 @@ EOF
        --setenv PATH "$PATH" --setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH")
   timeout $((HELPER_MIN * 60)) "${BW[@]}" "$PI" -p --mode json --no-context-files --no-extensions --no-skills --no-prompt-templates \
       --no-themes --no-mcp --tools read,bash,edit,write,grep,ls --model openai/gpt-6.1-terra --session-dir "$A/sessions" \
-      "$(cat "$D/brief.md")" > "$A/events.jsonl" 2> "$A/stderr.txt" < /dev/null
+      "$(cat "$D/brief.md")" > "$A/events.jsonl" 2> "$A/stderr.txt" < /dev/null &
+  TP=$!; wait $TP
   local ex=$?
   "$HH/.venv/bin/python" - "$A/events.jsonl" "$D" "$N" "$ex" <<'PY'
 import json, os, sys
@@ -66,6 +70,8 @@ print("    its last message: " + (last.splitlines()[-1] if last else "(none)")[:
 PY
   rm -rf "$A"
 }
+# a helper must not outlive its lead: if the lead's harness kills us, take every helper down with us
+trap 'for j in $(jobs -p); do kill -TERM $j 2>/dev/null; done; exit 1' TERM INT HUP
 case "$1" in
   run) shift; N=$1; shift; run_one "$N" "$*" & p=$!; while kill -0 $p 2>/dev/null; do sleep 60; kill -0 $p 2>/dev/null && echo "... helper w$N still working"; done; wait $p ;;
   batch) pids=(); while IFS=$'\t' read -r N BRIEF; do [ -z "$N" ] && continue

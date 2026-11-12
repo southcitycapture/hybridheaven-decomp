@@ -1818,7 +1818,72 @@ s32 func_801E50D4(s32 arg0, s32 arg1) {
     return 5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E5108.s")
+#define func_801C86FC func_801C86FC__func_801E5108
+extern s32 func_801C86FC(s32, f32, s32, f32, f32, f32, s32);
+
+
+#define STATE0W (*(s32 *)((u8 *)&D_801E81C8 - 0x50))
+
+#define STATE3 D_801E8178
+#define STATE4 D_801E8178
+
+s32 func_801E5108(arg0, arg1)
+s32 arg0;
+s32 arg1;
+{
+    s32 result;
+    switch (D_801E8178) {
+    case 0:
+        if (func_801C0B8C(0) != 0) {
+            func_801C86FC(1, 0, 0xC1100000, 0, 13.0f, 13.0f, 0x28);
+            STATE0W = D_801E8178 + 1;
+        }
+        break;
+    case 1:
+        if (func_801C0B8C(0xDBB9F) != 0) {
+            func_801C86FC(0, 0, 0xC2700000, 0, 13.0f, 13.0f, 0x28);
+            D_801E8178++;
+        }
+        break;
+    case 2:
+        if (func_801C0B8C(0x155CBF) != 0) {
+            func_801C86FC(0, 0, 0xC2200000, 0, 13.0f, 13.0f, 0x28);
+            D_801E8178++;
+        }
+        break;
+    case 3:
+        if (func_801C0B8C(0x1B773F) != 0) {
+            func_801C86FC(0, 0, 0xC1A00000, 0, 13.0f, 13.0f, 0x28);
+            do {
+            } while (0);
+            result = (s32)&STATE3;
+            (*(s32 *)result)++;
+        }
+        break;
+    case 4:
+        if (func_801C0B8C(0x2191C0) != 0) {
+            func_801C86FC(0, 0, 0xC1800000, 0, 13.0f, 13.0f, 0x28);
+            do {
+            } while (0);
+            result = (s32)&STATE4;
+            (*(s32 *)result)++;
+        }
+        break;
+    case 5:
+        if (func_801C0B8C(0x27AC3F) != 0) {
+            func_801C86FC(0, 0, 0xC1700000, 0, 13.0f, 13.0f, 0x28);
+            D_801E8178 = 0;
+            return 6;
+        }
+        break;
+    }
+    result = 5;
+    return result;
+}
+#undef STATE0W
+#undef STATE3
+#undef STATE4
+#undef func_801C86FC
 
 #define func_801C86FC func_801C86FC__func_801E5370
 extern s32 func_801C86FC(s32, f32, s32, f32, f32, f32, s32);
@@ -1873,7 +1938,67 @@ s32 func_801E5370(s32 arg0, s32 arg1) {
 }
 #undef func_801C86FC
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file041/801E1BE0/func_801E5610.s")
+#define func_801C86FC func_801C86FC__func_801E5610
+extern s32 func_801C86FC(s32, f32, s32, f32, f32, f32, s32);
+
+
+struct func_801E5610_Struct {
+    s32 state;
+};
+
+s32 func_801E5610(s32 arg0, s32 arg1) {
+    switch ((u32)D_801E8178) {
+    case 0:
+        if (func_801C0B8C(0x989680) != 0) {
+            func_801C86FC(1, -28.0f, 0xC1D00000, 27.0f, 8.0f, 8.0f, 0x28);
+            D_801E8178 = *(u32 *)((u8 *)&D_801E81C8 - 0x50) + 1;
+        }
+        break;
+    case 1:
+        if (func_801C0B8C(0x9EB0FF) != 0) {
+            func_801C86FC(0, -33.0f, 0xC1C00000, 34.0f, 7.0f, 7.0f, 0x28);
+            D_801E8178 = *(u32 *)((u8 *)&D_801E81C8 - 0x50) + 1;
+        }
+        break;
+    case 2:
+        if (func_801C0B8C(0xA037A0) != 0) {
+            func_801C86FC(0, -30.0f, 0xC1880000, 32.0f, 7.0f, 7.0f, 0x28);
+            do {} while (0);
+            D_801E8178 += 1;
+        }
+        break;
+    case 3:
+        if (func_801C0B8C(0xA1BE40) != 0) {
+            func_801C86FC(0, -29.0f, 0xC1400000, 29.0f, 7.0f, 7.0f, 0x28);
+            do {} while (0);
+            if (&D_801E8178) {}
+            D_801E8178 += 1;
+        }
+        break;
+    case 4:
+        if (func_801C0B8C(0xA7D8C0) != 0) {
+            func_801C86FC(0, -31.0f, 0xC1900000, 19.0f, 7.0f, 7.0f, 0x28);
+            do {} while (0);
+            D_801E8178 += 1;
+        }
+        break;
+    case 5:
+        if (func_801C0B8C(0xAF79E0) != 0) {
+            func_801C86FC(0, -32.0f, 0xC1B80000, 34.0f, 8.0f, 8.0f, 0x28);
+            do {} while (0);
+            ((struct func_801E5610_Struct *)&D_801E8178)->state += 1;
+        }
+        break;
+    case 6:
+        if (func_801C0B8C(0xBBAEE0) != 0) {
+            func_801C86FC(0, -31.0f, 0xC1880000, 33.0f, 7.0f, 7.0f, 0x28);
+            return 8;
+        }
+        break;
+    }
+    return 7;
+}
+#undef func_801C86FC
 
 #define func_801BF6B0 func_801BF6B0__func_801E58B4
 
