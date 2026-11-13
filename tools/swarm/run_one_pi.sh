@@ -11,8 +11,14 @@ BATCH=${BATCH:-piAB}; W=$HH/$(python3 "$HH/tools/hh/workdir.py" dir "$BATCH" "$F
 . "$HH/env.sh" > /dev/null 2>&1
 PI=$HOME/.local/pi/node_modules/.bin/pi
 URL=$(cat "$HOME/.oc/strata.url"); KEY=$(tr -d '\n\r ' < "$HOME/.oc/strata.key")
-MJ=$(curl -s -m 10 -H "Authorization: Bearer $KEY" "$URL/models")
-MODEL_ID=${PI_MODEL_ID:-$(echo "$MJ" | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"][0]["id"])' 2>/dev/null)}
+# the server may be briefly down (11-12 ~07:00Z: an empty model id failed every run in 15 s and the lane raced through
+# its whole list): wait for it instead of starting a run against nothing
+for i in $(seq 1 120); do
+  MJ=$(curl -s -m 10 -H "Authorization: Bearer $KEY" "$URL/models")
+  MODEL_ID=${PI_MODEL_ID:-$(echo "$MJ" | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"][0]["id"])' 2>/dev/null)}
+  [ -n "$MODEL_ID" ] && break; sleep 60
+done
+[ -z "$MODEL_ID" ] && exit 75   # still no server after 2 h: no result line, the lane retries this function later
 SCTX=$(echo "$MJ" | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"][0]["meta"]["n_ctx"])' 2>/dev/null); SCTX=${SCTX:-262144}
 OW=$HOME/.oc/w/$BATCH/${FUNC}_$SEG; LOGD="$OW.log"
 mkdir -p "$HH/queue/$BATCH"; rm -rf "$W" "$OW" "$LOGD"; "$HH/tools/swarm/prep2.sh" "$FUNC" "$SEG" "$OW"; mkdir -p "$LOGD/agent" "$LOGD/sessions"

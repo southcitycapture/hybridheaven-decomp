@@ -16,7 +16,8 @@ while read -r FUNC SEG; do
   [ "$B" != localAB ] && [ -f queue/localU1/HOLD ] && { echo "$(date -u +%FT%H:%MZ) HOLD: paused for the A/B" >> "$Q/lane.log"; exit 0; }
   [ -f "$Q/STOP" ] || [ -f queue/localU1/STOP ] && { echo "$(date -u +%FT%H:%MZ) STOP file: stopping" >> "$Q/lane.log"; exit 0; }
   [ -z "$FUNC" ] && continue
-  grep -q "\"func\": \"$FUNC\", \"segment\": \"$SEG\"" "$Q/results.jsonl" 2>/dev/null && continue   # resume
+  # resume: skip functions with a real result; an ERROR (server or provider trouble) is retried (11-12)
+  grep "\"func\": \"$FUNC\", \"segment\": \"$SEG\"" "$Q/results.jsonl" 2>/dev/null | grep -qv '"ERROR"' && continue
   [ -f "matched/$SEG/$FUNC.c" ] && continue                                                           # matched meanwhile
   # one request at a time on the single-slot server: wait while any other local run is active (e.g. an orphaned run
   # from a restarted lane, or an A/B arm)
