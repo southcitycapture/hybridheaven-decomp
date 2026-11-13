@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-13: **85.23% of the code** (15495 of 15891 functions, including duplicates).
+Progress as of 2026-11-13: **85.25% of the code** (15497 of 15891 functions, including duplicates).
 
-**23770 model runs, $7028.14 API-equivalent in total** (local and cloud). Of the **15397 functions now in C**, **7257 were matched by AI workers** (≈ $0.968 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**23776 model runs, $7028.14 API-equivalent in total** (local and cloud). Of the **15399 functions now in C**, **7259 were matched by AI workers** (≈ $0.968 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 280 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -518,7 +518,9 @@ Progress as of 2026-11-13: **85.23% of the code** (15495 of 15891 functions, inc
 | `unify_loop0311` | unify_loop0311 | unify (no model) | 9 | 0 | 0% | $0.00 | – |  |
 | `ocM_dsf` | ocM_dsf | opencode/deepseek-v4.1-flash-free | 133 | 18 | 14% | $0.00 | – |  |
 | `unify_loop0312` | unify_loop0312 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
-| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 249 | 39 | 16% | $0.00 | – |  |
 | `unify_loop0313` | unify_loop0313 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0314` | unify_loop0314 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0315` | unify_loop0315 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 255 | 40 | 16% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
