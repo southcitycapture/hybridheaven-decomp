@@ -1,7 +1,95 @@
 #include "common.h"
 
-/* hh-block asm/nonmatchings/file057/8037AAC0/_mrg_keep_text_func_8037AAC0.s {"functions":["func_8037AAC0"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/8037AAC0/_mrg_keep_text_func_8037AAC0.s")
+#undef func_8037AAC0
+#define D_80172574 D_80172574__func_8037AAC0
+#define D_80181A84 D_80181A84__func_8037AAC0
+#define func_80146088 func_80146088__func_8037AAC0
+#define func_8037B5A0_Struct0 func_8037B5A0_Struct0__func_8037AAC0
+#define func_8037B5A0_Struct1 func_8037B5A0_Struct1__func_8037AAC0
+#define func_8037B5A0_Struct2 func_8037B5A0_Struct2__func_8037AAC0
+struct func_8037B5A0_Struct1 {
+    u8 pad[0x44];
+    s32 unk44;
+};
+struct func_8037B5A0_Struct0 {
+    u16 *unk0;
+    struct func_8037B5A0_Struct1 *unk4;
+};
+extern struct func_8037B5A0_Struct0 *D_80172574;
+struct func_8037B5A0_Struct2 {
+    u8 pad[0xC];
+    void *unkC;
+};
+extern struct func_8037B5A0_Struct2 D_80181A84;
+void func_80146088(void *a0, void *a1, s32 a2);
+
+
+struct func_8037AAC0_Struct {
+    s16 unk0, unk2, unk4, unk6;
+    u8 unk8, unk9, unkA, unkB, unkC, unkD, unkE, unkF;
+    s16 unk10;
+    u8 pad12[6];
+    u16 unk18;
+    u8 pad1A[2];
+    s32 unk1C;
+    u8 pad20[8];
+    s16 unk28, unk2A, unk2C, unk2E, unk30, unk32;
+    u8 pad34[8];
+};
+
+struct func_8037AAC0_Struct0 {
+    u16 *unk0;
+    s32 *unk4;
+};
+
+void func_8037AAC0(void *arg0, s16 arg1, s16 arg2, u8 arg3, u8 *arg4)
+{
+  struct func_8037AAC0_Struct data;
+  struct func_8037B5A0_Struct0 **new_var;
+  u16 idx;
+  new_var = &D_80172574;
+  idx = arg3;
+  data.unk0 = (s16) arg1;
+  data.unk2 = (s16) arg2;
+  if (!idx)
+  {
+    data.unk30 = (data.unk4 = (data.unk28 = 0x48));
+    data.unk32 = (data.unk6 = (data.unk2A = 0x10));
+    data.unk9 = (data.unk8 = 0xFF);
+    data.unkA = 0;
+  }
+  else
+    if (idx == 1)
+  {
+    data.unk30 = (data.unk4 = (data.unk28 = 0x30));
+    data.unk32 = (data.unk6 = (data.unk2A = 0x10));
+    data.unk8 = 0xFF;
+    data.unkA = (data.unk9 = 0);
+  }
+  else
+  {
+    data.unk30 = (data.unk4 = (data.unk28 = 0x40));
+    data.unk32 = (data.unk6 = (data.unk2A = 0x10));
+    data.unk8 = 0xFF, data.unk9 = 0x80;
+    data.unkA = 0;
+  }
+  data.unkB = 0xFF;
+  data.unkC = (data.unkD = (data.unkE = 0));
+  data.unkF = 0xFF;
+  data.unk10 = 0x66;
+  data.unk18 = *D_80172574->unk0;
+  data.unk1C = ((struct func_8037AAC0_Struct0 *) (*new_var))->unk4[(u16) (arg3 + 0x14)];
+  data.unk2E = (data.unk2C = 0);
+  D_80181A84.unkC = &data.unk0;
+  func_80146088(arg0, &D_80181A84, (s32) arg4);
+}
+#undef D_80172574
+#undef D_80181A84
+#undef func_80146088
+#undef func_8037B5A0_Struct0
+#undef func_8037B5A0_Struct1
+#undef func_8037B5A0_Struct2
+#define func_8037AAC0 func_8037AAC0__decl
 
 #define func_8037ACCC func_8037ACCC__func_8037AC58
 extern s32 func_800058DC(void *, void *);
@@ -14,6 +102,7 @@ struct func_8037AC58_Struct {
     s16 unkB0;
 };
 
+#define func_8037AAC0 func_8037AAC0__decl
 extern void func_8037AAC0(void *, s32, s32, u8, u8 *);
 
 void func_8037AC58(struct func_8037AC58_Struct *arg0, s32 arg1) {

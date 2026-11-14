@@ -275,7 +275,52 @@ void func_8000F240(struct func_8000F240_StructA *arg0, f32 arg1, u8 arg2)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000F2B8.s")
+
+
+struct func_8000F2B8_Sub {
+    u8 pad0[0x62];
+    u16 unk62;
+};
+
+struct func_8000F2B8_Obj {
+    struct func_8000F2B8_Obj *unk0;
+    u8 pad4[4];
+    struct func_8000F2B8_Obj *unk8;
+    u8 padC[0x20];
+    struct func_8000F2B8_Sub *unk2C;
+};
+
+void func_8000F2B8(struct func_8000F2B8_Obj *arg0, u16 arg1, u8 arg2, u8 arg3)
+{
+    struct func_8000F2B8_Sub *sub;
+
+    switch (arg2) {
+    case 1:
+        sub = arg0->unk2C;
+        sub->unk62 = sub->unk62 | arg1;
+        break;
+    case 2:
+        sub = arg0->unk2C;
+        sub->unk62 = sub->unk62 & ~arg1;
+        break;
+    case 3:
+        sub = arg0->unk2C;
+        sub->unk62 = sub->unk62 ^ arg1;
+        break;
+    case 0:
+    default:
+        arg0->unk2C->unk62 = arg1;
+        break;
+    }
+    if (arg0->unk8 != 0) {
+        func_8000F2B8(arg0->unk8, arg1, arg2, 1);
+    }
+    if (arg3 != 0) {
+        if (arg0->unk0 != 0) {
+            func_8000F2B8(arg0->unk0, arg1, arg2, 1);
+        }
+    }
+}
 
 
 f32 func_8000F3D8(f32 arg0) {
@@ -1109,6 +1154,7 @@ void func_80011198(func_80011198_Struct_Obj **arg0, func_80011198_Struct *arg1)
 }
 
 
+#define func_8000F2B8 func_8000F2B8__decl1111
 extern void func_8000F2B8(s32, s32, s32, s32);
 
 void func_800111E0(s32 *arg0, u16 *arg1) {
@@ -1122,6 +1168,7 @@ void func_800111E0(s32 *arg0, u16 *arg1) {
         func_8000F2B8(*arg0, 0x100, 1, 0);
     }
 }
+#undef func_8000F2B8
 
 
 

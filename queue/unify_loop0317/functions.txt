@@ -1,0 +1,9 @@
+func_801D6AB8 file025
+func_80245B04 file022
+func_8014BC78 file008
+func_8020CBC0 file010
+func_8012798C file008
+func_801D22B4 file009
+func_801E53C0 file026
+func_801E6950 file026
+func_801E6C80 file026
