@@ -263,7 +263,7 @@ void func_8002059C(void) {
 #undef D_80096A98
 
 
-extern void func_800207D0(u16 arg0, s32 arg1, u8 arg2);
+extern void func_800207D0(u16 id, u8 pan, u8 vol);
 
 /* GGA: sndPlay */
 void func_80020718(s32 arg0) {
@@ -292,7 +292,55 @@ void func_800207A0(u16 arg0, u8 arg1) {
     func_800207D0(arg0, 0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_800207D0.s")
+#define D_800CBAB1 D_800CBAB1__func_800207D0
+#define D_800CBB28 D_800CBB28__func_800207D0
+#define D_800CBBD8 D_800CBBD8__func_800207D0
+extern u8 D_800CBAB1;
+extern u8 D_800CBBD8[];
+
+
+extern u32 D_800CBB28[];
+
+/* GGA: sndRequest (HH adds the D_800CBBD8 flag for ids 0x607-0x633) */
+void func_800207D0(u16 id, u8 pan, u8 vol) {
+    u16 *idp;
+    u32 req;
+    s32 i;
+    u8 flag;
+
+    if (id) {
+        idp = &id;
+        D_800CBAB1 = 0xFF;
+        if (!pan || pan >= 0x80) {
+            req = *idp;
+        } else {
+            req = *idp + (pan << 16);
+        }
+        if (vol != 0) {
+            req |= vol << 24;
+        }
+        if (D_800CBB22 < 8) {
+            if (D_800CBB22 != 0) {
+                for (i = 0; i < D_800CBB22; i++) {
+                    if (id == (D_800CBB28[i] & 0xFFFF)) {
+                        D_800CBAB1 = 0;
+                        return;
+                    }
+                }
+            }
+            D_800CBB28[D_800CBB22] = req;
+            D_800CBB22++;
+            flag = 1;
+            if (*idp >= 0x607 && *idp < 0x634) {
+                D_800CBBD8[0] = flag;
+            }
+        }
+        D_800CBAB1 = 0;
+    }
+}
+#undef D_800CBAB1
+#undef D_800CBB28
+#undef D_800CBBD8
 
 
 extern u8 D_800CBAB1;
