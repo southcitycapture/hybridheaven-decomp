@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-15: **85.83% of the code** (15510 of 15891 functions, including duplicates).
+Progress as of 2026-11-15: **85.87% of the code** (15512 of 15891 functions, including duplicates).
 
-**23941 model runs, $7209.33 API-equivalent in total** (local and cloud). Of the **15413 functions now in C**, **7286 were matched by AI workers** (≈ $0.989 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 267 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**23963 model runs, $7307.33 API-equivalent in total** (local and cloud). Of the **15415 functions now in C**, **7288 were matched by AI workers** (≈ $1.003 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 267 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -532,12 +532,14 @@ Progress as of 2026-11-15: **85.83% of the code** (15510 of 15891 functions, inc
 | `unify_loop0323` | unify_loop0323 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
 | `rampO2` | rampO2 | opus-5-5, sonnet-5-5 | 86 | 21 | 24% | $96.50 | $4.595 |  |
 | `armT_C` | armT_C | opus-5-5 | 8 | 1 | 12% | $49.46 | $49.456 |  |
-| `rampO3` | rampO3 | opus-5-5, sonnet-5-5 | 26 | 1 | 4% | $22.53 | $22.527 |  |
 | `armT_D` | armT_D | opus-5-5 | 8 | 1 | 12% | $43.21 | $43.207 |  |
-| `rampC1` | rampC1 | opus-5-5, sonnet-5-5 | 38 | 10 | 26% | $258.62 | $25.862 |  |
 | `unify_loop0324` | unify_loop0324 | unify (no model) | 7 | 1 | 14% | $0.00 | – |  |
 | `unify_loop0325` | unify_loop0325 | unify (no model) | 6 | 0 | 0% | $0.00 | – |  |
 | `armT_D2` | armT_D2 | opus-5-5 | 7 | 0 | 0% | $28.85 | – |  |
-| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 291 | 45 | 15% | $0.00 | – |  |
+| `unify_loop0326` | unify_loop0326 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0327` | unify_loop0327 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
+| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 296 | 45 | 15% | $0.00 | – |  |
+| `rampO3` | rampO3 | opus-5-5, sonnet-5-5 | 37 | 5 | 14% | $55.63 | $11.126 |  |
+| `rampC1` | rampC1 | opus-5-5, sonnet-5-5 | 44 | 10 | 23% | $323.53 | $32.353 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
