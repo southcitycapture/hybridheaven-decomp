@@ -8,7 +8,7 @@ meter() { $(command -v ~/bin/usage-gate || echo true) --brief 100 100 >/dev/null
           python3 -c "import json;d=json.load(open('$HOME/.cache/usage-gate.json'))['data'];print('weekly %s%% five-hour %s%%'%(d['seven_day']['utilization'],(d.get('five_hour') or {}).get('utilization',0)))"; }
 echo "$(date -u +%FT%H:%MZ) start: $(meter)" >> "$L"
 export BATCH=$B FROM=best INFILE=1 DIAG=1 LEARNINGS=1 CHECK_LIMIT=60 DEADLINE_MIN=25
-export WORKER_FLAGS="--tools Read,Write,Edit,Bash --strict-mcp-config --disable-slash-commands --effort high"
+export WORKER_FLAGS="--tools Read,Write,Edit,Bash${LEAD:+,Agent} --strict-mcp-config --disable-slash-commands --effort high"
 for kv in "$@"; do export "$kv"; done
 # -r: an empty list must not run one argument-less worker (11-04: it wrote a false Terra cooldown)
 xargs -r -P ${PAR:-4} -L 1 tools/swarm/run_one_from.sh < "$Q/functions.txt" > /dev/null 2>&1
