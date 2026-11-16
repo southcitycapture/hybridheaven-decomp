@@ -797,7 +797,243 @@ void func_8014BC18(void)
 #undef func_8014B034
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/D_8018FB70.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8014AC60/func_8014BC78.s")
+
+#define D_80181E40 D_80181E40__func_8014BC78
+#define D_80181F94 D_80181F94__func_8014BC78
+#define D_8019026C D_8019026C__func_8014BC78
+#define func_8001EAD0 func_8001EAD0__func_8014BC78
+#define func_8001EB64 func_8001EB64__func_8014BC78
+#define func_8002FC20 func_8002FC20__func_8014BC78
+#define func_8014B2CC func_8014B2CC__func_8014BC78
+#define func_8014B33C func_8014B33C__func_8014BC78
+#define func_8014B36C func_8014B36C__func_8014BC78
+#define func_8014B3F0 func_8014B3F0__func_8014BC78
+#define func_8014B7CC func_8014B7CC__func_8014BC78
+#define func_8014C068 func_8014C068__func_8014BC78
+#define func_8014C0A8 func_8014C0A8__func_8014BC78
+#define func_8014C0F0 func_8014C0F0__func_8014BC78
+#define func_8014C138 func_8014C138__func_8014BC78
+#define func_8014C194 func_8014C194__func_8014BC78
+#define func_8014C1F0 func_8014C1F0__func_8014BC78
+#define func_8014C1F0_Struct func_8014C1F0_Struct__func_8014BC78
+#define func_8014C23C func_8014C23C__func_8014BC78
+#define func_8014C23C_Inner func_8014C23C_Inner__func_8014BC78
+#define func_8014C23C_Struct func_8014C23C_Struct__func_8014BC78
+#define func_8014C294 func_8014C294__func_8014BC78
+#define func_8014C2A0 func_8014C2A0__func_8014BC78
+#define func_801C0B8C func_801C0B8C__func_8014BC78
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+s32 func_801C0B8C(u64 time);
+
+
+
+
+
+void *func_8014B7CC(s32);
+s32 func_8014B2CC(s32 arg0);
+s32 func_8014B33C(s32 arg0);
+s32 func_8014B36C(s32 arg0);
+s32 func_8014B3F0(s32 arg0);
+s32 func_8014C068(s32 arg0);
+s32 func_8014C0A8(s32 arg0);
+s32 func_8014C0F0(s32 arg0);
+struct func_8014C1F0_Struct {
+    u8 unk0;
+    u8 pad1[3];
+    s32 unk4;
+    u8 unk8;
+    u8 unk9;
+};
+s32 func_8014C138(unsigned int arg0);
+s32 func_8014C194(unsigned int arg0);
+s32 func_8014C1F0(s32 arg0);
+struct func_8014C23C_Inner {
+    u8 pad0[0xA8];
+    u16 unkA8;
+};
+struct func_8014C23C_Struct {
+    u8 unk0;
+    u8 pad1[3];
+    struct func_8014C23C_Inner *unk4;
+};
+s32 func_8014C23C(s32 arg0);
+u8 *func_8014C294(void);
+s32 func_8014C2A0(void);
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 r;
+} func_8014BC78_Elem;
+
+typedef struct {
+    u8 pad0[0x90];
+    f32 x;
+    f32 y;
+    f32 z;
+    s16 rot;
+} func_8014BC78_Obj;
+
+typedef struct {
+    u8 flags;
+    u8 pad1;
+    u16 id;
+    func_8014BC78_Obj *obj;
+    u8 idx0;
+    u8 idx1;
+    u8 padA[2];
+} func_8014BC78_Entry;
+
+f32 func_8001EAD0(s16);
+f32 func_8001EB64(s16);
+f32 func_8002FC20(f32);
+extern func_8014BC78_Elem *D_80181E40[];
+extern func_8014BC78_Elem *D_80181F94[];
+extern f32 D_8019026C;
+
+
+
+u16 func_8014BC78(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+    u8 pad[0x20];
+    f32 best;
+    func_8014BC78_Entry *e;
+    func_8014BC78_Elem **tbl;
+    func_8014BC78_Elem *p;
+    func_8014BC78_Obj *o;
+    s32 j;
+    s32 i;
+    s16 ang;
+    u8 k;
+    f32 rx;
+    f32 rz;
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 d;
+    u16 ret;
+
+    ret = 0;
+    best = D_8019026C;
+    for (j = 0; j < 48; j++) {
+        e = &((func_8014BC78_Entry *)&D_801BEF38)[j];
+        k = e->flags;
+        if (!(k & 1)) {
+            continue;
+        }
+        if ((o = e->obj) == 0 ) {
+            continue;
+        }
+        if (!(k & 2)) {
+            k = e->idx0;
+            tbl = &D_80181E40[k];
+            ang = o->rot;
+            if (*tbl == 0 ) {
+                continue;
+            }
+            i = 0;
+            if ((*tbl)->r == 0.0f) {
+                continue;
+            }
+            do {
+                rz = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->z * func_8001EB64(ang) - ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->x * func_8001EAD0(ang);
+                rx = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->z * func_8001EAD0(ang) + ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->x * func_8001EB64(ang);
+                o = e->obj;
+                dx = arg0 - (o->x + rx);
+                dz = arg2 - (o->z + rz);
+                dy = arg1 - (((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->y + o->y);
+                if (func_8002FC20(dx * dx + dz * dz + dy * dy) <= ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->r + arg3) {
+                    o = e->obj;
+                    dx = arg0 - o->x;
+                    dz = arg1 - o->y;
+                    dy = arg2 - o->z;
+                    d = func_8002FC20(dx * dx + dz * dz + dy * dy);
+                    if (d < best) {
+                        best = d;
+                        ret = e->id;
+                    }
+                    break;
+                }
+                i += 16;
+            } while ((p = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) )->r != 0.0f);
+        } else {
+            k = e->idx1;
+            tbl = &D_80181F94[k];
+            ang = o->rot;
+            if (*tbl == 0 ) {
+                continue;
+            }
+            i = 0;
+            if ((*tbl)->r == 0.0f) {
+                continue;
+            }
+            do {
+                rz = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->z * func_8001EB64(ang) - ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->x * func_8001EAD0(ang);
+                rx = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->z * func_8001EAD0(ang) + ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->x * func_8001EB64(ang);
+                o = e->obj;
+                dx = arg0 - (o->x + rx);
+                dz = arg2 - (o->z + rz);
+                dy = arg1 - (((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->y + o->y);
+                if (func_8002FC20(dx * dx + dz * dz + dy * dy) <= ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->r + arg3) {
+                    o = e->obj;
+                    dx = arg0 - o->x;
+                    dz = arg1 - o->y;
+                    dy = arg2 - o->z;
+                    d = func_8002FC20(dx * dx + dz * dz + dy * dy);
+                    if (d < best) {
+                        best = d;
+                        ret = e->id;
+                    }
+                    break;
+                }
+                i += 16;
+            } while ((p = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) )->r != 0.0f);
+        }
+    }
+    return ret;
+}
+
+
+#undef D_80181E40
+#undef D_80181F94
+#undef D_8019026C
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8002FC20
+#undef func_8014B2CC
+#undef func_8014B33C
+#undef func_8014B36C
+#undef func_8014B3F0
+#undef func_8014B7CC
+#undef func_8014C068
+#undef func_8014C0A8
+#undef func_8014C0F0
+#undef func_8014C138
+#undef func_8014C194
+#undef func_8014C1F0
+#undef func_8014C1F0_Struct
+#undef func_8014C23C
+#undef func_8014C23C_Inner
+#undef func_8014C23C_Struct
+#undef func_8014C294
+#undef func_8014C2A0
+#undef func_801C0B8C
 
 
 
@@ -939,3 +1175,5 @@ s32 func_8014C2A0(void) {
     return 0x200;
 }
 
+/* Readonly constants retained after the last ASM donor became C. */
+static const f32 D_8019026C__rodata[] = {100000.0f};

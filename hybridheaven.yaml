@@ -442,7 +442,7 @@ segments:
       - [0x5CA230, .rodata, file010/801FEAE0]
       - [0x5CA360, .rodata, file010/801FF180]
       - [0x5CA660, .rodata, file010/80203830]
-      - [0x5CB5A0, .rodata, file010/80205720]
+      - [0x5CB5E0, .rodata, file010/80205720]
       - [0x5CB600, .rodata, file010/80206190]
       - { type: bss, vram: 0x8021AFB0 }
   - name: file011

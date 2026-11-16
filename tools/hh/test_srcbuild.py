@@ -11,6 +11,41 @@ def blob(text):
 
 
 class PreservationTests(unittest.TestCase):
+    def test_worker_context_omits_self_data_and_preserves_wrapped_prototype(self):
+        rendered = ('extern u8 func_80000000[];\n'
+                    'void func_80000004(float *a,\n float *b) {\n *a = *b;\n}\n')
+        with patch.object(S, 'file_of', return_value='80000000'), \
+             patch.object(S, 'registry', return_value={}), \
+             patch.object(S, 'entries', return_value=[]), \
+             patch.object(S, 'render', return_value=(rendered, {})):
+            context = S.context_for('test', 'func_80000000')
+        self.assertNotIn('func_80000000[]', context)
+        self.assertIn('void func_80000004(float *a, float *b);', context)
+        self.assertNotIn('*a = *b', context)
+        with patch.object(S, 'context_for', return_value=context), \
+             patch('types_db.context_types', return_value='extern u8 func_80000000[];\n'):
+            self.assertNotIn('func_80000000[]', S.typed_context('test', 'func_80000000'))
+
+    def test_inline_extern_aggregate_names_the_object_not_a_member(self):
+        self.assertEqual(S.decl_name('extern struct { u8 pad[12]; void *p; } D_80000000;', 0),
+                         'D_80000000')
+        self.assertIsNone(S.decl_name('extern struct { u8 pad[12];', 0))
+
+    def test_context_does_not_declare_callback_itself_as_data(self):
+        text = ('extern u8 func_80000000[];\n'
+                'extern u8 D_80000000[];\n'
+                'extern void func_80000000(void *);\n'
+                'extern u8 D_80000004[], func_80000000[];\n'
+                'extern s32 func_80000000, D_80000008;\n'
+                'extern void (*func_80000000)(s32, s32);\n')
+        clean = S.without_self_data(text, 'func_80000000')
+        self.assertNotIn('func_80000000[]', clean)
+        self.assertIn('extern u8 D_80000000[];', clean)
+        self.assertIn('extern void func_80000000(void *);', clean)
+        self.assertIn('extern u8 D_80000004[];', clean)
+        self.assertIn('extern s32  D_80000008;', clean)
+        self.assertNotIn('(*func_80000000)', clean)
+
     def test_split_bss_bounds_rodata_at_first_block(self):
         config = ('  - name: test\n'
                   '      - { type: bss, vram: 0x80000040 }\n'

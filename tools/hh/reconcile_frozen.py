@@ -64,7 +64,9 @@ class Scan:
                 n = S.decl_name(l, 0); m = S.DEFN.match(l)
                 if n and n not in active: declared.add(n); self.decl_text.setdefault(n, _norm_decl(l)); self.decl_line.setdefault(n, l.strip())
                 elif m and m.group(1) not in active:
-                    declared.add(m.group(1)); self.file_defs.setdefault(m.group(1), _def_head(l)); self.decl_text.setdefault(m.group(1), "DEF")
+                    signature = S.definition_header(lines, i)
+                    head = _norm_decl(signature[0] + ';') if signature else _def_head(l)
+                    declared.add(m.group(1)); self.file_defs.setdefault(m.group(1), head); self.decl_text.setdefault(m.group(1), "DEF")
                 for t in TAG_DEF.findall(l):
                     if t not in active: self.decl_text.setdefault(t, ("type", None))
                 t = S.TYPEDEF.search(l)
@@ -161,6 +163,14 @@ MULTI = re.compile(r"^(\s*extern\s+(?:(?:const|volatile|unsigned|signed|struct|u
 def normalize(snippet):
     """The snippet with one declarator per `extern` line (dedup and aliasing see one name per line) and without the
     worker idiom `#define X X_ctx` / `#include` / `#undef X` that hid a context.h name from its own declaration."""
+    # Some saved attempts are preprocessed standalone C. The source unit already
+    # includes common.h; repeating its primitive typedefs is rejected by IDO.
+    primitives = {'s8': 'signed char', 'u8': 'unsigned char', 's16': 'signed short',
+                  'u16': 'unsigned short', 's32': 'signed int', 'u32': 'unsigned int',
+                  's64': 'signed long long', 'u64': 'unsigned long long',
+                  'f32': 'float', 'f64': 'double'}
+    snippet = re.sub(r'\btypedef\s+([\w\s]+?)\s+(\w+)\s*;',
+                     lambda m: '' if primitives.get(m[2]) == ' '.join(m[1].split()) else m[0], snippet)
     # A multiline extern prototype must not look like a function definition to DEFN / private_names.
     snippet = re.sub(r"(?m)^\s*extern\s+[^;{}]*?\bfunc_[0-9A-F]{8}\s*\([^;{}]*\)\s*;",
                      lambda m: " ".join(m.group().split()), snippet)
@@ -184,7 +194,7 @@ def normalize(snippet):
         if m and "(" not in l:
             out += ["%s %s;" % (m.group(1), d.strip()) for d in m.group(2).split(",")]; continue
         out.append(l)
-    return "\n".join(out) + "\n"
+    return "\n".join(l.rstrip() for l in out).strip() + "\n"
 
 def borrowed(sc, i, snippet, own_types):
     """Type definitions the snippet uses that the file only defines after line i (the attempt was compiled against

@@ -212,7 +212,7 @@ def repartition(S, seg, cfile, text, log=None):
         if obj is None:
             return None
         all_refs = addrfix.mine_refs_many(obj, names)
-        for name, path, *_ in S.entries(seg, cfile):
+        for name, path, _offset, _size, vram in S.entries(seg, cfile):
             if name not in names:
                 continue
             items = S._ro_items(S._rd(path))
@@ -225,7 +225,7 @@ def repartition(S, seg, cfile, text, log=None):
                 for label in re.findall(r'\bdlabel (\w+)', '\n'.join(lines)):
                     constants[label] = (address, address + size)
             refs = all_refs.get(name) or {}
-            target = addrfix.target_refs(path, int(name[-8:], 16))
+            target = addrfix.target_refs(path, vram)
             spans = [constants[target[pos][1]] for pos, (_, symbol, _) in refs.items()
                      if symbol == '<section .rodata>' and pos in target and target[pos][1] in constants]
             if spans:

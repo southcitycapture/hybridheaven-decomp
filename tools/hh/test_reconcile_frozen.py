@@ -7,6 +7,38 @@ S = R.S
 
 
 class ContextTests(unittest.TestCase):
+    def test_readonly_planner_uses_layout_address_for_named_entry_point(self):
+        import rodata_owned
+        with patch.object(S, 'defined_functions', return_value={'main'}), \
+             patch.object(S, 'compile_file', return_value=('unused.o', '')), \
+             patch.object(S, 'entries', return_value=[('main', 'unused.s', 0, 4, 0x80000000)]), \
+             patch.object(S, '_rd', return_value=''), \
+             patch.object(S, '_ro_items', return_value=[]), \
+             patch('addrfix.mine_refs_many', return_value={}), \
+             patch('addrfix.target_refs', return_value={}) as target:
+            self.assertIsNone(rodata_owned.repartition(S, 'test', '80000000', ''))
+        target.assert_called_once_with('unused.s', 0x80000000)
+
+    def test_wrapped_definition_keeps_the_complete_forward_prototype(self):
+        sc = R.Scan('void func_80000004(float *a,\n float *b) {\n *a = *b;\n}\n')
+        self.assertEqual(sc.file_defs['func_80000004'], 'void func_80000004(float *a, float *b);')
+
+    def test_preprocessed_primitives_do_not_redeclare_common_types(self):
+        text = ('typedef signed char s8; typedef unsigned char u8;\n'
+                'typedef float f32; typedef unsigned int Custom;\n'
+                'void func_80000000(void) { Custom x; }\n')
+        normalized = R.normalize(text)
+        self.assertNotIn('char s8', normalized)
+        self.assertNotIn('char u8', normalized)
+        self.assertNotIn('float f32', normalized)
+        self.assertIn('typedef unsigned int Custom;', normalized)
+
+    def test_inline_aggregate_member_does_not_import_unrelated_global(self):
+        context = 'extern struct { unsigned char pad[12]; void *p; } D_80000004;\n'
+        snippet = '#include "context.h"\nvoid func_80000000(void) { void *p; }\n'
+        self.assertEqual(R.context_dependencies('test', 'file', 'func_80000000', snippet,
+                                               R.Scan(''), 0, context), snippet)
+
     def test_orphan_tail_can_promote_before_borrowing_tiny_neighbour(self):
         data = ('.section .late_rodata\nnonmatching D_80000010\ndlabel D_80000010\n'
                 '/* 10 80000010 3F800000 */ .word 0x3F800000\n'

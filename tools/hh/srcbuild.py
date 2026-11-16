@@ -150,6 +150,13 @@ def is_stub(off, size):
 def decl_name(line, depth):
     """Name declared by a file-scope declaration line (extern or bare prototype), else None."""
     if depth: return None
+    # Inline aggregate members are not the file-scope declarator. Looking
+    # through them made `extern struct { u8 pad[12]; void *p; } D_...;`
+    # declare `pad`, and context dependency recovery then imported it for
+    # unrelated local fields with that common name.
+    if re.match(r'\s*extern\s+(?:struct|union|enum)\b', line) and '{' in line:
+        if '}' not in line: return None
+        line = line[:line.index('{')] + line[line.rindex('}') + 1:]
     m = DECL.match(line) or PROTO.match(line)
     return m.group(1) if m else None
 
@@ -981,6 +988,48 @@ def run(cands, new_keys, every_file=False):
 # a whole-file failure (possibly transient: disk full, pool crash) is logged but never memoized (Task 32 review)
 NO_RESULT = "integration produced no accepted function or rejection (source unit failed)"
 
+def without_self_data(text, func):
+    """A neighbour may use a callback address as an extern byte array.
+
+    That is valid in the neighbour's isolated recipe, but cannot constrain
+    the callback's own definition. Keep function prototypes and D_ aliases:
+    sharing an address does not mean sharing a C identifier.
+    """
+    lines = []
+    for line in text.splitlines():
+        if (re.match(r'\s*extern\b', line) and
+                (re.search(r'\b' + re.escape(func) + r'\s*(?:\[|;|,)', line) or
+                 re.search(r'\*\s*' + re.escape(func) + r'\s*\)', line))):
+            # Address declarations in registry snippets are single declarators.
+            # Preserve other declarators in the occasional comma-separated form.
+            m = re.match(r'(\s*extern\s+(?:(?:const|volatile|unsigned|signed|long|short)\s+)*(?:(?:struct|union|enum)\s+)?\w+\s+)(.*);', line)
+            if m:
+                parts, start, depth = [], 0, 0
+                for i, char in enumerate(m.group(2)):
+                    if char in '([{': depth += 1
+                    elif char in ')]}': depth -= 1
+                    elif char == ',' and depth == 0:
+                        parts.append(m.group(2)[start:i]); start = i + 1
+                parts.append(m.group(2)[start:])
+                parts = [p for p in parts if not re.search(r'\b' + re.escape(func) + r'\b', p)]
+                if parts: lines.append(m.group(1) + ','.join(parts) + ';')
+                continue
+        lines.append(line)
+    return '\n'.join(lines) + '\n'
+
+
+def definition_header(lines, start):
+    """(ANSI definition signature, opening-brace line), including wrapped arguments."""
+    if not DEFN.match(lines[start]): return None
+    parts = []
+    for i in range(start, len(lines)):
+        line = lines[i]
+        if ';' in line.split('{', 1)[0]: return None
+        parts.append(line.split('{', 1)[0].strip())
+        if '{' in line: return ' '.join(parts).rstrip(), i
+    return None
+
+
 def context_for(seg, func):
     """Declarations already in force in `func`'s C file (excluding func's own snippet): every extern,
     typedef/struct, and a prototype for each C function defined there. Given to workers as context.h."""
@@ -992,18 +1041,17 @@ def context_for(seg, func):
     while i < len(lines):
         l = lines[i]
         if l.startswith("#pragma") or l.startswith("#include") or not l.strip(): i += 1; continue
-        if DEFN.match(l) and "{" in l or (DEFN.match(l) and i + 1 < len(lines) and lines[i + 1].strip() == "{"):
-            head = l.split("{")[0].rstrip()
+        definition = definition_header(lines, i)
+        if definition:
+            head, brace = definition
             out.append(head + ";")
-            depth = l.count("{") - l.count("}"); i += 1
-            if depth == 0 and "{" not in l:          # brace on the next line
-                depth = lines[i].count("{") - lines[i].count("}"); i += 1
+            depth = lines[brace].count("{") - lines[brace].count("}"); i = brace + 1
             while depth > 0 and i < len(lines):
                 depth += lines[i].count("{") - lines[i].count("}"); i += 1
             continue
         out.append(l); i += 1
-    return "\n".join(['#include "common.h"', "/* Declarations already used in this function's source file %s/%s.c."
-                      % (seg, cf), "   Use them as they are; do not redeclare these names differently. */"] + out) + "\n"
+    return without_self_data("\n".join(['#include "common.h"', "/* Declarations already used in this function's source file %s/%s.c."
+                      % (seg, cf), "   Use them as they are; do not redeclare these names differently. */"] + out), func)
 
 
 def infile_check(seg, func, path):
@@ -1059,7 +1107,7 @@ def typed_context(seg, func):
     import types_db
     base = context_for(seg, func)
     prev = os.environ.get("PREVIOUS", "")       # prep2.sh repair mode: keep previous.c's own declarations valid
-    return base + types_db.context_types(seg, func, base, open(prev).read() if prev and os.path.exists(prev) else "")
+    return without_self_data(base + types_db.context_types(seg, func, base, open(prev).read() if prev and os.path.exists(prev) else ""), func)
 
 
 if __name__ == "__main__" and sys.argv[1] == "context":       # srcbuild.py context SEG FUNC [--types]; or TYPES=1
