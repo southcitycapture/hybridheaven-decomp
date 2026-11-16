@@ -1,3 +1,4 @@
+#define func_8001C0B0 func_8001C0B0__merge_frozen
 #include "common.h"
 
 
@@ -972,7 +973,204 @@ void func_8001BFE4(u8 arg0, u16 arg1) {
     D_8008DC18 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8001A490/func_8001C0B0.s")
+#undef func_8001C0B0
+#define D_800F51C0 D_800F51C0__func_8001C0B0
+#define func_8001ADD4_Blk700 func_8001ADD4_Blk700__func_8001C0B0
+#define ZQ(a, b) a##_##b
+#define ZP(a, b) ZQ(a, b)
+#define zU_14 u16
+#define zU_15 u16
+#define zU_16 u16
+#define zU_33 u16
+#define zU_34 u16
+#define zU_35 u16
+#define zU_47 u16
+#define zU_48 u16
+#define zU_49 u16
+#define zU_65 u16
+#define zU_105 u16
+#define zU_116 u16
+#define zU_120 u16
+#define zU_156 u16
+#define zU_168 u16
+#define zU_183 u16
+#define zU_249 u16
+#define zU_263 u16
+#define zU_294 u16
+#define zU_297 u16
+#define zU_298 u16
+#define zU_299 u16
+#define zU_305 u16
+#define zU_349 u16
+#define zU_350 u16
+#define zU_351 u16
+#define zU_352 u16
+#define zU_356 u16
+#define zU_358 u16
+#define zU_359 u16
+#define zU_366 u16
+#define zU_367 u16
+#define zU_408 u8
+#define zU_409 u8
+#define zU_410 u8
+#define zU_411 u8
+#define zU_412 u8
+#define zU_413 u16
+#define zU_419 u16
+#define zU_420 u16
+#define zU_425 u16
+#define zU_430 u16
+#define zU_431 u16
+#define zU_432 u16
+#define zU_436 u16
+#define zU_437 u16
+#define zU_438 u16
+#define zU_439 u16
+#define zU_488 u16
+#define zU_496 u16
+#define zU_497 u16
+#define zU_498 u16
+#define zU_572 u16
+#define zU_574 u16
+#define zU_591 u16
+#define zU_592 u16
+#define zU_593 u16
+#define zU_607 u16
+#define zU_608 u16
+#define zU_625 u16
+#define u16 ZP(zU, __LINE__)
+typedef struct func_8001ADD4_Blk700 { u8 d[0x700]; } func_8001ADD4_Blk700;
+extern func_8001ADD4_Blk700 D_800F51C0[];
+extern s64 D_801077C0[];
+
+#undef u16
+
+typedef struct func_8001C0B0_Struct { u8 d[6]; } func_8001C0B0_Struct;
+extern func_8001C0B0_Struct D_80044638;
+extern func_8001C0B0_Struct D_80044640;
+
+void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
+    s32 i;
+    s32 j;
+    s32 pad;
+    func_8001C0B0_Struct a = D_80044638;
+    func_8001C0B0_Struct b = D_80044640;
+    s32 k;
+    u8 *src;
+    u8 n;
+    u8 *dst;
+
+    src = (u8 *)D_801077C0 + b.d[arg2];
+    func_8001BFE4(arg2, arg3);
+    n = a.d[arg2];
+    k = 0;
+    if (!(arg0 & 1)) {
+        if (!(arg3 & 1)) {
+            for (i = 0; i < 13; i++) {
+                for (j = 0; j < n; j++) {
+                    dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
+                    dst[i * 0x80 + j]&= 0x33;
+                    dst[i * 0x80 + j]|= src[k] & 0xCC;
+                    k++;
+                }
+            }
+        } else {
+            for (i = 0; i < 13; i++) {
+                for (j = 0; j < n; j++) {
+                    dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
+                    dst[i * 0x80 + j]&= 0x33;
+                    dst[i * 0x80 + j]|= (src[k] & 0x33) << 2;
+                    k++;
+                }
+            }
+        }
+    } else {
+        if (!(arg3 & 1)) {
+            for (i = 0; i < 13; i++) {
+                for (j = 0; j < n; j++) {
+                    dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
+                    dst[i * 0x80 + j]&= 0xCC;
+                    dst[i * 0x80 + j]|= (src[k] & 0xCC) >> 2;
+                    k++;
+                }
+            }
+        } else {
+            for (i = 0; i < 13; i++) {
+                for (j = 0; j < n; j++) {
+                    dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
+                    dst[i * 0x80 + j]&= 0xCC;
+                    dst[i * 0x80 + j]|= src[k] & 0x33;
+                    k++;
+                }
+            }
+        }
+    }
+}
+#undef ZQ
+#undef ZP
+#undef zU_14
+#undef zU_15
+#undef zU_16
+#undef zU_33
+#undef zU_34
+#undef zU_35
+#undef zU_47
+#undef zU_48
+#undef zU_49
+#undef zU_65
+#undef zU_105
+#undef zU_116
+#undef zU_120
+#undef zU_156
+#undef zU_168
+#undef zU_183
+#undef zU_249
+#undef zU_263
+#undef zU_294
+#undef zU_297
+#undef zU_298
+#undef zU_299
+#undef zU_305
+#undef zU_349
+#undef zU_350
+#undef zU_351
+#undef zU_352
+#undef zU_356
+#undef zU_358
+#undef zU_359
+#undef zU_366
+#undef zU_367
+#undef zU_408
+#undef zU_409
+#undef zU_410
+#undef zU_411
+#undef zU_412
+#undef zU_413
+#undef zU_419
+#undef zU_420
+#undef zU_425
+#undef zU_430
+#undef zU_431
+#undef zU_432
+#undef zU_436
+#undef zU_437
+#undef zU_438
+#undef zU_439
+#undef zU_488
+#undef zU_496
+#undef zU_497
+#undef zU_498
+#undef zU_572
+#undef zU_574
+#undef zU_591
+#undef zU_592
+#undef zU_593
+#undef zU_607
+#undef zU_608
+#undef zU_625
+#undef D_800F51C0
+#undef func_8001ADD4_Blk700
+#define func_8001C0B0 func_8001C0B0__merge_frozen
 
 struct func_8001C670_Struct {
     u8 data[0x5C];
@@ -1951,3 +2149,5 @@ void func_8001EAA4(void) {
     ((struct func_8001EAA4_Struct *)&D_801BBBF0)->unk158 = 0;
 }
 
+
+#undef func_8001C0B0
