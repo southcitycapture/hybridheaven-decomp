@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-15: **85.87% of the code** (15512 of 15891 functions, including duplicates).
+Progress as of 2026-11-16: **86.35% of the code** (15521 of 15891 functions, including duplicates).
 
-**23963 model runs, $7307.33 API-equivalent in total** (local and cloud). Of the **15415 functions now in C**, **7288 were matched by AI workers** (≈ $1.003 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 267 came from decomp-permuter and 284 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**23999 model runs, $7432.88 API-equivalent in total** (local and cloud). Of the **15424 functions now in C**, **7296 were matched by AI workers** (≈ $1.019 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 267 came from decomp-permuter and 285 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -538,8 +538,11 @@ Progress as of 2026-11-15: **85.87% of the code** (15512 of 15891 functions, inc
 | `armT_D2` | armT_D2 | opus-5-5 | 7 | 0 | 0% | $28.85 | – |  |
 | `unify_loop0326` | unify_loop0326 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0327` | unify_loop0327 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
-| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 296 | 45 | 15% | $0.00 | – |  |
-| `rampO3` | rampO3 | opus-5-5, sonnet-5-5 | 37 | 5 | 14% | $55.63 | $11.126 |  |
-| `rampC1` | rampC1 | opus-5-5, sonnet-5-5 | 44 | 10 | 23% | $323.53 | $32.353 |  |
+| `unify_loop0328` | unify_loop0328 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0329` | unify_loop0329 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0330` | unify_loop0330 | unify (no model) | 8 | 1 | 12% | $0.00 | – |  |
+| `rampC1` | rampC1 | opus-5-5, sonnet-5-5 | 55 | 17 | 31% | $395.93 | $23.290 |  |
+| `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 304 | 45 | 15% | $0.00 | – |  |
+| `rampO3` | rampO3 | opus-5-5, sonnet-5-5 | 54 | 11 | 20% | $108.77 | $9.888 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

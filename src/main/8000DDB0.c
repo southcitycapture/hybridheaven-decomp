@@ -53,7 +53,108 @@ u16 func_8000DDF4(s32 arg0, func_8000DDF4_StructEntry *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/D_8004C790.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000DEC8.s")
+#define func_8000522C func_8000522C__func_8000DEC8
+#define func_80015214 func_80015214__func_8000DEC8
+extern f32 *func_8000522C(u16, s32);
+extern f32 func_80015214(f32);
+
+typedef struct func_8000DEC8_StructSub {
+    u8 pad0[4];
+    f32 pos[3];
+    s16 rot[3];
+    u8 pad16[0x50 - 0x16];
+    f32 time;
+    f32 *anim;
+} func_8000DEC8_StructSub;
+
+typedef struct func_8000DEC8_StructObj {
+    u8 pad[0x2C];
+    func_8000DEC8_StructSub *unk2C;
+} func_8000DEC8_StructObj;
+
+typedef struct func_8000DEC8_StructArg {
+    u16 unk0;
+    u16 unk2;
+    s32 unk4;
+} func_8000DEC8_StructArg;
+
+s32 func_8000DEC8(func_8000DEC8_StructObj *obj, func_8000DEC8_StructArg *key) {
+    f32 len;
+    f32 *anim;
+    f32 frac;
+    s32 n;
+    f32 *p;
+    f32 *q;
+
+    anim = func_8000522C(key->unk2, key->unk4);
+    q = anim + 1;
+    if (anim != obj->unk2C->anim) {
+        obj->unk2C->time = 0.0f;
+        obj->unk2C->anim = anim;
+    }
+    n = key->unk0 & 0x7FFF;
+    if (n != 0) {
+        len = n;
+    } else {
+        len = *anim - 1.0f;
+    }
+    if (len != 0.0f) {
+        f32 cur;
+
+        cur = (*anim - 1.0f) / len * obj->unk2C->time;
+        if (*anim - 1.0f < cur) {
+            cur = *anim - 1.0f;
+        }
+        n = cur;
+        p = anim + (n * 6 + 1);
+        q = anim + (n * 6 + 7);
+        frac = cur - n;
+    } else {
+        frac = 0.0f;
+        q = p = anim + 1;
+    }
+    if (frac != 0.0f) {
+        obj->unk2C->rot[0] = (*p + func_80015214(*q - *p) * frac) / 0.0439453125;
+        p++;
+        q++;
+        obj->unk2C->rot[1] = (*p + func_80015214(*q - *p) * frac) / 0.0439453125;
+        p++;
+        q++;
+        obj->unk2C->rot[2] = (*p + func_80015214(*q - *p) * frac) / 0.0439453125;
+        p++;
+        q++;
+        obj->unk2C->pos[0] = *p + (*q - *p) * frac;
+        p++;
+        q++;
+        obj->unk2C->pos[1] = *p + (*q - *p) * frac;
+        p++;
+        q++;
+        obj->unk2C->pos[2] = *p + (*q - *p) * frac;
+    } else {
+        obj->unk2C->rot[0] = p[0] / 0.0439453125;
+        obj->unk2C->rot[1] = p[1] / 0.0439453125;
+        obj->unk2C->rot[2] = p[2] / 0.0439453125;
+        obj->unk2C->pos[0] = p[3];
+        obj->unk2C->pos[1] = p[4];
+        obj->unk2C->pos[2] = p[5];
+    }
+    {
+        func_8000DEC8_StructSub *sub = obj->unk2C;
+
+        if (len <= sub->time) {
+            len = key->unk0 & 0x8000;
+            if (len != 0.0f) {
+                sub->time = 0.0f;
+            }
+            return 1;
+        }
+        if (0) { }
+        sub->time += 1.0f;
+        return 0;
+    }
+}
+#undef func_8000522C
+#undef func_80015214
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_8000E264.s")
 
@@ -1160,7 +1261,125 @@ void func_80010884(func_80010884_Obj **arg0, func_80010884_Arg1 *arg1, func_8001
     obj->unk50 = sub->unk50;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8000DDB0/func_80010D08.s")
+#define D_8000FE48 D_8000FE48__func_80010D08
+#define D_8000FF80 D_8000FF80__func_80010D08
+#define D_8001061C D_8001061C__func_80010D08
+#define D_80010884 D_80010884__func_80010D08
+#define D_80063430 D_80063430__func_80010D08
+#define D_80063A30 D_80063A30__func_80010D08
+#define D_80063E50 D_80063E50__func_80010D08
+extern func_800101D8_Ent D_80063A30[];
+#define func_80010D08 D_80010D08
+#undef func_80010D08
+
+typedef struct func_80010D08_Vec {
+    s32 x, y, z;
+} func_80010D08_Vec;
+
+typedef struct func_80010D08_Sub {
+    u8 pad0[0x50];
+    f32 unk50;
+    u8 pad54[0x62 - 0x54];
+    u16 unk62;
+} func_80010D08_Sub;
+
+typedef struct func_80010D08_Obj {
+    u8 pad0[0x2C];
+    func_80010D08_Sub *unk2C;
+} func_80010D08_Obj;
+
+typedef struct func_80010D08_StructArg1 {
+    u8 pad0[0xC];
+    u16 unkC;
+    u8 padE[0x44 - 0xE];
+    func_80010D08_Vec unk44;
+    u8 pad50[0x76 - 0x50];
+    u8 unk76;
+} func_80010D08_StructArg1;
+
+extern u8 D_80063430[];
+extern u16 D_80063E50[];
+extern u16 D_8000FE48(void *, u16, void *, void *);
+extern void D_8000FF80(void *, u16, void *, void *, func_80010D08_Vec);
+extern void D_8001061C(func_80010D08_Obj *, func_80010D08_Vec, u16, f32, s32, s32, u32);
+extern void D_80010884(void *, void *, func_80010D08_Vec, u16);
+
+u16 func_80010D08(func_80010D08_Obj **arg0, func_80010D08_StructArg1 *arg1,
+                  func_80010D08_Vec arg2, u16 arg5, u32 arg6) {
+    f32 f;
+    u32 bits;
+    func_80010D08_Sub *obj;
+    u16 r;
+    u16 i;
+    u16 sp76;
+    u16 sp74;
+    u16 m;
+    u16 m0;
+    s32 n;
+
+    r = 0;
+    bits = arg6;
+    m0 = D_8000FE48(arg0, arg1->unkC, D_800631F0, D_80063DF0);
+    i = 0;
+    if (m0 > 0) {
+        do {
+            D_80010068(i, arg0, arg1->unkC, D_80063DF0, D_800631F0, D_80063670, &sp76, &sp74);
+            i++;
+        } while (i < m0);
+    }
+    D_8000FF80(arg0, arg1->unkC, D_80063430, D_80063E50, arg2);
+    m = D_80010068(0, arg0, arg1->unkC, D_80063E50, D_80063430, D_80063A30, &sp76, &sp74);
+    i = 1;
+    if (m >= 2 && !(arg6 & 1)) {
+        do {
+            i++;
+            bits >>= 1;
+        } while (i < m && !(bits & 1));
+    }
+    obj = arg0[i]->unk2C;
+    i = 1;
+    bits = arg6;
+    if (arg5 <= 0) {
+        f = 0.0f;
+        r = 1;
+    } else {
+        f = (f32)((f32)(obj->unk50 + 1.0) / ((f64)arg5 + 1.0));
+        if (f >= 1.0) {
+            f = 1.0f;
+            r = 1;
+        }
+    }
+    if (!(obj->unk62 & 1)) {
+        obj->unk50 = obj->unk50 + 1.0f;
+        if ((f32)arg5 <= obj->unk50) {
+            r = 1;
+        }
+    }
+    if (m >= 2 && arg6 != 0) {
+        do {
+            if (bits & 1) {
+                D_8001061C(arg0[i], arg2, arg5, f, i - 1, r, (u32)obj->unk50);
+            }
+            i++;
+            bits >>= 1;
+        } while (i < m && bits != 0);
+    }
+    if (arg6 & 1) {
+        D_80010884(arg0, arg1, arg2, arg5);
+        *(func_80010D08_Vec *)&D_801BC028 = arg1->unk44;
+        if (r) {
+            arg1->unk76 = 1;
+        }
+    }
+    return r;
+}
+#undef D_8000FE48
+#undef D_8000FF80
+#undef D_8001061C
+#undef D_80010884
+#undef D_80063430
+#undef D_80063A30
+#undef D_80063E50
 
 
 struct func_80011140_Struct {
@@ -1169,11 +1388,13 @@ struct func_80011140_Struct {
     s32 unk8;
 };
 
+#define func_80010D08 func_80010D08__decl1272
 extern void func_80010D08(s32, s32, struct func_80011140_Struct, s32, s32);
 
 void func_80011140(s32 arg0, s32 arg1, struct func_80011140_Struct arg2, u16 arg5) {
     func_80010D08(arg0, arg1, arg2, arg5, 0xFFFFFF);
 }
+#undef func_80010D08
 
 
 typedef struct func_80011198_Struct_Sub {

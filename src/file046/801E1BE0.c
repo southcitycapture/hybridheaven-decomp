@@ -403,9 +403,9 @@ s32 func_801E2360(s32 arg0, s32 arg1) {
 
 
 s32 func_801E23B4(s32 arg0, s32 arg1) {
-    func_8038BE98(D_801EB368);
-    func_8038BD50(D_801EB36C, D_801EB370, 0x429C999A);
-    D_8038BD88(D_801EB374, D_801EB378, 0x42C80000);
+    func_8038BE98((33.29999923706055f));
+    func_8038BD50((0.6000000238418579f), (13.399999618530273f), 0x429C999A);
+    D_8038BD88((2.0999999046325684f), (14.899999618530273f), 0x42C80000);
     return 0x16;
 }
 
@@ -439,8 +439,8 @@ s32 func_801E246C(s32 arg0, s32 arg1) {
 
 
 s32 func_801E24C0(s32 arg0, s32 arg1) {
-    func_8038BE98(D_801EB37C);
-    func_8038BD50(-17.5f, D_801EB380, 0x424C0000);
+    func_8038BE98((33.29999923706055f));
+    func_8038BD50(-17.5f, (15.199999809265137f), 0x424C0000);
     D_8038BD88(0.0f, 14.5f, 0x4235999A);
     return 0x19;
 }
@@ -475,9 +475,9 @@ s32 func_801E2574(s32 arg0, s32 arg1) {
 
 
 s32 func_801E25C8(s32 arg0, s32 arg1) {
-    func_8038BE98(D_801EB384);
-    func_8038BD50(D_801EB388, D_801EB38C, 0x429C999A);
-    D_8038BD88(D_801EB390, D_801EB394, 0x42C80000);
+    func_8038BE98((33.29999923706055f));
+    func_8038BD50((0.6000000238418579f), (13.399999618530273f), 0x429C999A);
+    D_8038BD88((2.0999999046325684f), (14.899999618530273f), 0x42C80000);
     return 0x1C;
 }
 
@@ -511,9 +511,9 @@ s32 func_801E2680(s32 arg0, s32 arg1) {
 
 
 s32 func_801E26D4(s32 arg0, s32 arg1) {
-    func_8038BE98(D_801EB398);
+    func_8038BE98((33.29999923706055f));
     func_8038BD50(0.0f, 13.0f, 0x42A0999A);
-    D_8038BD88(0.0f, D_801EB39C, 0x42BE6666);
+    D_8038BD88(0.0f, (14.199999809265137f), 0x42BE6666);
     return 0x1F;
 }
 
@@ -898,8 +898,232 @@ s32 func_801E35B0(s32 arg0, s32 arg1) {
     return 1;
 }
 
-/* hh-block asm/nonmatchings/file046/801E1BE0/_mrg_keep_tail_0810bf2740a592bd.s {"functions":["func_801E361C"],"rodata":[],"rodata_bytes":[2149495656,8066168,104]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file046/801E1BE0/_mrg_keep_tail_0810bf2740a592bd.s")
+
+#define D_801D9FE8 D_801D9FE8__func_801E361C
+#define D_801DA088 D_801DA088__func_801E361C
+#define D_801EA698 D_801EA698__func_801E361C
+#define D_801EA6D8 D_801EA6D8__func_801E361C
+#define D_801EA6E8 D_801EA6E8__func_801E361C
+#define D_8038D8CC D_8038D8CC__func_801E361C
+#define D_8038D8D0 D_8038D8D0__func_801E361C
+#define func_801BF6B0 func_801BF6B0__func_801E361C
+#define func_801C28F0 func_801C28F0__func_801E361C
+#define func_801D9F00 func_801D9F00__func_801E361C
+#define func_801E2034_Struct func_801E2034_Struct__func_801E361C
+#define func_801E4D04_StructInner func_801E4D04_StructInner__func_801E361C
+#define func_801E4D04_StructOuter func_801E4D04_StructOuter__func_801E361C
+struct func_801E4D04_StructInner {
+    u8 pad[0x22];
+    u8 flag;
+};
+struct func_801E4D04_StructOuter {
+    u8 pad[0xC];
+    struct func_801E4D04_StructInner *unkC;
+};
+extern struct func_801E4D04_StructOuter *D_8038D8D0;
+void *func_801BF6B0(s32 arg0);
+struct func_801E2034_Struct {
+    u8 pad[0xC];
+    s32 unkC;
+};
+
+
+typedef struct func_801E361C_StructLeaf {
+    u8 pad0[4];
+    f32 unk4, unk8, unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18, unk1C, unk20;
+    s32 unk24;
+    u8 pad28[8];
+    s32 unk30;
+    u8 pad34[0x14];
+    u8 unk48, unk49, unk4A, unk4B, unk4C, unk4D, unk4E, unk4F;
+} func_801E361C_StructLeaf;
+typedef struct func_801E361C_StructNode {
+    u8 pad0[0x22];
+    u8 unk22;
+    u8 pad23[0xD];
+    func_801E361C_StructLeaf *unk30;
+} func_801E361C_StructNode;
+typedef struct func_801E361C_StructData { s32 a, b, c, d; } func_801E361C_StructData;
+extern void func_801C28F0(void *);
+extern u8 D_801DA088[];
+extern u8 D_801D9FE8[];
+extern u8 func_801D9F00[];
+extern u8 D_801EA6D8[];
+extern u8 D_801EA6E8[];
+extern func_801E361C_StructData D_801EA698[];
+#define ITEMS ((func_801E361C_StructNode **)D_8038D8D0)
+extern s32 D_8038D8CC;
+#define HANDLE D_8038D8CC
+#define ITEM(i) (ITEMS[i])
+
+s32 func_801E361C(s32 arg0, s32 arg1) {
+    s32 i;
+    struct func_801E2034_Struct *result;
+    result = func_801BF6B0(2);
+    if (result->unkC < 2) return 1;
+    for (i = 0; i < 2; i++) { func_80005E44(HANDLE, D_801EA6D8); if ((s32)D_801EA6D8 == i) {} }
+    func_80005E44(HANDLE, D_801EA6E8);
+    func_80005E44(HANDLE, D_801EA6E8);
+    arg1 = (s32)(func_8038D830 + 0x6C);
+    if (arg1) {}
+    if (arg1) {}
+    i = 0;
+    do {
+        func_80005E44(HANDLE, (void*)arg1);
+        i++;
+    } while (i < 2);
+    func_80005E44(HANDLE, (void*)arg1);
+    func_80005E44(HANDLE, (void*)arg1);
+    func_80005E44(HANDLE, func_8038D830 + 0x5C);
+    func_80006214(HANDLE);
+    func_8012C89C(HANDLE, 0, 0x466, 2);
+    func_8012C89C(HANDLE, 1, 0x466, 3);
+    func_8012C89C(HANDLE, 2, 0x466, 4);
+    func_8012C89C(HANDLE, 3, 0x466, 5);
+    func_8012C89C(HANDLE, 4, 0x469, 0);
+    func_8012C89C(HANDLE, 5, 0x469, 0);
+    func_8012C89C(HANDLE, 6, 0x468, 0);
+    func_8012C89C(HANDLE, 7, 0x465, 0);
+    func_8012C89C(HANDLE, 8, 0x466, 6);
+    ITEMS[0]->unk30->unk4 = 0.0f;
+    ITEMS[0]->unk30->unk8 = 0.0f;
+    ITEMS[0]->unk30->unkC = 0.0f;
+    ITEMS[0]->unk30->unk12 = 0;
+    ITEMS[0]->unk30->unk30 = (s32)D_801DA088 | 0x40000000;
+    ITEMS[0]->unk30->unk24 = 0x100;
+    ITEMS[0]->unk30->unk48 = 0xFF;
+    ITEMS[0]->unk30->unk49 = 0xFF;
+    ITEMS[0]->unk30->unk4A = 0xFF;
+    ITEMS[0]->unk30->unk4B = 0;
+    ITEMS[0]->unk22 = 1;
+    ITEMS[1]->unk30->unk4 = 0.0f;
+    ITEMS[1]->unk30->unk8 = 0.0f;
+    ITEMS[1]->unk30->unkC = 0.0f;
+    ITEMS[1]->unk30->unk12 = 0;
+    ITEMS[1]->unk30->unk30 = (s32)D_801D9FE8 | 0x40000000;
+    ITEMS[1]->unk30->unk24 = 0x300;
+    ITEMS[1]->unk30->unk48 = 0;
+    ITEMS[1]->unk30->unk49 = 0xFF;
+    ITEMS[1]->unk30->unk4A = 0xFF;
+    ITEMS[1]->unk30->unk4B = 0x7F;
+    ITEMS[1]->unk30->unk4C = 0xFF;
+    ITEMS[1]->unk30->unk4D = 0xFF;
+    ITEMS[1]->unk30->unk4E = 0xFF;
+    ITEMS[1]->unk30->unk4F = 0x7F;
+    ITEMS[1]->unk22 = 1;
+    ITEMS[2]->unk30->unk4 = 0.0f;
+    ITEMS[2]->unk30->unk8 = 190.0f;
+    ITEMS[2]->unk30->unkC = 0.0f;
+    ITEMS[2]->unk30->unk12 = 0;
+    ITEMS[2]->unk30->unk30 = (s32)D_801D9FE8 | 0x40000000;
+    ITEMS[2]->unk30->unk24 = 0x300;
+    ITEMS[2]->unk30->unk48 = 0;
+    ITEMS[2]->unk30->unk49 = 0xFF;
+    ITEMS[2]->unk30->unk4A = 0xFF;
+    ITEMS[2]->unk30->unk4B = 0xFF;
+    ITEMS[2]->unk30->unk4C = 0xFF;
+    ITEMS[2]->unk30->unk4D = 0xFF;
+    ITEMS[2]->unk30->unk4E = 0xFF;
+    ITEMS[2]->unk30->unk4F = 0xFF;
+    ITEMS[2]->unk22 = 0;
+    ITEMS[3]->unk30->unk4 = 0.0f;
+    ITEMS[3]->unk30->unk8 = 181.0f;
+    ITEMS[3]->unk30->unkC = 0.0f;
+    ITEMS[3]->unk30->unk12 = 0;
+    ITEMS[3]->unk30->unk30 = (s32)D_801D9FE8 | 0x40000000;
+    ITEMS[3]->unk30->unk24 = 0x300;
+    ITEMS[3]->unk30->unk48 = 0;
+    ITEMS[3]->unk30->unk49 = 0xFF;
+    ITEMS[3]->unk30->unk4A = 0xFF;
+    ITEMS[3]->unk30->unk4B = 0xFF;
+    ITEMS[3]->unk30->unk4C = 0xFF;
+    ITEMS[3]->unk30->unk4D = 0xFF;
+    ITEMS[3]->unk30->unk4E = 0xFF;
+    ITEMS[3]->unk30->unk4F = 0xFF;
+    ITEMS[3]->unk22 = 0;
+    for (i = 4; i < 6; i++) {
+        ITEM(i)->unk30->unk4 = 0.0f;
+        ITEM(i)->unk30->unk8 = 0.0f;
+        ITEM(i)->unk30->unkC = 0.0f;
+        ITEM(i)->unk30->unk12 = 0;
+        ITEM(i)->unk30->unk30 = (s32)D_801D9FE8 | 0x40000000;
+        ITEM(i)->unk30->unk24 = 0x300;
+        ITEM(i)->unk30->unk48 = 0;
+        ITEM(i)->unk30->unk49 = 0xFF;
+        ITEM(i)->unk30->unk4A = 0xFF;
+        ITEM(i)->unk30->unk4B = 0xFF;
+        ITEM(i)->unk30->unk4C = 0xFF;
+        ITEM(i)->unk30->unk4D = 0xFF;
+        ITEM(i)->unk30->unk4E = 0xFF;
+        ITEM(i)->unk30->unk4F = 0xFF;
+        ITEM(i)->unk22 = 1;
+    }
+    ITEMS[6]->unk30->unk4 = 0.0f;
+    ITEMS[6]->unk30->unk8 = 0.0f;
+    ITEMS[6]->unk30->unkC = 0.0f;
+    ITEMS[6]->unk30->unk12 = 0;
+    {
+        s32 pad;
+        func_801E361C_StructData sp34 = D_801EA698[0];
+        s32 pad2;
+        func_801C28F0(&sp34);
+    }
+    ITEMS[6]->unk30->unk30 = (s32)D_801D9FE8 | 0x40000000;
+    ITEMS[6]->unk30->unk24 = 0x300;
+    ITEMS[6]->unk30->unk48 = 0xFF;
+    ITEMS[6]->unk30->unk49 = 0;
+    ITEMS[6]->unk30->unk4A = 0;
+    ITEMS[6]->unk30->unk4B = 0xFF;
+    ITEMS[6]->unk30->unk4C = 0xFF;
+    ITEMS[6]->unk30->unk4D = 0xFF;
+    ITEMS[6]->unk30->unk4E = 0xFF;
+    ITEMS[6]->unk30->unk4F = 0xFF;
+    ITEMS[6]->unk22 = 0;
+    ITEMS[7]->unk30->unk4 = 0.0f;
+    ITEMS[7]->unk30->unk8 = 0.0f;
+    ITEMS[7]->unk30->unkC = 100.0f;
+    ITEMS[7]->unk30->unk12 = 0;
+    ITEMS[7]->unk30->unk18 = 1.0f;
+    ITEMS[7]->unk30->unk1C = 1.0f;
+    ITEMS[7]->unk30->unk20 = 1.0f;
+    ITEMS[7]->unk30->unk30 = (s32)func_801D9F00 | 0x40000000;
+    ITEMS[7]->unk30->unk24 = 0x300;
+    ITEMS[7]->unk30->unk48 = 0;
+    ITEMS[7]->unk30->unk49 = 0xFF;
+    ITEMS[7]->unk30->unk4A = 0xFF;
+    ITEMS[7]->unk30->unk4B = 0;
+    ITEMS[7]->unk30->unk4C = 0xFF;
+    ITEMS[7]->unk30->unk4D = 0xFF;
+    ITEMS[7]->unk30->unk4E = 0xFF;
+    ITEMS[7]->unk30->unk4F = 0xFF;
+    ITEMS[7]->unk22 = 0;
+    ITEMS[8]->unk30->unk4 = 0.0f;
+    ITEMS[8]->unk30->unk8 = 0.0f;
+    ITEMS[8]->unk30->unkC = -300.0f;
+    ITEMS[8]->unk30->unk12 = 0;
+    ITEMS[8]->unk22 = 1;
+    return 2;
+}
+#undef ITEMS
+#undef HANDLE
+#undef ITEM
+#undef D_801D9FE8
+#undef D_801DA088
+#undef D_801EA698
+#undef D_801EA6D8
+#undef D_801EA6E8
+#undef D_8038D8CC
+#undef D_8038D8D0
+#undef func_801BF6B0
+#undef func_801C28F0
+#undef func_801D9F00
+#undef func_801E2034_Struct
+#undef func_801E4D04_StructInner
+#undef func_801E4D04_StructOuter
 
 extern struct func_801E4D04_StructOuter *D_8038D8D0;
 struct func_801E4D04_StructInner {
@@ -1385,9 +1609,9 @@ typedef struct func_801E4EC4_Outer {
 
 
 s32 func_801E4EC4(s32 arg0, s32 arg1) {
-    ((func_801E4EC4_Outer *) D_8038D8D0)->unk10->unk30->unk4 = D_801EB3A0;
+    ((func_801E4EC4_Outer *) D_8038D8D0)->unk10->unk30->unk4 = (-33.20000076293945f);
     ((func_801E4EC4_Outer *) D_8038D8D0)->unk10->unk30->unk8 = 18.0f;
-    ((func_801E4EC4_Outer *) D_8038D8D0)->unk10->unk30->unkC = D_801EB3A4;
+    ((func_801E4EC4_Outer *) D_8038D8D0)->unk10->unk30->unkC = (208.60000610351562f);
     return 2;
 }
 
@@ -1463,9 +1687,9 @@ struct func_801E4FE8_StructOuter {
 
 
 s32 func_801E4FE8(s32 arg0, s32 arg1) {
-    ((struct func_801E4FE8_StructOuter *) D_8038D8D0)->unk14->unk30->unk4 = D_801EB3A8;
+    ((struct func_801E4FE8_StructOuter *) D_8038D8D0)->unk14->unk30->unk4 = (-43.29999923706055f);
     ((struct func_801E4FE8_StructOuter *) D_8038D8D0)->unk14->unk30->unk8 = 18.0f;
-    ((struct func_801E4FE8_StructOuter *) D_8038D8D0)->unk14->unk30->unkC = D_801EB3AC;
+    ((struct func_801E4FE8_StructOuter *) D_8038D8D0)->unk14->unk30->unkC = (208.39999389648438f);
     return 2;
 }
 
@@ -1707,7 +1931,7 @@ s32 func_801E54D4(s32 arg0, s32 arg1) {
     }
     val = func_801C1134(3, 6);
     ratio = (f32) val / (f32) max;
-    temp_fv0 = (D_801EB3B0 * ratio) + 1.0f;
+    temp_fv0 = ((0.20000004768371582f) * ratio) + 1.0f;
     ((func_801E54D4_X *) D_8038D8D0)->unk18->unk30->unk18 = temp_fv0;
     ((func_801E54D4_X *) D_8038D8D0)->unk18->unk30->unk1C = temp_fv0;
     ((func_801E54D4_X *) D_8038D8D0)->unk18->unk30->unk20 = temp_fv0;
@@ -2294,7 +2518,7 @@ s32 func_801E63D8(s32 arg0, s32 arg1) {
 
     temp_v0 = ((func_801E63D8_Struct_Node *)D_801DAB14)->unk8->unk8->unk8->unk24;
     if (temp_v0 != NULL) {
-        temp_v0->unk2C->unk4 = D_801EB3B4;
+        temp_v0->unk2C->unk4 = (34.29999923706055f);
         ((func_801E63D8_Struct_Node *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unk8 = 12.0f;
         ((func_801E63D8_Struct_Node *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unkC = 5120.0f;
         ((func_801E63D8_Struct_Node *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unk12 = 0x1000;
@@ -2370,9 +2594,9 @@ s32 func_801E6590(s32 arg0, s32 arg1)
 {
   unsigned short new_var;
   new_var = 9;
-  (*(((func_801E6590_Node **) func_801DAAF0) + new_var))->unk8->unk8->unk8->unk24->unk2C->unk4 = D_801EB3B8;
+  (*(((func_801E6590_Node **) func_801DAAF0) + new_var))->unk8->unk8->unk8->unk24->unk2C->unk4 = (34.29999923706055f);
   (*(((func_801E6590_Node **) func_801DAAF0) + new_var))->unk8->unk8->unk8->unk24->unk2C->unk8 = 10.0f;
-  (*(((func_801E6590_Node **) func_801DAAF0) + new_var))->unk8->unk8->unk8->unk24->unk2C->unkC = D_801EB3BC;
+  (*(((func_801E6590_Node **) func_801DAAF0) + new_var))->unk8->unk8->unk8->unk24->unk2C->unkC = (204.1999969482422f);
   (*(((func_801E6590_Node **) func_801DAAF0) + new_var))->unk8->unk8->unk8->unk24->unk2C->unk12 = 0x1000;
   if (func_801D3708() != 0)
   {
@@ -3117,9 +3341,9 @@ s32 func_801E790C(s32 arg0, s32 arg1) {
 
     holder = (*(struct func_801E790C_Node **)&D_801DAB14)->next->next->next->next->next->holder;
     if (holder != NULL) {
-        holder->vals->f4 = D_801EB3C0;
+        holder->vals->f4 = (-33.20000076293945f);
         (*(struct func_801E790C_Node **)&D_801DAB14)->next->next->next->next->next->holder->vals->f8 = 10.0f;
-        (*(struct func_801E790C_Node **)&D_801DAB14)->next->next->next->next->next->holder->vals->fC = D_801EB3C4;
+        (*(struct func_801E790C_Node **)&D_801DAB14)->next->next->next->next->next->holder->vals->fC = (208.60000610351562f);
         (*(struct func_801E790C_Node **)&D_801DAB14)->next->next->next->next->next->holder->vals->h12 = 0xF77;
         func_801CC470(4, 0x03200038, 0, 0x100, 6.0f);
         return 2;
@@ -3212,9 +3436,9 @@ s32 func_801E7AEC(s32 arg0, s32 arg1) {
 
     temp_v0 = ((struct func_801E7AEC_Node *)D_801DAB14)->next->next->next->next->next->next->holder;
     if (temp_v0 != NULL) {
-        temp_v0->vals->f4 = D_801EB3C8;
+        temp_v0->vals->f4 = (-43.29999923706055f);
         ((struct func_801E7AEC_Node *)D_801DAB14)->next->next->next->next->next->next->holder->vals->f8 = 10.0f;
-        ((struct func_801E7AEC_Node *)D_801DAB14)->next->next->next->next->next->next->holder->vals->fC = D_801EB3CC;
+        ((struct func_801E7AEC_Node *)D_801DAB14)->next->next->next->next->next->next->holder->vals->fC = (208.39999389648438f);
         ((struct func_801E7AEC_Node *)D_801DAB14)->next->next->next->next->next->next->holder->vals->h12 = 0x1071;
         func_801CC470(5, 0x03200038, 0, 0x110, 6.0f);
         return 2;
@@ -4393,6 +4617,14 @@ s32 func_801E945C(s32 arg0, s32 arg1) {
 
 
 
+
+
+
+
+
+
+/* Readonly constants retained after the last ASM donor became C. */
+
 static const unsigned char rodata_801E1BE0[] = {
     0x40, 0xDD, 0xA1, 0xCB, 0xBF, 0xF3, 0x33, 0x33, 0xBF, 0x99, 0x99, 0x9A, 0x42, 0x05, 0x33, 0x33,
     0x41, 0x0B, 0x33, 0x33, 0x41, 0x09, 0x99, 0x9A, 0x41, 0x66, 0x66, 0x66, 0x42, 0x14, 0xCC, 0xCD,
@@ -4405,3 +4637,14 @@ static const unsigned char rodata_801E1BE0[] = {
 /* hh-owned-pool func_801E20DC 801EB330 801EB33C */
 /* hh-owned-pool func_801E21B8 801EB33C 801EB350 */
 /* hh-owned-pool func_801E2280 801EB350 801EB368 */
+/* hh-owned-pool func_801E23B4 801EB368 801EB37C */
+/* hh-owned-pool func_801E24C0 801EB37C 801EB384 */
+/* hh-owned-pool func_801E25C8 801EB384 801EB398 */
+/* hh-owned-pool func_801E26D4 801EB398 801EB3A0 */
+/* hh-owned-pool func_801E4EC4 801EB3A0 801EB3A8 */
+/* hh-owned-pool func_801E4FE8 801EB3A8 801EB3B0 */
+/* hh-owned-pool func_801E54D4 801EB3B0 801EB3B4 */
+/* hh-owned-pool func_801E63D8 801EB3B4 801EB3B8 */
+/* hh-owned-pool func_801E6590 801EB3B8 801EB3C0 */
+/* hh-owned-pool func_801E790C 801EB3C0 801EB3C8 */
+/* hh-owned-pool func_801E7AEC 801EB3C8 801EB3D0 */
