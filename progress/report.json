@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 89.40792,
+    "fuzzy_match_percent": 89.43481,
     "total_code": "2826840",
-    "matched_code": "2520436",
-    "matched_code_percent": 89.160904,
+    "matched_code": "2521196",
+    "matched_code_percent": 89.18778,
     "total_data": "1065936",
     "total_functions": 15891,
-    "matched_functions": 15550,
-    "matched_functions_percent": 97.85413,
+    "matched_functions": 15551,
+    "matched_functions_percent": 97.86043,
     "complete_code": "877844",
     "complete_code_percent": 31.053898,
     "complete_data": "0",
@@ -122141,14 +122141,14 @@
     {
       "name": "main/80015370",
       "measures": {
-        "fuzzy_match_percent": 91.27,
+        "fuzzy_match_percent": 94.93159,
         "total_code": "20756",
-        "matched_code": "18944",
-        "matched_code_percent": 91.27,
+        "matched_code": "19704",
+        "matched_code_percent": 94.93159,
         "total_data": "1392",
         "total_functions": 98,
-        "matched_functions": 96,
-        "matched_functions_percent": 97.95918,
+        "matched_functions": 97,
+        "matched_functions_percent": 98.97959,
         "total_units": 1,
         "matched_data": "244",
         "matched_data_percent": 17.528735632183906,
@@ -122175,7 +122175,7 @@
         {
           "name": ".text",
           "size": "20768",
-          "fuzzy_match_percent": 91.27,
+          "fuzzy_match_percent": 94.93159,
           "metadata": {}
         }
       ],
@@ -122813,6 +122813,7 @@
         {
           "name": "func_80019460",
           "size": "760",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "16624"
         },
@@ -134524,14 +134525,14 @@
       "id": "main",
       "name": "Main (incl. libultra)",
       "measures": {
-        "fuzzy_match_percent": 82.30198,
+        "fuzzy_match_percent": 82.65534,
         "total_code": "215076",
-        "matched_code": "171744",
-        "matched_code_percent": 79.85271,
+        "matched_code": "172504",
+        "matched_code_percent": 80.20607,
         "total_data": "101040",
         "total_functions": 813,
-        "matched_functions": 726,
-        "matched_functions_percent": 89.29889,
+        "matched_functions": 727,
+        "matched_functions_percent": 89.42189,
         "complete_code": "59124",
         "complete_code_percent": 27.489817,
         "complete_data": "0",
