@@ -181,8 +181,90 @@ void func_803711C8(s32 arg0, s32 arg1) {
 /* hh-block asm/nonmatchings/file057/803709D0/_mrg_keep_text_func_803711E8.s {"functions":["func_803711E8"],"rodata":[]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/_mrg_keep_text_func_803711E8.s")
 
-/* hh-block asm/nonmatchings/file057/803709D0/_mrg_keep_text_func_803714B4.s {"functions":["func_803714B4"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/_mrg_keep_text_func_803714B4.s")
+#define D_8038B3F0 D_8038B3F0__func_803714B4
+#define D_8038B3F4 D_8038B3F4__func_803714B4
+#define D_8038B3F8 D_8038B3F8__func_803714B4
+#define D_8038B3FC D_8038B3FC__func_803714B4
+#define D_8038B400 D_8038B400__func_803714B4
+#define D_8038B404 D_8038B404__func_803714B4
+#define D_8038B408 D_8038B408__func_803714B4
+#define D_8038B40C D_8038B40C__func_803714B4
+#define func_8037118C func_8037118C__func_803714B4
+#define func_8037118C_Struct func_8037118C_Struct__func_803714B4
+struct func_8037118C_Struct {
+    u8 pad[0x4C];
+    u16 unk4C;
+    u16 unk4E;
+};
+void func_8037118C(struct func_8037118C_Struct *arg0, s32 arg1);
+
+
+typedef struct func_803714B4_Struct {
+    u8 pad[0x4C];
+    u16 flags;
+    u8 pad4E[0x6C - 0x4E];
+    f32 x, y, z;
+    u8 type;
+    u8 pad79[3];
+    f32 x2, y2, z2;
+} func_803714B4_Struct;
+typedef s32 (*func_803714B4_Emitter)(void *, s32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32);
+extern f32 D_8038B3F0;
+extern f32 D_8038B3F4;
+extern f32 D_8038B3F8;
+extern f32 D_8038B3FC;
+extern f32 D_8038B400;
+extern f32 D_8038B404;
+extern f32 D_8038B408;
+extern f32 D_8038B40C;
+#define EMIT D_801CE330
+
+void func_803714B4(func_803714B4_Struct *arg0, s32 arg1) {
+    f32 x = arg0->x;
+    f32 y = arg0->y;
+    f32 z = arg0->z;
+    u8 type = arg0->type;
+    f32 x2 = arg0->x2;
+    f32 y2 = arg0->y2;
+    f32 z2 = arg0->z2;
+    s32 pad;
+
+    switch (type) {
+    case 0:
+        EMIT(arg0, 0, x, y, z, 255, 160, 0, 255, 255, 64, 0, 0, 10, 10, D_8038B3F0, 0);
+        break;
+    case 1:
+        EMIT(arg0, 25, x, y, z, 0, 224, 64, 64, 0, 0, 0, 64, 3, 10, D_8038B3F4, 1);
+        EMIT(arg0, 25, x2, y2, z2, 0, 224, 64, 64, 0, 0, 0, 64, 3, 10, D_8038B3F8, 1);
+        break;
+    case 2:
+        EMIT(arg0, 17, x, y, z, 0, 160, 128, 255, 0, 0, 0, 0, 10, 10, D_8038B3FC, 1);
+        EMIT(arg0, 17, x2, y2, z2, 0, 160, 128, 255, 0, 0, 0, 0, 10, 10, D_8038B400, 1);
+        break;
+    case 3:
+        break;
+    case 4:
+        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 160, 0, 0, 5, 20, D_8038B404, 0);
+        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 80, 0, 0, 6, 20, D_8038B408, 0);
+        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 0, 0, 0, 7, 20, D_8038B40C, 0);
+        break;
+    default:
+        arg0->flags = 0x8000;
+        func_800058DC(arg0, func_8037118C);
+    }
+    func_800058DC(arg0, func_8037118C);
+}
+#undef EMIT
+#undef D_8038B3F0
+#undef D_8038B3F4
+#undef D_8038B3F8
+#undef D_8038B3FC
+#undef D_8038B400
+#undef D_8038B404
+#undef D_8038B408
+#undef D_8038B40C
+#undef func_8037118C
+#undef func_8037118C_Struct
 
 
 typedef struct func_80371930_Struct {
@@ -769,8 +851,8 @@ void func_8037296C(struct func_8037296C_Struct *arg0, s32 arg1)
 #undef func_803711C8
 #undef func_80372654
 
-/* hh-block asm/nonmatchings/file057/803709D0/_mrg_keep_text_func_80372A48.s {"functions":["func_80372A48"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/_mrg_keep_text_func_80372A48.s")
+/* hh-block asm/nonmatchings/file057/803709D0/_mrg_keep_tail_adde0c696e5d97d9.s {"functions":["func_80372A48"],"rodata":[],"rodata_bytes":[2151199728,8581136,144]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/803709D0/_mrg_keep_tail_adde0c696e5d97d9.s")
 
 #define func_80372F8C func_80372F8C__func_80372CB0
 
@@ -1013,6 +1095,7 @@ extern void func_80005700();
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_803709D0[] = {
     0x65, 0x72, 0x72, 0x6F, 0x72, 0x20, 0x20, 0xA5, 0xD2, 0xA5, 0xC3, 0xA5, 0xC8, 0xA5, 0xD1, 0xA5,
     0xBF, 0xA1, 0xBC, 0xA5, 0xF3, 0x20, 0xA5, 0xEC, 0xA5, 0xD9, 0xA5, 0xEB, 0x20, 0x3D, 0x20, 0x25,
@@ -1035,15 +1118,6 @@ static const unsigned char rodata_803709D0[] = {
     0x3B, 0xA3, 0xD7, 0x0A, 0x3D, 0xCC, 0xCC, 0xCD, 0x80, 0x37, 0x0F, 0x24, 0x80, 0x37, 0x0E, 0xEC,
     0x80, 0x37, 0x0F, 0x08, 0x80, 0x37, 0x0F, 0x08, 0x80, 0x37, 0x0F, 0x08, 0x3D, 0x4C, 0xCC, 0xCD,
     0x3D, 0x4C, 0xCC, 0xCD, 0x3D, 0x4C, 0xCC, 0xCD, 0x80, 0x37, 0x12, 0x6C, 0x80, 0x37, 0x12, 0xC8,
-    0x80, 0x37, 0x12, 0xC8, 0x80, 0x37, 0x12, 0xF8, 0x80, 0x37, 0x13, 0xC4, 0x80, 0x37, 0x15, 0x04,
-    0x80, 0x37, 0x15, 0x7C, 0x80, 0x37, 0x16, 0x78, 0x80, 0x37, 0x17, 0x6C, 0x80, 0x37, 0x17, 0x78,
-    0x3C, 0x23, 0xD7, 0x0A, 0x3B, 0xA3, 0xD7, 0x0A, 0x3B, 0xA3, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
-    0x3C, 0x23, 0xD7, 0x0A, 0x3A, 0x83, 0x12, 0x6F, 0x3A, 0x83, 0x12, 0x6F, 0x3A, 0x83, 0x12, 0x6F,
-    0x3D, 0x4C, 0xCC, 0xCD, 0x3C, 0x23, 0xD7, 0x0A, 0x3D, 0x4C, 0xCC, 0xCD, 0x3B, 0xA3, 0xD7, 0x0A,
-    0x3D, 0x4C, 0xCC, 0xCD, 0x3C, 0x23, 0xD7, 0x0A, 0x3D, 0x4C, 0xCC, 0xCD, 0x3D, 0x4C, 0xCC, 0xCD,
-    0x3D, 0xCC, 0xCC, 0xCD, 0x3E, 0xB3, 0x33, 0x33, 0x3C, 0x23, 0xD7, 0x0A, 0x3D, 0x61, 0x47, 0xAE,
-    0x3C, 0x23, 0xD7, 0x0A, 0x3D, 0x75, 0xC2, 0x8F, 0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B,
-    0x3C, 0x23, 0xD7, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xE6, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66,
-    0x3F, 0xD3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x3F, 0x68, 0x93, 0x74, 0xBC, 0x6A, 0x7E, 0xFA,
-    0x3F, 0x50, 0x62, 0x4D, 0xD2, 0xF1, 0xA9, 0xFC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x80, 0x37, 0x12, 0xC8, 0x80, 0x37, 0x12, 0xF8, 0x80, 0x37, 0x13, 0xC4,
 };
+/* hh-owned-pool func_803714B4 8038B3DC 8038B3F0 */

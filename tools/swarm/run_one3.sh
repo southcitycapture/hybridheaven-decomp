@@ -23,7 +23,12 @@ fi
 # verify independently: never trust the worker's own claim
 if [ "$api_err" = 1 ]; then v=ERROR
 elif [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" attempt.c --seg "$SEG" > verify.txt 2>&1 && grep -q '^MATCH' verify.txt; then
-  v=MATCH; else v=FAIL; fi
+  v=MATCH
+# in-file match (11-17: Opus matched the 10 KB giant func_801BF1C0 in file while the standalone link misplaced its
+# readonly; this runner lacked the fallback run_one_oc/run_one_pi got on 11-12)
+elif [ -n "$INFILE" ] && [ -f attempt.c ] && "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" infile "$SEG" "$FUNC" "$PWD/attempt.c" 2>/dev/null | grep -q '^IN-FILE MATCH'; then
+  v=MATCH; echo "in-file match" > recovered.txt
+else v=FAIL; fi
 # keep-best: a snapshot that matched counts even if the worker edited attempt.c afterwards (exact re-check here)
 if [ "$v" = FAIL ] && [ -d .attempts ]; then
   for r in $(grep -l '^MATCH' .attempts/*.res 2>/dev/null | sort -t/ -k2 -n -r); do

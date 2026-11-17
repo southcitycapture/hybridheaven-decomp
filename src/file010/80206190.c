@@ -516,8 +516,92 @@ void func_80206AB0(func_80206AB0_Arg0 *arg0, func_80206AB0_Outer **arg1) {
     (*arg1)->unk30->unk14 = arg0->unkA4;
 }
 
-/* hh-block asm/nonmatchings/file010/80206190/_mrg_keep_text_func_80206C50.s {"functions":["func_80206C50"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/80206190/_mrg_keep_text_func_80206C50.s")
+#define D_80164F40 D_80164F40__func_80206C50
+#define func_802070F4_Local func_802070F4_Local__func_80206C50
+struct func_802070F4_Local {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+};
+extern struct func_802070F4_Local D_80164F40;
+
+
+typedef struct {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    u16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    s32 unk24;
+    u8 pad28[8];
+    s32 unk30;
+    u8 pad34[0x18];
+    u8 unk4C;
+    u8 unk4D;
+    u8 unk4E;
+    u8 unk4F;
+} func_80206C50_Inner;
+typedef struct {
+    u8 pad0[0x30];
+    func_80206C50_Inner *unk30;
+} func_80206C50_Outer;
+typedef struct {
+    u8 pad0[0x2C];
+    s32 unk2C;
+    u8 pad30[0x74 - 0x30];
+    s32 unk74;
+    f32 unk78;
+    f32 unk7C;
+    f32 unk80;
+    u16 unk84;
+    u16 unk86;
+    u16 unk88;
+    u8 pad8A[0x94 - 0x8A];
+    f32 unk94;
+    f32 unk98;
+    f32 unk9C;
+    u8 padA0[2];
+    u16 unkA2;
+} func_80206C50_Arg0;
+typedef struct {
+    func_80206C50_Outer *unk0;
+    func_80206C50_Outer *unk4;
+} func_80206C50_Arg1;
+
+
+#define SETUP(o) o->unk30->unk24 |= 0x400; o->unk30->unk30 = (s32) D_8017AF90 | 0x40000000; o->unk30->unk18 = 0.01f; o->unk30->unk1C = 0.01f; o->unk30->unk20 = 0.01f; o->unk30->unk4C = D_801BBBF0[0xF32]; o->unk30->unk4D = D_801BBBF0[0xF33]; o->unk30->unk4E = D_801BBBF0[0xF34]; o->unk30->unk4F = D_801BBBF0[0xF35]; o->unk30->unk4 = arg0->unk94; o->unk30->unk8 = arg0->unk98; o->unk30->unkC = arg0->unk9C; o->unk30->unk12 = arg0->unkA2;
+void func_80206C50(func_80206C50_Arg0 *arg0, func_80206C50_Arg1 *arg1)
+{
+    struct func_802070F4_Local sp28;
+
+    sp28 = D_80164F40;
+    sp28.unk4 = 0x80000600;
+    func_80005E44(arg0, &sp28);
+    func_80005E44(arg0, &sp28);
+    func_80006214(arg0);
+    func_8012C89C(arg0, 0, 0xD2, 0);
+    func_8012CF8C(arg0, ((u8 *) arg1->unk0->unk30) + 0x40, 0xD2, 3);
+    SETUP(arg1->unk0)
+    func_8012C89C(arg0, 1, 0xD2, 1);
+    SETUP(arg1->unk4)
+    arg0->unk2C |= 0x800;
+    arg0->unk74 = func_8012C97C(0xD2, 2);
+    arg0->unk84 = 0;
+    arg0->unk88 = 0;
+    arg0->unk78 = arg0->unk94;
+    arg0->unk7C = arg0->unk98;
+    arg0->unk80 = arg0->unk9C;
+    arg0->unk86 = arg0->unkA2;
+}
+#undef SETUP
+#undef D_80164F40
+#undef func_802070F4_Local
 
 struct func_80206F14_Local {
     s32 unk0;
@@ -584,7 +668,7 @@ void func_80206F14(struct func_80206F14_Arg0 *arg0, struct func_80206F14_Outer *
     func_8012C89C(arg0, 0, 0xD4, 0);
     (*arg1)->unk30->unk30 = (s32)D_80217A00;
     (*arg1)->unk30->unk24 |= 0x300;
-    (*arg1)->unk30->unk20 = D_8021A800;
+    (*arg1)->unk30->unk20 = (0.009999999776482582f);
     temp = (*arg1)->unk30->unk20;
     (*arg1)->unk30->unk1C = temp;
     (*arg1)->unk30->unk18 = temp;
@@ -657,7 +741,7 @@ void func_802070F4(void *arg0, struct func_802070F4_Outer **arg1) {
     func_8012C89C(arg0, 0, 0xDA, 0);
     (*arg1)->unk30->unk24 = 0x13;
     (*arg1)->unk30->unk30 = (s32) D_8017AF90 | 0x40000000;
-    (*arg1)->unk30->unk20 = D_8021A804;
+    (*arg1)->unk30->unk20 = (0.009999999776482582f);
     temp_v0 = (*arg1)->unk30;
     temp_fv0 = temp_v0->unk20;
     temp_v0->unk1C = temp_fv0;
@@ -726,7 +810,7 @@ void func_80207238(struct func_80207238_Struct2 *arg0, struct func_80207238_Stru
     (*arg1)->unk30->unk4 = arg0->unk94;
     (*arg1)->unk30->unk8 = arg0->unk98;
     (*arg1)->unk30->unkC = arg0->unk9C;
-    (*arg1)->unk30->unk18 = (f32)((f64)func_8012C6B4(0x32) / D_8021A808 + D_8021A810);
+    (*arg1)->unk30->unk18 = (f32)((f64)func_8012C6B4(0x32) / (1000.0) + (0.005));
     v1 = (*arg1)->unk30;
     v1->unk20 = v1->unk18;
     (*arg1)->unk30->unk1C = v1->unk18;
@@ -788,7 +872,7 @@ void func_802073EC(struct func_802073EC_Struct_A *arg0, struct func_802073EC_Str
     func_80005E44(arg0, &sp28);
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 0xD7, 0);
-    k = D_8021A818;
+    k = (0.009999999776482582f);
     arg1[0]->unk30->unk24 |= 0x400;
     arg1[0]->unk30->unk30 = (s32)D_8017AF90 | 0x40000000;
     arg1[0]->unk30->unk20 = k;
@@ -800,7 +884,7 @@ void func_802073EC(struct func_802073EC_Struct_A *arg0, struct func_802073EC_Str
     arg1[0]->unk30->unk4E = D_801BBBF0[0xF34];
     arg1[0]->unk30->unk4F = D_801BBBF0[0xF35];
     func_8012C89C(arg0, 1, 0xD7, 1);
-    k = D_8021A81C;
+    k = (0.009999999776482582f);
     arg1[1]->unk30->unk24 |= 0x100;
     arg1[1]->unk30->unk30 = (s32)D_80217B60 | 0x40000000;
     arg1[1]->unk30->unk18 = k;
@@ -873,7 +957,7 @@ void func_80207654(func_80207654_StructA *arg0, func_80207654_StructO **arg1) {
     func_80005E44(arg0, &sp20);
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 0xD7, 1);
-    k = D_8021A820;
+    k = (0.009999999776482582f);
     (*arg1)->u30->u24 |= 0x100;
     (*arg1)->u30->u30 = (s32)D_80217B60 | 0x40000000;
     (*arg1)->u30->u4 = arg0->u94;
@@ -942,9 +1026,9 @@ void func_80207814(func_80207814_Arg0 *arg0, func_80207814_Outer **arg1) {
     func_8012C89C(arg0, 0, 0xD0, 0);
     (*arg1)->unk30->unk24 |= 0x300;
     (*arg1)->unk30->unk30 = (s32)D_80217B00 | 0x40000000;
-    (*arg1)->unk30->unk1C = D_8021A824;
+    (*arg1)->unk30->unk1C = (0.009999999776482582f);
     (*arg1)->unk30->unk18 = (*arg1)->unk30->unk1C;
-    (*arg1)->unk30->unk20 = D_8021A828;
+    (*arg1)->unk30->unk20 = (0.032999999821186066f);
     (*arg1)->unk30->unk48 = 0xFF;
     (*arg1)->unk30->unk49 = 0xFF;
     (*arg1)->unk30->unk4A = 0xFF;
@@ -1009,9 +1093,9 @@ void func_802079BC(func_802079BC_StructA *arg0, func_802079BC_StructO **arg1) {
     func_8012CF8C(arg0, (u8 *)(*arg1)->unk30 + 0x40, 1, 0);
     (*arg1)->unk30->unk24 |= 0x300;
     (*arg1)->unk30->unk30 = (s32)D_80217B00 | 0x40000000;
-    (*arg1)->unk30->unk1C = D_8021A82C;
+    (*arg1)->unk30->unk1C = (0.0010000000474974513f);
     (*arg1)->unk30->unk18 = (*arg1)->unk30->unk1C;
-    (*arg1)->unk30->unk20 = D_8021A830;
+    (*arg1)->unk30->unk20 = (0.009999999776482582f);
     (*arg1)->unk30->unk48 = 0xFF;
     (*arg1)->unk30->unk49 = 0xFF;
     (*arg1)->unk30->unk4A = 0xFF;
@@ -5506,6 +5590,28 @@ end:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_80206190[] = {
     0xB4, 0xC6, 0xBB, 0xEB, 0xA5, 0xED, 0xA5, 0xDC, 0xA5, 0xC3, 0xA5, 0xC8, 0xB6, 0xF5, 0xC3, 0xE6,
     0xCD, 0xD1, 0x0A, 0x00, 0xB4, 0xC6, 0xBB, 0xEB, 0xA5, 0xED, 0xA5, 0xDC, 0xA5, 0xC3, 0xA5, 0xC8,
@@ -5538,12 +5644,16 @@ static const unsigned char rodata_80206190[] = {
     0x3C, 0x75, 0xC2, 0x8F, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
     0x3F, 0xD9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3F, 0xD9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
     0x3B, 0xA3, 0xD7, 0x0A, 0x3C, 0xB4, 0x39, 0x58, 0x3A, 0x83, 0x12, 0x6F, 0x3C, 0x23, 0xD7, 0x0A,
-    0x3B, 0xA3, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
-    0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x40, 0x8F, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0x74, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B, 0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
-    0x3C, 0x23, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A, 0x3D, 0x07, 0x2B, 0x02, 0x3A, 0x83, 0x12, 0x6F,
-    0x3C, 0x23, 0xD7, 0x0A,
+    0x3B, 0xA3, 0xD7, 0x0A, 0x3C, 0x23, 0xD7, 0x0A,
 };
+/* hh-owned-pool func_80206C50 8021A7F8 8021A800 */
+/* hh-owned-pool func_80206F14 8021A800 8021A804 */
+/* hh-owned-pool func_802070F4 8021A804 8021A808 */
+/* hh-owned-pool func_80207238 8021A808 8021A818 */
+/* hh-owned-pool func_802073EC 8021A818 8021A820 */
+/* hh-owned-pool func_80207654 8021A820 8021A824 */
+/* hh-owned-pool func_80207814 8021A824 8021A82C */
+/* hh-owned-pool func_802079BC 8021A82C 8021A834 */
 /* hh-owned-pool func_80207B80 8021A834 8021A83C */
 /* hh-owned-pool func_80208B18 8021A86C 8021A870 */
 /* hh-owned-pool func_80208CA4 8021A870 8021A874 */

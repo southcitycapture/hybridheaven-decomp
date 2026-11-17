@@ -862,8 +862,8 @@ void func_801E8BD0(func_801E8BD0_Arg0 *arg0, s32 arg1, func_801E8BD0_Arg2 *arg2,
         }
         return;
     case 0x1680050:
-        P->unk4 += (func_8001EAD0(P->unk12) * (fv1 * fa0)) * D_80218578;
-        P->unkC += (func_8001EB64(P->unk12) * (fv1 * fa0)) * D_80218580;
+        P->unk4 += (func_8001EAD0(P->unk12) * (fv1 * fa0)) * (0.02);
+        P->unkC += (func_8001EB64(P->unk12) * (fv1 * fa0)) * (0.02);
         if (arg0->unk44 < 0.0) {
             func_800113D0(arg1, (u8 *)sub + 6);
         }
@@ -915,7 +915,7 @@ void func_801E8BD0(func_801E8BD0_Arg0 *arg0, s32 arg1, func_801E8BD0_Arg2 *arg2,
         }
         sp57 = g->unk35A;
         sp6C = g->unk384;
-        if (func_801C5A1C(P->unk4, P->unk8 + D_80218588, P->unkC, func_8001EAD0(P->unk12) * 10.0 + P->unk4, P->unk8 + D_80218588, func_8001EB64(P->unk12) * 10.0 + P->unkC) == 0 || (g->unk35A != 0x10 && g->unk35A != 0x22)) {
+        if (func_801C5A1C(P->unk4, P->unk8 + (16.5), P->unkC, func_8001EAD0(P->unk12) * 10.0 + P->unk4, P->unk8 + (16.5), func_8001EB64(P->unk12) * 10.0 + P->unkC) == 0 || (g->unk35A != 0x10 && g->unk35A != 0x22)) {
             if (func_801C5A1C(P->unk4, P->unk8 + 28.0, P->unkC, func_8001EAD0(P->unk12) * 7.0 + P->unk4, P->unk8 + 28.0, func_8001EB64(P->unk12) * 7.0 + P->unkC) == 0) {
                 sub->unk0 = 0x168000D;
                 sub->unk4 = 0;
@@ -928,7 +928,7 @@ void func_801E8BD0(func_801E8BD0_Arg0 *arg0, s32 arg1, func_801E8BD0_Arg2 *arg2,
                 arg0->unk44 = 0.0f;
                 arg0->unk48 = 0.0f;
                 if (sp57 == 8 || sp57 == 0x11) {
-                    g->unkE0->unk2C->unk8 = sp6C - D_80218590;
+                    g->unkE0->unk2C->unk8 = sp6C - (19.8);
                     g->unkEF0 = g->unkEF0 | 6;
                     func_801BF1A0(9);
                     D_801E4011 = 0;
@@ -997,8 +997,501 @@ void func_801E8BD0(func_801E8BD0_Arg0 *arg0, s32 arg1, func_801E8BD0_Arg2 *arg2,
 #undef func_801E4F60
 #undef func_801E74DC_Sub
 
-/* hh-block asm/nonmatchings/file010/801E4F60/_mrg_keep_tail_9becea6ad2ef723c.s {"functions":["func_801E95D4"],"rodata":[],"rodata_bytes":[2149680504,6067576,56]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801E4F60/_mrg_keep_tail_9becea6ad2ef723c.s")
+
+
+#define D_801BBBF0 D_801BBBF0__func_801E95D4
+#define D_80216B90 D_80216B90__func_801E95D4
+#define func_800112B0 func_800112B0__func_801E95D4
+#define func_80011328 func_80011328__func_801E95D4
+#define func_80011380 func_80011380__func_801E95D4
+#define func_800113D0 func_800113D0__func_801E95D4
+#define func_8013A28C func_8013A28C__func_801E95D4
+#define func_801BF1A0 func_801BF1A0__func_801E95D4
+#define func_801C5A1C func_801C5A1C__func_801E95D4
+#define func_801C7B18 func_801C7B18__func_801E95D4
+#define func_801E4F60 func_801E4F60__func_801E95D4
+#define func_801E74DC_Sub func_801E74DC_Sub__func_801E95D4
+#define func_801EFD14_Table func_801EFD14_Table__func_801E95D4
+#define func_801F1114 func_801F1114__func_801E95D4
+#define func_801F11C0_Inner func_801F11C0_Inner__func_801E95D4
+#define func_801F11C0_Mid func_801F11C0_Mid__func_801E95D4
+#define func_801F11C0_Struct func_801F11C0_Struct__func_801E95D4
+#define func_801F152C_In func_801F152C_In__func_801E95D4
+#define func_801F152C_Obj func_801F152C_Obj__func_801E95D4
+#define func_801F152C_Struct func_801F152C_Struct__func_801E95D4
+typedef struct func_801F11C0_Inner {
+    u8 pad0[4];
+    f32 unk4;
+    u8 pad8[4];
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+} func_801F11C0_Inner;
+typedef struct func_801F11C0_Mid {
+    u8 pad[0x2C];
+    func_801F11C0_Inner *unk2C;
+} func_801F11C0_Mid;
+typedef struct func_801F11C0_Struct {
+    u8 pad[0xE0];
+    func_801F11C0_Mid *unkE0;
+} func_801F11C0_Struct;
+#define PP (((func_801F11C0_Struct *)&D_801BBBF0)->unkE0->unk2C)
+typedef struct func_801F152C_In { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; u8 pad1[2]; s16 unk12; } func_801F152C_In;
+typedef struct func_801F152C_Obj { u8 pad[0x22]; u8 unk22; u8 pad1[9]; func_801F152C_In *unk2C; } func_801F152C_Obj;
+typedef struct func_801F152C_Struct { u8 pad[0xE0]; func_801F152C_Obj *unkE0; u8 pad1[0xF4 - 0xE4]; u8 unkF4; u8 pad2[2]; u8 unkF7; } func_801F152C_Struct;
+#define G ((func_801F152C_Struct *)&D_801BBBF0)
+#define p (G->unkE0->unk2C)
+extern u8 D_801BBBF0[];
+typedef struct func_801EFD14_Table {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_801EFD14_Table;
+extern func_801EFD14_Table D_80216B90;
+extern void func_800113D0(s32, void *);
+typedef struct func_801E74DC_Sub {
+    s32 unk0;
+    s32 unk4;
+    f32 unk8;
+} func_801E74DC_Sub;
+extern void func_8013A28C(s32, func_801E74DC_Sub);
+extern void func_801BF1A0(s32);
+extern s32 func_801C5A1C(f32, f32, f32, f32, f32, f32);
+void func_801E4F60(u16 arg0);
+u8 func_801F1114(void);
+
+
+typedef struct func_801E95D4_StructPos {
+    u8 pad[4];
+    f32 x, y, z;
+    u8 pad10[2];
+    s16 angle;
+} func_801E95D4_StructPos;
+typedef struct func_801E95D4_StructOuter {
+    u8 pad[0x2C];
+    func_801E95D4_StructPos *pos;
+} func_801E95D4_StructOuter;
+typedef struct func_801E95D4_StructGlobal {
+    u8 pad[0xE0];
+    func_801E95D4_StructOuter *obj;
+    u8 padE4[0x35A-0xE4];
+    u8 state;
+    u8 pad35B[0xBA3-0x35B];
+    u8 mode;
+    u8 padBA4[0xEF0-0xBA4];
+    u16 flags;
+    u8 padEF2[4];
+    u8 state2;
+    u8 padEF7[5];
+    s32 mask;
+} func_801E95D4_StructGlobal;
+typedef struct func_801E95D4_StructArg {
+    u8 pad[0x2C];
+    s32 flags;
+    u8 pad30[0x10];
+    f32 x, y, z;
+    u8 pad4C[8];
+    s32 value;
+} func_801E95D4_StructArg;
+typedef struct func_801E95D4_StructSub {
+    u32 id;
+    u16 time;
+    u16 flags;
+    f32 value;
+} func_801E95D4_StructSub;
+typedef struct func_801E95D4_StructArg2 {
+    u8 pad[0x1C];
+    func_801E95D4_StructSub sub;
+} func_801E95D4_StructArg2;
+extern s32 func_801C7B18(void);
+extern void func_80011380(s32, u16 *);
+extern void func_80011328(s32, u16 *);
+extern void func_800112B0(s32, u16 *);
+
+#define GL ((func_801E95D4_StructGlobal *)D_801BBBF0)
+#define SEND(p) func_8013A28C(arg1, *(func_801E74DC_Sub *)(p))
+#define PP (GL->obj->pos)
+#define PROBEPLUS(h) func_801C5A1C(func_8001EAD0(PP->angle)*4.0+PP->x,PP->y+1.0,func_8001EB64(PP->angle)*4.0+PP->z,func_8001EAD0(PP->angle)*4.0+PP->x,PP->y-(h),func_8001EB64(PP->angle)*4.0+PP->z)
+#define PROBEMINUS(h) func_801C5A1C(PP->x-func_8001EAD0(PP->angle)*6.0,PP->y+1.0,PP->z-func_8001EB64(PP->angle)*6.0,PP->x-func_8001EAD0(PP->angle)*6.0,PP->y-(h),PP->z-func_8001EB64(PP->angle)*6.0)
+#define UP() func_801C5A1C(PP->x,PP->y,PP->z,PP->x,PP->y+20.0,PP->z)
+
+void func_801E95D4(func_801E95D4_StructArg *arg0, s32 arg1, func_801E95D4_StructArg2 *arg2, u16 arg3, u8 arg4)
+{
+    func_801E95D4_StructSub *sub;
+    s32 pad1, pad2, pad3;
+extern void func_801C4A5C();
+
+    (void)&arg4;
+    sub = &arg2->sub;
+    switch (sub->id) {
+    case 0x1680012:
+        if (func_801C5A1C(PP->x,PP->y+1.0,PP->z,PP->x,PP->y-2.0,PP->z)) {
+            if (arg3) {
+                if (!(sub->flags&2)) {
+                    sub->id=0x1680013;
+                    sub->time=0;
+                    sub->flags=0;
+                    SEND(sub);
+                } else {
+                    SEND(&D_80216B90);
+                    arg0->flags|=0x80;
+                    arg0->x=0.0f;
+                    arg0->z=0.0f;
+                    func_801E4F60(GL->mask);
+                    GL->flags&=~0x100;
+                }
+            }
+        } else {
+            sub->id=0x1680053;
+            sub->time=0;
+            sub->flags=1;
+            SEND(sub);
+            arg0->x*=0.5;
+            arg0->z*=0.5;
+            func_801E4F60(GL->mask|4|8);
+            GL->flags|=0x208;
+        }
+        break;
+    case 0x1680013:
+        if (arg3) {
+            if (!(sub->flags&2)) {
+                sub->id=0x1680014;
+                sub->time=0;
+                sub->flags=0;
+            } else {
+                sub->id=0x1680012;
+                sub->time=30;
+                sub->flags=2;
+            }
+            SEND(sub);
+        }
+        break;
+    case 0x1680014:
+        if (arg3) {
+            if (!(sub->flags&2)) {
+                arg0->flags|=0x80;
+                sub->id=0x1680017;
+                sub->time=0;
+                sub->flags=0;
+                sub->value=1.0f;
+            } else {
+                sub->id=0x1680013;
+                sub->time=30;
+                sub->flags=2;
+            }
+            SEND(sub);
+        }
+        break;
+    case 0x1680015:
+        if (GL->state2==0x11 || GL->state==0x28) {
+            arg4=3;
+        }
+        if (!func_801C7B18()) {
+            arg4=3;
+        }
+        switch (arg4) {
+        case 1:
+            if (!PROBEPLUS(18.0)) {
+                sub->id=0x1680032;
+                sub->time=0;
+                sub->flags=0;
+                sub->value=1.0f;
+                SEND(sub);
+                arg0->flags&=~0x40;
+                arg0->z=0.0f;
+                arg0->y=0.0f;
+                arg0->flags|=0x80;
+                arg0->x=0.0f;
+                GL->flags&=~0x100;
+                GL->flags|=0x600;
+                func_801BF1A0(7);
+            } else {
+                if (!PROBEPLUS(5.0)) {
+                    if (!UP()) {
+                        if (func_801F1114()!=20) {
+                            if (GL->mode) {
+                                func_801BF1A0(12);
+                            } else {
+                                func_801BF1A0(13);
+                            }
+                            sub->id=0x1680016;
+                            sub->time=0;
+                            if (sub->flags&0x10) {
+                                sub->flags=0x10;
+                            } else {
+                                sub->flags=0;
+                            }
+                            sub->value=0.5f;
+                            SEND(sub);
+                            func_801E4F60(GL->mask);
+                        }
+                    } else {
+                        func_80011380(arg1,&sub->flags);
+                    }
+                } else if (arg3) {
+                    sub->id=0x1680017;
+                    sub->time=0;
+                    if (sub->flags&2) {
+                        sub->flags&=~2;
+                    } else if (sub->flags&0x10) {
+                        sub->flags&=~0x10;
+                    } else {
+                        sub->flags|=0x10;
+                    }
+                    SEND(sub);
+                } else {
+                    func_800113D0(arg1,&sub->flags);
+                    func_80011328(arg1,&sub->flags);
+                }
+            }
+            break;
+        case 2:
+            if (!PROBEMINUS(18.0)) {
+                sub->id=0x1680031;
+                sub->time=0x51;
+                if (sub->flags&0x10) {
+                    sub->flags=0x12;
+                } else {
+                    sub->flags=2;
+                }
+                SEND(sub);
+                arg0->flags&=~0x40;
+                arg0->z=0.0f;
+                arg0->flags|=0x80;
+                arg0->y=0.0f;
+                arg0->x=0.0f;
+                func_801E4F60(13);
+                GL->flags|=0x400;
+                GL->flags&=~0x100;
+            } else {
+                if (!PROBEMINUS(5.0)) {
+                    if (!UP()) {
+                        if (func_801F1114()!=20) {
+                            if (GL->mode) {
+                                func_801BF1A0(12);
+                            } else {
+                                func_801BF1A0(13);
+                            }
+                            sub->id=0x1680016;
+                            sub->time=0;
+                            if (sub->flags&0x10) {
+                                sub->flags=0x10;
+                            } else {
+                                sub->flags=0;
+                            }
+                            sub->value=0.5f;
+                            SEND(sub);
+                            func_801E4F60(GL->mask);
+                        }
+                    } else {
+                        func_80011380(arg1,&sub->flags);
+                    }
+                } else if (arg3) {
+                    sub->id=0x1680017;
+                    sub->time=0;
+                    if (sub->flags&2) {
+                        sub->flags&=~2;
+                    } else if (sub->flags&0x10) {
+                        sub->flags&=~0x10;
+                    } else {
+                        sub->flags|=0x10;
+                    }
+                    SEND(sub);
+                } else {
+                    func_800113D0(arg1,&sub->flags);
+                    func_800112B0(arg1,&sub->flags);
+                }
+            }
+            break;
+        case 3:
+            if (!UP()) {
+                if (func_801C5A1C(PP->x,PP->y+1.0,PP->z,PP->x,PP->y-5.0,PP->z) && GL->state!=20) {
+                    if (GL->mode) {
+                        func_801BF1A0(12);
+                    } else {
+                        func_801BF1A0(13);
+                    }
+                    sub->id=0x1680016;
+                    sub->time=0;
+                    if (sub->flags&0x10) {
+                        sub->flags=0x10;
+                    } else {
+                        sub->flags=0;
+                    }
+                    sub->value=0.5f;
+                    SEND(sub);
+                    func_801E4F60(GL->mask);
+                }
+            }
+            break;
+        case 4:
+            sub->id=0x1680014;
+            sub->time=20;
+            sub->flags=2;
+            SEND(sub);
+            break;
+        default:
+            if (arg3) {
+                sub->id=0x1680017;
+                sub->time=0;
+                if (sub->flags&2) {
+                    sub->flags&=~2;
+                } else if (sub->flags&0x10) {
+                    sub->flags&=~0x10;
+                } else {
+                    sub->flags|=0x10;
+                }
+                SEND(sub);
+            } else {
+                D_80011258(arg1,&sub->flags);
+            }
+            break;
+        }
+        break;
+    case 0x1680017:
+        if (!PROBEPLUS(5.0) && arg4==1) {
+            arg4=2;
+        }
+        if (!PROBEMINUS(5.0) && arg4==2) {
+            arg4=1;
+        }
+        if (!func_801C7B18()) {
+            arg4=3;
+        }
+        switch (arg4) {
+        case 1:
+            sub->id=0x1680015;
+            sub->time=0;
+            sub->flags&=~2;
+            SEND(sub);
+            break;
+        case 2:
+            sub->id=0x1680015;
+            sub->time=21;
+            sub->flags|=2;
+            if (sub->flags&0x10) {
+                sub->flags&=~0x10;
+            } else {
+                sub->flags|=0x10;
+            }
+            SEND(sub);
+            break;
+        case 3:
+            if (!UP()) {
+                if (func_801C5A1C(PP->x,PP->y+1.0,PP->z,PP->x,PP->y-5.0,PP->z) && GL->state!=20) {
+                    if (GL->mode) {
+                        func_801BF1A0(12);
+                    } else {
+                        func_801BF1A0(13);
+                    }
+                    sub->id=0x1680016;
+                    sub->time=0;
+                    if (sub->flags&0x10) {
+                        sub->flags=0x10;
+                    } else {
+                        sub->flags=0;
+                    }
+                    sub->value=0.5f;
+                    SEND(sub);
+                    func_801E4F60(GL->mask);
+                }
+            }
+            break;
+        case 4:
+            sub->id=0x1680014;
+            sub->time=20;
+            sub->flags=2;
+            SEND(sub);
+            break;
+        }
+        break;
+    case 0x1680016:
+        if (arg3) {
+            arg0->flags|=0x80;
+            arg0->x=0.0f;
+            arg0->z=0.0f;
+            sub->id=0x1680041;
+            sub->time=0;
+            sub->flags=0;
+            sub->value=1.0f;
+            SEND(sub);
+            func_801E4F60(GL->mask);
+            GL->flags&=~0x100;
+        } else if (sub->time==10) {
+            sub->time++;
+            SEND(sub);
+        }
+        break;
+    case 0x1680032:
+        if (arg3) {
+            sub->id=0x1680033;
+            sub->time=0;
+            sub->flags=0;
+            sub->value=1.0f;
+            SEND(sub);
+            GL->flags&=~0x400;
+            func_801E4F60(GL->mask);
+        }
+        break;
+    case 0x1680033:
+        if (arg3) {
+            arg0->flags|=0x40;
+            arg0->z=0.0f;
+            arg0->x=0.0f;
+            arg0->y=-1.0f;
+            sub->id=0x1680053;
+            sub->time=0;
+            sub->flags=0;
+            sub->value=1.0f;
+            SEND(sub);
+            GL->flags&=~0x400;
+            func_801E4F60(GL->mask|4|8);
+        }
+        break;
+    default:
+        func_801BF1A0(6);
+        sub->id=0x1680012;
+        sub->time=0;
+        sub->flags=0;
+        sub->value=0.5f;
+        SEND(sub);
+        arg0->value=0xF181;
+        func_801C4A5C(arg0,2);
+        arg0->flags&=~0x80;
+        arg0->x=0.0f;
+        arg0->z=0.0f;
+        GL->flags|=0x100;
+        break;
+    }
+}
+#undef PP
+#undef G
+#undef p
+#undef GL
+#undef SEND
+#undef PROBEPLUS
+#undef PROBEMINUS
+#undef UP
+#undef D_801BBBF0
+#undef D_80216B90
+#undef func_800112B0
+#undef func_80011328
+#undef func_80011380
+#undef func_800113D0
+#undef func_8013A28C
+#undef func_801BF1A0
+#undef func_801C5A1C
+#undef func_801C7B18
+#undef func_801E4F60
+#undef func_801E74DC_Sub
+#undef func_801EFD14_Table
+#undef func_801F1114
+#undef func_801F11C0_Inner
+#undef func_801F11C0_Mid
+#undef func_801F11C0_Struct
+#undef func_801F152C_In
+#undef func_801F152C_Obj
+#undef func_801F152C_Struct
 
 #define D_801BBBF0 D_801BBBF0__func_801EACA4
 #define D_801E4011 D_801E4011__func_801EACA4
@@ -2354,8 +2847,223 @@ void func_801EF440(func_801EF440_StructA *arg0) {
 #undef func_801F152C_Obj
 #undef func_801F152C_Struct
 
-/* hh-block asm/nonmatchings/file010/801E4F60/_mrg_keep_tail_3577fd4db8dd5ea4.s {"functions":["func_801EF6F8"],"rodata":[],"rodata_bytes":[2149680904,6067976,184]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801E4F60/_mrg_keep_tail_3577fd4db8dd5ea4.s")
+
+
+#define D_801BBBF0 D_801BBBF0__func_801EF6F8
+#define func_8013A28C func_8013A28C__func_801EF6F8
+#define func_801BF1A0 func_801BF1A0__func_801EF6F8
+#define func_801C88BC func_801C88BC__func_801EF6F8
+#define func_801E4F60 func_801E4F60__func_801EF6F8
+#define func_801E74DC_Arg2 func_801E74DC_Arg2__func_801EF6F8
+#define func_801E74DC_Sub func_801E74DC_Sub__func_801EF6F8
+#define func_801E7C30 func_801E7C30__func_801EF6F8
+#define func_801E8BD0 func_801E8BD0__func_801EF6F8
+#define func_801E95D4 func_801E95D4__func_801EF6F8
+#define func_801ED1F4 func_801ED1F4__func_801EF6F8
+#define func_801EDF0C func_801EDF0C__func_801EF6F8
+#define func_801F152C_In func_801F152C_In__func_801EF6F8
+#define func_801F152C_Obj func_801F152C_Obj__func_801EF6F8
+#define func_801F152C_Struct func_801F152C_Struct__func_801EF6F8
+typedef struct func_801F152C_In { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; u8 pad1[2]; s16 unk12; } func_801F152C_In;
+typedef struct func_801F152C_Obj { u8 pad[0x22]; u8 unk22; u8 pad1[9]; func_801F152C_In *unk2C; } func_801F152C_Obj;
+typedef struct func_801F152C_Struct { u8 pad[0xE0]; func_801F152C_Obj *unkE0; u8 pad1[0xF4 - 0xE4]; u8 unkF4; u8 pad2[2]; u8 unkF7; } func_801F152C_Struct;
+#define G ((func_801F152C_Struct *)&D_801BBBF0)
+extern u8 D_801BBBF0[];
+typedef struct func_801E74DC_Sub {
+    s32 unk0;
+    s32 unk4;
+    f32 unk8;
+} func_801E74DC_Sub;
+extern void func_8013A28C(s32, func_801E74DC_Sub);
+void func_801E4F60(u16 arg0);
+typedef struct func_801E74DC_Arg2 {
+    u8 pad[0x1C];
+    func_801E74DC_Sub unk1C;
+} func_801E74DC_Arg2;
+void func_801ED1F4(s32 arg0, s32 arg1, u8 *arg2);
+
+
+typedef struct func_801EF6F8_StructPos {
+    u8 pad[4];
+    f32 x, y, z;
+} func_801EF6F8_StructPos;
+typedef union func_801EF6F8_StructSavedPos {
+    f32 coords[3];
+    u8 padding[16];
+} func_801EF6F8_StructSavedPos;
+typedef union func_801EF6F8_StructSavedData {
+    void *value;
+    u8 padding[8];
+} func_801EF6F8_StructSavedData;
+typedef struct func_801EF6F8_StructSub {
+    s32 id;
+    s16 part;
+    u16 flags;
+    f32 value;
+} func_801EF6F8_StructSub;
+typedef union func_801EF6F8_StructSubView {
+    func_801EF6F8_StructSub fields;
+    func_801E74DC_Sub all;
+} func_801EF6F8_StructSubView;
+typedef struct func_801EF6F8_StructOuter {
+    u8 pad[0x2C];
+    func_801EF6F8_StructPos *pos;
+} func_801EF6F8_StructOuter;
+typedef struct func_801EF6F8_StructGlobal {
+    u8 pad0[0xE0];
+    func_801EF6F8_StructOuter *outer;
+    u8 pad1[0x190-0xE4];
+    u16 state;
+    u8 pad2[0xEF0-0x192];
+    u16 flags;
+    u8 pad3[0xEFE-0xEF2];
+    u16 sound;
+} func_801EF6F8_StructGlobal;
+typedef struct func_801EF6F8_StructArg {
+    u8 pad0[0x2C];
+    u32 flags;
+    u8 pad1[0x40-0x30];
+    f32 x;
+    u8 pad2[4];
+    f32 z;
+    u8 pad3[0x68-0x4C];
+    void *data;
+} func_801EF6F8_StructArg;
+extern void func_801BF1A0(s32);
+extern void func_801C88BC(void);
+extern void func_801E8BD0(void *, s32, void *, u16, void *);
+extern void func_801E7C30(void *, s32, void *, u16);
+extern void func_801EDF0C(void *, s32, void *, u16);
+extern void func_801E95D4(void *, s32, void *, u16, s32);
+
+#define G ((func_801EF6F8_StructGlobal *)&D_801BBBF0)
+#define SAVE_POS() cur = G->outer->pos; pos.coords[0] = cur->x; pos.coords[1] = cur->y; pos.coords[2] = cur->z
+#define RESTORE_POS() G->outer->pos->x = pos.coords[0]; G->outer->pos->y = pos.coords[1]; G->outer->pos->z = pos.coords[2]
+
+s32 func_801EF6F8(func_801EF6F8_StructArg *arg0, s32 arg1, func_801E74DC_Arg2 *arg2)
+{
+    func_801EF6F8_StructSavedData data;
+    func_801EF6F8_StructSavedPos pos;
+    u16 result;
+    func_801EF6F8_StructSubView *sub;
+    func_801EF6F8_StructPos *cur;
+    func_801E74DC_Arg2 **arg2_ptr = &arg2;
+    s32 *arg1_ptr = &arg1;
+
+    data.value = arg0->data;
+    if (G->state == 5 || G->state == 6) {
+        func_801BF1A0(1);
+        func_801E4F60(G->sound);
+        G->flags &= 0xF0F1;
+        func_801C88BC();
+        G->flags |= 0x20;
+        return 1;
+    }
+    sub = (func_801EF6F8_StructSubView *)&(*arg2_ptr)->unk1C;
+    switch ((u32)sub->fields.id) {
+    case 0x168004F:
+    case 0x1680050:
+        G->flags |= 0x200;
+        SAVE_POS();
+        result = func_80010550(*arg1_ptr, *arg2_ptr);
+        RESTORE_POS();
+        func_801E8BD0(arg0, *arg1_ptr, *arg2_ptr, result, data.value);
+        break;
+    case 0x168004C:
+        G->flags |= 0x200;
+        SAVE_POS();
+        result = func_80010550(*arg1_ptr, *arg2_ptr);
+        RESTORE_POS();
+        func_801E7C30(arg0, *arg1_ptr, *arg2_ptr, result);
+        break;
+    case 0x168002A:
+    case 0x1680051:
+    case 0x1680052:
+    case 0x1680053:
+        G->flags |= 0x200;
+        SAVE_POS();
+        result = func_80010550(*arg1_ptr, *arg2_ptr);
+        RESTORE_POS();
+        func_801EDF0C(arg0, *arg1_ptr, *arg2_ptr, result);
+        break;
+    case 0x1680015:
+    case 0x1680017:
+        func_801BF1A0(13);
+        sub->all.unk0 = 0x1680016;
+        sub->fields.part = 0;
+        sub->fields.flags = 0;
+        sub->fields.value = 0.5f;
+        func_8013A28C(*arg1_ptr, sub->all);
+        func_801E4F60(G->sound);
+        SAVE_POS();
+        result = func_80010550(*arg1_ptr, *arg2_ptr);
+        RESTORE_POS();
+        func_801E95D4(arg0, *arg1_ptr, *arg2_ptr, result, 0);
+        break;
+    case 0x1680012:
+    case 0x1680013:
+    case 0x1680014:
+        if (!(sub->fields.flags & 2)) {
+            sub->fields.flags |= 2;
+            func_8013A28C(*arg1_ptr, sub->all);
+        }
+        /* fall through */
+    case 0x1680016:
+        SAVE_POS();
+        result = func_80010550(*arg1_ptr, *arg2_ptr);
+        RESTORE_POS();
+        func_801E95D4(arg0, *arg1_ptr, *arg2_ptr, result, 0);
+        break;
+    case 0x1680054:
+    case 0x1680055:
+    case 0x1680056:
+    case 0x1680057:
+    case 0x1680058:
+        sub->all.unk0 = 0x1680041;
+        sub->fields.part = 0;
+        sub->fields.flags = 0;
+        sub->fields.value = 1.0f;
+        func_8013A28C(*arg1_ptr, sub->all);
+        break;
+    default:
+        func_801ED1F4((s32)arg0, *arg1_ptr, (u8 *)*arg2_ptr);
+        break;
+    }
+    arg0->z = 0.0f;
+    arg0->x = 0.0f;
+    if (sub->fields.id == 0x1680041) {
+        func_801BF1A0(1);
+        func_801E4F60(G->sound);
+        G->flags &= 0xF0F1;
+        func_801C88BC();
+        arg0->flags |= 0xE0;
+        if (G->state == 1) {
+            func_801E4F60(0x3F);
+        }
+        G->flags |= 0x20;
+        return 1;
+    }
+    G->flags &= 0xFFDF;
+    return 0;
+}
+#undef G
+#undef SAVE_POS
+#undef RESTORE_POS
+#undef D_801BBBF0
+#undef func_8013A28C
+#undef func_801BF1A0
+#undef func_801C88BC
+#undef func_801E4F60
+#undef func_801E74DC_Arg2
+#undef func_801E74DC_Sub
+#undef func_801E7C30
+#undef func_801E8BD0
+#undef func_801E95D4
+#undef func_801ED1F4
+#undef func_801EDF0C
+#undef func_801F152C_In
+#undef func_801F152C_Obj
+#undef func_801F152C_Struct
 
 
 typedef struct func_801EFBEC_Struct {
@@ -3011,8 +3719,8 @@ s32 func_801F11C0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s16 arg4) {
 #undef D_801BBBF0
 #undef D_802187A8
 
-/* hh-block asm/nonmatchings/file010/801E4F60/_mrg_keep_text_func_801F13B8.s {"functions":["func_801F13B8"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801E4F60/_mrg_keep_text_func_801F13B8.s")
+/* hh-block asm/nonmatchings/file010/801E4F60/_mrg_keep_tail_48c8925261630ac4.s {"functions":["func_801F13B8"],"rodata":[],"rodata_bytes":[2149681056,6068128,32]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801E4F60/_mrg_keep_tail_48c8925261630ac4.s")
 
 #define D_801BBBF0 D_801BBBF0__func_801F152C
 #define D_80216C50 D_80216C50__func_801F152C
@@ -3174,6 +3882,18 @@ s32 func_801F1888(void) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801E4F60[] = {
     0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
     0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
@@ -3245,6 +3965,9 @@ static const unsigned char rodata_801E4F60[] = {
     0x3F, 0xF4, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCD, 0x3F, 0xF3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33,
 };
 /* hh-owned-pool func_801E7C30 80218560 80218578 */
+/* hh-owned-pool func_801E8BD0 80218578 80218598 */
+/* hh-owned-pool func_801E95D4 80218598 802185B0 */
 /* hh-owned-pool func_801EACA4 802185B0 802185C8 */
 /* hh-owned-pool func_801EEC58 802186D0 80218700 */
 /* hh-owned-pool func_801EF440 80218700 80218708 */
+/* hh-owned-pool func_801EF6F8 80218708 802187A0 */

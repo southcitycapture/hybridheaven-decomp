@@ -1,0 +1,1 @@
+{"func": "func_801C5A5C", "segment": "file009", "model": "openai/gpt-6.1-terra", "verified": "MATCH", "claimed": "RESULT: MATCH (own private alias for func_801C5A1C)", "checks": 23, "turns": 56, "seconds": 901, "exit": "0", "cost_usd_equiv": 0.0}

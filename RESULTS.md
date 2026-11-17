@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-17: **87.35% of the code** (15536 of 15891 functions, including duplicates).
+Progress as of 2026-11-17: **89.16% of the code** (15550 of 15891 functions, including duplicates).
 
-**24065 model runs, $7546.06 API-equivalent in total** (local and cloud). Of the **15439 functions now in C**, **7309 were matched by AI workers** (≈ $1.032 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 286 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**24077 model runs, $7569.20 API-equivalent in total** (local and cloud). Of the **15453 functions now in C**, **7323 were matched by AI workers** (≈ $1.034 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 286 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -555,6 +555,14 @@ Progress as of 2026-11-17: **87.35% of the code** (15536 of 15891 functions, inc
 | `opusX1` | opusX1 | opus-5-5 | 11 | 2 | 18% | $40.55 | $20.275 |  |
 | `unify_loop0339` | unify_loop0339 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
 | `localU1` | localU1 | pi/strata/qwen3.8-flash-next-iq3_xxs, strata/qwen3.8-flash-next | 323 | 45 | 14% | $0.00 | – |  |
-| `terraP5` | terraP5 | openai/gpt-6.1-terra | 14 | 1 | 7% | $0.00 | – |  |
+| `terraP5` | terraP5 | openai/gpt-6.1-terra | 16 | 1 | 6% | $0.00 | – |  |
+| `giantO3` | giantO3 | opus-5-5 | 2 | 0 | 0% | $9.26 | – |  |
+| `giantT3` | giantT3 | openai/gpt-6.1-terra | 2 | 1 | 50% | $0.00 | – |  |
+| `giantO3h` | giantO3h | opus-5-5 | 1 | 1 | 100% | $0.00 | – |  |
+| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 1 | 1 | 100% | $0.00 | – |  |
+| `giantT4fix` | giantT4fix | openai/gpt-6.1-terra | 1 | 1 | 100% | $0.00 | – |  |
+| `giantO4` | giantO4 | opus-5-5 | 2 | 1 | 50% | $13.88 | $13.879 |  |
+| `scoreM` | scoreM | saved attempt (score_attempts) | 41 | 41 | 100% | $0.00 | – |  |
+| `giantT4` | giantT4 | openai/gpt-6.1-terra | 2 | 1 | 50% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
