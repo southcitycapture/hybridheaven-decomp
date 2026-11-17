@@ -1145,6 +1145,16 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
                     if a is None: continue     # work dir archived (tools/swarm/housekeep.py): offered and settled before
                     import reconcile_frozen
                     new[key] = reconcile_frozen.read_attempt(key[0], key[1], a)
+        # fakematch gate (11-17): a macro that redefines a C keyword (`#define goto return; if (0) goto`, found in one
+        # 11-07 landing) makes the C say something other than what it reads as; never register it
+        KW = re.compile(r'^\s*#\s*define\s+(goto|return|if|else|while|for|do|switch|case|default|break|continue)\b', re.M)
+        for k in [k for k, t in new.items() if KW.search(t)]:
+            print("refused %s %s: a macro redefines a C keyword (fakematch)" % k); new.pop(k)
+        # `if (0) { ... }` blocks (empty, dead calls, padding locals) are permuter tricks the rules forbid (11-17: Sol's
+        # func_80382B2C padded its frame with `if (0) { u8 unused[8]; }`; 14 older landings have one, listed for review)
+        DEAD = re.compile(r'\bif\s*\(\s*0\s*\)\s*\{')
+        for k in [k for k, t in new.items() if DEAD.search(t)]:
+            print("refused %s %s: if (0) block (fakematch)" % k); new.pop(k)
         # skip candidates rejected before with the same text while their file's registered functions were the same:
         # the loop re-offers the last few batches every cycle, and each retried reject costs a one-at-a-time rebuild of
         # its file (cycles 23-25 hit the 60 min integrate timeout that way)

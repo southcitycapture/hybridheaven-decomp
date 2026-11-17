@@ -42,9 +42,7 @@ void func_80381C08(struct func_80381C08_Struct *arg0, struct func_803813A8_Struc
     func_80005E44(arg0, &sp.a);
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 3, 3);
-    if (0) {
-        (*arg1)->unk30->unk18 = 0.002f;
-    }
+    
     (*arg1)->unk30->unk24 = 0x300;
     (*arg1)->unk30->unk30 = (u32)D_80388E98 | 0x40000000;
     (*arg1)->unk30->unk4 = arg0->unk94;

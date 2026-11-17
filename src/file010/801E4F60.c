@@ -2064,7 +2064,6 @@ void func_801ED1F4(s32 arg0, s32 arg1, u8 *arg2) {
 #define g ((func_801E8BD0_G *)&D_801BBBF0)
 #define P (g->unkE0->unk2C)
 #define SUBV (*(func_801E74DC_Sub *)sub)
-#define goto return; if (0) goto
 extern u8 D_801BBBF0[];
 extern s8 D_801E4011;
 typedef struct func_801EFD14_Table {
@@ -2160,7 +2159,6 @@ typedef struct func_801EFF78_StructObj {
 } func_801EFF78_StructObj;
 void func_801EFF78(func_801EFF78_StructObj *arg0, s32 arg1);
 
-#undef goto
 
 typedef struct func_801EDF0C_Sub {
     s32 unk0;

@@ -93,6 +93,14 @@ if [ -n "$TYPES" ] && [ "$TYPES" != 0 ]; then cat "$HH/tools/swarm/types_note.md
 if [ -n "$PREVIOUS" ] && [ -f "$PREVIOUS" ]; then
   sed 's/^#include "common.h"/#include "context.h"/' "$PREVIOUS" > "$W/previous.c"
   cat "$HH/tools/swarm/${NOTE_FILE:-fix_note.md}" >> "$W/prompt.md"
+  # PIN_HDRS=1: use the headers the previous attempt was scored with (11-17: a 99.9% archived attempt scored 18/1776
+  # against a freshly generated context.h); the fresh one stays as context.fresh.h for reference
+  pd=$(dirname "$PREVIOUS"); [ "$(basename "$pd")" = .attempts ] && pd=$(dirname "$pd")
+  if [ -n "$PIN_HDRS" ] && [ -f "$pd/context.h" ]; then
+    cp "$W/context.h" "$W/context.fresh.h"; cp "$pd/context.h" "$W/context.h"
+    [ -f "$pd/known.h" ] && cp "$pd/known.h" "$W/known.h"
+    echo "Note: context.h here is the one your starting attempt (previous.c) was scored with; context.fresh.h is today's generated one." >> "$W/prompt.md"
+  fi
 fi
 # SIMILAR=1: already-matched look-alike functions as worked examples (tools/hh/similar.py)
 if [ -n "$SIMILAR" ]; then "$HH/.venv/bin/python" "$HH/tools/hh/similar.py" "$SEG" "$FUNC" "$W" >> "$W/prompt.md" 2>/dev/null || true; fi

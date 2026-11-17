@@ -1,5 +1,4 @@
 #include "common.h"
-#define goto return; if (0) goto
 extern u8 D_801BBBF0[];
 extern s8 D_801E4011;
 typedef struct func_801EFD14_Table {
@@ -99,7 +98,6 @@ typedef struct func_801EFF78_StructObj {
 } func_801EFF78_StructObj;
 void func_801EFF78(func_801EFF78_StructObj *arg0, s32 arg1);
 
-#undef goto
 
 typedef struct func_801EDF0C_Sub {
     s32 unk0;

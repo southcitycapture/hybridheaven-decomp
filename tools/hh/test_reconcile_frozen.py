@@ -7,6 +7,25 @@ S = R.S
 
 
 class ContextTests(unittest.TestCase):
+    def test_readonly_gap_finds_shared_unmigrated_scalars(self):
+        import rodata_owned
+        scalar = ['dlabel D_80000010', '/* 10 80000010 3F99999A */ .float 1.2']
+        text = ('extern f32 D_80000010;\n'
+                'void func_80000000(void) {\n use(D_80000010);\n}\n')
+        with patch.object(S, 'entries', return_value=[('func_80000000', 'unused.s', 0, 4, 0x80000000)]), \
+             patch.object(S, '_rd', return_value='.section .text\n'), \
+             patch('kept_blocks.catalog', return_value={'D_80000010': ('shared.s', scalar)}):
+            changed, functions = rodata_owned.fill_named_gap(S, 'test', '80000000', text,
+                                                           0x80000010, 0x80000014)
+            self.assertEqual(functions, ['func_80000000'])
+            self.assertIn('use((1.2000000476837158f))', changed)
+            self.assertIn('extern f32 D_80000010;', changed)
+            self.assertIsNone(rodata_owned.fill_named_gap(S, 'test', '80000000', text,
+                                                        0x80000014, 0x80000018))
+            with patch.object(S, 'link_blocked', return_value={('test', 'func_80000000')}):
+                self.assertIsNone(rodata_owned.fill_named_gap(S, 'test', '80000000', text,
+                                                            0x80000010, 0x80000014))
+
     def test_readonly_planner_uses_layout_address_for_named_entry_point(self):
         import rodata_owned
         with patch.object(S, 'defined_functions', return_value={'main'}), \

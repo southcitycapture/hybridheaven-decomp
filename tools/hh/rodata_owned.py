@@ -144,7 +144,10 @@ def literal_companions(S, seg, cfile, text, name, snippet):
         return None
     cutoff = min(late + [int(lo, 16) for _, lo, _ in POOL.findall(text)])
     companions = []
+    blocked = S.link_blocked()
     for fn, path, *_ in entries:
+        if (seg, fn) in blocked:
+            continue
         constants = S.LATE_ITEM.findall(S._rd(path))
         if not constants or min(int(n[-8:], 16) for n, _, _ in constants) < cutoff:
             continue
@@ -207,6 +210,15 @@ def repartition(S, seg, cfile, text, log=None):
     original = text
     names = S.defined_functions(text)
     pools = []
+    # Shared scalar pools may remain in standalone splat objects rather than
+    # migrating into their user's function assembly. They are still candidates
+    # for compiler ownership when a frozen neighbour emits its original literal.
+    shared = {}
+    for label, (_, lines) in kept_blocks.catalog(S, seg, cfile).items():
+        scalar = S.LATE_ITEM.search('\n'.join(lines))
+        if scalar:
+            address = int(label[-8:], 16)
+            shared[label] = (address, address + (4 if scalar[3] == 'float' else 8))
     with tempfile.TemporaryDirectory(dir='build') as td:
         obj, _ = S.compile_file(text, td)
         if obj is None:
@@ -216,7 +228,7 @@ def repartition(S, seg, cfile, text, log=None):
             if name not in names:
                 continue
             items = S._ro_items(S._rd(path))
-            constants = {}
+            constants = dict(shared)
             for section, address, lines in items:
                 if section != '.late_rodata':
                     continue
@@ -299,9 +311,16 @@ def repartition(S, seg, cfile, text, log=None):
 
 def fill_named_gap(S, seg, cfile, text, lo, hi):
     changed = []
+    blocked = S.link_blocked()
+    shared = [scalar for _, lines in kept_blocks.catalog(S, seg, cfile).values()
+              for scalar in S.LATE_ITEM.findall('\n'.join(lines))
+              if lo <= int(scalar[0][-8:], 16) < hi]
     for name, path, *_ in S.entries(seg, cfile):
-        constants = [(n, bits, kind) for n, bits, kind in S.LATE_ITEM.findall(S._rd(path))
-                     if lo <= int(n[-8:], 16) < hi]
+        if (seg, name) in blocked:
+            continue
+        constants = list(dict.fromkeys(shared + [
+            (n, bits, kind) for n, bits, kind in S.LATE_ITEM.findall(S._rd(path))
+            if lo <= int(n[-8:], 16) < hi]))
         if not constants:
             continue
         lines = text.splitlines(True)

@@ -268,30 +268,7 @@ s32 func_801E2A24(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file036/801E1BE0/func_801E2B54.s")
 
-
-s32 func_801E2C20(s32 arg0, s32 arg1)
-{
-  f32 a;
-  f32 b;
-  f32 c;
-  a = 46.4000015f;
-  b = 16.7000008f;
-  c = (-59.5999985f);
- if (0) { }
-  if (D_8038C17C(0.0f, 3.0f, a, b, c, a, 16.5f, c, a, 16.8999996f, -97.5f, a, b, -97.5f, 9.19999981f, 9.19999981f) != 0)
-  {
-    D_801E5200.unk4 = 50.0f;
-    D_801E5200.unk8 = 50.0f;
-    D_801E5200.unk0 = 40.0f;
-    D_801E5200.unkC = 0.5f;
-    D_801E5200.unk14 = 0.0399999991f;
-    D_801E5200.unk18 = 0.200000003f;
-    func_801C7A74(&D_801E5200);
-    D_8038C158();
-    return 0x12;
-  }
-  return 0x11;
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/file036/801E1BE0/func_801E2C20.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file036/801E1BE0/func_801E2D2C.s")
 

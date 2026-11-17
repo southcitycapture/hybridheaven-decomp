@@ -30,7 +30,7 @@ void func_80138F60(struct func_80138F60_Struct *arg0, void *arg1)
   if ((temp_v0 >> 24) >= 4)
   {
     func_80005700(arg0);
- if (0) { }
+ 
     return;
   }
   D_801BBE1A = 0;
