@@ -56,7 +56,7 @@ def bars(title, rows, path, note=""):
     open(path, "w").write(svg(w, h, "".join(b), title))
 
 
-XMAS, FORECAST = dt.datetime(2026, 12, 25).timestamp(), (90, 93, 96)   # re-estimated 11-11 at 84.2%   # code % by Christmas: low, mid, high (docs/ENDGAME.md)
+XMAS, FORECAST = dt.datetime(2026, 12, 25).timestamp(), (95, 97, 100)   # re-estimated 11-17 at 87.3%   # code % by Christmas: low, mid, high (docs/ENDGAME.md)
 
 
 def progress(path):

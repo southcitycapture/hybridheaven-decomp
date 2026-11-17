@@ -14,12 +14,12 @@ good tooling get on real work, and what it costs. Every function is checked by t
 
 | | Matched | |
 |---|---:|---|
-| **Code** | **87.29%** | 2,467,672 of 2,826,840 bytes |
-| Functions | 97.8% | 15,535 of 15,891 |
+| **Code** | **87.35%** | 2,469,176 of 2,826,840 bytes |
+| Functions | 97.8% | 15,536 of 15,891 |
 | Data | 94.92% | 1,011,800 of 1,065,936 bytes |
 | Fully linked | 30.39% | 229 of 539 source files complete |
 
-_Updated 2026-11-16 21:33 UTC by the publishing loop._
+_Updated 2026-11-17 02:06 UTC by the publishing loop._
 
 ![Progress over time, with the Christmas forecast](docs/img/progress.svg)
 
@@ -28,19 +28,21 @@ the code number because one unmatched function holds back its whole file.
 
 ## When will it be done?
 
-Forecast as of 2026-11-11, re-estimated as the rate changes:
+Forecast as of 2026-11-17, re-estimated as the rate changes:
 
 | Milestone | Estimate | Why |
 |---|---|---|
 | ~~80% of code~~ | reached 2026-11-08 | Fixing a bug in our match checker landed 28 already-solved functions at once. |
-| 90% of code | early to mid December | The weekly gain is slowing from ~5 points toward 2-3 as the easier work runs out. |
-| **Christmas 2026** | **about 93% (90-96%)** | What is left is mostly big functions and tangled control flow. |
-| 100% of code | stretch goal; more likely Q1 2027 | The giants: five functions of 7.7-13.8 KB, thousands of instructions and float math each. |
+| 90% of code | late November | The weekly gain has held at about 6 points for three weeks: tooling fixes keep unlocking functions models had already solved. |
+| 95% of code | early December | Needs most of the remaining 2-7 KB functions, many of which already match every instruction and are blocked by layout details. |
+| **Christmas 2026** | **95-98%** | The steady rate, plus a planned push on the hardest functions around the start of December. |
+| 100% of code | **possible by Christmas if the giants fall**; otherwise early 2027 | Six giant functions (7-14 KB, 2.1% of the code) have not matched under any setup yet. |
 
+By function count we are much further along (about 98%) than by code size: what is left is mostly the big functions.
 Data and fully-linked progress follow the code: the remaining data sits in the same files as the unmatched functions.
 
-The hard end is concentrated: functions of 2 KB or more hold about 46% of the bytes still to match, and our best method
-for them currently lands between 1 in 8 and 1 in 4 per pass. That is where most of the remaining effort goes.
+What is left, by size (share of all code): giants of 7 KB or more 2.1%, big functions of 2-7 KB 4.0%, medium 3.4%,
+small 2.8%, library code built with other flags 0.5%.
 
 ## What we've learned so far
 
