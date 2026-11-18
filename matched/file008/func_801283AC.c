@@ -25,24 +25,14 @@ typedef struct func_801283AC_StructArg {
     s16 unk92;
     f32 unk94;
 } func_801283AC_StructArg;
-extern f64 D_8018CC50;
-extern f64 D_8018CC58;
-extern f64 D_8018CC60;
-extern f64 D_8018CC68;
-extern f64 D_8018CC70;
-extern f64 D_8018CC78;
-extern f64 D_8018CC80;
-extern f64 D_8018CC88;
-extern f64 D_8018CC90;
-
 void func_801283AC(func_801283AC_StructArg *arg0, func_801283AC_Struct24 **arg1) {
     func_801283AC_Struct30 *temp;
     f32 wave;
 
-    arg0->unk90 -= D_8018CC50;
+    arg0->unk90 -= (3.4444444444444446);
     (*arg1)->unk30->unk4B = arg0->unk90;
     if (arg0->unk94 < 1.0f) {
-        arg0->unk94 += D_8018CC58;
+        arg0->unk94 += (0.01);
     }
     temp = arg0->unk24->unk30;
     if (temp->unk4A != 0) {
@@ -52,11 +42,11 @@ void func_801283AC(func_801283AC_StructArg *arg0, func_801283AC_Struct24 **arg1)
     if (arg0->unk92 < 361) {
         arg0->unk92 -= 360;
     }
-    wave = func_8001EAD0((s16) (s32) (arg0->unk92 / D_8018CC60));
-    (*arg1)->unk30->unk18 = arg0->unk94 * (D_8018CC70 + D_8018CC68 * wave);
-    wave = func_8001EB64((s16) (s32) (arg0->unk92 / D_8018CC78));
-    (*arg1)->unk30->unk1C = arg0->unk94 * (D_8018CC88 + D_8018CC80 * wave);
-    if ((f64) (u32) arg0->unk90 < D_8018CC90) {
+    wave = func_8001EAD0((s16) (s32) (arg0->unk92 / (0.0439453125)));
+    (*arg1)->unk30->unk18 = arg0->unk94 * ((0.01) + (0.002) * wave);
+    wave = func_8001EB64((s16) (s32) (arg0->unk92 / (0.0439453125)));
+    (*arg1)->unk30->unk1C = arg0->unk94 * ((0.01) + (0.002) * wave);
+    if ((f64) (u32) arg0->unk90 < (3.4444444444444446)) {
         func_80005700(arg0);
     }
 }

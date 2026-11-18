@@ -15,7 +15,6 @@ typedef struct func_80358B50_StructArg {
 void func_800058DC(void *, void *);
 void func_80020718(s32);
 void func_801CE330(void *, s32, s32, s32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32);
-extern f32 D_80389ED0;
 extern func_80358B50_Struct *D_8038CC10;
 extern void func_80358C2C();
 
@@ -27,7 +26,7 @@ void func_80358B50(func_80358B50_StructArg *arg0, s32 arg1) {
     } else {
         var_v0 = 0x60;
     }
-    func_801CE330(arg0, 2, arg0->unk6C, arg0->unk70, arg0->unk74, 0xFF, var_v0, 0, 0xFF, 0xFF, var_v0, 0, 0, 0x1E, 0x5A, D_80389ED0, 9);
+    func_801CE330(arg0, 2, arg0->unk6C, arg0->unk70, arg0->unk74, 0xFF, var_v0, 0, 0xFF, 0xFF, var_v0, 0, 0, 0x1E, 0x5A, (0.01f), 9);
     func_80020718(0x10A);
     *(s16 *)((u8 *)D_8038CC10 + 0x4C) = 1;
     func_800058DC(arg0, func_80358C2C);

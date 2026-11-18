@@ -25,8 +25,6 @@ extern void func_8012C89C(s32, s32, s32, s32);
 extern u8 D_80163820[];
 extern u8 D_80163830[];
 extern s16 D_801637C8;
-extern f32 D_80186154;
-
 void func_8010E890(u8 *arg0, func_8010E890_StructB *arg1)
 {
   f32 t;
@@ -43,7 +41,7 @@ void func_8010E890(u8 *arg0, func_8010E890_StructB *arg1)
   func_8011A724(0);
   D_801637C8 = 0;
   func_8012C89C((s32) arg0, 1, 0xCA, 1);
-  arg1->p4->p30->f20 = D_80186154;
+  arg1->p4->p30->f20 = (0.005f);
   t = arg1->p4->p30->f20;
   arg1->p4->p30->f1C = t;
   arg1->p4->p30->f18 = t;

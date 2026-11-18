@@ -3,7 +3,6 @@ extern s32 D_801309EC(f32, f32);
 
 
 typedef struct func_8013173C_Struct { u16 unk0; u16 unk2; u16 unk4; } func_8013173C_Struct;
-extern f64 D_8018D6C8;
 #define F2 D_801309EC
 
 #define arg0 ((func_8013173C_Struct *)arg0_)
@@ -17,7 +16,7 @@ void func_8013173C(void *arg0_, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5
     } else {
         var_fv0 = arg2;
     }
-    if ((f64) var_fv0 < D_8018D6C8) {
+    if ((f64) var_fv0 < (1e-06)) {
         if ((arg2 > 0.0f) || ((arg2 == 0.0f) && (arg0->unk0 & 0x200))) {
             arg0->unk0 = 0;
             y = arg5 * arg8;

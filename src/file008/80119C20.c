@@ -249,6 +249,76 @@ extern f32 D_8002FC20(f32);
 #define DY (F(0x2F0) - F(0x2C8))
 #define DZ (F(0x2FC) - F(0x2D4))
 
+#undef DX
+#undef DY
+#undef DZ
+#undef D_8002FC20
+#undef D_801BBBF0
+#undef F
+#undef ROOT
+#undef func_80119F9C_Inner
+#undef func_80119F9C_Outer
+#undef func_8011A7FC_Struct
+#undef func_8011A7FC_StructInner
+#undef func_8011A7FC_StructOuter
+#define D_8002FC20 D_8002FC20__func_8011A1B8_3aaa2968
+#define D_801BBBF0 D_801BBBF0__func_8011A1B8_3aaa2968
+#define func_80119F9C_Inner func_80119F9C_Inner__func_8011A1B8_3aaa2968
+#define func_80119F9C_Outer func_80119F9C_Outer__func_8011A1B8_3aaa2968
+#define func_8011A7FC_Struct func_8011A7FC_Struct__func_8011A1B8_3aaa2968
+#define func_8011A7FC_StructInner func_8011A7FC_StructInner__func_8011A1B8_3aaa2968
+#define func_8011A7FC_StructOuter func_8011A7FC_StructOuter__func_8011A1B8_3aaa2968
+typedef struct func_8011A7FC_StructInner {
+    u8 pad0[0x30];
+    f32 unk30;
+    u8 pad1[0x4];
+    f32 unk38;
+    f32 unk3C;
+    u8 pad2[0x4];
+    f32 unk44;
+} func_8011A7FC_StructInner;
+typedef struct func_8011A7FC_StructOuter {
+    u8 pad0[0x2C];
+    func_8011A7FC_StructInner *unk2C;
+} func_8011A7FC_StructOuter;
+typedef struct func_8011A7FC_Struct {
+    u8 pad0[0xE8];
+    func_8011A7FC_StructOuter *unkE8;
+    u8 pad1[0x232 - 0xEC];
+    s16 unk232;
+    u8 pad2[0x254 - 0x234];
+    u8 unk254;
+    u8 unk255;
+    u8 unk256;
+    u8 pad3[0x2AD - 0x257];
+    u8 unk2AD;
+    u8 pad4[0x2B0 - 0x2AE];
+    s32 unk2B0;
+    u8 unk2B4;
+    u8 unk2B5;
+} func_8011A7FC_Struct;
+extern func_8011A7FC_Struct D_801BBBF0;
+typedef struct func_80119F9C_Inner {
+    u8 pad0[0x30];
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+    f32 unk3C;
+    f32 unk40;
+    f32 unk44;
+} func_80119F9C_Inner;
+typedef struct func_80119F9C_Outer {
+    u8 pad0[0x2C];
+    func_80119F9C_Inner *unk2C;
+} func_80119F9C_Outer;
+extern f32 D_8002FC20(f32);
+
+#define ROOT ((func_80119F9C_Outer *) D_801BBBF0.unkE8)
+#define F(off) (*(f32 *)((u8 *)&D_801BBBF0 + arg0 * 4 + (off)))
+#define DX (F(0x2E4) - F(0x2BC))
+#define DY (F(0x2F0) - F(0x2C8))
+#define DZ (F(0x2FC) - F(0x2D4))
+
 s32 func_8011A1B8(u8 arg0) {
     f32 d, a;
 
@@ -258,7 +328,7 @@ s32 func_8011A1B8(u8 arg0) {
     } else {
         a = d;
     }
-    if (!((f64)a < D_80189E80)) {
+    if (!((f64)a < (1e-06))) {
         ROOT->unk2C->unk30 = F(0x2BC);
         ROOT->unk2C->unk34 = F(0x2C8);
         ROOT->unk2C->unk38 = F(0x2D4);
@@ -269,6 +339,30 @@ s32 func_8011A1B8(u8 arg0) {
     }
     return -1;
 }
+#undef ROOT
+#undef F
+#undef DX
+#undef DY
+#undef DZ
+#undef D_8002FC20
+#undef D_801BBBF0
+#undef func_80119F9C_Inner
+#undef func_80119F9C_Outer
+#undef func_8011A7FC_Struct
+#undef func_8011A7FC_StructInner
+#undef func_8011A7FC_StructOuter
+#define DX (F(0x2E4) - F(0x2BC))
+#define DY (F(0x2F0) - F(0x2C8))
+#define DZ (F(0x2FC) - F(0x2D4))
+#define D_8002FC20 D_8002FC20__func_8011A1B8
+#define D_801BBBF0 D_801BBBF0__func_8011A1B8
+#define F(off) (*(f32 *)((u8 *)&D_801BBBF0 + arg0 * 4 + (off)))
+#define ROOT ((func_80119F9C_Outer *) D_801BBBF0.unkE8)
+#define func_80119F9C_Inner func_80119F9C_Inner__func_8011A1B8
+#define func_80119F9C_Outer func_80119F9C_Outer__func_8011A1B8
+#define func_8011A7FC_Struct func_8011A7FC_Struct__func_8011A1B8
+#define func_8011A7FC_StructInner func_8011A7FC_StructInner__func_8011A1B8
+#define func_8011A7FC_StructOuter func_8011A7FC_StructOuter__func_8011A1B8
 #undef ROOT
 #undef F
 #undef DX
@@ -1010,7 +1104,8 @@ s32 func_8011BAEC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4)
 #undef func_8011A06C
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_80119C20[] = {
+
+static const unsigned char rodata_80119C20_80189B50[] = {
     0x2A, 0x45, 0x52, 0x52, 0x4F, 0x52, 0x2A, 0x20, 0x63, 0x61, 0x6D, 0x65, 0x72, 0x61, 0x5F, 0x73,
     0x65, 0x74, 0x5F, 0x70, 0x6F, 0x73, 0x69, 0x74, 0x69, 0x6F, 0x6E, 0x20, 0x3A, 0x20, 0x44, 0x69,
     0x73, 0x74, 0x61, 0x6E, 0x63, 0x65, 0x20, 0x69, 0x73, 0x20, 0x7A, 0x65, 0x72, 0x6F, 0x2E, 0x00,
@@ -1062,8 +1157,12 @@ static const unsigned char rodata_80119C20[] = {
     0x29, 0x0A, 0x00, 0x00, 0x4F, 0x55, 0x54, 0x20, 0x3A, 0x20, 0x25, 0x64, 0x20, 0x3A, 0x20, 0x63,
     0x61, 0x6D, 0x65, 0x72, 0x61, 0x5F, 0x63, 0x68, 0x61, 0x6E, 0x67, 0x65, 0x45, 0x58, 0x28, 0x25,
     0x64, 0x2C, 0x20, 0x25, 0x64, 0x2C, 0x20, 0x2E, 0x2E, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x40, 0x66, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D,
-    0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D,
-    0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+static const unsigned char rodata_80119C20_80189E88[] = {
+    0x40, 0x66, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
+    0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D,
+    0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+/* hh-placed-function func_8011A1B8 */
+/* hh-rodata-layout [880,[[0,0,816],[816,824,56],[872,816,8]]] */

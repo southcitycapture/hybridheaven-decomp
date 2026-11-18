@@ -19,8 +19,6 @@ typedef struct func_80241AF0_StructBBBF0 {
 
 extern struct func_80241AF0_StructBBBF0 D_801BBBF0;
 extern void func_800058DC(void *arg0, void *arg1);
-extern f32 D_80249AD8;
-extern f32 D_80249ADC;
 extern void func_80241B88();
 
 void func_80241AF0(u8 *arg0, s32 arg1) {
@@ -31,9 +29,9 @@ void func_80241AF0(u8 *arg0, s32 arg1) {
     if (temp_v0 == 0) {
         D_801BBBF0.unk194 = 1;
         D_801BBBF0.unk192 = 2;
-        D_801BBBF0.unk198 = D_80249AD8;
+        D_801BBBF0.unk198 = (677.0f);
         D_801BBBF0.unk1A0 = 332.0f;
-        D_801BBBF0.unkF04 = D_80249ADC;
+        D_801BBBF0.unkF04 = (0.3f);
         D_801BBBF0.unkF08 = 1.0f;
         D_801BBBF0.unkF10 = 0x0168003E;
         D_801BBBF0.unkF0C = 0;

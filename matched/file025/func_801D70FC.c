@@ -6,7 +6,6 @@ struct func_801D70FC_Struct { f32 unk0; s32 unk4; };
 extern u64 func_801C0B2C();
 extern f64 func_80034C24();
 extern struct func_801D70FC_Struct D_801DBA38[];
-extern f64 D_801DD5E0;
 u64 D_801E1798;
 extern u32 D_801E17A0;
 
@@ -15,7 +14,7 @@ void func_801D70FC(void *arg0) {
     s32 v;
 
     d = func_801C0B2C() - D_801E1798;
-    if ((f64)D_801DBA38[D_801E17A0].unk0 <= func_80034C24(d) / D_801DD5E0) {
+    if ((f64)D_801DBA38[D_801E17A0].unk0 <= func_80034C24(d) / (1e+06)) {
         v = D_801DBA38[D_801E17A0].unk4;
         do {
             if (v == 0) goto c0;

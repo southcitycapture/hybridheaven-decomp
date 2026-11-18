@@ -24,7 +24,6 @@ typedef struct func_801F70E0_StructGlobal {
     u8 padE4[4];
     func_801F70E0_StructMid *other;
 } func_801F70E0_StructGlobal;
-extern f32 D_80218CC0;
 extern void func_80147768(f32 *, f32);
 extern s32 func_801FA374();
 extern f32 D_8021B028;
@@ -50,7 +49,7 @@ void func_801F70E0(func_801F70E0_StructArg *arg0, s32 arg1) {
 
     data = arg0->data;
     D_8013A334(sp4C, arg1, data, 6);
-    if (D_801F3C90(arg0, 0.8f, D_80218CC0, *(s32 *)&PLAYER->pos->x, PLAYER->pos->y + 25.0f, PLAYER->pos->z, D_80218CC0, sp4C[0], sp4C[1], sp4C[2], D_80218CC0, 30.0f)) {
+    if (D_801F3C90(arg0, 0.8f, (0.15f), *(s32 *)&PLAYER->pos->x, PLAYER->pos->y + 25.0f, PLAYER->pos->z, (0.15f), sp4C[0], sp4C[1], sp4C[2], (0.15f), 30.0f)) {
         flag = arg0->flag;
         if (flag != 0) {
             func_801FA374(flag);

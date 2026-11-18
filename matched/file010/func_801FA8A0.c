@@ -20,7 +20,6 @@ extern s32 func_80126B14(void *, void *, u16, s32);
 extern void func_8012D8C8(void *, s32, s32, f32, s32, s32);
 extern void func_80145390(s32);
 extern u8 D_80216F30[];
-extern f32 D_80218E0C;
 extern void func_8012C89C(s32, s32, s32, s32);
 extern void func_80145310(s32, s32, s32);
 struct func_801FAAA4_Struct;
@@ -38,7 +37,7 @@ void func_801FA8A0(struct func_801FA8A0_Obj *arg0, struct func_801FA8A0_Outer **
         func_80006214(arg0);
         func_8012C89C((s32)arg0, 0, 0x227, 2);
         func_8012D8C8(arg0, 0x227, 1, 0.1f, 1, 0);
-        k = D_80218E0C;
+        k = (0.01f);
         (*arg1)->unk30->unk24 |= 0x300;
         (*arg1)->unk30->unk30 = (s32)D_80216F30 | 0x40000000;
         (*arg1)->unk30->unk4 = ((struct func_801FA8A0_G *)D_802170B0)->unk24->unk30->unk4;

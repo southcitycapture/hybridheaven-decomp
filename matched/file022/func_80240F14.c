@@ -1,7 +1,4 @@
 #include "context.h"
-
-extern f64 D_80252518;
-
 struct func_80240F14_Inner {
     u8 pad[0x22];
     u8 unk22;
@@ -31,7 +28,7 @@ void func_80240F14(struct func_80240F14_Arg0 *arg0, struct func_80240F14_Obj **a
     struct func_80240F14_Vec *temp_v1;
 
     if (arg0->unk92 != 0) {
-        temp_f0 = D_80252518;
+        temp_f0 = (0.001);
         arg0->unk92 = arg0->unk92 - 1;
         temp_v1 = (*arg1)->unk2C;
         temp_v1->unk18 = (f32) ((f64) temp_v1->unk18 - temp_f0);

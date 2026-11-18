@@ -789,11 +789,32 @@ extern f32 D_80248254;
 extern f32 D_80248258;
 extern f32 D_8024825C;
 
+#undef D_8024684C
+#undef D_8024693C
+#undef D_80247820
+#undef D_8024785C
+#undef func_80020718
+#undef func_8024231C
+#define D_8024684C D_8024684C__func_80242158_e07ee57b
+#define D_8024693C D_8024693C__func_80242158_e07ee57b
+#define D_80247820 D_80247820__func_80242158_e07ee57b
+#define D_8024785C D_8024785C__func_80242158_e07ee57b
+#define func_80020718 func_80020718__func_80242158_e07ee57b
+#define func_8024231C func_8024231C__func_80242158_e07ee57b
+extern void func_80020718(s32);
+void func_8024231C(void *arg0, s32 arg1);
+
+
+/* context.h declares func_80242158 as an array, conflicting with this definition. */
+extern u8 D_80247820[];
+extern u8 D_8024785C[];
+extern u8 D_8024684C[];
+extern u8 D_8024693C[];
 void func_80242158(void *arg0, s32 arg1) {
     if (func_80151790(D_80248800) == 0) {
         func_8015122C(D_80248800, D_8024684C, 0xF);
     }
-    if (D_8011AAF4(D_80247820, 0x41E, arg0, 0, 2, D_80248254, D_80248258, D_8024825C, -25.8f, 4294967296.0f, -0.7f, 15.8f, -31.8f, 0.0f, 35.0f, -1, -1) == 0) {
+    if (D_8011AAF4(D_80247820, 0x41E, arg0, 0, 2, (0.07043333f), (-4.9f), (9.7f), -25.8f, 4294967296.0f, -0.7f, 15.8f, -31.8f, 0.0f, 35.0f, -1, -1) == 0) {
         func_8011AAF4(D_8024785C, 0x423, arg0, 0, 1, 0.0f, -9.1f, 12.2f, 7.2f, 0.0f, 0.4f, 16.0f, 12.2f, 0.0f, 35.0f, -1, -1);
         func_801512CC(D_80248804, 1.0f, 0.0f, 12.0f);
         func_8015115C(D_80248804, D_8024693C);
@@ -801,6 +822,18 @@ void func_80242158(void *arg0, s32 arg1) {
         func_800058DC(arg0, (void (*)(void))func_8024231C);
     }
 }
+#undef D_8024684C
+#undef D_8024693C
+#undef D_80247820
+#undef D_8024785C
+#undef func_80020718
+#undef func_8024231C
+#define D_8024684C D_8024684C__func_80242158
+#define D_8024693C D_8024693C__func_80242158
+#define D_80247820 D_80247820__func_80242158
+#define D_8024785C D_8024785C__func_80242158
+#define func_80020718 func_80020718__func_80242158
+#define func_8024231C func_8024231C__func_80242158
 #undef D_8024684C
 #undef D_8024693C
 #undef D_80247820
@@ -2824,6 +2857,34 @@ void func_80246730(void) {
 
 /* Readonly constants retained after the last ASM donor became C. */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_802408F0[] = {
     0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x00, 0x00, 0x00, 0x44, 0x2E, 0xC0, 0x00, 0xC0, 0x33, 0x33, 0x33,
     0xBF, 0x66, 0x66, 0x66, 0x40, 0x8C, 0xCC, 0xCD, 0x41, 0x1C, 0xCC, 0xCD, 0xC0, 0x33, 0x33, 0x33,
@@ -2846,9 +2907,9 @@ static const unsigned char rodata_802408F0[] = {
     0x42, 0x26, 0x27, 0xF0, 0x3E, 0x0D, 0x4F, 0xDF, 0x41, 0x54, 0xCC, 0xCD, 0x41, 0x03, 0x33, 0x33,
     0x41, 0x81, 0x99, 0x9A, 0x41, 0x88, 0xCC, 0xCD, 0x3F, 0x43, 0x14, 0x9E, 0x42, 0x80, 0xCC, 0xCD,
     0x40, 0x73, 0x33, 0x33, 0x40, 0xE9, 0x99, 0x9A, 0xBF, 0x33, 0x33, 0x33, 0x41, 0x7C, 0xCC, 0xCD,
-    0xC1, 0xFE, 0x66, 0x66, 0x3D, 0x90, 0x3F, 0x5A, 0xC0, 0x9C, 0xCC, 0xCD, 0x41, 0x1B, 0x33, 0x33,
+    0xC1, 0xFE, 0x66, 0x66,
 };
-/* hh-owned-pool func_80242158 80248260 80248280 */
+/* hh-owned-pool func_80242158 80248254 80248280 */
 /* hh-owned-pool func_8024231C 80248280 802482A0 */
 /* hh-owned-pool func_80242488 802482A0 802482D0 */
 /* hh-owned-pool func_802425EC 802482D0 80248300 */

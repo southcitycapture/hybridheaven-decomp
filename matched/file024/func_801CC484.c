@@ -19,7 +19,6 @@ struct func_801CC484_Struct1 {
 extern s32 func_80010550();
 extern void func_8013A28C(s32, struct func_801CC2CC_Struct3);
 extern struct func_801CC2CC_Struct3 D_801CE6C4;
-extern f64 D_801CFCE8;
 extern f32 D_801CFE04;
 
 void func_801CC484(struct func_801CC484_Struct1 *arg0, s32 volatile arg1) {
@@ -30,7 +29,7 @@ void func_801CC484(struct func_801CC484_Struct1 *arg0, s32 volatile arg1) {
     func_80010550(arg1, temp_a1);
     temp_v0 = arg0->unk24->unk2C;
     temp_v0->unk8 = temp_v0->unk8 + D_801CFE04;
-    D_801CFE04 = (f32) ((f64) D_801CFE04 - D_801CFCE8);
+    D_801CFE04 = (f32) ((f64) D_801CFE04 - (0.2));
     if (*(u8 *)&D_801CFE02 >= 3) {
         func_800058DC((s32) arg0, func_80127014);
     }

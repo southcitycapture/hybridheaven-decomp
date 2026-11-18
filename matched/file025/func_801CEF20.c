@@ -4,7 +4,6 @@ extern void func_8012D844(void *, s32, s32);
 
 extern f64 func_80034C24();
 extern u64 func_801C0B2C();
-extern f64 D_801DD440;
 u64 D_801E1218;
 extern u32 D_801E1220;
 
@@ -20,7 +19,7 @@ void func_801CEF20(void *arg0) {
     s32 t;
 
     d = func_801C0B2C() - D_801E1218;
-    if (D_801DAD64[D_801E1220].unk0 <= func_80034C24(d) / D_801DD440) {
+    if (D_801DAD64[D_801E1220].unk0 <= func_80034C24(d) / (1e+06)) {
         t = D_801DAD64[D_801E1220].unk4;
         if (t == 0) goto c0;
         if (t == 1) goto c1;

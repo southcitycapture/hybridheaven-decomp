@@ -66,11 +66,40 @@ typedef struct func_80242D7C_StructC {
 
 extern func_80242D7C_StructC D_801BBBF0;
 
+#define D_801BBBF0 D_801BBBF0__func_80242D7C
+#define func_80242D7C_StructA func_80242D7C_StructA__func_80242D7C
+#define func_80242D7C_StructB func_80242D7C_StructB__func_80242D7C
+#define func_80242D7C_StructC func_80242D7C_StructC__func_80242D7C
+
+typedef struct func_80242D7C_StructB {
+    u8 pad0[0x4];
+    f32 unk4;
+    u8 pad8[0x4];
+    f32 unkC;
+} func_80242D7C_StructB;
+
+typedef struct func_80242D7C_StructA {
+    u8 pad0[0x2C];
+    func_80242D7C_StructB *unk2C;
+} func_80242D7C_StructA;
+
+typedef struct func_80242D7C_StructC {
+    u8 pad0[0xE0];
+    func_80242D7C_StructA *unkE0;
+    u8 pad1[0xB9A - 0xE4];
+    u16 unkB9A;
+} func_80242D7C_StructC;
+
+extern func_80242D7C_StructC D_801BBBF0;
 void func_80242D7C(void) {
-    D_801BBBF0.unkE0->unk2C->unk4 = D_80249B30;
+    D_801BBBF0.unkE0->unk2C->unk4 = (537.0f);
     D_801BBBF0.unkE0->unk2C->unkC = -328.0f;
     D_801BBBF0.unkB9A = 0;
 }
+#undef D_801BBBF0
+#undef func_80242D7C_StructA
+#undef func_80242D7C_StructB
+#undef func_80242D7C_StructC
 
 
 typedef struct func_80242DB4_Struct {
@@ -140,6 +169,4 @@ void func_80242E90(func_80242E90_StructC *arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_80242D00[] = {
-    0x44, 0x06, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+/* hh-owned-pool func_80242D7C 80249B30 80249B34 */

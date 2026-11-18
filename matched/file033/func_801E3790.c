@@ -1,12 +1,4 @@
 #include "context.h"
-
-extern f32 D_801F4784;
-extern f32 D_801F4788;
-extern f32 D_801F478C;
-extern f32 D_801F4790;
-extern f32 D_801F4794;
-extern f32 D_801F4798;
-
 s32 func_801E3790(s32 arg0, s32 arg1)
 {
   f32 m2;
@@ -15,15 +7,15 @@ s32 func_801E3790(s32 arg0, s32 arg1)
   f32 m1;
   f32 m5;
   m5 = 1.0;
-  m1 = D_801F4784;
+  m1 = (15.6f);
   new_var2 = 0x3C;
-  m2 = D_801F4788;
+  m2 = (-53.9f);
   if (m5)
   {
   }
   new_var = m5;
   m5 = m2;
-  if (func_8038BEF8(0.0f, 1.0f, -9.6f, 52.6f, D_801F478C, D_801F4790, D_801F4794, D_801F4798, new_var, m1, m2, new_var, m1, m5) != 0)
+  if (func_8038BEF8(0.0f, 1.0f, -9.6f, 52.6f, (-86.3f), (1.2f), (41.7f), (-96.9f), new_var, m1, m2, new_var, m1, m5) != 0)
   {
     func_8038BED4();
     return 0x3D;

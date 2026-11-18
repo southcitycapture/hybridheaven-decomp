@@ -9,10 +9,217 @@ import json
 import re
 import struct
 import tempfile
+import difflib
 
 import kept_blocks
 
 POOL = re.compile(r'^/\* hh-owned-pool (func_[0-9A-F]{8}) ([0-9A-F]+) ([0-9A-F]+) \*/$', re.M)
+PRAGMA = re.compile(r'^#pragma GLOBAL_ASM\("([^"]+)"\)', re.M)
+
+
+def place_frozen(S, seg, cfile, text, name, log=None):
+    """Place newly compiled pools in a unit's explicit readonly storage.
+
+    The surviving explicit objects retain their own bytes. Use the original
+    relocation operands to identify the newly compiled entries, and preserve
+    the order of the remaining input (legacy pools and migrated ASM). Only
+    alignment zeros may be inserted or removed. The caller still verifies
+    the entire linked unit.
+    """
+    import addrfix
+    import rodata_layout as layout
+    from elftools.elf.elffile import ELFFile
+
+    base = S.FILE_RODATA.get((seg, cfile))
+    if base is None:
+        return None
+    objects = re.compile(r'^static const unsigned char (rodata_%s(?:_([0-9A-F]{8}))?)\[\] = \{([^}]+)\};\n?' % cfile, re.M)
+    storage = [(int(m[2], 16) if m[2] else base,
+                bytes.fromhex(''.join(re.findall(r'\b0x([0-9A-Fa-f]{2})\b', m[3]))))
+               for m in objects.finditer(text)]
+    size = S.file_rodata_size(seg, cfile)
+    off = S.file_span(seg, cfile)[0] + base - int(cfile, 16)
+    want = S.IMG[off:off + size]
+    if any(a < base or a + len(b) > base + size or want[a-base:a-base+len(b)] != b for a, b in storage):
+        return None
+    text = layout.LAYOUT.sub('', text)
+    path, vram = next((e[1], e[4]) for e in S.entries(seg, cfile) if e[0] == name)
+    target = addrfix.target_refs(path, vram)
+    items = kept_blocks.catalog(S, seg, cfile)
+
+    def extent(label):
+        if label not in items:
+            return None
+        lines = '\n'.join(items[label][1])
+        words = [(int(a, 16), len(bits) // 2) for a, bits in re.findall(
+            r'/\* [0-9A-F]+ ([0-9A-F]{8}) ([0-9A-F]+) \*/\s*\.(?:word|float|double)\b', lines)]
+        address = addrfix.addr(label)
+        if words and address is not None and min(a for a, _ in words) == address:
+            return address, max(a + n for a, n in words)
+        return None
+
+    def emitted(obj, functions):
+        found = {}
+        for fn, refs in addrfix.mine_refs_many(obj, functions).items():
+            orig = functions[fn]
+            for pos, (kind, sym, add) in (refs or {}).items():
+                if sym != '<section .rodata>' or kind != 'hi' or pos not in orig:
+                    continue
+                _, label, delta = orig[pos]
+                key = extent(label)
+                if key is None:
+                    continue
+                if key in found and found[key] != add - delta:
+                    raise ValueError('multiple emitters for %#x' % key[0])
+                found[key] = add - delta
+        return found
+
+    def raw_only(match):
+        path = match[1]
+        block = S._rd(path)
+        raw = kept_blocks.BYTE_RANGE.search(block)
+        if raw and not S.asm_weights(path)[0] and '.section .late_rodata' not in block:
+            return block, tuple(int(v, 16) for v in raw.groups())
+        return None
+
+    with tempfile.TemporaryDirectory(dir='build') as td:
+        obj, _ = S.compile_file(text, td)
+        if obj is None:
+            return None
+        try:
+            new = emitted(obj, {name: target})
+        except ValueError:
+            return None
+        if not new and not re.search(r'GLOBAL_ASM\("[^\n]*_ro_regular_', text):
+            return None
+        # Keep track of earlier placements when adding another C function.
+        picked = set(re.findall(r'^/\* hh-placed-function (func_[0-9A-F]{8}) \*/$', text, re.M))
+        picked.add(name)
+        functions = {n: addrfix.target_refs(p, v) for n, p, _, _, v in S.entries(seg, cfile) if n in picked}
+        chunks = []
+        for address, raw in storage:
+            cursor = address
+            for lo, hi in sorted(k for k in new if address <= k[0] < address + len(raw)):
+                if lo < cursor or hi > address + len(raw):
+                    return None
+                if lo > cursor:
+                    chunks.append((cursor, raw[cursor-address:lo-address]))
+                cursor = hi
+            if cursor < address + len(raw):
+                chunks.append((cursor, raw[cursor-address:]))
+        declarations = []
+        for address, raw in chunks:
+            declarations.append('static const unsigned char rodata_%s_%08X[] = {\n%s\n};' % (cfile, address,
+                '\n'.join('    ' + ', '.join('0x%02X' % b for b in raw[i:i+16]) + ','
+                          for i in range(0, len(raw), 16))))
+        def trim(match):
+            data = raw_only(match)
+            if not data:
+                return match[0]
+            _, (address, offset, length) = data
+            spans = sorted((a, b) for a, b in new if a < address + length and b > address)
+            if not spans:
+                return match[0]
+            cursor, end = address, address + length
+            out = []
+            for lo, hi in spans + [(end, end)]:
+                lo = min(lo, end)
+                if lo > cursor:
+                    recipe = dict(functions=[], rodata=[], rodata_section='.rodata',
+                                  rodata_bytes=[cursor, offset + cursor - address, lo-cursor])
+                    key = hashlib.sha1(json.dumps(recipe, sort_keys=True).encode()).hexdigest()[:16]
+                    path = f'asm/nonmatchings/{seg}/{cfile}/_ro_regular_{key}.s'
+                    kept_blocks.rebuild(S, seg, cfile, path, recipe)
+                    out.append('#pragma GLOBAL_ASM("%s")' % path)
+                cursor = max(cursor, hi)
+            return '\n'.join(out)
+
+        changed = PRAGMA.sub(trim, text)
+        if storage:
+            changed = objects.sub('', changed) + '\n' + '\n'.join(declarations) + '\n'
+        if changed != text:
+            text = changed
+            obj, _ = S.compile_file(text, td)
+            if obj is None:
+                return None
+        try:
+            ranges = [(src, a-base, b-a) for (a, b), src in emitted(obj, functions).items()
+                      if base <= a < b <= base + size and not any(lo <= a < lo + len(raw) for lo, raw in chunks)]
+        except ValueError:
+            return None
+        with open(obj, 'rb') as f:
+            elf = ELFFile(f)
+            symbols = elf.get_section_by_name('.symtab')
+            srcs = {sym.name: sym['st_value'] for sym in symbols.iter_symbols()}
+            section = elf.get_section_by_name('.rodata')
+            ro = section.data()
+            ro_index = elf.get_section_index('.rodata')
+            raw_ranges = []
+            for pragma in PRAGMA.finditer(text):
+                data = raw_only(pragma)
+                if not data:
+                    continue
+                block, (address, _, length) = data
+                label = re.search(r'^dlabel (\w+)', block, re.M)
+                if label and label[1] in srcs:
+                    ranges.append((srcs[label[1]], address-base, length))
+                    raw_ranges.append((address, address+length))
+            for sym in symbols.iter_symbols():
+                if sym['st_shndx'] != ro_index:
+                    continue
+                span = extent(sym.name.removesuffix('__rodata'))
+                if span and base <= span[0] < span[1] <= base + size:
+                    a, b = span
+                    if any(lo <= a < hi for lo, hi in raw_ranges):
+                        continue
+                    candidate = (sym['st_value'], a-base, b-a)
+                    if candidate not in ranges:
+                        ranges.append(candidate)
+            for address, raw in chunks:
+                start = srcs.get('rodata_%s_%08X' % (cfile, address))
+                if start is None or ro[start:start+len(raw)] != raw:
+                    return None
+                ranges.append((start, address-base, len(raw)))
+        first = min(S.entries(seg, cfile), key=lambda e: e[2])
+        linked = S.try_func.linked_func_bytes(obj, first[0], first[4], int(cfile, 16), base,
+                                             want_file=True, bss=S.file_bss(seg, cfile))
+        if linked is None:
+            return None
+        _, have = linked
+        if any(have[a:a+n] != want[b:b+n] for a, b, n in ranges):
+            if log: log('readonly entries do not match the original values')
+            return None
+        if any(x % 4 for span in ranges for x in span):
+            return None
+
+        def residual(data, axis):
+            taken = {i for span in ranges for i in range(span[axis], span[axis] + span[2], 4)}
+            if len(taken) * 4 != sum(span[2] for span in ranges):
+                raise ValueError('overlapping readonly owners')
+            indices = [i for i in range(0, len(data), 4) if i not in taken]
+            return indices, [data[i:i+4] for i in indices]
+
+        try:
+            hi, hw = residual(have, 0)
+            wi, ww = residual(want, 1)
+        except ValueError:
+            return None
+        for op, a, b, c, d in difflib.SequenceMatcher(None, hw, ww, autojunk=False).get_opcodes():
+            if op == 'equal':
+                ranges.extend((hi[i], wi[j], 4) for i, j in zip(range(a, b), range(c, d)))
+            elif any(w != b'\0'*4 for w in hw[a:b] + ww[c:d]):
+                if log: log('unaccounted readonly data at input +%#x / output +%#x' % (
+                    hi[a] if a < len(hi) else len(have), wi[c] if c < len(wi) else len(want)))
+                return None
+        merged = []
+        for a, b, n in sorted(ranges):
+            if merged and merged[-1][0] + merged[-1][2] == a and merged[-1][1] + merged[-1][2] == b:
+                merged[-1][2] += n
+            else:
+                merged.append([a, b, n])
+        text = re.sub(r'^/\* hh-placed-function .* \*/\n', '', text, flags=re.M)
+        text += ''.join('/* hh-placed-function %s */\n' % n for n in sorted(picked))
+        return text + '/* hh-rodata-layout %s */\n' % json.dumps([size, merged], separators=(',', ':'))
 
 def release_tail(S, seg, cfile, text, name, snippet=None, companions=()):
     pattern = (r'(?m)^static const unsigned char rodata_%s\[\] = \{([^}]+)\};' % re.escape(cfile))

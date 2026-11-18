@@ -7,7 +7,6 @@ typedef struct func_801D12B8_Struct { f32 unk0; s32 unk4; } func_801D12B8_Struct
 extern func_801D12B8_Struct D_801DB0B4[];
 s64 D_801E1358;
 extern u32 D_801E1360;
-extern f64 D_801DD4A0;
 extern u64 func_801C0B2C();
 extern f64 func_80034C24();
 
@@ -15,7 +14,7 @@ void func_801D12B8(void *arg0) {
     u64 d;
 
     d = func_801C0B2C() - D_801E1358;
-    if (D_801DB0B4[D_801E1360].unk0 <= func_80034C24(d) / D_801DD4A0) {
+    if (D_801DB0B4[D_801E1360].unk0 <= func_80034C24(d) / (1e+06)) {
         if (D_801DB0B4[D_801E1360].unk4 == 0) goto c0;
         if (D_801DB0B4[D_801E1360].unk4 == 1) goto c1;
         if (D_801DB0B4[D_801E1360].unk4 != 2) goto end;

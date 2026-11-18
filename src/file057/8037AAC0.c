@@ -1477,6 +1477,49 @@ extern void func_8037E0A4();
 
 #define GG ((struct func_8037DEE4_Glob *)&D_8008DA88)
 
+#undef D_8038BC38
+#undef GG
+#undef func_8037E0A4
+#define D_8038BC38 D_8038BC38__func_8037DEE4_12da8cc6
+#define func_8037DEE4_Arg func_8037DEE4_Arg__func_8037DEE4_12da8cc6
+#define func_8037DEE4_Ent func_8037DEE4_Ent__func_8037DEE4_12da8cc6
+#define func_8037DEE4_Glob func_8037DEE4_Glob__func_8037DEE4_12da8cc6
+#define func_8037DEE4_Tab func_8037DEE4_Tab__func_8037DEE4_12da8cc6
+#define func_8037E0A4 func_8037E0A4__func_8037DEE4_12da8cc6
+
+
+struct func_8037DEE4_Arg {
+    u8 pad[0x90];
+    u8 unk90;
+    u8 pad91[0x99 - 0x91];
+    u8 unk99;
+    u8 unk9A;
+    u8 unk9B;
+    u8 pad9C[0xA4 - 0x9C];
+    s16 unkA4;
+    s16 unkA6;
+    u8 padA8[0xB0 - 0xA8];
+    s16 unkB0;
+};
+
+struct func_8037DEE4_Ent {
+    s16 unk0;
+    s16 unk2;
+};
+struct func_8037DEE4_Tab {
+    u8 pad[0x30];
+    struct func_8037DEE4_Ent *unk30;
+};
+struct func_8037DEE4_Glob {
+    u8 pad[4];
+    struct func_8037DEE4_Tab *unk4;
+};
+
+extern u8 D_8038BC38[];
+extern void func_8037E0A4();
+
+#define GG ((struct func_8037DEE4_Glob *)&D_8008DA88)
+
 void func_8037DEE4(struct func_8037DEE4_Arg *arg0, s32 arg1) {
     f32 var_fv1;
     struct func_8037DEE4_Ent *temp_v1;
@@ -1484,11 +1527,11 @@ void func_8037DEE4(struct func_8037DEE4_Arg *arg0, s32 arg1) {
     s32 var_v1;
 
     if ((D_801BBC1C == 0xA) || (var_v1 = 0x11, (D_801BBC1C == 0xB))) {
-        var_fv1 = D_8038BC7C;
+        var_fv1 = (-0.9f);
         var_v1 = 0x10;
         var_a0 = 0x1E;
     } else {
-        var_fv1 = D_8038BC80;
+        var_fv1 = (-0.96f);
         var_a0 = 0x20;
     }
     if (var_a0 < arg0->unkB0) {
@@ -1500,13 +1543,23 @@ void func_8037DEE4(struct func_8037DEE4_Arg *arg0, s32 arg1) {
         arg0->unkB0++;
         return;
     }
-    GG->unk4->unk30->unk0 = (((f32)arg0->unkB0 * (D_8038BC84 * (f32)arg0->unkB0)) / 2) + (f32) (arg0->unkA4 + (arg0->unkB0 * -0xE));
+    GG->unk4->unk30->unk0 = (((f32)arg0->unkB0 * ((1.1f) * (f32)arg0->unkB0)) / 2) + (f32) (arg0->unkA4 + (arg0->unkB0 * -0xE));
     GG->unk4->unk30->unk2 = (((f32)arg0->unkB0 * (var_fv1 * (f32)arg0->unkB0)) / 2) + (f32) arg0->unkA6;
     var_a0 = func_8037D320(arg0, arg0->unk90 ^ 1);
     temp_v1 = GG->unk4->unk30;
     func_8001B204(0xE, (s16) (temp_v1->unk0 + 0x468), (s16) ((temp_v1->unk2 - arg0->unk9B) + 3), D_8038BC38, arg0->unk99, var_a0);
     arg0->unkB0++;
 }
+#undef GG
+#undef D_8038BC38
+#undef func_8037DEE4_Arg
+#undef func_8037DEE4_Ent
+#undef func_8037DEE4_Glob
+#undef func_8037DEE4_Tab
+#undef func_8037E0A4
+#define D_8038BC38 D_8038BC38__func_8037DEE4
+#define GG ((struct func_8037DEE4_Glob *)&D_8008DA88)
+#define func_8037E0A4 func_8037E0A4__func_8037DEE4
 #undef GG
 #undef D_8038BC38
 #undef D_8038BC7C
@@ -1890,7 +1943,8 @@ void func_8037F3D4(s32 arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_8037AAC0[] = {
+
+static const unsigned char rodata_8037AAC0_8038BB50[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x49, 0x54, 0x45, 0x4D, 0x00, 0x00, 0x00, 0x00, 0x57, 0x45, 0x41, 0x50,
@@ -1909,6 +1963,7 @@ static const unsigned char rodata_8037AAC0[] = {
     0x00, 0x00, 0x00, 0x00, 0x25, 0x61, 0x25, 0x6D, 0x25, 0x73, 0x00, 0x00, 0x25, 0x61, 0x25, 0x6D,
     0x25, 0x73, 0x00, 0x00, 0x25, 0x61, 0x25, 0x6D, 0x25, 0x73, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x80, 0x37, 0xC0, 0x0C, 0x80, 0x37, 0xC0, 0x18, 0x80, 0x37, 0xC0, 0x2C,
-    0x80, 0x37, 0xC0, 0x3C, 0x80, 0x37, 0xC0, 0x50, 0x80, 0x37, 0xC0, 0x60, 0xBF, 0x66, 0x66, 0x66,
-    0xBF, 0x75, 0xC2, 0x8F, 0x3F, 0x8C, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x80, 0x37, 0xC0, 0x3C, 0x80, 0x37, 0xC0, 0x50, 0x80, 0x37, 0xC0, 0x60,
 };
+/* hh-placed-function func_8037DEE4 */
+/* hh-rodata-layout [320,[[0,0,320]]] */

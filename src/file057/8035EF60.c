@@ -788,6 +788,54 @@ extern f64 D_8038A6A8;
 extern f64 D_8038A6B0;
 extern f64 D_8038A6B8;
 
+#undef D_803863B0
+#undef func_8035FF0C
+#undef func_8035FF38
+#define D_803863B0 D_803863B0__func_80360090_f0f6a73a
+#define func_8035AFEC func_8035AFEC__func_80360090_f0f6a73a
+#define func_8035FF0C func_8035FF0C__func_80360090_f0f6a73a
+#define func_8035FF38 func_8035FF38__func_80360090_f0f6a73a
+#define func_80360090_StructA func_80360090_StructA__func_80360090_f0f6a73a
+#define func_80360090_StructArg func_80360090_StructArg__func_80360090_f0f6a73a
+#define func_80360090_StructB func_80360090_StructB__func_80360090_f0f6a73a
+#define func_80360090_StructC func_80360090_StructC__func_80360090_f0f6a73a
+#define func_80360090_StructD func_80360090_StructD__func_80360090_f0f6a73a
+#define func_80360090_StructE func_80360090_StructE__func_80360090_f0f6a73a
+extern void func_8035AFEC();
+void *func_8035FF0C(u8 arg0);
+
+#undef func_8035AFEC
+
+typedef struct func_80360090_StructB {
+    u8 pad0[0x30];
+    u32 pad:9;
+    u32 mode:2;
+} func_80360090_StructB;
+typedef struct func_80360090_StructA {
+    u8 pad0[0x58];
+    f32 unk58;
+    f32 unk5C;
+    f32 unk60;
+    f32 unk64;
+} func_80360090_StructA;
+typedef struct func_80360090_StructC {
+    u8 pad0[1];
+    u8 unk1;
+    u8 pad2[0xA];
+    f32 unkC;
+} func_80360090_StructC;
+typedef struct func_80360090_StructD {
+    f32 a[3];
+} func_80360090_StructD;
+typedef struct func_80360090_StructE {
+    func_80360090_StructD d[5];
+} func_80360090_StructE;
+typedef struct func_80360090_StructArg {
+    u8 pad0[0x5C];
+    func_80360090_StructA *unk5C;
+} func_80360090_StructArg;
+extern u8 func_8035FF38();
+extern u8 D_803863B0[];
 s32 func_80360090(void *arg0, u8 arg1) {
     func_80360090_StructB *b;
     func_80360090_StructA *a;
@@ -808,13 +856,13 @@ s32 func_80360090(void *arg0, u8 arg1) {
     t = ((func_80360090_StructC *)arg0)->unk1;
     idx = t & 3;
     if (idx == 4) {
-        v0 = a->unk64 / D_8038A690;
+        v0 = a->unk64 / (10.659357);
     } else if (idx == 0) {
-        v0 = a->unk5C / D_8038A698;
+        v0 = a->unk5C / (6.744093);
     } else if (idx == 1) {
-        v0 = a->unk58 / D_8038A6A0;
+        v0 = a->unk58 / (6.769922);
     } else {
-        v0 = (a->unk60 * 100.0f) / D_8038A6A8;
+        v0 = (a->unk60 * 100.0f) / (1266.3279);
     }
     if (b->mode == 3) {
         arg1 = func_8035FF38(arg1, a, t, b);
@@ -822,12 +870,12 @@ s32 func_80360090(void *arg0, u8 arg1) {
         t = ((func_80360090_StructC *)arg0)->unk1;
     }
     idx = t & 0xFF;
-    v1 = (((func_80360090_StructC *)arg0)->unkC * v0) * D_8038A6B0;
+    v1 = (((func_80360090_StructC *)arg0)->unkC * v0) * (0.8);
     if (arg1 == 0x23) {
         idx = 3;
     }
     if (arg1 == 0x24) {
-        v1 = ((func_80360090_StructC *)arg0)->unkC * D_8038A6B8;
+        v1 = ((func_80360090_StructC *)arg0)->unkC * (0.9);
     }
     if (((f64)((func_80360090_StructD *)&sp28)[idx].a[2] + (f64)v1 * 1.25) < (f64)*(f32 *)(D_801BC3D8 + 0x3A8)) {
         return 0;
@@ -840,6 +888,19 @@ s32 func_80360090(void *arg0, u8 arg1) {
     }
     return 3;
 }
+#undef D_803863B0
+#undef func_8035AFEC
+#undef func_8035FF0C
+#undef func_8035FF38
+#undef func_80360090_StructA
+#undef func_80360090_StructArg
+#undef func_80360090_StructB
+#undef func_80360090_StructC
+#undef func_80360090_StructD
+#undef func_80360090_StructE
+#define D_803863B0 D_803863B0__func_80360090
+#define func_8035FF0C func_8035FF0C__func_80360090
+#define func_8035FF38 func_8035FF38__func_80360090
 #undef D_803863B0
 #undef D_8038A690
 #undef D_8038A698
@@ -3663,7 +3724,9 @@ extern void func_8013AE20();
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/8035EF60/_pad_16.s")
 
-static const unsigned char rodata_8035EF60[] = {
+/* hh-owned-pool func_803605E4 8038A6C0 8038A6E0 */
+
+static const unsigned char rodata_8035EF60_8038A280[] = {
     0xC2, 0xC7, 0xB7, 0xE2, 0xA5, 0xE2, 0xA1, 0xBC, 0xA5, 0xB7, 0xA5, 0xE7, 0xA5, 0xF3, 0x20, 0x25,
     0x64, 0x20, 0xA4, 0xAC, 0xB8, 0xAB, 0xA4, 0xC4, 0xA4, 0xAB, 0xA4, 0xEA, 0xA4, 0xDE, 0xA4, 0xBB,
     0xA4, 0xF3, 0xA1, 0xA3, 0xC2, 0xE5, 0xA4, 0xEA, 0xA4, 0xCB, 0x20, 0x50, 0x55, 0x5F, 0x55, 0x50,
@@ -3729,8 +3792,6 @@ static const unsigned char rodata_8035EF60[] = {
     0x6F, 0x5F, 0x6D, 0x61, 0x78, 0x20, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00, 0x62, 0x77, 0x70, 0x2D,
     0x3E, 0x63, 0x6F, 0x6D, 0x62, 0x6F, 0x20, 0x25, 0x64, 0x20, 0x20, 0x62, 0x77, 0x70, 0x2D, 0x3E,
     0x63, 0x6F, 0x6D, 0x62, 0x6F, 0x5F, 0x6D, 0x61, 0x78, 0x20, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00,
-    0x40, 0x25, 0x51, 0x97, 0x3D, 0x9E, 0xC7, 0x00, 0x40, 0x1A, 0xF9, 0xF3, 0x83, 0xF0, 0xBA, 0xE9,
-    0x40, 0x1B, 0x14, 0x66, 0x6E, 0xC9, 0xE2, 0x37, 0x40, 0x93, 0xC9, 0x4F, 0xC5, 0x04, 0x81, 0x6F,
-    0x3F, 0xE9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x3F, 0xEC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCD,
 };
-/* hh-owned-pool func_803605E4 8038A6C0 8038A6E0 */
+/* hh-placed-function func_80360090 */
+/* hh-rodata-layout [1136,[[0,0,1136]]] */

@@ -177,6 +177,14 @@ typedef struct func_801FC830_Struct {
     u8 pad2[4];
 } func_801FC830_Struct;
 
+#define func_801FC830_Struct func_801FC830_Struct__func_801FC830
+typedef struct func_801FC830_Struct {
+    s16 angle;
+    u8 pad[6];
+    s32 vol;
+    u8 pad2[4];
+} func_801FC830_Struct;
+
 void func_801FC830(f32 arg0, f32 arg1, f32 arg2, f32 arg3, u16 arg4) {
     func_801FC830_Struct s;
     f32 fv0;
@@ -192,15 +200,19 @@ void func_801FC830(f32 arg0, f32 arg1, f32 arg2, f32 arg3, u16 arg4) {
     if (arg3 < 0.0f) {
         arg3 = -arg3;
     }
-    fv1 = (f32)(D_80218F68 / (f64)arg3);
+    fv1 = (f32)((255.0) / (f64)arg3);
     if ((s32)(255.0f - fv1 * fv0) > 0) {
         func_800207D0(arg4, s.vol, (s32)(255.0f - fv1 * fv0));
     }
 }
+#undef func_801FC830_Struct
 
 extern f32 func_8012FFDC(s32, s32, s32, s32, f32, f32);
 extern void func_800207A0(u16, s32);
 extern f64 D_80218F70;
+typedef struct func_801FC9C0_Struct { u8 pad[0x30]; s32 a; f32 b; f32 c; } func_801FC9C0_Struct;
+
+#define func_801FC9C0_Struct func_801FC9C0_Struct__func_801FC9C0
 typedef struct func_801FC9C0_Struct { u8 pad[0x30]; s32 a; f32 b; f32 c; } func_801FC9C0_Struct;
 
 void func_801FC9C0(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4) {
@@ -209,15 +221,24 @@ void func_801FC9C0(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4) {
     f32 r;
     s32 t;
     r = func_8012FFDC(arg0, arg1, arg2, p->a, p->b, p->c);
-    t = (s32)(255.0f - ((f32)(D_80218F70 / (f64)arg3) * r));
+    t = (s32)(255.0f - ((f32)((255.0) / (f64)arg3) * r));
     if (t > 0) {
         func_800207A0(arg4, t & 0xFF);
     }
 }
+#undef func_801FC9C0_Struct
 
 
 extern f64 D_80218F78;
 
+typedef struct func_801FCA4C_Struct {
+    u8 pad[0x30];
+    s32 a;
+    f32 b;
+    f32 c;
+} func_801FCA4C_Struct;
+
+#define func_801FCA4C_Struct func_801FCA4C_Struct__func_801FCA4C
 typedef struct func_801FCA4C_Struct {
     u8 pad[0x30];
     s32 a;
@@ -233,13 +254,14 @@ void func_801FCA4C(s32 arg0, s32 arg1, f32 arg2, f32 arg3, u16 arg4) {
 
     pos = (func_801FCA4C_Struct *) D_801BBCD8->unk2C;
     dist = func_8012FFDC(arg0, arg1, *(s32 *)&arg2, pos->a, pos->b, pos->c);
-    temp = -((f32) (D_80218F78 / arg3) * dist);
+    temp = -((f32) ((255.0) / arg3) * dist);
     value = temp;
     if (temp < -255) {
         value = -255;
     }
     func_8002096C(arg4, 1, value);
 }
+#undef func_801FCA4C_Struct
 
 
 
@@ -268,6 +290,7 @@ void func_801FCBA8(u16 arg0) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_801FC490[] = {
     0x65, 0x72, 0x72, 0x20, 0x3D, 0x20, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xB2, 0xBB, 0xB3, 0xDA, 0xCD, 0xD1, 0xA5, 0xBF, 0xA5, 0xB9, 0xA5, 0xAF, 0xA5, 0xBB, 0xA5, 0xC3,
@@ -285,6 +308,8 @@ static const unsigned char rodata_801FC490[] = {
     0xE9, 0xC1, 0xD5, 0x0A, 0x00, 0x00, 0x00, 0x00, 0xC6, 0xB1, 0xA4, 0xB8, 0xB6, 0xCA, 0xA4, 0xAC,
     0xA4, 0xCA, 0xA4, 0xC3, 0xA4, 0xC6, 0xA4, 0xA4, 0xA4, 0xEB, 0xA4, 0xCE, 0xA4, 0xC7, 0xB1, 0xE9,
     0xC1, 0xD5, 0xA4, 0xB7, 0xA4, 0xDE, 0xA4, 0xBB, 0xA4, 0xF3, 0x0A, 0x00, 0xC4, 0x13, 0x80, 0x00,
-    0xC4, 0x13, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x6F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x40, 0x6F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x6F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0xC4, 0x13, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-owned-pool func_801FC830 80218F68 80218F70 */
+/* hh-owned-pool func_801FC9C0 80218F70 80218F78 */
+/* hh-owned-pool func_801FCA4C 80218F78 80218F80 */

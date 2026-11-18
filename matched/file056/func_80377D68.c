@@ -80,7 +80,6 @@ extern u8 D_80388770[];
 extern func_80377D68_Struct10 D_80388814;
 extern u8 D_80388878[];
 extern u8 D_803888D8[];
-extern f32 D_803893B0;
 extern func_80377D68_Struct40 D_80389EF8[];
 extern func_80377D68_Struct10 D_8038A6F8[];
 
@@ -114,7 +113,7 @@ s32 func_80377D68(func_80377D68_Obj *arg0, u16 arg1, s32 arg2, s32 arg3) {
     }
     i = 0;
     if (i < arg0->unk94) {
-        f = D_803893B0;
+        f = (0.01f);
         do {
         s0->unk0 = arg0->unk6C;
         s0->unk4 = arg0->unk70;

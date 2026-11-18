@@ -28,16 +28,13 @@ struct func_80244C38_Obj {
     u8 pad2[0x2C];
     struct func_80246478_Child *unk5C;
 };
-extern f32 D_8024AAF0;
-extern f32 D_8024AAF4;
-extern f32 D_8024AAF8;
 extern void func_80244CE0();
 
 void func_80244C38(struct func_80244C38_Obj *arg0, s32 arg1) {
     struct func_80246478_Child *c = arg0->unk5C;
-    arg0->unk24->unk2C->unk4 = D_8024AAF0;
-    arg0->unk24->unk2C->unk8 = D_8024AAF4;
-    arg0->unk24->unk2C->unkC = D_8024AAF8;
+    arg0->unk24->unk2C->unk4 = (56.8f);
+    arg0->unk24->unk2C->unk8 = (1.2f);
+    arg0->unk24->unk2C->unkC = (86.7f);
     arg0->unk24->unk2C->unk12 = 0;
     arg0->unk2C &= ~0x3C0;
     c->unk78 = 1;

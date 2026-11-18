@@ -31,12 +31,6 @@ typedef struct func_8036B7EC_Struct {
 } func_8036B7EC_Struct;
 func_8036B7EC_Struct *func_803698D0(u8 *arg0);
 s32 func_80369CF4(struct func_80369C7C_Obj1 *arg0, s16 arg1);
-
-
-extern f64 D_8038B0C8;
-extern f64 D_8038B0D0;
-extern f64 D_8038B0D8;
-
 typedef struct func_80369F54_StructVec {
     f32 x, y, z;
 } func_80369F54_StructVec;
@@ -107,7 +101,7 @@ s32 arg2;
         xoff *= -1.0f;
     }
     if (state->unk2D8 == 4 || state->unk2D8 == 6) {
-        delta = (f32)((f64)info->unk54 - D_8038B0C8);
+        delta = (f32)((f64)info->unk54 - (3.370217));
         if (state->unk2D9 != 0x41) {
             if (state->unk2D8 == 6) {
                 adjust = delta;
@@ -118,9 +112,9 @@ s32 arg2;
         }
     } else {
         if (state->unk2D8 == 5) {
-            adjust = (f32)((f64)z - D_8038B0D0);
+            adjust = (f32)((f64)z - (12.663279));
         } else {
-            adjust = -(f32)((f64)z - D_8038B0D8);
+            adjust = -(f32)((f64)z - (12.663279));
         }
         zoff += adjust;
     }

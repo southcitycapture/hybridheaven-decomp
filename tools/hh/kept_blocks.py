@@ -3,7 +3,8 @@
 An asm neighbour supplies asm-processor's instruction budget for named late constants. Recipes let make setup
 recreate these mixed blocks even when the neighbour is later split or another repaired function becomes C.
 """
-import json, os, re
+import hashlib, json, os, re
+from pathlib import Path
 
 BYTE_RANGE = re.compile(r'^# hh-rodata-range ([0-9A-F]+) ([0-9A-F]+) ([0-9A-F]+)$', re.M)
 
@@ -20,6 +21,29 @@ def catalog(S, seg, cfile):
         for _, _, lines in S._ro_items(S._rd(p)):
             for n in re.findall(r'dlabel (\w+)', '\n'.join(lines)): out[n] = (p, lines)
     return out
+
+
+def data_only(S, text):
+    """Stage orphaned late objects as regular readonly input for a layout plan.
+
+    These objects retain their GNU as labels and relocations. The plan places
+    them in the late extent after compilation; no dummy text is needed.
+    """
+    def stage(m):
+        path = m[1]
+        raw = S._rd(path)
+        items = S._ro_items(raw)
+        if not any(sec == '.late_rodata' for sec, _, _ in items) or S.asm_weights(path)[0]:
+            return m[0]
+        if any(sec not in ('.late_rodata', '.rodata') for sec, _, _ in items):
+            return m[0]
+        recipe = BYTE_RANGE.search(raw)
+        block = (recipe[0] + '\n' if recipe else '') + '.section .rodata\n' + '\n'.join(l for _, _, ls in items for l in ls
+            if not l.startswith('.late_rodata_alignment')) + '\n.section .text\n'
+        out = Path(path).with_name('_ro_regular_' + hashlib.sha1(block.encode()).hexdigest()[:16] + '.s')
+        out.write_text(block)
+        return '#pragma GLOBAL_ASM("%s")' % out
+    return re.sub(r'^#pragma GLOBAL_ASM\("([^"]+)"\)', stage, text, flags=re.M)
 
 def annotate(S, seg, cfile, text):
     text = RECIPE.sub('', text)
@@ -50,6 +74,8 @@ def annotate(S, seg, cfile, text):
             lo = min([address] + [a for a, _ in spans])
             hi = max([address + size] + [a + n for a, n in spans])
             recipe['rodata_bytes'] = [lo, offset + lo - address, hi - lo]
+            if '.section .late_rodata' not in block:
+                recipe['rodata_section'] = '.rodata'
         return '/* hh-block %s %s */\n%s' % (path, json.dumps(recipe, separators=(',', ':')), m.group())
     return re.sub(r'^#pragma GLOBAL_ASM\("([^"]+)"\)', one, text, flags=re.M)
 
@@ -64,8 +90,11 @@ def rebuild(S, seg, cfile, path, recipe):
         assert offset == start + address - int(cfile, 16)
         assert base <= address and address + size <= base + S.file_rodata_size(seg, cfile)
         assert size % 4 == 0
-        out += ['# hh-rodata-range %X %X %X' % (address, offset, size),
-                '.section .late_rodata', '.late_rodata_alignment %d' % (4 if address % 8 else 8)]
+        section = recipe.get('rodata_section', '.late_rodata')
+        assert section in ('.rodata', '.late_rodata')
+        out += ['# hh-rodata-range %X %X %X' % (address, offset, size), '.section ' + section]
+        if section == '.late_rodata':
+            out.append('.late_rodata_alignment %d' % (4 if address % 8 else 8))
         labels = {int(n.rsplit('_', 1)[-1], 16): n for n in catalog(S, seg, cfile)
                   if re.match(r'^(D|jtbl)_[0-9A-F]{8}$', n)}
         for i in range(0, size, 4):
@@ -86,7 +115,8 @@ def rebuild(S, seg, cfile, path, recipe):
             if label not in current:
                 raise ValueError('cannot find readonly recipe label %s in %s/%s' % (label, seg, cfile))
             _, lines = current[label]
-        out += ['.section ' + section] + lines
+        out += ['.section ' + section] + [l for l in lines if section == '.late_rodata' or
+                                         not l.startswith('.late_rodata_alignment')]
     out += ['.section .text']
     for n in recipe['functions']:
         section = '.text'

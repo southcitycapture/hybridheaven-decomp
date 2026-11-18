@@ -87,8 +87,6 @@ extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern s32 func_801084C4(f32, f32, f32, f32, f32, f32);
 extern s16 D_8016398C;
-extern f64 D_80188028;
-extern f64 D_80188030;
 #define ANGLE (*(s16 *)D_801BBAF0)
 #define WRAP(x) (((x) & 0x1000) ? (((x) & 0x1FFF) - 0x2000) : ((x) & 0x1FFF))
 #define ABS(x) (((x) < 0) ? -(x) : (x))
@@ -199,14 +197,14 @@ s32 arg1;
             return;
         }
             if (sp44 > 20.0) {
-                sp40 = (((sp44 - 20.0) / 20.0) * 0.25 + 1.0) * D_80188028;
+                sp40 = (((sp44 - 20.0) / 20.0) * 0.25 + 1.0) * (55.0);
             } else {
                 sp40 = 55.0f;
             }
             sp44 = func_8001EB64(sp56) * sp40;
             p = G.unkE8->unk2C;
             p->unk30 = p->unk3C - sp44;
-            G.unkE8->unk2C->unk34 = (D_801BBAF8 + D_801BBB04) * 0.5 + D_80188030;
+            G.unkE8->unk2C->unk34 = (D_801BBAF8 + D_801BBB04) * 0.5 + (35.0);
             sp44 = func_8001EAD0(sp56) * sp40;
             p = G.unkE8->unk2C;
             p->unk38 = p->unk44 - sp44;

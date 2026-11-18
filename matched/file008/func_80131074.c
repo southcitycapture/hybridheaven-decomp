@@ -1,14 +1,12 @@
 #include "common.h"
 #include "common.h"
 extern f32 func_8002FC20(f32);
-extern f64 D_8018D6B0;
-
 s32 func_80131074(f32 *arg0, f32 *arg1, f32 *arg2) {
     f32 temp[3];
     f32 temp_fv0_2;
 
     temp_fv0_2 = func_8002FC20((arg2[0] * arg2[0]) + (arg2[2] * arg2[2]));
-    if ((f64) (temp_fv0_2 < 0.0f ? -temp_fv0_2 : temp_fv0_2) < D_8018D6B0) {
+    if ((f64) (temp_fv0_2 < 0.0f ? -temp_fv0_2 : temp_fv0_2) < (1e-06)) {
         arg1[0] = arg0[0];
         if (arg2[1] > 0.0f) {
             arg1[1] = -arg0[2];

@@ -61,6 +61,16 @@ extern f32 D_801CFCE4;
 #define CNT (*(u8 *)&D_801CFE03)
 #define TMR (*(u16 *)&D_801CFE00)
 
+#undef CNT
+#undef ST
+#undef TMR
+#define CNT (*(u8 *)&D_801CFE03)
+#define ST (*(u8 *)&D_801CFE02)
+#define TMR (*(u16 *)&D_801CFE00)
+#define ST (*(u8 *)&D_801CFE02)
+#define CNT (*(u8 *)&D_801CFE03)
+#define TMR (*(u16 *)&D_801CFE00)
+
 void func_801CBE88(void *arg0, s32 arg1) {
     s32 v;
     s32 k;
@@ -69,7 +79,7 @@ void func_801CBE88(void *arg0, s32 arg1) {
     if (D_80089474[2] & 0xB000) {
         if (ST < 4) {
             ST = 4;
-            func_8011AAF4(D_801CFB44, 0xC1, arg0, 0, 2, 0.0f, 15.0f, 226.0f, 860.0f, 0.0f, 12.0f, 160.0f, D_801CFCDC, 0.0f, 35.0f, -1, -1);
+            func_8011AAF4(D_801CFB44, 0xC1, arg0, 0, 2, 0.0f, 15.0f, 226.0f, 860.0f, 0.0f, 12.0f, 160.0f, (6.1e+02f), 0.0f, 35.0f, -1, -1);
             func_8001B204(0xF, 0x7D0, 0xB4, D_801CFB80, 0xFF, 4, 1);
         } else {
             D_80037750 = 1;
@@ -93,7 +103,7 @@ c1:
     func_8011AAF4(D_801CFBD4, 0xDC, arg0, 0, 1, 10.0f, 0.0f, 120.0f, 50.0f, 10.0f, 0.0f, 95.0f, -200.0f, 0.0f, 35.0f, -1, -1);
     return;
 c2:
-    if (func_8011AAF4(D_801CFC10, 0xE2, arg0, 0, 2, 10.0f, 15.0f, 226.0f, 860.0f, 4294967296.0f, 12.0f, 160.0f, D_801CFCE0, 0.0f, 35.0f, -1, -1) == 0) {
+    if (func_8011AAF4(D_801CFC10, 0xE2, arg0, 0, 2, 10.0f, 15.0f, 226.0f, 860.0f, 4294967296.0f, 12.0f, 160.0f, (6.1e+02f), 0.0f, 35.0f, -1, -1) == 0) {
         ST = 3;
     }
     return;
@@ -106,12 +116,18 @@ c3:
     }
     func_8001B204(0xF, 0x7D0, 0xB4, D_801CFC4C, v, 4, 1);
 c4:
-    func_8011AAF4(D_801CFC80, 0xEE, arg0, 0, 1, 10.0f, 15.0f, 226.0f, 860.0f, 10.0f, 12.0f, 160.0f, D_801CFCE4, 0.0f, 35.0f, -1, -1);
+    func_8011AAF4(D_801CFC80, 0xEE, arg0, 0, 1, 10.0f, 15.0f, 226.0f, 860.0f, 10.0f, 12.0f, 160.0f, (6.1e+02f), 0.0f, 35.0f, -1, -1);
     p = ((void **)((u8 *)((void **)arg0)[9]))[12];
     *(s16 *)((u8 *)p + 0x12) += 0x20;
     p = ((void **)((void **)arg0)[9])[12];
     *(s16 *)((u8 *)p + 0x12) &= 0x1FFF;
 }
+#undef CNT
+#undef ST
+#undef TMR
+#define CNT (*(u8 *)&D_801CFE03)
+#define ST (*(u8 *)&D_801CFE02)
+#define TMR (*(u16 *)&D_801CFE00)
 
 #define func_801CC2CC func_801CC2CC__func_801CC294
 struct func_801CC2CC_Struct2 {
@@ -222,6 +238,48 @@ struct func_801CC484_Struct1 {
 extern struct func_801CC2CC_Struct3 D_801CE6C4;
 extern f64 D_801CFCE8;
 
+#undef func_801CC574
+#define D_801CE6C4 D_801CE6C4__func_801CC484_f871d1cc
+#define func_8013A28C func_8013A28C__func_801CC484_f871d1cc
+#define func_801CC2CC_Struct1 func_801CC2CC_Struct1__func_801CC484_f871d1cc
+#define func_801CC2CC_Struct2 func_801CC2CC_Struct2__func_801CC484_f871d1cc
+#define func_801CC2CC_Struct3 func_801CC2CC_Struct3__func_801CC484_f871d1cc
+#define func_801CC484_Struct1 func_801CC484_Struct1__func_801CC484_f871d1cc
+#define func_801CC484_Struct2 func_801CC484_Struct2__func_801CC484_f871d1cc
+#define func_801CC484_Struct3 func_801CC484_Struct3__func_801CC484_f871d1cc
+#define func_801CC574 func_801CC574__func_801CC484_f871d1cc
+struct func_801CC2CC_Struct2 {
+    u8 pad[0x78];
+    s16 unk78;
+};
+struct func_801CC2CC_Struct1 {
+    u8 pad[0x5C];
+    struct func_801CC2CC_Struct2 *unk5C;
+};
+struct func_801CC2CC_Struct3 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+void func_801CC574(struct func_801CC2CC_Struct1 *arg0, s32 arg1);
+
+struct func_801CC484_Struct3 {
+    u8 pad[8];
+    f32 unk8;
+};
+struct func_801CC484_Struct2 {
+    u8 pad[0x2C];
+    struct func_801CC484_Struct3 *unk2C;
+};
+struct func_801CC484_Struct1 {
+    u8 pad[0x24];
+    struct func_801CC484_Struct2 *unk24;
+    u8 pad2[0x5C - 0x28];
+    void *unk5C;
+};
+extern void func_8013A28C(s32, struct func_801CC2CC_Struct3);
+extern struct func_801CC2CC_Struct3 D_801CE6C4;
+
 void func_801CC484(struct func_801CC484_Struct1 *arg0, s32 volatile arg1) {
     struct func_801CC484_Struct3 *temp_v0;
     void *temp_a1;
@@ -230,7 +288,7 @@ void func_801CC484(struct func_801CC484_Struct1 *arg0, s32 volatile arg1) {
     func_80010550(arg1, temp_a1);
     temp_v0 = arg0->unk24->unk2C;
     temp_v0->unk8 = temp_v0->unk8 + D_801CFE04;
-    D_801CFE04 = (f32) ((f64) D_801CFE04 - D_801CFCE8);
+    D_801CFE04 = (f32) ((f64) D_801CFE04 - (0.2));
     if (*(u8 *)&D_801CFE02 >= 3) {
         func_800058DC((s32) arg0, func_80127014);
     }
@@ -239,6 +297,16 @@ void func_801CC484(struct func_801CC484_Struct1 *arg0, s32 volatile arg1) {
         func_800058DC((s32) arg0, func_801CC574);
     }
 }
+#undef D_801CE6C4
+#undef func_8013A28C
+#undef func_801CC2CC_Struct1
+#undef func_801CC2CC_Struct2
+#undef func_801CC2CC_Struct3
+#undef func_801CC484_Struct1
+#undef func_801CC484_Struct2
+#undef func_801CC484_Struct3
+#undef func_801CC574
+#define func_801CC574 func_801CC574__func_801CC484
 #undef func_801CC574
 
 #define func_801CC618 func_801CC618__func_801CC574
@@ -329,6 +397,7 @@ void func_801CC748(struct func_801CC2CC_Struct1 *arg0, s32 volatile arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_801CBDC0[] = {
     0x00, 0x00, 0x00, 0x00, 0x70, 0x78, 0x20, 0x70, 0x79, 0x20, 0x73, 0x78, 0x20, 0x73, 0x79, 0x20,
     0x73, 0x66, 0x20, 0x77, 0x72, 0x20, 0x77, 0x67, 0x20, 0x77, 0x62, 0x20, 0x77, 0x61, 0x20, 0x66,
@@ -437,6 +506,7 @@ static const unsigned char rodata_801CBDC0[] = {
     0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x65, 0x78, 0x70, 0x61, 0x6E, 0x73,
     0x69, 0x6F, 0x6E, 0x72, 0x61, 0x6D, 0x2E, 0x63, 0x00, 0x00, 0x00, 0x00, 0xA5, 0xA2, 0xA5, 0xA4,
     0xA5, 0xC6, 0xA5, 0xE0, 0xC3, 0xCB, 0xA4, 0xF2, 0xC6, 0xB0, 0xA4, 0xAB, 0xA4, 0xB7, 0xA4, 0xC6,
-    0xA4, 0xA4, 0xA4, 0xDE, 0xA4, 0xB9, 0xA1, 0xA3, 0x0A, 0x00, 0x00, 0x00, 0x44, 0x18, 0x80, 0x00,
-    0x44, 0x18, 0x80, 0x00, 0x44, 0x18, 0x80, 0x00, 0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
+    0xA4, 0xA4, 0xA4, 0xDE, 0xA4, 0xB9, 0xA1, 0xA3, 0x0A, 0x00, 0x00, 0x00,
 };
+/* hh-owned-pool func_801CBE88 801CFCDC 801CFCE8 */
+/* hh-owned-pool func_801CC484 801CFCE8 801CFCF0 */

@@ -44,9 +44,6 @@ extern u8 D_80164F40[];
 extern u8 D_80178C94[];
 extern u8 D_8017AE58[];
 extern u8 D_8017B2A0[];
-extern f32 D_8018D754;
-extern f32 D_8018D758;
-extern f32 D_8018D75C;
 extern func_80131DD0_StructGlobal D_801BBBF0;
 
 void func_80131DD0(func_80131DD0_Struct *arg0, func_80131DD0_Struct24 **arg1) {
@@ -71,7 +68,7 @@ void func_80131DD0(func_80131DD0_Struct *arg0, func_80131DD0_Struct24 **arg1) {
             arg0->unk94 = 0x90;
             arg0->unk96 = -4;
         }
-        scale = D_8018D754;
+        scale = (0.1f);
         arg0->unk2C |= 0x20;
         (*arg1)->unk30->unk18 = scale;
         (*arg1)->unk30->unk1C = scale;
@@ -83,7 +80,7 @@ void func_80131DD0(func_80131DD0_Struct *arg0, func_80131DD0_Struct24 **arg1) {
         if (temp_v0 != 3) goto end;
         goto case3;
         case0: {
-            scale = D_8018D758;
+            scale = (0.07f);
             (*arg1)->unk30->unk18 = scale;
             (*arg1)->unk30->unk1C = scale;
             (*arg1)->unk30->unk20 = scale;
@@ -112,7 +109,7 @@ void func_80131DD0(func_80131DD0_Struct *arg0, func_80131DD0_Struct24 **arg1) {
             return;
         }
         case2: {
-            scale = D_8018D75C;
+            scale = (0.07f);
             (*arg1)->unk30->unk18 = scale;
             (*arg1)->unk30->unk1C = scale;
             (*arg1)->unk30->unk20 = scale;

@@ -621,6 +621,11 @@ def compile_file(text, td):
                         IDO, "--", "mips-linux-gnu-as"] + ASFLAGS +
                        ["--", "-c"] + CFLAGS + ["-o", o, c], capture_output=True, text=True)
     if r.returncode == 0:
+        import rodata_layout
+        try:
+            rodata_layout.apply(text, o)
+        except ValueError as exc:
+            return None, 'readonly layout: ' + str(exc)
         idoflags.post(o)        # no-op: -Wab,-r4300_mul emits the VR4300 multiply nops (mulfix.py only with HH_MULFIX=1)
     return (o if r.returncode == 0 else None), r.stderr + r.stdout
 
@@ -1164,7 +1169,7 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         # says nothing about this one, even when the registry text is identical.
         gate_version = sha(''.join(open(p).read() for p in (
             'tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py', 'tools/hh/mulfix.py', 'tools/hh/idoflags.py',
-            'tools/hh/kept_blocks.py', 'tools/hh/rodata_owned.py',
+             'tools/hh/kept_blocks.py', 'tools/hh/rodata_owned.py', 'tools/hh/rodata_layout.py',
             'tools/hh/bss_layout.py', 'tools/hh/bss_splits.json', 'hybridheaven.yaml')) + ' '.join(idoflags.BASE))
         byfile = {}
         for (seg, n), t in reg.items(): byfile.setdefault((seg, file_of(seg, n)), []).append(n + sha(t))
@@ -1178,8 +1183,33 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         if os.environ.get("SRCBUILD_NO_MEMO"): seen = set()   # re-offer every earlier reject (after a check fix)
         skipped = {k for k, t in new.items() if memo_key(k, t) in seen}
         for k in skipped: new.pop(k)
+        # literal gate (11-18, Fable 5.2): a candidate reading its own float literals through externs into the unit's
+        # frozen bytes is tried in its literal form first; if that does not place, its extern form gets a second try
+        # and is tagged literal-extern (queue/literal_extern.jsonl, counted by progress.py)
+        import literal_audit
+        lit = {}
+        for k, t in new.items():
+            try: alt = literal_audit.literal_form(k[0], k[1], t)
+            except Exception: alt = None
+            if alt and alt != t: lit[k] = alt
+        orig = dict(new); new.update(lit)
         cands = dict(reg); cands.update(new)
         kept, rejected = run(cands, set(new))
+        retry = {k: orig[k] for k in lit if k not in kept}
+        if retry:
+            for k in retry: new[k] = retry[k]
+            cands = dict(reg); cands.update({k: new[k] for k in kept if k in new}); cands.update(retry)
+            k2, r2 = run(cands, set(retry))
+            for k in retry:
+                rejected.pop(k, None)
+                if k in k2:
+                    kept.add(k)
+                    with open("queue/literal_extern.jsonl", "a") as fh:
+                        fh.write(json.dumps({"segment": k[0], "func": k[1], "why": "literal form did not place"}) + "\n")
+                else:
+                    rejected[k] = r2.get(k, "rejected")
+        for k in lit:
+            if k in kept and new[k] == lit[k]: print("literal form registered: %s %s" % k)
         with open(MEMO, "a") as fh:
             for key, why in rejected.items():
                 if key in new and why != NO_RESULT: fh.write(json.dumps({"key": memo_key(key, new[key]), "why": why}) + "\n")

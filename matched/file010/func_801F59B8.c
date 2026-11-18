@@ -13,9 +13,6 @@ struct func_801F5BAC_Struct { u8 pad0[0xC]; struct func_801F5BAC_In *unkC; u8 pa
 void func_801F5BAC(struct func_801F5BAC_Struct *arg0, s32 arg1);
 extern void func_801FCA4C(f32, f32, f32, f32, s32);
 extern void func_801FCAE0(f32, f32, f32, s32);
-
-
-extern f64 D_80218CA8;
 extern s16 B_8021B0C0;
 
 void func_801F59B8(struct func_801F5BAC_Struct *arg0, s32 arg1) {
@@ -35,7 +32,7 @@ void func_801F59B8(struct func_801F5BAC_Struct *arg0, s32 arg1) {
     sp37 = func_8012C6B4(0xA0);
     temp_ft4 = (f64)(func_8001EAD0(D_8021B0C0) + 1.0f) * 0.5;
     *((u8 *)arg0->unkC->unk24 + 0x22) = 1;
-    func_80147370(arg0->unkC, sp39, sp38, sp37, (u32)(temp_ft4 * D_80218CA8));
+    func_80147370(arg0->unkC, sp39, sp38, sp37, (u32)(temp_ft4 * (255.0)));
     B_8021B0C0 = D_8021B0C0 + 0x44;
     D_8012A94C(arg0->unkC, 0x100);
     fv0 = arg0->unkC->unk24->unk2C->unkC;

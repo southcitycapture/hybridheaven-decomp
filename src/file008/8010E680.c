@@ -107,6 +107,32 @@ extern u8 D_80163830[];
 extern s16 D_801637C8;
 extern f32 D_80186154;
 
+#define func_8010E890_StructB func_8010E890_StructB__func_8010E890
+#define func_8010E890_StructC func_8010E890_StructC__func_8010E890
+#define func_8010E890_StructD func_8010E890_StructD__func_8010E890
+#define func_8010E890_StructE func_8010E890_StructE__func_8010E890
+#define func_8010E890_StructF func_8010E890_StructF__func_8010E890
+#define func_8010E890_StructG func_8010E890_StructG__func_8010E890
+#define func_8010E890_StructH func_8010E890_StructH__func_8010E890
+#define func_8010E890_StructI func_8010E890_StructI__func_8010E890
+#define func_8010E890_StructJ func_8010E890_StructJ__func_8010E890
+#define func_8010E890_StructK func_8010E890_StructK__func_8010E890
+#define func_8010E890_StructL func_8010E890_StructL__func_8010E890
+
+typedef struct func_8010E890_StructF { u8 pad0[0x4]; f32 f4; f32 f8; f32 fC; u8 pad10[0x8]; f32 f18; f32 f1C; f32 f20; f32 f24; f32 f28; u8 pad2C[0x10]; } func_8010E890_StructF;
+typedef struct func_8010E890_StructE { u8 pad0[0x24]; f32 f24; f32 f28; u8 pad2C[0x10]; } func_8010E890_StructE;
+typedef struct func_8010E890_StructD { u8 pad0[0x2C]; struct func_8010E890_StructG *p2C; } func_8010E890_StructD;
+typedef struct func_8010E890_StructG { u8 pad0[0x24]; f32 f24; f32 f28; u8 pad2C[0x10]; } func_8010E890_StructG;
+typedef struct func_8010E890_StructC { u8 pad0[0x22]; u8 b22; u8 pad23[0xD]; func_8010E890_StructF *p30; } func_8010E890_StructC;
+typedef struct func_8010E890_StructB { u8 pad0[4]; func_8010E890_StructC *p4; } func_8010E890_StructB;
+typedef struct func_8010E890_StructH { u8 pad0[0x3C]; f32 f3C; f32 f40; f32 f44; } func_8010E890_StructH;
+typedef struct func_8010E890_StructI { u8 pad0[0x2C]; func_8010E890_StructH *p2C; } func_8010E890_StructI;
+typedef struct func_8010E890_StructJ { u8 pad0[0x24]; func_8010E890_StructI *p24; } func_8010E890_StructJ;
+typedef struct func_8010E890_StructK { u8 pad0[0x2C]; func_8010E890_StructG *p2C; } func_8010E890_StructK;
+typedef struct func_8010E890_StructL {
+    u8 pad0[0x54]; s32 s54; u8 pad58[0x8C]; s32 sE4; func_8010E890_StructK *sE8;
+    u8 padEC[0x1B0]; f32 f29C; f32 f2A0; u8 pad2A4[0x11]; u8 b2B5;
+} func_8010E890_StructL;
 void func_8010E890(u8 *arg0, func_8010E890_StructB *arg1)
 {
   f32 t;
@@ -123,7 +149,7 @@ void func_8010E890(u8 *arg0, func_8010E890_StructB *arg1)
   func_8011A724(0);
   D_801637C8 = 0;
   func_8012C89C((s32) arg0, 1, 0xCA, 1);
-  arg1->p4->p30->f20 = D_80186154;
+  arg1->p4->p30->f20 = (0.005f);
   t = arg1->p4->p30->f20;
   arg1->p4->p30->f1C = t;
   arg1->p4->p30->f18 = t;
@@ -146,6 +172,17 @@ void func_8010E890(u8 *arg0, func_8010E890_StructB *arg1)
   }
   func_800058DC((s32) arg0, func_8010EA78);
 }
+#undef func_8010E890_StructB
+#undef func_8010E890_StructC
+#undef func_8010E890_StructD
+#undef func_8010E890_StructE
+#undef func_8010E890_StructF
+#undef func_8010E890_StructG
+#undef func_8010E890_StructH
+#undef func_8010E890_StructI
+#undef func_8010E890_StructJ
+#undef func_8010E890_StructK
+#undef func_8010E890_StructL
 
 
 extern s32 func_8011A3D4(void);
@@ -198,7 +235,8 @@ void func_8010F5CC(void) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_8010E680[] = {
+
+static const unsigned char rodata_8010E680_80185D00[] = {
     0x70, 0x72, 0x6F, 0x63, 0x65, 0x73, 0x73, 0x28, 0x63, 0x61, 0x6D, 0x5F, 0x66, 0x69, 0x78, 0x5F,
     0x69, 0x6E, 0x69, 0x74, 0x31, 0x29, 0x0A, 0x00, 0xBD, 0xD6, 0xBB, 0xFE, 0xC0, 0xDA, 0xA4, 0xEA,
     0xC2, 0xD8, 0xA4, 0xA8, 0x20, 0x69, 0x6E, 0x20, 0x70, 0x72, 0x6F, 0x63, 0x65, 0x73, 0x73, 0x28,
@@ -268,5 +306,10 @@ static const unsigned char rodata_8010E680[] = {
     0x20, 0x35, 0x64, 0x28, 0x25, 0x20, 0x34, 0x64, 0x29, 0x0A, 0x00, 0x00, 0x2D, 0x2D, 0x2D, 0x2D,
     0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D,
     0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D,
-    0x2D, 0x0A, 0x0A, 0x00, 0x3B, 0xA3, 0xD7, 0x0A, 0x43, 0xB3, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x2D, 0x0A, 0x0A, 0x00,
 };
+static const unsigned char rodata_8010E680_80186158[] = {
+    0x43, 0xB3, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+/* hh-placed-function func_8010E890 */
+/* hh-rodata-layout [1120,[[0,0,1108],[1108,1112,8],[1116,1108,4]]] */

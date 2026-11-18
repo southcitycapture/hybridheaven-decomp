@@ -46,8 +46,6 @@ extern func_801EFD14_Table D_80216C20;
 extern func_801EFD14_Table D_80216C2C;
 extern func_801EFD14_Table D_80216C38;
 extern func_801EFD14_Table D_80216C44;
-extern f32 D_802187A0;
-extern f32 D_802187A4;
 extern void func_80379970();
 extern void func_8013AE20(void *, s32, s32);
 extern void func_80020718(s32);
@@ -339,11 +337,11 @@ void func_801EFF78(func_801EFF78_StructObj *arg0, s32 arg1) {
         pos.z=G.unkE0->unk2C->z;
         if (anim->id==0x1680041) {
             func_8013A28C(arg1, *(func_801E74DC_Sub *)&D_80216C14);
-            func_801DC9C4(pos,0x505,D_802187A0);
+            func_801DC9C4(pos,0x505,(1.2f));
             return;
         }
         if (B_80011140(arg1, data, D_80216C14, 5)) {
-            func_801DC9C4(pos,0x505,D_802187A4);
+            func_801DC9C4(pos,0x505,(1.2f));
         }
         break;
     }

@@ -34,9 +34,6 @@ struct func_8037DEE4_Glob {
 };
 
 extern u8 D_8038BC38[];
-extern f32 D_8038BC7C;
-extern f32 D_8038BC80;
-extern f32 D_8038BC84;
 extern void func_8037E0A4();
 
 #define GG ((struct func_8037DEE4_Glob *)&D_8008DA88)
@@ -48,11 +45,11 @@ void func_8037DEE4(struct func_8037DEE4_Arg *arg0, s32 arg1) {
     s32 var_v1;
 
     if ((D_801BBC1C == 0xA) || (var_v1 = 0x11, (D_801BBC1C == 0xB))) {
-        var_fv1 = D_8038BC7C;
+        var_fv1 = (-0.9f);
         var_v1 = 0x10;
         var_a0 = 0x1E;
     } else {
-        var_fv1 = D_8038BC80;
+        var_fv1 = (-0.96f);
         var_a0 = 0x20;
     }
     if (var_a0 < arg0->unkB0) {
@@ -64,7 +61,7 @@ void func_8037DEE4(struct func_8037DEE4_Arg *arg0, s32 arg1) {
         arg0->unkB0++;
         return;
     }
-    GG->unk4->unk30->unk0 = (((f32)arg0->unkB0 * (D_8038BC84 * (f32)arg0->unkB0)) / 2) + (f32) (arg0->unkA4 + (arg0->unkB0 * -0xE));
+    GG->unk4->unk30->unk0 = (((f32)arg0->unkB0 * ((1.1f) * (f32)arg0->unkB0)) / 2) + (f32) (arg0->unkA4 + (arg0->unkB0 * -0xE));
     GG->unk4->unk30->unk2 = (((f32)arg0->unkB0 * (var_fv1 * (f32)arg0->unkB0)) / 2) + (f32) arg0->unkA6;
     var_a0 = func_8037D320(arg0, arg0->unk90 ^ 1);
     temp_v1 = GG->unk4->unk30;

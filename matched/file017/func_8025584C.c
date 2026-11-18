@@ -29,8 +29,6 @@ extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 extern u8 D_8025DAB8[];
 extern u8 D_8025DAF4[];
 extern u8 D_8025975C[];
-extern f32 D_8025DC20;
-extern f64 D_8025DC28;
 extern s32 D_8025DE24;
 
 typedef struct func_8025584C_Struct {
@@ -55,13 +53,13 @@ void func_8025584C(func_8025584C_Struct *arg0, func_8025799C_A1 *arg1) {
     func_8025799C((func_8025799C_A0 *)arg0, arg1);
     zero = 0.0f;
     if (sp70 < 0x3C) {
-        func_8011AAF4(D_8025DAB8, 0x4F8, arg0, 0, 2, D_8025DC20, -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, zero, 55.0f, -1, -1);
+        func_8011AAF4(D_8025DAB8, 0x4F8, arg0, 0, 2, (0.8f), -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, zero, 55.0f, -1, -1);
         if ((sp70 % 6) == 0) {
             temp_fv0 = (f32) func_8012C6B4(0x2000);
             sp74 = temp_fv0;
             sp64 = func_8001EAD0((s16) (s32) temp_fv0);
             sp68 = func_8012C6B4(0xB4);
-            func_80380F94((f32) (((f64) sp64 * 5.0) + (f64) arg0->unk98), (f32) (((((f64) (f32) sp68 / 10.0) + (f64) arg0->unk9C) - 9.0) + D_8025DC28), (f32) (((f64) func_8001EB64((s16) (s32) sp74) * 5.0) + (f64) arg0->unkA0), zero, zero, zero, 6);
+            func_80380F94((f32) (((f64) sp64 * 5.0) + (f64) arg0->unk98), (f32) (((((f64) (f32) sp68 / 10.0) + (f64) arg0->unk9C) - 9.0) + (43.0)), (f32) (((f64) func_8001EB64((s16) (s32) sp74) * 5.0) + (f64) arg0->unkA0), zero, zero, zero, 6);
         }
     }
     if (sp70 >= 0x5A) {

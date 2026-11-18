@@ -34,7 +34,6 @@ struct func_8038D784_StructB {
     u32 b0 : 28;
 };
 extern u8 D_801BBBF0[];
-extern f64 D_8038DB88;
 extern void func_8022B3E0();
 extern s32 func_8022AB58(void *, void *, void *);
 
@@ -85,7 +84,7 @@ void func_8038D784(struct func_8038D784_StructA *arg0, s32 arg1) {
     }
     if (*(f32 *)(D_801BBBF0 + 0xB90) > 25.0f) {
         flags = arg0->unk9A;
-        if (flags == 0 && (f64)var_a2->unk0 * D_8038DB88 < (f64)var_a2->unk2) {
+        if (flags == 0 && (f64)var_a2->unk0 * (0.8) < (f64)var_a2->unk2) {
             arg0->unk9A = flags | 0x100;
             func_8038D5C4((void *)arg0, (void *)var_a3, (void *)var_a2);
             return;

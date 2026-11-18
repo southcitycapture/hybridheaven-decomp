@@ -35,10 +35,6 @@ typedef struct {
     u16 unkA2;
     u16 unkA4;
 } func_802067F4_Arg0;
-
-extern f32 D_8021A7E0;
-extern f32 D_8021A7E4;
-
 typedef struct {
     s32 unk0;
     s32 unk4;
@@ -56,9 +52,9 @@ void func_802067F4(func_802067F4_Arg0 *arg0, func_802067F4_Outer **arg1) {
     func_8012C89C(arg0, 0, 0xCF, 7);
     (*arg1)->unk30->unk24 = (*arg1)->unk30->unk24 | 0x100;
     (*arg1)->unk30->unk30 = (s32) D_8017B5A8 | 0x40000000;
-    (*arg1)->unk30->unk1C = D_8021A7E0;
+    (*arg1)->unk30->unk1C = (0.005f);
     (*arg1)->unk30->unk18 = (*arg1)->unk30->unk1C;
-    (*arg1)->unk30->unk20 = D_8021A7E4;
+    (*arg1)->unk30->unk20 = (0.022f);
     (*arg1)->unk30->unk48 = 0xFF;
     (*arg1)->unk30->unk49 = 0;
     (*arg1)->unk30->unk4A = 0;

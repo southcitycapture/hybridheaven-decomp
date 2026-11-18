@@ -11,6 +11,8 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
+from pathlib import Path
 
 from elftools.elf.elffile import ELFFile
 
@@ -119,8 +121,38 @@ def compiler_ranges(src, obj, out, cc):
     raw, symbols, objects = object_data(o_path)
     final, _, _ = object_data(obj)
     masks = assembly_mask(functions, symbols, raw)
-    return {name: c_ranges(raw.get(name, b""), final.get(name, b""), masks[name], objects[name])
-            for name in DATA_SECTIONS}
+    import rodata_layout
+    text = Path(src).read_text()
+    plans = rodata_layout.LAYOUT.findall(text)
+    if not plans:
+        return {name: c_ranges(raw.get(name, b""), final.get(name, b""), masks[name], objects[name])
+                for name in DATA_SECTIONS}
+    # Compare C bytes before layout, while the asm-processor mask is still in
+    # compiler order. Then transport the measured ranges by the very same
+    # map used on the real object. Data placed from an ASM block stays ASM.
+    from srcbuild import ASFLAGS
+    with tempfile.TemporaryDirectory() as td:
+        rebuilt = os.path.join(td, 'prelayout.o')
+        compiler, *flags = cc
+        subprocess.run([sys.executable, 'tools/asm-processor/build.py', '--input-enc', 'utf-8',
+                        '--output-enc', 'euc-jp', compiler, '--', 'mips-linux-gnu-as'] + ASFLAGS +
+                       ['--'] + flags + ['-o', rebuilt, src], check=True, capture_output=True)
+        before, _, _ = object_data(rebuilt)
+        ranges = {name: c_ranges(raw.get(name, b''), before.get(name, b''), masks[name], objects[name])
+                  for name in DATA_SECTIONS}
+        rodata_layout.apply(text, rebuilt)
+        assert object_data(rebuilt)[0] == final, 'readonly layout differs from build; run make'
+    size, spans = json.loads(plans[0])
+    _, offsets = rodata_layout.mapping(before['.rodata'], size, spans)
+    positions = sorted(offsets[i] for a, b in ranges['.rodata'] for i in range(a, b) if i in offsets)
+    placed = []
+    for pos in positions:
+        if placed and placed[-1][1] == pos:
+            placed[-1] = placed[-1][0], pos + 1
+        else:
+            placed.append((pos, pos + 1))
+    ranges['.rodata'] = placed
+    return ranges
 
 
 def data_measures(measures, total, matched):

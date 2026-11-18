@@ -42,9 +42,6 @@ typedef struct func_80119F9C_Outer {
     u8 pad0[0x2C];
     func_80119F9C_Inner *unk2C;
 } func_80119F9C_Outer;
-
-
-extern f64 D_80189E80;
 extern f32 D_8002FC20(f32);
 
 #define ROOT ((func_80119F9C_Outer *) D_801BBBF0.unkE8)
@@ -62,7 +59,7 @@ s32 func_8011A1B8(u8 arg0) {
     } else {
         a = d;
     }
-    if (!((f64)a < D_80189E80)) {
+    if (!((f64)a < (1e-06))) {
         ROOT->unk2C->unk30 = F(0x2BC);
         ROOT->unk2C->unk34 = F(0x2C8);
         ROOT->unk2C->unk38 = F(0x2D4);

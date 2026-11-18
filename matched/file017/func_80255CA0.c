@@ -69,9 +69,6 @@ extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
 extern u8 D_8025DB30[];
-extern f32 D_8025DC30;
-extern f64 D_8025DC38;
-extern f64 D_8025DC40;
 extern s32 D_8025DE24;
 
 typedef struct func_80255CA0_In {
@@ -102,7 +99,7 @@ void func_80255CA0(func_80255B30_A0 *arg0, s32 arg1) {
     (*(func_80255CA0_Node **)arg1)->unk30->unk4 = arg0->unk98;
     (*(func_80255CA0_Node **)arg1)->unk30->unk8 = arg0->unk9C;
     (*(func_80255CA0_Node **)arg1)->unk30->unkC = arg0->unkA0;
-    func_80129FB8((f32) (((f64) (func_8012C6B4(0xC8) - 0x64) / 100.0) + (f64) arg0->unk98), (f32) (((f64) (func_8012C6B4(0xC8) - 0x64) / 100.0) + (f64) arg0->unk9C + 3.0), (f32) (((f64) (func_8012C6B4(0xC8) - 0x64) / 100.0) + (f64) arg0->unkA0), 0.0f, D_8025DC30, 0.0f, 0.0f, 0xFF, 0xFF, 0xFF, 0x80, 0x80, 0x80, 0xA0, -2, (f32) (((f64) func_8012C6B4(0x64) / D_8025DC38) + D_8025DC40), 3, 0);
+    func_80129FB8((f32) (((f64) (func_8012C6B4(0xC8) - 0x64) / 100.0) + (f64) arg0->unk98), (f32) (((f64) (func_8012C6B4(0xC8) - 0x64) / 100.0) + (f64) arg0->unk9C + 3.0), (f32) (((f64) (func_8012C6B4(0xC8) - 0x64) / 100.0) + (f64) arg0->unkA0), 0.0f, (0.4f), 0.0f, 0.0f, 0xFF, 0xFF, 0xFF, 0x80, 0x80, 0x80, 0xA0, -2, (f32) (((f64) func_8012C6B4(0x64) / (1e+03)) + (0.07)), 3, 0);
     arg0->unk98 = arg0->unk98 + arg0->unk40;
     arg0->unk9C = arg0->unk9C + arg0->unk44;
     arg0->unkA0 = arg0->unkA0 + arg0->unk48;

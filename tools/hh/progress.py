@@ -117,3 +117,18 @@ print("data: %s / %s bytes matched (%.3f%%); details: %s/data-audit.json" %
 print("fully linked: %s / %s code bytes (%.3f%%), %s / %s units" %
       (m.get("complete_code", 0), m["total_code"], m.get("complete_code_percent", 0),
        m.get("complete_units", 0), m["total_units"]))
+# layout-assisted (11-18, Fable review of Task 40): C files whose readonly section is placed by an hh-rodata-layout
+# plan (tools/hh/rodata_layout.py; scaffolding for part-asm files, refused once a file is fully C). Counted separately.
+import glob as _g, re as _re
+_plans = [p for p in _g.glob("src/*/*.c") if "/* hh-rodata-layout " in open(p, errors="replace").read()]
+_placed = sum(len(_re.findall(r"^/\* hh-placed-function ", open(p, errors="replace").read(), _re.M)) for p in _plans)
+print("layout-assisted: %d files with a readonly layout plan, %d functions placed through one" % (len(_plans), _placed))
+# literal-extern (11-18, Fable 5.2): functions registered with an extern into their own unit's frozen readonly bytes
+# because their literal form would not place (srcbuild add tags them in queue/literal_extern.jsonl)
+import json as _j, os as _o
+_le = set()
+if _o.path.exists("queue/literal_extern.jsonl"):
+    for _l in open("queue/literal_extern.jsonl"):
+        _r = _j.loads(_l)
+        if _o.path.exists("matched/%s/%s.c" % (_r["segment"], _r["func"])): _le.add((_r["segment"], _r["func"]))
+print("literal-extern: %d functions read own literals through externs (literal form would not place yet)" % len(_le))

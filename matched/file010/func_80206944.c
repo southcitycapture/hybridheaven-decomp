@@ -32,8 +32,6 @@ typedef struct {
 } func_80206944_Arg0;
 
 extern void func_8012CF8C(void *, void *, s32, s32);
-extern f32 D_8021A7E8;
-extern f32 D_8021A7EC;
 extern u8 D_8017B5A8[];
 extern struct func_802070F4_Local D_80164F40;
 
@@ -55,9 +53,9 @@ void func_80206944(func_80206944_Arg0 *arg0, func_80206944_Outer **arg1) {
     func_8012CF8C(arg0, (u8 *) (*arg1)->unk30 + 0x40, 1, 0);
     (*arg1)->unk30->unk24 = (*arg1)->unk30->unk24 | 0x100;
     (*arg1)->unk30->unk30 = (s32) D_8017B5A8 | 0x40000000;
-    (*arg1)->unk30->unk1C = D_8021A7E8;
+    (*arg1)->unk30->unk1C = (0.001f);
     (*arg1)->unk30->unk18 = (*arg1)->unk30->unk1C;
-    (*arg1)->unk30->unk20 = D_8021A7EC;
+    (*arg1)->unk30->unk20 = (0.01f);
     (*arg1)->unk30->unk48 = 0xFF;
     (*arg1)->unk30->unk49 = 0;
     (*arg1)->unk30->unk4A = 0;

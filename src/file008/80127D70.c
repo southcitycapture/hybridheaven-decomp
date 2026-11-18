@@ -91,9 +91,9 @@ void func_80127D70(func_80127D70_StructArg *arg0, func_80127D70_StructC **arg1) 
 
 
 void func_80127E3C(func_80127D70_StructArg *arg0, s32 arg1) {
-    arg0->unk90 = (u32)((f64)arg0->unk90 - D_8018CC28);
+    arg0->unk90 = (u32)((f64)arg0->unk90 - (6.888888888888889));
     func_8012F41C(arg0, 0xFF, 0xFF, 0xFF, arg0->unk90);
-    if ((f64)arg0->unk90 < D_8018CC30) {
+    if ((f64)arg0->unk90 < (6.888888888888889)) {
         func_80005700();
     }
 }
@@ -333,14 +333,40 @@ extern f64 D_8018CC80;
 extern f64 D_8018CC88;
 extern f64 D_8018CC90;
 
+#define func_801283AC_Struct24 func_801283AC_Struct24__func_801283AC_76d510f4
+#define func_801283AC_Struct30 func_801283AC_Struct30__func_801283AC_76d510f4
+#define func_801283AC_StructArg func_801283AC_StructArg__func_801283AC_76d510f4
+
+
+typedef struct func_801283AC_Struct30 {
+    u8 pad0[0x18];
+    f32 unk18;
+    f32 unk1C;
+    u8 pad20[0x2A];
+    u8 unk4A;
+    u8 unk4B;
+} func_801283AC_Struct30;
+typedef struct func_801283AC_Struct24 {
+    u8 pad0[0x30];
+    func_801283AC_Struct30 *unk30;
+} func_801283AC_Struct24;
+typedef struct func_801283AC_StructArg {
+    u8 pad0[0x24];
+    func_801283AC_Struct24 *unk24;
+    u8 pad28[0x68];
+    u8 unk90;
+    u8 pad91;
+    s16 unk92;
+    f32 unk94;
+} func_801283AC_StructArg;
 void func_801283AC(func_801283AC_StructArg *arg0, func_801283AC_Struct24 **arg1) {
     func_801283AC_Struct30 *temp;
     f32 wave;
 
-    arg0->unk90 -= D_8018CC50;
+    arg0->unk90 -= (3.4444444444444446);
     (*arg1)->unk30->unk4B = arg0->unk90;
     if (arg0->unk94 < 1.0f) {
-        arg0->unk94 += D_8018CC58;
+        arg0->unk94 += (0.01);
     }
     temp = arg0->unk24->unk30;
     if (temp->unk4A != 0) {
@@ -350,14 +376,17 @@ void func_801283AC(func_801283AC_StructArg *arg0, func_801283AC_Struct24 **arg1)
     if (arg0->unk92 < 361) {
         arg0->unk92 -= 360;
     }
-    wave = func_8001EAD0((s16) (s32) (arg0->unk92 / D_8018CC60));
-    (*arg1)->unk30->unk18 = arg0->unk94 * (D_8018CC70 + D_8018CC68 * wave);
-    wave = func_8001EB64((s16) (s32) (arg0->unk92 / D_8018CC78));
-    (*arg1)->unk30->unk1C = arg0->unk94 * (D_8018CC88 + D_8018CC80 * wave);
-    if ((f64) (u32) arg0->unk90 < D_8018CC90) {
+    wave = func_8001EAD0((s16) (s32) (arg0->unk92 / (0.0439453125)));
+    (*arg1)->unk30->unk18 = arg0->unk94 * ((0.01) + (0.002) * wave);
+    wave = func_8001EB64((s16) (s32) (arg0->unk92 / (0.0439453125)));
+    (*arg1)->unk30->unk1C = arg0->unk94 * ((0.01) + (0.002) * wave);
+    if ((f64) (u32) arg0->unk90 < (3.4444444444444446)) {
         func_80005700(arg0);
     }
 }
+#undef func_801283AC_Struct24
+#undef func_801283AC_Struct30
+#undef func_801283AC_StructArg
 #undef D_8018CC50
 #undef D_8018CC58
 #undef D_8018CC60
@@ -449,25 +478,50 @@ typedef struct func_80128714_Struct {
     f32 unk94;
 } func_80128714_Struct;
 
+#define func_80128714_Struct func_80128714_Struct__func_80128714
+#define func_80128714_StructE func_80128714_StructE__func_80128714
+#define func_80128714_StructF func_80128714_StructF__func_80128714
+
+typedef struct func_80128714_StructE {
+    u8 pad0[0x18];
+    f32 unk18;
+    f32 unk1C;
+    u8 pad20[0x2B];
+    u8 unk4B;
+} func_80128714_StructE;
+typedef struct func_80128714_StructF {
+    u8 pad0[0x30];
+    func_80128714_StructE *unk30;
+} func_80128714_StructF;
+typedef struct func_80128714_Struct {
+    u8 pad0[0x90];
+    u8 unk90;
+    u8 pad91;
+    s16 unk92;
+    f32 unk94;
+} func_80128714_Struct;
 void func_80128714(func_80128714_Struct *arg0, func_80128714_StructF **arg1) {
     f64 v;
 
-    arg0->unk90 = (u32)((f64)(u32)arg0->unk90 - D_8018CC98);
+    arg0->unk90 = (u32)((f64)(u32)arg0->unk90 - (6.888888888888889));
     (*arg1)->unk30->unk4B = arg0->unk90;
     v = arg0->unk94;
     if (v < 1.0) {
-        arg0->unk94 = v + D_8018CCA0;
+        arg0->unk94 = v + (0.01);
     }
     arg0->unk92 = arg0->unk92 + 5;
     if (arg0->unk92 < 0x169) {
         arg0->unk92 = arg0->unk92 - 0x168;
     }
-    (*arg1)->unk30->unk18 += arg0->unk94 * (D_8018CCB8 + D_8018CCB0 * func_8001EAD0((s16)(s32)(arg0->unk92 / D_8018CCA8)));
-    (*arg1)->unk30->unk1C += arg0->unk94 * (D_8018CCD0 + D_8018CCC8 * func_8001EB64((s16)(s32)(arg0->unk92 / D_8018CCC0)));
-    if ((f64)(u32)arg0->unk90 < D_8018CCD8) {
+    (*arg1)->unk30->unk18 += arg0->unk94 * ((0.03) + (0.01) * func_8001EAD0((s16)(s32)(arg0->unk92 / (0.0439453125))));
+    (*arg1)->unk30->unk1C += arg0->unk94 * ((0.03) + (0.01) * func_8001EB64((s16)(s32)(arg0->unk92 / (0.0439453125))));
+    if ((f64)(u32)arg0->unk90 < (6.888888888888889)) {
         func_80005700(arg0);
     }
 }
+#undef func_80128714_Struct
+#undef func_80128714_StructE
+#undef func_80128714_StructF
 
 
 typedef struct func_8012899C_StructZ {
@@ -546,22 +600,47 @@ typedef struct func_80128A90_StructArg {
     f32 f94;
 } func_80128A90_StructArg;
 
+#define func_80128A90_Struct30 func_80128A90_Struct30__func_80128A90
+#define func_80128A90_StructArg func_80128A90_StructArg__func_80128A90
+#define func_80128A90_StructB func_80128A90_StructB__func_80128A90
+
+typedef struct func_80128A90_Struct30 {
+    u8 pad0[0x18];
+    f32 f18;
+    f32 f1C;
+    u8 pad20[0x2B];
+    u8 b4B;
+} func_80128A90_Struct30;
+typedef struct func_80128A90_StructB {
+    u8 pad0[0x30];
+    func_80128A90_Struct30 *p30;
+} func_80128A90_StructB;
+typedef struct func_80128A90_StructArg {
+    u8 pad0[0x90];
+    u8 b90;
+    u8 pad91;
+    s16 s92;
+    f32 f94;
+} func_80128A90_StructArg;
 void func_80128A90(func_80128A90_StructArg *arg0, func_80128A90_StructB **arg1) {
-    arg0->b90 -= D_8018CCE0;
+    arg0->b90 -= (6.888888888888889);
     (*arg1)->p30->b4B = arg0->b90;
-    if (arg0->f94 < D_8018CCE8) {
-        arg0->f94 = arg0->f94 + D_8018CCF0;
+    if (arg0->f94 < (0.05)) {
+        arg0->f94 = arg0->f94 + (0.001);
     }
     arg0->s92 = arg0->s92 + 0x14;
     if (arg0->s92 < 0x169) {
         arg0->s92 = arg0->s92 - 0x168;
     }
-    (*arg1)->p30->f18 += arg0->f94 * (D_8018CD00 + 0.5 * func_8001EAD0((s16)(arg0->s92 / D_8018CCF8)));
-    (*arg1)->p30->f1C += arg0->f94 * (D_8018CD10 + 0.5 * func_8001EB64((s16)(arg0->s92 / D_8018CD08)));
-    if (arg0->b90 < D_8018CD18) {
+    (*arg1)->p30->f18 += arg0->f94 * ((0.3) + 0.5 * func_8001EAD0((s16)(arg0->s92 / (0.0439453125))));
+    (*arg1)->p30->f1C += arg0->f94 * ((0.3) + 0.5 * func_8001EB64((s16)(arg0->s92 / (0.0439453125))));
+    if (arg0->b90 < (6.888888888888889)) {
         func_80005700(arg0);
     }
 }
+#undef func_80128A90_Struct30
+#undef func_80128A90_StructArg
+#undef func_80128A90_StructB
 
 
 /* unprototyped, compatible with context.h prototype; needed in-file before the later definition */
@@ -648,16 +727,38 @@ typedef struct func_80128E0C_Arg0 {
     func_80128E0C_StructA *unk24;
 } func_80128E0C_Arg0;
 
+#define func_80128E0C_Arg0 func_80128E0C_Arg0__func_80128E0C
+#define func_80128E0C_StructA func_80128E0C_StructA__func_80128E0C
+#define func_80128E0C_StructB func_80128E0C_StructB__func_80128E0C
+typedef struct func_80128E0C_StructB {
+    u8 pad0[0x18];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    u8 pad1[0x4B - 0x24];
+    u8 unk4B;
+} func_80128E0C_StructB;
+
+typedef struct func_80128E0C_StructA {
+    u8 pad0[0x30];
+    func_80128E0C_StructB *unk30;
+} func_80128E0C_StructA;
+
+typedef struct func_80128E0C_Arg0 {
+    u8 pad0[0x24];
+    func_80128E0C_StructA *unk24;
+} func_80128E0C_Arg0;
+
 void func_80128E0C(func_80128E0C_Arg0 *arg0, func_80128E0C_StructA **arg1) {
     s32 var_v1;
     f64 temp_f0;
     func_80128E0C_StructB *temp_a2;
     func_80128E0C_StructB *temp_v0;
 
-    temp_f0 = D_8018CD20;
+    temp_f0 = (0.01);
     temp_v0 = (*arg1)->unk30;
     temp_v0->unk18 = (f32) ((f64) temp_v0->unk18 + temp_f0);
-    (*arg1)->unk30->unk1C = D_8018CD28;
+    (*arg1)->unk30->unk1C = (0.03f);
     temp_v0 = (*arg1)->unk30;
     temp_v0->unk20 = (f32) ((f64) temp_v0->unk20 + temp_f0);
     temp_a2 = arg0->unk24->unk30;
@@ -670,6 +771,9 @@ void func_80128E0C(func_80128E0C_Arg0 *arg0, func_80128E0C_StructA **arg1) {
         func_80005700(arg0);
     }
 }
+#undef func_80128E0C_Arg0
+#undef func_80128E0C_StructA
+#undef func_80128E0C_StructB
 
 #define func_80129040 func_80129040__func_80128EB0
 
@@ -901,23 +1005,22 @@ void func_801293C8(func_801293C8_Arg *arg0, f32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_80127D70[] = {
-    0x52, 0x45, 0x6D, 0x6F, 0x76, 0x65, 0x0A, 0x00, 0x40, 0x1B, 0x8E, 0x38, 0xE3, 0x8E, 0x38, 0xE4,
-    0x40, 0x1B, 0x8E, 0x38, 0xE3, 0x8E, 0x38, 0xE4, 0x40, 0xAF, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3D, 0xCC, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00, 0x40, 0xAF, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x40, 0x0B, 0x8E, 0x38, 0xE3, 0x8E, 0x38, 0xE4, 0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B,
-    0x3F, 0xA6, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x60, 0x62, 0x4D, 0xD2, 0xF1, 0xA9, 0xFC,
-    0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B, 0x3F, 0xA6, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0x60, 0x62, 0x4D, 0xD2, 0xF1, 0xA9, 0xFC, 0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B,
-    0x40, 0x0B, 0x8E, 0x38, 0xE3, 0x8E, 0x38, 0xE4, 0x40, 0x1B, 0x8E, 0x38, 0xE3, 0x8E, 0x38, 0xE4,
-    0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B, 0x3F, 0xA6, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B, 0x3F, 0x9E, 0xB8, 0x51, 0xEB, 0x85, 0x1E, 0xB8,
-    0x3F, 0xA6, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B,
-    0x3F, 0x9E, 0xB8, 0x51, 0xEB, 0x85, 0x1E, 0xB8, 0x40, 0x1B, 0x8E, 0x38, 0xE3, 0x8E, 0x38, 0xE4,
-    0x40, 0x1B, 0x8E, 0x38, 0xE3, 0x8E, 0x38, 0xE4, 0x3F, 0xA9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
-    0x3F, 0x50, 0x62, 0x4D, 0xD2, 0xF1, 0xA9, 0xFC, 0x3F, 0xA6, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xD3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x3F, 0xA6, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xD3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x40, 0x1B, 0x8E, 0x38, 0xE3, 0x8E, 0x38, 0xE4,
-    0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B, 0x3C, 0xF5, 0xC2, 0x8F, 0x00, 0x00, 0x00, 0x00,
-};
 /* hh-owned-pool func_80128EB0 8018CD30 8018CD48 */
+
+
+
+
+
+static const unsigned char rodata_80127D70_8018CC20[] = {
+    0x52, 0x45, 0x6D, 0x6F, 0x76, 0x65, 0x0A, 0x00,
+};
+static const unsigned char rodata_80127D70_8018CC38[] = {
+    0x40, 0xAF, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00,
+    0x40, 0xAF, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+/* hh-placed-function func_80127E3C */
+/* hh-placed-function func_801283AC */
+/* hh-placed-function func_80128714 */
+/* hh-placed-function func_80128A90 */
+/* hh-placed-function func_80128E0C */
+/* hh-rodata-layout [464,[[0,0,8],[8,24,24],[32,8,16],[48,48,416]]] */

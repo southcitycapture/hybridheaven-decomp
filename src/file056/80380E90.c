@@ -172,6 +172,69 @@ extern u8 D_8017B5A8[];
 extern f32 D_80389AC8;
 extern f32 D_80389ACC;
 
+#undef D_80164F40
+#undef D_8017B5A8
+#undef func_80005E44
+#undef func_80006214
+#undef func_8012C89C
+#undef func_803813A8_Struct16
+#define D_80164F40 D_80164F40__func_80381084_fbdd6f74
+#define D_8017B5A8 D_8017B5A8__func_80381084_fbdd6f74
+#define func_80005E44 func_80005E44__func_80381084_fbdd6f74
+#define func_80006214 func_80006214__func_80381084_fbdd6f74
+#define func_8012C89C func_8012C89C__func_80381084_fbdd6f74
+#define func_80381084_StructArg0 func_80381084_StructArg0__func_80381084_fbdd6f74
+#define func_80381084_StructCopy func_80381084_StructCopy__func_80381084_fbdd6f74
+#define func_80381084_StructInner func_80381084_StructInner__func_80381084_fbdd6f74
+#define func_80381084_StructOuter func_80381084_StructOuter__func_80381084_fbdd6f74
+#define func_803813A8_Struct16 func_803813A8_Struct16__func_80381084_fbdd6f74
+struct func_803813A8_Struct16 { s32 a, b, c, d; };
+extern struct func_803813A8_Struct16 D_80164F40;
+
+struct func_80381084_StructArg0 {
+    u8 pad0[0x94];
+    f32 unk94;
+    f32 unk98;
+    f32 unk9C;
+};
+
+struct func_80381084_StructInner {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    u8 pad1[0x2];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    s32 unk24;
+    u8 pad2[0x8];
+    s32 unk30;
+    u8 pad3[0x14];
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+};
+
+struct func_80381084_StructOuter {
+    u8 pad0[0x30];
+    struct func_80381084_StructInner *unk30;
+};
+
+struct func_80381084_StructCopy {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+};
+extern void func_80005E44(void *, void *);
+extern void func_80006214(void *);
+extern void func_8012C89C(void *, s32, s32, s32);
+extern u8 D_8017B5A8[];
 void func_80381084(struct func_80381084_StructArg0 *arg0, struct func_80381084_StructOuter **arg1) {
     register f32 fv;
     struct { s32 a[3]; } sp20;
@@ -181,7 +244,7 @@ void func_80381084(struct func_80381084_StructArg0 *arg0, struct func_80381084_S
     func_80005E44(arg0, &sp20);
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 0xCF, 7);
-    fv = D_80389AC8;
+    fv = (0.002f);
     (*arg1)->unk30->unk24 |= 0x100;
     (*arg1)->unk30->unk30 = (s32) D_8017B5A8 | 0x40000000;
     (*arg1)->unk30->unk4 = arg0->unk94;
@@ -189,7 +252,7 @@ void func_80381084(struct func_80381084_StructArg0 *arg0, struct func_80381084_S
     (*arg1)->unk30->unkC = arg0->unk9C;
     (*arg1)->unk30->unk18 = fv;
     (*arg1)->unk30->unk1C = fv;
-    (*arg1)->unk30->unk20 = D_80389ACC;
+    (*arg1)->unk30->unk20 = (0.0001f);
     (*arg1)->unk30->unk10 = 0x1800;
     (*arg1)->unk30->unk12 = 0;
     (*arg1)->unk30->unk14 = 0;
@@ -198,6 +261,22 @@ void func_80381084(struct func_80381084_StructArg0 *arg0, struct func_80381084_S
     (*arg1)->unk30->unk4A = 0xFF;
     (*arg1)->unk30->unk4B = 0xAC;
 }
+#undef D_80164F40
+#undef D_8017B5A8
+#undef func_80005E44
+#undef func_80006214
+#undef func_8012C89C
+#undef func_80381084_StructArg0
+#undef func_80381084_StructCopy
+#undef func_80381084_StructInner
+#undef func_80381084_StructOuter
+#undef func_803813A8_Struct16
+#define D_80164F40 D_80164F40__func_80381084
+#define D_8017B5A8 D_8017B5A8__func_80381084
+#define func_80005E44 func_80005E44__func_80381084
+#define func_80006214 func_80006214__func_80381084
+#define func_8012C89C func_8012C89C__func_80381084
+#define func_803813A8_Struct16 func_803813A8_Struct16__func_80381084
 #undef D_80164F40
 #undef D_8017B5A8
 #undef D_80389AC8
@@ -2843,6 +2922,52 @@ void func_803877F0(struct func_803877F0_Struct *arg0, s32 arg1)
 
 /* Readonly constants retained after the last ASM donor became C. */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_80380E90[] = {
     0x53, 0x45, 0x54, 0xA1, 0xB8, 0x43, 0x4F, 0x4D, 0x42, 0x4F, 0x31, 0x00, 0x53, 0x45, 0x54, 0xA1,
     0xB8, 0x43, 0x4F, 0x4D, 0x42, 0x4F, 0x32, 0x00, 0x43, 0x55, 0x53, 0x54, 0x4F, 0x4D, 0x20, 0x31,
@@ -2871,8 +2996,9 @@ static const unsigned char rodata_80380E90[] = {
     0xB6, 0xCC, 0x0A, 0x00, 0xBD, 0xE9, 0xB4, 0xFC, 0xB2, 0xBD, 0xBD, 0xAA, 0xCE, 0xBB, 0x0A, 0x00,
     0xB5, 0xF0, 0xC2, 0xE7, 0xB4, 0xC6, 0xBB, 0xEB, 0xA5, 0xED, 0xA5, 0xDC, 0xA5, 0xC3, 0xA5, 0xC8,
     0xA5, 0xB7, 0xA5, 0xE7, 0xA5, 0xC3, 0xA5, 0xC8, 0xBB, 0xFE, 0xCA, 0xFC, 0xBD, 0xD0, 0xCE, 0xD8,
-    0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0x0A, 0x00, 0x3B, 0x03, 0x12, 0x6F, 0x38, 0xD1, 0xB7, 0x17,
+    0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0x0A, 0x00,
 };
+/* hh-owned-pool func_80381084 80389AC8 80389AD0 */
 /* hh-owned-pool func_80381204 80389AD0 80389AD4 */
 /* hh-owned-pool func_803813A8 80389AD8 80389AE8 */
 /* hh-owned-pool func_80381568 80389AE8 80389AEC */

@@ -14,7 +14,6 @@ struct func_801FAAB8_Struct {
 };
 extern f32 func_8001EAD0(s16);
 extern void func_801453CC(void *, s32, s32, s32, s32, s32, s32);
-extern f64 D_80218E10;
 struct func_801FAAB8_StructSub {
     u8 pad[0x1C];
     f32 unk1C;
@@ -31,7 +30,7 @@ void func_801FAAB8(struct func_801FAAB8_Struct *arg0, struct func_801FAAB8_Struc
     if (arg0->unk3C++ < 0x10) {
         func_801453CC(*arg1, 0x100, 0, 3, 1, 3, 5);
     }
-    (*arg1)->unk30->unk1C = (f32) ((f64) (func_8001EAD0(arg0->unk92) + 1.0f) * D_80218E10);
+    (*arg1)->unk30->unk1C = (f32) ((f64) (func_8001EAD0(arg0->unk92) + 1.0f) * (0.01));
     arg0->unk92 = arg0->unk92 + 0x100;
     if (arg0->unk92 >= 0x1001) {
         func_800058DC((s32) arg0, func_801FAB94);

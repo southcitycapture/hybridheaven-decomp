@@ -120,6 +120,22 @@ extern func_801C9C44_Struct D_801CD238;
 extern func_801C9C44_Struct *D_801CFDD4;
 extern f32 D_801CF614;
 
+#undef func_800058DC
+#define D_801CD238 D_801CD238__func_801C9C44_ca48c59f
+#define D_801CFDD4 D_801CFDD4__func_801C9C44_ca48c59f
+#define func_800058DC func_800058DC__func_801C9C44_ca48c59f
+#define func_801C9C44_Struct func_801C9C44_Struct__func_801C9C44_ca48c59f
+#define func_801C9D0C func_801C9D0C__func_801C9C44_ca48c59f
+
+typedef struct func_801C9C44_Struct {
+    void (*fn)(struct func_801C9C44_Struct *, s32);
+    u8 pad[0x28];
+} func_801C9C44_Struct;
+extern void func_800058DC(s32, void (*)(void));
+extern void func_801C9D0C();
+extern func_801C9C44_Struct D_801CD238;
+extern func_801C9C44_Struct *D_801CFDD4;
+
 void func_801C9C44(s32 arg0, s32 arg1)
 {
   s32 var_s0;
@@ -131,11 +147,17 @@ void func_801C9C44(s32 arg0, s32 arg1)
   }
   while (var_s0 != 0x64);
   D_801CFDD0 += 1.0f;
-  if (D_801CF614 <= D_801CFDD0)
+  if ((6.63e+03f) <= D_801CFDD0)
   {
     func_800058DC(arg0, func_801C9D0C);
   }
 }
+#undef D_801CD238
+#undef D_801CFDD4
+#undef func_800058DC
+#undef func_801C9C44_Struct
+#undef func_801C9D0C
+#define func_800058DC func_800058DC__func_801C9C44
 #undef func_800058DC
 
 #define D_801BBF0A D_801BBF0A__func_801C9D0C
@@ -374,6 +396,7 @@ void func_801CA520(s32 arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_801C9910[] = {
     0x00, 0x00, 0x00, 0x00, 0x70, 0x78, 0x20, 0x70, 0x79, 0x20, 0x73, 0x78, 0x20, 0x73, 0x79, 0x20,
     0x73, 0x66, 0x20, 0x77, 0x72, 0x20, 0x77, 0x67, 0x20, 0x77, 0x62, 0x20, 0x77, 0x61, 0x20, 0x66,
@@ -409,5 +432,6 @@ static const unsigned char rodata_801C9910[] = {
     0x79, 0x20, 0x73, 0x66, 0x20, 0x77, 0x61, 0x20, 0x66, 0x61, 0x00, 0x00, 0x70, 0x78, 0x20, 0x70,
     0x79, 0x20, 0x73, 0x78, 0x20, 0x73, 0x79, 0x20, 0x73, 0x66, 0x20, 0x77, 0x72, 0x20, 0x77, 0x67,
     0x20, 0x77, 0x62, 0x20, 0x77, 0x61, 0x20, 0x66, 0x72, 0x20, 0x66, 0x67, 0x20, 0x66, 0x62, 0x20,
-    0x66, 0x61, 0x00, 0x00, 0x45, 0xCF, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x66, 0x61, 0x00, 0x00,
 };
+/* hh-owned-pool func_801C9C44 801CF614 801CF618 */

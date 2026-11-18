@@ -86,10 +86,6 @@ f32 func_8001EB64(s16);
 f32 func_8002FC20(f32);
 extern func_8014BC78_Elem *D_80181E40[];
 extern func_8014BC78_Elem *D_80181F94[];
-extern f32 D_8019026C;
-
-
-
 u16 func_8014BC78(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     u8 pad[0x20];
     f32 best;
@@ -110,7 +106,7 @@ u16 func_8014BC78(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     u16 ret;
 
     ret = 0;
-    best = D_8019026C;
+    best = (1e+05f);
     for (j = 0; j < 48; j++) {
         e = &((func_8014BC78_Entry *)&D_801BEF38)[j];
         k = e->flags;

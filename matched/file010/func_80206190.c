@@ -56,12 +56,6 @@ extern void func_80006214(void *);
 extern void func_8012C89C(void *, s32, s32, s32);
 extern s32 func_8000C3B0(void *);
 extern void func_801FC830(f32, f32, f32, f32, s32);
-extern f32 D_8021A7B4;
-extern f32 D_8021A7B8;
-extern f32 D_8021A7BC;
-extern f32 D_8021A7C0;
-extern f32 D_8021A7C4;
-
 void func_80206190(struct func_80206190_Arg0 *arg0, struct func_80206190_Arg1 *arg1) {
     struct func_80206190_Local sp30;
     f32 t;
@@ -80,7 +74,7 @@ void func_80206190(struct func_80206190_Arg0 *arg0, struct func_80206190_Arg1 *a
     func_8012C89C(arg0, 0, 0xCF, 0);
     arg1->o[0]->unk30->unk24 = 0x13;
     arg1->o[0]->unk30->unk30 = func_8000C3B0(arg1->o[0]);
-    arg1->o[0]->unk30->unk20 = D_8021A7B4;
+    arg1->o[0]->unk30->unk20 = (0.01f);
     t = arg1->o[0]->unk30->unk20;
     arg1->o[0]->unk30->unk1C = t;
     arg1->o[0]->unk30->unk18 = t;
@@ -92,7 +86,7 @@ void func_80206190(struct func_80206190_Arg0 *arg0, struct func_80206190_Arg1 *a
     func_8012C89C(arg0, 1, 0xCF, 1);
     arg1->o[1]->unk30->unk24 = 0x13;
     arg1->o[1]->unk30->unk30 = func_8000C3B0(arg1->o[1]);
-    arg1->o[1]->unk30->unk20 = D_8021A7B8;
+    arg1->o[1]->unk30->unk20 = (0.01f);
     t = arg1->o[1]->unk30->unk20;
     arg1->o[1]->unk30->unk1C = t;
     arg1->o[1]->unk30->unk18 = t;
@@ -102,12 +96,12 @@ void func_80206190(struct func_80206190_Arg0 *arg0, struct func_80206190_Arg1 *a
     arg1->o[1]->unk30->unk4E = D_801BBBF0[0xF34];
     arg1->o[1]->unk30->unk4F = D_801BBBF0[0xF35];
     func_8012C89C(arg0, 2, 0xCF, 5);
-    t = D_8021A7BC;
+    t = (0.01f);
     arg1->o[2]->unk30->unk24 |= 0x100;
     arg1->o[2]->unk30->unk30 = (s32)D_8017B5A8 | 0x40000000;
     arg1->o[2]->unk30->unk18 = t;
     arg1->o[2]->unk30->unk1C = t;
-    arg1->o[2]->unk30->unk20 = D_8021A7C0;
+    arg1->o[2]->unk30->unk20 = (0.015f);
     arg1->o[2]->unk30->unk48 = 0xFF;
     arg1->o[2]->unk30->unk49 = 0x60;
     arg1->o[2]->unk30->unk4A = 0x20;
@@ -119,7 +113,7 @@ void func_80206190(struct func_80206190_Arg0 *arg0, struct func_80206190_Arg1 *a
         func_8012C89C(arg0, 3, 0xE2, 0);
         arg1->o[3]->unk30->unk24 |= 0x400;
         arg1->o[3]->unk30->unk30 = (s32)D_8017AF90 | 0x40000000;
-        arg1->o[3]->unk30->unk20 = D_8021A7C4;
+        arg1->o[3]->unk30->unk20 = (0.01f);
         t = arg1->o[3]->unk30->unk20;
         arg1->o[3]->unk30->unk1C = t;
         arg1->o[3]->unk30->unk18 = t;

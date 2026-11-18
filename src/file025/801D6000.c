@@ -199,11 +199,31 @@ typedef struct func_801D63E0_Struct {
 } func_801D63E0_Struct;
 extern func_801D63E0_Struct D_801DB8AC[];
 
+#undef D_801DB8AC
+#undef D_801E1710
+#undef func_80034C24
+#undef func_801C0B2C
+#define D_801DB8AC D_801DB8AC__func_801D63E0_cc155139
+#define D_801E1710 D_801E1710__func_801D63E0_cc155139
+#define func_80034C24 func_80034C24__func_801D63E0_cc155139
+#define func_801C0B2C func_801C0B2C__func_801D63E0_cc155139
+#define func_801D63E0_Struct func_801D63E0_Struct__func_801D63E0_cc155139
+extern u64 func_801C0B2C(void);
+extern f64 func_80034C24();
+u8 func_801D63E0_bss_prefix[8];
+u64 D_801E1708;
+extern u32 D_801E1710;
+typedef struct func_801D63E0_Struct {
+    f32 time;
+    s32 action;
+} func_801D63E0_Struct;
+extern func_801D63E0_Struct D_801DB8AC[];
+
 void func_801D63E0(void *arg0) {
     u64 elapsed;
     u64 now;
     elapsed = func_801C0B2C() - D_801E1708;
-    if (D_801DB8AC[D_801E1710].time <= func_80034C24(elapsed) / D_801DD5C0) {
+    if (D_801DB8AC[D_801E1710].time <= func_80034C24(elapsed) / (1e+06)) {
         if (D_801DB8AC[D_801E1710].action == 0) goto action0;
         if (D_801DB8AC[D_801E1710].action != 1) goto advance;
         goto action1;
@@ -226,6 +246,15 @@ advance:
         D_801E1710 %= 15U;
     }
 }
+#undef D_801DB8AC
+#undef D_801E1710
+#undef func_80034C24
+#undef func_801C0B2C
+#undef func_801D63E0_Struct
+#define D_801DB8AC D_801DB8AC__func_801D63E0
+#define D_801E1710 D_801E1710__func_801D63E0
+#define func_80034C24 func_80034C24__func_801D63E0
+#define func_801C0B2C func_801C0B2C__func_801D63E0
 #undef D_801DB8AC
 #undef D_801DD5C0
 #undef D_801E1710
@@ -251,11 +280,31 @@ typedef struct func_801D6514_Struct {
 } func_801D6514_Struct;
 extern func_801D6514_Struct D_801DB924[];
 
+#undef D_801DB924
+#undef D_801E1720
+#undef func_80034C24
+#undef func_801C0B2C
+#define D_801DB924 D_801DB924__func_801D6514_ce8f00ae
+#define D_801E1720 D_801E1720__func_801D6514_ce8f00ae
+#define func_80034C24 func_80034C24__func_801D6514_ce8f00ae
+#define func_801C0B2C func_801C0B2C__func_801D6514_ce8f00ae
+#define func_801D6514_Struct func_801D6514_Struct__func_801D6514_ce8f00ae
+u8 func_801D6514_bss_prefix[8];
+extern u64 func_801C0B2C(void);
+extern f64 func_80034C24();
+u64 D_801E1718;
+extern u32 D_801E1720;
+typedef struct func_801D6514_Struct {
+    f32 time;
+    s32 action;
+} func_801D6514_Struct;
+extern func_801D6514_Struct D_801DB924[];
+
 void func_801D6514(void *arg0) {
     u64 elapsed;
     u64 now;
     elapsed = func_801C0B2C() - D_801E1718;
-    if (D_801DB924[D_801E1720].time <= func_80034C24(elapsed) / D_801DD5C8) {
+    if (D_801DB924[D_801E1720].time <= func_80034C24(elapsed) / (1e+06)) {
         if (D_801DB924[D_801E1720].action == 0) goto action0;
         if (D_801DB924[D_801E1720].action != 1) goto advance;
         goto action1;
@@ -279,11 +328,20 @@ advance:
     }
 }
 #undef D_801DB924
+#undef D_801E1720
+#undef func_80034C24
+#undef func_801C0B2C
+#undef func_801D6514_Struct
+#define D_801DB924 D_801DB924__func_801D6514
+#define D_801E1720 D_801E1720__func_801D6514
+#define func_80034C24 func_80034C24__func_801D6514
+#define func_801C0B2C func_801C0B2C__func_801D6514
+#undef D_801DB924
 #undef D_801DD5C8
 #undef D_801E1720
 #undef func_80034C24
 #undef func_801C0B2C
 
 /* Readonly constants retained after the last ASM donor became C. */
-static const f64 D_801DD5C0__rodata[] = {1000000.0};
-static const f64 D_801DD5C8__rodata[] = {1000000.0};
+/* hh-owned-pool func_801D63E0 801DD5C0 801DD5C8 */
+/* hh-owned-pool func_801D6514 801DD5C8 801DD5D0 */

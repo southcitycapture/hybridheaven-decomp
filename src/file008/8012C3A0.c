@@ -240,13 +240,21 @@ typedef struct func_8012C6B4_Struct {
 extern f64 D_8018D530;
 extern u8 D_801BBBF0[];
 
+#define func_8012C6B4_Struct func_8012C6B4_Struct__func_8012C6B4
+
+typedef struct func_8012C6B4_Struct {
+    u8 pad[0x2A];
+    u16 unk2A;
+} func_8012C6B4_Struct;
+
 s32 func_8012C6B4(s32 arg0) {
     f32 result;
 
     ((func_8012C6B4_Struct *)D_801BBBF0)->unk2A = (((func_8012C6B4_Struct *)D_801BBBF0)->unk2A * 0x17 + 0x929) % 4535;
-    result = (f64)(((func_8012C6B4_Struct *)D_801BBBF0)->unk2A * arg0) * D_8018D530;
+    result = (f64)(((func_8012C6B4_Struct *)D_801BBBF0)->unk2A * arg0) * (0.0002204585537918871);
     return (s32)result;
 }
+#undef func_8012C6B4_Struct
 
 
 typedef struct func_8012C71C_Inner {
@@ -695,8 +703,8 @@ void func_8012D064(void *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5)
     }
 }
 
-/* hh-block asm/nonmatchings/file008/8012C3A0/_mrg_keep_tail_ed484eb9045cfc5b.s {"functions":["func_8012D40C"],"rodata":[],"rodata_bytes":[2149111088,5688384,8]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012C3A0/_mrg_keep_tail_ed484eb9045cfc5b.s")
+/* hh-block asm/nonmatchings/file008/8012C3A0/_mrg_keep_text_9d00d441d46f72a8.s {"functions":["func_8012D40C"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file008/8012C3A0/_mrg_keep_text_9d00d441d46f72a8.s")
 
 
 typedef struct func_8012D7A8_Node {
@@ -2422,6 +2430,13 @@ s32 func_801302CC(void) {
 
 /* Readonly constants retained after the last ASM donor became C. */
 
+
+
+
+
+
+
+
 static const unsigned char rodata_8012C3A0[] = {
     0x73, 0x65, 0x74, 0x20, 0x61, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x20, 0x65, 0x72,
     0x72, 0x6F, 0x72, 0x21, 0x21, 0x00, 0x00, 0x00, 0x73, 0x65, 0x74, 0x5F, 0x63, 0x6F, 0x75, 0x6E,
@@ -2510,6 +2525,7 @@ static const unsigned char rodata_8012C3A0[] = {
     0xCD, 0xFD, 0x32, 0x20, 0x79, 0x20, 0x25, 0x66, 0x0A, 0x00, 0x00, 0x00,
 };
 /* hh-owned-pool func_8012C3A0 8018D50C 8018D530 */
+/* hh-owned-pool func_8012C6B4 8018D530 8018D538 */
 /* hh-owned-pool func_8012DA90 8018D538 8018D5A8 */
 /* hh-owned-pool func_8012FBC4 8018D5A8 8018D5C4 */
 /* hh-owned-pool func_8012FD1C 8018D5C4 8018D5E0 */

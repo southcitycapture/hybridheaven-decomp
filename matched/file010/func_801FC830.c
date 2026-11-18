@@ -2,8 +2,6 @@
 
 extern void func_800207D0(u16, u8, u8);
 extern f32 D_8012FFDC(f32, f32, f32, f32, f32, f32);
-extern f64 D_80218F68;
-
 typedef struct func_801FC830_Struct {
     s16 angle;
     u8 pad[6];
@@ -26,7 +24,7 @@ void func_801FC830(f32 arg0, f32 arg1, f32 arg2, f32 arg3, u16 arg4) {
     if (arg3 < 0.0f) {
         arg3 = -arg3;
     }
-    fv1 = (f32)(D_80218F68 / (f64)arg3);
+    fv1 = (f32)((255.0) / (f64)arg3);
     if ((s32)(255.0f - fv1 * fv0) > 0) {
         func_800207D0(arg4, s.vol, (s32)(255.0f - fv1 * fv0));
     }

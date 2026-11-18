@@ -9,7 +9,6 @@ extern void func_800058DC(s32, void (*)(void));
 extern void func_801C9D0C();
 extern func_801C9C44_Struct D_801CD238;
 extern func_801C9C44_Struct *D_801CFDD4;
-extern f32 D_801CF614;
 extern f32 D_801CFDD0;
 
 void func_801C9C44(s32 arg0, s32 arg1)
@@ -23,7 +22,7 @@ void func_801C9C44(s32 arg0, s32 arg1)
   }
   while (var_s0 != 0x64);
   D_801CFDD0 += 1.0f;
-  if (D_801CF614 <= D_801CFDD0)
+  if ((6.63e+03f) <= D_801CFDD0)
   {
     func_800058DC(arg0, func_801C9D0C);
   }

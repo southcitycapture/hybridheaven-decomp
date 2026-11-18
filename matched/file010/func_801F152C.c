@@ -24,7 +24,6 @@ typedef struct func_801F152C_Obj { u8 pad[0x22]; u8 unk22; u8 pad1[9]; func_801F
 typedef struct func_801F152C_Struct { u8 pad[0xE0]; func_801F152C_Obj *unkE0; u8 pad1[0xF4 - 0xE4]; u8 unkF4; u8 pad2[2]; u8 unkF7; } func_801F152C_Struct;
 extern func_801F152C_Tab D_80216C50;
 extern func_801F152C_Tab D_80216C80;
-extern f32 D_802187B0;
 extern void func_801518D4(s32, s32, s32);
 extern void func_801FD97C(f32, f32, f32, f32, f32, f32);
 void func_801F152C(s32);
@@ -50,7 +49,7 @@ u8 arg0;
     k = spA4;
     goto end;
 c0:
-    k = D_802187B0;
+    k = (6.8f);
     spA2 = 0;
     if (1) goto end;
 c1:

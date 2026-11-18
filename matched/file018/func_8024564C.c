@@ -138,8 +138,6 @@ typedef struct func_8024564C_StructMid {
 extern u8 D_8025C6F8;
 extern s8 D_8025C6F9;
 extern u8 D_8025C6FA;
-extern f32 D_8025C594;
-extern f32 D_8025C598;
 extern f32 D_8025C70C;
 extern f32 D_8025C714;
 extern u8 func_80246F24[];
@@ -195,7 +193,7 @@ void func_8024564C(func_80245B90_Struct *arg0, s32 arg1) {
             p = (*(func_8024564C_StructMid **)((u8 *)&D_801BBBF0 + 0xE0))->unk2C;
             dx = D_8025C70C - p->unk4;
             dz = D_8025C714 - p->unkC;
-            if (dx * dx + dz * dz < D_8025C594) {
+            if (dx * dx + dz * dz < (1e+04f)) {
                 sp2C->unk78 = 1;
                 arg0->unk2C &= ~0x80;
                 if (*(u16 *)((u8 *)&D_801BBBF0 + 0x30) & 1) {
@@ -214,7 +212,7 @@ void func_8024564C(func_80245B90_Struct *arg0, s32 arg1) {
             p = (*(func_8024564C_StructMid **)((u8 *)&D_801BBBF0 + 0xE0))->unk2C;
             dx = D_8025C70C - p->unk4;
             dz = D_8025C714 - p->unkC;
-            if (dx * dx + dz * dz < D_8025C598) {
+            if (dx * dx + dz * dz < (2.25e+04f)) {
                 sp2C->unk78 = 1;
                 arg0->unk2C &= ~0x80;
                 func_800058DC(arg0, func_80247C54);

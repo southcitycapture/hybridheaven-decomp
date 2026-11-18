@@ -76,6 +76,52 @@ typedef struct func_80147E34_Struct {
     u8 padEnd[4];
 } func_80147E34_Struct;
 
+#undef D_80171CEC
+#undef D_80181C40
+#undef D_80181CA8
+#undef func_80005700
+#undef func_80005E44
+#undef func_80006214
+#undef func_801170DC
+#undef func_801451C0
+#define D_80171CEC D_80171CEC__func_80147E34_1c9ede79
+#define D_80181C40 D_80181C40__func_80147E34_1c9ede79
+#define D_80181CA8 D_80181CA8__func_80147E34_1c9ede79
+#define func_80005700 func_80005700__func_80147E34_1c9ede79
+#define func_80005E44 func_80005E44__func_80147E34_1c9ede79
+#define func_80006214 func_80006214__func_80147E34_1c9ede79
+#define func_801170DC func_801170DC__func_80147E34_1c9ede79
+#define func_801451C0 func_801451C0__func_80147E34_1c9ede79
+#define func_80147E34_Struct func_80147E34_Struct__func_80147E34_1c9ede79
+extern void func_80005700(s32);
+extern s32 func_80006214();
+extern void func_801451C0(void *, s32);
+extern void *func_80005E44(void *, void *);
+extern void func_801170DC(s32);
+extern u8 D_80171CEC[];
+extern u8 D_80181C40[];
+extern u8 D_80181CA8[];
+typedef struct func_80147E34_Struct {
+    s32 w0;
+    s32 w4;
+    s16 h8;
+    s16 hA;
+    f32 *pC;
+    f32 f10[3];
+    s16 h1C;
+    s16 h1E;
+    s16 h20;
+    u8 pad22[2];
+    s32 w24;
+    u16 h28;
+    u8 pad2A[2];
+    s32 w2C;
+    u16 h30;
+    u8 pad32[14];
+    f32 f40[3];
+    u8 padEnd[4];
+} func_80147E34_Struct;
+
 s32 func_80147E34(void *arg0, u16 arg1, u8 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6)
 {
   func_80147E34_Struct s;
@@ -114,19 +160,19 @@ s32 func_80147E34(void *arg0, u16 arg1, u8 arg2, f32 arg3, f32 arg4, f32 arg5, s
     s.h1C = 0x1100;
     s.h1E = 0;
     s.h20 = 0x198;
-    s.f40[0] = D_8018FB54;
-    s.f40[1] = D_8018FB54;
-    s.f40[2] = D_8018FB54;
+    s.f40[0] = (0.3f);
+    s.f40[1] = (0.3f);
+    s.f40[2] = (0.3f);
   }
   else
     if (((u8) arg6) == 0)
   {
-    s.f40[0] = D_8018FB58;
+    s.f40[0] = (0.06f);
     s.h8 = 0x10;
     s.h1C = 0x1000;
-    s.f40[1] = D_8018FB58;
-    s.f40[2] = D_8018FB58;
-    if (D_8018FB54)
+    s.f40[1] = (0.06f);
+    s.f40[2] = (0.06f);
+    if ((0.3f))
     {
     }
     if (((s8 *) arg0)[0x91] == 1)
@@ -169,6 +215,24 @@ s32 func_80147E34(void *arg0, u16 arg1, u8 arg2, f32 arg3, f32 arg4, f32 arg5, s
   }
   return (s32) res;
 }
+#undef c
+#undef D_80171CEC
+#undef D_80181C40
+#undef D_80181CA8
+#undef func_80005700
+#undef func_80005E44
+#undef func_80006214
+#undef func_801170DC
+#undef func_801451C0
+#undef func_80147E34_Struct
+#define D_80171CEC D_80171CEC__func_80147E34
+#define D_80181C40 D_80181C40__func_80147E34
+#define D_80181CA8 D_80181CA8__func_80147E34
+#define func_80005700 func_80005700__func_80147E34
+#define func_80005E44 func_80005E44__func_80147E34
+#define func_80006214 func_80006214__func_80147E34
+#define func_801170DC func_801170DC__func_80147E34
+#define func_801451C0 func_801451C0__func_80147E34
 #undef c
 #undef D_80171CEC
 #undef D_80181C40
@@ -1828,7 +1892,8 @@ void func_8014ABD0(s32 arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_80147D60[] = {
+
+static const unsigned char rodata_80147D60_8018F9A0[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x49, 0x20, 0x6D, 0x69, 0x73, 0x73, 0x65, 0x64,
     0x20, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x6F, 0x62, 0x6A, 0x21, 0x21, 0x0A, 0x00, 0x00,
     0x25, 0x6D, 0x25, 0x73, 0x00, 0x00, 0x00, 0x00, 0x25, 0x6D, 0x58, 0x00, 0x25, 0x6D, 0x25, 0x64,
@@ -1856,6 +1921,10 @@ static const unsigned char rodata_80147D60[] = {
     0x4F, 0x4E, 0x00, 0x00, 0x45, 0x72, 0x72, 0x6F, 0x72, 0x20, 0x75, 0x6E, 0x6B, 0x6E, 0x6F, 0x77,
     0x6E, 0x20, 0x73, 0x74, 0x61, 0x67, 0x65, 0x5F, 0x6D, 0x6F, 0x64, 0x65, 0x20, 0x21, 0x21, 0x0A,
     0x00, 0x00, 0x00, 0x00, 0x45, 0x58, 0x49, 0x54, 0x20, 0x42, 0x0A, 0x00, 0x45, 0x58, 0x49, 0x54,
-    0x20, 0x43, 0x0A, 0x00, 0x3E, 0x99, 0x99, 0x9A, 0x3D, 0x75, 0xC2, 0x8F, 0x00, 0x00, 0x00, 0x00,
+    0x20, 0x43, 0x0A, 0x00,
+};
+static const unsigned char rodata_80147D60_8018FB60[] = {
     0x3F, 0x9E, 0xB8, 0x51, 0xEB, 0x85, 0x1E, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-placed-function func_80147E34 */
+/* hh-rodata-layout [464,[[0,0,436],[436,448,16],[452,436,12]]] */

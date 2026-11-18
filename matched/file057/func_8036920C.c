@@ -6,7 +6,6 @@ typedef struct func_8036920C_Struct {
     u16 unk20;
     u8 unk22[2];
 } func_8036920C_Struct;
-extern f64 D_8038AD60;
 extern void func_801DB6B8();
 extern s32 func_8000E634(void *);
 extern s32 func_80011590(s32);
@@ -41,7 +40,7 @@ void func_8036920C(s32 arg0, s32 arg1) {
     } else if (a0 == 0x2B) {
         v1 = func_80011590(10) & 0xFFFF;
     } else {
-        v1 = (u32)((f64)(u32)func_8000E634(sp24->unk1C) * D_8038AD60) & 0xFFFF;
+        v1 = (u32)((f64)(u32)func_8000E634(sp24->unk1C) * (0.15)) & 0xFFFF;
     }
     if (v1 < sp24->unk20) {
         func_800112B0(arg1, sp24->unk22);

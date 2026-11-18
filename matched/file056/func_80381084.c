@@ -45,9 +45,6 @@ extern void func_80005E44(void *, void *);
 extern void func_80006214(void *);
 extern void func_8012C89C(void *, s32, s32, s32);
 extern u8 D_8017B5A8[];
-extern f32 D_80389AC8;
-extern f32 D_80389ACC;
-
 void func_80381084(struct func_80381084_StructArg0 *arg0, struct func_80381084_StructOuter **arg1) {
     register f32 fv;
     struct { s32 a[3]; } sp20;
@@ -57,7 +54,7 @@ void func_80381084(struct func_80381084_StructArg0 *arg0, struct func_80381084_S
     func_80005E44(arg0, &sp20);
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 0xCF, 7);
-    fv = D_80389AC8;
+    fv = (0.002f);
     (*arg1)->unk30->unk24 |= 0x100;
     (*arg1)->unk30->unk30 = (s32) D_8017B5A8 | 0x40000000;
     (*arg1)->unk30->unk4 = arg0->unk94;
@@ -65,7 +62,7 @@ void func_80381084(struct func_80381084_StructArg0 *arg0, struct func_80381084_S
     (*arg1)->unk30->unkC = arg0->unk9C;
     (*arg1)->unk30->unk18 = fv;
     (*arg1)->unk30->unk1C = fv;
-    (*arg1)->unk30->unk20 = D_80389ACC;
+    (*arg1)->unk30->unk20 = (0.0001f);
     (*arg1)->unk30->unk10 = 0x1800;
     (*arg1)->unk30->unk12 = 0;
     (*arg1)->unk30->unk14 = 0;

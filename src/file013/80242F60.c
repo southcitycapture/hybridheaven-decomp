@@ -389,11 +389,17 @@ void func_80243578(func_80243A70_Struct *arg0, s32 arg1) {
 
 
 
+#define func_8024373C func_8024373C__func_80243688
+
+
+
+extern void func_8024373C();
+
 void func_80243688(func_80243688_Struct *arg0, s32 arg1) {
     func_80243688_StructE *sp1C;
     f64 sub;
 
-    sub = D_80249B48;
+    sub = (0.01);
     sp1C = arg0->unk5C;
     arg0->unk24->unk2C->unkC = (f32) ((f64) arg0->unk24->unk2C->unkC - sub);
     arg0->unk24->unk2C->unk4 = (f32) ((f64) arg0->unk24->unk2C->unk4 - sub);
@@ -404,6 +410,7 @@ void func_80243688(func_80243688_Struct *arg0, s32 arg1) {
         func_800058DC(arg0, (void *) func_8024373C);
     }
 }
+#undef func_8024373C
 
 
 typedef struct func_8024373C_S {
@@ -415,22 +422,39 @@ typedef struct func_8024373C_S {
     s16 unk9C;
 } func_8024373C_S;
 
+#define func_8012CE9C func_8012CE9C__func_8024373C
+#define func_802431C4 func_802431C4__func_8024373C
+#define func_8024373C_S func_8024373C_S__func_8024373C
+
+typedef struct func_8024373C_S {
+    u8 pad0[0x24];
+    func_80242FD0_StructC *unk24;
+    u8 pad28[0x5C - 0x28];
+    s32 unk5C;
+    u8 pad60[0x9C - 0x60];
+    s16 unk9C;
+} func_8024373C_S;
+extern s32 func_8012CE9C(s32, s32, func_8024373C_V, s32);
+extern void func_802431C4();
 void func_8024373C(func_8024373C_S *arg0, s32 arg1) {
     s32 a5c;
     f32 d;
 
     a5c = arg0->unk5C;
-    d = (f64)((f32)arg0->unk9C - (arg0->unk24->unk2C->unk4 + arg0->unk24->unk2C->unkC)) * D_80249B50;
+    d = (f64)((f32)arg0->unk9C - (arg0->unk24->unk2C->unk4 + arg0->unk24->unk2C->unkC)) * (0.3);
     arg0->unk24->unk2C->unk4 += d;
     arg0->unk24->unk2C->unkC += d;
     if (func_8012CE9C(arg1, a5c, *(func_8024373C_V *)D_80246C64, 3) == 0) {
-        if (!(D_80249B58 < (f64)((d < 0.0f) ? -d : d))) {
+        if (!((0.01) < (f64)((d < 0.0f) ? -d : d))) {
             func_8013A1B4(arg1, *(func_8024373C_V *)D_80246C64, 0x1FFFFF);
             func_80010550(arg1, a5c);
             func_800058DC(arg0, func_802431C4);
         }
     }
 }
+#undef func_8012CE9C
+#undef func_802431C4
+#undef func_8024373C_S
 
 
 typedef struct func_8024388C_StructD {
@@ -469,6 +493,24 @@ typedef struct func_80243930_Struct {
 } func_80243930_Struct;
 extern func_8024373C_V D_80246C94;
 
+#define func_80243930_Struct func_80243930_Struct__func_80243930
+#define func_80243930_StructC func_80243930_StructC__func_80243930
+#define func_80243930_StructV func_80243930_StructV__func_80243930
+#define func_80243A70 func_80243A70__func_80243930
+
+typedef struct func_80243930_StructV { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; } func_80243930_StructV;
+typedef struct func_80243930_StructC { u8 pad0[0x2C]; func_80243930_StructV *unk2C; } func_80243930_StructC;
+typedef struct func_80243930_Struct {
+    u8 pad0[0x24];
+    func_80243930_StructC *unk24;
+    u8 pad28[0x5C - 0x28];
+    func_80243688_StructE *unk5C;
+    u8 pad60[0x92 - 0x60];
+    u8 unk92;
+    u8 pad93;
+    u8 unk94;
+} func_80243930_Struct;
+extern void func_80243A70();
 void func_80243930(func_80243930_Struct *arg0, s32 arg1) {
     func_80243688_StructE *sp2C;
     func_80243930_StructV *v;
@@ -481,18 +523,22 @@ void func_80243930(func_80243930_Struct *arg0, s32 arg1) {
         c = arg0->unk94;
         if ((c % 70) == 0x23) {
             v = arg0->unk24->unk2C;
-            func_80127430(v->unk4, v->unk8, *(s32 *)&v->unkC, 0x65F, D_80249B60, 1.0f);
+            func_80127430(v->unk4, v->unk8, *(s32 *)&v->unkC, 0x65F, (1.2f), 1.0f);
             c = arg0->unk94;
         }
         arg0->unk94 = c - 1;
         if ((func_80242FD0((void *)arg0) != 0) && (func_8012C6B4(0x50) == 0)) {
             arg0->unk92 = func_8012C6B4(0x78) + 0x3C;
             sp2C->unk78 = 1;
-            D_80246CA8 = D_80249B64;
+            D_80246CA8 = (0.66f);
             func_800058DC(arg0, func_80243A70);
         }
     }
 }
+#undef func_80243930_Struct
+#undef func_80243930_StructC
+#undef func_80243930_StructV
+#undef func_80243A70
 
 
 
@@ -599,8 +645,13 @@ void func_80243C6C(func_80243C6C_Struct *arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_80242F60[] = {
-    0x3F, 0x99, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B,
-    0x3F, 0xD3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x3F, 0x84, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B,
-    0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x28, 0xF5, 0xC3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+
+
+static const unsigned char rodata_80242F60_80249B40[] = {
+    0x3F, 0x99, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-placed-function func_80243688 */
+/* hh-placed-function func_8024373C */
+/* hh-placed-function func_80243930 */
+/* hh-rodata-layout [48,[[0,0,48]]] */

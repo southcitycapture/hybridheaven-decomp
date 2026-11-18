@@ -67,9 +67,14 @@ LIB_O := $(patsubst %,$(BUILD)/src/%.o,$(shell $(PYTHON) -c "import json;print('
 $(BUILD)/libultra_syms.ld: $(LIB_O) tools/hh/libultra_syms.py
 	@$(PYTHON) tools/hh/libultra_syms.py
 
+# Rebuild opted-in units when the readonly layout implementation changes.
+RO_LAYOUT_SRC := $(shell grep -l '^/\* hh-rodata-layout ' $(C_SRC) 2>/dev/null)
+$(patsubst src/%.c,$(BUILD)/src/%.o,$(RO_LAYOUT_SRC)): tools/hh/rodata_layout.py
+
 $(BUILD)/src/%.o: src/%.c $(shell find include -name '*.h') | pads
 	@mkdir -p $(dir $@)
 	@$(ASMPROC) $(IDO) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
+	@if grep -q '^/\* hh-rodata-layout ' $<; then $(PYTHON) tools/hh/rodata_layout.py $< $@ || { rm -f $@; exit 1; }; fi
 	$(POSTFIX) $@
 
 $(BUILD)/assets/%.o: assets/%.bin

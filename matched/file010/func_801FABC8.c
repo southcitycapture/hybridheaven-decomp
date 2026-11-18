@@ -3,9 +3,6 @@ extern void func_80005700(s32);
 extern s32 func_801FA624();
 
 extern s32 D_802170B8;
-extern f64 D_80218E18;
-extern f64 D_80218E20;
-
 struct func_801FABC8_Sub {
     u8 pad0[0x1C];
     f32 unk1C;
@@ -22,8 +19,8 @@ void func_801FABC8(s32 arg0, struct func_801FABC8_Obj **arg1) {
 
     temp_v0 = (*arg1)->unk30;
     temp_fv0 = temp_v0->unk1C;
-    temp_fv0 = (f32) ((f64) temp_fv0 * D_80218E18);
-    if ((f64) temp_fv0 < D_80218E20) {
+    temp_fv0 = (f32) ((f64) temp_fv0 * (0.7));
+    if ((f64) temp_fv0 < (0.001)) {
         D_802170B8 = 0;
         func_80005700(arg0);
         func_801FA624(0x12C);

@@ -26,8 +26,6 @@ struct func_8036A5AC_P {
     struct func_8036A5AC_Q *unk2C;
 };
 extern s32 func_8012C6B4(s32);
-extern f64 D_8038B0E0;
-
 typedef struct func_8036A680_Arg { u8 pad[0x5C]; s32 unk5C; } func_8036A680_Arg;
 
 s32 func_8036A680(func_8036A680_Arg *arg0, struct func_8036A5AC_P **arg1, f32 arg2, f32 arg3) {
@@ -59,7 +57,7 @@ s32 func_8036A680(func_8036A680_Arg *arg0, struct func_8036A5AC_P **arg1, f32 ar
         func_8013A28C(arg1, sp4C);
     }
     if (d >= 2.0) {
-        s->unk4 += (f64)((dx / d) * (f32)(func_8012C6B4(5) - 2)) * D_8038B0E0;
+        s->unk4 += (f64)((dx / d) * (f32)(func_8012C6B4(5) - 2)) * (0.1);
         dx = sp68.x - s->unk4;
         d = func_8002FC20(dx * dx + dz * dz);
     }

@@ -14,7 +14,6 @@ typedef struct func_801C0A88_StructArg0 {
     func_801C0A88_StructMid *unk24;
 } func_801C0A88_StructArg0;
 extern s32 func_8012AAE8(void *, f32, f32, f32, f32);
-extern f32 D_801CEAD0;
 extern u8 D_801C0AF8[];
 
 void func_801C0A88(func_801C0A88_StructArg0 *arg0, s32 arg1) {
@@ -22,7 +21,7 @@ void func_801C0A88(func_801C0A88_StructArg0 *arg0, s32 arg1) {
     if ((p->unk12 & 0x1FFF) != 0x1000) {
         p->unk12 -= 0x10;
     }
-    if (func_8012AAE8(arg0, 0.0f, -3.0f, -20.0f, D_801CEAD0) == 0) {
+    if (func_8012AAE8(arg0, 0.0f, -3.0f, -20.0f, (0.14f)) == 0) {
         func_800058DC((s32)arg0, D_801C0AF8);
     }
 }

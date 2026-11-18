@@ -127,9 +127,6 @@ typedef struct func_801EDF0C_Arg2 {
     func_801EDF0C_Sub unk1C;
 } func_801EDF0C_Arg2;
 extern func_801EFD14_Table D_80216BC0;
-extern f64 D_802186B8;
-extern f64 D_802186C0;
-extern f64 D_802186C8;
 extern s32 func_8011B254();
 extern s32 func_8011B260();
 extern s32 func_801C7B18();
@@ -223,7 +220,7 @@ void func_801EDF0C(func_801EDF0C_Arg0 *arg0, s32 arg1, func_801EDF0C_Arg2 *arg2,
         if ((g->unkEF0 & 8) && func_801C5A1C(func_8001EAD0(P->unk12) * 6.0 + P->unk4, P->unk8 + 22.0, func_8001EB64(P->unk12) * 6.0 + P->unkC, func_8001EAD0(P->unk12) * 6.0 + P->unk4, P->unk8 + 16.0, func_8001EB64(P->unk12) * 6.0 + P->unkC) != 0 && (g->unk35A == 8 || g->unk35A == 9 || g->unk35A == 0x11)) {
             kind = g->unk35A;
             sp68 = g->unk384;
-            if (func_801C5A1C(P->unk4, P->unk8 + D_802186B8, P->unkC, func_8001EAD0(P->unk12) * 10.0 + P->unk4, P->unk8 + D_802186B8, func_8001EB64(P->unk12) * 10.0 + P->unkC) == 0 || (g->unk35A != 0x10 && g->unk35A != 0x22)) {
+            if (func_801C5A1C(P->unk4, P->unk8 + (16.5), P->unkC, func_8001EAD0(P->unk12) * 10.0 + P->unk4, P->unk8 + (16.5), func_8001EB64(P->unk12) * 10.0 + P->unkC) == 0 || (g->unk35A != 0x10 && g->unk35A != 0x22)) {
                 if (func_801C5A1C(P->unk4, P->unk8 + 28.0, P->unkC, func_8001EAD0(P->unk12) * 7.0 + P->unk4, P->unk8 + 28.0, func_8001EB64(P->unk12) * 7.0 + P->unkC) == 0) {
                     sub->unk0 = 0x168000D;
                     sub->unk4 = 0;
@@ -237,7 +234,7 @@ void func_801EDF0C(func_801EDF0C_Arg0 *arg0, s32 arg1, func_801EDF0C_Arg2 *arg2,
                     arg0->unk44 = 0.0f;
                     arg0->unk48 = 0.0f;
                     if (kind == 8 || kind == 0x11) {
-                        P->unk8 = sp68 - D_802186C0;
+                        P->unk8 = sp68 - (19.8);
                         g->unkEF0 |= 6;
                         func_801BF1A0(9);
                         D_801E4011 = 0;
@@ -272,7 +269,7 @@ void func_801EDF0C(func_801EDF0C_Arg0 *arg0, s32 arg1, func_801EDF0C_Arg2 *arg2,
             return;
         }
         if (arg0->unk30 & 8) {
-            k = D_802186C8;
+            k = (0.9);
             arg0->unk40 *= k;
             arg0->unk48 *= k;
         }

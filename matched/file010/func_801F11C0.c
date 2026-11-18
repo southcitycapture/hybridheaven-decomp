@@ -23,8 +23,6 @@ typedef struct func_801F11C0_Struct {
 
 #define PP (((func_801F11C0_Struct *)&D_801BBBF0)->unkE0->unk2C)
 extern f32 func_8002FC20(f32);
-extern f64 D_802187A8;
-
 s32 func_801F11C0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s16 arg4) {
     f32 sp34;
     func_801F11C0_Inner *p;
@@ -61,7 +59,7 @@ s32 func_801F11C0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s16 arg4) {
     } else {
         d = e;
     }
-    if (d < 0x51 && sp34 <= D_802187A8) {
+    if (d < 0x51 && sp34 <= (0.05)) {
         p->unk12 = arg4;
         return 1;
     }

@@ -28,8 +28,6 @@ struct func_801FAC3C_A {
 };
 extern s32 func_80126B14(void *, void *, u16, s32);
 extern u8 D_80216F98[];
-extern f32 D_80218E28;
-extern f32 D_80218E2C;
 struct func_801FADFC_Struct;
 void func_801FADFC(struct func_801FADFC_Struct *arg0, s32 arg1);
 
@@ -44,14 +42,14 @@ void func_801FAC3C(struct func_801FAC3C_A *arg0, struct func_801FAC3C_A **arg1) 
         func_80005E44(arg0, &sp20);
         func_80006214(arg0);
         func_8012C89C((s32)arg0, 0, 0x227, 2);
-        k = D_80218E28;
+        k = (0.008f);
         (*arg1)->unk30->unk24 |= 0x300;
         (*arg1)->unk30->unk30 = (u32)D_80216F98 | 0x40000000;
         (*arg1)->unk30->unk4 = ((struct func_801FAC3C_A *)D_802170B0)->unk24->unk30->unk4;
         (*arg1)->unk30->unk8 = ((struct func_801FAC3C_A *)D_802170B0)->unk24->unk30->unk8;
         (*arg1)->unk30->unkC = ((struct func_801FAC3C_A *)D_802170B0)->unk24->unk30->unkC;
         (*arg1)->unk30->unk18 = k;
-        (*arg1)->unk30->unk1C = D_80218E2C;
+        (*arg1)->unk30->unk1C = (0.03f);
         (*arg1)->unk30->unk20 = k;
         (*arg1)->unk30->unk10 = 0;
         (*arg1)->unk30->unk12 = ((struct func_801FAC3C_A *)D_802170B0)->unk24->unk30->unk12;

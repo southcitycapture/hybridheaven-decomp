@@ -79,7 +79,6 @@ extern s32 func_80150584();
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern void func_80244C38();
-extern f32 D_8024AA9C;
 extern void D_80127430(f32, f32, f32, s32, f32, f32);
 
 s32 func_80242890(struct func_80242890_Struct_Obj *arg0) {
@@ -118,7 +117,7 @@ s32 func_80242890(struct func_80242890_Struct_Obj *arg0) {
     fa0 = v0->unk4;
     sp28 = v1->unk4;
     if ((((fv1 - ((fv0 * 20.0f) + ft4)) * (fv1 - (ft4 + (sp3C * 20.0f)))) + ((fa0 - (sp28 + (sp38 * 20.0f))) * (fa0 - (sp28 + (sp34 * 20.0f))))) < 400.0f) {
-        D_80127430(sp28, v1->unk8, ft4, 0x6BD, D_8024AA9C, 1.0f);
+        D_80127430(sp28, v1->unk8, ft4, 0x6BD, (1.2f), 1.0f);
         func_8037BB4C(arg0->unk24->unk2C->unk12, 2.0f, 2.0f, D_8024AB46);
     }
     return 0;

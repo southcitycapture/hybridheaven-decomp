@@ -24,7 +24,7 @@ extern f32 D_801E2E0C;
 extern f32 D_801E2E10;
 
 s32 func_801E1C28(s32 arg0, s32 arg1) {
-    if (func_8038BEF8(0.0f, 4.5f, 78.7f, 113.2f, D_801E2DF0, D_801E2DF4, D_801E2DF8, 30.0f, D_801E2DFC, D_801E2E00, D_801E2E04, D_801E2E08, D_801E2E0C, D_801E2E10) != 0) {
+    if (func_8038BEF8(0.0f, 4.5f, 78.7f, 113.2f, (13.7f), (44.9f), (94.1f), 30.0f, (7.9f), (57.8f), (-22.3f), (15.7f), (37.3f), (-17.6f)) != 0) {
         return 2;
     }
     return 1;
@@ -43,9 +43,10 @@ extern f32 D_801E2E18;
 extern f32 D_801E2E1C;
 extern f32 D_801E2E20;
 
+
 s32 func_801E1CFC(s32 arg0, s32 arg1) {
-    func_8038BD50(D_801E2E14, D_801E2E18, 0xBF19999A);
-    D_8038BD88(D_801E2E1C, D_801E2E20, 0xC228CCCD);
+    func_8038BD50((16.4f), (2.7f), 0xBF19999A);
+    D_8038BD88((0.8f), (11.7f), 0xC228CCCD);
     return 4;
 }
 
@@ -684,9 +685,5 @@ s32 func_801E2A20(s32 arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_801E1BE0[] = {
-    0x41, 0x5B, 0x33, 0x33, 0x42, 0x33, 0x99, 0x9A, 0x42, 0xBC, 0x33, 0x33, 0x40, 0xFC, 0xCC, 0xCD,
-    0x42, 0x67, 0x33, 0x33, 0xC1, 0xB2, 0x66, 0x66, 0x41, 0x7B, 0x33, 0x33, 0x42, 0x15, 0x33, 0x33,
-    0xC1, 0x8C, 0xCC, 0xCD, 0x41, 0x83, 0x33, 0x33, 0x40, 0x2C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD,
-    0x41, 0x3B, 0x33, 0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+/* hh-owned-pool func_801E1C28 801E2DF0 801E2E14 */
+/* hh-owned-pool func_801E1CFC 801E2E14 801E2E24 */

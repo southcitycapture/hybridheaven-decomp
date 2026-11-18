@@ -4,7 +4,6 @@ extern void func_800058DC(void *, void *);
 
 
 void func_80242F80(void *, void *);
-extern f64 D_80249B48;
 extern u8 D_80246C64[];
 extern void func_8024373C();
 
@@ -12,7 +11,7 @@ void func_80243688(func_80243688_Struct *arg0, s32 arg1) {
     func_80243688_StructE *sp1C;
     f64 sub;
 
-    sub = D_80249B48;
+    sub = (0.01);
     sp1C = arg0->unk5C;
     arg0->unk24->unk2C->unkC = (f32) ((f64) arg0->unk24->unk2C->unkC - sub);
     arg0->unk24->unk2C->unk4 = (f32) ((f64) arg0->unk24->unk2C->unk4 - sub);

@@ -72,8 +72,6 @@ extern s32 func_80229260(void *, void *, void *, s32);
 extern void func_802292D0(void *, void *);
 extern u8 D_801BBC8C[];
 extern u8 D_801BBCAC[];
-extern f64 D_8038DB78;
-
 void func_8038CFFC(func_8038CFFC_StructA *arg0, s32 arg1) {
     s32 pad;
     s16 sp32;
@@ -181,7 +179,7 @@ void func_8038CFFC(func_8038CFFC_StructA *arg0, s32 arg1) {
         if (a1->bh == 2) {
             a1->bh = 0;
         }
-        if (G->unkB90 > 25.0f && v1->unk0 * D_8038DB78 < v1->unk2 && a1->unk6 >= 100 && arg0->unk98 != 0) {
+        if (G->unkB90 > 25.0f && v1->unk0 * (0.8) < v1->unk2 && a1->unk6 >= 100 && arg0->unk98 != 0) {
             sp2C->unk4 = 0x8000;
             arg0->unk98--;
         }

@@ -332,7 +332,7 @@ s32 func_801E1BE0(s32 arg0, s32 arg1) {
 
 s32 func_801E1C74(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0x4C4B40) != 0) {
-        func_8038BE98(D_801E88E0);
+        func_8038BE98((67.7f));
         func_8038BED4();
         return 2;
     }
@@ -344,9 +344,9 @@ s32 func_801E1C74(s32 arg0, s32 arg1) {
 
 s32 func_801E1CC8(s32 arg0, s32 arg1) {
     if (func_8038BEF8(0.0f, 4.5f, 537.1f, 41.0f,
-            D_801E88E4, D_801E88E8, D_801E88EC, D_801E88F0,
-            D_801E88F4, -43.5f, D_801E88F8, D_801E88FC,
-            D_801E8900, D_801E8904) != 0) {
+            (528.2999877929688f), (529.0999755859375f), (59.099998474121094f), (502.20001220703125f),
+            (390.29998779296875f), -43.5f, (495.29998779296875f), (395.20001220703125f),
+            (-49.599998474121094f), (496.70001220703125f)) != 0) {
         return 3;
     }
     return 2;
@@ -3385,12 +3385,52 @@ s32 func_801E7EC8(s32 arg0, s32 arg1) {
 
 /* Readonly constants retained after the last ASM donor became C. */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801E1BE0[] = {
     0x42, 0x80, 0xCC, 0xCD, 0x44, 0x0E, 0xC6, 0x66, 0x43, 0xBA, 0x33, 0x33, 0x41, 0x63, 0x33, 0x33,
-    0x42, 0x87, 0x66, 0x66, 0x44, 0x04, 0x13, 0x33, 0x44, 0x04, 0x46, 0x66, 0x42, 0x6C, 0x66, 0x66,
-    0x43, 0xFB, 0x19, 0x9A, 0x43, 0xC3, 0x26, 0x66, 0x43, 0xF7, 0xA6, 0x66, 0x43, 0xC5, 0x99, 0x9A,
-    0xC2, 0x46, 0x66, 0x66, 0x43, 0xF8, 0x59, 0x9A,
 };
+/* hh-owned-pool func_801E1C74 801E88E0 801E88E4 */
+/* hh-owned-pool func_801E1CC8 801E88E4 801E8908 */
 /* hh-owned-pool func_801E1DEC 801E8908 801E8938 */
 /* hh-owned-pool func_801E1F74 801E8938 801E8964 */
 /* hh-owned-pool func_801E2098 801E8964 801E8984 */

@@ -542,6 +542,8 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
     for literals in modes:
         for prefix, sn in ([("context-", contextual)] if contextual != snippet else []) + [("", snippet)]:
             for how, cand in _insert_variants(seg, cfile, lines0, name, sn, loc0, literals):
+                if how.startswith('isolate'):
+                    pool_candidates.append((('named-' if not literals else '') + prefix + how + '-data-only', cand))
                 # A raw readonly tail can outlive its last instruction donor.
                 # Promote it before borrowing another function's budget: a tiny
                 # neighbour may not have enough instructions for the whole tail.
@@ -567,6 +569,12 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
                         if how.startswith('isolate'):
                             pool_candidates.append((tag + '-c-lates', promoted))
     import rodata_owned
+    for how, candidate in pool_candidates:
+        placed = rodata_owned.place_frozen(S, seg, cfile, kept_blocks.data_only(S, candidate), name)
+        if placed is not None:
+            annotated = _annotate(seg, cfile, placed)
+            if annotated is not None:
+                yield 'placed-readonly-' + how, annotated
     for how, candidate in pool_candidates:
         # A final named twin may have no following instruction donor. Give
         # it temporary readonly C storage so the layout planner can compile

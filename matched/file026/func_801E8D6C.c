@@ -35,16 +35,6 @@ typedef struct {
 extern f64 func_80034C24();
 u64 func_801C0B2C();
 s32 func_801C0B8C(u64 time);
-
-extern f64 D_801FC540;
-extern f64 D_801FC548;
-extern f64 D_801FC550;
-extern f64 D_801FC558;
-extern f64 D_801FC560;
-extern f64 D_801FC568;
-extern f64 D_801FC570;
-extern f64 D_801FC578;
-
 s32 func_801E8D6C(s32 arg0, s32 arg1) {
     f64 a;
     f64 b;
@@ -55,14 +45,14 @@ s32 func_801E8D6C(s32 arg0, s32 arg1) {
         return 0x16;
     }
     t = func_801C0B2C();
-    a = (f64)(f32)(func_80034C24(t) / D_801FC540 - D_801FC548) / 2;
-    S.unkE8->unk2C->unk30 = a * D_801FC550 + D_801FC558;
+    a = (f64)(f32)(func_80034C24(t) / (1e+06) - (95.91666674613951)) / 2;
+    S.unkE8->unk2C->unk30 = a * (-4.099999999999994) + (-172.0);
     S.unkE8->unk2C->unk34 = a * 1 + 10;
     z = 1.0 - 1.0;
     b = a * z;
-    S.unkE8->unk2C->unk38 = a * D_801FC560 + D_801FC568;
-    S.unkE8->unk2C->unk3C = b + D_801FC570;
+    S.unkE8->unk2C->unk38 = a * (0.40000000000000036) + (-8.4);
+    S.unkE8->unk2C->unk3C = b + (-196.8);
     S.unkE8->unk2C->unk40 = b + 15.5;
-    S.unkE8->unk2C->unk44 = b + D_801FC578;
+    S.unkE8->unk2C->unk44 = b + (-5.6);
     return 0x15;
 }

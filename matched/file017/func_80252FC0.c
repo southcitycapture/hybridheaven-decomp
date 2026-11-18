@@ -61,10 +61,6 @@ typedef struct func_80252FC0_Struct2 {
 } func_80252FC0_Struct2;
 
 extern u8 func_80253220[];
-extern f64 D_8025D820;
-extern f64 D_8025D828;
-extern f64 D_8025D830;
-
 void func_80252FC0(func_80252FC0_Struct *a0, func_80252FC0_StructArgs *arg1) {
     func_80252FC0_Struct2 sp38;
     s32 sp34;
@@ -77,9 +73,9 @@ void func_80252FC0(func_80252FC0_Struct *a0, func_80252FC0_StructArgs *arg1) {
     sp34 = arg0->unk3C++;
     func_80253A80(arg0, arg1);
     if (sp34 < 0x79) {
-        arg1->unkC->unk30->unk4 = arg1->unkC->unk30->unk4 + D_8025D820;
-        arg1->unkC->unk30->unk8 = arg1->unkC->unk30->unk8 + D_8025D828;
-        arg1->unkC->unk30->unkC = arg1->unkC->unk30->unkC + D_8025D830;
+        arg1->unkC->unk30->unk4 = arg1->unkC->unk30->unk4 + (0.33666666666666667);
+        arg1->unkC->unk30->unk8 = arg1->unkC->unk30->unk8 + (0.24166666666666667);
+        arg1->unkC->unk30->unkC = arg1->unkC->unk30->unkC + (0.5833333333333334);
     }
     if (sp34 >= 0x96) {
         arg0->unk3C = 0;

@@ -68,8 +68,6 @@ struct func_801F83B8_StructObj {
 extern void func_80130AA0(s32, u16, s32, f32 *, f32 *, f32 *);
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern u8 D_802189D0[];
-extern f32 D_80218D08;
-
 void func_801F83B8(struct func_801F83B8_StructObj *arg0, s32 arg1) {
     struct func_801F83B8_StructQ *sp8C;
     f32 a[3];
@@ -80,7 +78,7 @@ void func_801F83B8(struct func_801F83B8_StructObj *arg0, s32 arg1) {
 
     sp8C = arg0->unk5C;
     D_8013A334(a, arg1, sp8C, 6);
-    t = D_80218D08;
+    t = (0.15f);
     pos = POS;
     if (D_801F3C90(arg0, 0.1f, t, pos->unk4, pos->unk8 + 25.0f, pos->unkC, t, a[0], a[1], a[2], t, 50.0f) != 0) {
         sp8C->unk78 = 1;

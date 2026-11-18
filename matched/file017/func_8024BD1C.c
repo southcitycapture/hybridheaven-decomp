@@ -31,10 +31,6 @@ typedef struct func_8024BD1C_Node { u8 pad0[0x22]; u8 unk22; u8 pad23[0xD]; func
 typedef struct func_8024BD1C_A1 { func_8024BD1C_Node *unk0; u8 pad4[8]; func_8024BD1C_Node *unkC; func_8024BD1C_Node *unk10; } func_8024BD1C_A1;
 typedef struct func_8024BD1C_A0 { u8 pad0[0x3C]; u16 unk3C; u8 pad3E[0x5B]; u8 unk99; } func_8024BD1C_A0;
 typedef struct func_8024BD1C_Arg { s16 a; s32 b; f32 c; u8 pad[0x14]; } func_8024BD1C_Arg;
-
-extern f64 D_8025D008;
-extern f64 D_8025D010;
-extern f64 D_8025D018;
 extern u8 D_80258E38[];
 extern void func_8024BF7C();
 
@@ -50,9 +46,9 @@ void func_8024BD1C(func_8024BD1C_A0 *arg0, func_8024BD1C_A1 *arg1) {
     t = arg0->unk3C++;
     func_8024CEA0(arg0, arg1);
     if (t < 0x79) {
-        arg1->unkC->unk30->unk4 = arg1->unkC->unk30->unk4 + D_8025D008;
-        arg1->unkC->unk30->unk8 = arg1->unkC->unk30->unk8 + D_8025D010;
-        arg1->unkC->unk30->unkC = arg1->unkC->unk30->unkC + D_8025D018;
+        arg1->unkC->unk30->unk4 = arg1->unkC->unk30->unk4 + (-0.5833333333333334);
+        arg1->unkC->unk30->unk8 = arg1->unkC->unk30->unk8 + (0.24166666666666667);
+        arg1->unkC->unk30->unkC = arg1->unkC->unk30->unkC + (0.33666666666666667);
     }
     if (t >= 0x96) {
         arg0->unk3C = 0;

@@ -21,17 +21,10 @@ typedef struct func_801C01AC_S0 {
 
 extern f32 func_8001518C(f32);
 extern f32 func_80029280(f32);
-extern f64 D_801CEA90;
-extern f64 D_801CEA98;
-extern f64 D_801CEAA0;
-extern f64 D_801CEAA8;
-extern f64 D_801CEAB0;
-extern f64 D_801CEAB8;
-
 void func_801C01AC(func_801C01AC_S0 *arg0, func_801C01AC_S1 **arg1) {
-    (*arg1)->unk2C->unk4A = (u32)((func_80029280(func_8001518C((f32)((f64)arg0->unk24->unk2C->unk12 * D_801CEA90 * D_801CEA98))) * 40.0f) + 180.0f);
-    (*arg1)->unk2C->unk49 = (u32)((func_80029280(func_8001518C((f32)((f64)arg0->unk24->unk2C->unk10 * D_801CEAA0 * D_801CEAA8 + 120.0))) * 40.0f) + 180.0f);
-    (*arg1)->unk2C->unk48 = (u32)((func_80029280(func_8001518C((f32)((f64)arg0->unk24->unk2C->unk14 * D_801CEAB0 * D_801CEAB8 + 240.0))) * 25.0f) + 50.0f);
+    (*arg1)->unk2C->unk4A = (u32)((func_80029280(func_8001518C((f32)((f64)arg0->unk24->unk2C->unk12 * (0.0439453125) * (0.1)))) * 40.0f) + 180.0f);
+    (*arg1)->unk2C->unk49 = (u32)((func_80029280(func_8001518C((f32)((f64)arg0->unk24->unk2C->unk10 * (0.0439453125) * (0.1) + 120.0))) * 40.0f) + 180.0f);
+    (*arg1)->unk2C->unk48 = (u32)((func_80029280(func_8001518C((f32)((f64)arg0->unk24->unk2C->unk14 * (0.0439453125) * (0.1) + 240.0))) * 25.0f) + 50.0f);
     arg0->unk24->unk2C->unk12 += 2;
     arg0->unk24->unk2C->unk10 += 1;
     arg0->unk24->unk2C->unk14 += 4;

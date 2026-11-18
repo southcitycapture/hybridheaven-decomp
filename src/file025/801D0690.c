@@ -203,11 +203,29 @@ extern f64 D_801DD470;
 u64 D_801E1318;
 extern u32 D_801E1320;
 
+#undef D_801DAFF0
+#undef D_801E1320
+#undef func_80034C24
+#undef func_801C0B2C
+#define D_801DAFF0 D_801DAFF0__func_801D0B64_9cf48e75
+#define D_801E1320 D_801E1320__func_801D0B64_9cf48e75
+#define func_80034C24 func_80034C24__func_801D0B64_9cf48e75
+#define func_801C0B2C func_801C0B2C__func_801D0B64_9cf48e75
+#define func_801D0B64_Struct func_801D0B64_Struct__func_801D0B64_9cf48e75
+u8 func_801D0B64_bss_prefix[8];
+
+struct func_801D0B64_Struct { f32 unk0; s32 unk4; };
+extern u64 func_801C0B2C();
+extern f64 func_80034C24();
+extern struct func_801D0B64_Struct D_801DAFF0[];
+u64 D_801E1318;
+extern u32 D_801E1320;
+
 void func_801D0B64(s32 arg0) {
     u64 diff;
 
     diff = func_801C0B2C() - D_801E1318;
-    if ((f64)D_801DAFF0[D_801E1320].unk0 <= func_80034C24(diff) / D_801DD470) {
+    if ((f64)D_801DAFF0[D_801E1320].unk0 <= func_80034C24(diff) / (1e+06)) {
         if (D_801DAFF0[D_801E1320].unk4 == 0) goto case0;
         if (D_801DAFF0[D_801E1320].unk4 == 1) goto case1;
         if (D_801DAFF0[D_801E1320].unk4 != 2) goto end;
@@ -229,10 +247,19 @@ end:
     }
 }
 #undef D_801DAFF0
+#undef D_801E1320
+#undef func_80034C24
+#undef func_801C0B2C
+#undef func_801D0B64_Struct
+#define D_801DAFF0 D_801DAFF0__func_801D0B64
+#define D_801E1320 D_801E1320__func_801D0B64
+#define func_80034C24 func_80034C24__func_801D0B64
+#define func_801C0B2C func_801C0B2C__func_801D0B64
+#undef D_801DAFF0
 #undef D_801DD470
 #undef D_801E1320
 #undef func_80034C24
 #undef func_801C0B2C
 
 /* Readonly constants retained after the last ASM donor became C. */
-static const f64 D_801DD470__rodata[] = {1000000.0};
+/* hh-owned-pool func_801D0B64 801DD470 801DD478 */

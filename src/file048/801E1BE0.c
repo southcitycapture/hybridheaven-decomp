@@ -20,9 +20,9 @@ s32 func_801E1BE0(s32 arg0, s32 arg1) {
         D_8038C158();
         return 1;
     }
-    func_8038BE98(D_801EA460);
-    func_8038BD50(0.0f, D_801EA464, 125.6f);
-    D_8038BD88(0.0f, D_801EA468, 79.2f);
+    func_8038BE98((33.3f));
+    func_8038BD50(0.0f, (40.2f), 125.6f);
+    D_8038BD88(0.0f, (9.7f), 79.2f);
     return 0;
 }
 
@@ -34,6 +34,7 @@ extern f32 D_801EA474;
 extern f32 D_801EA478;
 extern f32 D_801EA47C;
 
+
 s32 func_801E1C74(s32 arg0, s32 arg1) {
     f32 a;
     f32 b;
@@ -41,11 +42,11 @@ s32 func_801E1C74(s32 arg0, s32 arg1) {
     f32 d;
     f32 e;
 
-    a = D_801EA46C;
-    b = D_801EA470;
-    c = D_801EA474;
-    d = D_801EA478;
-    e = D_801EA47C;
+    a = (125.6f);
+    b = (9.7f);
+    c = (79.2f);
+    d = (33.3f);
+    e = (2.4f);
     if (D_8038C17C(0.0f, e, 0.0f, 0x4220CCCD, a, 0.0f, 9.5f, a, 0.0f, b, c, 0.0f, b, c, d, d) != 0) {
         D_8038C158();
         return 2;
@@ -63,9 +64,9 @@ extern f32 D_801EA498;
 extern f32 D_801EA49C;
 
 s32 func_801E1D24(s32 arg0, s32 arg1) {
-    f32 a = D_801EA480;
-    f32 b = D_801EA484;
-    if (D_8038C17C(0.0f, 2.0f, 0.0f, 0x41180000, D_801EA488, D_801EA48C, D_801EA490, D_801EA494, 0.0f, D_801EA498, a, 1.5f, D_801EA49C, a, b, b) != 0) {
+    f32 a = (79.2f);
+    f32 b = (33.3f);
+    if (D_8038C17C(0.0f, 2.0f, 0.0f, 0x41180000, (125.6f), (1.9f), (17.3f), (97.9f), 0.0f, (9.7f), a, 1.5f, (14.6f), a, b, b) != 0) {
         return 3;
     }
     return 2;
@@ -79,9 +80,9 @@ extern f32 D_801EA4AC;
 
 s32 func_801E1DE0(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0x73F780) != 0) {
-        func_8038BE98(D_801EA4A0);
-        func_8038BD50(-39.0f, D_801EA4A4, -11.0f);
-        D_8038BD88(D_801EA4A8, D_801EA4AC, 64.4f);
+        func_8038BE98((33.3f));
+        func_8038BD50(-39.0f, (44.9f), -11.0f);
+        D_8038BD88((16.1f), (-0.9f), 64.4f);
         return 4;
     }
     return 3;
@@ -4325,6 +4326,34 @@ s32 func_801E97E8(s32 arg0, s32 arg1) {
 
 /* Original readonly objects; named loads retain their original addresses. */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801E1BE0[] = {
     0x40, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x80, 0x1E, 0x8E, 0x3C, 0x80, 0x1E, 0x8E, 0x80,
     0x80, 0x1E, 0x8F, 0x58, 0x80, 0x1E, 0x8F, 0x68, 0x80, 0x1E, 0x8F, 0x98, 0x80, 0x1E, 0x90, 0xF8,
@@ -4383,12 +4412,11 @@ static const unsigned char rodata_801E1BE0[] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07,
-    0x42, 0x05, 0x33, 0x33, 0x42, 0x20, 0xCC, 0xCD, 0x41, 0x1B, 0x33, 0x33, 0x42, 0xFB, 0x33, 0x33,
-    0x41, 0x1B, 0x33, 0x33, 0x42, 0x9E, 0x66, 0x66, 0x42, 0x05, 0x33, 0x33, 0x40, 0x19, 0x99, 0x9A,
-    0x42, 0x9E, 0x66, 0x66, 0x42, 0x05, 0x33, 0x33, 0x42, 0xFB, 0x33, 0x33, 0x3F, 0xF3, 0x33, 0x33,
-    0x41, 0x8A, 0x66, 0x66, 0x42, 0xC3, 0xCC, 0xCD, 0x41, 0x1B, 0x33, 0x33, 0x41, 0x69, 0x99, 0x9A,
-    0x42, 0x05, 0x33, 0x33, 0x42, 0x33, 0x99, 0x9A, 0x41, 0x80, 0xCC, 0xCD, 0xBF, 0x66, 0x66, 0x66,
 };
+/* hh-owned-pool func_801E1BE0 801EA460 801EA46C */
+/* hh-owned-pool func_801E1C74 801EA46C 801EA480 */
+/* hh-owned-pool func_801E1D24 801EA480 801EA4A0 */
+/* hh-owned-pool func_801E1DE0 801EA4A0 801EA4B0 */
 /* hh-owned-pool func_801E1EAC 801EA4B0 801EA4C4 */
 /* hh-owned-pool func_801E1F5C 801EA4C4 801EA4D0 */
 /* hh-owned-pool func_801E1FD4 801EA4D0 801EA4DC */

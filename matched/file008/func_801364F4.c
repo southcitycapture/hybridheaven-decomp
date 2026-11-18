@@ -6,8 +6,6 @@ extern func_801362DC_StructBBBF0 D_801BBBF0;
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern void func_801268F4(s32);
-extern f32 D_8018DB6C;
-
 typedef struct func_801364F4_StructPos {
     u8 pad[4];
     f32 x;
@@ -55,7 +53,7 @@ void func_801364F4(func_801364F4_Struct *arg0, s32 arg1)
     ((func_801364F4_StructGlobal *) (&D_801BBBF0))->z = (func_8001EB64(arg0->link->pos->angle) * 10.0) + arg0->link->pos->z;
     ((func_801364F4_StructGlobal *) (&D_801BBBF0))->x2 = (func_8001EAD0(arg0->link->pos->angle) * (-8.0)) + arg0->link->pos->x;
     ((func_801364F4_StructGlobal *) (&D_801BBBF0))->z2 = (func_8001EB64(arg0->link->pos->angle) * (-8.0)) + arg0->link->pos->z;
-    ((func_801364F4_StructGlobal *) (&D_801BBBF0))->value = D_8018DB6C;
+    ((func_801364F4_StructGlobal *) (&D_801BBBF0))->value = (0.3f);
     ((func_801364F4_StructGlobal *) (&D_801BBBF0))->flags = 0x0168003E;
     ((func_801364F4_StructGlobal *) (&D_801BBBF0))->zero = 0;
     ((func_801364F4_StructGlobal *) (&D_801BBBF0))->mode = 0x1100;

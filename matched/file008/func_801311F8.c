@@ -6,8 +6,6 @@ extern void func_801315A8(void *, f32, f32, f32, f32, f32, f32, f32, f32, f32, f
 extern void func_8013173C(void *, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void func_801318D8(void *, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, void *, f32, f32);
 extern void func_80131B24(void *, void *, void *, u16, s32, s32);
-extern f64 D_8018D6B8;
-
 typedef struct { u16 a, b, c; } func_801311F8_StructA;
 typedef struct { f32 x, y, z; } func_801311F8_StructB;
 
@@ -40,7 +38,7 @@ void func_801311F8(func_801311F8_StructA *arg0, func_801311F8_StructB *arg1, u16
     } else {
         fv1 = fs2;
     }
-    if ((f64) fv1 < D_8018D6B8) {
+    if ((f64) fv1 < (1e-06)) {
         if (arg1->z > 0.0f) {
             spA4 = spB0 * spAC;
             fs0 = spB0 * spA8;

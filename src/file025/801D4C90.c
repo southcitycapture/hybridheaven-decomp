@@ -280,13 +280,33 @@ struct func_801D52B8_Struct {
 };
 extern struct func_801D52B8_Struct D_801DB690[];
 
+#undef D_801DB690
+#undef D_801E1678
+#undef func_80034C24
+#undef func_801C0B2C
+#define D_801DB690 D_801DB690__func_801D52B8_8e266d7a
+#define D_801E1678 D_801E1678__func_801D52B8_8e266d7a
+#define func_80034C24 func_80034C24__func_801D52B8_8e266d7a
+#define func_801C0B2C func_801C0B2C__func_801D52B8_8e266d7a
+#define func_801D52B8_Struct func_801D52B8_Struct__func_801D52B8_8e266d7a
+extern f64 func_80034C24();
+extern u64 func_801C0B2C();
+u64 D_801E1670;
+extern u32 D_801E1678;
+
+struct func_801D52B8_Struct {
+    f32 unk0;
+    s32 unk4;
+};
+extern struct func_801D52B8_Struct D_801DB690[];
+
 void func_801D52B8(void *arg0) {
     u64 d;
     u32 n;
     s32 t;
 
     d = func_801C0B2C() - D_801E1670;
-    if (D_801DB690[D_801E1678].unk0 <= func_80034C24(d) / D_801DD590) {
+    if (D_801DB690[D_801E1678].unk0 <= func_80034C24(d) / (1e+06)) {
         t = D_801DB690[D_801E1678].unk4;
         if (t == 0) goto c0;
         if (t == 1) goto c1;
@@ -309,10 +329,19 @@ void func_801D52B8(void *arg0) {
     }
 }
 #undef D_801DB690
+#undef D_801E1678
+#undef func_80034C24
+#undef func_801C0B2C
+#undef func_801D52B8_Struct
+#define D_801DB690 D_801DB690__func_801D52B8
+#define D_801E1678 D_801E1678__func_801D52B8
+#define func_80034C24 func_80034C24__func_801D52B8
+#define func_801C0B2C func_801C0B2C__func_801D52B8
+#undef D_801DB690
 #undef D_801DD590
 #undef D_801E1678
 #undef func_80034C24
 #undef func_801C0B2C
 
 /* Readonly constants retained after the last ASM donor became C. */
-static const f64 D_801DD590__rodata[] = {1000000.0};
+/* hh-owned-pool func_801D52B8 801DD590 801DD598 */

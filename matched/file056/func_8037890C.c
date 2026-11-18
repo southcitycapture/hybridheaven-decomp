@@ -61,7 +61,6 @@ extern u8 D_8038947C[];
 extern u8 D_80389484[];
 extern u8 D_803894A0[];
 extern u8 D_803894C8[];
-extern f32 D_803894FC;
 extern u8 func_80378CD8[];
 
 void func_8037890C(s32 arg0, s32 arg1) {
@@ -97,7 +96,7 @@ void func_8037890C(s32 arg0, s32 arg1) {
             }
             ((func_8037890C_StructA *)D_8038A900)->unk30->unk4 = sp58;
             ((func_8037890C_StructA *)D_8038A900)->unk30->unk8 = sp54;
-            ((func_8037890C_StructA *)D_8038A900)->unk30->unk20 = D_803894FC;
+            ((func_8037890C_StructA *)D_8038A900)->unk30->unk20 = (0.01313f);
             ((func_8037890C_StructA *)D_8038A900)->unk30->unk18 = ((func_8037890C_StructA *)D_8038A900)->unk30->unk1C = ((func_8037890C_StructA *)D_8038A900)->unk30->unk20;
             if (func_8013D520(sp67, 1, 0) != 0) {
                 D_8001B204(0xF, 0x7D0, 0xB0, D_80389454, 4, 0);

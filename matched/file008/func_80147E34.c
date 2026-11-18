@@ -5,9 +5,6 @@ extern void func_801170DC(s32);
 extern u8 D_80171CEC[];
 extern u8 D_80181C40[];
 extern u8 D_80181CA8[];
-extern f32 D_8018FB54;
-extern f32 D_8018FB58;
-
 typedef struct func_80147E34_Struct {
     s32 w0;
     s32 w4;
@@ -67,19 +64,19 @@ s32 func_80147E34(void *arg0, u16 arg1, u8 arg2, f32 arg3, f32 arg4, f32 arg5, s
     s.h1C = 0x1100;
     s.h1E = 0;
     s.h20 = 0x198;
-    s.f40[0] = D_8018FB54;
-    s.f40[1] = D_8018FB54;
-    s.f40[2] = D_8018FB54;
+    s.f40[0] = (0.3f);
+    s.f40[1] = (0.3f);
+    s.f40[2] = (0.3f);
   }
   else
     if (((u8) arg6) == 0)
   {
-    s.f40[0] = D_8018FB58;
+    s.f40[0] = (0.06f);
     s.h8 = 0x10;
     s.h1C = 0x1000;
-    s.f40[1] = D_8018FB58;
-    s.f40[2] = D_8018FB58;
-    if (D_8018FB54)
+    s.f40[1] = (0.06f);
+    s.f40[2] = (0.06f);
+    if ((0.3f))
     {
     }
     if (((s8 *) arg0)[0x91] == 1)

@@ -180,13 +180,16 @@ s32 func_801E1BF0(s32 arg0, s32 arg1) {
 s32 func_8038BEF8(f32 a0, f32 a1, s32 a2, s32 a3, f32 a4, f32 a5, f32 a6, f32 a7, f32 a8, f32 a9, f32 a10, f32 a11, f32 a12, f32 a13);
 
 
+#define func_8038BED4 func_8038BED4__func_801E1C38
+extern s32 func_8038BED4();
 s32 func_801E1C38(s32 arg0, s32 arg1) {
-    if (func_8038BEF8(0.0f, 6.0f, 0xC1380000, 0x42D0999A, D_801EB83C, D_801EB840, D_801EB844, D_801EB848, D_801EB84C, 48.0f, D_801EB850, 0.5f, D_801EB854, D_801EB858) != 0) {
+    if (func_8038BEF8(0.0f, 6.0f, 0xC1380000, 0x42D0999A, (-64.6f), (-6.4f), (40.9f), (-106.9f), (-3.7f), 48.0f, (-8.8f), 0.5f, (14.8f), (-37.8f)) != 0) {
         func_8038BED4();
         return 2;
     }
     return 1;
 }
+#undef func_8038BED4
 
 
 
@@ -195,10 +198,10 @@ s32 func_801E1D08(s32 arg0, s32 arg1) {
     f32 v1;
     f32 v2;
 
-    v0 = D_801EB85C;
-    v1 = D_801EB860;
-    v2 = D_801EB864;
-    if (func_8038BEF8(0.0f, 3.0f, 0x41BE6666, 0x3F666666, D_801EB868, D_801EB86C, 1.5f, D_801EB870, v0, v1, v2, v0, v1, v2) != 0) {
+    v0 = (-3.3f);
+    v1 = (9.4f);
+    v2 = (-42.4f);
+    if (func_8038BEF8(0.0f, 3.0f, 0x41BE6666, 0x3F666666, (-14.4f), (12.6f), 1.5f, (-6.7f), v0, v1, v2, v0, v1, v2) != 0) {
         return 3;
     }
     return 2;
@@ -248,9 +251,10 @@ s32 func_801E1E38(s32 arg0, s32 arg1) {
 
 
 
+
 s32 func_801E1E8C(s32 arg0, s32 arg1) {
-    func_8038BD50(D_801EB874, D_801EB878, 0xC1C80000);
-    D_8038BD88(D_801EB87C, D_801EB880, 0xC232CCCD);
+    func_8038BD50((12.7f), (27.8f), 0xC1C80000);
+    D_8038BD88((-2.6f), (11.1f), 0xC232CCCD);
     return 9;
 }
 
@@ -284,8 +288,8 @@ s32 func_801E1F38(s32 arg0, s32 arg1) {
 
 
 s32 func_801E1F8C(s32 arg0, s32 arg1) {
-    func_8038BD50(D_801EB884, D_801EB888, 0xC28BCCCD);
-    D_8038BD88(-3.5f, D_801EB88C, 0xC224CCCD);
+    func_8038BD50((-13.9f), (37.4f), 0xC28BCCCD);
+    D_8038BD88(-3.5f, (13.7f), 0xC224CCCD);
     return 0xC;
 }
 
@@ -321,8 +325,8 @@ s32 func_801E203C(s32 arg0, s32 arg1) {
 
 
 s32 func_801E2090(s32 arg0, s32 arg1) {
-    func_8038BD50(10.5f, D_801EB890, 0xC1D80000);
-    D_8038BD88(D_801EB894, D_801EB898, 0xC22ACCCD);
+    func_8038BD50(10.5f, (1.8f), 0xC1D80000);
+    D_8038BD88((0.2f), (13.2f), 0xC22ACCCD);
     return 0xF;
 }
 
@@ -351,8 +355,8 @@ s32 func_801E213C(s32 arg0, s32 arg1) {
 
 
 s32 func_801E2190(s32 arg0, s32 arg1) {
-    func_8038BD50(D_801EB89C, D_801EB8A0, 0xC1D66666);
-    D_8038BD88(D_801EB8A4, D_801EB8A8, 0xC2273333);
+    func_8038BD50((-7.2f), (-3.1f), 0xC1D66666);
+    D_8038BD88((-8.6f), (12.9f), 0xC2273333);
     return 0x12;
 }
 
@@ -4997,16 +5001,33 @@ s32 func_801E9630(s32 arg0, s32 arg1) {
 
 /* Original readonly objects; named loads retain their original addresses. */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801E1BF0[] = {
-    0x20, 0x66, 0x61, 0x6C, 0x73, 0x65, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x81, 0x33, 0x33,
-    0xC0, 0xCC, 0xCC, 0xCD, 0x42, 0x23, 0x99, 0x9A, 0xC2, 0xD5, 0xCC, 0xCD, 0xC0, 0x6C, 0xCC, 0xCD,
-    0xC1, 0x0C, 0xCC, 0xCD, 0x41, 0x6C, 0xCC, 0xCD, 0xC2, 0x17, 0x33, 0x33, 0xC0, 0x53, 0x33, 0x33,
-    0x41, 0x16, 0x66, 0x66, 0xC2, 0x29, 0x99, 0x9A, 0xC1, 0x66, 0x66, 0x66, 0x41, 0x49, 0x99, 0x9A,
-    0xC0, 0xD6, 0x66, 0x66, 0x41, 0x4B, 0x33, 0x33, 0x41, 0xDE, 0x66, 0x66, 0xC0, 0x26, 0x66, 0x66,
-    0x41, 0x31, 0x99, 0x9A, 0xC1, 0x5E, 0x66, 0x66, 0x42, 0x15, 0x99, 0x9A, 0x41, 0x5B, 0x33, 0x33,
-    0x3F, 0xE6, 0x66, 0x66, 0x3E, 0x4C, 0xCC, 0xCD, 0x41, 0x53, 0x33, 0x33, 0xC0, 0xE6, 0x66, 0x66,
-    0xC0, 0x46, 0x66, 0x66, 0xC1, 0x09, 0x99, 0x9A, 0x41, 0x4E, 0x66, 0x66,
+    0x20, 0x66, 0x61, 0x6C, 0x73, 0x65, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-owned-pool func_801E1C38 801EB83C 801EB85C */
+/* hh-owned-pool func_801E1D08 801EB85C 801EB874 */
+/* hh-owned-pool func_801E1E8C 801EB874 801EB884 */
+/* hh-owned-pool func_801E1F8C 801EB884 801EB890 */
+/* hh-owned-pool func_801E2090 801EB890 801EB89C */
+/* hh-owned-pool func_801E2190 801EB89C 801EB8AC */
 /* hh-owned-pool func_801E22BC 801EB8AC 801EB8C4 */
 /* hh-owned-pool func_801E24C4 801EB8C4 801EB8D4 */
 /* hh-owned-pool func_801E25C8 801EB8D4 801EB8E0 */

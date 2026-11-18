@@ -77,8 +77,6 @@ extern func_80239048_Copy D_80164F40;
 extern u8 D_8023E408[];
 extern u8 D_8023E468[];
 extern u8 D_8023E4D0[];
-extern f32 D_802405A8;
-extern f32 D_802405AC;
 extern void func_80005E44(void *, void *);
 extern void func_8012C89C(void *, s32, s32, s32);
 extern s32 func_801302CC(void);
@@ -98,8 +96,8 @@ void func_80239048(func_80239048_Self *arg0, s32 *volatile arg1) {
     sp74 = D_80164F40;
     func_80147218(arg0);
     func_80002364(0x0F000000, 8, 2, G1030 ^ 1);
-    k05 = D_802405A8;
-    k1 = D_802405AC;
+    k05 = (0.05f);
+    k1 = (0.1f);
     for (i = 0; i < 8; ) {
         func_80005E44(arg0, &sp74);
         func_80006214(arg0);

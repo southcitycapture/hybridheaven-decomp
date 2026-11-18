@@ -8,8 +8,6 @@ extern void func_8012636C(void *, s32);
 extern void func_8012C784(void *, s32, s32);
 extern u8 D_80164F30[];
 extern u8 D_8017BA00[];
-extern f32 D_801CEAC0;
-
 typedef struct func_801C0500_Cam {
     u8 pad[0x4];
     f32 unk4;
@@ -50,7 +48,7 @@ void func_801C0500(void *arg0, void **arg1) {
     func_80005E44(arg0, D_80164F30);
     func_80006214(arg0);
     func_8012636C(arg0, 0);
-    temp_f0 = D_801CEAC0;
+    temp_f0 = (0.01f);
     ((func_801C0500_Holder *) *arg1)->unk2C->unk18 = temp_f0;
     ((func_801C0500_Holder *) *arg1)->unk2C->unk1C = temp_f0;
     ((func_801C0500_Holder *) *arg1)->unk2C->unk20 = temp_f0;

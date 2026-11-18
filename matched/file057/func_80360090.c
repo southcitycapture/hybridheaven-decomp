@@ -37,13 +37,6 @@ typedef struct func_80360090_StructArg {
 } func_80360090_StructArg;
 extern u8 func_8035FF38();
 extern u8 D_803863B0[];
-extern f64 D_8038A690;
-extern f64 D_8038A698;
-extern f64 D_8038A6A0;
-extern f64 D_8038A6A8;
-extern f64 D_8038A6B0;
-extern f64 D_8038A6B8;
-
 s32 func_80360090(void *arg0, u8 arg1) {
     func_80360090_StructB *b;
     func_80360090_StructA *a;
@@ -64,13 +57,13 @@ s32 func_80360090(void *arg0, u8 arg1) {
     t = ((func_80360090_StructC *)arg0)->unk1;
     idx = t & 3;
     if (idx == 4) {
-        v0 = a->unk64 / D_8038A690;
+        v0 = a->unk64 / (10.659357);
     } else if (idx == 0) {
-        v0 = a->unk5C / D_8038A698;
+        v0 = a->unk5C / (6.744093);
     } else if (idx == 1) {
-        v0 = a->unk58 / D_8038A6A0;
+        v0 = a->unk58 / (6.769922);
     } else {
-        v0 = (a->unk60 * 100.0f) / D_8038A6A8;
+        v0 = (a->unk60 * 100.0f) / (1266.3279);
     }
     if (b->mode == 3) {
         arg1 = func_8035FF38(arg1, a, t, b);
@@ -78,12 +71,12 @@ s32 func_80360090(void *arg0, u8 arg1) {
         t = ((func_80360090_StructC *)arg0)->unk1;
     }
     idx = t & 0xFF;
-    v1 = (((func_80360090_StructC *)arg0)->unkC * v0) * D_8038A6B0;
+    v1 = (((func_80360090_StructC *)arg0)->unkC * v0) * (0.8);
     if (arg1 == 0x23) {
         idx = 3;
     }
     if (arg1 == 0x24) {
-        v1 = ((func_80360090_StructC *)arg0)->unkC * D_8038A6B8;
+        v1 = ((func_80360090_StructC *)arg0)->unkC * (0.9);
     }
     if (((f64)((func_80360090_StructD *)&sp28)[idx].a[2] + (f64)v1 * 1.25) < (f64)*(f32 *)(D_801BC3D8 + 0x3A8)) {
         return 0;

@@ -1,8 +1,5 @@
 #include "common.h"
 extern void func_800058DC(s32, void *);
-
-
-extern f32 D_801CEACC;
 extern s32 func_8012AAE8(void *, f32, f32, f32, f32);
 void func_801C09E4();
 
@@ -45,7 +42,7 @@ void func_801C08D4(void *arg0, void **arg1) {
     ((func_801C08D4_Mid *) (*arg1))->unk2C->unk4F = 0;
     ((func_801C08D4_Arg0 *) arg0)->unk90 =
         (f32) ((f64) ((func_801C08D4_Arg0 *) arg0)->unk90 + 0.5);
-    if (func_8012AAE8(arg0, 0.0f, 3.0f, -20.0f, D_801CEACC) == 0) {
+    if (func_8012AAE8(arg0, 0.0f, 3.0f, -20.0f, (0.14f)) == 0) {
         func_800058DC((s32) arg0, (void *) func_801C09E4);
     }
 }

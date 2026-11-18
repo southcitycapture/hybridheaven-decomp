@@ -299,7 +299,7 @@ void func_801CE5A8(s32 arg0) {
     D_801DAC7C = func_801C354C(arg0) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CDE80/D_801DD400.s")
+
 
 
 #define D_801DAC90 D_801DAC90__func_801CE5D8
@@ -315,11 +315,27 @@ extern f64 D_801DD430;
 u64 D_801E11E0[1];
 extern u32 D_801E11E8;
 
+#undef D_801DAC90
+#undef D_801E11E8
+#undef func_80034C24
+#undef func_801C0B2C
+#define D_801DAC90 D_801DAC90__func_801CE5D8_1aa8ff29
+#define D_801E11E8 D_801E11E8__func_801CE5D8_1aa8ff29
+#define func_80034C24 func_80034C24__func_801CE5D8_1aa8ff29
+#define func_801C0B2C func_801C0B2C__func_801CE5D8_1aa8ff29
+#define func_801CE5D8_Struct func_801CE5D8_Struct__func_801CE5D8_1aa8ff29
+extern u64 func_801C0B2C();
+extern f64 func_80034C24();
+struct func_801CE5D8_Struct { f32 unk0; s32 unk4; };
+extern struct func_801CE5D8_Struct D_801DAC90[];
+u64 D_801E11E0[1];
+extern u32 D_801E11E8;
+
 void func_801CE5D8(void *arg0) {
     u64 d;
 
     d = func_801C0B2C() - D_801E11E0[0];
-    if ((f64)D_801DAC90[D_801E11E8].unk0 <= func_80034C24(d) / D_801DD430) {
+    if ((f64)D_801DAC90[D_801E11E8].unk0 <= func_80034C24(d) / (1e+06)) {
         if (D_801DAC90[D_801E11E8].unk4 == 0) goto c0;
         if (D_801DAC90[D_801E11E8].unk4 != 1) goto end;
         goto c1;
@@ -345,10 +361,25 @@ void func_801CE5D8(void *arg0) {
     }
 }
 #undef D_801DAC90
+#undef D_801E11E8
+#undef func_80034C24
+#undef func_801C0B2C
+#undef func_801CE5D8_Struct
+#define D_801DAC90 D_801DAC90__func_801CE5D8
+#define D_801E11E8 D_801E11E8__func_801CE5D8
+#define func_80034C24 func_80034C24__func_801CE5D8
+#define func_801C0B2C func_801C0B2C__func_801CE5D8
+#undef D_801DAC90
 #undef D_801DD430
 #undef D_801E11E8
 #undef func_80034C24
 #undef func_801C0B2C
 
 /* Readonly constants retained after the last ASM donor became C. */
-static const f64 D_801DD430__rodata[] = {1000000.0};
+
+static const unsigned char rodata_801CDE80[] = {
+    0x53, 0x50, 0x52, 0x49, 0x54, 0x45, 0x20, 0x68, 0x65, 0x61, 0x70, 0x53, 0x70, 0x72, 0x3D, 0x20,
+    0x25, 0x64, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x46, 0x52, 0x45, 0x45, 0x20, 0x53, 0x50, 0x52,
+    0x49, 0x54, 0x45, 0x20, 0x44, 0x4F, 0x42, 0x4A, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+/* hh-owned-pool func_801CE5D8 801DD430 801DD438 */

@@ -1,7 +1,4 @@
 #include "context.h"
-
-extern f32 D_8018DB70;
-
 typedef struct func_801369B8_Inner {
     u8 pad0[0x4];
     f32 unk4;
@@ -55,7 +52,7 @@ void func_801369B8(func_801369B8_Struct *arg0, s32 arg1) {
         B->unk1A0 = func_8001EB64(arg0->unk24->unk30->unk12) * 20.0f + arg0->unk24->unk30->unkC;
         B->unkF14 = arg0->unk24->unk30->unk4;
         B->unkF18 = arg0->unk24->unk30->unkC;
-        B->unkF04 = D_8018DB70;
+        B->unkF04 = (0.3f);
         B->unkF08 = 1.0f;
         B->unkF10 = 0x0168003E;
         B->unkF0C = 0;

@@ -8,7 +8,6 @@ extern void func_8025799C();
 
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern u8 D_8025DA7C[];
-extern f32 D_8025DC1C;
 extern u8 func_8025584C[];
 
 typedef struct func_802556EC_Struct {
@@ -23,7 +22,7 @@ void func_802556EC(func_802556EC_Ctx *arg0, func_802556EC_Args *arg1) {
     func_802556EC_Struct sp;
 
     func_8025799C();
-    func_8011AAF4(D_8025DA7C, 0x4D8, arg0, 0, 2, D_8025DC1C, -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, 0.0f, 55.0f, -1, -1);
+    func_8011AAF4(D_8025DA7C, 0x4D8, arg0, 0, 2, (0.8f), -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, 0.0f, 55.0f, -1, -1);
     if (func_801C3044() == 0) {
         sp.a = 0x1100;
         sp.b = 0x04100026;

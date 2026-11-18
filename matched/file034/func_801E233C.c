@@ -1,23 +1,13 @@
 #include "context.h"
 
 extern s32 func_8038BEF8(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
-extern f32 D_801E944C;
-extern f32 D_801E9450;
-extern f32 D_801E9454;
-extern f32 D_801E9458;
-extern f32 D_801E945C;
-extern f32 D_801E9460;
-extern f32 D_801E9464;
-extern f32 D_801E9468;
-extern f32 D_801E946C;
-
 s32 func_801E233C(s32 arg0, s32 arg1) {
     f32 fa;
     f32 fb;
 
-    fa = D_801E944C;
-    fb = D_801E9450;
-    if (func_8038BEF8(0.0f, 1.5f, -65.8f, fa, D_801E9454, D_801E9458, fa, D_801E945C, D_801E9460, fb, D_801E9464, D_801E9468, fb, D_801E946C) != 0) {
+    fa = (-457.5f);
+    fb = (-459.2f);
+    if (func_8038BEF8(0.0f, 1.5f, -65.8f, fa, (281.4f), (-71.2f), fa, (283.5f), (-50.8f), fb, (295.2f), (-54.3f), fb, (298.5f)) != 0) {
         return 0x17;
     }
     return 0x16;

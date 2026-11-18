@@ -21,17 +21,6 @@ typedef struct func_80245B04_StructG {
 
 extern u16 D_801BCAE0;
 extern char D_8025272C[];
-extern f32 D_80252870;
-extern f32 D_80252874;
-extern f32 D_80252878;
-extern f32 D_8025287C;
-extern f32 D_80252880;
-extern f32 D_80252884;
-extern f32 D_80252888;
-extern f32 D_8025288C;
-extern f32 D_80252890;
-extern f32 D_80252894;
-extern f32 D_80252898;
 extern u8 D_801BCB10;
 extern u8 D_801BCB11;
 extern u8 D_801BCB12;
@@ -206,36 +195,36 @@ void func_80245B04(s32 arg0, func_8024569C_StructNode **arg1) {
                     sp6A = 0x800;
                 }
                 if (D_802528E6 >= 0x33F) {
-                    sp7C = func_80242A68(D_80252870, D_802528E6, 3.0f, sp6A);
-                    fv1 = func_80242A68(D_80252874, D_802528E6, 3.0f, sp6A);
+                    sp7C = func_80242A68((-534.0f), D_802528E6, 3.0f, sp6A);
+                    fv1 = func_80242A68((-6.3e+02f), D_802528E6, 3.0f, sp6A);
                     sp80 = -78.0f;
-                    sp78 = D_80252878;
+                    sp78 = (267.0f);
                     sp74 = -24.0f;
                     sp6C = 262.0f;
                 } else if (D_802528E6 >= 0x1F5) {
-                    sp7C = func_80242A68(D_8025287C, D_802528E6, 3.0f, sp6A);
-                    fv1 = func_80242A68(D_80252880, D_802528E6, 3.0f, sp6A);
-                    sp80 = D_80252884;
+                    sp7C = func_80242A68((-686.0f), D_802528E6, 3.0f, sp6A);
+                    fv1 = func_80242A68((-766.0f), D_802528E6, 3.0f, sp6A);
+                    sp80 = (-437.0f);
                     sp78 = 320.0f;
                     sp74 = -160.0f;
                     sp6C = -124.0f;
                 } else {
-                    sp80 = D_80252888;
+                    sp80 = (-287.0f);
                     sp78 = -106.0f;
                     sp74 = -141.0f;
                     sp6C = -196.0f;
                     if (D_802528E6 >= 0x12D) {
                         sp7C = func_80242A68(-736.0f, D_802528E6, 3.0f, sp6A);
-                        fv1 = func_80242A68(D_8025288C, D_802528E6, 3.0f, sp6A);
+                        fv1 = func_80242A68((-758.0f), D_802528E6, 3.0f, sp6A);
                     } else if (D_802528E6 >= 0x97) {
                         sp7C = func_80242A68(-736.0f, D_802528E6, 2.0f, sp6A);
-                        fv1 = func_80242A68(D_80252890, D_802528E6, 2.0f, sp6A);
+                        fv1 = func_80242A68((-758.0f), D_802528E6, 2.0f, sp6A);
                     } else if (D_802528E6 >= 0x5B) {
                         sp7C = func_80242A68(-736.0f, D_802528E6, (D_802528E6 - 0x5A) / 60.0, sp6A);
-                        fv1 = func_80242A68(D_80252894, D_802528E6, (D_802528E6 - 0x5A) / 60.0, sp6A);
+                        fv1 = func_80242A68((-758.0f), D_802528E6, (D_802528E6 - 0x5A) / 60.0, sp6A);
                     } else {
                         sp7C = -736.0f;
-                        fv1 = D_80252898;
+                        fv1 = (-758.0f);
                     }
                 }
                 func_8011AAF4(D_8025272C, 0x243, arg0, 0, 1, 10.0f, sp80, sp7C, sp78, 10.0f, sp74, fv1, sp6C, 0.0f, 35.0f, -1, -1);

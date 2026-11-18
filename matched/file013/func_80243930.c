@@ -18,9 +18,6 @@ extern void func_80127430(f32, f32, s32, s32, f32, f32);
 extern void func_80243A70();
 extern func_8024373C_V D_80246C94;
 extern f32 D_80246CA8;
-extern f32 D_80249B60;
-extern f32 D_80249B64;
-
 void func_80243930(func_80243930_Struct *arg0, s32 arg1) {
     func_80243688_StructE *sp2C;
     func_80243930_StructV *v;
@@ -33,14 +30,14 @@ void func_80243930(func_80243930_Struct *arg0, s32 arg1) {
         c = arg0->unk94;
         if ((c % 70) == 0x23) {
             v = arg0->unk24->unk2C;
-            func_80127430(v->unk4, v->unk8, *(s32 *)&v->unkC, 0x65F, D_80249B60, 1.0f);
+            func_80127430(v->unk4, v->unk8, *(s32 *)&v->unkC, 0x65F, (1.2f), 1.0f);
             c = arg0->unk94;
         }
         arg0->unk94 = c - 1;
         if ((func_80242FD0((void *)arg0) != 0) && (func_8012C6B4(0x50) == 0)) {
             arg0->unk92 = func_8012C6B4(0x78) + 0x3C;
             sp2C->unk78 = 1;
-            D_80246CA8 = D_80249B64;
+            D_80246CA8 = (0.66f);
             func_800058DC(arg0, func_80243A70);
         }
     }

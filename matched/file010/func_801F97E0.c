@@ -65,10 +65,6 @@ typedef struct func_801F97E0_Sub {
 
 extern s32 B_8012CE9C(s32, s32, func_801F4AA0_Struct, s32);
 extern s32 B_801F3C90(void *, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
-
-extern f32 D_80218D2C;
-extern f32 D_80218D30;
-
 void func_801F97E0(func_801F97E0_Obj *arg0, s32 arg1, s32 arg2, s32 arg3, f32 k) {
     func_801F97E0_Sub *temp_s0;
     f32 sp50[3];
@@ -83,12 +79,12 @@ void func_801F97E0(func_801F97E0_Obj *arg0, s32 arg1, s32 arg2, s32 arg3, f32 k)
     func_8013A334(sp50, arg1, temp_s0, 6);
     func_801F467C(arg0->unk24->unk2C->unk12, &sp44);
     func_80147768((f32 *)&sp44, 22.0f);
-    k = D_80218D2C;
+    k = (0.15f);
     sp43 = B_801F3C90(arg0, 0x3C23D70A, k,
                       arg0->unk24->unk2C->unk4 + sp44.unk0 + VEC->unk0,
                       arg0->unk24->unk2C->unk8 + 5.0f + sp44.unk4 + VEC->unk4,
                       arg0->unk24->unk2C->unkC + sp44.unk8 + VEC->unk8,
-                      D_80218D30, sp50[0], sp50[1], sp50[2], k, 35.0f);
+                      (0.2f), sp50[0], sp50[1], sp50[2], k, 35.0f);
     if (B_8012CE9C(arg1, (s32)temp_s0, D_80216EE8, 0x14) == 0) {
         func_801FA2E0();
         if ((func_80010550(arg1, temp_s0) != 0) && (sp43 == 1)) {

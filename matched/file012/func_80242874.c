@@ -42,7 +42,6 @@ extern u8 D_801BCC21;
 extern u8 D_801BBBF0[];
 extern u8 D_801BC03C[];
 extern u8 D_80242874[];
-extern f64 D_802491E0;
 extern u8 func_8022B3E0[];
 extern s32 func_8022AB58(void *, void *);
 extern s32 func_8012C6B4(s32);
@@ -85,7 +84,7 @@ u8 arg1;
         func_800058DC((s32)arg0, func_8022B3E0);
         return;
     }
-    if ((f64)((struct func_80242874_StructInfo *)a1)->unk2 <= (f64)((struct func_80242874_StructInfo *)a1)->unk0 * D_802491E0 && !(arg0->unk9A & 0x20) && arg0->unkA0 != 0) {
+    if ((f64)((struct func_80242874_StructInfo *)a1)->unk2 <= (f64)((struct func_80242874_StructInfo *)a1)->unk0 * (0.3) && !(arg0->unk9A & 0x20) && arg0->unkA0 != 0) {
         func_800058DC((s32)arg0, (void *)func_80242364);
         return;
     }

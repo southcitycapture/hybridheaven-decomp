@@ -20,10 +20,8 @@ typedef struct func_80242D7C_StructC {
 } func_80242D7C_StructC;
 
 extern func_80242D7C_StructC D_801BBBF0;
-extern f32 D_80249B30;
-
 void func_80242D7C(void) {
-    D_801BBBF0.unkE0->unk2C->unk4 = D_80249B30;
+    D_801BBBF0.unkE0->unk2C->unk4 = (537.0f);
     D_801BBBF0.unkE0->unk2C->unkC = -328.0f;
     D_801BBBF0.unkB9A = 0;
 }

@@ -15070,8 +15070,97 @@ s32 func_801FB8F0(s32 arg0, s32 arg1) {
     return 3;
 }
 
-/* hh-block asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_043b91e580d4e32e.s {"functions":["func_801FB994"],"rodata":[],"rodata_bytes":[2149616944,7500784,144]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_mrg_keep_tail_043b91e580d4e32e.s")
+/* hh-block asm/nonmatchings/file028/801E1C00/_ro_regular_4d9300c64e139cb7.s {"functions":[],"rodata":[],"rodata_bytes":[2149617056,7500896,32],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file028/801E1C00/_ro_regular_4d9300c64e139cb7.s")
+
+#define D_8020790C D_8020790C__func_801FB994
+#define D_80207910 D_80207910__func_801FB994
+#define D_80208E34 D_80208E34__func_801FB994
+#define D_80208E35 D_80208E35__func_801FB994
+#define D_80208E36 D_80208E36__func_801FB994
+#define D_80208E37 D_80208E37__func_801FB994
+#define D_80208E38 D_80208E38__func_801FB994
+#define D_80208E39 D_80208E39__func_801FB994
+
+
+extern s32 D_8020790C;
+extern s32 D_80207910;
+extern s8 D_80208E34;
+extern s8 D_80208E35;
+extern s8 D_80208E36;
+extern u8 D_80208E37;
+extern u8 D_80208E38;
+extern u8 D_80208E39;
+
+s32 func_801FB994(s32 arg0, s32 arg1)
+{
+    if (func_801C0B8C(10800000)) {
+        D_80208E34 = 4;
+        D_80208E35 = 4;
+        D_80208E36 = 4;
+        D_8020790C = 1;
+        D_80208E37 = 124;
+        D_80208E38 = 124;
+        D_80208E39 = 124;
+        D_80207910 = 0;
+        return 5;
+    }
+    switch ((u32)D_80207908) {
+    case 0:
+        func_801CCE88(0, 255, 0, 0);
+        func_801CCE88(1, 229, 76, 0);
+        break;
+    case 3:
+        func_801CCE88(0, 255, 0, 0);
+        func_801CCE88(1, 229, 76, 0);
+        break;
+    case 6:
+        func_801CCE88(0, 0, 0, 0);
+        func_801CCE88(1, 229, 76, 0);
+        break;
+    case 9:
+        func_801CCE88(0, 255, 0, 0);
+        func_801CCE88(1, 0, 0, 0);
+        break;
+    case 12:
+        func_801CCE88(0, 255, 0, 0);
+        func_801CCE88(1, 229, 76, 0);
+        break;
+    case 15:
+        func_801CCE88(0, 0, 0, 0);
+        func_801CCE88(1, 229, 76, 0);
+        break;
+    case 18:
+        func_801CCE88(0, 255, 0, 0);
+        func_801CCE88(1, 229, 76, 0);
+        break;
+    case 21:
+        func_801CCE88(0, 0, 0, 0);
+        func_801CCE88(1, 229, 76, 0);
+        break;
+    case 24:
+        func_801CCE88(0, 255, 0, 0);
+        func_801CCE88(1, 0, 0, 0);
+        break;
+    case 27:
+        func_801CCE88(0, 0, 0, 0);
+        func_801CCE88(1, 229, 76, 0);
+        break;
+    default:
+        break;
+    }
+    D_80207908++;
+    D_80207908 = (u32)D_80207908 % 30U;
+    return 4;
+}
+#undef D_8020790C
+#undef D_80207910
+#undef D_80208E34
+#undef D_80208E35
+#undef D_80208E36
+#undef D_80208E37
+#undef D_80208E38
+#undef D_80208E39
 
 
 extern s32 D_8020790C;
@@ -18021,9 +18110,6 @@ s32 func_80201130(s32 arg0, s32 arg1) {
 
 
 
-static const unsigned char rodata_801E1C00[] = {
-    0x70, 0x61, 0x73, 0x73, 0x65, 0x64, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00,
-};
 /* hh-owned-pool func_801E1C34 8020874C 8020876C */
 /* hh-owned-pool func_801E1D08 8020876C 80208778 */
 /* hh-owned-pool func_801E1DC0 80208778 80208794 */
@@ -18128,3 +18214,9 @@ static const unsigned char rodata_801E1C00[] = {
 /* hh-owned-pool func_80200298 80208DF0 80208DF4 */
 /* hh-owned-pool func_802003A0 80208DF4 80208E00 */
 /* hh-owned-pool func_802005CC 80208E00 80208E04 */
+
+static const unsigned char rodata_801E1C00_80208740[] = {
+    0x70, 0x61, 0x73, 0x73, 0x65, 0x64, 0x2E, 0x0A, 0x00, 0x00, 0x00, 0x00,
+};
+/* hh-placed-function func_801FB994 */
+/* hh-rodata-layout [1744,[[0,1632,32],[32,0,1632],[1664,1664,80]]] */
