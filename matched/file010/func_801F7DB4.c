@@ -1,11 +1,11 @@
 #include "common.h"
+
 f32 func_8001EB64(s16);
 extern void (*D_80216D10[])(void *, s32);
 extern void func_80147AA8(s32, s32, s32, s32);
 extern void func_80147AF0(s32, s32, s32, s32);
 extern void func_80147C28(s32, s32, s32, s32);
 extern s32 func_801FA2E0();
-
 
 typedef struct {
     u8 pad0[0x3C];
@@ -24,7 +24,7 @@ void func_801F7DB4(func_801F7DB4_Struct *arg0, s32 arg1) {
     u8 sp2E;
     u8 sp2D;
     u8 sp2C;
-    u8 sp2B;
+    s8 sp2B;
     s32 deg;
     f32 f;
 
@@ -52,11 +52,8 @@ void func_801F7DB4(func_801F7DB4_Struct *arg0, s32 arg1) {
     if (*(s16 *) ((u8 *) arg0 + 0x9A) < -0x6E) {
         arg0->unk9A = -0x6E;
     }
-    if (0) {
-        func_801FA2E0(&sp2B);
-    }
     func_80147AA8(0, sp2F, sp2E, sp2D);
-    func_80147AF0(0, sp2C, sp2B, 0);
+    func_80147AF0(0, sp2C, *(u8 *) &sp2B, 0);
     func_80147C28(0, ((s8 *) &arg0->unk9A)[1], -0x64, -0x43);
     if (arg0->unk98 >= -0x7FF) {
         func_801FA2E0();

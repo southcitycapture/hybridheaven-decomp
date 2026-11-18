@@ -2927,12 +2927,30 @@ typedef struct {
     s16 unk9A;
 } func_801F7DB4_Struct;
 
+#undef func_801FA2E0
+#define func_801F7DB4_Struct func_801F7DB4_Struct__func_801F7DB4_08f7f92e
+#define func_801FA2E0 func_801FA2E0__func_801F7DB4_08f7f92e
+
+extern s32 func_801FA2E0();
+
+typedef struct {
+    u8 pad0[0x3C];
+    s16 unk3C;
+    u8 pad3E[0x90 - 0x3E];
+    s16 unk90;
+    s16 unk92;
+    s16 unk94;
+    s16 unk96;
+    s16 unk98;
+    s16 unk9A;
+} func_801F7DB4_Struct;
+
 void func_801F7DB4(func_801F7DB4_Struct *arg0, s32 arg1) {
     u8 sp2F;
     u8 sp2E;
     u8 sp2D;
     u8 sp2C;
-    u8 sp2B;
+    s8 sp2B;
     s32 deg;
     f32 f;
 
@@ -2960,17 +2978,17 @@ void func_801F7DB4(func_801F7DB4_Struct *arg0, s32 arg1) {
     if (*(s16 *) ((u8 *) arg0 + 0x9A) < -0x6E) {
         arg0->unk9A = -0x6E;
     }
-    if (0) {
-        func_801FA2E0(&sp2B);
-    }
     func_80147AA8(0, sp2F, sp2E, sp2D);
-    func_80147AF0(0, sp2C, sp2B, 0);
+    func_80147AF0(0, sp2C, *(u8 *) &sp2B, 0);
     func_80147C28(0, ((s8 *) &arg0->unk9A)[1], -0x64, -0x43);
     if (arg0->unk98 >= -0x7FF) {
         func_801FA2E0();
         arg0->unk3C = 2;
     }
 }
+#undef func_801F7DB4_Struct
+#undef func_801FA2E0
+#define func_801FA2E0 func_801FA2E0__func_801F7DB4
 #undef func_801FA2E0
 
 #define D_8021AFE4 D_8021AFE4__func_801F82D4

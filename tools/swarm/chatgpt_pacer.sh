@@ -34,7 +34,9 @@ while :; do
     log "done: meter $used% (drain end or max reached); Terra lanes stopped"; exit 0
   fi
   if [ $now -ge $DS ]; then allowed=$DRAIN_MAX_PCT; want=$DRAIN_PAR
-  else allowed=$(awk "BEGIN{f=($now-$S)/($U-$S); if(f<0)f=0; if(f>1)f=1; print $FROM_PCT+($TARGET_PCT-$FROM_PCT)*f}"); want=1; fi
+  else allowed=$(awk "BEGIN{f=($now-$S)/($U-$S); if(f<0)f=0; if(f>1)f=1; print $FROM_PCT+($TARGET_PCT-$FROM_PCT)*f}"); want=1
+    # FLOOR_PCT: Zach can raise the line for now (11-17: "up the limit to 40% for now")
+    [ -n "$FLOOR_PCT" ] && allowed=$(awk "BEGIN{print ($allowed > $FLOOR_PCT) ? $allowed : $FLOOR_PCT}"); fi
   active=$(lanes); have=0
   for b in $active; do have=$((have + $(cat "queue/$b/PAR" 2>/dev/null || echo 1))); done   # workers per lane
   if awk "BEGIN{exit !($used >= $allowed)}"; then

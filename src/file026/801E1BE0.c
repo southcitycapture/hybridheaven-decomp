@@ -8965,23 +8965,53 @@ s32 func_801F7E88(s32 arg0, s32 arg1) {
 }
 
 
+#define D_801DAB14 D_801DAB14__func_801F7F5C
+#define func_801EC5B4_Struct0 func_801EC5B4_Struct0__func_801F7F5C
+#define func_801EC5B4_Struct1 func_801EC5B4_Struct1__func_801F7F5C
+#define func_801EC5B4_Struct2 func_801EC5B4_Struct2__func_801F7F5C
+#define func_801EC5B4_Struct3 func_801EC5B4_Struct3__func_801F7F5C
+struct func_801EC5B4_Struct3 {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+};
+struct func_801EC5B4_Struct2 {
+    u8 pad0[0x2C];
+    struct func_801EC5B4_Struct3 *unk2C;
+};
+struct func_801EC5B4_Struct1 {
+    u8 pad0[0x24];
+    struct func_801EC5B4_Struct2 *unk24;
+};
+struct func_801EC5B4_Struct0 {
+    u8 pad0[8];
+    struct func_801EC5B4_Struct1 *unk8;
+};
+extern struct func_801EC5B4_Struct0 *D_801DAB14;
+
 s32 func_801F7F5C(s32 arg0, s32 arg1)
 {
-  u8 **p;
-  if (func_801C0B8C(0x017EFEDF) != 0)
-  {
-    p = (u8 **) &func_801DAAF0;
- if (0) { }
-    p = (u8 **) (((u8 *) p) + 0x24);
-    *((f32 *) ((*((u8 **) ((*((u8 **) ((*((u8 **) ((*p) + 0x8))) + 0x24))) + 0x2C))) + 0x4)) = -2.0f;
-    *((f32 *) ((*((u8 **) ((*((u8 **) ((*((u8 **) ((*p) + 0x8))) + 0x24))) + 0x2C))) + 0x8)) = 0.0f;
-    *((f32 *) ((*((u8 **) ((*((u8 **) ((*((u8 **) ((*p) + 0x8))) + 0x24))) + 0x2C))) + 0xC)) = (-1.29999995f);
-    *((s16 *) ((*((u8 **) ((*((u8 **) ((*((u8 **) ((*p) + 0x8))) + 0x24))) + 0x2C))) + 0x12)) = 0x1800;
-    func_801CC470(0, 0x01B80022, 0, 0x1100, 3.0f);
-    return 0xB;
-  }
-  return 0xA;
+    struct func_801EC5B4_Struct0 **p;
+
+    if (func_801C0B8C(0x017EFEDF) != 0) {
+        p = &D_801DAB14;
+        (*p)->unk8->unk24->unk2C->unk4 = -2.0f;
+        (*p)->unk8->unk24->unk2C->unk8 = 0.0f;
+        (*p)->unk8->unk24->unk2C->unkC = (-1.29999995f);
+        (*p)->unk8->unk24->unk2C->unk12 = 0x1800;
+        func_801CC470(0, 0x01B80022, 0, 0x1100, 3.0f);
+        return 0xB;
+    }
+    return 0xA;
 }
+#undef D_801DAB14
+#undef func_801EC5B4_Struct0
+#undef func_801EC5B4_Struct1
+#undef func_801EC5B4_Struct2
+#undef func_801EC5B4_Struct3
 
 
 extern s32 D_801FB9C8;

@@ -1,6 +1,6 @@
 #include "common.h"
-extern f32 *func_8000522C(u16, s32);
 
+extern f32 *func_8000522C(u16, s32);
 extern f32 func_80015214(f32);
 
 typedef struct func_8000DEC8_StructSub {
@@ -92,9 +92,9 @@ s32 func_8000DEC8(func_8000DEC8_StructObj *obj, func_8000DEC8_StructArg *key) {
                 sub->time = 0.0f;
             }
             return 1;
+        } else {
+            sub->time += 1.0f;
+            return 0;
         }
-        if (0) { }
-        sub->time += 1.0f;
-        return 0;
     }
 }

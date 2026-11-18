@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-17: **89.32% of the code** (15554 of 15891 functions, including duplicates).
+Progress as of 2026-11-18: **89.52% of the code** (15562 of 15891 functions, including duplicates).
 
-**24115 model runs, $7569.20 API-equivalent in total** (local and cloud). Of the **15453 functions now in C**, **7325 were matched by AI workers** (≈ $1.033 per function, failures included), **7576 were placed by propagation** (a match copied onto identical-shape code), 266 came from decomp-permuter and 286 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**24153 model runs, $7569.20 API-equivalent in total** (local and cloud). Of the **15465 functions now in C**, **7334 were matched by AI workers** (≈ $1.032 per function, failures included), **7577 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 286 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -567,7 +567,11 @@ Progress as of 2026-11-17: **89.32% of the code** (15554 of 15891 functions, inc
 | `terraNear1` | terraNear1 | openai/gpt-6.1-terra | 4 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0341` | unify_loop0341 | unify (no model) | 19 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0342` | unify_loop0342 | unify (no model) | 20 | 0 | 0% | $0.00 | – |  |
-| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 11 | 2 | 18% | $0.00 | – |  |
-| `terraNear2` | terraNear2 | openai/gpt-6.1-terra | 14 | 3 | 21% | $0.00 | – |  |
+| `unify_loop0343` | unify_loop0343 | unify (no model) | 22 | 3 | 14% | $0.00 | – |  |
+| `terraIf0` | terraIf0 | openai/gpt-6.1-terra | 11 | 10 | 91% | $0.00 | – |  |
+| `unify_loop0344` | unify_loop0344 | unify (no model) | 19 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0345` | unify_loop0345 | unify (no model) | 19 | 0 | 0% | $0.00 | – |  |
+| `terraNear2` | terraNear2 | openai/gpt-6.1-terra | 36 | 9 | 25% | $0.00 | – |  |
+| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 16 | 3 | 19% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

@@ -378,8 +378,173 @@ void func_801CC078(struct func_801CC078_StructOuter *arg0, s32 arg1)
 #undef func_801CC260
 #undef func_801CC660_Struct
 
-/* hh-block asm/nonmatchings/file009/801CBC70/_mrg_keep_tail_4e75cb125a227378.s {"functions":["func_801CC260"],"rodata":[],"rodata_bytes":[2149462824,5852600,124]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file009/801CBC70/_mrg_keep_tail_4e75cb125a227378.s")
+
+
+#define D_8008DA88 D_8008DA88__func_801CC260
+#define D_801BCAE0 D_801BCAE0__func_801CC260
+#define D_801CE1C8 D_801CE1C8__func_801CC260
+#define D_801E0D7E D_801E0D7E__func_801CC260
+#define D_801E3388 D_801E3388__func_801CC260
+#define D_801E338C D_801E338C__func_801CC260
+#define D_801E3390 D_801E3390__func_801CC260
+#define D_801E3394 D_801E3394__func_801CC260
+#define D_801E3398 D_801E3398__func_801CC260
+#define D_801E339C D_801E339C__func_801CC260
+#define D_801E33A0 D_801E33A0__func_801CC260
+#define D_801E4080 D_801E4080__func_801CC260
+#define T_func_801CC9B0_ret_801CC9EC T_func_801CC9B0_ret_801CC9EC__func_801CC260
+#define func_801CC660 func_801CC660__func_801CC260
+#define func_801CC660_Struct func_801CC660_Struct__func_801CC260
+extern u8 D_8008DA88[];
+extern u16 D_801BCAE0;
+typedef struct func_801CC660_Struct {
+    u8 pad[0x4C];
+    u16 unk4C;
+    u16 unk4E;
+} func_801CC660_Struct;
+extern func_801CC660_Struct *D_801E4080;
+typedef struct T_func_801CC9B0_ret_801CC9EC { /* size >= 0x50 */
+    /* 0x000 */ u8 pad0[0x30];
+    /* 0x030 */ u8 unk30; /* 6 uses */
+    /* 0x031 */ u8 pad31[0x3];
+    /* 0x034 */ u8 unk34; /* 7 uses */
+    /* 0x035 */ u8 unk35; /* 7 uses */
+    /* 0x036 */ u8 unk36; /* 7 uses */
+    /* 0x037 */ u8 pad37[0x15];
+    /* 0x04C */ u16 unk4C; /* 13 uses */
+    /* 0x04E */ u16 unk4E; /* 4 uses */
+} T_func_801CC9B0_ret_801CC9EC;
+void func_801CC660(s32 arg0, s32 arg1);
+
+
+struct func_801CC260_StructV { u8 pad[4]; s32 x, y; f32 z; };
+struct func_801CC260_StructN { u8 pad[0x2C]; struct func_801CC260_StructV *v; };
+struct func_801CC260_StructB {
+    u8 pad[0x24]; struct func_801CC260_StructN *n;
+    u8 pad28[0x34]; s32 data;
+};
+struct func_801CC260_StructA { u8 pad[0xC]; struct func_801CC260_StructB *b; };
+extern u16 D_801E0D7E;
+extern void *D_801CE1C8(void *, s32, s32, s32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, u16, f32, f32, f32, f32, s32);
+extern f32 D_801E3388;
+extern f32 D_801E338C;
+extern f32 D_801E3390;
+extern f32 D_801E3394;
+extern f32 D_801E3398;
+extern f32 D_801E339C;
+extern f32 D_801E33A0;
+
+void func_801CC260(struct func_801CC260_StructA *arg0, s32 arg1)
+{
+    struct func_801CC260_StructV *v;
+    s32 data;
+    f32 pos[3];
+    u16 life;
+    u16 r, g, b, r2, g2, b2;
+    u16 r3, g3, b3, rate;
+    f32 scale1, scale2;
+    s32 pad;
+#define l r
+#define cr g
+#define cg b
+#define cb r2
+#define crate g2
+
+    v = arg0->b->n->v;
+    data = arg0->b->data;
+    if (D_801E4080->unk4C >= 2) {
+        D_801E4080->unk4E = 0;
+        life = D_801E0D7E + 60;
+        switch (((T_func_801CC9B0_ret_801CC9EC *)D_801E4080)->unk30) {
+        case 9: case 10: case 11: case 12:
+            r2 = 255; r = 255; g2 = 160; g = 160; b2 = 0; b = 0;
+            r3 = 255;
+            goto bright_rest;
+bright_rest:
+            g3 = 224; b3 = 0;
+            break;
+        case 5: case 6: case 7: case 8:
+            r2 = 255; r = 255; g2 = 128; g = 128; b2 = 0; b = 0;
+            r3 = 255; g3 = 0; b3 = 0;
+            life += 30;
+            break;
+        case 1: case 2: case 3: case 4:
+        default:
+            r2 = 80; r = 80; g2 = 255; g = 255; b2 = 255; b = 255;
+            r3 = 0;
+            goto default_rest;
+default_rest:
+            g3 = 160;
+            goto default_last;
+default_last:
+            b3 = 255;
+            break;
+        }
+        switch (((T_func_801CC9B0_ret_801CC9EC *)D_801E4080)->unk30) {
+        case 1: case 5: case 9:
+            rate = 5;
+            break;
+        case 2: case 6: case 10:
+            rate = 10;
+            break;
+        case 3: case 7: case 11:
+            rate = 20;
+            break;
+        case 4: case 8: case 12:
+        default:
+            b = 255; g = 255; r = 255;
+            rate = 20;
+            break;
+        }
+        if (func_80126944() == 0 && (D_801BCAE0 & 0x100)) {
+            scale1 = (0.004999999888241291f);
+            scale2 = (0.019999999552965164f);
+        } else {
+            scale2 = (0.009999999776482582f);
+            scale1 = (0.009999999776482582f);
+        }
+        D_801CE1C8(arg0, 1, v->x, v->y, v->z,
+            r, g, b, 255, r2, g2, b2,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 1, life,
+            (0.009999999776482582f), scale1, scale2, 0.0f, 12);
+        func_80020718(0x10D);
+        func_80006214(arg0->b);
+        func_8013A334((s32 *)pos, D_8008DA88, data, 27);
+        D_80006214(arg0);
+        l = life;
+        cr = (u8)r3;
+        cg = (u8)g3;
+        cb = (u8)b3;
+        crate = (u8)rate;
+        func_801CE330(arg0, 2, pos[0], pos[1], pos[2],
+            255, 255, 255, 255, cr, cg, cb, 0, crate,
+            l - 20, (0.009999999776482582f), 9);
+        func_801CE330(arg0, 3, pos[0], pos[1] + 2.0, pos[2],
+            255, 255, 255, 255, cr, cg, cb, 0, crate,
+            l - 10, (0.009999999776482582f), 8);
+        func_800058DC(arg0, func_801CC660);
+    }
+}
+#undef l
+#undef cr
+#undef cg
+#undef cb
+#undef crate
+#undef D_8008DA88
+#undef D_801BCAE0
+#undef D_801CE1C8
+#undef D_801E0D7E
+#undef D_801E3388
+#undef D_801E338C
+#undef D_801E3390
+#undef D_801E3394
+#undef D_801E3398
+#undef D_801E339C
+#undef D_801E33A0
+#undef D_801E4080
+#undef T_func_801CC9B0_ret_801CC9EC
+#undef func_801CC660
+#undef func_801CC660_Struct
 
 
 typedef struct func_801CC660_Struct {
@@ -792,6 +957,14 @@ void func_801CD420(void *arg0, s32 arg1) {
 
 
 
+
+
+
+
+
+
+
+
 static const unsigned char rodata_801CBC70[] = {
     0x65, 0x66, 0x66, 0x65, 0x63, 0x74, 0x5F, 0x61, 0x75, 0x72, 0x61, 0x5F, 0x74, 0x69, 0x6D, 0x65,
     0x20, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x65, 0x66, 0x66,
@@ -808,6 +981,7 @@ static const unsigned char rodata_801CBC70[] = {
 };
 /* hh-owned-pool func_801CBEF8 801E3200 801E32C4 */
 /* hh-owned-pool func_801CC078 801E32C4 801E3328 */
+/* hh-owned-pool func_801CC260 801E3328 801E33A4 */
 /* hh-owned-pool func_801CC6F0 801E33A4 801E33A8 */
 /* hh-owned-pool func_801CC830 801E33A8 801E33B0 */
 /* hh-owned-pool func_801CCFEC 801E3430 801E3434 */
