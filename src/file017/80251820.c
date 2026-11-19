@@ -471,12 +471,25 @@ extern void func_802538A4();
 void func_802525FC(func_802525FC_Struct *arg0);
 
 
+#undef func_800058DC
+#undef func_802525FC
+#undef func_802538A4
+#define func_802525FC func_802525FC__func_80252538_0f2f47e0
+#define func_802525FC_Struct func_802525FC_Struct__func_80252538_0f2f47e0
+#define func_802538A4 func_802538A4__func_80252538_0f2f47e0
+typedef struct func_802525FC_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_802525FC_Struct;
+void func_802525FC(func_802525FC_Struct *arg0);
+extern void func_802538A4();
+
 void func_80252538(func_802525FC_Struct *arg0)
 {
   u16 temp_s1;
   temp_s1 = arg0->unk3C;
   arg0->unk3C = temp_s1 + 1;
-  func_802538A4();
+  func_802538A4(arg0);
   if (((s32) temp_s1) >= 0x3C)
   {
     if (temp_s1 == 0x3C)
@@ -487,9 +500,6 @@ void func_80252538(func_802525FC_Struct *arg0)
     if ((((s32) temp_s1) % 10) == 0)
     {
       func_80380F94(150.0f, 0.0f, 125.0f, 0.0f, 0.0f, 0.0f, 10);
-      if (!arg0)
-      {
-      }
     }
   }
   if (((s32) temp_s1) >= 0x5A)
@@ -498,6 +508,12 @@ void func_80252538(func_802525FC_Struct *arg0)
     func_800058DC(arg0, func_802525FC);
   }
 }
+#undef func_802525FC
+#undef func_802525FC_Struct
+#undef func_802538A4
+#define func_800058DC func_800058DC__func_80252538
+#define func_802525FC func_802525FC__func_80252538
+#define func_802538A4 func_802538A4__func_80252538
 #undef func_800058DC
 #undef func_802525FC
 #undef func_802538A4

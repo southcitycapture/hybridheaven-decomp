@@ -1,17 +1,34 @@
-#include "context.h"
+#include "common.h"
+struct func_8038D4D8_Obj {
+    u8 pad0[0xC];
+    struct func_8038D4D8_Obj *unkC;
+    u8 pad1[0x8A];
+    u16 unk9A;
+    u8 pad2[0x5];
+    u8 unkA1;
+    u8 unkA2;
+};
+struct func_8038D4D8_Global {
+    u8 pad0[0xDC];
+    struct func_8038D4D8_Obj *unkDC;
+    u8 pad1[0x1030 - 0xE0];
+    u8 unk1030;
+    u8 unk1031;
+};
+extern struct func_8038D4D8_Global D_801BBBF0;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
 
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern s32 func_80228C20();
 extern s32 func_80228D90();
-struct func_8038D4D8_Global;
-extern struct func_8038D4D8_Global D_801BBBF0;
 extern u8 D_801BBC8C[];
 extern u8 D_801BBCAC[];
 
-struct func_8038CFF4_Obj {
+struct func_8038CFF4_StructObj {
     u8 pad0[0xC];
-    struct func_8038CFF4_Obj *unkC;
+    struct func_8038CFF4_StructObj *unkC;
     u8 pad1[0x90 - 0x10];
     u8 unk90;
     u8 pad91;
@@ -25,9 +42,9 @@ struct func_8038CFF4_Obj {
     } unk98;
 };
 
-struct func_8038CFF4_G {
+struct func_8038CFF4_StructGlobal {
     u8 pad0[0xDC];
-    struct func_8038CFF4_Obj *unkDC;
+    struct func_8038CFF4_StructObj *unkDC;
     u8 pad1[0x232 - 0xE0];
     s16 unk232;
     u8 pad2[0xB90 - 0x234];
@@ -36,7 +53,7 @@ struct func_8038CFF4_G {
     u8 unk1031;
 };
 
-struct func_8038CFF4_A {
+struct func_8038CFF4_StructA {
     u8 pad0[2];
     s16 unk2;
     u16 unk4;
@@ -44,7 +61,7 @@ struct func_8038CFF4_A {
     s16 unk8;
 };
 
-struct func_8038CFF4_B {
+struct func_8038CFF4_StructB {
     u8 pad0[6];
     s16 unk6;
     u8 pad8[0x30 - 8];
@@ -57,45 +74,44 @@ struct func_8038CFF4_B {
     } u30;
 };
 
-
-void func_8038CFF4(struct func_8038CFF4_Obj *arg0, s32 arg1) {
+void func_8038CFF4(struct func_8038CFF4_StructObj *arg0, s32 arg1) {
     s16 v;
     s16 t1;
-    struct func_8038CFF4_A *a3;
-    struct func_8038CFF4_B *a2;
-    struct func_8038CFF4_Obj *c;
+    struct func_8038CFF4_StructA *a3;
+    struct func_8038CFF4_StructB *a2;
+    struct func_8038CFF4_StructObj *c;
 
-    t1 = (s16)(0x2800 - ((struct func_8038CFF4_G *)&D_801BBBF0)->unk232) & 0x1FFF;
-    c = ((struct func_8038CFF4_G *)&D_801BBBF0)->unkDC;
+    t1 = (s16)(0x2800 - ((struct func_8038CFF4_StructGlobal *)&D_801BBBF0)->unk232) & 0x1FFF;
+    c = ((struct func_8038CFF4_StructGlobal *)&D_801BBBF0)->unkDC;
     if (c == arg0->unkC->unkC) {
-        a3 = (struct func_8038CFF4_A *)D_801BBC8C;
+        a3 = (struct func_8038CFF4_StructA *)D_801BBC8C;
     } else {
-        a3 = (struct func_8038CFF4_A *)D_801BBCAC;
+        a3 = (struct func_8038CFF4_StructA *)D_801BBCAC;
     }
     if (c == arg0->unkC->unkC) {
-        a2 = (struct func_8038CFF4_B *)D_801BC03C;
+        a2 = (struct func_8038CFF4_StructB *)D_801BC03C;
     } else {
-        a2 = (struct func_8038CFF4_B *)D_801BC3D8;
+        a2 = (struct func_8038CFF4_StructB *)D_801BC3D8;
     }
     if (a2->u30.bf.f != 0) {
-        if (((struct func_8038CFF4_G *)&D_801BBBF0)->unk1031 >= 7 && ((struct func_8038CFF4_G *)&D_801BBBF0)->unk1031 != 0xF) {
+        if (((struct func_8038CFF4_StructGlobal *)&D_801BBBF0)->unk1031 >= 7 && ((struct func_8038CFF4_StructGlobal *)&D_801BBBF0)->unk1031 != 0xF) {
             arg0->unk98.h = 0;
             arg0->unk95 = arg0->unk98.b[1];
             arg0->unk92 = arg0->unk98.b[1];
         }
-        if (((struct func_8038CFF4_G *)&D_801BBBF0)->unk1031 == 5 && !(a2->u30.h & 7)) {
-            if (((struct func_8038CFF4_G *)&D_801BBBF0)->unkB90 < 30.0f || arg0->unk95 == 1) {
+        if (((struct func_8038CFF4_StructGlobal *)&D_801BBBF0)->unk1031 == 5 && !(a2->u30.h & 7)) {
+            if (((struct func_8038CFF4_StructGlobal *)&D_801BBBF0)->unkB90 < 30.0f || arg0->unk95 == 1) {
                 if (arg0->unk95 == 0) {
                     arg0->unk95 = 1;
                     arg0->unk92 = 1;
                     return;
                 }
-                if (((struct func_8038CFF4_G *)&D_801BBBF0)->unkB90 > 40.0f) {
+                if (((struct func_8038CFF4_StructGlobal *)&D_801BBBF0)->unkB90 > 40.0f) {
                     arg0->unk95 = arg0->unk92 = 0;
                     return;
                 }
                 if (arg0->unk92 == 1 && a2->unk6 >= 0x64) {
-                    if (func_80228D90((struct func_8038CFF4_Obj *)((s32)arg0 * 1), arg0, a2, a3) != 0) {
+                    if (func_80228D90(arg0) != 0) {
                         a3->unk4 = 0x8000;
                     }
                 }
@@ -103,11 +119,11 @@ void func_8038CFF4(struct func_8038CFF4_Obj *arg0, s32 arg1) {
                 if (a2->unk6 >= 0x1C2) {
                     a3->unk2 = 0x2000;
                 }
-                v = (s16)(func_80228C20((struct func_8038CFF4_Obj *)((s32)arg0 * 1), arg0, a2, a3) + t1) & 0x1FFF;
+                v = (s16)(func_80228C20(arg0) + t1) & 0x1FFF;
                 a3->unk6 = -func_8001EB64(v) * 40.0f;
                 a3->unk8 = func_8001EAD0(v) * 40.0f;
                 if (a2->unk6 >= 0x1F4) {
-                    if (func_80228D90((struct func_8038CFF4_Obj *)((s32)arg0 / 1), arg0, a2, a3) != 0 && arg0->unk90 == 0) {
+                    if (func_80228D90(arg0) != 0 && arg0->unk90 == 0) {
                         a3->unk4 = 0x8000;
                         arg0->unk90 = 0x64;
                     }

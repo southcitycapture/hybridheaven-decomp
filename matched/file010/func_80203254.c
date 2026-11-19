@@ -1,4 +1,8 @@
-#include "context.h"
+#include "common.h"
+extern void (*D_8021793C[])();
+extern void func_80020718();
+extern s32 func_8012C97C(s32, s32);
+
 
 extern f64 D_80219648;
 extern f64 D_80219650;
@@ -31,7 +35,6 @@ void func_80203254(struct func_80203254_Struct *arg0, struct func_80203254_Struc
 {
   f32 fv;
   f32 v;
-  s32 f;
   struct func_80203254_StructM *m;
   u8 s;
   s = arg0->unk9E;

@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 
 struct func_80379498_Struct {
     s16 unk0;
@@ -11,12 +12,7 @@ struct func_80379498_Struct {
 
 extern struct func_80379498_Struct D_8038A918;
 
-void func_80379498(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
-    s32 *p;
-    f32 *q;
-    p = &arg0;
-    q = &arg3;
-    arg0 &= 0xFF;
+void func_80379498(u8 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     D_8038A918.unk0 = arg0;
     D_8038A918.unk4 = arg1;
     D_8038A918.unk8 = arg2;

@@ -1,4 +1,12 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_8022B4A4_StructBase {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0x1031 - 0xE0];
+    u8 unk1031;
+} func_8022B4A4_StructBase;
+extern struct func_8022B4A4_StructBase D_801BBBF0;
+
 
 typedef struct func_80228D90_StructAngle {
     u8 pad[0x12];
@@ -36,10 +44,7 @@ s32 func_80228D90(func_80228D90_StructArg *arg0) {
     s16 var_a0;
     s16 var_v1;
     s16 angle;
-    s32 var_v0;
-    s32 var_v1_2;
     s32 var_v1_3;
-    func_80228D90_StructMid *temp_v1;
 
     angle = arg0->unkC->unkC->unk24->unk2C->angle;
     var_a0 = (arg0->unkC->unkC == ((func_80228D90_StructGlobal *)&D_801BBBF0)->unkDC) ? ((func_80228D90_StructGlobal *)&D_801BBBF0)->unk75C : ((func_80228D90_StructGlobal *)&D_801BBBF0)->unkAF8;

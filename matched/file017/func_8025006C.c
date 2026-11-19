@@ -12,21 +12,16 @@ void func_8025022C(func_8025022C_Struct *arg0, s32 arg1);
 extern void func_80251574();
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
-typedef struct func_8025006C_Struct {
-    u8 pad[0x3C];
-    u16 unk3C;
-} func_8025006C_Struct;
 
-void func_8025006C(func_8025006C_Struct *arg0, s32 arg1) {
+void func_8025006C(func_8025022C_Struct *arg0, s32 arg1) {
     f32 sp4C;
     f32 sp48;
-    u8 pad[12];
-    s32 sp38;
-    f32 sp34;
-    s32 sp30;
     s32 t;
     s32 d;
     u16 s;
+    s32 sp38;
+    f32 sp34;
+    s32 sp30;
 
     s = arg0->unk3C;
     arg0->unk3C = s + 1;

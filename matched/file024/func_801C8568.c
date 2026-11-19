@@ -1,6 +1,4 @@
 #include "common.h"
-#define CAT2(a, b) a##b
-#define CAT(a, b) CAT2(a, b)
 extern u8 D_80089474[];
 extern u8 D_801CCC40[];
 extern u8 D_801CCCA8[];
@@ -20,6 +18,7 @@ extern u8 D_801CFDB0[];
 extern void (*D_801CCB04)(void *, s32, u8);
 extern void *func_80005670(s32, void *);
 extern void func_80005700(void *);
+extern void func_800058DC(void *, void *);
 extern void func_80020744(s32);
 typedef struct func_801C659C_Ret {
     u8 pad[0x90];
@@ -32,7 +31,6 @@ s32 func_801C5AB0(void);
 s32 func_801C5AD4(u8 arg0);
 s32 func_801C5B38(void);
 
-
 extern u8 D_801CF340[];
 extern u8 D_801CF348[];
 extern u8 D_801CD128[];
@@ -40,7 +38,6 @@ extern s32 D_801BBC2C;
 extern u8 func_80127014[];
 extern s32 func_80152C04(u16);
 extern void func_8001B204(u8, s16, s32, void *, s32, s32);
-extern void func_800058DC(void *, void *);
 
 typedef struct func_801C8568_Obj {
     u8 pad0[8];
@@ -59,24 +56,21 @@ typedef struct func_801C8568_Obj {
     s16 unk98;
 } func_801C8568_Obj;
 
+typedef struct func_801C8568_Loc { u8 pad[0xD]; u8 sp45; u16 sp46; } func_801C8568_Loc;
 typedef struct func_801C8568_I { u8 pad[0x4B]; u8 unk4B; } func_801C8568_I;
 typedef struct func_801C8568_M { u8 pad[0x2C]; func_801C8568_I *unk2C; } func_801C8568_M;
 
 void func_801C8568(func_801C8568_Obj *arg0, func_801C8568_M **arg1) {
-    u16 sp46;
-    u8 sp45;
-    u8 pad[12];
+    func_801C8568_Loc L;
     s16 v;
     s16 w;
     s32 t;
-    s32 n;
-    s32 f;
     u8 *p;
     func_801C659C_Ret *r;
     void *q;
 
-    sp46 = *(u16 *)(D_80089474 + arg0->unk90 * 32 + 0xC);
-    sp45 = 0;
+    L.sp46 = *(u16 *)(D_80089474 + arg0->unk90 * 32 + 0xC);
+    L.sp45 = 0;
     if (func_801C5B38() == 0) {
         t = func_80152C04(D_801CFDAC[arg0->unk90]);
         if (D_801CFDA6[arg0->unk90] == 1) {
@@ -86,27 +80,27 @@ void func_801C8568(func_801C8568_Obj *arg0, func_801C8568_M **arg1) {
         }
     }
     if (D_801CFDA6[arg0->unk90] == 1 && func_801C5AB0() == 0) {
-        if (sp46 & 0x200) {
+        if (L.sp46 & 0x200) {
             p = D_801CFDA8 + arg0->unk90;
             if (*p == 0) {
                 *p = D_801CFDB0[arg0->unk90] - 1;
             } else {
                 (*p)--;
             }
-            sp45 = 1;
+            L.sp45 = 1;
         }
-        if (sp46 & 0x100) {
+        if (L.sp46 & 0x100) {
             p = D_801CFDA8 + arg0->unk90;
             if (*p + 1 == D_801CFDB0[arg0->unk90]) {
-                sp45 = 1;
+                L.sp45 = 1;
                 *p = 0;
             } else {
-                sp45 = 1;
+                L.sp45 = 1;
                 (*p)++;
             }
         }
     }
-    if (sp45 != 0) {
+    if (L.sp45 != 0) {
         func_80020744(0x300);
         r = func_8012C4D0(D_801BBC2C, D_801CD114, 3);
         if (r != NULL) {

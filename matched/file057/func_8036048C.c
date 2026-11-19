@@ -1,9 +1,14 @@
+#include "common.h"
 #define LP(p, l) LQ(p, l)
 #define LQ(p, l) p##_##l
 #define func_8035AFEC LP(fA, __LINE__)
-#define func_8036048C func_8036048C_ctx
-#include "context.h"
-#undef func_8036048C
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+#define LQ(p, l) p##_##l
+#define LP(p, l) LQ(p, l)
+extern void func_8035AFEC();
+
 
 typedef struct func_8036048C_Leaf {
     u8 pad0[0x12];
@@ -33,7 +38,6 @@ typedef struct func_8036048C_Table {
     f32 unk318;
     f32 unk31C;
 } func_8036048C_Table;
-
 extern s32 func_8001EF38(f32, f32);
 
 #define G8C ((func_8036048C_Globals *) D_801BBBF0)
@@ -41,9 +45,8 @@ extern s32 func_8001EF38(f32, f32);
 s32 func_8036048C(func_8036048C_Obj *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     func_8036048C_Table *tbl;
     func_8036048C_Obj *obj;
-    s32 pad;
-    s16 ang;
     s32 ret;
+    s16 ang;
 
     if (arg0 != G8C->unkDC) {
         obj = G8C->unkDC;

@@ -44,8 +44,8 @@ struct func_80241D64_Struct {
     u16 unk9C;
 };
 void func_80241D64(struct func_80241D64_Struct *arg0, s32 arg1);
+void func_80242778();
 struct func_80242778_StructC { u8 pad[0xA0]; f32 unkA0; };
-void func_80242778(struct func_80242778_StructC *arg0, s32 arg1);
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
 extern f64 D_8024A580;
@@ -53,14 +53,12 @@ extern f64 D_8024A588;
 extern f32 D_8024A590;
 
 void func_802419CC(struct func_80241960_StructArg0 *arg0, s32 arg1) {
-    s32 pad0;
+    s32 t;
     f32 sp70[1];
     f32 var_fa1;
     s32 sp68[1];
-    s32 pad1;
-    s32 sp60;
-    s32 t;
     u16 a1;
+    s32 sp60;
     f32 zero;
 
     zero = 0;

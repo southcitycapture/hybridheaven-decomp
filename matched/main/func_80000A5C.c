@@ -1,11 +1,14 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_80037358[];
+extern u8 D_800374A8[];
+extern void func_80026300(void *a0, void *a1, s32 a2);
+
 #if __LINE__ == 2
 void func_80000A5C_alignment(void) {
     D_80037358[0] = 1;
     D_800374A8[0] = 2;
 }
 #endif
-
 extern void func_800266B0(void *a0, void *a1, s32 a2);
 extern void func_80026B0C(void *a0);
 extern void func_80026C9C(void *a0);
@@ -25,7 +28,7 @@ void func_80000A5C(u8 *arg0) {
     func_80000A5C_Struct *sp60;
     u8 *s3;
     u32 s1;
-    u8 pad[16];
+    void *replyQueue;
 
     sp64 = NULL;
     sp60 = NULL;
@@ -35,9 +38,11 @@ void func_80000A5C(u8 *arg0) {
         func_800349E0();
         s3 = *(u8 **)(arg0 + 0x88C);
         if (s3 != NULL) {
+            u8 *activeTask;
             func_80029690();
             func_800266B0(arg0 + 0xE8, &sp64, 1);
-            if (func_80030FF0(s3 + 0x10) != 0) {
+            activeTask = s3 + 0x10;
+            if (func_80030FF0(activeTask) != 0) {
                 s1 = 1;
             } else {
                 s1 = 2;
@@ -52,12 +57,14 @@ void func_80000A5C(u8 *arg0) {
             func_80026300(arg0 + 0x158, &sp64, 1);
         }
         if (s1 == 1) {
-            func_80026B0C(s3 + 0x10);
-            func_80026C9C(s3 + 0x10);
+            u8 *task = s3 + 0x10;
+            func_80026B0C(task);
+            func_80026C9C(task);
         } else if (s1 == 2) {
             func_80026300(arg0 + 0xE8, &sp64, 1);
         }
-        func_80026300(sp60->unk50, (void *)sp60->unk54, 1);
+        replyQueue = sp60->unk50;
+        func_80026300(replyQueue, (void *)sp60->unk54, 1);
         s1 = 0;
     }
 }

@@ -57,7 +57,6 @@ extern u8 D_803884A4[];
 
 void func_803764BC(struct func_803764BC_Ctx *arg0, s32 arg1) {
     struct func_803764BC_O78 *sp24 = arg0->unk5C;
-    u32 v0;
 
     switch (arg0->unk38->unk10 >> 24) {
     case 1:

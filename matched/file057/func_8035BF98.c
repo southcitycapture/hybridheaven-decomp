@@ -1,11 +1,23 @@
-#include "context.h"
+#include "common.h"
+extern s32 D_8038CC14;
+void func_800058DC(void *arg0, void *arg1);
+void func_80020718(s32 arg0);
+struct func_8035B234_Struct {
+    u8 pad[0x4C];
+    u16 unk4C;
+    u16 unk4E;
+};
+void func_8035B234(struct func_8035B234_Struct *arg0, s32 arg1);
+struct func_8035BF98_Struct0 {
+    u8 pad[0x3E];
+    u16 unk3E;
+};
 
 
 struct func_8035BF98_Struct1 {
     u8 pad[0x31];
     u8 unk31;
 };
-
 extern s32 func_8012C6B4();
 extern void func_8035BD6C();
 
@@ -22,15 +34,7 @@ void func_8035BF98(struct func_8035BF98_Struct0 *arg0, s32 arg1)
   }
   else
   {
-    s32 temp_v1;
-    s32 temp_v0;
-    temp_v0 = arg0->unk3E;
-    temp_v1 = (temp_v0 < 0x1F) ^ 1;
-    arg0->unk3E = temp_v0 + 1;
-    if (!temp_v1)
-    {
-    }
-    if (temp_v1)
+    if ((arg0->unk3E++ < 0x1F) ^ 1)
     {
       func_800058DC(arg0, func_8035B234);
     }

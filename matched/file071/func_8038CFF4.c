@@ -6,10 +6,11 @@ typedef struct func_8038D7D4_StructG {
     u8 unk1031;
 } func_8038D7D4_StructG;
 extern func_8038D7D4_StructG D_801BBBF0;
+
+
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern s32 func_8022B640(s32);
-
 
 typedef struct func_8038CFF4_StructC {
     u8 pad0[0xC];
@@ -82,7 +83,7 @@ extern u8 D_801BBCAC[];
 #define GB90 (*(f32 *)((u8 *)&D_801BBBF0 + 0xB90))
 
 void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
-    s16 pad36;
+    s16 t;
     s16 sp34;
     func_8038CFF4_StructB *sp30;
     func_8038CFF4_StructB *a1;
@@ -208,7 +209,7 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
                     a1->unk30.by.b2 = a1->unk30.by.b2 & 0xFFFC;
                 }
                 if (a1->unk6 >= 0x64 && (arg0->unk9C & 0x3F) < 0xA) {
-                    s16 t = func_80228C20(arg0) + sp34;
+                    t = func_80228C20(arg0) + sp34;
                     sp30->unk6 = -func_8001EB64(t) * 80.0f;
                     sp30->unk8 = func_8001EAD0(t) * 80.0f;
                     return;

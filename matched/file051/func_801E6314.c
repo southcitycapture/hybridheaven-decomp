@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+void *func_801BF6B0(s32 arg0);
+extern s32 func_801DAAF0[];
 
 extern s32 func_801D7634(s32, s32);
 extern void func_8038D33C(f32, f32, s32, s32, f32, f32);
@@ -17,9 +19,6 @@ typedef struct func_801E6314_Vec {
 } func_801E6314_Vec;
 
 s32 func_801E6314(s32 arg0, s32 arg1) {
-    u8 *temp_t8;
-    u8 *temp_t0;
-    u8 *temp_t2;
     func_801E6314_Vec *temp_v0;
 
     if (((func_801E6314_Struct *)func_801BF6B0(0))->unkC >= 0x17) {

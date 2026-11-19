@@ -1,4 +1,7 @@
-#include "context.h"
+#include "common.h"
+extern s32 D_8038A9A4;
+extern void func_8037D5C4(s32, s32, u16, s32, s32, s32, s32, s32);
+
 
 typedef struct { s16 x, y; } func_8037DA84_P;
 typedef struct { func_8037DA84_P v[6]; } func_8037DA84_SA;
@@ -15,9 +18,9 @@ extern func_8037DA84_SC D_80388CD0;
 #define arg1 ((s32 *)a1)
 void func_8037DA84(void *a0, void *a1) {
     func_8037DA84_SA a;
-    s16 pad0;
+    s16 x;
     s16 s74;
-    u8 pad1;
+    u8 k;
     u8 r;
     s32 i;
     func_8037DA84_SB b;
@@ -27,6 +30,7 @@ void func_8037DA84(void *a0, void *a1) {
 
     a = D_80388C98;
     s74 = 1;
+    k = 0;
     b = D_80388CB0;
     c = D_80388CC0;
     d = D_80388CD0;
@@ -35,7 +39,8 @@ void func_8037DA84(void *a0, void *a1) {
     r = func_80006214();
     q = c.p[arg0->k];
     for (i = 0; i < 6; i = (i + 1) & 0xFF) {
-        func_8037D5C4((s32)arg0, (s32)arg1, *q, (s16)(a.v[i].x + 0x1B), a.v[i].y + 0x23, d.v[arg0->k][0], d.v[arg0->k][1], 0);
+        x = a.v[i].x + 0x1B;
+        func_8037D5C4((s32)arg0, (s32)arg1, *q, x, a.v[i].y + 0x23, d.v[arg0->k][0], d.v[arg0->k][1], k);
         q += 1;
     }
     D_8038A9A4 = arg1[r];

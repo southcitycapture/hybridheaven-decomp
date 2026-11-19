@@ -1,16 +1,23 @@
 #include "common.h"
+typedef struct func_802393F8_Vec {
+    s32 a[4];
+} func_802393F8_Vec;
+extern func_802393F8_Vec D_80164F40;
 extern u8 D_801BBBF0[];
+extern u8 D_8023E408[];
+extern u8 D_8023E468[];
+extern u8 D_8023E4D0[];
 typedef struct func_80235FF8_StructP { s16 x; s16 y; s16 w; s16 h; } func_80235FF8_P;
 typedef struct func_80235FF8_StructS { u8 pad[0x10]; s32 unk10; u8 pad2[0x1C]; func_80235FF8_P *unk30; } func_80235FF8_S;
 extern func_80235FF8_S *D_80240874;
 extern func_80235FF8_S *D_80240878;
 extern func_80235FF8_S *D_8024087C;
 extern void (*D_80216D10[])(void *, s32);
-extern void func_80002364(s32, s32, s32, u8);
-extern void func_800058DC();
+extern void func_80005E44(void *, void *);
 u8 func_80006214();
+extern void func_8012C89C(void *, s32, s32, s32);
+extern s32 func_801302CC();
 extern void func_80145310(s32, s32, s32);
-extern void func_80147218(void *);
 typedef struct func_80237004_Struct {
     u8 pad[0xA2];
     s8 unkA2;
@@ -23,6 +30,10 @@ typedef struct func_80237004_Struct {
 s32 func_8023448C(func_80237004_Struct *arg0, s32 *arg1, u8 arg2, s16 arg3, s16 arg4, u8 arg5, u8 arg6);
 s32 func_802345B0(s32 arg0, s32 *arg1, u8 arg2, s16 arg3, s16 arg4, u8 arg5);
 extern void func_802397A8();
+
+extern void func_80002364(s32, s32, s32, u8);
+extern void func_800058DC();
+extern void func_80147218(void *);
 
 
 typedef struct func_80239048_Copy {
@@ -73,15 +84,7 @@ typedef struct func_80239048_Self {
     s16 unkAC;
 } func_80239048_Self;
 
-extern func_80239048_Copy D_80164F40;
-extern u8 D_8023E408[];
-extern u8 D_8023E468[];
-extern u8 D_8023E4D0[];
-extern void func_80005E44(void *, void *);
-extern void func_8012C89C(void *, s32, s32, s32);
-extern s32 func_801302CC(void);
 
-#define PROBE 0
 #define G1030 D_801BBBF0[0x1030]
 #define GE0 ((func_80239048_Mdl **)D_801BBBF0)[0xE0 / 4]
 #define G448 ((func_80239048_Mid ***)D_801BBBF0)[0x448 / 4]
@@ -90,7 +93,7 @@ void func_80239048(func_80239048_Self *arg0, s32 *volatile arg1) {
     func_80239048_Obj **p;
     s8 i;
     f32 k1;
-    func_80239048_Copy sp74;
+    func_802393F8_Vec sp74;
     f32 k05;
 
     sp74 = D_80164F40;
@@ -111,7 +114,6 @@ void func_80239048(func_80239048_Self *arg0, s32 *volatile arg1) {
             (*p)->unk30->unk30 = (s32)D_8023E408 | 0x40000000;
         }
         func_80145310((s32)*p, 0xD, 0xD);
-#if PROBE != 1
         if (G1030 == 1) {
             (*p)->unk30->unk4 = GE0->unk2C->unk4;
             (*p)->unk30->unk8 = GE0->unk2C->unk8 + 1.0f;
@@ -123,7 +125,6 @@ void func_80239048(func_80239048_Self *arg0, s32 *volatile arg1) {
             (*p)->unk30->unkC = (*G448)->unk24->unk2C->unkC;
             (*p)->unk30->unk12 = (*G448)->unk24->unk2C->unk12 + (i << 10);
         }
-#endif
         i += 1;
         (*p)->unk30->unk18 = 0.02f;
         (*p)->unk30->unk1C = k1;
@@ -131,11 +132,7 @@ void func_80239048(func_80239048_Self *arg0, s32 *volatile arg1) {
         (*p)->unk30->unk10 = 0;
         (*p)->unk30->unk14 = 0;
     }
-    if (k1 == 0.0f) {
-    }
     func_8023448C((func_80237004_Struct *)arg0, arg1, 1, 0, -0x14, 1, 3);
-    if (k05 == 0.0f) {
-    }
     func_802345B0((s32)arg0, arg1, 0xC, 0, -0x14, 1);
     p = (func_80239048_Obj **)((s32)arg1 + i * 4);
     D_80240874 = (func_80235FF8_S *)p[0];

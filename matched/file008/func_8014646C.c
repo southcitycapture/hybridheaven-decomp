@@ -1,4 +1,25 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_80146178_Struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    u8 unk8;
+    u8 unk9;
+    u8 unkA;
+    u8 unkB;
+    u8 pad0[4];
+    s16 unkC;
+    s16 unkE;
+} func_80146178_Struct;
+typedef struct func_80146178_Global {
+    u8 pad0[0xC];
+    func_80146178_Struct *unkC;
+} func_80146178_Global;
+extern struct func_80146178_Global D_80181A84;
+extern void func_80005E44(void *a0, void *a1);
+extern void func_80006214(void *a0);
+
 
 extern u8 D_80171CF0[];
 
@@ -18,6 +39,7 @@ typedef struct func_8014646C_Struct {
     s16 unk28, unk2A;
     u16 unk2C, unk2E;
     s16 unk30, unk32;
+    s32 unk34, unk38;
 } func_8014646C_Struct;
 
 #define TAB(i) (*(s32 ***)(D_80171CF0 + (i) * 4 - 4))
@@ -28,7 +50,6 @@ typedef struct func_8014646C_Arg {
 } func_8014646C_Arg;
 
 void func_8014646C(s32 arg0, func_8014646C_Arg arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, s16 arg7, u16 arg8, u16 arg9, u8 arg10, u16 arg11, u16 arg12, u16 arg13, u16 arg14) {
-    s32 pad[2];
     func_8014646C_Struct sp;
 
     sp.unk4 = arg4;

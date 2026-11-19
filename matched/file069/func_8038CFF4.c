@@ -1,4 +1,8 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+
 
 typedef struct func_8038CFF4_StructP {
     u8 pad0[0x6];
@@ -69,10 +73,13 @@ typedef struct func_8038CFF4_StructA {
     u8 unk95;
 } func_8038CFF4_StructA;
 
-extern func_8038CFF4_StructG D_801BBBF0;
+typedef struct func_8038CFF4_StructAngles {
+    s16 base;
+    s16 direction;
+} func_8038CFF4_StructAngles;
+
 extern u8 D_801BBC8C[];
 extern u8 D_801BBCAC[];
-
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern s32 func_80228C20(void *);
@@ -84,28 +91,26 @@ extern void func_802292D0(void *, void *);
 extern f64 D_8038DAC0;
 
 void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
-    s16 pad2E;
-    s16 sp2C;
+    func_8038CFF4_StructAngles angles;
     func_8038CFF4_StructC *sp28;
     func_8038CFF4_StructP *a;
     func_8038CFF4_StructP *b;
     s32 var_a0;
-    s16 t;
     f64 d;
 
-    sp2C = (s16)(0x2800 - D_801BBBF0.unk232) & 0x1FFF;
-    sp28 = (func_8038CFF4_StructC *)((D_801BBBF0.unkDC == arg0->unkC->unkC) ? D_801BBC8C : D_801BBCAC);
-    a = (func_8038CFF4_StructP *)((D_801BBBF0.unkDC == arg0->unkC->unkC) ? D_801BC03C : D_801BC3D8);
-    b = (func_8038CFF4_StructP *)((D_801BBBF0.unkDC == arg0->unkC->unkC) ? D_801BC3D8 : D_801BC03C);
-    if (arg0->unk91 == 1 && D_801BBBF0.unk1031 == 7) {
+    angles.base = (s16)(0x2800 - ((func_8038CFF4_StructG *)D_801BBBF0)->unk232) & 0x1FFF;
+    sp28 = (func_8038CFF4_StructC *)((arg0->unkC->unkC == ((func_8038CFF4_StructG *)D_801BBBF0)->unkDC) ? D_801BBC8C : D_801BBCAC);
+    a = (func_8038CFF4_StructP *)((arg0->unkC->unkC == ((func_8038CFF4_StructG *)D_801BBBF0)->unkDC) ? D_801BC03C : D_801BC3D8);
+    b = (func_8038CFF4_StructP *)((arg0->unkC->unkC == ((func_8038CFF4_StructG *)D_801BBBF0)->unkDC) ? D_801BC3D8 : D_801BC03C);
+    if (arg0->unk91 == 1 && ((func_8038CFF4_StructG *)D_801BBBF0)->unk1031 == 7) {
         arg0->unk91 = 2;
     }
     if (a->u30.b.bf9 != 0 && a->u30.b.bf3 != 1) {
-        if (D_801BBBF0.unk1031 >= 7 && D_801BBBF0.unk1031 != 15) {
+        if (((func_8038CFF4_StructG *)D_801BBBF0)->unk1031 >= 7 && ((func_8038CFF4_StructG *)D_801BBBF0)->unk1031 != 15) {
             arg0->unk92 = arg0->unk95 = 0;
         }
-        if (D_801BBBF0.unk1031 == 5 && a->u30.b.bf13 == 0 && func_80229260(arg0, a, sp28, 15) == 0) {
-            d = D_801BBBF0.unkB90;
+        if (((func_8038CFF4_StructG *)D_801BBBF0)->unk1031 == 5 && a->u30.b.bf13 == 0 && func_80229260(arg0, a, sp28, 15) == 0) {
+            d = ((func_8038CFF4_StructG *)D_801BBBF0)->unkB90;
             if (d < 18.0 || arg0->unk95 == 1) {
                 if (arg0->unk95 == 0) {
                     arg0->unk95 = 1;
@@ -187,23 +192,23 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
                 if (a->u30.b.bf22 == 2) {
                     a->u30.b.bf22 = 0;
                 }
-                if (D_801BBBF0.unkB90 > 30.0f && !(a->unkA6 & 4) && a->unk6 >= 100) {
+                if (((func_8038CFF4_StructG *)D_801BBBF0)->unkB90 > 30.0f && !(a->unkA6 & 4) && a->unk6 >= 100) {
                     sp28->unk4 = 0x8000;
                     return;
                 }
                 if (a->unk6 >= 100) {
-                    t = (s16)(func_80228C20(arg0) + sp2C) & 0x1FFF;
-                    sp28->unk6 = -func_8001EB64(t) * 80.0f;
-                    sp28->unk8 = func_8001EAD0(t) * 80.0f;
+                    angles.direction = (s16)(func_80228C20(arg0) + angles.base) & 0x1FFF;
+                    sp28->unk6 = -func_8001EB64(angles.direction) * 80.0f;
+                    sp28->unk8 = func_8001EAD0(angles.direction) * 80.0f;
                     return;
                 }
-                if (D_801BBBF0.unkB90 > D_8038DAC0) {
+                if (((func_8038CFF4_StructG *)D_801BBBF0)->unkB90 > D_8038DAC0) {
                     func_80228FD0(arg0, sp28, 0x20);
                     return;
                 }
-                t = (s16)(func_80228C20(arg0) + sp2C + 0x1000) & 0x1FFF;
-                sp28->unk6 = -func_8001EB64(t) * 80.0f;
-                sp28->unk8 = func_8001EAD0(t) * 80.0f;
+                angles.direction = (s16)(func_80228C20(arg0) + angles.base + 0x1000) & 0x1FFF;
+                sp28->unk6 = -func_8001EB64(angles.direction) * 80.0f;
+                sp28->unk8 = func_8001EAD0(angles.direction) * 80.0f;
             }
         }
     }

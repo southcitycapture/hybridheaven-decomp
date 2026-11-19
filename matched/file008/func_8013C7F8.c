@@ -1,6 +1,16 @@
-#define func_8013C7F8 func_8013C7F8_ctx
-#include "context.h"
-#undef func_8013C7F8
+#include "common.h"
+struct func_8013BD84_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+struct func_8013BD84_Entry {
+    struct func_8013BD84_Struct *unk0;
+    u8 pad[0x1C];
+};
+extern struct func_8013BD84_Entry D_8017D478[];
+s32 func_8013B19C(u16 arg0);
+
 
 struct func_8013C7F8_Leaf {
     u8 pad[0x4C];
@@ -18,12 +28,16 @@ struct func_8013C7F8_Obj {
     u8 pad1[0x24];
     struct func_8013C7F8_Inner *unk5C;
 };
+struct func_8013C7F8_Local {
+    struct func_8013BD84_Struct s;
+    s32 unkC;
+    s32 unk10;
+};
 extern struct func_8013BD84_Struct D_8017DC2C;
 extern void func_8013A1B4();
 
 void func_8013C7F8(s32 arg0, s32 arg1, u8 arg2) {
-    s32 pad[2];
-    struct func_8013BD84_Struct sp2C;
+    struct func_8013C7F8_Local loc;
     u16 temp_a0;
     struct func_8013C7F8_Inner *temp_v0;
 
@@ -32,11 +46,11 @@ void func_8013C7F8(s32 arg0, s32 arg1, u8 arg2) {
         temp_a0 = ((struct func_8013C7F8_Obj *)arg0)->unk36;
         if ((temp_a0 & 0xFFF) != 0x57) {
             if (arg2 != 0) {
-                sp2C = D_8017DC2C;
+                loc.s = D_8017DC2C;
             } else {
-                sp2C = *D_8017D478[func_8013B19C(temp_a0)].unk0;
+                loc.s = *D_8017D478[func_8013B19C(temp_a0)].unk0;
             }
-            func_8013A1B4(arg1, sp2C, 0x40000);
+            func_8013A1B4(arg1, loc.s, 0x40000);
         }
     }
 }

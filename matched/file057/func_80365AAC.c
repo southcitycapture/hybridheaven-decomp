@@ -48,42 +48,35 @@ typedef struct func_80365AAC_StructWord {
     u32 word;
 } func_80365AAC_StructWord;
 
-typedef struct func_80365AAC_Sub {
+typedef struct func_80365AAC_StructSub {
     s32 unk0;
     u16 unk4;
     u8 pad6[2];
     f32 unk8;
-} func_80365AAC_Sub;
+} func_80365AAC_StructSub;
 
-typedef struct func_80365AAC_Obj {
+typedef struct func_80365AAC_StructObj {
     u8 pad0[0x1C];
-    func_80365AAC_Sub unk1C;
+    func_80365AAC_StructSub unk1C;
     u8 pad28[0x7C - 0x28];
     void *unk7C;
     u16 unk80;
-} func_80365AAC_Obj;
+} func_80365AAC_StructObj;
 
-typedef struct func_80365AAC_Global {
-    u8 pad0[0xDC];
-    s32 unkDC;
-    u8 padE0[0x1031 - 0xE0];
-    u8 unk1031;
-} func_80365AAC_Global;
-
-typedef struct func_80365AAC_Arg0 {
+typedef struct func_80365AAC_StructArg0 {
     u8 pad0[0x5C];
-    func_80365AAC_Obj *unk5C;
-} func_80365AAC_Arg0;
+    func_80365AAC_StructObj *unk5C;
+} func_80365AAC_StructArg0;
 
-typedef struct func_80365AAC_Inner {
+typedef struct func_80365AAC_StructInner {
     u8 pad0[0x12];
     s16 unk12;
-} func_80365AAC_Inner;
+} func_80365AAC_StructInner;
 
-typedef struct func_80365AAC_Outer {
+typedef struct func_80365AAC_StructOuter {
     u8 pad0[0x2C];
-    func_80365AAC_Inner *unk2C;
-} func_80365AAC_Outer;
+    func_80365AAC_StructInner *unk2C;
+} func_80365AAC_StructOuter;
 
 extern u8 D_80386510[];
 extern u8 D_80386530[];
@@ -92,71 +85,65 @@ extern u16 func_801DFE28(s32);
 
 void func_80365AAC(s32 arg0, void **arg1)
 {
-  func_80365AAC_Struct *s;
-  func_80365AAC_Obj *obj;
-  func_80365AAC_Inner *inner;
-  u8 pad[20];
-  s16 a1;
-  func_80365AAC_Sub *p;
-  func_80365AAC_Obj **po = &obj;
-  if (arg0 == D_801BBBF0.unkDC)
-  {
-    s = (func_80365AAC_Struct *) (&D_801BC03C);
-  }
-  else
-  {
-    s = (func_80365AAC_Struct *) (&D_801BC3D8);
-  }
-  *po = ((func_80365AAC_Arg0 *) arg0)->unk5C;
-  inner = ((func_80365AAC_Outer *) (*arg1))->unk2C;
-  s->b7 = 1;
-  if (GG->unk1031 == 0xF)
-  {
-    return;
-  }
-  if (((void *) D_80386510) == (*po)->unk7C)
-  {
-    if (((s->unk2 <= 0) || (s->b3 == 1)) || (s->b3 == 4))
-    {
-      (*po)->unk7C = D_80386530;
-      s->b11 = 1;
+    func_80365AAC_Struct *s;
+    func_80365AAC_StructObj *obj;
+    func_80365AAC_StructInner *inner;
+    s32 soundFrame;
+    s32 effectFrame7;
+    s32 effectFrame21;
+    s32 effectFrame30;
+    s32 animationId;
+    s16 a1;
+    func_80365AAC_StructSub *p;
+    func_80365AAC_StructObj **po = &obj;
+
+    if (arg0 == D_801BBBF0.unkDC) {
+        s = (func_80365AAC_Struct *) (&D_801BC03C);
+    } else {
+        s = (func_80365AAC_Struct *) (&D_801BC3D8);
     }
-  }
-  p = &(*po)->unk1C;
-  if ((p->unk0 == 0x0190006B) || (p->unk0 == 0x0190006C))
-  {
-    if (func_80011590((u16) (p->unk8 * 9.0f)) == p->unk4)
-    {
-      func_80226710(arg0, (u16) ((func_801DFE28(arg0) == 1) ? (0x30D) : (0x30C)), 1.0f);
+    *po = ((func_80365AAC_StructArg0 *) arg0)->unk5C;
+    inner = ((func_80365AAC_StructOuter *) (*arg1))->unk2C;
+    s->b7 = 1;
+    if (GG->unk1031 == 0xF) {
+        return;
     }
-  }
-  if (((p->unk0 == 0x0190006E) && ((func_80011590((u16) (p->unk8 * 7.0f)) == p->unk4) || (func_80011590((u16) (p->unk8 * 21.0f)) == p->unk4))) || ((p->unk0 == 0x0190006C) && (func_80011590((u16) (p->unk8 * 30.0f)) == p->unk4)))
-  {
-    func_803697AC(arg0, (s32) arg1, 0);
-  }
-  if (((*po)->unk80 == 2) && (((void *) D_803864A0) == (*po)->unk7C))
-  {
-    a1 = (s->b9 == 3) ? (0x800) : (0x1800);
-    inner->unk12 += a1;
-    func_80224E00(arg0, a1);
-  }
-  if (func_801DB6B8(arg0, (s32) arg1, 0) != 0)
-  {
-    func_80225540(arg0);
-    p = (func_80365AAC_Sub *) ((func_80365AAC_StructWord *) s)->word;
-    if ((((u32) p << 1) >> 30) || (s->unk2 <= 0))
-    {
-      func_800058DC(arg0, func_80222E84);
+    if (((void *) D_80386510) == (*po)->unk7C) {
+        if (((s->unk2 <= 0) || (s->b3 == 1)) || (s->b3 == 4)) {
+            (*po)->unk7C = D_80386530;
+            s->b11 = 1;
+        }
     }
-    else
-      if (!(((u32) p << 11) >> 30))
-    {
-      func_800058DC(arg0, func_8036265C);
+    p = &(*po)->unk1C;
+    animationId = p->unk0;
+    if ((animationId == 0x0190006B) || (animationId == 0x0190006C)) {
+        soundFrame = (u16) (p->unk8 * 9.0f);
+        if (func_80011590(soundFrame) == p->unk4) {
+            func_80226710(arg0, (u16) ((func_801DFE28(arg0) == 1) ? (0x30D) : (0x30C)), 1.0f);
+        }
     }
-    else
-    {
-      func_80365FE0(arg0, (s32) arg1);
+    if ((p->unk0 == 0x0190006E &&
+         ((effectFrame7 = (u16) (p->unk8 * 7.0f), func_80011590(effectFrame7) == p->unk4) ||
+          (effectFrame21 = (u16) (p->unk8 * 21.0f), func_80011590(effectFrame21) == p->unk4))) ||
+        (p->unk0 == 0x0190006C &&
+         (effectFrame30 = (u16) (p->unk8 * 30.0f), func_80011590(effectFrame30) == p->unk4))) {
+        func_803697AC(arg0, (s32) arg1, 0);
     }
-  }
-  s->unk392 = 1;
+    if (((*po)->unk80 == 2) && (((void *) D_803864A0) == (*po)->unk7C)) {
+        a1 = (s->b9 == 3) ? (0x800) : (0x1800);
+        inner->unk12 += a1;
+        func_80224E00(arg0, a1);
+    }
+    if (func_801DB6B8(arg0, (s32) arg1, 0) != 0) {
+        func_80225540(arg0);
+        p = (func_80365AAC_StructSub *) ((func_80365AAC_StructWord *) s)->word;
+        if ((((u32) p << 1) >> 30) || (s->unk2 <= 0)) {
+            func_800058DC(arg0, func_80222E84);
+        } else if (!(((u32) p << 11) >> 30)) {
+            func_800058DC(arg0, func_8036265C);
+        } else {
+            func_80365FE0(arg0, (s32) arg1);
+        }
+    }
+    s->unk392 = 1;
 }

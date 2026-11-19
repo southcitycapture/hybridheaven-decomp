@@ -1,4 +1,11 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_80358964_StructA {
+    u8 pad0[0x30];
+    u8 unk30;
+    u8 pad1[0x4C - 0x31];
+    s16 unk4C;
+} func_80358964_StructA;
+
 extern u8 D_8008DA88[];
 extern u8 D_801BBBF0[];
 extern u8 D_801E4070[];
@@ -36,9 +43,8 @@ extern void func_8013B808(void *, void *, s32);
 extern void func_80359698(void *, void *);
 
 void func_80359DAC(void *arg0, s32 arg1) {
-    void *sp20;
-    void *temp_v1;
     void *var_s0;
+    void *temp_v1;
 
     if (arg0 != ((func_80359DAC_Base *)D_801BBBF0)->unkDC) {
         var_s0 = ((func_80359DAC_Base *)D_801BBBF0)->unkDC;
@@ -46,25 +52,20 @@ void func_80359DAC(void *arg0, s32 arg1) {
         var_s0 = ((func_80359DAC_Base *)D_801BBBF0)->unkEC;
     }
     temp_v1 = ((func_80359DAC_Obj *)var_s0)->unk5C;
-    sp20 = temp_v1;
     func_80006214(var_s0);
     if (((func_80359DAC_Obj *)temp_v1)->unk80 == 0) {
         if (((func_80359DAC_Obj *)temp_v1)->unk20 == 0) {
-            sp20 = temp_v1;
             func_8013B808(var_s0, D_8008DA88, 0);
         } else if (((func_80359DAC_Obj *)temp_v1)->unk7C == (s32)D_80385590) {
-            sp20 = temp_v1;
             if (((func_80359DAC_Obj *)temp_v1)->unk20 == func_80011590(3)) {
                 ((func_80359DAC_Hw *)D_8038CC10)->unk4C++;
             }
         } else {
-            sp20 = temp_v1;
             if (((func_80359DAC_Obj *)temp_v1)->unk20 == func_80011590(0x27)) {
                 ((func_80359DAC_Hw *)D_8038CC10)->unk4C++;
             }
         }
     }
-    sp20 = temp_v1;
     func_801DB6B8(var_s0, (s32)D_8008DA88, 0);
     if (((func_80359DAC_Obj *)temp_v1)->unk7C == (s32)D_801E4070 && ((func_80359DAC_Obj *)temp_v1)->unk80 == 0) {
         func_80359698(var_s0, D_8008DA88);

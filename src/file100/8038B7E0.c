@@ -256,8 +256,18 @@ extern s32 D_8038DB4C;
 
 extern s32 D_8038E070;
 
+#undef func_8038BE98
+#undef func_8038C548
+#define D_801BBBF0 D_801BBBF0__func_8038BC00_3d84507e
+#define func_8038BE98 func_8038BE98__func_8038BC00_3d84507e
+#define func_8038C548 func_8038C548__func_8038BC00_3d84507e
+extern u8 D_801BBBF0[];
+void func_8038BE98(f32 arg0);
+s32 func_8038C548(s32 arg0, s32 arg1);
+
+
+
 void func_8038BC00(void) {
-    s32 *var_v0;
     s32 i;
 
     D_8038D8EC = 0;
@@ -267,29 +277,33 @@ void func_8038BC00(void) {
     func_801BF6C4(0);
     D_8038D8F0 = 0;
     for (i = 0; i < 2; i++) {
-        var_v0 = &D_8038E070 + i * 16;
-        var_v0[4] = 0;
-        var_v0[5] = 0;
-        var_v0[6] = 0;
-        var_v0[7] = 0;
-        var_v0[8] = 0;
-        var_v0[9] = 0;
-        var_v0[10] = 0;
-        var_v0[11] = 0;
-        var_v0[12] = 0;
-        var_v0[13] = 0;
-        var_v0[14] = 0;
-        var_v0[15] = 0;
-        var_v0[0] = 0;
-        var_v0[1] = 0;
-        var_v0[2] = 0;
-        var_v0[3] = 0;
+        (&D_8038E070)[i * 16 + 4] = 0;
+        (&D_8038E070)[i * 16 + 5] = 0;
+        (&D_8038E070)[i * 16 + 6] = 0;
+        (&D_8038E070)[i * 16 + 7] = 0;
+        (&D_8038E070)[i * 16 + 8] = 0;
+        (&D_8038E070)[i * 16 + 9] = 0;
+        (&D_8038E070)[i * 16 + 10] = 0;
+        (&D_8038E070)[i * 16 + 11] = 0;
+        (&D_8038E070)[i * 16 + 12] = 0;
+        (&D_8038E070)[i * 16 + 13] = 0;
+        (&D_8038E070)[i * 16 + 14] = 0;
+        (&D_8038E070)[i * 16 + 15] = 0;
+        (&D_8038E070)[i * 16] = 0;
+        (&D_8038E070)[i * 16 + 1] = 0;
+        (&D_8038E070)[i * 16 + 2] = 0;
+        (&D_8038E070)[i * 16 + 3] = 0;
     }
-    *(f32 *)((u8 *)&D_801BBBF0 + 0x29C) = 10.0f;
-    *(f32 *)((u8 *)&D_801BBBF0 + 0x2A0) = 2000.0f;
+    *(f32 *)(D_801BBBF0 + 0x29C) = 10.0f;
+    *(f32 *)(D_801BBBF0 + 0x2A0) = 2000.0f;
     func_8038BE98(D_8038DCF0__func_8038BC00);
     D_8038D8EC = 1;
 }
+#undef D_801BBBF0
+#undef func_8038BE98
+#undef func_8038C548
+#define func_8038BE98 func_8038BE98__func_8038BC00
+#define func_8038C548 func_8038C548__func_8038BC00
 #undef func_8038BE98
 #undef func_8038C548
 

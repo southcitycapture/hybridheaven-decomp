@@ -1,6 +1,4 @@
 #include "common.h"
-#define HZC2(a, b) a##b
-#define HZC(a, b) HZC2(a, b)
 extern u16 D_8038A8F8;
 extern void func_800058DC(void *, void *);
 extern void func_80006214(void *);
@@ -34,7 +32,6 @@ void func_80378190(struct func_80378190_Ctx *arg0, void **arg1);
 extern s32 func_80377FC4(void *, s32, s32, s8 *);
 extern void func_8012D814(void *, s32, s32, s32, s32);
 extern void func_801CD924(u8, u8, u8, f32);
-extern f64 D_803893B8;
 
 struct func_80378064_Struct_Sub {
     u8 pad0[0x18];
@@ -56,7 +53,7 @@ struct func_80378064_Struct {
 };
 
 void func_80378064(struct func_80378064_Struct *arg0, struct func_80378064_Struct_Mid **arg1) {
-    f64 pad_38;
+    f64 scale;
     s8 sp37;
     s32 i;
     struct func_80378064_Struct_Sub *p;
@@ -68,13 +65,14 @@ void func_80378064(struct func_80378064_Struct *arg0, struct func_80378064_Struc
     }
     func_8012D814(arg0, 0x371, 0, 0x3F800000, 1);
     func_80006214(arg0);
+    scale = 0.45;
     i = 0;
     if (arg0->unk94 > 0) {
     do {
         p = arg1[i]->unk30;
-        p->unk18 = (f32) (p->unk18 * 0.45);
+        p->unk18 = (f32) (p->unk18 * scale);
         p->unk1C = (f32) (p->unk1C * 2.5);
-        p->unk20 = (f32) (p->unk20 * 0.45);
+        p->unk20 = (f32) (p->unk20 * scale);
         i++;
     } while (i < arg0->unk94);
     }

@@ -41,13 +41,13 @@ u8 func_80151B8C(void) {
 
 
 
-s32 func_80151B98(s32 arg0) {
-    s32 *p;
 
-    p = &arg0;
-    arg0 = arg0 & 0xFF;
-    if (arg0 < 5) {
-        D_801BBD5A = arg0;
+
+s32 func_80151B98(s32 arg0) {
+    s32 *p = &arg0;
+    *p &= 0xFF;
+    if (*p < 5) {
+        D_801BBD5A = *p;
         return 1;
     }
     return 0;
@@ -62,13 +62,16 @@ u8 func_80151BC4(void) {
 
 
 
+
+
+
 s32 func_80151BD0(s32 arg0) {
     s32 *p;
 
     p = &arg0;
-    arg0 = arg0 & 0xFF;
-    if (arg0 < 5) {
-        D_801BBD5B = arg0;
+    *p &= 0xFF;
+    if (*p < 5) {
+        D_801BBD5B = *p;
         return 1;
     }
     return 0;
@@ -83,11 +86,11 @@ u8 func_80151BFC(void) {
 
 
 
-s32 func_80151C08(s32 arg0) {
-    s32 *p;
 
-    p = &arg0;
-    arg0 = arg0 & 0xFF;
+
+
+s32 func_80151C08(s32 arg0) {
+    arg0 = *(u32 *)&arg0 & 0xFF;
     if (arg0 < 2) {
         D_801BBD5C = arg0;
         return 1;

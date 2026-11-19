@@ -966,13 +966,31 @@ typedef struct func_801293C8_Arg { u8 pad[0x5C]; func_801293C8_A *unk5C; } func_
 extern func_801293C8_S1 *func_8012A0F0(void *, s32, s32, s32, f32, s32);
 extern func_801293C8_G D_801BBBF0;
 
+#define D_801BBBF0 D_801BBBF0__func_801293C8
+#define func_801293C8_A func_801293C8_A__func_801293C8
+#define func_801293C8_Arg func_801293C8_Arg__func_801293C8
+#define func_801293C8_G func_801293C8_G__func_801293C8
+#define func_801293C8_S1 func_801293C8_S1__func_801293C8
+#define func_801293C8_S2 func_801293C8_S2__func_801293C8
+#define func_801293C8_S3 func_801293C8_S3__func_801293C8
+#define func_8012A0F0 func_8012A0F0__func_801293C8
+
+
+typedef struct func_801293C8_S3 { u8 pad[0x48]; u8 b48, b49, b4A; } func_801293C8_S3;
+typedef struct func_801293C8_S2 { u8 pad[0x30]; func_801293C8_S3 *unk30; } func_801293C8_S2;
+typedef struct func_801293C8_S1 { u8 pad[0x24]; func_801293C8_S2 *unk24; u8 pad2[0x74]; f32 unk9C; } func_801293C8_S1;
+typedef struct func_801293C8_G { u8 pad[0x30]; u16 unk30; u8 pad2[0xB6E]; u16 unkBA0; } func_801293C8_G;
+typedef struct func_801293C8_A { u8 pad[0xC]; u16 unkC; } func_801293C8_A;
+typedef struct func_801293C8_Arg { u8 pad[0x5C]; func_801293C8_A *unk5C; } func_801293C8_Arg;
+extern func_801293C8_S1 *func_8012A0F0(void *, s32, s32, s32, f32, s32);
+extern func_801293C8_G D_801BBBF0;
+
 void func_801293C8(func_801293C8_Arg *arg0, f32 arg1) {
     func_801293C8_A *a2;
     func_801293C8_S1 *r;
     f32 sp3C;
     s32 v;
-    u8 pad[8];
-    s32 sp24[3];
+    s32 sp24[5];
 
     a2 = arg0->unk5C;
     if (arg1 != 0.0f) { v = 1; } else { v = 7; }
@@ -999,6 +1017,14 @@ void func_801293C8(func_801293C8_Arg *arg0, f32 arg1) {
         }
     }
 }
+#undef D_801BBBF0
+#undef func_801293C8_A
+#undef func_801293C8_Arg
+#undef func_801293C8_G
+#undef func_801293C8_S1
+#undef func_801293C8_S2
+#undef func_801293C8_S3
+#undef func_8012A0F0
 
 /* hh-block asm/nonmatchings/file008/80127D70/_mrg_keep_tail_ed2b30d300b46e65.s {"functions":["func_80129554"],"rodata":[],"rodata_bytes":[2149109064,5686360,168]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80127D70/_mrg_keep_tail_ed2b30d300b46e65.s")

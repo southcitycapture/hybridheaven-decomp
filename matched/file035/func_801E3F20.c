@@ -15,7 +15,6 @@ extern void func_80006214(s32);
 extern void func_8012C89C(s32, s32, s32, s32);
 extern s32 func_8012CF8C(s32, void *, s32, s32);
 
-
 typedef struct func_801E3F20_StructT {
     u8 pad0[4];
     f32 unk4;
@@ -64,26 +63,30 @@ extern func_801E3CA4_Config D_801E84F8;
 
 #define GG (*(func_801E3F20_StructG **)&D_8038D8D0)
 
+typedef struct func_801E3F20_Cmd {
+    s32 unk0;
+    func_801E3CA4_Config cfg;
+    s32 unk14;
+} func_801E3F20_Cmd;
+
 s32 func_801E3F20(s32 arg0, s32 arg1) {
     s32 i;
-    s32 padA[1];
-    func_801E3CA4_Config c1;
-    s32 padB[2];
-    func_801E3CA4_Config c2;
+    func_801E3F20_Cmd c1;
+    func_801E3F20_Cmd c2;
 
     for (i = 0; i < 2; i++) {
         func_80005E44(D_8038D8CC, (func_801E3CA4_Config *)D_8038D88C);
     }
     for (i = 0; i <= 0; i++) {
-        c1 = D_801E84E8;
-        func_80005E44(D_8038D8CC, &c1);
+        c1.cfg = D_801E84E8;
+        func_80005E44(D_8038D8CC, &c1.cfg);
     }
     for (i = 0; i < 2; i++) {
         func_80005E44(D_8038D8CC, (func_801E3CA4_Config *)D_8038D89C);
     }
     for (i = 0; i != 2; i++) {
-        c2 = D_801E84F8;
-        func_80005E44(D_8038D8CC, &c2);
+        c2.cfg = D_801E84F8;
+        func_80005E44(D_8038D8CC, &c2.cfg);
     }
     func_80006214(D_8038D8CC);
     func_8012C89C(D_8038D8CC, 0, 0x259, 0);

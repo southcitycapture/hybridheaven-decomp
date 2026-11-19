@@ -1,26 +1,22 @@
 #include "common.h"
-#define HZCAT2(a, b) a##b
-#define HZCAT(a, b) HZCAT2(a, b)
-extern s32 D_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
-typedef struct func_80253680_StructInner {
-    u8 pad0[4];
-    f32 x, y, z;
-    u8 pad10[2];
-    s16 angle;
-    u8 pad14[0x1C];
-    f32 a, b, c, d, e, f;
-} func_80253680_StructInner;
-typedef struct func_80253680_StructOuter {
-    u8 pad0[0x2C];
-    func_80253680_StructInner *inner;
-} func_80253680_StructOuter;
-extern func_80253680_StructOuter *D_801BBCD0;
-extern void func_800058DC();
+#define func_80254B3C_Args func_80254B3C_Args_first
+#define func_80254B3C_Node func_80254B3C_Node_first
+#define hzP2(a, b) a##b
+#define hzP(a, b) hzP2(a, b)
+#define func_8001EAD0__func_80256034 hzP(hzq_, __LINE__)
+#define hzq_592 func_8001EAD0__k592
+#define hzq_599 func_8001EAD0__func_80256034
+extern s32 D_8025DE24;
+extern void func_800058DC(void *, void *);
+#define CAT2(a, b) a##b
+#define CAT(a, b) CAT2(a, b)
+#define func_8001EAD0__func_80256034 CAT(func_8001EAD0__func_80256034Q, __LINE__)
 extern void func_80020718(s32);
 extern s32 func_8012C6B4(s32);
 extern void func_801518D4(s32, s32, s32);
 extern void func_801C2F0C(s32, void *);
-extern s32 func_801C3D20(f32, f32, f32);
+typedef struct { u8 pad[0x28]; } func_80254B3C_Args_first;
+typedef struct { u8 pad[0x28]; } func_80254B3C_Node_first;
 typedef struct func_80255B30_A0 {
     u8 pad0[0x40]; f32 unk40; f32 unk44; f32 unk48;
     u8 pad4C[0x92 - 0x4C]; u16 unk92; u8 pad94[4];
@@ -35,41 +31,29 @@ typedef struct func_80251820_Ctx {
     u16 unk90;
     u16 unk92;
 } func_80251820_Ctx;
-typedef struct func_80251820_Inner {
-    u8 pad0[8];
-    f32 unk8;
-    u8 padC[6];
-    s16 unk12;
-    u8 pad14[4];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    u32 unk24;
-    u8 pad28[8];
-    u32 unk30;
-    u8 pad34[0x14];
-    u8 unk48;
-    u8 unk49;
-    u8 unk4A;
-    u8 unk4B;
-    u8 unk4C;
-    u8 unk4D;
-    u8 unk4E;
-    u8 unk4F;
-} func_80251820_Inner;
-typedef struct func_80251820_Node {
-    u8 pad0[0x22];
-    u8 unk22;
-    u8 pad23[0xD];
-    func_80251820_Inner *unk30;
-} func_80251820_Node;
+typedef struct func_80251820_Node { u8 pad0[0x22]; u8 unk22; } func_80251820_Node;
 void func_80256034(func_80251820_Ctx *arg0, func_80251820_Node **arg1);
-typedef struct func_80256034_Cmd { s16 a; s32 b; f32 c; s16 d; } func_80256034_Cmd;
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
+#undef func_80254B3C_Args
+#undef func_80254B3C_Node
+extern s32 D_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+typedef struct func_80253680_StructInner {
+    u8 pad0[4];
+    f32 x, y, z;
+    u8 pad10[2];
+    s16 angle;
+    u8 pad14[0x1C];
+    f32 a, b, c, d, e, f;
+} func_80253680_StructInner;
+typedef struct func_80253680_StructOuter {
+    u8 pad0[0x2C];
+    func_80253680_StructInner *inner;
+} func_80253680_StructOuter;
+extern func_80253680_StructOuter *D_801BBCD0;
+extern s32 func_801C3D20(f32, f32, f32);
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
 extern u8 D_8025DB30[];
-extern s32 D_8025DE24;
 
 typedef struct func_80255CA0_In {
     u8 pad0[4];
@@ -84,11 +68,11 @@ typedef struct func_80255CA0_Node {
     func_80255CA0_In *unk30;
 } func_80255CA0_Node;
 
+typedef struct func_80255CA0_Cmd { s16 a; s32 b; f32 c; s16 d; s32 e; s32 f; s32 g; } func_80255CA0_Cmd;
 extern void D_80005700(s32);
 void func_80255CA0(func_80255B30_A0 *arg0, s32 arg1) {
     func_80253680_StructInner *temp_v1;
-    s32 sp88[3];
-    func_80256034_Cmd sp78;
+    func_80255CA0_Cmd sp78;
     s32 sp74;
 
     sp74 = arg0->unk92++;

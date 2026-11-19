@@ -1,5 +1,6 @@
 #include "common.h"
 
+
 struct func_8024102C_Struct {
     s16 a;
     s16 pad0;
@@ -7,15 +8,17 @@ struct func_8024102C_Struct {
     f32 c;
     s16 d;
     s16 pad1;
+    s32 e;
+    s32 f;
+    s32 g;
+    s32 h;
 };
-
 extern void func_800058DC(void *, void *);
 extern void func_801C2F0C(s32, void *);
 extern s32 func_801C3044(void);
 extern void func_80241094();
 
 void func_8024102C(s32 arg0, s32 arg1) {
-    u8 pad[0x10];
     struct func_8024102C_Struct sp18;
 
     if (func_801C3044() == 0) {

@@ -1,6 +1,25 @@
-#define func_80146208 func_80146208_decl
-#include "context.h"
-#undef func_80146208
+#include "common.h"
+extern s32 D_80146088(s32, void *, s32);
+typedef struct func_80146178_Struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    u8 unk8;
+    u8 unk9;
+    u8 unkA;
+    u8 unkB;
+    u8 pad0[4];
+    s16 unkC;
+    s16 unkE;
+} func_80146178_Struct;
+typedef struct func_80146178_Global {
+    u8 pad0[0xC];
+    func_80146178_Struct *unkC;
+} func_80146178_Global;
+extern struct func_80146178_Global D_80181A84;
+extern void func_80006214(void *a0);
+
 
 typedef struct func_80146208_StructData {
     s16 x, y, w, h;
@@ -15,6 +34,7 @@ typedef struct func_80146208_StructData {
     s16 width, height;
     u16 v, u;
     s16 w2, h2;
+    u8 pad4[8];
 } func_80146208_StructData;
 typedef struct func_80146208_StructEntry {
     u16 *format;
@@ -23,7 +43,6 @@ typedef struct func_80146208_StructEntry {
 extern func_80146208_StructEntry *D_80171CEC[];
 
 u8 func_80146208(s32 arg0, s8 *arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, u16 arg7, u16 arg8, u8 arg9, u16 arg10, volatile u16 arg11) {
-    u8 unused[8];
     func_80146208_StructData data;
     u8 result;
     func_80146208_StructEntry *entry;

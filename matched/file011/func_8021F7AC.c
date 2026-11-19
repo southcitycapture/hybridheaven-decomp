@@ -114,8 +114,7 @@ void func_8021F7AC(s32 arg0, s32 arg1) {
             ((u16 *)s0)[3] |= 0x10;
         }
     } else {
-        w = a3 - v1;
-        w = w * 1;
+        w = (s16)(a3 - v1) & 0xFFFF;
         v = (u8)(((s16)(w + 0x400) & 0x1FFF) / 2048);
         if (s1->unk30.f.c == 3) {
             v = ((4 - ((((s16)(w + 0x400) & 0x1FFF) / 2048) & 0xFF)) % 4) & 0xFF;

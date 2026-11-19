@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+extern void func_800058DC(void *, void *);
 
 extern void func_801C2F0C(s32, s16 *);
 extern s32 func_801C2FF8(void);
@@ -9,11 +10,10 @@ typedef struct func_80244074_Struct {
     u8 pad2[2];
     s32 unk4;
     f32 unk8;
+    u8 padC[0x14];
 } func_80244074_Struct;
 
 void func_80244074(s32 arg0, s32 arg1) {
-    u8 pad2[0x8];
-    u8 pad[0xC];
     func_80244074_Struct sp18;
 
     if (func_801C2FF8() != 0) {

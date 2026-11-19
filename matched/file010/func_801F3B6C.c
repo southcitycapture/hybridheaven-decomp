@@ -1,4 +1,8 @@
-#include "context.h"
+#include "common.h"
+struct func_801F7928_B { u8 pad0[0x30]; f32 f30; f32 f34; f32 f38; f32 f3c; f32 f40; f32 f44; };
+struct func_801F7928_A { u8 pad0[0x2C]; struct func_801F7928_B *unk2C; };
+extern void (*D_80216D10[])(void *, s32);
+
 
 struct func_801F3B6C_E { u16 a; u16 b; u8 pad[6]; };
 struct func_801F3B6C_N { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; u8 pad1[0x20]; f32 unk30; f32 unk34; f32 unk38; };
@@ -12,9 +16,9 @@ extern s32 func_8010843C(f32, f32, f32, f32, f32, f32);
 extern void func_80127430(f32, f32, f32, u16, f32, f32);
 
 void func_801F3B6C(struct func_801F3B6C_A *arg0) {
-    u8 pad[4];
+    s32 r;
     u16 key;
-    u8 pad2[2];
+    u16 id;
     u16 i;
     struct func_801F3B6C_N *n;
     struct func_801F3B6C_N *p;
@@ -25,13 +29,15 @@ void func_801F3B6C(struct func_801F3B6C_A *arg0) {
     n = ((struct func_801F3B6C_M *)D_801BBCD8)->unk2C;
     p = arg0->unk24->unk2C;
     i = 0;
-    if (func_8010843C(n->unk30, n->unk34, n->unk38, p->unk4, p->unk8 + 2.0f, p->unkC) == 0) {
+    r = func_8010843C(n->unk30, n->unk34, n->unk38, p->unk4, p->unk8 + 2.0f, p->unkC);
+    if (r == 0) {
         for (; D_8017D250[i].a != 0; i++) {
             if (key == D_8017D250[i].a) break;
         }
-        if (D_8017D250[i].b != 0) {
+        id = D_8017D250[i].b;
+        if (id != 0) {
             p = arg0->unk24->unk2C;
-            func_80127430(p->unk4, p->unk8, p->unkC, D_8017D250[i].b, 1.0f, 1.0f);
+            func_80127430(p->unk4, p->unk8, p->unkC, id, 1.0f, 1.0f);
         }
     }
 }

@@ -3681,29 +3681,59 @@ typedef struct func_801E7360_Struct0 {
     func_801E7360_Struct8 *unk8;
 } func_801E7360_Struct0;
 
+
+
+#define func_801E7360_Struct0 func_801E7360_Struct0__func_801E7360
+#define func_801E7360_Struct24 func_801E7360_Struct24__func_801E7360
+#define func_801E7360_Struct2C func_801E7360_Struct2C__func_801E7360
+#define func_801E7360_Struct8 func_801E7360_Struct8__func_801E7360
+
+typedef struct func_801E7360_Struct2C {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_801E7360_Struct2C;
+
+typedef struct func_801E7360_Struct24 {
+    u8 pad0[0x2C];
+    func_801E7360_Struct2C *unk2C;
+} func_801E7360_Struct24;
+
+typedef struct func_801E7360_Struct8 {
+    u8 pad0[0x24];
+    func_801E7360_Struct24 *unk24;
+} func_801E7360_Struct8;
+
+typedef struct func_801E7360_Struct0 {
+    u8 pad0[0x8];
+    func_801E7360_Struct8 *unk8;
+} func_801E7360_Struct0;
+
 s32 func_801E7360(s32 arg0, s32 arg1)
 {
-  int new_var;
-  u8 *base;
+  func_801E7360_Struct0 **base;
   if (func_801C0B8C(0x440DE0) != 0)
   {
-    base = func_801DAAF0;
-    base += 0x24;
-    (*((func_801E7360_Struct0 **) base))->unk8->unk24->unk2C->unk4 = 114.699997f;
-    (*((func_801E7360_Struct0 **) base))->unk8->unk24->unk2C->unk8 = 13.5f;
-    (*((func_801E7360_Struct0 **) base))->unk8->unk24->unk2C->unkC = (-72.8000031f);
-    if (!base)
-    {
- do { } while (new_var = 0);
-    }
-    (*((func_801E7360_Struct0 **) base))->unk8->unk24->unk2C->unk12 = 0x1B8E;
+    base = (func_801E7360_Struct0 **) D_801DAB14;
+    (*base)->unk8->unk24->unk2C->unk4 = D_801EDD5C;
+    (*base)->unk8->unk24->unk2C->unk8 = 13.5f;
+    (*base)->unk8->unk24->unk2C->unkC = D_801EDD60;
+    (*base)->unk8->unk24->unk2C->unk12 = 0x1B8E;
     func_801C0D04(4, 0);
     return 0x1D;
   }
   return 0x1C;
 }
+#undef func_801E7360_Struct0
+#undef func_801E7360_Struct24
+#undef func_801E7360_Struct2C
+#undef func_801E7360_Struct8
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file044/801E1BE0/func_801E7420.s")
+/* hh-block asm/nonmatchings/file044/801E1BE0/_mrg_keep_0b690c2d198f8a07.s {"functions":["func_801E7420"],"rodata":[[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7360.s","D_801EDD5C"],[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7360.s","D_801EDD60"],[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7420.s","D_801EDD68"],[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7420.s","D_801EDD70"],[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7420.s","D_801EDD78"],[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7420.s","D_801EDD80"],[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7420.s","D_801EDD88"],[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7420.s","D_801EDD90"],[".late_rodata","asm/nonmatchings/file044/801E1BE0/func_801E7420.s","D_801EDD98"]]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file044/801E1BE0/_mrg_keep_0b690c2d198f8a07.s")
 
 
 

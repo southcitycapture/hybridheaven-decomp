@@ -55,7 +55,15 @@ typedef struct func_80148820_Struct {
     s32 unk9C;
 } func_80148820_Struct;
 s32 func_80148820(func_80148820_Struct *arg0);
-extern void func_80148958();
+typedef struct func_80148958_Struct {
+    u8 pad[0x90];
+    s8 unk90;
+    s8 unk91;
+    s8 unk92;
+    u8 pad2[5];
+    void *unk98;
+} func_80148958_Struct;
+void func_80148958(func_80148958_Struct *arg0);
 void func_80148B2C(s8 arg0, s8 arg1);
 void func_80148B6C(void);
 typedef struct func_80148CB0_StructInner {
@@ -84,30 +92,32 @@ typedef struct func_80148FC4_Struct {
 } func_80148FC4_Struct;
 void func_80148FC4(func_80148FC4_Struct *arg0, s32 arg1, u8 arg2, u8 arg3);
 void func_80149370(void);
-void func_801498CC(func_80148270_Struct *arg0, func_80148074_Struct **arg1);
+extern void func_801498CC();
 void func_8014A67C(func_80148270_Struct *arg0, s32 arg1);
-void func_8014AB48(s32 arg0, s32 arg1);
+extern void func_8014AB48();
 extern void func_801FBB20();
 extern void func_80236C60(void);
 
-#undef func_8014A234
 
 typedef struct func_8014A234_StructInner {
     u8 pad[0xAA];
     s8 unkAA;
     s8 unkAB;
 } func_8014A234_StructInner;
+
 typedef struct func_8014A234_StructInput {
     u8 pad[4];
     u16 unk4;
     u8 pad6[6];
     u16 unkC;
 } func_8014A234_StructInput;
+
 typedef struct func_8014A234_StructRecord {
     u8 mask;
     u8 kind;
     u8 pad[4];
 } func_8014A234_StructRecord;
+
 typedef struct func_8014A234_Struct {
     u8 pad[0xC];
     func_8014A234_StructInner *unkC;
@@ -125,7 +135,7 @@ typedef struct func_8014A234_Struct {
 } func_8014A234_Struct;
 extern void func_8001F75C(void *);
 extern void func_80232128(void *);
-extern void func_8013D520(u8, s32, s32);
+extern void func_8013D520(u8, s32, u8);
 extern void func_80387A20(void *, u8);
 extern u16 D_801BCAE0;
 
@@ -135,7 +145,7 @@ void func_8014A234(func_8014A234_Struct *arg0, s32 arg1) {
     u16 temp_v0;
     s8 var_a2;
     s8 var_a3;
-    volatile u8 sp23;
+    u8 sp23;
     u16 m;
 
     sp2C = arg0->unkA4;
@@ -160,13 +170,13 @@ void func_8014A234(func_8014A234_Struct *arg0, s32 arg1) {
         func_80006088(D_80181D5C);
         func_80006088(D_80181D60);
         func_80148500((void *)arg0);
-        func_80148958(arg0);
+        func_80148958((void *)arg0);
         return;
     }
     if (func_80148CB0((void *)arg0, arg1)) {
         arg0->unk90 = func_80148124((u8)arg0->unk95, (u8)arg0->unk96);
         func_80148500((void *)arg0);
-        func_80148958(arg0);
+        func_80148958((void *)arg0);
         return;
     }
     temp_v0 = sp2C->unk4;

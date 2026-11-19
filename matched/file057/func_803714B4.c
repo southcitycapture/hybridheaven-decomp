@@ -37,7 +37,7 @@ void func_803714B4(func_803714B4_Struct *arg0, s32 arg1) {
     f32 x2 = arg0->x2;
     f32 y2 = arg0->y2;
     f32 z2 = arg0->z2;
-    s32 pad;
+    void *cb = func_8037118C;
 
     switch (type) {
     case 0:
@@ -60,7 +60,7 @@ void func_803714B4(func_803714B4_Struct *arg0, s32 arg1) {
         break;
     default:
         arg0->flags = 0x8000;
-        func_800058DC(arg0, func_8037118C);
+        func_800058DC(arg0, cb);
     }
-    func_800058DC(arg0, func_8037118C);
+    func_800058DC(arg0, cb);
 }

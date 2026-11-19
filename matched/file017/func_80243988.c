@@ -1,6 +1,4 @@
 #include "common.h"
-#define LP2(a, b) a##b
-#define LP(a, b) LP2(a, b)
 
 
 typedef struct {
@@ -37,14 +35,8 @@ extern f64 D_8025C778;
 extern f64 D_8025C780;
 
 void func_80243988(func_80243988_Struct *arg0, func_80243988_Obj **arg1) {
-    s32 pad[2];
-    s32 sp64;
-    s32 sp60;
-    s32 sp5C;
-    f32 temp_fv0;
+    s32 sp[5];
     s32 temp_v1;
-    s32 rot;
-    s32 rot2;
     func_80243988_Sub *temp_v0;
 
     temp_v1 = arg0->unk3C++;
@@ -60,11 +52,11 @@ void func_80243988(func_80243988_Struct *arg0, func_80243988_Obj **arg1) {
     temp_v0 = (*arg1)->unk30;
     temp_v0->unk14 = (s32)(s16)(s32)((arg0->unk48 * 10.0f) + temp_v0->unk14) & 0x1FFF;
     if ((u32)(temp_v1 % 2) <= 0) {
-        sp5C = func_8012C6B4(0xC8);
-        sp60 = func_8012C6B4(0xC8);
-        sp64 = func_8012C6B4(0xC8);
-        func_80129FB8((sp5C - 0x64) / 10.0 + arg0->unk90, (sp60 - 0x64) / 10.0 + arg0->unk94,
-                      (sp64 - 0x64) / 10.0 + arg0->unk98, 0.0f, 0.0f, 0.0f, 0.0f,
+        sp[0] = func_8012C6B4(0xC8);
+        sp[1] = func_8012C6B4(0xC8);
+        sp[2] = func_8012C6B4(0xC8);
+        func_80129FB8((sp[0] - 0x64) / 10.0 + arg0->unk90, (sp[1] - 0x64) / 10.0 + arg0->unk94,
+                      (sp[2] - 0x64) / 10.0 + arg0->unk98, 0.0f, 0.0f, 0.0f, 0.0f,
                       0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x64, -6,
                       func_8012C6B4(0x28) / 100.0 + D_8025C780, 5, 0);
     }

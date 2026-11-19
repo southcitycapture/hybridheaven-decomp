@@ -1,4 +1,5 @@
 #include "common.h"
+
 s32 func_80133A24(s32);
 void func_80150314(void *, s32);
 
@@ -42,6 +43,12 @@ typedef struct {
     f32 unk8;
     s16 unkC;
 } func_801D7F18_Arg;
+
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    func_801D7F18_Arg arg;
+} func_801D7F18_ArgBlock;
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern void func_801C2F0C(s32, void *);
@@ -54,8 +61,7 @@ s32 func_801D7F18(func_801D7F18_Struct *arg0, s32 arg1) {
     func_801D7F18_Struct14 *p;
     u8 state;
     f32 g;
-    func_801D7F18_Arg sp30;
-    f32 h;
+    func_801D7F18_ArgBlock sp28;
 
     state = arg0->unk93;
     if (state == 1) goto case1;
@@ -78,11 +84,11 @@ case2:
         r = arg0->unk94 == 12.0f;
         arg0->unk94 += 1.0f;
         if (r != 0) {
-            sp30.unk0 = 0x1000;
-            sp30.unk4 = 0x04100045;
-            sp30.unk8 = 1.0f;
-            sp30.unkC = 0xA;
-            func_801C2F0C(3, &sp30);
+            sp28.arg.unk0 = 0x1000;
+            sp28.arg.unk4 = 0x04100045;
+            sp28.arg.unk8 = 1.0f;
+            sp28.arg.unkC = 0xA;
+            func_801C2F0C(3, &sp28.arg);
         }
     } else if (func_80133A24(0xB) != 0) {
         arg0->unk93 = 3;

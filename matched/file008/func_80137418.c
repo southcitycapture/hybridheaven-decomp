@@ -1,4 +1,5 @@
 #include "common.h"
+
 extern u8 D_80164F40[];
 extern s32 func_800058DC(void *, void *);
 extern void func_80005F6C(void *, void *);
@@ -14,6 +15,12 @@ typedef struct func_80137418_StructA {
     s32 unk8;
     s32 unkC;
 } func_80137418_StructA;
+
+typedef struct func_80137418_StructB {
+    s32 unk0;
+    s32 unk4;
+    func_80137418_StructA v;
+} func_80137418_StructB;
 
 typedef struct func_80137418_StructInner {
     u8 pad0[0x6];
@@ -67,18 +74,17 @@ extern s32 D_80133A24(s32);
 
 void func_80137418(func_80137418_Struct0 *arg0, func_80137418_Struct1 **arg1)
 {
-  func_80137418_StructA sp90;
-  s32 pad[2];
+  func_80137418_StructB sp88;
   s32 i;
   f32 f;
   u16 a;
   if (((arg0->unk38->unk14 >> 16) == 0) || (D_80133A24(arg0->unk38->unk14 >> 16) != 0))
   {
-    sp90 = *((func_80137418_StructA *) D_80164F40);
-    sp90.unk4 = 0x80000300;
+    sp88.v = *((func_80137418_StructA *) D_80164F40);
+    sp88.v.unk4 = 0x80000300;
     for (i = 0; i < 14; i++)
     {
-      func_80005F6C(arg0, &sp90);
+      func_80005F6C(arg0, &sp88.v);
     }
 
     func_80006214(arg0);

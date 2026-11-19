@@ -1,4 +1,5 @@
 #include "common.h"
+
 extern s32 func_8012C6B4(s32);
 extern void (*D_80216D10[])(void *, s32);
 
@@ -21,7 +22,9 @@ typedef struct func_801F474C_Struct {
 extern void D_801F46DC(func_801F474C_Struct *, s16 *, s16 *, f32, f32);
 
 void func_801F474C(func_801F474C_Struct *arg0, s16 arg1, f32 arg2, f32 arg3) {
-    s32 pad[3];
+    s32 sum;
+    s32 mul;
+    s32 angle;
     s8 dir;
     s16 sp28;
     s16 sp26;
@@ -34,6 +37,9 @@ void func_801F474C(func_801F474C_Struct *arg0, s16 arg1, f32 arg2, f32 arg3) {
     } else {
         dir = 1;
     }
-    sp28 += dir * func_8012C6B4(arg1);
-    arg0->unk24->unk2C->unk12 = sp28 & 0x1FFF;
+    mul = func_8012C6B4(arg1);
+    sum = sp28 + dir * mul;
+    sp28 = sum;
+    angle = sp28 & 0x1FFF;
+    arg0->unk24->unk2C->unk12 = angle;
 }

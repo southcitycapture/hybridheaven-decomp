@@ -1,12 +1,4 @@
 #include "common.h"
-extern u8 D_801BBBF0[];
-extern u8 D_801BC03C[];
-extern u8 D_801BC3D8[];
-extern s32 func_80005670(void *, void *);
-extern void func_800058DC(void *obj, void *fn);
-void func_8021B790(void);
-void func_8021C928(s32 arg0, s32 arg1);
-void func_8021C934(u8 *arg0, s32 arg1);
 typedef struct func_8021CC30_Struct2 {
     u8 pad0[4];
     f32 unk4;
@@ -26,6 +18,15 @@ typedef struct func_8021CC30_Struct4 {
 typedef struct func_8021CC30_Struct5 {
     func_8021CC30_Struct4 *unk0;
 } func_8021CC30_Struct5;
+
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern s32 func_80005670(void *, void *);
+extern void func_800058DC(void *obj, void *fn);
+void func_8021B790(void);
+void func_8021C928(s32 arg0, s32 arg1);
+void func_8021C934(u8 *arg0, s32 arg1);
 
 
 typedef struct func_8021C4C0_Actor {
@@ -76,10 +77,9 @@ extern u8 D_803896C8[];
 
 void func_8021C4C0(func_8021C4C0_Obj *arg0, s32 arg1) {
     func_8021C4C0_Ret *ret;
-    s32 pad;
+    func_8021C4C0_Actor *a;
     func_8021C4C0_Actor *b;
     u8 val;
-    func_8021C4C0_Actor *a;
     u8 v;
     u8 i;
 

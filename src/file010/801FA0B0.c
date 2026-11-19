@@ -28,6 +28,7 @@ extern s32 func_80126CC0(void *, void *);
 extern s32 func_80133A24(s32);                             /* extern */
 extern s32 func_801F546C(void);
 extern s32 func_801FA13C(u16);
+#define func_801FA248 func_801FA248__decl
 extern s32 func_801FA248(void *, s32);
 extern s32 func_801FA624();
 extern s8 D_8021B0D0;
@@ -152,28 +153,47 @@ struct func_801FA248_Struct {
     struct func_801FA248_StructInner *unk30;
 };
 
-s32 func_801FA248(void *arg0, s32 arg1) {
-    void *data;
+#undef func_801FA248
+#define func_801FA248_Struct func_801FA248_Struct__func_801FA248
+#define func_801FA248_StructInner func_801FA248_StructInner__func_801FA248
+
+
+struct func_801FA248_StructInner {
+    u8 pad[0x4B];
+    u8 unk4B;
+};
+
+struct func_801FA248_Struct {
+    u8 pad[0x10];
+    struct func_801FA248_Struct *unk10;
+    u8 pad14[0x22 - 0x14];
+    u8 unk22;
+    u8 pad23[0x30 - 0x23];
+    struct func_801FA248_StructInner *unk30;
+};
+
+s32 func_801FA248(struct func_801FA248_Struct *arg0, u8 arg1) {
     s16 temp;
     s32 result;
 
-    *(s32 *)((u8 *)&data + 8) = arg1;
-    arg1 &= 0xFF;
     result = 1;
     if (arg0 != NULL) {
         do {
-            temp = ((struct func_801FA248_Struct *)arg0)->unk30->unk4B;
-            temp = temp - arg1 * 1;
+            temp = arg0->unk30->unk4B;
+            temp = temp - arg1;
             if (temp < 0) {
-                ((struct func_801FA248_Struct *)arg0)->unk22 = 0;
+                arg0->unk22 = 0;
                 result = 0;
             }
-            ((struct func_801FA248_Struct *)arg0)->unk30->unk4B = temp;
-            arg0 = ((struct func_801FA248_Struct *)arg0)->unk10;
+            arg0->unk30->unk4B = temp;
+            arg0 = arg0->unk10;
         } while (arg0 != NULL);
     }
     return result;
 }
+#undef func_801FA248_Struct
+#undef func_801FA248_StructInner
+#define func_801FA248 func_801FA248__decl
 
 
 struct func_801FA29C_Inner {

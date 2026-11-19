@@ -1,5 +1,12 @@
-#include "context.h"
-
+#include "common.h"
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern s8 D_8023E3A4;
+extern u8 D_8023E3AC;
+extern void (*D_80216D10[])(void *, s32);
+extern void func_800058DC();
+extern void func_8013CD04(void *, u8, s32, void *);
+extern void func_80231CE4(void *);
 typedef struct func_80239CF4_B {
     u8 pad[0x74];
     u8 unk74;
@@ -29,6 +36,19 @@ typedef struct func_80239CF4_A {
     u8 pad4[2];
     func_80239CF4_D *unkB0;
 } func_80239CF4_A;
+typedef struct func_8023A09C_StructInner {
+    u8 pad[0x31];
+    u8 high : 1;
+    u8 middle : 4;
+    u8 low : 3;
+} func_8023A09C_StructInner;
+typedef struct func_8023A09C_Struct {
+    u8 pad[0x98];
+    func_8023A09C_StructInner *unk98;
+} func_8023A09C_Struct;
+void func_8023A09C(func_8023A09C_Struct *arg0, s32 arg1);
+
+
 typedef struct func_80239CF4_C {
     u8 pad[0x2D4];
     func_80239CF4_E *unk2D4;
@@ -36,22 +56,24 @@ typedef struct func_80239CF4_C {
     u8 unk2D9;
 } func_80239CF4_C;
 
+typedef struct func_80239CF4_Struct_S {
+    func_80239CF4_D *b;
+    u8 idx;
+} func_80239CF4_Struct_S;
+
 void func_80239CF4(func_80239CF4_A *arg0, s32 arg1) {
-    u8 pad[8];
+    func_80239CF4_Struct_S s;
     func_80239CF4_C *a;
     u8 t;
-    u8 idx;
-    func_80239CF4_E *e;
-    func_80239CF4_D *b;
     func_80239CF4_B *p;
 
     p = arg0->unk90;
     t = p->unk74;
     a = (t == 0 || t == 2) ? (func_80239CF4_C *)D_801BC03C : (func_80239CF4_C *)D_801BC3D8;
-    b = arg0->unkB0;
+    s.b = arg0->unkB0;
     if (arg0->unkAC >= 0x20) {
-        idx = arg0->unkA5 + arg0->unkA1 * 5 - 5;
-        a->unk2D4 = b->arr[idx].unk0;
+        s.idx = arg0->unkA5 + arg0->unkA1 * 5 - 5;
+        a->unk2D4 = s.b->arr[s.idx].unk0;
         a->unk2D9 = a->unk2D4->unkA;
         a->unk2D8 = 9;
         if ((u8)D_8023E3A4 == 1) {

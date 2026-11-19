@@ -47,9 +47,9 @@ typedef struct func_801235D0_Struct {
     s16 unkEF2;
 } func_801235D0_Struct;
 #define G (*(func_801235D0_Struct *)&D_801BBBF0)
+
 extern void func_800058DC(s32, void *);
 extern void func_80133830();
-
 extern f32 func_8002FC20(f32);
 extern void func_80017608();
 extern void func_8001F6FC();
@@ -115,7 +115,6 @@ typedef struct func_80123BF0_StructM {
 #define G(T, o) (*(T *)((u8 *)&D_800892B0 + (o)))
 
 void func_80123BF0(s32 arg0, s32 arg1) {
-    u8 *q;
     s32 i;
 
     F(u8, 0x17E) = 4;
@@ -337,13 +336,16 @@ loop5:
     F(s32, 0x1048) = 0;
     if (F(u8, 0x180) == 1) {
         if (func_80125774(0x3000) == 0) {
+            goto done;
         }
     } else if (F(u8, 0x180) == 2) {
         func_80124ED0(F(u16, 0x2C));
         if (func_80125774(-1) == 0) {
+            goto done;
         }
     } else {
         func_80124ED0(F(u16, 0x2C));
     }
+done:
     func_800058DC(arg0, func_801243DC);
 }

@@ -55,11 +55,38 @@ typedef struct func_80375560_Struct {
 
 extern func_80375560_StructNode *D_8038CD00[];
 
+#undef D_8038CCE0
+#undef D_8038CD00
+#undef func_80375560_Struct
+#undef func_80375560_StructData
+#undef func_80375560_StructNode
+#define D_8038CCE0 D_8038CCE0__func_80375560_4b5c0400
+#define D_8038CD00 D_8038CD00__func_80375560_4b5c0400
+#define func_80375560_Struct func_80375560_Struct__func_80375560_4b5c0400
+#define func_80375560_StructData func_80375560_StructData__func_80375560_4b5c0400
+#define func_80375560_StructNode func_80375560_StructNode__func_80375560_4b5c0400
+typedef struct func_80375560_StructData {
+    u8 pad[0xC];
+    u16 count;
+} func_80375560_StructData;
+typedef struct func_80375560_StructNode {
+    struct func_80375560_StructNode *left;
+    u8 pad[4];
+    struct func_80375560_StructNode *right;
+} func_80375560_StructNode;
+typedef struct func_80375560_Struct {
+    u8 pad[0x24];
+    func_80375560_StructNode *root;
+    u8 pad2[0x34];
+    func_80375560_StructData *data;
+} func_80375560_Struct;
+
+extern u8 D_8038CCE0[];
+extern func_80375560_StructNode *D_8038CD00[];
+
 void func_80375560(func_80375560_Struct *arg0, func_80375560_StructNode **arg1) {
-    func_80375560_StructNode **cursor;
     s32 i;
     u8 depth;
-    u8 *out;
     s32 j;
     func_80375560_StructNode *left;
     func_80375560_StructData *data;
@@ -92,6 +119,16 @@ void func_80375560(func_80375560_Struct *arg0, func_80375560_StructNode **arg1) 
             }
     }
 }
+#undef D_8038CCE0
+#undef D_8038CD00
+#undef func_80375560_Struct
+#undef func_80375560_StructData
+#undef func_80375560_StructNode
+#define D_8038CCE0 D_8038CCE0__func_80375560_d6b4dfba
+#define D_8038CD00 D_8038CD00__func_80375560_d6b4dfba
+#define func_80375560_Struct func_80375560_Struct__func_80375560_d6b4dfba
+#define func_80375560_StructData func_80375560_StructData__func_80375560_d6b4dfba
+#define func_80375560_StructNode func_80375560_StructNode__func_80375560_d6b4dfba
 #undef D_8038CCE0
 #undef D_8038CD00
 #undef func_80375560_Struct

@@ -1,9 +1,19 @@
-#include "context.h"
-
+#include "common.h"
+extern s32 D_801BBCCC;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+typedef struct func_80358964_StructA {
+    u8 pad0[0x30];
+    u8 unk30;
+    u8 pad1[0x4C - 0x31];
+    s16 unk4C;
+} func_80358964_StructA;
+extern func_80358964_StructA *D_8038CC10;
+void func_800058DC(void *arg0, void *arg1);
+void func_80020718(s32 arg0);
 typedef struct func_80358C6C_Vec6 {
     s32 w[3];
 } func_80358C6C_Vec6;
-
 typedef struct func_80358C6C_Obj {
     u8 pad0[0xE];
     u16 unkE;
@@ -13,12 +23,10 @@ typedef struct func_80358C6C_Obj {
     func_80358C6C_Vec6 unkC8;
     func_80358C6C_Vec6 unkD4;
 } func_80358C6C_Obj;
-
 typedef struct func_80358C6C_Holder {
     u8 pad0[0x5C];
     func_80358C6C_Obj *unk5C;
 } func_80358C6C_Holder;
-
 typedef struct func_80358C6C_Arg {
     u8 pad0[0xC];
     s32 unkC;
@@ -31,6 +39,13 @@ typedef struct func_80358C6C_Arg {
     u8 pad3[0x8C - 0x7D];
     func_80358C6C_Holder *unk8C;
 } func_80358C6C_Arg;
+typedef struct func_80359044_Struct {
+    u8 pad[0x4C];
+    u16 unk4C;
+    u16 unk4E;
+} func_80359044_Struct;
+void func_80359044(func_80359044_Struct *arg0, s32 arg1);
+
 
 typedef struct func_80358C6C_Flags {
     u8 pad0[0x30];
@@ -49,13 +64,10 @@ typedef struct func_80358C6C_Out {
     f32 unk8;
     f32 unkC;
 } func_80358C6C_Out;
-
 extern void func_80223B2C(s32, func_80358C6C_Out *, func_80358C6C_Vec6, func_80358C6C_Vec6);
 extern void func_801CE1C8(void *, s32, s32, s32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, f32, f32, f32, f32, s32);
 extern f64 D_80389ED8;
 extern void func_8035908C();
-struct func_80359044_Struct;
-void func_80359044(struct func_80359044_Struct *arg0, s32 arg1);
 
 void func_80358C6C(func_80358C6C_Arg *arg0, s32 arg1) {
     func_80358C6C_Obj *obj;
@@ -65,7 +77,7 @@ void func_80358C6C(func_80358C6C_Arg *arg0, s32 arg1) {
     s32 n;
     s32 k;
     void *cb;
-    volatile s32 flag;
+    s32 flag[1];
 
     obj = arg0->unk8C->unk5C;
     if (D_801BBCCC == (s32)arg0->unk8C) {
@@ -99,11 +111,11 @@ void func_80358C6C(func_80358C6C_Arg *arg0, s32 arg1) {
         }
     }
     if (arg0->unk7C != 0) {
-        flag = 1;
+        flag[0] = 1;
     } else {
-        flag = 0;
+        flag[0] = 0;
     }
-    func_801CE1C8(arg0, 0xB, arg0->unk6C, arg0->unk70, arg0->unk74, 0x70, 0xFF, 0xFF, 0, 0x70, 0xFF, 0xFF, 0xC0, 0, 0xA0, 0xFF, 0, 0, 0xA0, 0xFF, 0, n, k * 10 + 0x28, m, m, m, (f32)flag, 0xC);
+    func_801CE1C8(arg0, 0xB, arg0->unk6C, arg0->unk70, arg0->unk74, 0x70, 0xFF, 0xFF, 0, 0x70, 0xFF, 0xFF, 0xC0, 0, 0xA0, 0xFF, 0, 0, 0xA0, 0xFF, 0, n, k * 10 + 0x28, m, m, m, (f32)flag[0], 0xC);
     func_80020718(0x10D);
     D_8038CC10->unk4C = 1;
     if (arg0->unk7C != 0) {

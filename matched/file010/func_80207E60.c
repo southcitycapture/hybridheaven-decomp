@@ -1,5 +1,20 @@
-#include "context.h"
-typedef struct {
+#include "common.h"
+struct func_802070F4_Local {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+};
+extern struct func_802070F4_Local D_80164F40;
+extern u8 D_8017AF90[];
+extern u8 D_801BBBF0[];
+extern void func_80005E44(void *, void *);
+extern void func_80006214(void *);
+extern void func_8012C89C(void *, s32, s32, s32);
+extern void func_801FC830(f32, f32, f32, f32, s32);
+
+
+typedef struct func_80207E60_StructInner {
     u8 pad0[0x4];
     f32 unk4;
     f32 unk8;
@@ -16,12 +31,14 @@ typedef struct {
     u8 unk4D;
     u8 unk4E;
     u8 unk4F;
-} func_80207E60_Inner;
-typedef struct {
+} func_80207E60_StructInner;
+
+typedef struct func_80207E60_StructOuter {
     u8 pad0[0x30];
-    func_80207E60_Inner *unk30;
-} func_80207E60_Outer;
-typedef struct {
+    func_80207E60_StructInner *unk30;
+} func_80207E60_StructOuter;
+
+typedef struct func_80207E60_StructArg0 {
     u8 pad0[0x90];
     u8 unk90;
     u8 pad91;
@@ -31,20 +48,25 @@ typedef struct {
     f32 unk9C;
     u8 padA0[0xAC - 0xA0];
     u8 unkAC;
-} func_80207E60_Arg0;
+} func_80207E60_StructArg0;
+
 extern f32 D_8021A83C;
 
-void func_80207E60(func_80207E60_Arg0 *arg0, func_80207E60_Outer **arg1) {
+void func_80207E60(func_80207E60_StructArg0 *arg0, func_80207E60_StructOuter **arg1) {
     struct func_802070F4_Local sp38;
+    func_80207E60_StructInner *model;
     f32 k;
-    u8 pad[8];
+    f32 x;
+    f32 y;
+
     sp38 = D_80164F40;
     sp38.unk4 = 0x80000900;
     func_80005E44(arg0, &sp38);
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 0xD1, 0);
     k = D_8021A83C;
-    (*arg1)->unk30->unk24 |= 0x400;
+    model = (*arg1)->unk30;
+    model->unk24 |= 0x400;
     (*arg1)->unk30->unk30 = (s32)D_8017AF90 | 0x40000000;
     (*arg1)->unk30->unk4 = arg0->unk94;
     (*arg1)->unk30->unk8 = arg0->unk98;
@@ -60,5 +82,7 @@ void func_80207E60(func_80207E60_Arg0 *arg0, func_80207E60_Outer **arg1) {
         arg0->unk90 = 9;
     }
     arg0->unk92 = 0;
-    func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, 0x316);
+    x = arg0->unk94;
+    y = arg0->unk98;
+    func_801FC830(x, y, arg0->unk9C, 400.0f, 0x316);
 }

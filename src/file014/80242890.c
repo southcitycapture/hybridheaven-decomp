@@ -1472,8 +1472,57 @@ struct func_80244518_StructObj {
     s16 unk94;
 };
 
+#undef D_80010550
+#undef D_802484B8
+#undef func_800058DC
+#undef func_8012A564
+#undef func_8012CE9C
+#undef func_802438E4_Table
+#undef func_80244518_StructObj
+#undef func_80246478_Child
+#undef func_80246828_Triple
+#define D_80010550 D_80010550__func_80244518_09206f8d
+#define D_802484B8 D_802484B8__func_80244518_09206f8d
+#define func_800058DC func_800058DC__func_80244518_09206f8d
+#define func_8012CE9C func_8012CE9C__func_80244518_09206f8d
+#define func_802438E4 func_802438E4__func_80244518_09206f8d
+#define func_802438E4_Table func_802438E4_Table__func_80244518_09206f8d
+#define func_80244518_StructObj func_80244518_StructObj__func_80244518_09206f8d
+#define func_802445F8 func_802445F8__func_80244518_09206f8d
+#define func_80246478_Child func_80246478_Child__func_80244518_09206f8d
+#define func_80246828_Triple func_80246828_Triple__func_80244518_09206f8d
+extern s32 D_80010550(s32, void *);
+struct func_80246828_Triple {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+extern struct func_80246828_Triple D_802484B8;
+extern void func_800058DC(void *, void *);
+struct func_802438E4_Table {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+extern s32 func_8012CE9C(s32, void *, struct func_802438E4_Table, s32);
+extern void func_802438E4();
+extern void func_802445F8();
+struct func_80246478_Child {
+    u8 pad0[0x78];
+    s16 unk78;
+};
+
+
+struct func_80244518_StructObj {
+    u8 pad0[0x2C];
+    u32 unk2C;
+    u8 pad1[0x2C];
+    struct func_80246478_Child *unk5C;
+    u8 pad2[0x34];
+    s16 unk94;
+};
+
 void func_80244518(struct func_80244518_StructObj *arg0, s32 arg1) {
-    s32 is_zero;
     struct func_80246478_Child *temp_s1;
 
     temp_s1 = arg0->unk5C;
@@ -1491,6 +1540,25 @@ void func_80244518(struct func_80244518_StructObj *arg0, s32 arg1) {
         }
     }
 }
+#undef D_80010550
+#undef D_802484B8
+#undef func_800058DC
+#undef func_8012CE9C
+#undef func_802438E4
+#undef func_802438E4_Table
+#undef func_80244518_StructObj
+#undef func_802445F8
+#undef func_80246478_Child
+#undef func_80246828_Triple
+#define D_80010550 D_80010550__func_80244518_833bad18
+#define D_802484B8 D_802484B8__func_80244518_833bad18
+#define func_800058DC func_800058DC__func_80244518
+#define func_8012A564 func_8012A564__func_80244518
+#define func_8012CE9C func_8012CE9C__func_80244518
+#define func_802438E4_Table func_802438E4_Table__func_80244518_833bad18
+#define func_80244518_StructObj func_80244518_StructObj__func_80244518_833bad18
+#define func_80246478_Child func_80246478_Child__func_80244518_833bad18
+#define func_80246828_Triple func_80246828_Triple__func_80244518_833bad18
 #undef HZQ
 #undef HZP
 #undef func_80243820
@@ -2377,18 +2445,54 @@ struct func_80245144_Obj {
     s16 unkA0;
 };
 
-void func_80245144(struct func_80245144_Obj *arg0, s32 arg1) {
-    u8 pad[8];
+#undef func_80245244
+#define func_800058DC func_800058DC__func_80245144_21245221
+#define func_80245244 func_80245244__func_80245144_21245221
+#define func_80245244_Obj func_80245244_Obj__func_80245144_21245221
+#define func_80246478_Child func_80246478_Child__func_80245144_21245221
+struct func_80246478_Child {
+    u8 pad0[0x78];
+    s16 unk78;
+};
+struct func_80245244_Obj {
+    u8 pad0[0x5C];
+    struct func_80246478_Child *unk5C;
+    u8 pad1[0x34];
+    s16 unk94;
+    u8 pad2[0xE];
+    u16 unkA4;
+};
+extern void func_800058DC(void *, void *);
+void func_80245244(struct func_80245244_Obj *arg0, s32 arg1);
+
+
+
+struct func_80245144_StructObj {
+    u8 pad0[0x5C];
+    void *unk5C;
+    u8 pad1[0x3C];
+    s16 unk9C;
+    s16 unk9E;
+    s16 unkA0;
+};
+
+void func_80245144(struct func_80245144_StructObj *arg0, s32 arg1) {
+    u64 effect_flags = 2;
     f32 sp5C[3];
     void *temp;
 
     temp = arg0->unk5C;
     func_8013A334(sp5C, arg1, temp, 6);
-    if (!(func_8011AAF4(&D_8024A6E4, 0x43B, arg0, 0, 2, 8.0f, (f32) arg0->unk9C, (f32) arg0->unk9E, (f32) arg0->unkA0, 4294967296.0f, sp5C[0], sp5C[1], sp5C[2], 0.0f, 35.0f, -1, -1) & 0xFF)) {
+    if (!(func_8011AAF4(&D_8024A6E4, 0x43B, arg0, 0, effect_flags, 8.0f, (f32) arg0->unk9C, (f32) arg0->unk9E, (f32) arg0->unkA0, 4294967296.0f, sp5C[0], sp5C[1], sp5C[2], 0.0f, 35.0f, -1, -1) & 0xFF)) {
         D_801BBFAC[0x78] = 1;
         func_800058DC(arg0, (void *) func_80245244);
     }
 }
+#undef func_800058DC
+#undef func_80245244
+#undef func_80245244_Obj
+#undef func_80246478_Child
+#define func_80245244 func_80245244__func_80245144
 #undef func_80245244
 
 

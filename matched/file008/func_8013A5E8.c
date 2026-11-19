@@ -26,9 +26,10 @@ void func_8013A5E8(s32 arg0, u16 arg1) {
     f32 fa0;
     f32 fa1;
     f32 s;
-    f32 fv0;
-    s32 pad;
+    f32 x;
+    f32 y;
     s16 a2;
+    f32 fv0;
     func_8013A5E8_Struct2 *p;
 
     v1 = *(func_8013A5E8_Struct **)((u8 *)*(void **)arg0 + 0x2C);
@@ -41,7 +42,9 @@ void func_8013A5E8(s32 arg0, u16 arg1) {
     v1->unk12 = v1->unk12 + a2;
     s = func_8001EAD0(a2);
     fv0 = func_8001EB64(a2);
-    v1->unk4 = v1->unk4 + (fa1 * s + fa0 * fv0) / 1.0f;
-    v1->unkC = v1->unkC + (fa1 * fv0 - fa0 * s) / 1.0f;
+    x = (fa1 * s + fa0 * fv0) / 1.0f;
+    y = (fa1 * fv0 - fa0 * s) / 1.0f;
+    v1->unk4 = v1->unk4 + x;
+    v1->unkC = v1->unkC + y;
     }
 }

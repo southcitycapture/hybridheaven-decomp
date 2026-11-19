@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+extern void func_80005700();
+
 
 extern f64 D_80389D00;
 extern f64 D_80389D08;
@@ -29,12 +31,12 @@ struct func_803865D4_StructArg {
     u16 unk3C;
 };
 
-void func_803865D4(struct func_803865D4_StructArg *arg0, struct func_803865D4_StructOut **arg1)
+void func_803865D4(struct func_803865D4_StructArg *arg0, struct func_803865D4_StructOut **arg1, s32 t)
 {
-  s32 t = arg0->unk3C;
   struct func_803865D4_StructIn *p;
   u8 a3;
   f64 k;
+  t = arg0->unk3C;
   k = D_80389D00;
   arg0->unk3C = t + 1;
   p = (*arg1)->unk30;
@@ -51,7 +53,6 @@ void func_803865D4(struct func_803865D4_StructArg *arg0, struct func_803865D4_St
   }
   else
   {
- if (1) { } if (1) { } if (1) { } if (1) { }
     p->unk4B = a3 - 0x10;
   }
   if (t < 4)

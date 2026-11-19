@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+void func_800058DC(void *arg0, void *arg1);
+
 
 extern u8 D_801BBF0A[];
 void func_801C9DF8();
@@ -7,9 +9,8 @@ typedef struct func_801C9D0C_Inner { u8 pad[0xB]; u8 unkB; } func_801C9D0C_Inner
 typedef struct func_801C9D0C_Obj { u8 pad[0x30]; func_801C9D0C_Inner *unk30; } func_801C9D0C_Obj;
 
 void func_801C9D0C(u8 *arg0, func_801C9D0C_Obj **arg1) {
-    s32 pad;
-    s16 v;
     s32 i;
+    s16 v;
 
     v = arg1[0]->unk30->unkB + 6;
     if (v >= 0x100) {

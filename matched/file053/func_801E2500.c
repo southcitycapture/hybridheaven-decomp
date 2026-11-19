@@ -1,4 +1,4 @@
-#include "context.h"
+#include "common.h"
 struct func_801E2F88_Struct2 {
     u8 pad0[4];
     f32 unk4;
@@ -12,6 +12,7 @@ struct func_801E2F88_Struct0 {
     struct func_801E2F88_Struct1 *unk24;
 };
 extern struct func_801E2F88_Struct0 *D_8038D8D0;
+
 
 typedef struct func_801E2500_Struct2 {
     u8 pad0[4];
@@ -46,7 +47,6 @@ typedef struct func_801E2500_Struct1 {
 typedef struct func_801E2500_Vec {
     s32 v[4];
 } func_801E2500_Vec;
-
 extern void func_80005E44(s32, void *);
 extern void func_80006214(s32);
 extern void func_8012C89C(s32, s32, s32, s32);
@@ -69,44 +69,39 @@ extern func_801E2500_Vec D_801E810C;
 #define O(i) (((func_801E2500_Struct1 **)D_8038D8D0)[i]->unk30)
 
 s32 func_801E2500(s32 arg0, s32 arg1) {
-    func_801E2500_Vec sp98;
-    func_801E2500_Vec sp88;
-    func_801E2500_Vec sp78;
-    func_801E2500_Vec sp68;
-    func_801E2500_Vec sp58;
-    func_801E2500_Vec sp48;
-    func_801E2500_Vec sp38;
-    func_801E2500_Vec sp28;
-    s32 pad[2];
+    struct {
+        s32 lo[2];
+        func_801E2500_Vec v28, v38, v48, v58, v68, v78, v88, v98;
+    } L;
 
-    sp98 = D_801E809C;
-    sp88 = D_801E80AC;
-    sp78 = D_801E80BC;
-    sp68 = D_801E80CC;
-    sp58 = D_801E80DC;
-    sp48 = D_801E80EC;
-    sp38 = D_801E80FC;
-    sp28 = D_801E810C;
-    func_80005E44(D_8038D8CC, &sp88);
+    L.v98 = D_801E809C;
+    L.v88 = D_801E80AC;
+    L.v78 = D_801E80BC;
+    L.v68 = D_801E80CC;
+    L.v58 = D_801E80DC;
+    L.v48 = D_801E80EC;
+    L.v38 = D_801E80FC;
+    L.v28 = D_801E810C;
+    func_80005E44(D_8038D8CC, &L.v88);
     goto l1;
 l1:
-    func_80005E44(D_8038D8CC, &sp88);
+    func_80005E44(D_8038D8CC, &L.v88);
     goto l2;
 l2:
-    func_80005E44(D_8038D8CC, &sp88);
+    func_80005E44(D_8038D8CC, &L.v88);
     goto l3;
 l3:
-    func_80005E44(D_8038D8CC, &sp88);
+    func_80005E44(D_8038D8CC, &L.v88);
     goto l4;
 l4:
-    func_80005E44(D_8038D8CC, &sp88);
+    func_80005E44(D_8038D8CC, &L.v88);
     goto l5;
 l5:
-    func_80005E44(D_8038D8CC, &sp88);
-    func_80005E44(D_8038D8CC, &sp58);
-    func_80005E44(D_8038D8CC, &sp48);
-    func_80005E44(D_8038D8CC, &sp48);
-    func_80005E44(D_8038D8CC, &sp88);
+    func_80005E44(D_8038D8CC, &L.v88);
+    func_80005E44(D_8038D8CC, &L.v58);
+    func_80005E44(D_8038D8CC, &L.v48);
+    func_80005E44(D_8038D8CC, &L.v48);
+    func_80005E44(D_8038D8CC, &L.v88);
     func_80006214(D_8038D8CC);
     func_8012C89C(D_8038D8CC, 0, 0x470, 6);
     func_8012C89C(D_8038D8CC, 1, 0x470, 7);

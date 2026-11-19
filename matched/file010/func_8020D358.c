@@ -1,4 +1,7 @@
-#include "context.h"
+#include "common.h"
+extern s32 func_801FD644(f32, f32, f32, f32, s32, f32, f32, u32);
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
+
 
 struct func_8020D358_Struct_In {
     u8 pad0[4];
@@ -40,14 +43,14 @@ extern f64 D_8021AAC8;
 extern f32 D_8021AAD0;
 
 s32 func_8020D358(struct func_8020D358_Struct_A0 *arg0, struct func_8020D358_Struct_Out **arg1) {
-    u8 pad[4];
+    f32 dist;
     s32 sp38;
-    u8 pad2[4];
-    s16 sp32;
     f32 t;
+    s16 sp32;
 
     sp38 = arg0->unk3C++;
-    t = func_8002FC20(arg0->unk48 * arg0->unk48 + arg0->unk40 * arg0->unk40) * D_8021AAC0;
+    dist = func_8002FC20(arg0->unk48 * arg0->unk48 + arg0->unk40 * arg0->unk40);
+    t = dist * D_8021AAC0;
     (*arg1)->unk30->unk18 += t;
     (*arg1)->unk30->unk1C += t;
     (*arg1)->unk30->unk20 += t;

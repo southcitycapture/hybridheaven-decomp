@@ -1,4 +1,14 @@
 #include "common.h"
+#ifndef func_8036EA3C
+extern void func_80011258__f528();
+#endif
+void func_8036EA3C(void *arg0, void *arg1);
+typedef struct func_8036F528_Vec {
+    s32 x;
+    s32 y;
+    f32 z;
+} func_8036F528_Vec;
+
 
 typedef struct func_8036F528_Struct {
     u8 pad0[0x10];
@@ -10,6 +20,11 @@ typedef struct func_8036F528_Struct {
 } func_8036F528_Struct;
 
 
+typedef struct func_8036F528_Frame {
+    s32 head;
+    func_8036F528_Vec v;
+    s32 tail;
+} func_8036F528_Frame;
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
@@ -20,18 +35,16 @@ extern void func_8036F5E8();
 
 void func_8036F528(s32 arg0, s32 arg1) {
     func_8036F528_Struct *var_v0;
-    s32 sp28;
-    func_8036F528_Vec sp1C;
-    s32 sp18;
+    func_8036F528_Frame fr;
 
     if (arg0 == D_801BBCCC) {
         var_v0 = (func_8036F528_Struct *) D_801BC03C;
     } else {
         var_v0 = (func_8036F528_Struct *) D_801BC3D8;
     }
-    sp1C = D_80387B7C;
-    sp1C.z = var_v0->unk10;
-    func_8013A2E0(arg1, sp1C);
+    fr.v = D_80387B7C;
+    fr.v.z = var_v0->unk10;
+    func_8013A2E0(arg1, fr.v);
     var_v0->unk390 = 2;
     var_v0->unk33 = (u8) ((var_v0->unk33 & 0xFFE7) | 0x10);
     func_800058DC(arg0, &func_8036F5E8);

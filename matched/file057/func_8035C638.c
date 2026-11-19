@@ -1,4 +1,5 @@
 #include "common.h"
+
 extern u8 D_801BBBF0[];
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
@@ -72,11 +73,7 @@ void func_8035C638(func_8035C638_Arg *arg0) {
     func_8035C638_Obj *s0;
     func_8035C638_V1 *v1;
     func_8035C638_A1 *a1;
-    s32 pad0;
-    s32 pad1;
-    s32 pad2;
-    s32 pad3;
-    s16 sp2A;
+    s16 ang[10];
     func_8035C638_Obj *dc;
 
     a1 = (func_8035C638_A1 *)arg0->unkC;
@@ -89,11 +86,11 @@ void func_8035C638(func_8035C638_Arg *arg0) {
     v1 = ((s32)dc == (s32)a1) ? (func_8035C638_V1 *)D_801BC03C : (func_8035C638_V1 *)D_801BC3D8;
     a1 = ((s32)dc != (s32)a1) ? (func_8035C638_A1 *)D_801BC03C : (func_8035C638_A1 *)D_801BC3D8;
     v1->unk392 = 0;
-    sp2A = s0->unk24->unk2C->unk12;
+    ang[1] = s0->unk24->unk2C->unk12;
     G8->unk1038 = arg0->unk80 - arg0->unk6C;
     G8->unk103C = arg0->unk84 - arg0->unk70;
     G8->unk1040 = arg0->unk88 - arg0->unk74;
-    a1->unk320 = ((s16)((sp2A - func_8001EF38(G8->unk1038, G8->unk1040, D_801BBBF0)) + 0x400) & 0x1FFF) / 2048;
+    a1->unk320 = ((s16)((ang[1] -func_8001EF38(G8->unk1038, G8->unk1040, D_801BBBF0)) + 0x400) & 0x1FFF) / 2048;
     if (v1->unk2D8 == 0xC || (v1->unk2D8 == 0x13 && v1->unk2D9 < 5)) {
         func_803671A0(s0, a1, *(func_8035C638_Copy *)(D_801BCC25 + 3), 10);
         a1->unk368 = a1->unk368 * 3.0f;

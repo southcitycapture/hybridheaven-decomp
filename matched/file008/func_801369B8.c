@@ -1,4 +1,25 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_801362DC_StructBBBF0 {
+    u8 pad0[0xF00];
+    s16 unkF00;
+    u8 pad1[0x6];
+    f32 unkF08;
+    u8 pad2[0x4];
+    s32 unkF10;
+} func_801362DC_StructBBBF0;
+extern func_801362DC_StructBBBF0 D_801BBBF0;
+void func_800058DC(void *arg0, void *arg1);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+typedef struct func_801361C8_StructInner {
+    u8 pad0[0x10];
+    u32 unk10;
+} func_801361C8_StructInner;
+typedef struct func_801361C8_Struct {
+    u8 pad0[0x38];
+    func_801361C8_StructInner *unk38;
+} func_801361C8_Struct;
+
 typedef struct func_801369B8_Inner {
     u8 pad0[0x4];
     f32 unk4;
@@ -42,17 +63,14 @@ extern s32 D_80135E60(void *, f32, s32, f32);
 void func_80136B0C(func_801361C8_Struct *arg0, s32 arg1);
 
 void func_801369B8(func_801369B8_Struct *arg0, s32 arg1) {
-    s32 t;
-
     if (D_80135E60(arg0, (f32)((arg0->unk38->unk10 >> 16) & 0xFF), 0, 0.0f) != 0) {
-        t = D_801268F4(0);
+        D_801268F4(0);
         B->unk192 = 5;
-        
         B->unk198 = func_8001EAD0(arg0->unk24->unk30->unk12) * 20.0f + arg0->unk24->unk30->unk4;
         B->unk1A0 = func_8001EB64(arg0->unk24->unk30->unk12) * 20.0f + arg0->unk24->unk30->unkC;
         B->unkF14 = arg0->unk24->unk30->unk4;
         B->unkF18 = arg0->unk24->unk30->unkC;
-        B->unkF04 = (0.3f);
+        B->unkF04 = 0.3f;
         B->unkF08 = 1.0f;
         B->unkF10 = 0x0168003E;
         B->unkF0C = 0;

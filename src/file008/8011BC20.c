@@ -56,6 +56,78 @@ void func_80119F9C(s16 *, s16 *);
 #define P D_801BBBF0
 #define N (P.unkE8->unk2C)
 
+#undef B_80164DF0
+#undef D_801636F8
+#undef D_80164DF0
+#undef D_801BBBF0
+#undef N
+#undef P
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8001EF38
+#undef func_8002FC20
+#undef func_8010843C
+#undef func_80119F9C
+#define B_80164DF0 B_80164DF0__func_8011BC20_78ed9c00
+#define D_801636F8 D_801636F8__func_8011BC20_78ed9c00
+#define D_80164DF0 D_80164DF0__func_8011BC20_78ed9c00
+#define D_801BBBF0 D_801BBBF0__func_8011BC20_78ed9c00
+#define func_8001EAD0 func_8001EAD0__func_8011BC20_78ed9c00
+#define func_8001EB64 func_8001EB64__func_8011BC20_78ed9c00
+#define func_8001EF38 func_8001EF38__func_8011BC20_78ed9c00
+#define func_8002FC20 func_8002FC20__func_8011BC20_78ed9c00
+#define func_8010843C func_8010843C__func_8011BC20_78ed9c00
+#define func_80119F9C func_80119F9C__func_8011BC20_78ed9c00
+#define func_8011BC20_Ent func_8011BC20_Ent__func_8011BC20_78ed9c00
+#define func_8011BC20_Node func_8011BC20_Node__func_8011BC20_78ed9c00
+#define func_8011BC20_Struct func_8011BC20_Struct__func_8011BC20_78ed9c00
+
+
+
+typedef struct func_8011BC20_Node {
+    u8 pad0[0x30];
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+} func_8011BC20_Node;
+
+typedef struct func_8011BC20_Ent {
+    u8 pad0[0x2C];
+    func_8011BC20_Node *unk2C;
+} func_8011BC20_Ent;
+
+typedef struct func_8011BC20_Struct {
+    u8 pad0[0xA0];
+    u16 unkA0;
+    u8 pad1[0xE8 - 0xA2];
+    func_8011BC20_Ent *unkE8;
+    u8 pad2[0x35A - 0xEC];
+    u8 unk35A;
+    u8 pad3[0x368 - 0x35B];
+    f32 unk368;
+    f32 unk36C;
+    f32 unk370;
+    u8 pad4[0x380 - 0x374];
+    f32 unk380;
+    u8 pad5[4];
+    f32 unk388;
+} func_8011BC20_Struct;
+
+extern func_8011BC20_Struct D_801BBBF0;
+extern s32 D_801636F8;
+extern f32 D_80164DF0;
+extern f32 B_80164DF0;
+
+f32 func_8001EAD0(s16);
+f32 func_8001EB64(s16);
+s16 func_8001EF38(f32, f32);
+f32 func_8002FC20(f32);
+s32 func_8010843C(f32, f32, f32, f32, f32, f32);
+void func_80119F9C(s16 *, s16 *);
+
+#define P D_801BBBF0
+#define N (P.unkE8->unk2C)
+
 void func_8011BC20(f32 arg0, f32 arg1, f32 arg2, s16 arg3, s16 arg4) {
     s16 spDE;
     s32 t;
@@ -370,8 +442,36 @@ void func_8011BC20(f32 arg0, f32 arg1, f32 arg2, s16 arg3, s16 arg4) {
         }
     }
     if ((sp40 == 0.0f || sp3C == 0.0f || sp38 == 0.0f) && D_801636F8 && sp4A && sp48) {
+        t = 1;
     }
 }
+#undef P
+#undef N
+#undef B_80164DF0
+#undef D_801636F8
+#undef D_80164DF0
+#undef D_801BBBF0
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8001EF38
+#undef func_8002FC20
+#undef func_8010843C
+#undef func_80119F9C
+#undef func_8011BC20_Ent
+#undef func_8011BC20_Node
+#undef func_8011BC20_Struct
+#define B_80164DF0 B_80164DF0__func_8011BC20
+#define D_801636F8 D_801636F8__func_8011BC20
+#define D_80164DF0 D_80164DF0__func_8011BC20
+#define D_801BBBF0 D_801BBBF0__func_8011BC20
+#define N (P.unkE8->unk2C)
+#define P D_801BBBF0
+#define func_8001EAD0 func_8001EAD0__func_8011BC20
+#define func_8001EB64 func_8001EB64__func_8011BC20
+#define func_8001EF38 func_8001EF38__func_8011BC20
+#define func_8002FC20 func_8002FC20__func_8011BC20
+#define func_8010843C func_8010843C__func_8011BC20
+#define func_80119F9C func_80119F9C__func_8011BC20
 #undef P
 #undef N
 #undef B_80164DF0

@@ -82,13 +82,12 @@ void func_801D54F8(func_801D5664_Struct *arg0, func_801D54F8_StructE **arg1) {
     f32 v;
     s32 i;
     func_801D54F8_StructE **p;
-    s8 sp57;
+    s8 sp50[8];
     func_801D54F8_StructB *s;
     func_801CEAF8_StructD *s4;
-    s32 pad;
 
-    sp57 = 0;
-    if (func_801CE0E8(arg0, &sp57) == 0) {
+    sp50[7] = 0;
+    if (func_801CE0E8(arg0, &sp50[7]) == 0) {
         i = 0;
         p = arg1;
         s4 = ((func_801CEAF8_StructTop *)arg0)->unkC->unkC->unk24->unk2C;

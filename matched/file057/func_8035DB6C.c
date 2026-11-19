@@ -48,8 +48,6 @@ typedef struct func_8035CDA8_Globals {
     u8 unk1031;
 } func_8035CDA8_Globals;
 #define GL ((func_8035CDA8_Globals *)D_801BBBF0)
-
-
 typedef struct func_8035DB6C_StructB {
     u8 pad0[4];
     f32 unk4;
@@ -64,29 +62,26 @@ typedef struct func_8035DB6C_StructO {
     u8 pad0[0x24];
     func_8035DB6C_StructA *unk24;
 } func_8035DB6C_StructO;
+
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern f32 func_8002FC20(f32, f32, void *);
 extern s32 func_80108480(f32, f32, f32, f32, f32, f32);
 
 void func_8035DB6C(func_8035DB6C_StructO *arg0, s16 arg1, f32 arg2, f32 arg3, u8 arg4) {
-    f32 pad1[3];
+    f64 margin;
+    f32 z;
     f32 sp48;
-    f32 pad2[2];
+    f64 distance;
     f32 sp3C;
-    f32 pad3;
+    f32 x;
     f32 sp34;
     f32 sp30;
-    f32 x;
-    f32 z;
-    f64 d;
-    f64 e;
-    f64 d2;
-    f64 e2;
     func_8035DB6C_StructO *o;
     func_8035DB6C_StructB *s0;
     func_8035DB6C_StructB *s1;
 
+    margin = 0.5;
     if (arg0 != (func_8035DB6C_StructO *)GL->unkDC) {
         o = (func_8035DB6C_StructO *)GL->unkDC;
     } else {
@@ -97,12 +92,12 @@ void func_8035DB6C(func_8035DB6C_StructO *arg0, s16 arg1, f32 arg2, f32 arg3, u8
     sp48 = func_8002FC20(arg2 * arg2 + arg3 * arg3, arg3, D_801BBBF0);
     sp34 = func_8001EB64(arg1);
     sp30 = func_8001EAD0(arg1);
-    if (arg4 != 0 && *(f32 *)(D_801BC3D8 + 0x3A8) + 0.5 < sp48) {
-        x = ((*(f32 *)(D_801BC3D8 + 0x3A8) + 0.5) * arg2) / sp48;
-        z = ((*(f32 *)(D_801BC3D8 + 0x3A8) + 0.5) * arg3) / sp48;
-    } else if (arg4 != 0 && sp48 < *(f32 *)(D_801BC3D8 + 0x3A8) - 0.5) {
-        x = ((*(f32 *)(D_801BC3D8 + 0x3A8) - 0.5) * arg2) / sp48;
-        z = ((*(f32 *)(D_801BC3D8 + 0x3A8) - 0.5) * arg3) / sp48;
+    if (arg4 != 0 && *(f32 *)(D_801BC3D8 + 0x3A8) + margin < (distance = sp48)) {
+        x = ((*(f32 *)(D_801BC3D8 + 0x3A8) + margin) * arg2) / distance;
+        z = ((*(f32 *)(D_801BC3D8 + 0x3A8) + margin) * arg3) / distance;
+    } else if (arg4 != 0 && sp48 < *(f32 *)(D_801BC3D8 + 0x3A8) - margin) {
+        x = ((*(f32 *)(D_801BC3D8 + 0x3A8) - margin) * arg2) / sp48;
+        z = ((*(f32 *)(D_801BC3D8 + 0x3A8) - margin) * arg3) / sp48;
     } else {
         x = arg2;
         z = arg3;

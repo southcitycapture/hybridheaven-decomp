@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 
 typedef struct func_801492C8_Struct {
     u8 pad[0x5C];
@@ -13,5 +14,5 @@ s32 func_801492C8(s32 arg0) {
     p = &arg0;
     arg0 = arg0 & 0xFF;
     sp4 = D_80181DC4;
-    return ((u16 *) &sp4)[arg0];
+    return ((u16 *) &sp4)[*p];
 }

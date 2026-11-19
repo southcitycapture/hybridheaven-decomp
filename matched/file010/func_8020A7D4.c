@@ -1,18 +1,4 @@
 #include "common.h"
-extern u8 D_801BBBF0[];
-extern f32 D_801BBF74;
-extern u8 D_80217A00[];
-extern u16 D_80217C70[];
-extern s32 func_8000C3B0(void *);
-extern f32 func_8001EAD0(s16);
-extern f32 func_8001EB64(s16);
-extern s32 func_80108590(f32, f32, f32, f32, f32, f32);
-extern s32 func_8012C6B4();
-extern void func_8012C89C(void *, s32, s32, s32);
-extern u16 func_8012FF58();
-extern s32 func_80150584();
-extern s32 func_801C3D20(f32, f32, f32);
-extern void func_801FC830(f32, f32, f32, f32, s32);
 typedef struct {
     u8 pad0[0x2C];
     s32 unk2C;
@@ -56,6 +42,21 @@ void func_80212A28(struct func_80212A28_Struct *arg0);
 u8 func_80212A48(struct func_80212A28_Struct *arg0);
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
+extern u8 D_801BBBF0[];
+extern f32 D_801BBF74;
+extern u8 D_80217A00[];
+extern u16 D_80217C70[];
+extern s32 func_8000C3B0(void *);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern s32 func_80108590(f32, f32, f32, f32, f32, f32);
+extern s32 func_8012C6B4();
+extern void func_8012C89C(void *, s32, s32, s32);
+extern u16 func_8012FF58();
+extern s32 func_80150584();
+extern s32 func_801C3D20(f32, f32, f32);
+extern void func_801FC830(f32, f32, f32, f32, s32);
+
 
 typedef struct func_8020A7D4_StructA {
     u8 pad0[0x3C]; u16 timer; u8 pad3E[2];
@@ -85,23 +86,23 @@ extern s32 func_801FD4F4(s16,s16,s32);
 extern f32 func_8002FC20(f32);
 extern void func_800062F8(void *,s32);
 
-#define RESTORE(i,base,off) \
-    b[i]->model->flags = 0x13; \
-    b[i]->model->data = func_8000C3B0(b[i]); \
-    b[i]->model->flags |= 0x400; \
-    b[i]->model->r2 = base[off]; \
-    b[i]->model->g2 = base[(off)+1]; \
-    b[i]->model->b2 = base[(off)+2]; \
-    b[i]->model->a2 = base[(off)+3]
-#define FLASH(i) \
-    b[i]->model->data = (s32)D_80217A00; \
-    b[i]->model->flags |= 0x300; \
-    b[i]->model->r = 255; b[i]->model->g = 40; \
-    b[i]->model->b = 0; b[i]->model->a = 0; \
-    b[i]->model->r2 = 255; b[i]->model->g2 = 255; \
-    b[i]->model->b2 = 255; b[i]->model->a2 = 255
-#define FINISH(Z) \
-    a->state = 0; a->vx = Z; a->vz = Z; \
+#define A7D4_RESTORE(mi,mbase,moff) \
+    b[mi]->model->flags = 0x13; \
+    b[mi]->model->data = func_8000C3B0(b[mi]); \
+    b[mi]->model->flags |= 0x400; \
+    b[mi]->model->r2 = mbase[moff]; \
+    b[mi]->model->g2 = mbase[(moff)+1]; \
+    b[mi]->model->b2 = mbase[(moff)+2]; \
+    b[mi]->model->a2 = mbase[(moff)+3]
+#define A7D4_FLASH(mi) \
+    b[mi]->model->data = (s32)D_80217A00; \
+    b[mi]->model->flags |= 0x300; \
+    b[mi]->model->r = 255; b[mi]->model->g = 40; \
+    b[mi]->model->b = 0; b[mi]->model->a = 0; \
+    b[mi]->model->r2 = 255; b[mi]->model->g2 = 255; \
+    b[mi]->model->b2 = 255; b[mi]->model->a2 = 255
+#define A7D4_FINISH(mZ) \
+    a->state = 0; a->vx = mZ; a->vz = mZ; \
     b[0]->visible = 0; func_8012C89C(a,1,0xCF,4); \
     b[1]->model->flags |= 0x500; \
     b[1]->model->data = (s32)D_8017B710 | 0x40000000; \
@@ -118,7 +119,8 @@ s32 func_8020A7D4(func_8020A7D4_StructA *a, func_8020A7D4_StructO **b)
     f32 dx, dz;
     s32 hit;
     s32 old;
-    s32 unused8[2];
+    f32 distSq;
+    f32 dist;
     f32 sine;
     u16 damage[2];
     f32 cosine;
@@ -189,8 +191,8 @@ s32 func_8020A7D4(func_8020A7D4_StructA *a, func_8020A7D4_StructO **b)
             a->state=2; a->timer=func_8012C6B4(60)+10;
             a->vx=func_8001EAD0(a->angle)*0.4;
             a->vz=func_8001EB64(a->angle)*0.4;
-            RESTORE(0,D_801BBBF0,0xF32);
-            RESTORE(1,D_801BBBF0,0xF32);
+            A7D4_RESTORE(0,D_801BBBF0,0xF32);
+            A7D4_RESTORE(1,D_801BBBF0,0xF32);
         }
         break;
     case 7:
@@ -207,8 +209,8 @@ s32 func_8020A7D4(func_8020A7D4_StructA *a, func_8020A7D4_StructO **b)
         if (func_8010843C(a->x,a->y+0.5,a->z,sine*6.0f+a->x,a->y+0.5,cosine*6.0f+a->z)) {
             a->vx=0.0f; a->vz=0.0f;
         }
-        if (!(a->timer % 4)) { FLASH(0); FLASH(1); }
-        else { RESTORE(0,B_801BBBF0,0xF32); RESTORE(1,D_801BBBF0,0xF32); }
+        if (!(a->timer % 4)) { A7D4_FLASH(0); A7D4_FLASH(1); }
+        else { A7D4_RESTORE(0,B_801BBBF0,0xF32); A7D4_RESTORE(1,D_801BBBF0,0xF32); }
         if (a->timer == 30) {
             func_80380F94(a->x,a->y,a->z,0.0f,0.0f,0.0f,0);
             func_801FC830(a->x,a->y,a->z,400.0f,D_80217C70[func_80212A48((void *)a)%3]);
@@ -220,7 +222,7 @@ s32 func_8020A7D4(func_8020A7D4_StructA *a, func_8020A7D4_StructO **b)
             }
             func_801FCF98((void *)a);
         }
-        if (a->timer++ >= 32) { FINISH(0.0f); }
+        if (a->timer++ >= 32) { A7D4_FINISH(0.0f); }
         break;
     case 8:
         old=a->timer++;
@@ -228,7 +230,7 @@ s32 func_8020A7D4(func_8020A7D4_StructA *a, func_8020A7D4_StructO **b)
             func_801FC830(a->x,a->y,a->z,400.0f,0x116);
             func_80380F94(a->x,a->y+2.0f,a->z,0.0f,0.0f,0.0f,18);
         }
-        if (old >= 4) { FINISH(0.0f); }
+        if (old >= 4) { A7D4_FINISH(0.0f); }
         break;
     }
     if (a->y < -2000.0f) return 0;
@@ -237,7 +239,9 @@ s32 func_8020A7D4(func_8020A7D4_StructA *a, func_8020A7D4_StructO **b)
         dx=(*(func_8020A7D4_StructO **)(D_801BBBF0+0xE0))->pos->x-a->x;
         dz=(*(func_8020A7D4_StructO **)(D_801BBBF0+0xE0))->pos->z-a->z;
         angle=func_8001EF38(dx,dz);
-        if (func_8002FC20(dx*dx+dz*dz) <= 30.0 && a->y-1.0f <= B_801BBCD0->pos->y && B_801BBCD0->pos->y <= a->y+4.0f && func_801FD4F4(a->angle,angle,0xAAA)) {
+        distSq = dx*dx+dz*dz;
+        dist = func_8002FC20(distSq);
+        if (dist <= 30.0 &&a->y-1.0f <= B_801BBCD0->pos->y && B_801BBCD0->pos->y <= a->y+4.0f && func_801FD4F4(a->angle,angle,0xAAA)) {
             a->state=7; a->timer=0; a->vx=0.0f; a->vz=0.0f;
             func_80212A28((void *)a);
             func_801FC830(a->x,a->y,a->z,400.0f,D_80217C68[func_80212A48((void *)a)%3]);

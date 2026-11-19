@@ -356,14 +356,48 @@ typedef struct func_8013A5E8_Struct2 {
     s16 unk1CC;
 } func_8013A5E8_Struct2;
 
+#undef D_800692B0
+#undef D_801BBE22
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8001EF38
+#define D_800692B0 D_800692B0__func_8013A5E8_71600716
+#define D_801BBE22 D_801BBE22__func_8013A5E8_71600716
+#define func_8001EAD0 func_8001EAD0__func_8013A5E8_71600716
+#define func_8001EB64 func_8001EB64__func_8013A5E8_71600716
+#define func_8001EF38 func_8001EF38__func_8013A5E8_71600716
+#define func_8013A5E8_Struct func_8013A5E8_Struct__func_8013A5E8_71600716
+#define func_8013A5E8_Struct2 func_8013A5E8_Struct2__func_8013A5E8_71600716
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern s16 func_8001EF38(f32, f32, s16);
+extern u8 D_800692B0[];
+extern s16 D_801BBE22;
+
+typedef struct func_8013A5E8_Struct {
+    u8 pad0[4];
+    f32 unk4;
+    u8 pad8[4];
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+} func_8013A5E8_Struct;
+
+typedef struct func_8013A5E8_Struct2 {
+    u8 pad0[0x1CA];
+    s16 unk1CA;
+    s16 unk1CC;
+} func_8013A5E8_Struct2;
+
 void func_8013A5E8(s32 arg0, u16 arg1) {
     func_8013A5E8_Struct *v1;
     f32 fa0;
     f32 fa1;
     f32 s;
-    f32 fv0;
-    s32 pad;
+    f32 x;
+    f32 y;
     s16 a2;
+    f32 fv0;
     func_8013A5E8_Struct2 *p;
 
     v1 = *(func_8013A5E8_Struct **)((u8 *)*(void **)arg0 + 0x2C);
@@ -376,10 +410,24 @@ void func_8013A5E8(s32 arg0, u16 arg1) {
     v1->unk12 = v1->unk12 + a2;
     s = func_8001EAD0(a2);
     fv0 = func_8001EB64(a2);
-    v1->unk4 = v1->unk4 + (fa1 * s + fa0 * fv0) / 1.0f;
-    v1->unkC = v1->unkC + (fa1 * fv0 - fa0 * s) / 1.0f;
+    x = (fa1 * s + fa0 * fv0) / 1.0f;
+    y = (fa1 * fv0 - fa0 * s) / 1.0f;
+    v1->unk4 = v1->unk4 + x;
+    v1->unkC = v1->unkC + y;
     }
 }
+#undef D_800692B0
+#undef D_801BBE22
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8001EF38
+#undef func_8013A5E8_Struct
+#undef func_8013A5E8_Struct2
+#define D_800692B0 D_800692B0__func_8013A5E8
+#define D_801BBE22 D_801BBE22__func_8013A5E8
+#define func_8001EAD0 func_8001EAD0__func_8013A5E8
+#define func_8001EB64 func_8001EB64__func_8013A5E8
+#define func_8001EF38 func_8001EF38__func_8013A5E8
 #undef D_800692B0
 #undef D_801BBE22
 #undef func_8001EAD0

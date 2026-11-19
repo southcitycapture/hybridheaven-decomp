@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+
 
 struct func_8012E774_Glob {
     u8 pad0[0xFE];
@@ -25,7 +27,6 @@ struct func_8012E774_Obj {
 };
 
 void func_8012E774(struct func_8012E774_Obj *arg0) {
-    s32 b;
     s32 p;
 
     ((struct func_8012E774_Glob *) D_801BBBF0)->unkFE = (u16) (((struct func_8012E774_Glob *) D_801BBBF0)->unkFE + 1);

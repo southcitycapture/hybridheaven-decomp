@@ -54,10 +54,9 @@ void func_801CC260(struct func_801CC260_StructA *arg0, s32 arg1)
     u16 r, g, b, r2, g2, b2;
     u16 r3, g3, b3, rate;
     f32 scale1, scale2;
-    s32 pad;
+    u16 cg;
 #define l r
 #define cr g
-#define cg b
 #define cb r2
 #define crate g2
 

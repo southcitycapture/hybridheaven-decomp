@@ -1,8 +1,21 @@
+#include "common.h"
 #define HZP2(a,b) a##b
 #define HZP(a,b) HZP2(a,b)
-#define func_8035AFEC HZP(func_8035AFEC_L,__LINE__)
-#include "context.h"
-#undef func_8035AFEC
+extern s32 D_801BBCCC;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern void func_800058DC();
+extern s32 func_80010550(s32, s32);
+extern u16 func_80011590();
+typedef struct func_80360EF8_Struct { int unk0; int unk4; int unk8; } func_80360EF8_Struct;
+extern void func_8013A28C(s32, func_80360EF8_Struct);
+extern s32 func_80224AC4();
+typedef struct func_8035F544_Copy { s32 unk0; s32 unk4; s32 unk8; } func_8035F544_Copy;
+extern void func_80225664(func_8035F544_Copy *, void *, s32);
+extern void func_802256E4(func_80360EF8_Struct *, s32, s32);
+u8 func_803626E0(s32 arg0);
+void func_80362DF4(s32 arg0, s32 arg1);
+
 
 typedef struct func_80362A54_Actor {
     u8 pad[0x36];
@@ -23,6 +36,11 @@ typedef struct func_80362A54_Obj {
     func_80362A54_Entry e;
 } func_80362A54_Obj;
 
+typedef struct func_80362A54_Flags {
+    u8 pad[0x392];
+    u8 f392;
+} func_80362A54_Flags;
+
 typedef struct func_80362A54_Sub {
     u8 pad[0x12];
     s16 f12;
@@ -32,12 +50,11 @@ typedef struct func_80362A54_Holder {
     u8 pad[0x2C];
     func_80362A54_Sub *f2C;
 } func_80362A54_Holder;
-
 extern void func_80224E00(void *arg0, s16 arg1);
 extern void func_80011380(void *arg0, void *arg1);
 
 void func_80362A54(func_80362A54_Actor *arg0, void **arg1) {
-    u8 *sp3C;
+    func_80362A54_Flags *sp3C;
     u8 *sp38;
     func_80362A54_Obj *sp34;
     s32 temp_v0;
@@ -48,9 +65,9 @@ void func_80362A54(func_80362A54_Actor *arg0, void **arg1) {
     func_80362A54_Entry *var_v1;
 
     if ((s32) arg0 == D_801BBCCC) {
-        sp3C = D_801BC03C;
+        sp3C = (func_80362A54_Flags *) D_801BC03C;
     } else {
-        sp3C = D_801BC3D8;
+        sp3C = (func_80362A54_Flags *) D_801BC3D8;
     }
     if ((s32) arg0 != D_801BBCCC) {
         sp38 = D_801BC03C;
@@ -104,6 +121,6 @@ block_26:
         if (sp38[0x394] != 0) {
             func_800113D0(arg1, (u8 *) var_v1 + 6);
         }
-        sp3C[0x392] = 0;
+        sp3C->f392 = 0;
     }
 }

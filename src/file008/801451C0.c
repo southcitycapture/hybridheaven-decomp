@@ -109,14 +109,13 @@ void func_80145348(void *arg0, u8 arg1, u8 arg2) {
 
 extern s16 D_801BEC88[];
 
-void func_80145390(s32 arg0) {
-    s32 *temp_ptr;
-    s32 var_v0;
 
-    temp_ptr = &arg0;
-    arg0 = (s16)arg0;
-    for (var_v0 = 0; var_v0 < 5; var_v0 = (var_v0 + 1) & 0xFF) {
-        D_801BEC88[var_v0] = arg0;
+
+void func_80145390(s16 arg0) {
+    s32 i;
+
+    for (i = 0; i < 5; i = (i + 1) & 0xFF) {
+        D_801BEC88[i] = arg0;
     }
 }
 
@@ -315,8 +314,40 @@ typedef struct func_80146178_Global {
 } func_80146178_Global;
 
 
+#define D_80181A84 D_80181A84__func_80146178
+#define func_80146088 func_80146088__func_80146178
+#define func_80146178_Global func_80146178_Global__func_80146178
+#define func_80146178_Struct func_80146178_Struct__func_80146178
+
+
+typedef struct func_80146178_Struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    u8 unk8;
+    u8 unk9;
+    u8 unkA;
+    u8 unkB;
+    u8 pad0[4];
+    s16 unkC;
+    s16 unkE;
+    u8 unk10;
+    u8 unk11;
+    u8 unk12;
+    u8 unk13;
+    u8 pad14[0x24];
+} func_80146178_Struct;
+
+typedef struct func_80146178_Global {
+    u8 pad0[0xC];
+    func_80146178_Struct *unkC;
+} func_80146178_Global;
+
+extern func_80146178_Global D_80181A84;
+extern s32 func_80146088();
+
 void func_80146178(s32 arg1, s32 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, u16 arg7, u8 arg8, u8 arg9, u8 arg10, u8 arg11) {
-    u8 pad[0x28];
     func_80146178_Struct sp1C;
 
     sp1C.unk0 = arg3;
@@ -332,6 +363,10 @@ void func_80146178(s32 arg1, s32 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, u
     D_80181A84.unkC = &sp1C;
     func_80146088(arg1, &D_80181A84, arg2, arg4);
 }
+#undef D_80181A84
+#undef func_80146088
+#undef func_80146178_Global
+#undef func_80146178_Struct
 
 #define D_80171CEC D_80171CEC__func_80146208
 #define func_80006214 func_80006214__func_80146208
@@ -373,8 +408,59 @@ typedef struct func_80146208_StructEntry {
 } func_80146208_StructEntry;
 extern func_80146208_StructEntry *D_80171CEC[];
 
+#undef D_80171CEC
+#undef func_80006214
+#undef func_80146178_Struct
+#define D_80171CEC D_80171CEC__func_80146208_bdd722bd
+#define D_80181A84 D_80181A84__func_80146208_bdd722bd
+#define func_80006214 func_80006214__func_80146208_bdd722bd
+#define func_80146178_Global func_80146178_Global__func_80146208_bdd722bd
+#define func_80146178_Struct func_80146178_Struct__func_80146208_bdd722bd
+#define func_80146208_StructData func_80146208_StructData__func_80146208_bdd722bd
+#define func_80146208_StructEntry func_80146208_StructEntry__func_80146208_bdd722bd
+typedef struct func_80146178_Struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    u8 unk8;
+    u8 unk9;
+    u8 unkA;
+    u8 unkB;
+    u8 pad0[4];
+    s16 unkC;
+    s16 unkE;
+} func_80146178_Struct;
+typedef struct func_80146178_Global {
+    u8 pad0[0xC];
+    func_80146178_Struct *unkC;
+} func_80146178_Global;
+extern struct func_80146178_Global D_80181A84;
+extern void func_80006214(void *a0);
+
+
+typedef struct func_80146208_StructData {
+    s16 x, y, w, h;
+    u8 r, g, b, a;
+    u8 pad0[4];
+    s16 flags, zero;
+    u8 pad1[4];
+    u16 format;
+    u8 pad2[2];
+    void *image;
+    u8 pad3[8];
+    s16 width, height;
+    u16 v, u;
+    s16 w2, h2;
+    u8 pad4[8];
+} func_80146208_StructData;
+typedef struct func_80146208_StructEntry {
+    u16 *format;
+    void **images;
+} func_80146208_StructEntry;
+extern func_80146208_StructEntry *D_80171CEC[];
+
 u8 func_80146208(s32 arg0, s8 *arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, u16 arg7, u16 arg8, u8 arg9, u16 arg10, volatile u16 arg11) {
-    u8 unused[8];
     func_80146208_StructData data;
     u8 result;
     func_80146208_StructEntry *entry;
@@ -459,6 +545,16 @@ end:
     return result;
 }
 #undef D_80171CEC
+#undef D_80181A84
+#undef func_80006214
+#undef func_80146178_Global
+#undef func_80146178_Struct
+#undef func_80146208_StructData
+#undef func_80146208_StructEntry
+#define D_80171CEC D_80171CEC__func_80146208
+#define func_80006214 func_80006214__func_80146208
+#define func_80146178_Struct func_80146178_Struct__func_80146208
+#undef D_80171CEC
 #undef func_80006214
 #undef func_80146178_Struct
 
@@ -490,8 +586,64 @@ typedef struct func_8014646C_Arg {
     u16 unk2;
 } func_8014646C_Arg;
 
+#undef TAB
+#define D_80181A84 D_80181A84__func_8014646C
+#define func_80005E44 func_80005E44__func_8014646C
+#define func_80006214 func_80006214__func_8014646C
+#define func_80146178_Global func_80146178_Global__func_8014646C
+#define func_80146178_Struct func_80146178_Struct__func_8014646C
+#define func_8014646C_Arg func_8014646C_Arg__func_8014646C
+#define func_8014646C_Struct func_8014646C_Struct__func_8014646C
+typedef struct func_80146178_Struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    u8 unk8;
+    u8 unk9;
+    u8 unkA;
+    u8 unkB;
+    u8 pad0[4];
+    s16 unkC;
+    s16 unkE;
+} func_80146178_Struct;
+typedef struct func_80146178_Global {
+    u8 pad0[0xC];
+    func_80146178_Struct *unkC;
+} func_80146178_Global;
+extern struct func_80146178_Global D_80181A84;
+extern void func_80005E44(void *a0, void *a1);
+extern void func_80006214(void *a0);
+
+
+
+typedef struct func_8014646C_Struct {
+    s16 unk0, unk2, unk4, unk6;
+    u8 unk8, unk9, unkA, unkB;
+    u8 pad0[4];
+    u16 unk10;
+    s16 unk12;
+    u8 pad1[4];
+    u16 unk18;
+    u8 pad2[2];
+    s32 unk1C;
+    u16 unk20;
+    u8 pad3[2];
+    s32 unk24;
+    s16 unk28, unk2A;
+    u16 unk2C, unk2E;
+    s16 unk30, unk32;
+    s32 unk34, unk38;
+} func_8014646C_Struct;
+
+#define TAB(i) (*(s32 ***)(D_80171CF0 + (i) * 4 - 4))
+
+typedef struct func_8014646C_Arg {
+    u16 unk0;
+    u16 unk2;
+} func_8014646C_Arg;
+
 void func_8014646C(s32 arg0, func_8014646C_Arg arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, s16 arg7, u16 arg8, u16 arg9, u8 arg10, u16 arg11, u16 arg12, u16 arg13, u16 arg14) {
-    s32 pad[2];
     func_8014646C_Struct sp;
 
     sp.unk4 = arg4;
@@ -516,9 +668,26 @@ void func_8014646C(s32 arg0, func_8014646C_Arg arg1, s16 arg2, s16 arg3, s16 arg
     func_80006214(arg0);
 }
 #undef TAB
+#undef D_80181A84
+#undef func_80005E44
+#undef func_80006214
+#undef func_80146178_Global
+#undef func_80146178_Struct
+#undef func_8014646C_Arg
+#undef func_8014646C_Struct
+#define TAB(i) (*(s32 ***)(D_80171CF0 + (i) * 4 - 4))
+#undef TAB
 
 #define func_80146208 func_80146208__decl287
 extern void func_80146208(s32, s8 *, s32, s16, s32, s32, s32, s32, s32, s32, s32, s32);
+typedef struct func_801465A0_StructO { u8 pad[0x22]; u8 unk22; } func_801465A0_StructO;
+typedef struct func_801465A0_StructA { u8 pad[0xC]; func_801465A0_StructO *unkC[1]; } func_801465A0_StructA;
+#undef func_80146208
+#define func_80146208 func_80146208__func_801465A0
+#define func_801465A0_StructA func_801465A0_StructA__func_801465A0
+#define func_801465A0_StructO func_801465A0_StructO__func_801465A0
+u8 func_80146208(s32 arg0, s8 *arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, u16 arg7, u16 arg8, u8 arg9, u16 arg10, volatile u16 arg11);
+
 typedef struct func_801465A0_StructO { u8 pad[0x22]; u8 unk22; } func_801465A0_StructO;
 typedef struct func_801465A0_StructA { u8 pad[0xC]; func_801465A0_StructO *unkC[1]; } func_801465A0_StructA;
 void func_801465A0(s32 arg0, s32 arg1, u16 arg2, s16 arg3, s16 arg4) {
@@ -526,8 +695,7 @@ void func_801465A0(s32 arg0, s32 arg1, u16 arg2, s16 arg3, s16 arg4) {
     s8 sp76;
     u8 v1;
     u8 flag;
-    s32 k;
-    u8 digits[4];
+    u8 digits[8];
 
     sp76 = 0;
     flag = 0;
@@ -545,6 +713,10 @@ void func_801465A0(s32 arg0, s32 arg1, u16 arg2, s16 arg3, s16 arg4) {
         }
     }
 }
+#undef func_80146208
+#undef func_801465A0_StructA
+#undef func_801465A0_StructO
+#define func_80146208 func_80146208__decl287
 #undef func_80146208
 
 
@@ -1587,9 +1759,10 @@ s32 func_80147A6C(void) {
 
 extern u8 D_80181590[];
 
-void func_80147AA8(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    u8 *temp_v0;
 
+
+
+void func_80147AA8(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     if (&arg0 == NULL) {
         arg0 = 0;
     }
@@ -1603,26 +1776,39 @@ void func_80147AA8(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         arg3 = 0;
     }
     arg0 = arg0 & 0xFF;
-    temp_v0 = D_80181590 + arg0 * 24;
-    temp_v0[4] = arg1;
-    temp_v0[0] = arg1;
-    temp_v0[5] = arg2;
-    temp_v0[1] = arg2;
-    temp_v0[6] = arg3;
-    temp_v0[2] = arg3;
+    (D_80181590 + arg0 * 24)[4] = arg1;
+    (D_80181590 + arg0 * 24)[0] = arg1;
+    (D_80181590 + arg0 * 24)[5] = arg2;
+    (D_80181590 + arg0 * 24)[1] = arg2;
+    (D_80181590 + arg0 * 24)[6] = arg3;
+    (D_80181590 + arg0 * 24)[2] = arg3;
 }
 
 
-void func_80147AF0(u8 arg0, u8 arg1, u8 arg2, u8 arg3) {
-    u8 *temp_v0;
 
-    temp_v0 = (u8 *)((arg0 * 0x18) + D_80181590);
-    temp_v0[0xC] = arg1;
-    temp_v0[0x8] = arg1;
-    temp_v0[0xD] = arg2;
-    temp_v0[0x9] = arg2;
-    temp_v0[0xE] = arg3;
-    temp_v0[0xA] = arg3;
+
+typedef struct func_80147AF0_Struct {
+    u8 pad0[8];
+    u8 a8;
+    u8 a9;
+    u8 aA;
+    u8 pad1;
+    u8 aC;
+    u8 aD;
+    u8 aE;
+    u8 pad2[9];
+} func_80147AF0_Struct;
+
+void func_80147AF0(u8 arg0, u8 arg1, u8 arg2, u8 arg3) {
+    func_80147AF0_Struct *entry;
+
+    entry = (func_80147AF0_Struct *)(arg0 * 0x18 + D_80181590);
+    entry->aC = arg1;
+    entry->a8 = arg1;
+    entry->aD = arg2;
+    entry->a9 = arg2;
+    entry->aE = arg3;
+    entry->aA = arg3;
 }
 
 

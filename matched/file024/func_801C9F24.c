@@ -1,4 +1,8 @@
-#include "context.h"
+#include "common.h"
+void func_800058DC(void *arg0, void *arg1);
+void func_8001A804();
+extern void func_8001B204();
+
 extern u8 D_80089474[];
 
 struct func_801C9F24_Struct2 { u8 pad[0xB]; u8 unkB; };
@@ -11,12 +15,24 @@ extern u16 D_801BBBFA;
 extern s32 D_8001B204();
 struct func_801C9F24_Struct3 { u8 pad[0x3C]; u16 unk3C; };
 void func_801CA284();
-extern u8 D_801CF444[], D_801CF460[], D_801CF480[], D_801CF49C[], D_801CF4A4[], D_801CF4C4[], D_801CF4E0[], D_801CF4FC[], D_801CF518[], D_801CF534[], D_801CF550[], D_801CF56C[], D_801CF588[], D_801CF58C[];
+extern u8 D_801CF444[];
+extern u8 D_801CF460[];
+extern u8 D_801CF480[];
+extern u8 D_801CF49C[];
+extern u8 D_801CF4A4[];
+extern u8 D_801CF4C4[];
+extern u8 D_801CF4E0[];
+extern u8 D_801CF4FC[];
+extern u8 D_801CF518[];
+extern u8 D_801CF534[];
+extern u8 D_801CF550[];
+extern u8 D_801CF56C[];
+extern u8 D_801CF588[];
+extern u8 D_801CF58C[];
 
 void func_801C9F24(struct func_801C9F24_Struct3 *arg0, struct func_801C9F24_Struct0 **arg1) {
-    s32 w;
-    s16 sp52;
     s32 v;
+    s16 sp52;
     s32 i;
 
     sp52 = (*arg1)->unk30->unkB;

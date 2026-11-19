@@ -1,4 +1,17 @@
-#include "context.h"
+#include "common.h"
+extern s32 D_801BBCCC;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+#define SPD(p) ((s14 > 0.0 ? s14 : (p)->unk10))
+#define RAW(p) ((s16)(s32)(SPD(p) * 128.0f))
+#define WRAP(x) (((x) & 0x1000) ? (((x) & 0x1FFF) - 0x2000) : ((x) & 0x1FFF))
+typedef struct func_80225664_Struct {
+    u8 pad0[0x10];
+    f32 unk10;
+    u8 pad14[0x30 - 0x14];
+    s32 unk30;
+} func_80225664_Struct;
+
 
 struct func_8022474C_Mid {
     u8 pad0[0x12];
@@ -12,8 +25,8 @@ struct func_8022474C_Obj {
     } *unk24;
 };
 
-#define SPD(p) ((s14 > 0.0 ? s14 : (p)->unk10))
-#define RAW(p) ((s16)(s32)(SPD(p) * 128.0f))
+#define SPD(p, s) (((s) > 0.0) ? (s) : (p)->unk10)
+#define RAW(p, s) ((s16)(s32)(SPD(p, s) * 128.0f))
 #define WRAP(x) (((x) & 0x1000) ? (((x) & 0x1FFF) - 0x2000) : ((x) & 0x1FFF))
 
 s32 func_8022474C(s32 arg0, s16 arg1) {
@@ -23,7 +36,6 @@ s32 func_8022474C(s32 arg0, s16 arg1) {
     s16 d;
     s16 a;
     s16 lim;
-    s32 q;
     f32 s14;
 
     if (arg0 == D_801BBCCC) {
@@ -36,7 +48,7 @@ s32 func_8022474C(s32 arg0, s16 arg1) {
     d = cur - arg1;
     a = WRAP(d);
     s14 = *(f32 *)&p->pad14;
-    lim = (WRAP(RAW(p)) < 0) ? -WRAP(RAW(p)) : WRAP(RAW(p));
+    lim = (WRAP(RAW(p, s14)) < 0) ? -WRAP(RAW(p, s14)) : WRAP(RAW(p, s14));
     if (a < -lim) {
         m->unk12 = (s16)(cur + lim) & 0x1FFF;
     } else if (lim < a) {

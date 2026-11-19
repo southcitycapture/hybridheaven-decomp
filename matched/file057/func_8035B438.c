@@ -1,22 +1,7 @@
-#include "context.h"
-typedef struct func_8035B650_StructB {
-    u8 pad0[4];
-    s32 unk4;
-    s32 unk8;
-    f32 unkC;
-} func_8035B650_StructB;
-typedef struct func_8035B650_StructC {
-    u8 pad0[0x24];
-    func_8035B650_StructB *unk24;
-} func_8035B650_StructC;
-typedef struct func_8035B650_StructA {
-    u8 pad0[0xC];
-    func_8035B650_StructC *unkC;
-    u8 pad1[0x3E - 0x10];
-    u16 unk3E;
-} func_8035B650_StructA;
-void func_8035B650(func_8035B650_StructA *arg0, s32 arg1);
-
+#include "common.h"
+typedef struct func_8035B650_StructA func_8035B650_StructA;
+void func_800058DC(void *arg0, void *arg1);
+extern void func_801CE4D4(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 arg10, s32 arg11, s32 arg12, s32 arg13, s32 arg14, s32 arg15, s32 arg16, f32 arg17, s32 arg18);
 typedef struct func_8035B438_StructC {
     u8 pad[4];
     s32 unk4;
@@ -37,6 +22,8 @@ typedef struct func_8035B438_Struct {
     u8 pad2[0x3E - 0x10];
     u16 unk3E;
 } func_8035B438_Struct;
+void func_8035B650(func_8035B650_StructA *arg0, s32 arg1);
+
 
 extern f32 D_8038A06C;
 extern f32 D_8038A070;
@@ -44,8 +31,6 @@ extern f32 D_8038A074;
 
 void func_8035B438(func_8035B438_Struct *arg0, s32 arg1) {
     func_8035B438_StructC *v;
-
-    u16 d;
 
     v = arg0->unkC->unk24->unk2C;
     if (arg0->unk3E == 1) {

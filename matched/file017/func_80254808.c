@@ -1,28 +1,14 @@
 #include "common.h"
-#define LP(p,l) LQ(p,l)
-#define LQ(p,l) p##_##l
+#include "common.h"
 extern void func_800058DC();
 extern void func_80020718(s32);
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_801518D4(s32, s32, s32);
 extern void func_801C2F0C(s32, void *);
 extern s32 func_801C3044(void);
-typedef struct func_80251820_Ctx {
-    u8 pad0[0x2C];
-    s32 unk2C;
-    u8 pad30[0x44];
-    s32 unk74;
-    u8 pad78[0x18];
-    u16 unk90;
-    u16 unk92;
-} func_80251820_Ctx;
-typedef struct func_80254B3C_T { u8 pad[0x30]; u8 *unk30; } func_80254B3C_T;
-typedef struct func_80254B3C_S { u8 pad[0x24]; struct func_80254B3C_T *unk24; } func_80254B3C_S;
-void func_80254B3C(func_80251820_Ctx *arg0, func_80254B3C_S *arg1);
+extern void func_80254B3C();
 extern void func_802577B4(void *, void *);
-typedef struct func_80257F34_Struct_M { s16 a; s32 b; f32 c; s16 d; } func_80257F34_Struct_M;
-
-
+typedef struct func_80254808_StructM { s16 a; s32 b; f32 c; s16 d; s32 e; s32 f; s32 g; s32 h; } func_80254808_StructM;
 typedef struct func_80254808_StructN { u8 pad0[0x22]; u8 unk22; } func_80254808_StructN;
 typedef struct func_80254808_StructB { u8 pad0[0x24]; func_80254808_StructN *unk24; } func_80254808_StructB;
 typedef struct func_80254808_Struct { u8 pad0[0x90]; u16 unk90; u8 pad92[6]; u16 unk98; } func_80254808_Struct;
@@ -31,8 +17,7 @@ extern u8 D_8025D89C[];
 extern u8 D_8025D8D8[];
 
 void func_80254808(func_80254808_Struct *arg0, func_80254808_StructB *arg1) {
-    s32 pad[4];
-    func_80257F34_Struct_M m;
+    func_80254808_StructM m;
     s32 t;
 
     t = arg0->unk90++;

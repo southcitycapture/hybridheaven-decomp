@@ -1,4 +1,30 @@
-#include "context.h"
+#include "common.h"
+struct func_80220F60_Struct {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0xEC - 0xE0];
+    s32 unkEC;
+    u8 pad2[0x1031 - 0xF0];
+    u8 unk1031;
+};
+extern struct func_80220F60_Struct D_801BBBF0;
+struct func_8021F9C8_Struct {
+    u8 pad0[0x2];
+    s16 unk2;
+    u8 pad1[0x30 - 0x4];
+    u16 unk30;
+    u8 unk32;
+    u8 pad2[0x328 - 0x33];
+    u8 unk328;
+    u8 pad3[0x392 - 0x329];
+    u8 unk392;
+};
+extern struct func_8021F9C8_Struct D_801BC03C;
+extern struct func_8021F9C8_Struct D_801BC3D8;
+extern void func_800058DC(s32 arg0, void *arg1);
+void func_80222370(s32 arg0, s32 arg1);
+extern void func_80222B08();
+
 
 typedef struct {
     u8 pad0[0x2];
@@ -33,18 +59,18 @@ typedef struct {
     u8 pad376[0x392 - 0x376];
     u8 unk392;
 } func_80222210_Struct;
-
 extern void func_80225540(s32);
 extern void func_80367460(s32, s32, void *);
 
 void func_80222210(s32 arg0, s32 arg1) {
-    s32 pad1;
+    s32 id;
     func_80222210_Struct *p;
     func_80222210_Struct *q;
-    s32 pad2;
+    s32 kind;
 
-    p = (arg0 == D_801BBBF0.unkDC) ? (func_80222210_Struct *)&D_801BC03C : (func_80222210_Struct *)&D_801BC3D8;
-    q = (arg0 != D_801BBBF0.unkDC) ? (func_80222210_Struct *)&D_801BC03C : (func_80222210_Struct *)&D_801BC3D8;
+    id = D_801BBBF0.unkDC;
+    p = (arg0 == id) ? (func_80222210_Struct *)&D_801BC03C : (func_80222210_Struct *)&D_801BC3D8;
+    q = (arg0 != id) ? (func_80222210_Struct *)&D_801BC03C : (func_80222210_Struct *)&D_801BC3D8;
     p->unk392 = 0;
     if (D_801BBBF0.unk1031 != 0xF) {
         p->u30.b.d = 0;
@@ -52,7 +78,8 @@ void func_80222210(s32 arg0, s32 arg1) {
             func_800058DC(arg0, func_80222B08);
         }
         func_80367460(arg0, arg1, q);
-        if (q->unk2D8 == 9 || q->unk2D8 == 10) {
+        kind = q->unk2D8;
+        if (kind == 9 || kind == 10) {
             if (q->unk375 <= 0) {
                 return;
             }

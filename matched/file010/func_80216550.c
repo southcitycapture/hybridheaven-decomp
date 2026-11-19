@@ -35,11 +35,11 @@ s32 func_80216550(void) {
     f32 pos[3];
     struct func_8020C39C_StructInner *o;
     s16 ang;
-    s16 pad0;
-    s16 pad1;
+    s16 farDistance;
+    u8 farKind;
+    u8 farType;
     u8 k;
     s16 r;
-    s16 x;
     s16 d;
 
     o = D_801BBCD0->inner;
@@ -83,15 +83,16 @@ s32 func_80216550(void) {
     h = v;
     if (v != 0) {
         *(u16 *)(D_801BBBF0 + 0x244) = h;
-        k = func_8014B3F0(*(u16 *)(D_801BBBF0 + 0x244));
-        if ((k & 0xFF) != 0) {
+        farKind = func_8014B3F0(*(u16 *)(D_801BBBF0 + 0x244));
+        if ((farKind & 0xFF) != 0) {
             if (func_8014C068(h) != 0) {
-                if ((u8)func_8014C1F0(h) == 2) {
+                farType = func_8014C1F0(h);
+                if (farType == 2) {
                     if (func_8014C0A8(h) == 0) {
         func_8014B4A0(h, pos);
         o = D_801BBCD0->inner;
-        r = ABS(o->y - pos[1]);
-        if (r < 3.0) {
+        farDistance = ABS(o->y - pos[1]);
+        if (farDistance < 3.0) {
             ang = (s16)(0x1800 - func_8001EF38(o->z - pos[2], o->x - pos[0]));
             ang = ang & 0x1FFF;
             o = D_801BBCD0->inner;

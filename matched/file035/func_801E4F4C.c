@@ -1,4 +1,18 @@
-#include "context.h"
+#include "common.h"
+struct func_801E48F0_Struct2 {
+    u8 pad[0x22];
+    u8 unk22;
+};
+struct func_801E48F0_Struct1 {
+    u8 pad[0xC];
+    struct func_801E48F0_Struct2 *unkC;
+};
+extern struct func_801E48F0_Struct1 *D_8038D8D0;
+extern f64 func_80034C24();
+extern s32 func_801C0DE4(s32, s32, f32);
+extern void func_801C0EB0(s32, s32);
+extern u64 func_801C0F18(s32, s32);
+
 
 typedef struct func_801E4F4C_StructB {
     u8 pad0[4];
@@ -28,16 +42,13 @@ extern f32 D_801E8CE8;
 s32 func_801E4F4C(s32 arg0, s32 arg1) {
     s32 sp1C;
     f32 t;
-    f32 z;
-
-    z = 0.0f;
     if (func_801C0DE4(3, 5, 4.5000038146972656f) != 0) {
         func_801C0EB0(3, 5);
         return 5;
     }
     sp1C = func_801C0DE4(3, 5, 2.2500019073486328f);
     t = (f32)(func_80034C24(func_801C0F18(3, 5)) / D_801E8CD0) / D_801E8CD8;
-    G4F4C->unk14->unk30->unk4 = (16.5f - 16.5f) * t + D_801E8CDC;
+    G4F4C->unk14->unk30->unk4 = 0 * t + D_801E8CDC;
     G4F4C->unk14->unk30->unk8 = D_801E8CE0 * t + D_801E8CE4;
     G4F4C->unk14->unk30->unkC = 16.5f * t + D_801E8CE8;
     if (sp1C != 0) {

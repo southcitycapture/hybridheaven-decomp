@@ -1,4 +1,15 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_80135DE4_StructInner {
+    u8 pad0[0x14];
+    u32 unk14;
+} func_80135DE4_StructInner;
+typedef struct func_80135DE4_Struct {
+    u8 pad0[0x38];
+    func_80135DE4_StructInner *unk38;
+    u8 pad1[0x54];
+    u16 unk90;
+} func_80135DE4_Struct;
+s32 func_8012A630(func_80135DE4_Struct *arg0, f32 arg1);
 
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
@@ -10,8 +21,7 @@ extern func_80135E60_Obj *D_801BBCD0;
 #define O ((func_80135E60_Obj *)a0)
 
 s32 func_80135E60(void *a0, f32 arg1, s32 arg2, s32 arg3) {
-    u8 pad[8];
-    f32 sp1C;
+    f32 sp1C[3];
     s16 d;
     s32 v;
     f32 n;
@@ -20,10 +30,10 @@ s32 func_80135E60(void *a0, f32 arg1, s32 arg2, s32 arg3) {
     if (func_8012A630(a0, arg1) == 0) {
         return 0;
     }
-    sp1C = func_8001EAD0(O->p24->p30->ang);
+    sp1C[0] = func_8001EAD0(O->p24->p30->ang);
     c = func_8001EB64(O->p24->p30->ang);
     n = -*(f32 *)&arg3;
-    d = func_8001EF38(D_801BBCD0->p2C->x - (sp1C * n + O->p24->p30->x),
+    d = func_8001EF38(D_801BBCD0->p2C->x - (sp1C[0] * n + O->p24->p30->x),
                       D_801BBCD0->p2C->z - (c * n + O->p24->p30->z)) - O->p24->p30->ang;
     if (d & 0x1000) {
         d = (d & 0x1FFF) - 0x2000;

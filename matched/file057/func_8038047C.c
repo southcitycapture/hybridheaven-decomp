@@ -1,7 +1,21 @@
+#include "common.h"
+extern s32 D_8008DA88[];
+extern s32 D_8038CFB0;
+typedef struct func_80380B30_SB { u8 pad0[4]; f32 unk4; u8 pad8[4]; f32 unkC; u8 pad10[0x20]; u32 unk30; } func_80380B30_SB;
+typedef struct func_80380B30_SA { u8 pad[0x2C]; func_80380B30_SB *unk2C; } func_80380B30_SA;
 extern struct func_80380B30_SA *D_8038CFB4;
+extern s32 func_800058DC();
+extern void (*D_803897C0)(void *);
+extern s32 func_80006214(void *);
 extern void func_80020744();
-extern void func_803805A0(func_803805A0_StructP *arg0, s32 arg1);
-#include "context.h"
+typedef struct func_803805A0_StructP {
+    u8 pad0[0x90];
+    s16 unk90;
+    u8 pad1[2];
+    u8 unk94;
+} func_803805A0_StructP;
+void func_803805A0(func_803805A0_StructP *arg0, s32 arg1);
+
 
 typedef struct func_8038047C_StructData {
     u8 pad0[4];
@@ -41,7 +55,7 @@ typedef struct func_8038047C_StructArg {
 extern u8 D_80389820[];
 
 void func_8038047C(func_8038047C_StructArg *arg0, s32 arg1) {
-    s32 pad1;
+    func_8038047C_StructObject **object;
     func_8038047C_StructSource *src;
     func_8038047C_StructData *data;
     s32 *entries;
@@ -55,7 +69,6 @@ void func_8038047C(func_8038047C_StructArg *arg0, s32 arg1) {
     func_80006214((void *)D_8038CFB0);
     for (arg1 = 1; arg1 < arg0->unk94; arg1 = (u8)(arg1 + 1)) {
         if (entries[arg1] >= 0) {
-            func_8038047C_StructObject **object;
             func_8038047C_StructState *state;
             object = &((func_8038047C_StructObject **)D_8008DA88)[arg1];
             state = (*object)->state;

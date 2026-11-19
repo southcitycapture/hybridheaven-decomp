@@ -3,27 +3,7 @@ extern void func_800058DC(s32, void (*)());
 extern void func_80020718(s32);
 extern s32 func_80133A24(s32);
 extern void func_801C2F0C(s32, s32);
-struct func_8024CEA0_StructArg0 {
-    u8 pad0[0x90];
-    u16 unk90;
-    u16 unk92;
-    s16 unk94;
-};
-struct func_8024CEA0_StructSub {
-    u8 pad0[0x12];
-    s16 unk12;
-    u8 pad1[0x4B - 0x14];
-    u8 unk4B;
-};
-struct func_8024CEA0_StructMid {
-    u8 pad0[0x30];
-    struct func_8024CEA0_StructSub *unk30;
-};
-struct func_8024CEA0_StructArg1 {
-    u8 pad0[0x10];
-    struct func_8024CEA0_StructMid *unk10;
-};
-void func_8024CEA0(struct func_8024CEA0_StructArg0 *arg0, struct func_8024CEA0_StructArg1 *arg1);
+extern void func_8024CEA0();
 
 
 typedef struct func_8024BD1C_In { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; u8 pad10[0x20]; u32 unk30; } func_8024BD1C_In;
@@ -36,9 +16,9 @@ extern void func_8024BF7C();
 
 void func_8024BD1C(func_8024BD1C_A0 *arg0, func_8024BD1C_A1 *arg1) {
     func_8024BD1C_Arg sp;
-    s32 pad;
+    s32 d;
     s32 t;
-    s32 pad2;
+    s32 e;
     s32 c;
     s32 b;
     s32 a;
@@ -59,7 +39,9 @@ void func_8024BD1C(func_8024BD1C_A0 *arg0, func_8024BD1C_A1 *arg1) {
         a = func_80133A24(0x135) == 0;
         b = func_80133A24(0x134) == 0;
         c = func_80133A24(0x133) == 0;
-        arg0->unk99 = 4 - (func_80133A24(0x136) == 0) - c - b - a;
+        d = func_80133A24(0x136) == 0;
+        e = 4 - d - c - b - a;
+        arg0->unk99 = e;
         switch (arg0->unk99) {
         case 1:
             sp.a = 0x1000;

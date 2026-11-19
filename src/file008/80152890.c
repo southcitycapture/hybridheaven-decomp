@@ -139,23 +139,22 @@ u8 func_80152C90(s32 arg0) {
 extern s16 D_8017DD8C;
 extern s16 D_8017DD8E;
 
-void func_80152CC8(u8 arg0, u16 arg1) {
-    s16 *var_v0;
 
-    if (arg0 == 0) {
-        var_v0 = &D_8017DD8C;
-    } else {
-        var_v0 = &D_8017DD8E;
-    }
-    *var_v0 = arg1;
+
+
+void func_80152CC8(u8 arg0, u16 arg1) {
+    *(arg0 == 0 ? &D_8017DD8C : &D_8017DD8E) = arg1;
 }
+
+
+
 
 
 
 void func_80152CF8(s32 arg0) {
     s32 *p;
     p = &arg0;
-    D_8017DD92 = arg0 + 1;
+    D_8017DD92 = *p + 1;
 }
 
 

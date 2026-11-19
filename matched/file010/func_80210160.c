@@ -52,6 +52,7 @@ typedef struct {
     u8 unkB0;
 } func_8020FB98_Struct;
 extern void func_801FCF98(func_8020FB98_Struct *);
+extern s16 func_801FD3EC(s16, s16, s16);
 extern s32 func_801FD644(f32, f32, f32, f32, s32, f32, f32, u32);
 extern s32 func_801FD68C(func_8020FB98_Struct *);
 extern f32 func_801FD780(u8);
@@ -64,13 +65,6 @@ void func_80212A28(struct func_80212A28_Struct *arg0);
 u8 func_80212A48(struct func_80212A28_Struct *arg0);
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
-
-typedef struct func_80210160_StructL {
-    u8 pad0[0x10];
-    s16 unk10;
-    s16 unk12;
-    s16 unk14;
-} func_80210160_StructL;
 
 typedef struct func_80210160_StructI {
     u8 pad0[4];
@@ -127,17 +121,17 @@ typedef struct func_80210160_StructA0 {
 } func_80210160_StructA0;
 
 extern u16 D_80217C98[];
-extern s16 func_801FD3EC(s16, s16, s16);
+extern s32 func_80133A24(s32);
 
 s32 func_80210160(func_80210160_StructA0 *arg0, func_80210160_StructA1 *arg1) {
     u8 temp_v1;
-    s32 pad48;
+    f32 player_y;
     s32 sp44;
     s32 sp40;
-    s32 pad3C;
-    u16 pad3A;
+    f32 height;
+    u8 kind;
     u16 sp38;
-    s32 pad34;
+    s32 sound_status;
     f32 sp30;
 
     sp40 = arg0->unk3C;
@@ -145,12 +139,13 @@ s32 func_80210160(func_80210160_StructA0 *arg0, func_80210160_StructA1 *arg1) {
     temp_v1 = arg0->unk90;
     if (temp_v1 == 2 || temp_v1 == 4 || temp_v1 == 5) {
         if (func_801C3D20(arg0->unk94, arg0->unk9C, 3.0f) != 0) {
-            if (arg0->unk98 - 15.0f <= D_801BBCD0->inner->y && D_801BBCD0->inner->y < arg0->unk98 + 1.0f) {
+            player_y = D_801BBCD0->inner->y;
+            if (arg0->unk98 - 15.0f <= player_y && player_y < arg0->unk98 + 1.0f) {
                 arg0->unk90 = 8;
                 arg0->unk40 = 0.0f;
                 arg0->unk48 = 0.0f;
                 arg0->unk3C = 0;
-                sp40 = (u16)arg0->unk3C;
+                sp40 = arg0->unk3C;
             }
         }
     }
@@ -161,15 +156,15 @@ s32 func_80210160(func_80210160_StructA0 *arg0, func_80210160_StructA1 *arg1) {
         if (sp40 >= 0x15) {
             if (arg0->unkAC & 1) {
                 if (func_801C3D20(arg0->unk94, arg0->unk9C, 100.0f) != 0 &&
-                    arg0->unk98 - 40.0f <= D_801BBCD0->inner->y &&
-                    D_801BBCD0->inner->y < arg0->unk98 + 20.0f &&
-                    func_80108590(arg0->unk94, arg0->unk98 + 1.0, arg0->unk9C, D_801BBCD0->inner->x, arg0->unk98 + 1.0, D_801BBCD0->inner->z) == 0) {
+                    (height = arg0->unk98) - 40.0f <= D_801BBCD0->inner->y &&
+                    D_801BBCD0->inner->y < height + 20.0f &&
+                    func_80108590(arg0->unk94, height + 1.0, arg0->unk9C, D_801BBCD0->inner->x, height + 1.0, D_801BBCD0->inner->z) == 0) {
                     arg0->unk90 = 4;
                     arg0->unk3C = func_8012C6B4(9);
                     arg0->unk92 = func_8012C6B4(0x111) + 0x16;
-                    func_80212A28(arg0);
+                    func_80212A28((struct func_80212A28_Struct__func_80212A28 *)arg0);
                     if (func_80133A24(0x287) == 0) {
-                        func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, D_80217C98[func_80212A48(arg0) % 3]);
+                        func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, D_80217C98[func_80212A48((struct func_80212A28_Struct *)arg0) % 3]);
                     }
                 } else {
                     arg0->unk90 = 5;
@@ -180,9 +175,9 @@ s32 func_80210160(func_80210160_StructA0 *arg0, func_80210160_StructA1 *arg1) {
                 arg0->unk90 = 4;
                 arg0->unk3C = func_8012C6B4(9);
                 arg0->unk92 = func_8012C6B4(0xCC) + 0x16;
-                func_80212A28(arg0);
+                func_80212A28((struct func_80212A28_Struct__func_80212A28 *)arg0);
                 if (func_80133A24(0x287) == 0) {
-                    func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, D_80217C98[func_80212A48(arg0) % 3]);
+                    func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, D_80217C98[func_80212A48((struct func_80212A28_Struct *)arg0) % 3]);
                 }
             }
         }
@@ -248,19 +243,21 @@ s32 func_80210160(func_80210160_StructA0 *arg0, func_80210160_StructA1 *arg1) {
             arg1->unk0->unk22 = 0;
             arg1->unk4->unk22 = 0;
             arg0->unk90 = 0;
-            func_801FCF98(arg0);
+            func_801FCF98((func_8020FB98_Struct *)arg0);
             return 0;
         }
         goto common;
     case 8:
         if (sp40 == 0) {
             func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, 0.0, 0.0, 0.0, 0);
-            if (func_80133A24(0x287) == 0) {
-                func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, D_80217C70[func_80212A48(arg0) % 3]);
+            sound_status = func_80133A24(0x287);
+            if (sound_status == 0) {
+                func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, D_80217C70[func_80212A48((struct func_80212A28_Struct *)arg0) % 3]);
             }
             if (func_80150584() == 0) {
-                sp38 = (u16)func_8012FF58();
-                if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 10.5f, (s16)(D_801BBCD0->inner->angle + 0x1000) & 0x1FFF, 2.0f, 0.4f, func_801FD780(arg0->unk91) * (f32)((((s32)sp38 / 10) * 10) + 20)) != 0) {
+                sp38 = func_8012FF58();
+                kind = arg0->unk91;
+                if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 10.5f, (s16)(D_801BBCD0->inner->angle + 0x1000) & 0x1FFF, 2.0f, 0.4f, func_801FD780(kind) * (f32)((((s32)sp38 / 10) * 10) + 20)) != 0) {
                     func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, 0.0, 0.0, 0.0, 2);
                 }
             }
@@ -269,7 +266,7 @@ s32 func_80210160(func_80210160_StructA0 *arg0, func_80210160_StructA1 *arg1) {
             arg1->unk0->unk22 = 0;
             arg1->unk4->unk22 = 0;
             arg0->unk90 = 0;
-            func_801FCF98(arg0);
+            func_801FCF98((func_8020FB98_Struct *)arg0);
         }
         goto common;
     default:
@@ -283,13 +280,13 @@ s32 func_80210160(func_80210160_StructA0 *arg0, func_80210160_StructA1 *arg1) {
             arg1->unk4->unk30->unk4A = func_8001EAD0((s16)(arg0->unkA6 * 0x78) & 0x1FFF) * 63.0f + 192.0f;
             arg0->unkA6 = arg0->unkA6 + 1;
         }
-        sp44 = func_801FD68C(arg0);
+        sp44 = func_801FD68C((func_8020FB98_Struct *)arg0);
         if (sp44 != 0) {
             if (arg0->unk90 != 8 && arg0->unk90 != 0) {
                 arg0->unkB0 = arg0->unkB0 - 1;
                 arg0->unk40 = 0.0;
                 arg0->unk48 = 0.0;
-                if ((u8)arg0->unkB0 == 0) {
+                if (arg0->unkB0 == 0) {
                     arg0->unk90 = 7;
                     arg0->unk3C = 0;
                 } else {

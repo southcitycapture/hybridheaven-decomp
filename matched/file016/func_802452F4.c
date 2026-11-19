@@ -1,4 +1,17 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_80242080_Struct3 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+} func_80242080_Struct3;
+extern func_80242080_Struct3 D_80164F40;
+extern u8 D_80249A58[];
+void func_80005E44(void *, void *);
+extern s32 D_80006214(void *);
+#define func_80006214 D_80006214
+void func_8012C89C(void *, s32, s32, s32);
+void func_802467B0(f32 arg0, f32 arg1, s32 arg2, s32 arg3);
 
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
@@ -52,12 +65,11 @@ typedef struct func_802452F4_StructD {
 } func_802452F4_StructD;
 
 void func_802452F4(func_802452F4_StructD *arg0, func_802452F4_StructC **arg1) {
-    func_80242080_Struct3 sp30;
-    u8 pad[16];
+    func_80242080_Struct3 sp20[2];
 
-    sp30 = D_80164F40;
-    sp30.unk4 = 0x80000300;
-    func_80005E44(arg0, &sp30);
+    sp20[1] = D_80164F40;
+    sp20[1].unk4 = 0x80000300;
+    func_80005E44(arg0, &sp20[1]);
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 0xCF, 7);
     (*arg1)->unk30->unk24 |= 0x300;

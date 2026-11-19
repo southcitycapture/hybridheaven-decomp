@@ -1,11 +1,59 @@
-#include "context.h"
-
+#include "common.h"
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+typedef struct func_803673B4_StructGlobal {
+    u8 pad[0xDC];
+    s32 unkDC;
+    u8 padE0[0xC];
+    s32 unkEC;
+} func_803673B4_StructGlobal;
+extern struct func_803673B4_StructGlobal D_801BBBF0;
 typedef struct func_803650AC_G {
     u8 pad0[0xDC];
     s32 unkDC;
     u8 padE0[0x1031 - 0xE0];
     u8 unk1031;
 } func_803650AC_G;
+#define GG ((func_803650AC_G *)&D_801BBBF0)
+extern void func_800058DC(s32, void *);
+extern s32 func_801DB6B8(s32 arg0, s32 arg1, s32 arg2);
+extern u8 func_80222E84[];
+extern void func_802233B0();
+extern void func_80224E00(s32, s16);
+extern void func_80225540(s32 arg0);
+extern void func_803602D4();
+extern void func_8036265C();
+typedef struct func_80364F74_Struct2 {
+    s32 unk0;
+    u16 unk4;
+    u8 pad6[2];
+    f32 unk8;
+} func_80364F74_Struct2;
+u8 func_80364F74(func_80364F74_Struct2 *arg0);
+typedef struct func_803650AC_Inner {
+    u8 pad0[0x1C];
+    func_80364F74_Struct2 unk1C;
+    u8 pad[0x80 - 0x1C - sizeof(func_80364F74_Struct2)];
+    u16 unk80;
+} func_803650AC_Inner;
+typedef struct func_803650AC_Arg0 {
+    u8 pad0[0x5C];
+    func_803650AC_Inner *unk5C;
+} func_803650AC_Arg0;
+void func_80365FE0(u8 *arg0, s32 arg1);
+typedef struct func_803667C4_StructArg {
+    u8 pad[0x5C];
+    void *unk5C;
+} func_803667C4_StructArg;
+void func_803667C4(func_803667C4_StructArg *arg0, s32 arg1);
+typedef struct func_80366B30_StructArg {
+    u8 pad[0x5C];
+    void *unk5C;
+} func_80366B30_StructArg;
+void func_80366B30(func_80366B30_StructArg *arg0, s32 arg1);
+void func_80367460(s32 arg0, void **arg1);
+extern void func_803697AC(s32, s32, u8);
+
 
 typedef struct func_803650AC_S {
     u8 pad0[2];
@@ -33,18 +81,6 @@ typedef struct func_803650AC_S {
     u8 unk396;
 } func_803650AC_S;
 
-typedef struct func_803650AC_Inner {
-    u8 pad0[0x1C];
-    func_80364F74_Struct2 unk1C;
-    u8 pad[0x80 - 0x1C - sizeof(func_80364F74_Struct2)];
-    u16 unk80;
-} func_803650AC_Inner;
-
-typedef struct func_803650AC_Arg0 {
-    u8 pad0[0x5C];
-    func_803650AC_Inner *unk5C;
-} func_803650AC_Arg0;
-
 typedef struct func_803650AC_Obj2 {
     u8 pad0[0x12];
     s16 unk12;
@@ -54,25 +90,15 @@ typedef struct func_803650AC_Obj {
     u8 pad0[0x2C];
     func_803650AC_Obj2 *unk2C;
 } func_803650AC_Obj;
-
-extern u8 func_80222E84[];
-extern void func_8036265C();
-extern void func_80224E00(s32, s16);
 extern s32 func_80365410(s32, s32);
-extern void func_803697AC(s32, s32, u8);
-
-#define GG ((func_803650AC_G *)&D_801BBBF0)
 
 void func_803650AC(func_803650AC_Arg0 *arg0, s32 arg1) {
     func_803650AC_Inner *sp24;
-    s32 pad;
+    u8 v;
     func_803650AC_S *self;
     func_803650AC_S *other;
     s16 var_a1;
     u8 r;
-    u8 v;
-    u32 w;
-    u32 x;
 
     sp24 = arg0->unk5C;
     self = (func_803650AC_S *)((s32)arg0 == GG->unkDC ? D_801BC03C : D_801BC3D8);

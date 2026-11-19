@@ -1,4 +1,5 @@
 #include "common.h"
+
 #define SG_CAT2(a, b) a##b
 #define SG_CAT(a, b) SG_CAT2(a, b)
 #define func_80242F38_StructGlobal SG_CAT(SGL_, __LINE__)
@@ -27,13 +28,12 @@ extern void func_8024443C(void);
 
 #undef func_80242F38_StructGlobal
 
-typedef struct func_80241D4C_Struct { s16 a; s16 pad; s32 b; f32 c; } func_80241D4C_Struct;
+typedef struct func_80241D4C_Struct { s16 a; s16 pad; s32 b; f32 c; s32 d[5]; } func_80241D4C_Struct;
 typedef struct func_80241D4C_Arg { u8 pad0[0x3C]; u16 unk3C; } func_80241D4C_Arg;
 extern u8 func_80241DD0[];
 extern void func_801C2F0C(s32, void *, void *);
 
 void func_80241D4C(func_80241D4C_Arg *arg0, s32 arg1) {
-    u8 padx[0x14];
     func_80241D4C_Struct s;
 
     if (((arg0->unk3C++ < 0x1E) ^ 1) && func_801C3044() == 0) {

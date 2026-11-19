@@ -32,6 +32,7 @@ typedef struct {
     func_801E2D94_Struct2 *unkE8;
 } func_801E2D94_Struct1;
 #define S (*(func_801E2D94_Struct1 *)&D_801BBBF0)
+
 extern f64 func_80034C24();
 u64 func_801C0B2C();
 s32 func_801C0B8C(u64 time);
@@ -39,15 +40,17 @@ s32 func_801E8D6C(s32 arg0, s32 arg1) {
     f64 a;
     f64 b;
     f64 z;
+    f64 c;
     u64 t;
 
     if (func_801C0B8C(0x05D616FA) != 0) {
         return 0x16;
     }
+    c = 1.0;
     t = func_801C0B2C();
     a = (f64)(f32)(func_80034C24(t) / (1e+06) - (95.91666674613951)) / 2;
     S.unkE8->unk2C->unk30 = a * (-4.099999999999994) + (-172.0);
-    S.unkE8->unk2C->unk34 = a * 1 + 10;
+    S.unkE8->unk2C->unk34 = a * c + 10;
     z = 1.0 - 1.0;
     b = a * z;
     S.unkE8->unk2C->unk38 = a * (0.40000000000000036) + (-8.4);

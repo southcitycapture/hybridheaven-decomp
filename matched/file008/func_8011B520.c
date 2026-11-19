@@ -66,7 +66,7 @@ void func_8011B520(s32 arg0, s32 arg1) {
             if (func_8011BAEC(o->unk0, o->unk4, o->unk8, o->unkC, o->unk10) != 0) {
                 switch (o->unk18) {
                 case 2:
-                    if (o->unk19 != 0) break;
+                    if (o->unk19 != 0) continue;
                 case 1:
                 if (room != D_801BBE44 || sub != D_801BBE45 || *o->unk14 != B_801BBE45[1]) {
                     D_801BBBC4 = (func_8011B7A0_O *)(l - 1)[TBL[room - 1][sub - 1]];
@@ -78,6 +78,7 @@ void func_8011B520(s32 arg0, s32 arg1) {
                 return;
                 }
             } else {
+                continue;
             }
         }
     }

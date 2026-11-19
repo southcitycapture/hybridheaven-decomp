@@ -1,4 +1,33 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern s32 func_800058DC(s32, void *);
+struct func_8038DA10_A {
+    u8 pad0[0x92];
+    u8 unk92;
+    u8 unk93;
+    u8 pad1[4];
+    s16 unk98;
+    s16 unk9A;
+    u8 pad2[4];
+    u8 unkA0;
+    u8 unkA1;
+    u8 unkA2;
+};
+struct func_8038DA10_B {
+    s16 unk0;
+    s16 unk2;
+    u8 pad4[0x34];
+    u32 unk38;
+    u8 pad3C[0x62];
+    u16 unk9E;
+    u16 unkA0;
+    u8 pad1[0x236];
+    u8 unk2D8;
+    u8 unk2D9;
+};
+s32 func_8038DA10(struct func_8038DA10_A *arg0, struct func_8038DA10_B *arg1, u32 *arg2);
+
 
 struct func_8038DD10_Struct {
     u8 pad0[0xC];
@@ -33,7 +62,7 @@ struct func_8038DD10_Struct3 {
     u32 f : 2;
     u32 p0 : 19;
 };
-struct func_8038DD10_Glob {
+struct func_8038DD10_StructGlob {
     u8 pad[0xDC];
     s32 unkDC;
     u8 pad2[0xB90 - 0xE0];
@@ -41,7 +70,7 @@ struct func_8038DD10_Glob {
     u8 pad3[0x1031 - 0xB94];
     u8 unk1031;
 };
-extern struct func_8038DD10_Glob D_801BBBF0;
+extern struct func_8038DD10_StructGlob D_801BBBF0;
 extern u8 func_8022B3E0[];
 extern s32 func_8022AB58();
 
@@ -50,8 +79,6 @@ extern s32 func_8022AB58();
 void func_8038DD10(struct func_8038DD10_Struct *arg0, s32 arg1) {
     struct func_8038DD10_Struct2 *a3;
     struct func_8038DD10_Struct3 *a2;
-    u32 w;
-    u32 g;
 
     a3 = (D_801BBBF0.unkDC == arg0->unkC) ? (void *)D_801BC03C : (void *)D_801BC3D8;
     a2 = (D_801BBBF0.unkDC == arg0->unkC) ? (void *)D_801BC3D8 : (void *)D_801BC03C;

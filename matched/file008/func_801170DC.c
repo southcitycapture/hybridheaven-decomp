@@ -30,14 +30,14 @@ s32 func_801170DC(u16 arg0) {
 
     idx = func_80117204(arg0);
     if (G.arr[idx] == 0) {
-        if (arg0 == 4 || arg0 == 0x10 || arg0 == 0x20 || arg0 == 0x40 || arg0 == 8 || arg0 == 0x80 || arg0 == 0x100 || arg0 == 0x200 || arg0 == 0x400 || arg0 == 1 || arg0 == 2 || arg0 == 3) {
-        }
+        if (arg0 == 4 || arg0 == 0x10 || arg0 == 0x20 || arg0 == 0x40 || arg0 == 8 || arg0 == 0x80 || arg0 == 0x100 || arg0 == 0x200 || arg0 == 0x400 || arg0 == 1 || arg0 == 2) goto fail;
+fail:
         return -1;
     } else {
         idx = idx & 0xFF;
     }
-    if (arg0 == 4 || arg0 == 0x10 || arg0 == 0x20 || arg0 == 0x40 || arg0 == 8 || arg0 == 0x80 || arg0 == 0x100 || arg0 == 0x200 || arg0 == 0x400 || arg0 == 1 || arg0 == 2 || arg0 == 3) {
-    }
+    if (arg0 == 4 || arg0 == 0x10 || arg0 == 0x20 || arg0 == 0x40 || arg0 == 8 || arg0 == 0x80 || arg0 == 0x100 || arg0 == 0x200 || arg0 == 0x400 || arg0 == 1 || arg0 == 2) goto call;
+call:
     func_80006088(G.arr[idx], idx, D_801BBBF0);
     G.arr[idx] = 0;
     if (0x40 == arg0) {

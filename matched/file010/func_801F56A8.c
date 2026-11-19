@@ -1,11 +1,51 @@
-#include "context.h"
+#include "common.h"
+extern void (*D_80216D10[])(void *, s32);
+extern void func_8001F74C(void);
+extern s32 func_80133A24(u32);
+void func_801F3B5C(s32 arg0);
+s32 func_801F5490(void *arg0);
+typedef struct func_801F54B8_SubStruct {
+    u8 pad0[0x10];
+    u32 unk10;
+} func_801F54B8_SubStruct;
+typedef struct func_801F54B8_Struct {
+    u8 pad0[0x38];
+    func_801F54B8_SubStruct *unk38;
+} func_801F54B8_Struct;
+s32 func_801F54B8(func_801F54B8_Struct *arg0);
+typedef struct func_801F54EC_SubStruct {
+    u8 pad0[0x10];
+    u32 unk10;
+} func_801F54EC_SubStruct;
+typedef struct func_801F54EC_Struct {
+    u8 pad0[0x38];
+    func_801F54EC_SubStruct *unk38;
+} func_801F54EC_Struct;
+s32 func_801F54EC(func_801F54EC_Struct *arg0);
+struct func_801F57EC_Struct24 {
+    u8 pad[0x22];
+    u8 unk22;
+};
+struct func_801F57EC_Struct38 {
+    u8 pad[0x18];
+    u32 unk18;
+};
+struct func_801F57EC_Struct {
+    u8 pad0[0x24];
+    struct func_801F57EC_Struct24 *unk24;
+    u8 pad1[0x10];
+    struct func_801F57EC_Struct38 *unk38;
+    u8 pad2[0x74];
+    s32 unkB0;
+};
+
 
 typedef struct func_801F56A8_Sub {
     u8 pad0[2];
     u16 unk2;
     u8 pad4[0xC];
     u32 unk10;
-    u32 unk14;
+    s32 unk14;
 } func_801F56A8_Sub;
 typedef struct func_801F56A8_Struct {
     u8 pad0[4];
@@ -27,13 +67,8 @@ void func_801F57EC(struct func_801F57EC_Struct *arg0, s32 arg1);
 void func_801FA074(s32 arg0, s32 arg1);
 
 void func_801F56A8(func_801F56A8_Struct *arg0, s32 arg1) {
-    u32 v;
-    s32 t;
-    u8 lo;
-    u16 hi;
     D_8021AFE0 = (s32)arg0;
-    t = arg0->unk38->unk14 & 0xFFFF;
-    if (t != 0 && func_80133A24(t * 1) != 0) {
+    if ((arg0->unk38->unk14 & 0xFFFF) != 0 && func_80133A24(arg0->unk38->unk14 & 0xFFFF) != 0) {
         func_80005700(arg0);
         return;
     }
@@ -48,7 +83,6 @@ void func_801F56A8(func_801F56A8_Struct *arg0, s32 arg1) {
                 return;
             }
         } else {
-            v = arg0->unk38->unk10;
             func_801FA0B0((arg0->unk38->unk10 >> 16) & 0xFFFF, arg0->unk38->unk10 & 0xFF);
             func_80133980(arg0->unk38->unk10 >> 16);
         }
@@ -56,7 +90,7 @@ void func_801F56A8(func_801F56A8_Struct *arg0, s32 arg1) {
     func_801F3B5C(1);
     if (func_80126CC0(arg0, func_801FA074) != 0) {
         {
-            extern void func_8001F74C();
+extern void func_8001F74C();
             func_8001F74C(arg0);
         }
         func_8013B570(arg0, arg0->unk38->unk2, 2, 3, func_801F57EC);

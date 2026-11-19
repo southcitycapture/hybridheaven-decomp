@@ -173,13 +173,64 @@ extern struct func_80377140_Struct CAT(D_801BBBF, 0);
 extern s32 func_8001EF38(f32, f32, void *);
 extern s32 D_8012A630(void *, f32, void *, s16);
 
+#undef D_8012A630
+#undef func_8001EF38
+#undef func_80375A04_GC
+#undef func_80375A04_GG
+#define D_8012A630 D_8012A630__func_80375A04_5eb7a373
+#define D_801BBBF0 D_801BBBF0__func_80375A04_5eb7a373
+#define D_801BBBF0__func_80375A04 D_801BBBF0__func_80375A04__func_80375A04_5eb7a373
+#define func_8001EF38 func_8001EF38__func_80375A04_5eb7a373
+#define func_80375A04_Arg func_80375A04_Arg__func_80375A04_5eb7a373
+#define func_80375A04_Glob func_80375A04_Glob__func_80375A04_5eb7a373
+#define func_80375A04_Mid func_80375A04_Mid__func_80375A04_5eb7a373
+#define func_80375A04_Obj func_80375A04_Obj__func_80375A04_5eb7a373
+#define func_80375A04_Pos func_80375A04_Pos__func_80375A04_5eb7a373
+extern u8 D_801BBBF0[];
+typedef struct func_80375A04_Pos {
+    u8 pad0[0x4];
+    f32 unk4;
+    u8 pad8[0x4];
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_80375A04_Pos;
+typedef struct func_80375A04_Mid {
+    u8 pad0[0x2C];
+    func_80375A04_Pos *unk2C;
+} func_80375A04_Mid;
+typedef struct func_80375A04_Obj {
+    u8 pad0[0xE];
+    u16 unkE;
+} func_80375A04_Obj;
+typedef struct func_80375A04_Arg {
+    u8 pad0[0x24];
+    func_80375A04_Mid *unk24;
+    u8 pad28[0x34];
+    func_80375A04_Obj *unk5C;
+} func_80375A04_Arg;
+
+typedef struct func_80375A04_Glob {
+    u8 pad0[0xE0];
+    func_80375A04_Mid *unkE0;
+    u8 padE4[0xE10];
+    u8 unkEF4;
+} func_80375A04_Glob;
+
+extern func_80375A04_Glob D_801BBBF0__func_80375A04;
+#define func_80375A04_GG D_801BBBF0__func_80375A04
+#define func_80375A04_GC ((func_80375A04_Glob *)D_801BBBF0)
+extern s32 func_8001EF38(f32, f32, void *);
+extern s32 D_8012A630(void *, f32, void *, s16);
+
 s32 func_80375A04(void *arg0) {
     func_80375A04_Obj *obj;
-    s32 pad;
+    s32 diff;
     s16 angle;
 
     obj = ((func_80375A04_Arg *)arg0)->unk5C;
-    angle = (s16)(func_80375A04_GG.unkE0->unk2C->unk12 - func_8001EF38(func_80375A04_GC->unkE0->unk2C->unk4 - ((func_80375A04_Arg *)arg0)->unk24->unk2C->unk4, func_80375A04_GC->unkE0->unk2C->unkC - ((func_80375A04_Arg *)arg0)->unk24->unk2C->unkC, func_80375A04_GC)) & 0x1FFF;
+    diff = func_8001EF38(func_80375A04_GC->unkE0->unk2C->unk4 - ((func_80375A04_Arg *)arg0)->unk24->unk2C->unk4, func_80375A04_GC->unkE0->unk2C->unkC - ((func_80375A04_Arg *)arg0)->unk24->unk2C->unkC, func_80375A04_GC);
+    angle = (s16)(func_80375A04_GG.unkE0->unk2C->unk12 - diff) & 0x1FFF;
     if (obj->unkE == 0x2D) {
         if (D_8012A630(arg0, 12.0f, &func_80375A04_GG, angle) != 0) {
             func_80375A04_GG.unkEF4 |= 0x10;
@@ -207,6 +258,21 @@ s32 func_80375A04(void *arg0) {
     }
     return 0;
 }
+#undef func_80375A04_GG
+#undef func_80375A04_GC
+#undef D_8012A630
+#undef D_801BBBF0
+#undef D_801BBBF0__func_80375A04
+#undef func_8001EF38
+#undef func_80375A04_Arg
+#undef func_80375A04_Glob
+#undef func_80375A04_Mid
+#undef func_80375A04_Obj
+#undef func_80375A04_Pos
+#define D_8012A630 D_8012A630__func_80375A04
+#define func_8001EF38 func_8001EF38__func_80375A04
+#define func_80375A04_GC ((func_80375A04_Glob *)&CAT(D_801BBBF, 0))
+#define func_80375A04_GG D_801BBBF0__func_80375A04
 #undef CAT2
 #undef CAT
 #undef func_80375A04_GG
@@ -258,14 +324,76 @@ extern s32 func_8012C6B4(s32);
 extern u8 D_80388F60[];
 extern u8 D_80388FA0[];
 
+#undef D_801BBBF0
+#undef D_80388F60
+#undef D_80388FA0
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8002FC20
+#undef func_8010843C
+#undef func_8011AAF4
+#undef func_8012C6B4
+#define D_801BBBF0 D_801BBBF0__func_80375B6C_d7dbaf1b
+#define D_80388F60 D_80388F60__func_80375B6C_d7dbaf1b
+#define D_80388FA0 D_80388FA0__func_80375B6C_d7dbaf1b
+#define func_8001EAD0 func_8001EAD0__func_80375B6C_d7dbaf1b
+#define func_8001EB64 func_8001EB64__func_80375B6C_d7dbaf1b
+#define func_8002FC20 func_8002FC20__func_80375B6C_d7dbaf1b
+#define func_8010843C func_8010843C__func_80375B6C_d7dbaf1b
+#define func_8011AAF4 func_8011AAF4__func_80375B6C_d7dbaf1b
+#define func_8012C6B4 func_8012C6B4__func_80375B6C_d7dbaf1b
+#define func_80375B6C_StructArg func_80375B6C_StructArg__func_80375B6C_d7dbaf1b
+#define func_80375B6C_StructGlobal func_80375B6C_StructGlobal__func_80375B6C_d7dbaf1b
+#define func_80375B6C_StructMid func_80375B6C_StructMid__func_80375B6C_d7dbaf1b
+#define func_80375B6C_StructPos func_80375B6C_StructPos__func_80375B6C_d7dbaf1b
+#define ZP2(a, b) a##_##b
+#define ZP(a, b) ZP2(a, b)
+#define zB_77 D_801BBBF0_ctx77
+#define ZP(a, b) ZP2(a, b)
+#define ZP2(a, b) a##_##b
+#define zB_77 D_801BBBF0_ctx77
+#define zB_92 D_801BBBF0
+extern u8 D_801BBBF0[];
+#define ZP2(a, b) a##_##b
+#define ZP(a, b) ZP2(a, b)
+#define zB_77 D_801BBBF0_ctx77
+
+
+
+typedef struct func_80375B6C_StructPos {
+    u8 pad0[4];
+    f32 x;
+    f32 y;
+    f32 z;
+    u8 pad10[2];
+    s16 angle;
+} func_80375B6C_StructPos;
+
+typedef struct func_80375B6C_StructMid {
+    u8 pad0[0x2C];
+    func_80375B6C_StructPos *pos;
+} func_80375B6C_StructMid;
+
+typedef struct func_80375B6C_StructArg {
+    u8 pad0[0x24];
+    func_80375B6C_StructMid *mid;
+} func_80375B6C_StructArg;
+
+typedef struct func_80375B6C_StructGlobal {
+    u8 pad0[0xE0];
+    func_80375B6C_StructMid *mid;
+} func_80375B6C_StructGlobal;
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern f32 func_8002FC20(f32);
+extern s32 func_8010843C(f32, f32, f32, f32, f32, f32);
+extern void func_8011AAF4(u8 *, s32, void *, void *, u8, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+extern s32 func_8012C6B4(s32);
+extern u8 D_80388F60[];
+extern u8 D_80388FA0[];
+
 s32 func_80375B6C(func_80375B6C_StructArg *arg0, u8 arg1) {
-    s32 pad3;
-    f32 spB8;
-    f32 spB4;
-    s32 pad0;
-    s32 pad1;
-    s32 pad2;
-    f32 spA4;
+    f32 v[7];
     f32 dx;
     f32 dy;
     f32 dz;
@@ -293,14 +421,14 @@ s32 func_80375B6C(func_80375B6C_StructArg *arg0, u8 arg1) {
     dy = player->y - other->y;
     dz = player->z - other->z;
     distance = func_8002FC20((dx * dx) + (dy * dy) + (dz * dz));
-    distancePtr = &spA4;
+    distancePtr = &v[0];
     var_fv1 = distance;
     if ((f64)distance < 20.0) {
         var_fv1 = 20.0f;
     }
     *distancePtr = var_fv1;
     *distancePtr += (f32)func_8012C6B4(0xA);
-    destZ = &spB4;
+    destZ = &v[4];
 loop_3:
     switch (mode) {
     case 0:
@@ -312,7 +440,7 @@ loop_3:
         var_fs2 = player->z;
         var_fs3 = (f32)((f64)var_fs1 - 5.0);
         var_fs4 = (f32)(((f64)func_8001EAD0((s16)(player->angle - 0x400)) * 20.0) + (f64)var_fs0);
-        spB8 = var_fs3;
+        v[5] = var_fs3;
         *destZ = (f32)(((f64)func_8001EB64((s16)(actor->mid->pos->angle - 0x400)) * 20.0) + (f64)var_fs2);
         func_8011AAF4(D_80388F60, 0x170, actor, NULL, 1, 10.0f, var_fs4, var_fs3, *destZ, 10.0f, var_fs0, var_fs1, var_fs2, 0.0f, 35.0f, -1, -1);
         break;
@@ -324,13 +452,13 @@ generic:
         var_fs1 = (f32)(((f64)(other->y + player->y) * 0.5) + 15.0);
         var_fs2 = (f32)((f64)(other->z + player->z) * 0.5);
         var_fs4 = (*distancePtr * func_8001EAD0(angle)) + var_fs0;
-        spB8 = (f32)((f64)((f32)func_8012C6B4(0xA) + var_fs1) - 5.0);
+        v[5] = (f32)((f64)((f32)func_8012C6B4(0xA) + var_fs1) - 5.0);
         *destZ = (*distancePtr * func_8001EB64(angle)) + var_fs2;
         break;
     }
-    if (func_8010843C(var_fs0, var_fs1, var_fs2, var_fs4, spB8, *destZ) == 0) {
+    if (func_8010843C(var_fs0, var_fs1, var_fs2, var_fs4, v[5], *destZ) == 0) {
         f32 radius = 10.0f;
-        func_8011AAF4(D_80388FA0, 0x181, actor, NULL, 1, radius, var_fs4, spB8, *destZ, radius, var_fs0, var_fs1, var_fs2, 0.0f, 35.0f, -1, -1);
+        func_8011AAF4(D_80388FA0, 0x181, actor, NULL, 1, radius, var_fs4, v[5], *destZ, radius, var_fs0, var_fs1, var_fs2, 0.0f, 35.0f, -1, -1);
         return 1;
     }
     if ((angle += 0x200, ++count) < 0xA) {
@@ -338,6 +466,32 @@ generic:
     }
     return 0;
 }
+#undef ZP2
+#undef ZP
+#undef zB_77
+#undef zB_92
+#undef D_801BBBF0
+#undef D_80388F60
+#undef D_80388FA0
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8002FC20
+#undef func_8010843C
+#undef func_8011AAF4
+#undef func_8012C6B4
+#undef func_80375B6C_StructArg
+#undef func_80375B6C_StructGlobal
+#undef func_80375B6C_StructMid
+#undef func_80375B6C_StructPos
+#define D_801BBBF0 D_801BBBF0__func_80375B6C
+#define D_80388F60 D_80388F60__func_80375B6C
+#define D_80388FA0 D_80388FA0__func_80375B6C
+#define func_8001EAD0 func_8001EAD0__func_80375B6C
+#define func_8001EB64 func_8001EB64__func_80375B6C
+#define func_8002FC20 func_8002FC20__func_80375B6C
+#define func_8010843C func_8010843C__func_80375B6C
+#define func_8011AAF4 func_8011AAF4__func_80375B6C
+#define func_8012C6B4 func_8012C6B4__func_80375B6C
 #undef D_801BBBF0
 #undef D_80388F60
 #undef D_80388FA0

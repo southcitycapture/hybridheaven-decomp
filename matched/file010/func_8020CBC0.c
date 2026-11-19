@@ -64,7 +64,6 @@ void func_80212A28(struct func_80212A28_Struct *arg0);
 u8 func_80212A48(struct func_80212A28_Struct *arg0);
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
-
 struct func_8020CBC0_StructA {
     u8 pad0[0x3C]; u16 timer; u8 pad3E[2];
     f32 vx, vy, vz; u8 pad4C[0x44];
@@ -89,17 +88,16 @@ extern s32 func_801FD4F4(s16, s16, s32);
 
 s32 func_8020CBC0(struct func_8020CBC0_StructA *a, struct func_8020CBC0_StructO **b)
 {
-    u8 pad0[4];
+    s32 divisor1;
     s32 hit;
     f32 speed;
     u16 angle;
     s32 time;
-    u8 pad[4];
+    s32 divisor2;
     f32 sn2, cs, sn;
-    u8 pad2[12];
-    f64 lift;
-    s32 divisor;
+    s32 period;
     s32 shot;
+    f64 lift;
 
     time = a->timer++;
     switch (a->state) {
@@ -119,8 +117,8 @@ s32 func_8020CBC0(struct func_8020CBC0_StructA *a, struct func_8020CBC0_StructO 
                         D_801BBCD0->inner->x, a->y + 1.0, D_801BBCD0->inner->z) == 0) {
                         a->state = 9;
                         a->timer = 0;
-                        divisor = 10;
-                        a->duration = func_8012FF58() / divisor * divisor + 20;
+                        divisor1 = 10;
+                        a->duration = func_8012FF58() / divisor1 * divisor1 + 20;
                         func_80212A28((void *)a);
                         func_80020718(D_80217C78[func_80212A48((void *)a) % 3]);
                     }
@@ -133,8 +131,8 @@ s32 func_8020CBC0(struct func_8020CBC0_StructA *a, struct func_8020CBC0_StructO 
                         D_801BBCD0->inner->x, a->y + 1.0, D_801BBCD0->inner->z) == 0) {
                     a->state = 4;
                     a->timer = 0;
-                    divisor = 10;
-                    a->duration = func_8012FF58() / divisor * divisor + 20;
+                    divisor2 = 10;
+                    a->duration = func_8012FF58() / divisor2 * divisor2 + 20;
                     func_80212A28((void *)a);
                     func_80020718(D_80217C78[func_80212A48((void *)a) % 3]);
                 }
@@ -179,8 +177,8 @@ s32 func_8020CBC0(struct func_8020CBC0_StructA *a, struct func_8020CBC0_StructO 
         break;
     }
     if (func_80150584() == 0) {
-        s32 divisor = a->duration ? 2 : 4;
-        if (time % divisor == 0) {
+        period = a->duration ? 2 : 4;
+        if (time % period == 0) {
             if (a->duration) speed = D_8021AA98;
             else speed = D_8021AAA0;
             sn = func_8001EAD0(a->ay);

@@ -1,4 +1,7 @@
-#include "context.h"
+#include "common.h"
+extern u8 *D_801DAB14;
+extern s32 func_801CC470(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4);
+
 
 struct func_801E6450_Y {
     u8 pad0[4];
@@ -23,18 +26,18 @@ struct func_801E6450_Node {
 
 extern f32 D_801F58A0;
 
+#define ROOT (*(struct func_801E6450_Node **) &D_801DAB14)
+
 s32 func_801E6450(s32 arg0, s32 arg1)
 {
   struct func_801E6450_Ext *temp_v0;
-  short new_var;
-  new_var = 0x24;
-  temp_v0 = (*((struct func_801E6450_Node * volatile *) (&func_801DAAF0[new_var])))->unk8->unk8->unk8->unk24;
+  temp_v0 = ROOT->unk8->unk8->unk8->unk24;
   if (temp_v0 != 0)
   {
     temp_v0->unk2C->unk4 = D_801F58A0;
-    (*((struct func_801E6450_Node * volatile *) (&func_801DAAF0[new_var])))->unk8->unk8->unk8->unk24->unk2C->unk8 = 0.0f;
-    (*((struct func_801E6450_Node * volatile *) (&func_801DAAF0[new_var])))->unk8->unk8->unk8->unk24->unk2C->unkC = -5.5f;
-    (*((struct func_801E6450_Node * volatile *) (&func_801DAAF0[new_var])))->unk8->unk8->unk8->unk24->unk2C->unk12 = 0;
+    ROOT->unk8->unk8->unk8->unk24->unk2C->unk8 = 0.0f;
+    ROOT->unk8->unk8->unk8->unk24->unk2C->unkC = -5.5f;
+    ROOT->unk8->unk8->unk8->unk24->unk2C->unk12 = 0;
     func_801CC470(2, 0x03200000, 0, 0x1001, 1.0f);
     return 2;
   }

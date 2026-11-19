@@ -1,4 +1,17 @@
 #include "common.h"
+extern u8 D_8017DEE4[][4];
+extern u8 D_8017DEEC[][5];
+extern u8 D_8017DEF8[][6];
+extern u8 D_8017DF04[][7];
+typedef struct func_8013CC10_Struct {
+    u8 value;
+    u8 data[6];
+} func_8013CC10_Struct;
+extern func_8013CC10_Struct D_8017DF14[];
+extern func_8013CC10_Struct D_8017DF2C[];
+extern u8 D_801BBBF0[];
+u8 func_8013CC10(void *arg0, u8 arg1, u8 arg2);
+
 extern u8 D_801842A0[];
 
 
@@ -19,23 +32,13 @@ typedef struct {
     u8 *unk380;
 } func_8013CD04_Struct;
 
-s8 func_8013CC10(func_8013CD04_Struct *, u8, u8);
-extern u8 D_8017DEE4[][4];
-extern u8 D_8017DEEC[][5];
-extern u8 D_8017DEF8[][6];
-extern u8 D_8017DF04[][7];
-extern u8 D_8017DF14[][7];
-extern u8 D_8017DF2C[][7];
-extern u8 D_801BBBF0[];
 
 s32 func_8013CD04(func_8013CD04_Struct *arg0, u8 arg1, u8 arg2) {
-    u8 *p;
-    u8 *tbl;
+    s32 r;
+    func_8013CC10_Struct *tbl;
     s32 idx;
-    u8 i;
     s32 j;
     u8 n;
-    s32 r;
 
     if (arg0 == (func_8013CD04_Struct *)(D_801BBBF0 + 0x7E8) && arg1 >= 2) {
         idx = arg1;
@@ -43,9 +46,9 @@ s32 func_8013CD04(func_8013CD04_Struct *arg0, u8 arg1, u8 arg2) {
         idx = arg1;
     }
     if (arg0 == (func_8013CD04_Struct *)(D_801BBBF0 + 0x44C)) {
-        tbl = D_8017DF14[idx - 2];
+        tbl = &D_8017DF14[idx - 2];
     } else {
-        tbl = D_8017DF2C[idx - 2];
+        tbl = &D_8017DF2C[idx - 2];
     }
     arg0->unk375 = 0;
     arg0->unk377 = arg2;
@@ -78,14 +81,14 @@ s32 func_8013CD04(func_8013CD04_Struct *arg0, u8 arg1, u8 arg2) {
             }
         } else {
             n = idx - 2;
-            arg0->unk376 = tbl[0] - 1;
-            arg0->unk380 = tbl + 1;
-            for (j = 0; j < tbl[0]; j = (j + 1) & 0xFF) {
+            arg0->unk376 = tbl->value - 1;
+            arg0->unk380 = tbl->data;
+            for (j = 0; j < tbl->value; j = (j + 1) & 0xFF) {
                 arg0->unk378[j] = arg0->unk380[j];
             }
             r = func_8013CC10(arg0, arg0->unk376, n);
             if (r != 0) {
-                tbl[6] = r & 0xFF;
+                tbl->data[5] = r & 0xFF;
                 arg0->unk37D = r;
                 arg0->unk376++;
             }

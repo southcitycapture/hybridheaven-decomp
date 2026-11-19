@@ -54,6 +54,7 @@ typedef struct func_801C659C_Ret {
 void func_801C7C64(func_801C659C_Ret *arg0, s32 arg1);
 
 
+
 typedef struct func_801C7364_StructVec { f32 x, y, z; } func_801C7364_StructVec;
 typedef struct func_801C7364_StructInner {
     u8 pad0[4];
@@ -111,7 +112,7 @@ void func_801C7364(func_801C659C_Ret *arg0, func_801C7364_StructObj **arg1) {
     func_801472C0(arg1[index], 0, 0, 0, 255);
     D_801CFD80[arg0->unk90] = (void *)arg1[index];
     index++;
-    start = index;
+    *ps = index;
     for (i = 0; i < 5; i++) {
         func_80005FAC((s32)arg0, *arg1, &b);
         func_80006214((s32)arg0);
@@ -138,8 +139,8 @@ void func_801C7364(func_801C659C_Ret *arg0, func_801C7364_StructObj **arg1) {
         arg1[index]->inner->sz = D_801CD000[i].z;
         index++;
     }
-    D_801CFD88[arg0->unk90] = (void *)arg1[start];
-    start = index;
+    D_801CFD88[arg0->unk90] = (void *)arg1[*ps];
+    *ps = index;
     for (i = 0; i < 4; i++) {
         func_80005FAC((s32)arg0, *arg1, &b);
         func_80006214((s32)arg0);
@@ -155,7 +156,7 @@ void func_801C7364(func_801C659C_Ret *arg0, func_801C7364_StructObj **arg1) {
         arg1[index]->inner->sz = 1.0f;
         index++;
     }
-    D_801CFD90[arg0->unk90] = (void *)arg1[start];
+    D_801CFD90[arg0->unk90] = (void *)arg1[*ps];
     func_80005FAC((s32)arg0, *arg1, &b);
     func_80006214((s32)arg0);
     func_8012C89C((s32)arg0, index, 0x229, 8);
@@ -180,7 +181,7 @@ void func_801C7364(func_801C659C_Ret *arg0, func_801C7364_StructObj **arg1) {
     func_80147250(arg1[index], 255, 255, 255, 255);
     func_801472C0(arg1[index], 0, 128, 255, 255);
     index++;
-    start = index;
+    *ps = index;
     func_80005FAC((s32)arg0, *arg1, &b);
     func_80006214((s32)arg0);
     func_8012C89C((s32)arg0, index, 0x229, 5);
@@ -192,8 +193,8 @@ void func_801C7364(func_801C659C_Ret *arg0, func_801C7364_StructObj **arg1) {
     arg1[index]->inner->sy = 1.0f;
     arg1[index]->inner->sz = 1.0f;
     func_80147250(arg1[index], 255, 255, 255, 255);
-    D_801CFDA4[arg0->unk90] = start;
-    D_801CFD98[arg0->unk90] = (void *)arg1[start];
+    D_801CFDA4[arg0->unk90] = *ps;
+    D_801CFD98[arg0->unk90] = (void *)arg1[*ps];
     D_801CFDA6[arg0->unk90] = 1;
     func_801C5F04(arg0);
     func_801C5DAC((u8 *)arg0);

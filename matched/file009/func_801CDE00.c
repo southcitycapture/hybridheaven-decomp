@@ -1,4 +1,9 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_8008DA88[];
+extern s32 D_801E13D4[];
+extern s32 func_80006214(void *);
+s32 func_801CDA0C(void *arg0, u16 arg1, s32 arg2, s32 arg3);
+
 
 typedef struct func_801CDE00_StructEntry {
     u8 pad0[0x30];
@@ -19,7 +24,7 @@ extern func_801CDE00_StructTable D_801E13E4;
 extern void func_8012CF8C(void *, s32 *, u16, s32);
 
 u8 func_801CDE00(func_801CDE00_Struct *arg0, s32 arg1) {
-    s32 pad;
+    void **entry;
     s32 *data;
     func_801CDE00_StructTable table = D_801E13E4;
     u16 id;
@@ -29,7 +34,6 @@ u8 func_801CDE00(func_801CDE00_Struct *arg0, s32 arg1) {
         s32 i;
         u8 result;
         u8 index;
-        void **entry;
 
         index = arg0->index - 6;
         id = table.entries[index][0];

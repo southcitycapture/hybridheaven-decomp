@@ -1,19 +1,51 @@
 #include "common.h"
-
+typedef struct { int id; unsigned short frame; unsigned char pad6[2]; float speed; } func_8036D30C_Anim;
+typedef func_8036D30C_Anim func_8036A680_Anim;
+#define AnimL_1270 func_8036D30C_Anim
+#define DQ2(a, b) a##b
+#define DQ(a, b) DQ2(a, b)
+#define D_801BBBF0 DQ(DQL_, __LINE__)
+#define DQL_44 D_801BBBF0
+#define DQC (*(struct func_80369C7C_Struct__func_80369F54 *)&D_801BBBF0)
+#define DQL_224 DQC
+#define DQL_225 DQC
+#define DQL_227 DQC
+#define DQL_230 DQC
 struct AnimT { int id; unsigned short frame; unsigned char pad6[2]; float speed; };
+struct func_80369C7C_Obj3 {
+    u8 pad0[0x12];
+    s16 unk12;
+};
+struct func_80369C7C_Obj2 {
+    u8 pad0[0x2C];
+    struct func_80369C7C_Obj3 *unk2C;
+};
+struct func_80369C7C_Obj1 {
+    u8 pad0[0x24];
+    struct func_80369C7C_Obj2 *unk24;
+};
+struct func_80369C7C_Struct {
+    u8 pad0[0xDC];
+    struct func_80369C7C_Obj1 *unkDC;
+    u8 pad1[0xEC - 0xE0];
+    struct func_80369C7C_Obj1 *unkEC;
+    u8 pad2[0xB98 - 0xF0];
+    s16 unkB98;
+};
+extern struct func_80369C7C_Struct D_801BBBF0;
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern s32 func_80010550();
 extern f32 func_8002FC20(f32);
 extern void func_8013A28C(void *, struct AnimT);
-extern struct AnimT func_802256E4(s32, s32);
+extern func_8036D30C_Anim func_802256E4(s32, s32);
 struct func_8036A5AC_Vec {
     f32 x;
     f32 y;
     f32 z;
 };
-extern struct func_8036A5AC_Vec func_8036A134(s32, f32, f32);
+struct func_8036A5AC_Vec func_8036A134(s32 arg1, f32 arg2, f32 arg3);
 extern s32 func_8036A4AC(s32, void *, f32, f32, f32);
 struct func_8036A5AC_Q {
     u8 pad0[0x4];
@@ -25,7 +57,8 @@ struct func_8036A5AC_P {
     u8 pad0[0x2C];
     struct func_8036A5AC_Q *unk2C;
 };
-extern s32 func_8012C6B4(s32);
+
+
 typedef struct func_8036A680_Arg { u8 pad[0x5C]; s32 unk5C; } func_8036A680_Arg;
 
 s32 func_8036A680(func_8036A680_Arg *arg0, struct func_8036A5AC_P **arg1, f32 arg2, f32 arg3) {
@@ -36,7 +69,7 @@ s32 func_8036A680(func_8036A680_Arg *arg0, struct func_8036A5AC_P **arg1, f32 ar
     f32 dx, dz;
     f32 d;
     u8 sp5B;
-    struct AnimT sp4C;
+    func_8036A680_Anim sp4C;
     struct func_8036A5AC_Q *s;
 
     sp7C = arg0->unk5C;
@@ -54,10 +87,11 @@ s32 func_8036A680(func_8036A680_Arg *arg0, struct func_8036A5AC_P **arg1, f32 ar
     d = func_8002FC20(dx * dx + dz * dz);
     if (sp5B != 0) {
         sp4C = func_802256E4(*(s32 *)&arg0, func_8036A4AC((s32)arg0, arg1, dx, dz, d) & 0xFF);
-        func_8013A28C(arg1, sp4C);
+        func_8013A28C(arg1, *(struct AnimT *)&sp4C);
     }
     if (d >= 2.0) {
-        s->unk4 += (f64)((dx / d) * (f32)(func_8012C6B4(5) - 2)) * (0.1);
+        ret = func_8012C6B4(5);
+        s->unk4 += (f64)((dx / d) * (f32)(ret - 2)) * (0.1);
         dx = sp68.x - s->unk4;
         d = func_8002FC20(dx * dx + dz * dz);
     }

@@ -1,4 +1,7 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+extern void func_801FC830(f32, f32, f32, f32, s32);
+
 
 struct func_8020BCE0_Struct {
     u8 pad0[0x40];
@@ -15,7 +18,6 @@ struct func_8020BCE0_Struct {
     u16 unkA2;
     u16 unkA4;
 };
-
 extern s32 func_80108590(f32, f32, f32, f32, f32, f32);
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
 extern u16 func_8012FF58();
@@ -30,8 +32,7 @@ extern f32 D_8021A9F0;
 extern f32 D_8021A9F4;
 
 s32 func_8020BCE0(struct func_8020BCE0_Struct *arg0, s32 arg1) {
-    u8 pad[8];
-    u16 sp66;
+    u16 sp60[8];
     s32 r;
     f32 z;
 
@@ -45,8 +46,8 @@ s32 func_8020BCE0(struct func_8020BCE0_Struct *arg0, s32 arg1) {
             func_801FD260(r, arg0);
         }
     }
-    sp66 = func_8012FF58();
-    if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 1.5f, arg0->unkA2, D_8021A9F0, 0.5f, (u32)(func_801FD780(arg0->unk91) * (f32)((sp66 / 10) * 10 + 5))) != 0) {
+    sp60[3] = func_8012FF58();
+    if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 1.5f, arg0->unkA2, D_8021A9F0, 0.5f, (u32)((f32)((sp60[3] / 10) * 10 + 5) * func_801FD780(arg0->unk91))) != 0) {
         func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, z, z, z, 1);
         func_80129FB8(arg0->unk94, arg0->unk98, arg0->unk9C, z, z, z, z, 0xD4, 0xD4, 0xD4, 0x80, 0x80, 0x80, 0xA0, -2, D_8021A9F4, 4, 0);
         func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, 0x3CE);

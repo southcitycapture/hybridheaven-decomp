@@ -1,4 +1,4 @@
-#include "context.h"
+#include "common.h"
 
 extern s32 func_800045E8(u32);
 extern void func_80004ADC(u16, s32);
@@ -15,21 +15,21 @@ typedef struct func_801C2420_Struct {
 
 s32 func_801C2420(s32 arg0, func_801C2420_Struct *arg1) {
     u16 id;
-    u16 ***volatile p;
 
-    id = (*(&D_80171CF0[arg0])[-1])[0] & 0x0FFFFFFF;
-    p = &D_80171CF0[arg0];
+    id = D_80171CF0[arg0 - 1][0][0] & 0x0FFFFFFF;
     if (func_80017064(id) == -1) {
         if (id) {
             arg1->unk0 = id;
-            func_80004ADC(id, arg1->unkC = func_800045E8(id));
+            arg1->unkC = func_800045E8(id);
+            func_80004ADC(id, arg1->unkC);
         }
     }
-    id = (*p[-1])[1] & 0x0FFFFFFF;
+    id = D_80171CF0[arg0 - 1][0][1] & 0x0FFFFFFF;
     if (func_80017064(id) == -1) {
         if (id) {
             arg1->unk4 = id;
-            func_80004ADC(id, arg1->unk10 = func_800045E8(id));
+            arg1->unk10 = func_800045E8(id);
+            func_80004ADC(id, arg1->unk10);
         }
     }
     return 1;

@@ -33,6 +33,8 @@ typedef struct func_8035DD80_StructObj {
 } func_8035DD80_StructObj;
 extern void func_803711E8(void *, s32, s32);
 
+extern void func_800111E0(s32, void *);
+extern void func_8013A28C(s32, func_8035F544_Copy);
 
 typedef struct func_8035E438_Vec {
     u32 unk0;
@@ -68,11 +70,9 @@ typedef struct func_8035E438_BF {
     u32 K : 3;
     u32 rest : 23;
 } func_8035E438_BF;
-extern void func_800111E0(s32, void *);
-extern void func_8013A28C(s32, func_8035E438_Vec);
 
 void func_8035E438(func_8035E438_Obj *arg0, s32 arg1) {
-    s32 pad;
+    u32 id;
     func_8035E438_Sub *sub;
     func_8035E438_Vec *v;
     func_8035E438_Vec sp38;
@@ -92,12 +92,8 @@ void func_8035E438(func_8035E438_Obj *arg0, s32 arg1) {
         b = (func_8035E438_BF *) D_801BC3D8;
     }
     a->H = 1;
-    if (arg0) {}
-    if (arg0) {}
-    if (arg0) {}
-    if (a) {}
-    if (b) {}
-    switch ((u32) v->unk0) {
+    id = v->unk0;
+    switch (id) {
     case 0x19000C9:
     case 0x19000CA:
     case 0x1900154:
@@ -151,7 +147,7 @@ void func_8035E438(func_8035E438_Obj *arg0, s32 arg1) {
             if (a->E == 3) {
                 v->unk6 ^= 0x10;
             }
-            func_8013A28C(arg1, *v);
+            func_8013A28C(arg1, *(func_8035F544_Copy *) v);
         } else if (a->I == 2) {
             func_8035DD80((func_8035DD80_StructObj *) arg0, 1);
         }

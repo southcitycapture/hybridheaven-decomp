@@ -4,9 +4,10 @@ extern u8 D_801BBBF0[];
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern s8 D_80360588(s32, s32);
-extern f32 D_8036153C(void *);
 extern void func_800058DC();
+extern s32 func_801DB480(void *, s32, f32, u8);
 extern void func_802237B0();
+extern void func_802254F8(void *, s32, u8);
 void func_8035FEC0(s32 arg0);
 extern void *func_8035FFA8(void *arg0);
 typedef struct func_80360020_Struct0 {
@@ -24,6 +25,7 @@ typedef struct func_80360588_Struct {
     s32 unk8;
 } func_80360588_Struct;
 void func_80360400(struct func_80360588_Struct *arg0, s32 arg1, s32 arg2);
+extern void func_80361910(void *, s32, void *, void *, void *);
 typedef struct func_80361B50_Struct {
     u8 pad0[0x2DE];
     u8 unk2DE;
@@ -51,28 +53,16 @@ typedef struct func_80361B7C_StructC {
     s32 unk1C;
 } func_80361B7C_StructC;
 void func_80361B7C(func_80361B7C_StructA *arg0, func_80361B7C_StructB *arg1, func_80361B7C_StructC *arg2);
-extern void func_803622EC();
-typedef struct func_80363904_Struct {
-    u8 pad0[0x5C];
-    u8 *unk5C;
-} func_80363904_Struct;
-void func_80363904(func_80363904_Struct *arg0);
-extern void func_80364D2C();
-extern void func_803673B4(void *, s32, s32);
-
-
 typedef struct func_80363340_StructFlags {
     u8 pad0[2];
     u16 unk2;
 } func_80363340_StructFlags;
-
 typedef struct func_80363340_StructValue {
     s32 unk0;
     u16 unk4;
     u16 unk6;
     f32 unk8;
 } func_80363340_StructValue;
-
 typedef struct func_80363340_StructSub {
     u8 pad0[0x1C];
     func_80363340_StructValue unk1C;
@@ -82,7 +72,6 @@ typedef struct func_80363340_StructSub {
     u8 pad82[2];
     u8 unk84;
 } func_80363340_StructSub;
-
 typedef struct func_80363340_StructActor {
     u8 pad0[0x36];
     u16 unk36;
@@ -91,6 +80,33 @@ typedef struct func_80363340_StructActor {
     u8 pad60[8];
     func_80363340_StructFlags *unk68;
 } func_80363340_StructActor;
+typedef struct func_80363340_StructEffect {
+    u8 pad0[0x5C];
+    u16 unk5C;
+} func_80363340_StructEffect;
+typedef struct func_80363340_StructGlobals {
+    u8 pad0[0x1B];
+    u8 unk1B;
+    u8 pad1C[0xDC - 0x1C];
+    func_80363340_StructActor *unkDC;
+    u8 padE0[0xEC - 0xE0];
+    func_80363340_StructActor *unkEC;
+    u8 padF0[0x1030 - 0xF0];
+    u8 unk1030;
+    u8 pad1031[0x1118 - 0x1031];
+    func_80363340_StructEffect *unk1118;
+} func_80363340_StructGlobals;
+typedef struct func_80363904_Struct {
+    u8 pad0[0x5C];
+    u8 *unk5C;
+} func_80363904_Struct;
+void func_80363904(func_80363904_Struct *arg0);
+
+extern f32 D_8036153C(void *);
+extern void func_803622EC();
+extern void func_80364D2C();
+extern void func_803673B4(void *, s32, s32);
+extern void func_80374F04(void *, f32);
 
 typedef struct func_80363340_StructState {
     u8 pad0[2];
@@ -127,48 +143,21 @@ typedef struct func_80363340_StructState {
     u8 unk392;
 } func_80363340_StructState;
 
-typedef struct func_80363340_StructEffect {
-    u8 pad0[0x5C];
-    u16 unk5C;
-} func_80363340_StructEffect;
-
-typedef struct func_80363340_StructGlobals {
-    u8 pad0[0x1B];
-    u8 unk1B;
-    u8 pad1C[0xDC - 0x1C];
-    func_80363340_StructActor *unkDC;
-    u8 padE0[0xEC - 0xE0];
-    func_80363340_StructActor *unkEC;
-    u8 padF0[0x1030 - 0xF0];
-    u8 unk1030;
-    u8 pad1031[0x1118 - 0x1031];
-    func_80363340_StructEffect *unk1118;
-} func_80363340_StructGlobals;
-
 #define G ((func_80363340_StructGlobals *)D_801BBBF0)
-extern s32 func_801DB480(void *, s32, f32, u8);
-extern void func_802254F8(void *, s32, u8);
-extern void func_80361910(void *, s32, void *, void *, void *);
-extern void func_80374F04(void *, f32);
 
-void func_80363340(func_80363340_StructActor *arg0, volatile s32 arg1) {
+void func_80363340(func_80363340_StructActor *arg0, s32 arg1) {
     func_80363340_StructFlags *flags;
     func_80363340_StructActor *other;
-    func_80363340_StructSub *volatile sub;
-    s32 pad50;
-    s32 pad4C;
+    func_80363340_StructSub *sub;
+    s32 power;
+    s32 power2;
     func_80363340_StructState *opponent;
     func_80363340_StructValue *value;
-    s32 pad40;
-    s32 pad3C;
-    s32 pad38;
-    s32 pad34;
-    s32 pad30;
-    s32 cachedArg;
-    func_80363340_StructValue *entry;
-    func_80363340_StructState *state;
+    s32 hit;
     f32 speed;
     s32 mode;
+    func_80363340_StructState *state;
+    func_80363340_StructValue *entry;
 
     flags = arg0->unk68;
     if (arg0 == G->unkDC) {
@@ -177,6 +166,7 @@ void func_80363340(func_80363340_StructActor *arg0, volatile s32 arg1) {
         other = G->unkDC;
     }
     sub = arg0->unk5C;
+    entry = &sub->unk1C;
     if (arg0 == G->unkDC) {
         state = (func_80363340_StructState *)D_801BC03C;
     } else {
@@ -193,7 +183,7 @@ void func_80363340(func_80363340_StructActor *arg0, volatile s32 arg1) {
         G->unk1030 = 1;
     }
     value = func_8035FFA8(state);
-    if (G->unk1B != 0 && !(flags->unk2 & 0x8000) && arg0->unk36 != 0x11D && (entry = (func_80363340_StructValue *)sub, G->unk1118 == NULL) && (entry = &((func_80363340_StructSub *)entry)->unk1C, entry->unk4 == 1) && state->unk300 >= 100) {
+    if (G->unk1B != 0 && !(flags->unk2 & 0x8000) && arg0->unk36 != 0x11D && G->unk1118 == NULL && entry->unk4 == 1 && state->unk300 >= 100) {
         func_80374F04(arg0, 1.0f);
         if (G->unk1118 != NULL) {
             G->unk1118->unk5C = (u32)((f32)(u32)value->unk6 * entry->unk8 + 5.0f);
@@ -205,7 +195,8 @@ void func_80363340(func_80363340_StructActor *arg0, volatile s32 arg1) {
     if (state->unk2E8 >= 2 && state->unk32C == 0) {
         state->unk32C = 1;
         func_80361B50((s32)arg0, arg1, (func_80361B50_Struct *)state);
-        func_802254F8(arg0, 5, (u8)(u32)(D_8036153C(arg0) * 7.0f));
+        power = (u8)(u32)(D_8036153C(arg0) * 7.0f);
+        func_802254F8(arg0, 5, power);
         func_8035FEC0((s32)arg0);
         opponent->unk320 = D_80360588((s32)arg0, arg1);
         if (opponent->unk2D8 == 13 && opponent->unk2DB != 0) {
@@ -220,17 +211,16 @@ void func_80363340(func_80363340_StructActor *arg0, volatile s32 arg1) {
     } else {
         speed = state->unk1C;
     }
-    cachedArg = arg1;
     if ((f64)speed == 0.0) {
         speed = state->unk10;
     }
-    mode = state->mode == 3 ? 1 : 0;
-    if (func_801DB480(arg0, cachedArg, speed, mode) != 0) {
-        cachedArg = arg1;
+    hit = func_801DB480(arg0, arg1, speed, state->mode == 3 ? 1 : 0);
+    if (hit != 0) {
         if (state->unk2E8 >= 2) {
-            func_80361B50((s32)arg0, cachedArg, (func_80361B50_Struct *)state);
+            func_80361B50((s32)arg0, arg1, (func_80361B50_Struct *)state);
             D_8013AE20(arg0, arg1, 0);
-            func_802254F8(arg0, 5, (u8)(u32)(D_8036153C(arg0) * 7.0f));
+            power2 = (u8)(u32)(D_8036153C(arg0) * 7.0f);
+            func_802254F8(arg0, 5, power2);
             func_80361B7C((func_80361B7C_StructA *)opponent, (func_80361B7C_StructB *)sub, (func_80361B7C_StructC *)value);
             if (opponent->bits30 != 0 || opponent->unk2 <= 0 || state->unk375 >= state->unk376) {
                 func_800058DC(arg0, func_803622EC);

@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+extern void func_800058DC(void *, void *);
+extern void func_801CBD54();
 
 extern s32 func_8013EB2C(void);
 extern void func_80142570(void);
@@ -10,21 +12,17 @@ struct func_801CBCE8_Struct {
 
 void func_801CBCE8(s32 arg0, struct func_801CBCE8_Struct **arg1)
 {
-  u8 var_v0;
-  struct func_801CBCE8_Struct *temp_t8;
-  s32 new_var;
+  u8 i;
   if (func_8013EB2C() != 0)
   {
     func_80142570();
-    var_v0 = 0;
-    new_var = arg0;
+    i = 0;
     do
     {
-      ;
-      arg1[var_v0]->unk22 = 0;
-      var_v0++;
+      arg1[i]->unk22 = 0;
+      i++;
     }
-    while (var_v0 < 9);
+    while (i < 9);
     func_800058DC((void *) arg0, func_801CBD54);
   }
 }

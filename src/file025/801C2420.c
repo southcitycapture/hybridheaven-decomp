@@ -14,27 +14,38 @@ typedef struct func_801C2420_Struct {
     s32 unk10;
 } func_801C2420_Struct;
 
+#define func_801C2420_Struct func_801C2420_Struct__func_801C2420
+
+typedef struct func_801C2420_Struct {
+    s32 unk0;
+    s32 unk4;
+    u8 pad8[4];
+    s32 unkC;
+    s32 unk10;
+} func_801C2420_Struct;
+
 s32 func_801C2420(s32 arg0, func_801C2420_Struct *arg1) {
     u16 id;
-    u16 ***volatile p;
 
-    id = (*(&D_80171CF0[arg0])[-1])[0] & 0x0FFFFFFF;
-    p = &D_80171CF0[arg0];
+    id = D_80171CF0[arg0 - 1][0][0] & 0x0FFFFFFF;
     if (func_80017064(id) == -1) {
         if (id) {
             arg1->unk0 = id;
-            func_80004ADC(id, arg1->unkC = func_800045E8(id));
+            arg1->unkC = func_800045E8(id);
+            func_80004ADC(id, arg1->unkC);
         }
     }
-    id = (*p[-1])[1] & 0x0FFFFFFF;
+    id = D_80171CF0[arg0 - 1][0][1] & 0x0FFFFFFF;
     if (func_80017064(id) == -1) {
         if (id) {
             arg1->unk4 = id;
-            func_80004ADC(id, arg1->unk10 = func_800045E8(id));
+            arg1->unk10 = func_800045E8(id);
+            func_80004ADC(id, arg1->unk10);
         }
     }
     return 1;
 }
+#undef func_801C2420_Struct
 
 
 extern void func_8001F540(s32);

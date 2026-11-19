@@ -219,10 +219,10 @@ s32 func_80002B44(u8 arg0) {
 
 
 
-s32 func_80002BAC(u8 arg0) {
-    s32 temp_v0;
 
-    temp_v0 = arg0 * 4;
+
+
+s32 func_80002BAC(u8 arg0) {
     if (D_80037780[arg0] != 0) {
         D_80037770[arg0] = 3;
     }
@@ -382,19 +382,32 @@ u8 func_80002EF0(u8 arg0, u8 arg1, s32 arg2) {
 u8 func_80002BE0(u8 arg0);
 
 
+#undef func_80002BE0
+#define func_80002BE0 func_80002BE0__func_8000303C_90be4077
+#define func_80002EF0_Struct func_80002EF0_Struct__func_8000303C_90be4077
+typedef struct func_80002EF0_Struct {
+    s32 a;
+    s32 b;
+    u16 c;
+    u8 d;
+    u8 pad0[3];
+    u8 e[0x12];
+} func_80002EF0_Struct;
+
+u8 func_80002BE0(u8 arg0);
+
 s32 func_8000303C(u8 arg0, u8 arg1) {
     s32 v;
     u8 r;
-    s32 pad[4];
-    u8 sp28[16];
+    func_80002EF0_Struct info;
     void *sp20[2];
 
     r = func_80002BE0(arg0);
     if (r == 0) {
         sp20[1] = &D_8005CE70[arg0 * 0x68];
-        v = func_80032DD0(sp20[1], arg1, sp28);
+        v = func_80032DD0(sp20[1], arg1, &info);
         if (v == 0) {
-            v = func_80031BC0(sp20[1], *(u16 *)(sp28 + 8), *(s32 *)(sp28 + 4), sp28 + 14, sp28 + 10);
+            v = func_80031BC0(sp20[1], info.c, info.b, info.e, &info.d);
         }
         switch (v) {
         case 0: r = 0; break;
@@ -408,6 +421,9 @@ s32 func_8000303C(u8 arg0, u8 arg1) {
     }
     return r;
 }
+#undef func_80002BE0
+#undef func_80002EF0_Struct
+#define func_80002BE0 func_80002BE0__func_8000303C
 #undef func_80002BE0
 
 

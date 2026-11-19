@@ -42,19 +42,6 @@ extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern void func_8011AAF4(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 arg4, f32 f0, f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6, f32 f7, f32 f8, f32 f9, s32 arg15, s32 arg16);
 extern void func_80133980(s32);
-typedef struct func_80240EF8_Struct {
-    s16 a;
-    s32 b;
-    f32 c;
-    s16 d;
-} func_80240EF8_Struct;
-extern void func_801C2F0C(s32 arg0, struct func_80240EF8_Struct *arg1);
-extern void func_801FBB20(void);
-void func_80241FD4(s32 arg0, s32 arg1);
-
-
-extern void func_801339D0(s32);
-extern void func_80126820(s32);
 struct func_80241DB4_Struct {
     u8 pad[0x93];
     u8 unk93;
@@ -63,35 +50,45 @@ struct func_80241DB4_Struct {
     u16 unkA0;
 };
 extern struct func_80241DB4_Struct *func_801505AC(s32);
+typedef struct func_80240EF8_Struct {
+    s16 a;
+    s32 b;
+    f32 c;
+    s16 d;
+} func_80240EF8_Struct;
+extern void func_801C2F0C(s32 arg0, struct func_80240EF8_Struct *arg1);
+extern void func_801FBB20(void);
+struct func_80241DB4_A { u8 pad[0x3C]; u16 unk3C; };
+void func_80241FD4(s32 arg0, s32 arg1);
+
+extern void func_801339D0(s32);
+extern void func_80126820(s32);
 extern u8 D_802469E4[];
 
-struct func_80241DB4_A { u8 pad[0x3C]; u16 unk3C; };
-
 void func_80241DB4(struct func_80241DB4_A *arg0, s32 arg1) {
-    s32 pad;
-    volatile s32 t;
-    u16 o;
+    s32 o;
+    s32 t[1];
+    struct func_80241DB4_Struct *p;
     f32 s;
     func_80241068_Struct_Cam *c;
-    struct func_80241DB4_Struct *p;
 
     o = arg0->unk3C;
-    t = o;
+    t[0] = o;
     arg0->unk3C = o + 1;
-    if (t == 0x1A) {
+    if (t[0] == 0x1A) {
         func_801339D0(0x2A1);
         func_80126820(0x20);
     }
-    if (t == 0x1E) {
+    if (t[0] == 0x1E) {
         p = func_801505AC(6);
         p->unk93 = 1;
         p->unk94 = 0.0f;
     }
-    if (t == 0x78) {
+    if (t[0] == 0x78) {
         func_80133980(0x2A1);
         func_8001E978(arg0, 0, 0, 0, 0x14, 0, 1, 0);
     }
-    if (t >= 0x96) {
+    if (t[0] >= 0x96) {
         D_80089354 = 0;
         func_8001E978(arg0, 0, 0, 0, 0x14, 0, 2, 0);
         s = func_8001EAD0(P->unk12);

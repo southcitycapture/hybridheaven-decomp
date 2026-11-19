@@ -1,15 +1,26 @@
-#include "context.h"
-
-extern void func_8037EDF4(void *a0);
-extern void func_8037EF2C(void *a0);
-
+#include "common.h"
+extern u8 D_8038A950[];
+extern void func_80020744(s32);
+extern void func_801471DC(s32 a0);
+extern void func_80147DCC(s32 a0);
+extern void func_80148E44(void *a0);
+extern s32 func_80148FC4();
+extern void func_801498CC();
+extern void func_8014AB48();
+void func_8037EDF4(void *arg0);
+void func_8037EF2C(void *arg);
+struct func_8037F0C8_Struct {
+    u8 pad0[0x96];
+    s8 unk96;
+};
+void func_8037F0C8(struct func_8037F0C8_Struct *arg0);
+void func_8037F370(u8 *arg0);
 typedef struct func_80380C5C_Struct {
     u8 pad0[0x4];
     u16 unk4;
     u8 pad1[6];
     u16 unkC;
 } func_80380C5C_Struct;
-
 typedef struct func_80380C5C_Obj {
     u8 pad0[0x96];
     s8 unk96;
@@ -17,14 +28,13 @@ typedef struct func_80380C5C_Obj {
     func_80380C5C_Struct *unkA4;
 } func_80380C5C_Obj;
 
+
 extern s32 D_8038A99C;
 
 void func_80380C5C(func_80380C5C_Obj *arg0, s32 arg1) {
     func_80380C5C_Struct *sp24;
-    s16 pad;
-    s8 sp21;
     u16 f;
-    u8 *p;
+    s8 sp21;
 
     sp24 = arg0->unkA4;
     f = sp24->unkC;

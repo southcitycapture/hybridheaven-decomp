@@ -1,12 +1,14 @@
+#include "common.h"
 #define LP(p, l) LQ(p, l)
 #define LQ(p, l) p##_##l
-#define func_801C6294 LP(fA, __LINE__)
-#define func_801C6CC4 LP(fB, __LINE__)
-#define func_801C7364 LP(fC, __LINE__)
-#include "context.h"
-#undef func_801C6294
-#undef func_801C6CC4
-#undef func_801C7364
+extern void *D_8038D8CC;
+#define LQ(p,l) p##_##l
+#define LP(p,l) LQ(p,l)
+extern void func_800058DC(void *, void *);
+extern void func_80005E44(void *, void *);
+extern void func_80006214(void *);
+extern void func_8012CF8C(void *arg0, u8 *arg1, s32 arg2, s32 arg3);
+
 
 typedef struct func_801C4E6C_StructV { s32 w[4]; } func_801C4E6C_StructV;
 typedef struct func_801C4E6C_StructG { u32 w0, w1; } func_801C4E6C_StructG;
@@ -59,12 +61,13 @@ void func_801C4E6C(func_801C4E6C_Struct *arg0, func_801C4E6C_Struct2 **arg1) {
     func_801C4E6C_Entry *e;
     s32 i;
     s32 index;
-    s32 pad;
+    u8 *buf;
     f32 sc;
 
     func_80005E44(arg0, D_801DA4D4);
     func_80006214(arg0);
-    func_8012CF8C(D_8038D8CC, (*arg1)->unk30->unk40, 0x462, 0);
+    buf = (*arg1)->unk30->unk40;
+    func_8012CF8C(D_8038D8CC, buf, 0x462, 0);
     sc = D_801DD234;
     (*arg1)->unk30->unk30 = 0;
     (*arg1)->unk30->unk28 = 0;
@@ -86,11 +89,12 @@ void func_801C4E6C(func_801C4E6C_Struct *arg0, func_801C4E6C_Struct2 **arg1) {
         ENT[index].c[i] = D_801DA400[i];
         ENT[index].d[i] = D_801DA400[i];
     }
-    ENT[index].c[1].w1 = (u32)ENT[index].a;
-    ENT[index].c[1].w0 = 0x0100600C;
-    ENT[index].d[1].w1 = (u32)ENT[index].b;
-    ENT[index].d[1].w0 = 0x0100600C;
-    ENT[index].unk0 = 0;
-    (*arg1)->unk30->unk28 = ENT[index].c;
+    e = &ENT[index];
+    e->c[1].w1 = (u32)e->a;
+    e->c[1].w0 = 0x0100600C;
+    e->d[1].w1 = (u32)e->b;
+    e->d[1].w0 = 0x0100600C;
+    e->unk0 = 0;
+    (*arg1)->unk30->unk28 = e->c;
     func_800058DC(arg0, func_801C51A0);
 }

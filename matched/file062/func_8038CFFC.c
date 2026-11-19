@@ -1,8 +1,8 @@
 #include "common.h"
+
 extern u8 D_801BBBF0[];
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-
 
 typedef struct {
     u8 pad0[0xDC];
@@ -73,7 +73,7 @@ extern void func_802292D0(void *, void *);
 extern u8 D_801BBC8C[];
 extern u8 D_801BBCAC[];
 void func_8038CFFC(func_8038CFFC_StructA *arg0, s32 arg1) {
-    s32 pad;
+    s32 character_id;
     s16 sp32;
     func_8038CFFC_StructP *sp2C;
     func_8038CFFC_StructB *a1;
@@ -82,13 +82,14 @@ void func_8038CFFC(func_8038CFFC_StructA *arg0, s32 arg1) {
     s16 ang;
 
     sp32 = (s16)(0x2800 - G->unk232) & 0x1FFF;
-    sp2C = (arg0->unkC->unkC == G->unkDC) ? (func_8038CFFC_StructP *)D_801BBC8C : (func_8038CFFC_StructP *)D_801BBCAC;
-    if (arg0->unkC->unkC == G->unkDC) {
+    character_id = G->unkDC;
+    sp2C = (arg0->unkC->unkC == character_id) ? (func_8038CFFC_StructP *)D_801BBC8C : (func_8038CFFC_StructP *)D_801BBCAC;
+    if (arg0->unkC->unkC == character_id) {
         a1 = (func_8038CFFC_StructB *)D_801BC03C;
     } else {
         a1 = (func_8038CFFC_StructB *)D_801BC3D8;
     }
-    if (arg0->unkC->unkC == G->unkDC) {
+    if (arg0->unkC->unkC == character_id) {
         v1 = (func_8038CFFC_StructB *)D_801BC3D8;
     } else {
         v1 = (func_8038CFFC_StructB *)D_801BC03C;

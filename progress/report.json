@@ -14,8 +14,8 @@
     "complete_data_percent": 0.0,
     "total_units": 539,
     "complete_units": 237,
-    "matched_data": "1016508",
-    "matched_data_percent": 95.36294861980457
+    "matched_data": "1016500",
+    "matched_data_percent": 95.3621981057024
   },
   "units": [
     {
@@ -23140,8 +23140,8 @@
         "matched_functions": 11,
         "matched_functions_percent": 91.66667,
         "total_units": 1,
-        "matched_data": "24",
-        "matched_data_percent": 50.0,
+        "matched_data": "16",
+        "matched_data_percent": 33.333333333333336,
         "complete_data": "0",
         "complete_data_percent": 0.0
       },
@@ -23160,7 +23160,7 @@
           "name": ".rodata",
           "size": "48",
           "metadata": {},
-          "fuzzy_match_percent": 50.0
+          "fuzzy_match_percent": 33.333333333333336
         },
         {
           "name": ".text",
@@ -134615,8 +134615,8 @@
         "complete_data_percent": 0.0,
         "total_units": 377,
         "complete_units": 137,
-        "matched_data": "919496",
-        "matched_data_percent": 95.29482970185389
+        "matched_data": "919488",
+        "matched_data_percent": 95.29400059695553
       }
     }
   ]

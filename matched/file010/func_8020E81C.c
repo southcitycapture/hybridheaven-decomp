@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+extern void func_801FC830(f32, f32, f32, f32, s32);
 
 extern s32 func_80150584();
 extern s32 func_801FD168(f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32);
@@ -28,8 +29,7 @@ typedef struct {
 } func_8020E81C_Struct;
 
 s32 func_8020E81C(func_8020E81C_Struct *arg0, s32 arg1) {
-    u8 pad[8];
-    u16 sp46;
+    u16 sp40[8];
     s32 temp_v0;
 
     if (func_80150584() != 0) {
@@ -42,8 +42,8 @@ s32 func_8020E81C(func_8020E81C_Struct *arg0, s32 arg1) {
     if (temp_v0 != 0) {
         func_801FD260(temp_v0, arg0);
     }
-    sp46 = func_8012FF58();
-    if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 1.5f, arg0->unkA2, D_8021ABA0, 0.5f, (u32) (func_801FD780(arg0->unk91) * (f32) ((((s32) sp46 / 10) * 0xA) + 5))) != 0) {
+    sp40[3] = func_8012FF58();
+    if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 1.5f, arg0->unkA2, D_8021ABA0, 0.5f, (u32) ((f32) ((((s32) sp40[3] / 10) * 0xA) + 5) * func_801FD780(arg0->unk91))) != 0) {
         func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, 0.0f, 0.0f, 0.0f, 1);
         func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, 0x3CE);
         return 0;

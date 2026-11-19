@@ -145,15 +145,66 @@ typedef struct func_80228D90_StructGlobal {
     s16 unkB98;
 } func_80228D90_StructGlobal;
 
+#undef func_80228D90_StructAngle
+#undef func_80228D90_StructArg
+#undef func_80228D90_StructGlobal
+#undef func_80228D90_StructInner
+#undef func_80228D90_StructMid
+#undef func_80228D90_StructObj
+#define D_801BBBF0 D_801BBBF0__func_80228D90_e3fdd51b
+#define func_80228D90_StructAngle func_80228D90_StructAngle__func_80228D90_e3fdd51b
+#define func_80228D90_StructArg func_80228D90_StructArg__func_80228D90_e3fdd51b
+#define func_80228D90_StructGlobal func_80228D90_StructGlobal__func_80228D90_e3fdd51b
+#define func_80228D90_StructInner func_80228D90_StructInner__func_80228D90_e3fdd51b
+#define func_80228D90_StructMid func_80228D90_StructMid__func_80228D90_e3fdd51b
+#define func_80228D90_StructObj func_80228D90_StructObj__func_80228D90_e3fdd51b
+#define func_8022B4A4_StructBase func_8022B4A4_StructBase__func_80228D90_e3fdd51b
+typedef struct func_8022B4A4_StructBase {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0x1031 - 0xE0];
+    u8 unk1031;
+} func_8022B4A4_StructBase;
+extern struct func_8022B4A4_StructBase D_801BBBF0;
+
+
+typedef struct func_80228D90_StructAngle {
+    u8 pad[0x12];
+    s16 angle;
+} func_80228D90_StructAngle;
+typedef struct func_80228D90_StructObj {
+    u8 pad[0x2C];
+    func_80228D90_StructAngle *unk2C;
+} func_80228D90_StructObj;
+typedef struct func_80228D90_StructMid {
+    u8 pad[0x24];
+    func_80228D90_StructObj *unk24;
+} func_80228D90_StructMid;
+typedef struct func_80228D90_StructInner {
+    u8 pad[0xC];
+    func_80228D90_StructMid *unkC;
+} func_80228D90_StructInner;
+typedef struct func_80228D90_StructArg {
+    u8 pad[0xC];
+    func_80228D90_StructInner *unkC;
+} func_80228D90_StructArg;
+typedef struct func_80228D90_StructGlobal {
+    u8 pad[0xDC];
+    func_80228D90_StructMid *unkDC;
+    u8 pad1[0x75C - 0xE0];
+    s16 unk75C;
+    u8 pad2[0xAF8 - 0x75E];
+    s16 unkAF8;
+    u8 pad3[0xB98 - 0xAFA];
+    s16 unkB98;
+} func_80228D90_StructGlobal;
+
 s32 func_80228D90(func_80228D90_StructArg *arg0) {
     s16 temp_a1;
     s16 var_a0;
     s16 var_v1;
     s16 angle;
-    s32 var_v0;
-    s32 var_v1_2;
     s32 var_v1_3;
-    func_80228D90_StructMid *temp_v1;
 
     angle = arg0->unkC->unkC->unk24->unk2C->angle;
     var_a0 = (arg0->unkC->unkC == ((func_80228D90_StructGlobal *)&D_801BBBF0)->unkDC) ? ((func_80228D90_StructGlobal *)&D_801BBBF0)->unk75C : ((func_80228D90_StructGlobal *)&D_801BBBF0)->unkAF8;
@@ -166,6 +217,21 @@ s32 func_80228D90(func_80228D90_StructArg *arg0) {
     }
     return 0;
 }
+#undef ANGLE_DIFF
+#undef D_801BBBF0
+#undef func_80228D90_StructAngle
+#undef func_80228D90_StructArg
+#undef func_80228D90_StructGlobal
+#undef func_80228D90_StructInner
+#undef func_80228D90_StructMid
+#undef func_80228D90_StructObj
+#undef func_8022B4A4_StructBase
+#define func_80228D90_StructAngle func_80228D90_StructAngle__func_80228D90
+#define func_80228D90_StructArg func_80228D90_StructArg__func_80228D90
+#define func_80228D90_StructGlobal func_80228D90_StructGlobal__func_80228D90
+#define func_80228D90_StructInner func_80228D90_StructInner__func_80228D90
+#define func_80228D90_StructMid func_80228D90_StructMid__func_80228D90
+#define func_80228D90_StructObj func_80228D90_StructObj__func_80228D90
 #undef ANGLE_DIFF
 #undef func_80228D90_StructAngle
 #undef func_80228D90_StructArg
@@ -1714,17 +1780,76 @@ extern void func_800058DC(void *arg0, void *arg1);
 
 #define GG ((func_8022B3E0_StructG *)&D_801BBBF0)
 
+#undef GG
+#undef func_800058DC
+#define D_801BBBF0 D_801BBBF0__func_8022B3E0_8cbdfa20
+#define D_801BC03C D_801BC03C__func_8022B3E0_8cbdfa20
+#define D_801BC3D8 D_801BC3D8__func_8022B3E0_8cbdfa20
+#define func_800058DC func_800058DC__func_8022B3E0_8cbdfa20
+#define func_8022B3E0_StructArg func_8022B3E0_StructArg__func_8022B3E0_8cbdfa20
+#define func_8022B3E0_StructE func_8022B3E0_StructE__func_8022B3E0_8cbdfa20
+#define func_8022B3E0_StructG func_8022B3E0_StructG__func_8022B3E0_8cbdfa20
+#define func_8022B4A4_StructBase func_8022B4A4_StructBase__func_8022B3E0_8cbdfa20
+#define func_8022B4A4_StructEntry func_8022B4A4_StructEntry__func_8022B3E0_8cbdfa20
+typedef struct func_8022B4A4_StructBase {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0x1031 - 0xE0];
+    u8 unk1031;
+} func_8022B4A4_StructBase;
+extern struct func_8022B4A4_StructBase D_801BBBF0;
+typedef struct func_8022B4A4_StructEntry {
+    u8 pad0[0x30];
+    u32 unk30;
+} func_8022B4A4_StructEntry;
+extern struct func_8022B4A4_StructEntry D_801BC03C;
+extern struct func_8022B4A4_StructEntry D_801BC3D8;
+
+
+typedef struct func_8022B3E0_StructG {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0x1030 - 0xE0];
+    u8 unk1030;
+    u8 unk1031;
+} func_8022B3E0_StructG;
+
+typedef struct func_8022B3E0_StructE {
+    u8 pad0[0x2D8];
+    u8 unk2D8;
+    u8 unk2D9;
+    u8 pad1[3];
+    u8 unk2DD;
+} func_8022B3E0_StructE;
+
+typedef struct func_8022B3E0_StructArg {
+    u8 pad0[0xC];
+    s32 unkC;
+    u8 pad1[0x9A - 0x10];
+    s16 unk9A;
+    u8 pad2[0xA1 - 0x9C];
+    u8 unkA1;
+    u8 unkA2;
+    u8 pad3[0xA8 - 0xA3];
+    u8 unkA8;
+    u8 pad4[0xB0 - 0xA9];
+    void *unkB0;
+} func_8022B3E0_StructArg;
+extern void func_800058DC(void *arg0, void *arg1);
+
+#define GG ((func_8022B3E0_StructG *)&D_801BBBF0)
+
 void func_8022B3E0(func_8022B3E0_StructArg *arg0, s32 arg1) {
     func_8022B3E0_StructE *a;
     func_8022B3E0_StructE *b;
-    s32 c;
     s32 d;
+    s32 c;
 
     c = arg0->unkC;
     d = GG->unkDC;
     a = (d == c) ? (func_8022B3E0_StructE *)&D_801BC03C : (func_8022B3E0_StructE *)&D_801BC3D8;
     b = (d == c) ? (func_8022B3E0_StructE *)&D_801BC3D8 : (func_8022B3E0_StructE *)&D_801BC03C;
-    d = (d == c) ? 0 : 1;
+    d = d == c ? 0 : 1;
     if (GG->unk1031 == 5) {
         if (d != GG->unk1030 && b->unk2DD == 0) {
             a->unk2D8 = arg0->unkA1;
@@ -1737,6 +1862,18 @@ void func_8022B3E0(func_8022B3E0_StructArg *arg0, s32 arg1) {
         func_800058DC(arg0, arg0->unkB0);
     }
 }
+#undef GG
+#undef D_801BBBF0
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef func_800058DC
+#undef func_8022B3E0_StructArg
+#undef func_8022B3E0_StructE
+#undef func_8022B3E0_StructG
+#undef func_8022B4A4_StructBase
+#undef func_8022B4A4_StructEntry
+#define GG ((func_8022B3E0_StructG *)&D_801BBBF0)
+#define func_800058DC func_800058DC__func_8022B3E0
 #undef GG
 #undef func_800058DC
 

@@ -104,8 +104,6 @@ void func_8038CFF4(func_8038CFF4_StructE *arg0, s32 arg1) {
     f32 sp24;
     s32 t;
     u32 v;
-    u32 v5;
-    u8 one;
 
     sp34 = (s16)(0x2800 - GLOBAL.unk232) & 0x1FFF;
     t = GLOBAL.unkDC;
@@ -235,24 +233,24 @@ void func_8038CFF4(func_8038CFF4_StructE *arg0, s32 arg1) {
             }
         }
     } else {
-    if (1 == (s16)arg0->unk91) {
-        arg0->unk91 = 2;
-    }
-    if (a1->b9 == 2) {
-        a1->b9 = 0;
-    }
-    v = arg0->unk9C & 0x3F;
-    if (v < 0x20) {
-        func_80228FD0(arg0, sp30, 0x20);
-        return;
-    }
-    if (v < 0x30) {
-        ang = (s16)(func_80228C20(arg0) + sp34) & 0x1FFF;
-        sp30->unk2 = 0x2000;
-        sp30->unk6 = -func_8001EB64(ang) * 40.0f;
-        sp30->unk8 = func_8001EAD0(ang) * 40.0f;
-        return;
-    }
-    sp30->unk4 = 0x4000;
+        if (1 == (s16)arg0->unk91) {
+            arg0->unk91 = 2;
+        }
+        if (a1->b9 == 2) {
+            a1->b9 = 0;
+        }
+        v = arg0->unk9C & 0x3F;
+        if (v < 0x20) {
+            func_80228FD0(arg0, sp30, 0x20);
+            return;
+        }
+        if (v < 0x30) {
+            ang = (s16)(func_80228C20(arg0) + sp34) & 0x1FFF;
+            sp30->unk2 = 0x2000;
+            sp30->unk6 = -func_8001EB64(ang) * 40.0f;
+            sp30->unk8 = func_8001EAD0(ang) * 40.0f;
+            return;
+        }
+        sp30->unk4 = 0x4000;
     }
 }

@@ -1,15 +1,32 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_801CCE50_Struct {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    u8 unk4;
+    u8 unk5;
+    u8 unk6;
+    u8 unk7;
+} func_801CCE50_Struct;
+extern func_801CCE50_Struct D_801E0BC0;
+
+
+typedef struct func_801CCE88_Struct {
+    u8 pad[8];
+    u8 r0, g0, b0, a0;
+    u8 r1, g1, b1, a1;
+} func_801CCE88_Struct;
 
 void func_801CCE88(s32 arg0, u8 arg1, u8 arg2, u8 arg3) {
-    u8 *temp_v0;
+    func_801CCE88_Struct *e = (func_801CCE88_Struct *)&D_801E0BC0 + arg0;
 
-    temp_v0 = (u8 *)&D_801E0BC0 + arg0 * 0x10;
-    temp_v0[8] = arg1;
-    temp_v0[9] = arg2;
-    temp_v0[10] = arg3;
-    temp_v0[11] = 0;
-    temp_v0[12] = arg1;
-    temp_v0[13] = arg2;
-    temp_v0[14] = arg3;
-    temp_v0[15] = 0;
+    e->r0 = arg1;
+    e->g0 = arg2;
+    e->b0 = arg3;
+    e->a0 = 0;
+    e->r1 = arg1;
+    e->g1 = arg2;
+    e->b1 = arg3;
+    e->a1 = 0;
 }

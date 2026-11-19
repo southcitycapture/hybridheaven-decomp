@@ -40,11 +40,10 @@ typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[4]; f32 unkC; } func_801D8250_I
 typedef struct { u8 pad0[0x30]; func_801D8250_In *unk30; } func_801D8250_Mid;
 typedef struct { u8 pad0[0x12]; s16 unk12; } func_801D8250_Sub;
 typedef struct { u8 pad0[0x24]; struct { u8 pad[0x30]; func_801D8250_Sub *unk30; } *unk24; u8 pad28[0x90-0x28]; u8 unk90; u8 pad91[2]; u8 unk93; f32 unk94; } func_801D8250_Obj;
-typedef struct { s16 a; s32 b; f32 c; s16 d; } func_801D8250_Loc;
+typedef struct { s16 a; s32 b; f32 c; s16 d; u8 pad1[0x10]; } func_801D8250_Loc;
 extern void func_8012FE50(s32, u16, s32, s32, s32);
 
 s32 func_801D8250(func_801D8250_Obj *arg0, func_801D8250_Mid **arg1) {
-    u8 pad[16];
     func_801D8250_Loc sp;
     s32 hit;
 

@@ -44,6 +44,7 @@ typedef struct func_801E7C30_G {
 } func_801E7C30_G;
 #define g ((func_801E7C30_G *)&D_801BBBF0)
 #define P (g->unkE0->unk2C)
+extern void func_80011380(s32, u16 *);
 extern void func_800113D0(s32, void *);
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
@@ -79,10 +80,12 @@ typedef struct func_801EEC58_StructPos {
     f32 x, y, z;
     s16 rx, ry, rz;
 } func_801EEC58_StructPos;
+
 typedef struct func_801EEC58_StructObj {
     u8 pad[0x2C];
     func_801EEC58_StructPos *pos;
 } func_801EEC58_StructObj;
+
 typedef struct func_801EEC58_StructGlobal {
     u8 pad[0xE0];
     func_801EEC58_StructObj *obj;
@@ -93,6 +96,7 @@ typedef struct func_801EEC58_StructGlobal {
     u8 pad4[0xEFE - 0xEF2];
     u16 state;
 } func_801EEC58_StructGlobal;
+
 typedef struct func_801EEC58_StructArg {
     u8 pad[0x30];
     s32 flags;
@@ -101,24 +105,28 @@ typedef struct func_801EEC58_StructArg {
     u8 pad3[1];
     f32 x, y, z;
 } func_801EEC58_StructArg;
+
+typedef struct func_801EEC58_StructAngles {
+    s16 pitch;
+    s16 yaw;
+} func_801EEC58_StructAngles;
+
 #define G (*(func_801EEC58_StructGlobal *)&D_801BBBF0)
 #define P G.obj->pos
-extern void func_80011380(s32, void *);
 extern void func_80130F74(f32 *);
 extern void func_801311F8(u16 *, f32 *, s32, u16, s32);
 
 void func_801EEC58(func_801EEC58_StructArg *arg0, s32 arg1, func_801E74DC_Arg2 *arg2, u16 arg3) {
-    s16 pad_s;
-    s16 angle;
+    func_801EEC58_StructAngles angles;
     u8 i;
     u16 rot[3];
-    struct { f32 a, b, e; } vs;
+    struct func_801EEC58_StructVector { f32 a, b, e; } vs;
 #define V0 vs.a
 #define V1 vs.b
 #define V2 vs.e
 #define vec ((f32 *)&vs)
     func_801E74DC_Sub *anim;
-    register u16 *rotp;
+    u16 *rotp;
     s32 hit;
 #define d k
     f32 k;
@@ -147,8 +155,8 @@ void func_801EEC58(func_801EEC58_StructArg *arg0, s32 arg1, func_801E74DC_Arg2 *
             rot[0] = 0;
             rot[2] = 0;
             if (V0 != 0.0 || V2 != 0.0) {
-                angle = func_8001EF38(-V2, V0);
-                P->ry = (angle + 0x800) & 0x1FFF;
+                angles.yaw = func_8001EF38(-V2, V0);
+                P->ry = (angles.yaw + 0x800) & 0x1FFF;
             } else {
                 P->ry = *(u16 *)&D_80216C00;
             }
@@ -160,10 +168,10 @@ void func_801EEC58(func_801EEC58_StructArg *arg0, s32 arg1, func_801E74DC_Arg2 *
             D_80216C00 = P->ry;
             d = func_8002FC20(V2*V2 + V0*V0);
             hit = 0x800 - (func_8001EF38(V1, d) & 0x1FFF);
-            angle = hit;
+            angles.pitch = hit;
             hit = (s16)hit;
             s = func_8001EB64(hit);
-            hit = angle;
+            hit = angles.pitch;
             c = func_8001EAD0(hit);
             k = func_8001EAD0(P->ry);
             arg0->x = arg0->x + 0.15 * k * c * s;
@@ -176,7 +184,7 @@ void func_801EEC58(func_801EEC58_StructArg *arg0, s32 arg1, func_801E74DC_Arg2 *
             if (V0 == 0.0 && V2 == 0.0) {
                 arg0->x = arg0->x * 0.95;
                 arg0->z = arg0->z * 0.95;
-                func_80011380(arg1, (u8 *)anim + 6);
+                func_80011380(arg1, (u16 *)((u8 *)anim + 6));
             } else {
                 func_800113D0(arg1, (u8 *)anim + 6);
             }

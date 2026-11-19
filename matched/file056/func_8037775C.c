@@ -17,12 +17,13 @@ extern void func_80011140(s32, void *, func_8037769C_Glob, s32);
 extern void func_8011AAF4(void *, s32, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_8014B4A0(u16, f32 *);
 
-
 struct func_8037775C_StructV {
     f32 x;
     f32 y;
     f32 z;
     s16 r;
+    s16 r2;
+    s32 w;
 };
 struct func_8037775C_Struct {
     u8 pad[0x5C];
@@ -44,7 +45,6 @@ void func_8037775C(struct func_8037775C_Struct *arg0, s32 arg1)
 {
   s32 sp8C;
   f32 z_temp;
-  u8 pad[4];
   struct func_8037775C_StructV v;
   f32 sp70;
   f32 sp6C;

@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+extern s32 func_800058DC(s32, void *);
+
 
 struct func_8024334C_S38 {
     u8 pad0[0x30];
@@ -38,7 +40,7 @@ void func_8024334C(struct func_8024334C_Struct *arg0, s32 arg1)
   struct func_8024334C_S38 *new_var;
   u8 *p41;
   s32 d;
-  extern s32 func_800058DC();
+extern s32 func_800058DC();
   p42 = &arg0->unk42;
   p41 = &arg0->unk41;
   arg0->unk42++;
@@ -60,7 +62,7 @@ void func_8024334C(struct func_8024334C_Struct *arg0, s32 arg1)
     {
       v1 = 7 & v1;
     }
-    if (v1 == ((0, t0)))
+    if (t0 == v1)
     {
       *p42 = 0;
       func_800058DC((s32) arg0, func_80243DDC, a2, p42);

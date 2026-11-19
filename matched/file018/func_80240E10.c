@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+extern void func_800058DC(s32, void *);
+
 
 typedef struct func_80240E10_StructObj {
     u8 pad0[0x18];
@@ -21,15 +23,7 @@ typedef struct func_80240E10_StructEnt {
 } func_80240E10_StructEnt;
 
 typedef struct func_80240E10_StructArg1 {
-    func_80240E10_StructEnt *unk0;
-    func_80240E10_StructEnt *unk4;
-    u8 pad8[0x34 - 0x8];
-    func_80240E10_StructEnt *unk34;
-    func_80240E10_StructEnt *unk38;
-    func_80240E10_StructEnt *unk3C;
-    func_80240E10_StructEnt *unk40;
-    func_80240E10_StructEnt *unk44;
-    func_80240E10_StructEnt *unk48;
+    func_80240E10_StructEnt *e[0x13];
 } func_80240E10_StructArg1;
 
 typedef struct func_80240E10_StructCnt {
@@ -42,35 +36,31 @@ extern void func_80240F94();
 
 void func_80240E10(void *arg0, s32 arg1)
 {
-  func_80240E10_StructArg1 *a1;
-  func_80240E10_StructEnt **arr;
+  func_80240E10_StructArg1 *a1 = (func_80240E10_StructArg1 *) arg1;
   func_80240E10_StructCnt *cnt;
+  func_80240E10_StructEnt **p;
   s32 i;
-  a1 = (func_80240E10_StructArg1 *) arg1;
-  arr = (func_80240E10_StructEnt **) arg1;
   cnt = *((func_80240E10_StructCnt **) (((u8 *) arg0) + 0x5C));
- i = 1; while (i < cnt->unkC) {
-    arr[i]->unk2C->unk24 |= 0x100;
-    arr[i]->unk2C->unk30 = ((u32) D_80254420) | 0x40000000;
-    arr[i]->unk2C->unk48 = 0x3C;
-    arr[i]->unk2C->unk49 = 0xFF;
-    arr[i]->unk2C->unk4A = 0x3C;
-    arr[i]->unk2C->unk4B = 0xB4;
+  i = 1; p = a1->e + 1; while (i < cnt->unkC) {
+    (*p)->unk2C->unk24 |= 0x100;
+    (*p)->unk2C->unk30 = ((u32) D_80254420) | 0x40000000;
+    (*p)->unk2C->unk48 = 0x3C;
+    (*p)->unk2C->unk49 = 0xFF;
+    (*p)->unk2C->unk4A = 0x3C;
+    (*p)->unk2C->unk4B = 0xB4;
     i++;
+    p++;
   }
 
-  a1->unk4->unk2C->unk4B = 0xA2;
-  a1->unk40->unk2C->unk4B = 0x7D;
-  a1->unk34->unk2C->unk4B = a1->unk40->unk2C->unk4B;
-  a1->unk44->unk2C->unk4B = 0x5A;
-  a1->unk38->unk2C->unk4B = a1->unk44->unk2C->unk4B;
-  a1->unk48->unk2C->unk4B = 0x36;
-  if (!arr)
-  {
-  }
-  a1->unk3C->unk2C->unk4B = a1->unk48->unk2C->unk4B;
-  a1->unk0->unk2C->unk18 = 0.0f;
-  a1->unk0->unk2C->unk1C = 0.0f;
-  a1->unk0->unk2C->unk20 = 0.0f;
+  a1->e[1]->unk2C->unk4B = 0xA2;
+  a1->e[16]->unk2C->unk4B = 0x7D;
+  a1->e[13]->unk2C->unk4B = a1->e[16]->unk2C->unk4B;
+  a1->e[17]->unk2C->unk4B = 0x5A;
+  a1->e[14]->unk2C->unk4B = a1->e[17]->unk2C->unk4B;
+  a1->e[18]->unk2C->unk4B = 0x36;
+  a1->e[15]->unk2C->unk4B = a1->e[18]->unk2C->unk4B;
+  a1->e[0]->unk2C->unk18 = 0.0f;
+  a1->e[0]->unk2C->unk1C = 0.0f;
+  a1->e[0]->unk2C->unk20 = 0.0f;
   func_800058DC((s32) arg0, (void *) func_80240F94);
 }

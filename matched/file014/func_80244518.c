@@ -1,9 +1,26 @@
-#define HZQ(p, l) p##_##l
-#define HZP(p, l) HZQ(p, l)
-#define func_80243820 HZP(hA, __LINE__)
-#define func_802448C8 HZP(hB, __LINE__)
-#define func_80244988 HZP(hC, __LINE__)
-#include "context.h"
+#include "common.h"
+extern s32 D_80010550(s32, void *);
+struct func_80246828_Triple {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+extern struct func_80246828_Triple D_802484B8;
+extern void func_800058DC(void *, void *);
+extern s32 func_8012A564(void *, s32);
+struct func_802438E4_Table {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+extern s32 func_8012CE9C(s32, void *, struct func_802438E4_Table, s32);
+extern void func_802438E4();
+extern void func_802445F8();
+struct func_80246478_Child {
+    u8 pad0[0x78];
+    s16 unk78;
+};
+
 
 struct func_80244518_StructObj {
     u8 pad0[0x2C];
@@ -15,7 +32,6 @@ struct func_80244518_StructObj {
 };
 
 void func_80244518(struct func_80244518_StructObj *arg0, s32 arg1) {
-    s32 is_zero;
     struct func_80246478_Child *temp_s1;
 
     temp_s1 = arg0->unk5C;

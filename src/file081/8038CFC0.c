@@ -79,21 +79,92 @@ extern void func_802292D0(void *, void *);
 
 #define ISP1 (dc == ((struct func_8038CFF4_Obj0 *)arg0->unkC2)->unkC)
 
-void func_8038CFF4(struct func_8038CFF4_Obj *arg0, void *arg1) {
-    s16 sp36;
-    s16 sp34;
-    struct func_8038CFF4_Ent *sp30;
-    s32 sp2C;
-    struct func_8038CFF4_Pl *a1;
-    struct func_8038CFF4_Pl *v1;
+#undef D_801BBBF0
+#undef ISP1
+#define D_801BBBF0 D_801BBBF0__func_8038CFF4
+#define func_802292D0 func_802292D0__func_8038CFF4
+#define func_8038D5C0_StructGlobal func_8038D5C0_StructGlobal__func_8038CFF4
+struct func_8038D5C0_StructGlobal {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 padE0[0xB90 - 0xE0];
+    f32 unkB90;
+    u8 padB94[0x1031 - 0xB94];
+    u8 unk1031;
+};
+
+
+struct func_8038CFF4_StructObj {
+    u8 pad0[0xC];
+    struct func_8038CFF4_StructObj *unkC2;
+    u8 pad10[0x91 - 0x10];
+    u8 unk91;
+    u8 unk92;
+    u8 pad93[2];
+    u8 unk95;
+    u8 pad96[2];
+    s16 unk98;
+    u8 pad9A[2];
+    u32 unk9C;
+};
+struct func_8038CFF4_StructObj0 {
+    u8 pad0[0xC];
+    s32 unkC;
+};
+struct func_8038CFF4_StructEnt {
+    u8 pad0[4];
+    u16 unk4;
+    s16 unk6;
+    s16 unk8;
+};
+struct func_8038CFF4_StructPl {
+    u8 pad0[6];
+    s16 unk6;
+    u8 pad8[0x30 - 8];
+    unsigned f29 : 3;
+    unsigned f25 : 4;
+    unsigned f23 : 2;
+    unsigned f21 : 2;
+    unsigned f19 : 2;
+    unsigned f16 : 3;
+    unsigned f10 : 6;
+    unsigned f8 : 2;
+    unsigned f0 : 8;
+    u8 pad34[0x312 - 0x34];
+    s16 unk312;
+    u8 pad314[0x396 - 0x314];
+    u8 unk396;
+};
+struct func_8038CFF4_StructG {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 padE0[0x232 - 0xE0];
+    s16 unk232;
+    u8 pad234[0xB90 - 0x234];
+    f32 unkB90;
+    u8 padB94[0x1031 - 0xB94];
+    u8 unk1031;
+};
+struct func_8038D5C0_StructGlobal;
+extern struct func_8038D5C0_StructGlobal D_801BBBF0;
+#define D_801BBBF0 (((struct func_8038CFF4_StructG *)&D_801BBBF0)[0])
+extern s32 func_802292D0();
+
+#define ISP1 (dc == ((struct func_8038CFF4_StructObj0 *)arg0->unkC2)->unkC)
+
+void func_8038CFF4(struct func_8038CFF4_StructObj *arg0, void *arg1) {
     s16 ang;
+    s16 sp34;
+    struct func_8038CFF4_StructEnt *sp30;
     s32 dc;
+    struct func_8038CFF4_StructPl *a1;
+    struct func_8038CFF4_StructPl *v1;
 
     sp34 = (s16)(0x2800 - D_801BBBF0.unk232) & 0x1FFF;
     dc = D_801BBBF0.unkDC;
     sp30 = ISP1 ? (void *)D_801BBC8C : (void *)D_801BBCAC;
     a1 = ISP1 ? (void *)D_801BC03C : (void *)D_801BC3D8;
-    v1 = (dc != ((struct func_8038CFF4_Obj0 *)arg0->unkC2)->unkC) ? (void *)D_801BC03C : (void *)D_801BC3D8;
+    v1 = (dc != ((struct func_8038CFF4_StructObj0 *)arg0->unkC2)->unkC) ? (void *)D_801BC03C : (void *)D_801BC3D8;
     if ((arg0->unk91 == 1) && (D_801BBBF0.unk1031 == 7)) {
         arg0->unk91 = 2;
     }
@@ -184,6 +255,13 @@ void func_8038CFF4(struct func_8038CFF4_Obj *arg0, void *arg1) {
         }
     }
 }
+#undef ISP1
+#undef D_801BBBF0
+#undef D_801BBBF0
+#undef func_802292D0
+#undef func_8038D5C0_StructGlobal
+#define D_801BBBF0 (((struct func_8038CFF4_G *)&D_801BBBF0)[0])
+#define ISP1 (dc == ((struct func_8038CFF4_Obj0 *)arg0->unkC2)->unkC)
 #undef ISP1
 #undef D_801BBBF0
 

@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+void func_802254F8(s32, s32, s32);
+
 
 typedef struct func_803697AC_StructTable {
     u16 values[2][3];
@@ -8,15 +10,14 @@ typedef struct func_803697AC_StructActor {
     u8 pad[0x36];
     u16 unk36;
 } func_803697AC_StructActor;
-
 extern void func_80020718(u16);
 extern s32 func_801DFE28(void *);
 extern func_803697AC_StructTable D_80387274;
 
 void func_803697AC(func_803697AC_StructActor *arg0, s32 arg1, u8 arg2) {
-    s32 padding;
+    s32 value;
     func_803697AC_StructTable table;
-    u16 value;
+    u16 temp;
     u8 index;
 
     arg2 = (s32)arg2 % 3;
@@ -25,7 +26,8 @@ void func_803697AC(func_803697AC_StructActor *arg0, s32 arg1, u8 arg2) {
     if (func_801DFE28(arg0) == 1) {
         index = 1;
     }
-    func_80020718(table.values[index][arg2]);
+    temp = table.values[index][arg2];
+    func_80020718(temp);
     value = arg0->unk36;
     if (value == 0xF6 || value == 0xF4 || value == 0xF5) {
         func_80020718(0x22E);

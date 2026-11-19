@@ -1,4 +1,33 @@
-#include "context.h"
+#include "common.h"
+typedef struct {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+} func_8038D000_StructF;
+typedef struct {
+    u8 pad0[0x2C];
+    func_8038D000_StructF *unk2C;
+} func_8038D000_StructE;
+typedef struct {
+    u8 pad0[0xDC];
+    void *unkDC;
+    func_8038D000_StructE *unkE0;
+    u8 padE4[0xF0 - 0xE4];
+    func_8038D000_StructE *unkF0;
+    u8 padF4[0x232 - 0xF4];
+    s16 unk232;
+    u8 pad234[0xB90 - 0x234];
+    f32 unkB90;
+    u8 padB94[4];
+    s16 unkB98;
+    u8 padB9A[0x1031 - 0xB9A];
+    u8 unk1031;
+} func_8038D000_Glob;
+extern func_8038D000_Glob D_801BBBF0;
+extern u8 D_801BC03C[];
+extern f32 D_801BC3D8[];
+
 
 typedef struct {
     u8 pad0[0xC];
@@ -26,16 +55,6 @@ typedef struct {
     s16 unk6;
     s16 unk8;
 } func_8038D000_StructC;
-typedef struct {
-    u8 pad0[4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-} func_8038D000_StructF;
-typedef struct {
-    u8 pad0[0x2C];
-    func_8038D000_StructF *unk2C;
-} func_8038D000_StructE;
 struct func_8038D000_StructG {
     u8 pad0[0x12];
     s16 unk12;
@@ -52,22 +71,6 @@ struct func_8038D000_StructJ {
     u8 pad0[0xC];
     struct func_8038D000_StructI *unkC;
 };
-typedef struct {
-    u8 pad0[0xDC];
-    void *unkDC;
-    func_8038D000_StructE *unkE0;
-    u8 padE4[0xF0 - 0xE4];
-    func_8038D000_StructE *unkF0;
-    u8 padF4[0x232 - 0xF4];
-    s16 unk232;
-    u8 pad234[0xB90 - 0x234];
-    f32 unkB90;
-    u8 padB94[4];
-    s16 unkB98;
-    u8 padB9A[0x1031 - 0xB9A];
-    u8 unk1031;
-} func_8038D000_Glob;
-extern func_8038D000_Glob D_801BBBF0;
 extern u8 D_801BBC8C[];
 extern u8 D_801BBCAC[];
 extern f32 func_8001EAD0();
@@ -84,9 +87,8 @@ void func_8038D000(func_8038D000_StructA *arg0, s32 arg1) {
     func_8038D000_StructB *sp2C;
     s16 sp2A;
     s16 sp28;
-    s32 pad;
-    f32 sp20;
     s16 d;
+    f32 sp20;
     s32 v1;
 
     sp3C = (s16)(0x2800 - D_801BBBF0.unk232) & 0x1FFF;
@@ -117,7 +119,7 @@ void func_8038D000(func_8038D000_StructA *arg0, s32 arg1) {
         if (D_801BBBF0.unk1031 >= 7 && D_801BBBF0.unk1031 != 0xF) {
             arg0->unk92 = arg0->unk95 = 0;
         }
-        if (sp30->u30.bf.f13 == 0 &&D_801BBBF0.unk1031 == 5) {
+        if (sp30->u30.bf.f13 == 0 && D_801BBBF0.unk1031 == 5) {
             if ((func_80228D90(arg0) != 0 && arg0->unk98 == 0 && D_801BBBF0.unkB90 < 20.0 && sp30->unk6 >= 0x64) || arg0->unk95 == 1) {
                 if (arg0->unk95 == 0) {
                     arg0->unk95 = 1;

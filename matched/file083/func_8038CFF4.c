@@ -1,4 +1,8 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C;
+extern u8 D_801BC3D8;
+
 
 typedef struct func_8038CFF4_StructU {
     u8 pad0[0x1C];
@@ -83,10 +87,8 @@ typedef struct func_8038CFF4_StructA {
     s32 unk9C;
 } func_8038CFF4_StructA;
 
-extern func_8038CFF4_StructG D_801BBBF0;
 extern u8 D_801BBC8C[];
 extern u8 D_801BBCAC[];
-
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern s32 func_8022559C(s32, void *, void *, void *);
@@ -102,35 +104,33 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
     func_8038CFF4_StructC *c;
     func_8038CFF4_StructP *a;
     func_8038CFF4_StructP *b;
-    s32 pad_q;
-#define q ((func_8038CFF4_StructQ *)var_a0)
     s32 var_a0;
-    s32 pad1;
+    func_8038CFF4_StructQ *q;
+    func_8038CFF4_StructT *dc;
     s16 s;
     f64 d;
-    func_8038CFF4_StructT *dc;
 
-    ang = (s16)(0x2800 - D_801BBBF0.unk232) & 0x1FFF;
-    c = (func_8038CFF4_StructC *)((D_801BBBF0.unkDC == arg0->unkC->unkC) ? D_801BBC8C : D_801BBCAC);
-    a = (func_8038CFF4_StructP *)((D_801BBBF0.unkDC == arg0->unkC->unkC) ? &D_801BC03C : &D_801BC3D8);
-    b = (func_8038CFF4_StructP *)((D_801BBBF0.unkDC == arg0->unkC->unkC) ? &D_801BC3D8 : &D_801BC03C);
-    if ((s32)&D_801BBBF0 + 0x44C == (s32)b) {
-        var_a0 = D_801BBBF0.unkDC->unk5C->unk1C;
+    ang = (s16)(0x2800 - ((func_8038CFF4_StructG *)D_801BBBF0)->unk232) & 0x1FFF;
+    c = (func_8038CFF4_StructC *)((arg0->unkC->unkC == ((func_8038CFF4_StructG *)D_801BBBF0)->unkDC) ? D_801BBC8C : D_801BBCAC);
+    a = (func_8038CFF4_StructP *)((arg0->unkC->unkC == ((func_8038CFF4_StructG *)D_801BBBF0)->unkDC) ? &D_801BC03C : &D_801BC3D8);
+    b = (func_8038CFF4_StructP *)((arg0->unkC->unkC == ((func_8038CFF4_StructG *)D_801BBBF0)->unkDC) ? &D_801BC3D8 : &D_801BC03C);
+    if ((s32)D_801BBBF0 + 0x44C == (s32)b) {
+        var_a0 = ((func_8038CFF4_StructG *)D_801BBBF0)->unkDC->unk5C->unk1C;
     } else {
-        var_a0 = D_801BBBF0.unkEC->unk5C->unk1C;
+        var_a0 = ((func_8038CFF4_StructG *)D_801BBBF0)->unkEC->unk5C->unk1C;
     }
-    pad_q = func_8022559C(var_a0, a, &D_801BBBF0, arg0);
-    dc = D_801BBBF0.unkDC;
-    var_a0 = (s32)((arg0->unkC->unkC == dc) ? dc->unk5C : D_801BBBF0.unkEC->unk5C);
-    if (arg0->unk91 == 1 && D_801BBBF0.unk1031 == 7) {
+    func_8022559C(var_a0, a, D_801BBBF0, arg0);
+    dc = ((func_8038CFF4_StructG *)D_801BBBF0)->unkDC;
+    q = (func_8038CFF4_StructQ *)((arg0->unkC->unkC == dc) ? dc->unk5C : ((func_8038CFF4_StructG *)D_801BBBF0)->unkEC->unk5C);
+    if (arg0->unk91 == 1 && ((func_8038CFF4_StructG *)D_801BBBF0)->unk1031 == 7) {
         arg0->unk91 = 2;
     }
     if (a->u30.b.bf9 != 0 && a->u30.b.bf3 != 1) {
-        if (D_801BBBF0.unk1031 >= 7 && D_801BBBF0.unk1031 != 15) {
+        if (((func_8038CFF4_StructG *)D_801BBBF0)->unk1031 >= 7 && ((func_8038CFF4_StructG *)D_801BBBF0)->unk1031 != 15) {
             arg0->unk92 = arg0->unk95 = 0;
         }
-        if (D_801BBBF0.unk1031 == 5 && a->u30.b.bf13 == 0) {
-            d = D_801BBBF0.unkB90;
+        if (((func_8038CFF4_StructG *)D_801BBBF0)->unk1031 == 5 && a->u30.b.bf13 == 0) {
+            d = ((func_8038CFF4_StructG *)D_801BBBF0)->unkB90;
             if (d < 20.0 || arg0->unk95 == 1) {
                 if (arg0->unk95 == 0) {
                     arg0->unk95 = 1;
@@ -184,7 +184,7 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
                 if (a->u30.b.bf22 == 2) {
                     a->u30.b.bf22 = 0;
                 }
-                if (D_801BBBF0.unkB90 > 40.0f) {
+                if (((func_8038CFF4_StructG *)D_801BBBF0)->unkB90 > 40.0f) {
                     arg0->unk98 = 0;
                 }
                 if (arg0->unk98 < 60) {

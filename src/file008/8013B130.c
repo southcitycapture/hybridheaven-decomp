@@ -1004,12 +1004,17 @@ extern u16 D_8017D1D6;
 extern u16 D_8017D1DC[];
 extern u16 D_801BBC20;
 
+#define func_8013BFB8_Struct func_8013BFB8_Struct__func_8013BFB8
+#define func_8013BFB8_Struct2 func_8013BFB8_Struct2__func_8013BFB8
+struct func_8013BFB8_Struct2 { u8 pad0[0xE]; u16 unkE; u8 pad1[0x8E]; u16 unk9E; u16 unkA0; };
+struct func_8013BFB8_Struct { u8 pad0[0x5C]; struct func_8013BFB8_Struct2 *unk5C; };
+
 void func_8013BFB8(struct func_8013BFB8_Struct *arg0, u16 *arg1) {
-    s32 padv[1];
+    s32 secondaryRoll;
     u16 sp2A;
     s32 sp24;
     s32 v0;
-    s32 v1;
+    u8 v1;
     struct func_8013BFB8_Struct2 *s0;
 
     s0 = arg0->unk5C;
@@ -1042,13 +1047,16 @@ void func_8013BFB8(struct func_8013BFB8_Struct *arg0, u16 *arg1) {
                 func_8012D894(arg0, D_8017D1D4[0], D_8017D1D4[2]);
             }
         } else if (D_801BBC20 & 1) {
-            if (func_8012C6B4(0x2BC) < 0x28) {
+            secondaryRoll = func_8012C6B4(0x2BC);
+            if (secondaryRoll < 0x28) {
                 func_8012D894(arg0, arg1[0], D_8017D1DC[func_8012C6B4(D_8017D1D6 & 0xFF) & 0xFF]);
                 s0->unkA0 = func_8012C6B4(0xA) + 5;
             }
         }
     }
 }
+#undef func_8013BFB8_Struct
+#undef func_8013BFB8_Struct2
 
 
 #define func_8013BFB8_Struct func_8013BFB8_Struct__func_8013C184
@@ -1375,9 +1383,52 @@ struct func_8013C7F8_Obj {
 };
 extern struct func_8013BD84_Struct D_8017DC2C;
 
+#define D_8017D478 D_8017D478__func_8013C7F8
+#define D_8017DC2C D_8017DC2C__func_8013C7F8
+#define func_8013B19C func_8013B19C__func_8013C7F8
+#define func_8013BD84_Entry func_8013BD84_Entry__func_8013C7F8
+#define func_8013BD84_Struct func_8013BD84_Struct__func_8013C7F8
+#define func_8013C7F8_Inner func_8013C7F8_Inner__func_8013C7F8
+#define func_8013C7F8_Leaf func_8013C7F8_Leaf__func_8013C7F8
+#define func_8013C7F8_Obj func_8013C7F8_Obj__func_8013C7F8
+struct func_8013BD84_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+struct func_8013BD84_Entry {
+    struct func_8013BD84_Struct *unk0;
+    u8 pad[0x1C];
+};
+extern struct func_8013BD84_Entry D_8017D478[];
+s32 func_8013B19C(u16 arg0);
+
+
+struct func_8013C7F8_Leaf {
+    u8 pad[0x4C];
+    s32 unk4C;
+};
+struct func_8013C7F8_Inner {
+    u8 pad0[4];
+    struct func_8013C7F8_Leaf *unk4;
+    u8 pad1[4];
+    u16 unkC;
+};
+struct func_8013C7F8_Obj {
+    u8 pad0[0x36];
+    u16 unk36;
+    u8 pad1[0x24];
+    struct func_8013C7F8_Inner *unk5C;
+};
+struct func_8013C7F8_Local {
+    struct func_8013BD84_Struct s;
+    s32 unkC;
+    s32 unk10;
+};
+extern struct func_8013BD84_Struct D_8017DC2C;
+
 void func_8013C7F8(s32 arg0, s32 arg1, u8 arg2) {
-    s32 pad[2];
-    struct func_8013BD84_Struct sp2C;
+    struct func_8013C7F8_Local loc;
     u16 temp_a0;
     struct func_8013C7F8_Inner *temp_v0;
 
@@ -1386,14 +1437,22 @@ void func_8013C7F8(s32 arg0, s32 arg1, u8 arg2) {
         temp_a0 = ((struct func_8013C7F8_Obj *)arg0)->unk36;
         if ((temp_a0 & 0xFFF) != 0x57) {
             if (arg2 != 0) {
-                sp2C = D_8017DC2C;
+                loc.s = D_8017DC2C;
             } else {
-                sp2C = *D_8017D478[func_8013B19C(temp_a0)].unk0;
+                loc.s = *D_8017D478[func_8013B19C(temp_a0)].unk0;
             }
-            func_8013A1B4(arg1, sp2C, 0x40000);
+            func_8013A1B4(arg1, loc.s, 0x40000);
         }
     }
 }
+#undef D_8017D478
+#undef D_8017DC2C
+#undef func_8013B19C
+#undef func_8013BD84_Entry
+#undef func_8013BD84_Struct
+#undef func_8013C7F8_Inner
+#undef func_8013C7F8_Leaf
+#undef func_8013C7F8_Obj
 
 
 extern u16 D_8017DCDC;

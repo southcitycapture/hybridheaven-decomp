@@ -115,23 +115,68 @@ void func_801CCE50(u8 arg0, u8 arg1, u8 arg2) {
 }
 
 
+#define D_801E0BC0 D_801E0BC0__func_801CCE88
+#define func_801CCE50_Struct func_801CCE50_Struct__func_801CCE88
+typedef struct func_801CCE50_Struct {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    u8 unk4;
+    u8 unk5;
+    u8 unk6;
+    u8 unk7;
+} func_801CCE50_Struct;
+extern func_801CCE50_Struct D_801E0BC0;
+
+
+typedef struct func_801CCE88_Struct {
+    u8 pad[8];
+    u8 r0, g0, b0, a0;
+    u8 r1, g1, b1, a1;
+} func_801CCE88_Struct;
+
 void func_801CCE88(s32 arg0, u8 arg1, u8 arg2, u8 arg3) {
-    u8 *temp_v0;
+    func_801CCE88_Struct *e = (func_801CCE88_Struct *)&D_801E0BC0 + arg0;
 
-    temp_v0 = (u8 *)&D_801E0BC0 + arg0 * 0x10;
-    temp_v0[8] = arg1;
-    temp_v0[9] = arg2;
-    temp_v0[10] = arg3;
-    temp_v0[11] = 0;
-    temp_v0[12] = arg1;
-    temp_v0[13] = arg2;
-    temp_v0[14] = arg3;
-    temp_v0[15] = 0;
+    e->r0 = arg1;
+    e->g0 = arg2;
+    e->b0 = arg3;
+    e->a0 = 0;
+    e->r1 = arg1;
+    e->g1 = arg2;
+    e->b1 = arg3;
+    e->a1 = 0;
 }
+#undef D_801E0BC0
+#undef func_801CCE50_Struct
 
+
+#define D_801E0BC0 D_801E0BC0__func_801CCEC8
+#define func_801CCE50_Struct func_801CCE50_Struct__func_801CCEC8
+typedef struct func_801CCE50_Struct {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    u8 unk4;
+    u8 unk5;
+    u8 unk6;
+    u8 unk7;
+} func_801CCE50_Struct;
+extern func_801CCE50_Struct D_801E0BC0;
+
+
+typedef struct func_801CCEC8_Struct {
+    u8 pad[0x10];
+    u8 unk10;
+    u8 unk11;
+    u8 unk12;
+    u8 unk13;
+} func_801CCEC8_Struct;
 
 void func_801CCEC8(s32 arg0, s8 arg1, s8 arg2, s8 arg3) {
-    u8 *temp_v0;
+    func_801CCEC8_Struct *entry;
 
     if (arg1 == -0x80) {
         arg1 = 0x7F;
@@ -145,18 +190,20 @@ void func_801CCEC8(s32 arg0, s8 arg1, s8 arg2, s8 arg3) {
     if (arg1 == 0) {
         arg1 = 1;
     }
-    temp_v0 = (u8 *) &D_801E0BC0 + arg0 * 16;
+    entry = (func_801CCEC8_Struct *) ((u8 *) &D_801E0BC0 + arg0 * 16);
     if (arg2 == 0) {
         arg2 = 1;
     }
     if (arg3 == 0) {
         arg3 = 1;
     }
-    temp_v0[0x10] = arg1;
-    temp_v0[0x11] = arg2;
-    temp_v0[0x12] = arg3;
-    temp_v0[0x13] = 0;
+    entry->unk10 = arg1;
+    entry->unk11 = arg2;
+    entry->unk12 = arg3;
+    entry->unk13 = 0;
 }
+#undef D_801E0BC0
+#undef func_801CCE50_Struct
 
 #undef func_801CCF48
 #define D_801DAB28 D_801DAB28__func_801CCF48
@@ -237,37 +284,61 @@ void func_801CD074(s32 arg0) {
 
 
 
+
+#define func_80034C24 func_80034C24__func_801CD098
+#define func_801C0DE4 func_801C0DE4__func_801CD098
+#define func_801C0EB0 func_801C0EB0__func_801CD098
+#define func_801C0F18 func_801C0F18__func_801CD098
+#define func_801CCE88 func_801CCE88__func_801CD098
+#define func_801CCEC8 func_801CCEC8__func_801CD098
+extern f64 func_80034C24();
+extern s32 func_801C0DE4(s32, s32, f32);
+extern void func_801C0EB0(s32, s32);
+extern u64 func_801C0F18(s32, s32);
+void func_801CCE88(s32 arg0, u8 arg1, u8 arg2, u8 arg3);
+void func_801CCEC8(s32 arg0, s8 arg1, s8 arg2, s8 arg3);
+
+
+
+typedef struct func_801CD098_Struct {
+  u8 unk0[2];
+  s8 z;
+  s8 y;
+  s8 x;
+  u8 b;
+  u8 g;
+  u8 r;
+  u8 unk8[16];
+} func_801CD098_Struct;
+
 s32 func_801CD098(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10, f32 arg11, f32 arg12, f32 arg13, f32 arg14)
 {
-  u8 pad[16];
-  u8 sp27;
-  u8 sp26;
-  u8 sp25;
-  s8 sp24;
-  s8 sp23;
-  s8 sp22;
+  func_801CD098_Struct s;
   f32 temp_fs0;
   u64 temp_ret;
-  if (1)
+  if (func_801C0DE4(1, arg1, arg2) != 0)
   {
-    if (func_801C0DE4(1) != 0)
-    {
-      func_801C0EB0(1, arg1);
-      return 1;
-    }
-    temp_ret = func_801C0F18(1, arg1);
-    temp_fs0 = ((f32) (func_80034C24(temp_ret) / 1000000.0)) / arg2;
-    sp27 = (u8) ((u32) func_801CDBD4(arg3, arg6, temp_fs0));
-    sp26 = (u8) ((u32) func_801CDBD4(arg4, arg7, temp_fs0));
-    sp25 = (u8) ((u32) func_801CDBD4(arg5, arg8, temp_fs0));
-    sp24 = (s8) ((s32) func_801CDBD4(arg9, arg12, temp_fs0));
-    sp23 = (s8) ((s32) func_801CDBD4(arg10, arg13, temp_fs0));
-    sp22 = (s8) ((s32) func_801CDBD4(arg11, arg14, temp_fs0));
-    func_801CCE88(arg0, sp27, sp26, sp25);
-    func_801CCEC8(arg0, sp24, sp23, sp22);
-    return 0;
+    func_801C0EB0(1, arg1);
+    return 1;
   }
+  temp_ret = func_801C0F18(1, arg1);
+  temp_fs0 = ((f32) (func_80034C24(temp_ret) / D_801DD3F0)) / arg2;
+  s.r = (u8) ((u32) func_801CDBD4(arg3, arg6, temp_fs0));
+  s.g = (u8) ((u32) func_801CDBD4(arg4, arg7, temp_fs0));
+  s.b = (u8) ((u32) func_801CDBD4(arg5, arg8, temp_fs0));
+  s.x = (s8) ((s32) func_801CDBD4(arg9, arg12, temp_fs0));
+  s.y = (s8) ((s32) func_801CDBD4(arg10, arg13, temp_fs0));
+  s.z = (s8) ((s32) func_801CDBD4(arg11, arg14, temp_fs0));
+  func_801CCE88(arg0, s.r, s.g, s.b);
+  func_801CCEC8(arg0, s.x, s.y, s.z);
+  return 0;
 }
+#undef func_80034C24
+#undef func_801C0DE4
+#undef func_801C0EB0
+#undef func_801C0F18
+#undef func_801CCE88
+#undef func_801CCEC8
 
 
 
@@ -290,22 +361,41 @@ extern u64 func_801C0F18(s32, s32);
 f32 func_801CDBD4(f32 arg0, f32 arg1, f32 arg2);
 void func_801CCE50(u8 arg0, u8 arg1, u8 arg2);
 
+#undef func_80034C24
+#undef func_801C0DE4
+#undef func_801C0EB0
+#undef func_801C0F18
+#undef func_801CCE50
+#undef func_801CDBD4
+
+#define func_80034C24 func_80034C24__func_801CD378_4150db79
+#define func_801C0DE4 func_801C0DE4__func_801CD378_4150db79
+extern f64 func_80034C24();
+extern s32 func_801C0DE4(s32, s32, f32);
+
 s32 func_801CD378(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
-    u8 pad[12];
-    f32 sp20;
+    f32 sp20[4];
     u8 sp1F;
     u8 sp1E;
 
-    if (func_801C0DE4(1, 0x56D8, arg0) != 0) {
+    if (func_801C0DE4__func_801CD378(1, 0x56D8, arg0) != 0) {
         func_801C0EB0(1, 0x56D8);
         return 1;
     }
-    sp20 = (f32)(func_80034C24(func_801C0F18(1, 0x56D8)) / 1000000.0) / arg0;
-    sp1F = (u32)func_801CDBD4(arg1, arg4, sp20);
-    sp1E = (u32)func_801CDBD4(arg2, arg5, sp20);
-    func_801CCE50(sp1F, sp1E, (u32)func_801CDBD4(arg3, arg6, sp20));
+    sp20[0] = (f32)(func_80034C24(func_801C0F18(1, 0x56D8)) / D_801DD3F8) / arg0;
+    sp1F = (u32)func_801CDBD4(arg1, arg4, sp20[0]);
+    sp1E = (u32)func_801CDBD4(arg2, arg5, sp20[0]);
+    func_801CCE50(sp1F, sp1E, (u32)func_801CDBD4(arg3, arg6, sp20[0]));
     return 0;
 }
+#undef func_80034C24
+#undef func_801C0DE4
+#define func_80034C24 func_80034C24__func_801CD378
+#define func_801C0DE4 func_801C0DE4__func_801CD378
+#define func_801C0EB0 func_801C0EB0__func_801CD378
+#define func_801C0F18 func_801C0F18__func_801CD378
+#define func_801CCE50 func_801CCE50__func_801CD378
+#define func_801CDBD4 func_801CDBD4__func_801CD378
 #undef func_80034C24
 #undef func_801C0DE4
 #undef func_801C0EB0
@@ -492,3 +582,7 @@ f32 func_801CDBD4(f32 arg0, f32 arg1, f32 arg2) {
     return ((arg1 - arg0) * arg2) + arg0;
 }
 
+/* Readonly constants retained after the last ASM donor became C. */
+static const f64 D_801DD3F0__rodata[] = {1000000.0};
+/* Readonly constants retained after the last ASM donor became C. */
+static const f64 D_801DD3F8__rodata[] = {1000000.0};

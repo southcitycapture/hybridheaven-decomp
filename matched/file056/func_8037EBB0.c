@@ -4,6 +4,7 @@ typedef struct func_8037ED08_StructEnt {
     u8 pad[5];
 } func_8037ED08_StructEnt;
 extern func_8037ED08_StructEnt D_80183CE0[];
+extern u8 D_8038A960[];
 void func_8037D418(u8 *arg0, u8 *arg1, s32 arg2);
 
 
@@ -16,7 +17,6 @@ typedef struct func_8037EBB0_StructEntry {
 extern u8 *D_80184140[];
 extern u8 D_803899FC[];
 extern u8 D_80389A08[];
-extern u8 D_8038A960[];
 extern void B_8001B204(u8, ...);
 
 typedef struct func_8037EBB0_Struct {
@@ -26,10 +26,9 @@ typedef struct func_8037EBB0_Struct {
 
 void func_8037EBB0(void *arg0) {
     u32 v;
+    u8 sp60[0x24];
     s32 s1;
     u8 j;
-    u8 sp60[0x1C];
-    u8 pad[8];
     s16 y;
     u8 i;
     u8 done;

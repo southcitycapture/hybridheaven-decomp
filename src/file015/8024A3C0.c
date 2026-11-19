@@ -176,8 +176,39 @@ typedef struct func_8024A588_Obj {
 } func_8024A588_Obj;
 
 
+#undef func_8024A604
+#define func_800058DC func_800058DC__func_8024A588
+#define func_8024A588_Obj func_8024A588_Obj__func_8024A588
+#define func_8024A588_Struct func_8024A588_Struct__func_8024A588
+#define func_8024A604 func_8024A604__func_8024A588
+#define func_8024A604_Struct func_8024A604_Struct__func_8024A588
+extern void func_800058DC(void *, void *);
+typedef struct func_8024A604_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_8024A604_Struct;
+void func_8024A604(func_8024A604_Struct *arg0, s32 arg1);
+
+
+typedef struct func_8024A588_Struct {
+    s16 unk00;
+    s16 pad02;
+    s32 unk04;
+    f32 unk08;
+    s16 unk0C;
+    s16 pad0E;
+    f32 unk10;
+    s32 unk14;
+    s32 unk18;
+    s32 unk1C;
+} func_8024A588_Struct;
+
+typedef struct func_8024A588_Obj {
+    u8 pad00[0x3C];
+    s16 unk3C;
+} func_8024A588_Obj;
+
 void func_8024A588(func_8024A588_Obj *arg0, s32 arg1) {
-    s32 pad[4];
     func_8024A588_Struct sp18;
 
     if (func_801C3B5C() == 4) {
@@ -191,6 +222,12 @@ void func_8024A588(func_8024A588_Obj *arg0, s32 arg1) {
         func_800058DC(arg0, func_8024A604);
     }
 }
+#undef func_800058DC
+#undef func_8024A588_Obj
+#undef func_8024A588_Struct
+#undef func_8024A604
+#undef func_8024A604_Struct
+#define func_8024A604 func_8024A604__decl
 
 #undef func_8024A604
 #define func_800058DC func_800058DC__func_8024A604
@@ -213,7 +250,6 @@ void func_8024A604(func_8024A604_Struct *arg0, s32 arg1) {
 #undef func_8024A644
 #define func_8024A604 func_8024A604__decl
 
-/* hh-block asm/nonmatchings/file015/8024A3C0/_ro_func_8024A644.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024A3C0/func_8024A644.s","D_802591F0"]]} */
 /* Readonly diagnostics, formerly _ro_func_8024A644.s. */
 const u8 D_802591F0[0x3C] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a03_s07provdemo.c";
@@ -272,7 +308,6 @@ void func_8024A780(s32 arg0, s32 arg1) {
 }
 #undef func_8024A7C8
 
-/* hh-block asm/nonmatchings/file015/8024A3C0/_ro_func_8024A7C8.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024A3C0/func_8024A7C8.s","D_8025922C"]]} */
 /* Readonly diagnostics, formerly _ro_func_8024A7C8.s. */
 const u8 D_8025922C[0x3C] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a03_s07provdemo.c";
@@ -581,12 +616,10 @@ volatile s32 arg1;
 
 
 #undef func_8024ADE0
-/* hh-block asm/nonmatchings/file015/8024A3C0/_ro_named_d41dca6b2068526e.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024A3C0/func_8024AAC4.s","D_80259268"]]} */
 /* Readonly diagnostics, formerly _ro_named_d41dca6b2068526e.s. */
 const u8 D_80259268[0x3C] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a03_s07provdemo.c";
 
-/* hh-block asm/nonmatchings/file015/8024A3C0/_ro_named_6e315b2112d7932f.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024A3C0/func_8024ADE0.s","D_802592A4"]]} */
 /* Readonly diagnostics, formerly _ro_named_6e315b2112d7932f.s. */
 const u8 D_802592A4[0x3C] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a03_s07provdemo.c";

@@ -101,14 +101,52 @@ struct func_801E1FA8_StructNode {
 
 #define ROOT (*root)
 
+#undef ROOT
+#define func_801E1FA8_StructData func_801E1FA8_StructData__func_801E1FA8
+#define func_801E1FA8_StructMid func_801E1FA8_StructMid__func_801E1FA8
+#define func_801E1FA8_StructNode func_801E1FA8_StructNode__func_801E1FA8
+#define func_801E1FA8_StructObj func_801E1FA8_StructObj__func_801E1FA8
+#define func_801E2540_StructA func_801E2540_StructA__func_801E1FA8
+#define func_801E2540_StructB func_801E2540_StructB__func_801E1FA8
+#define func_801E2540_StructC func_801E2540_StructC__func_801E1FA8
+#define func_801E2540_StructR func_801E2540_StructR__func_801E1FA8
+#define ROOT (*(func_801E2540_StructR **)D_801DAB14)
+typedef struct func_801E2540_StructC { u8 pad0[4]; f32 f4; f32 f8; f32 fC; u8 pad10[2]; s16 h12; } func_801E2540_StructC;
+typedef struct func_801E2540_StructB { u8 pad[0x2C]; func_801E2540_StructC *p2C; } func_801E2540_StructB;
+typedef struct func_801E2540_StructA { u8 pad[0x24]; func_801E2540_StructB *p24; } func_801E2540_StructA;
+typedef struct func_801E2540_StructR { u8 pad[8]; func_801E2540_StructA *p8; } func_801E2540_StructR;
+#define ROOT (*(func_801E2540_StructR **)D_801DAB14)
+
+
+struct func_801E1FA8_StructData {
+    u8 pad[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+};
+struct func_801E1FA8_StructObj {
+    u8 pad[0x2C];
+    struct func_801E1FA8_StructData *unk2C;
+};
+struct func_801E1FA8_StructMid {
+    u8 pad[0x24];
+    struct func_801E1FA8_StructObj *unk24;
+};
+struct func_801E1FA8_StructNode {
+    u8 pad[8];
+    struct func_801E1FA8_StructMid *unk8;
+};
+
+#define ROOT (*(struct func_801E1FA8_StructNode **)D_801DAB14)
+
 s32 func_801E1FA8(s32 arg0, s32 arg1) {
     f32 temp = 63.4000015f;
-    struct func_801E1FA8_StructNode **root;
     if (D_8038C17C(0.0f, 0.800000191f, -16.4f, 110.7f,
         4.9000001f, (-1.10000002f), 101.699997f, -9.5f,
         (-33.0999985f), 59.5f, -29.0f, (-14.8999996f),
         59.2000008f, (-37.5999985f), temp, temp) != 0) {
-        root = (struct func_801E1FA8_StructNode **)D_801DAB14;
         ROOT->unk8->unk24->unk2C->unk4 = 9.0f;
         ROOT->unk8->unk24->unk2C->unk8 = 0.0f;
         ROOT->unk8->unk24->unk2C->unkC = -2.0f;
@@ -118,6 +156,16 @@ s32 func_801E1FA8(s32 arg0, s32 arg1) {
     }
     return 5;
 }
+#undef ROOT
+#undef func_801E1FA8_StructData
+#undef func_801E1FA8_StructMid
+#undef func_801E1FA8_StructNode
+#undef func_801E1FA8_StructObj
+#undef func_801E2540_StructA
+#undef func_801E2540_StructB
+#undef func_801E2540_StructC
+#undef func_801E2540_StructR
+#define ROOT (*root)
 
 
 s32 func_801E20F4(s32 arg0, s32 arg1)

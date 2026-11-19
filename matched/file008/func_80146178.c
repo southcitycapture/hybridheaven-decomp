@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 
 typedef struct func_80146178_Struct {
     s16 unk0;
@@ -12,6 +13,11 @@ typedef struct func_80146178_Struct {
     u8 pad0[4];
     s16 unkC;
     s16 unkE;
+    u8 unk10;
+    u8 unk11;
+    u8 unk12;
+    u8 unk13;
+    u8 pad14[0x24];
 } func_80146178_Struct;
 
 typedef struct func_80146178_Global {
@@ -23,7 +29,6 @@ extern func_80146178_Global D_80181A84;
 extern s32 func_80146088();
 
 void func_80146178(s32 arg1, s32 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, u16 arg7, u8 arg8, u8 arg9, u8 arg10, u8 arg11) {
-    u8 pad[0x28];
     func_80146178_Struct sp1C;
 
     sp1C.unk0 = arg3;

@@ -251,12 +251,52 @@ typedef struct func_80000A5C_Struct {
 } func_80000A5C_Struct;
 
 /* GGA: mainSchedAudioThread */
+#undef D_80037358
+#undef D_800374A8
+#undef func_800266B0
+#undef func_80026B0C
+#undef func_80026C9C
+#undef func_80029690
+#undef func_80030FF0
+#undef func_800349E0
+#define D_80037358 D_80037358__func_80000A5C_9aecd73e
+#define D_800374A8 D_800374A8__func_80000A5C_9aecd73e
+#define func_80000A5C_Struct func_80000A5C_Struct__func_80000A5C_9aecd73e
+#define func_800266B0 func_800266B0__func_80000A5C_9aecd73e
+#define func_80026B0C func_80026B0C__func_80000A5C_9aecd73e
+#define func_80026C9C func_80026C9C__func_80000A5C_9aecd73e
+#define func_80029690 func_80029690__func_80000A5C_9aecd73e
+#define func_80030FF0 func_80030FF0__func_80000A5C_9aecd73e
+#define func_800349E0 func_800349E0__func_80000A5C_9aecd73e
+extern u8 D_80037358[];
+extern u8 D_800374A8[];
+
+#if __LINE__ == 2
+void func_80000A5C_alignment(void) {
+    D_80037358[0] = 1;
+    D_800374A8[0] = 2;
+}
+#endif
+extern void func_800266B0(void *a0, void *a1, s32 a2);
+extern void func_80026B0C(void *a0);
+extern void func_80026C9C(void *a0);
+extern void func_80029690();
+extern s32 func_80030FF0(void *a0);
+extern void func_800349E0();
+
+typedef struct func_80000A5C_Struct {
+    u8 pad[0x50];
+    void *unk50;
+    s32 unk54;
+} func_80000A5C_Struct;
+
+/* GGA: mainSchedAudioThread */
 void func_80000A5C(u8 *arg0) {
     void *sp64;
     func_80000A5C_Struct *sp60;
     u8 *s3;
     u32 s1;
-    u8 pad[16];
+    void *replyQueue;
 
     sp64 = NULL;
     sp60 = NULL;
@@ -266,9 +306,11 @@ void func_80000A5C(u8 *arg0) {
         func_800349E0();
         s3 = *(u8 **)(arg0 + 0x88C);
         if (s3 != NULL) {
+            u8 *activeTask;
             func_80029690();
             func_800266B0(arg0 + 0xE8, &sp64, 1);
-            if (func_80030FF0(s3 + 0x10) != 0) {
+            activeTask = s3 + 0x10;
+            if (func_80030FF0(activeTask) != 0) {
                 s1 = 1;
             } else {
                 s1 = 2;
@@ -283,15 +325,34 @@ void func_80000A5C(u8 *arg0) {
             func_80026300(arg0 + 0x158, &sp64, 1);
         }
         if (s1 == 1) {
-            func_80026B0C(s3 + 0x10);
-            func_80026C9C(s3 + 0x10);
+            u8 *task = s3 + 0x10;
+            func_80026B0C(task);
+            func_80026C9C(task);
         } else if (s1 == 2) {
             func_80026300(arg0 + 0xE8, &sp64, 1);
         }
-        func_80026300(sp60->unk50, (void *)sp60->unk54, 1);
+        replyQueue = sp60->unk50;
+        func_80026300(replyQueue, (void *)sp60->unk54, 1);
         s1 = 0;
     }
 }
+#undef D_80037358
+#undef D_800374A8
+#undef func_80000A5C_Struct
+#undef func_800266B0
+#undef func_80026B0C
+#undef func_80026C9C
+#undef func_80029690
+#undef func_80030FF0
+#undef func_800349E0
+#define D_80037358 D_80037358__func_80000A5C
+#define D_800374A8 D_800374A8__func_80000A5C
+#define func_800266B0 func_800266B0__func_80000A5C
+#define func_80026B0C func_80026B0C__func_80000A5C
+#define func_80026C9C func_80026C9C__func_80000A5C
+#define func_80029690 func_80029690__func_80000A5C
+#define func_80030FF0 func_80030FF0__func_80000A5C
+#define func_800349E0 func_800349E0__func_80000A5C
 #undef D_80037358
 #undef D_800374A8
 #undef func_800266B0

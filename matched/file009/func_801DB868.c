@@ -1,10 +1,39 @@
-#include "context.h"
-
+#include "common.h"
+typedef struct func_801DB868_StructGlobal {
+    u8 pad[0xDC];
+    s32 unkDC;
+    u8 pad2[0x1031 - 0xE0];
+    u8 unk1031;
+} func_801DB868_StructGlobal;
+extern func_801DB868_StructGlobal D_801BBBF0;
+typedef struct func_801DB6B8_StructA {
+    u8 pad[0x10];
+    f32 unk10;
+    u8 pad2[0x1C];
+    u32 unk30;
+} func_801DB6B8_StructA;
+extern func_801DB6B8_StructA D_801BC03C;
+extern func_801DB6B8_StructA D_801BC3D8;
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
 typedef struct func_801DB868_StructVec {
     f32 x;
     f32 y;
     f32 z;
 } func_801DB868_StructVec;
+typedef struct func_801DB868_StructObj {
+    u8 pad[0xC];
+    u16 unkC;
+    u8 pad2[0x74 - 0xE];
+    u8 unk74;
+    u8 pad3[0xB0 - 0x75];
+    func_801DB868_StructVec unkB0;
+    func_801DB868_StructVec unkBC;
+    func_801DB868_StructVec unkC8;
+    func_801DB868_StructVec unkD4;
+} func_801DB868_StructObj;
+void func_801DB788(func_801DB868_StructVec arg0, func_801DB868_StructObj *arg1, f32 arg2, f32 arg3, s32 arg4);
+
 
 typedef struct func_801DB868_StructModel {
     u8 pad[0x12];
@@ -23,32 +52,9 @@ typedef struct func_801DB868_StructElem {
     func_801DB868_StructModel *unk2C;
 } func_801DB868_StructElem;
 
-typedef struct func_801DB868_StructObj {
-    u8 pad[0xC];
-    u16 unkC;
-    u8 pad2[0x74 - 0xE];
-    u8 unk74;
-    u8 pad3[0xB0 - 0x75];
-    func_801DB868_StructVec unkB0;
-    func_801DB868_StructVec unkBC;
-    func_801DB868_StructVec unkC8;
-    func_801DB868_StructVec unkD4;
-} func_801DB868_StructObj;
-
-typedef struct func_801DB868_StructGlobal {
-    u8 pad[0xDC];
-    s32 unkDC;
-    u8 pad2[0x1031 - 0xE0];
-    u8 unk1031;
-} func_801DB868_StructGlobal;
-
-f32 func_8001EAD0(s16);
-f32 func_8001EB64(s16);
 s32 func_80126944(void);
 void func_8013A334(func_801DB868_StructVec *, func_801DB868_StructElem **, func_801DB868_StructObj *, u16);
-void func_801DB788(func_801DB868_StructVec, func_801DB868_StructObj *, f32, f32, s32);
 void func_802261CC(s32, func_801DB868_StructElem **);
-extern func_801DB868_StructGlobal D_801BBBF0;
 
 void func_801DB868(func_801DB868_StructElem **arg0, func_801DB868_StructObj *arg1) {
     func_801DB868_StructVec v;
@@ -60,7 +66,7 @@ void func_801DB868(func_801DB868_StructElem **arg0, func_801DB868_StructObj *arg
     u8 *p;
     s32 id;
     s16 raw;
-    s32 pad;
+    s32 state;
 
     raw = arg0[0]->unk2C->unk12;
     angle = -raw;
@@ -104,7 +110,8 @@ void func_801DB868(func_801DB868_StructElem **arg0, func_801DB868_StructObj *arg
         v = arg0[24]->unk2C->unkA4;
         func_801DB788(v, arg1, c, s, 0);
     }
-    if (func_80126944() == 1 && arg1->unk74 != 4 && D_801BBBF0.unk1031 > 0 && D_801BBBF0.unk1031 < 14) {
+    state = func_80126944();
+    if (state == 1 && arg1->unk74 != 4 && D_801BBBF0.unk1031 > 0 && D_801BBBF0.unk1031 < 14) {
         id = arg0[0]->unk18;
         if (id == D_801BBBF0.unkDC) {
             p = (u8 *)&D_801BC03C;

@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 
 extern s32 D_8017BAD8;
 extern u8 D_801BCC21;
@@ -31,12 +32,10 @@ typedef struct func_8012E31C_StructObj {
 
 void func_8012E31C(void *arg0, s32 arg1) {
     func_8012E31C_StructState *temp_t2;
-    s32 pad;
+    s32 var_v1;
     s32 *sp24;
     s16 var_t1;
-    register s32 *var_a0;
-    s32 var_v1;
-    register func_8012E31C_StructData *temp_v0_2;
+    func_8012E31C_StructData *temp_v0_2;
 
     temp_t2 = ((func_8012E31C_StructObj *)arg0)->unk5C;
     sp24 = temp_t2->unk4;
@@ -55,20 +54,14 @@ void func_8012E31C(void *arg0, s32 arg1) {
                 temp_t2->unk9C = 0;
             }
         }
-        if ((s32) temp_t2->unkC >= 2) {
-            var_v1 = 4;
-            var_a0 = sp24 + 1;
-            do {
-                if (*var_a0 < 0) {
-                } else {
-                    temp_v0_2 = (*(func_8012E31C_StructNode **)(arg1 + var_v1))->unk2C;
-                    temp_v0_2->unk24 |= 0x100;
-                    temp_v0_2->unk30 = (s32) &D_8017BAD8 | 0x40000000;
-                    temp_v0_2->unk4B = var_t1;
-                }
-                var_v1 += 4;
-                var_a0++;
-            } while (var_v1 < temp_t2->unkC * 4);
+        for (var_v1 = 1; var_v1 < temp_t2->unkC; var_v1++) {
+            if (sp24[var_v1] < 0) {
+                continue;
+            }
+            temp_v0_2 = ((func_8012E31C_StructNode **)arg1)[var_v1]->unk2C;
+            temp_v0_2->unk24 |= 0x100;
+            temp_v0_2->unk30 = (s32) &D_8017BAD8 | 0x40000000;
+            temp_v0_2->unk4B = var_t1;
         }
     }
 }

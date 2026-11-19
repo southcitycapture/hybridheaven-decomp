@@ -1,4 +1,8 @@
-#include "context.h"
+#include "common.h"
+extern void (*D_80216D10[])(void *, s32);
+extern void func_800058DC(void *, void *);
+extern void func_8023A154(void);
+
 
 struct func_8023BC98_Node {
     u8 pad0[0x10];
@@ -33,7 +37,7 @@ void func_8023BC98(void *argp, s32 arg1) {
     }
     t = t - 0x19;
     if (t > 0) {
-        arg1 = t * 1;
+        arg1 = (u32)t;
         D_8023A9D8(t & 0xFF, t, arg1, a3);
         D_8023B3CC(t & 0xFF);
         while (p != NULL) {

@@ -1,4 +1,51 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+extern s32 D_801BBCCC;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern void func_800058DC();
+extern void func_802254F8(void *, s32, u8);
+extern void *func_8035FFA8(void *arg0);
+typedef struct func_80360020_Struct0 {
+    u8 pad[0x36];
+    u16 unk36;
+} func_80360020_Struct0;
+typedef struct func_80360020_Struct1 {
+    u8 pad[0x2D9];
+    u8 unk2D9;
+} func_80360020_Struct1;
+typedef struct func_80360588_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80360588_Struct;
+void func_80360400(struct func_80360588_Struct *arg0, s32 arg1, s32 arg2);
+typedef struct func_80361B50_Struct {
+    u8 pad0[0x2DE];
+    u8 unk2DE;
+    u8 pad1[0x2EC - 0x2DF];
+    f32 unk2EC;
+} func_80361B50_Struct;
+typedef struct func_80361B7C_StructA {
+    u8 pad0[0x2D8];
+    u8 unk2D8;
+    u8 pad1[2];
+    u8 unk2DB;
+} func_80361B7C_StructA;
+typedef struct func_80361B7C_StructB {
+    u8 pad0[0x7C];
+    s32 unk7C;
+    s16 unk80;
+    u8 pad1[2];
+    u8 unk84;
+} func_80361B7C_StructB;
+typedef struct func_80361B7C_StructC {
+    u8 pad0[0x14];
+    s32 unk14;
+    u8 pad1[4];
+    s32 unk1C;
+} func_80361B7C_StructC;
+
 void func_8035FEC0(s32 arg0);
 void func_80360020(func_80360020_Struct0 *arg0, func_80360020_Struct1 *arg1);
 void func_80361B50(s32 arg0, s32 arg1, func_80361B50_Struct *arg2);
@@ -44,7 +91,7 @@ void func_80363D5C(func_80363D5C_StructA *arg0, s32 arg1) {
     u8 *sp34;
     func_80363D5C_StructS *s1;
     func_80363D5C_StructS *sp2C;
-    s32 pad;
+    u8 level;
     void *sp20;
     void *a3;
 
@@ -62,7 +109,8 @@ void func_80363D5C(func_80363D5C_StructA *arg0, s32 arg1) {
     if (sp34[0x84] == 2) {
         if (s1->unk2E8 >= 2 && s1->unk32C == 0) {
             s1->unk32C = 1;
-            func_802254F8(arg0, 5, (u8)(u32)(D_8036153C(arg0) * 7.0f));
+            level = (u8)(u32)(D_8036153C(arg0) * 7.0f);
+            func_802254F8(arg0, 5, level);
             func_8035FEC0((s32)arg0);
             sp2C->unk320 = D_80360588((s32)arg0, arg1);
             if (sp2C->unk2D8 == 0xD && sp2C->unk2DB != 0) {

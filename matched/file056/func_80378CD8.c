@@ -1,4 +1,5 @@
 #include "common.h"
+extern void D_80130E34(s32, s32, f32, s32, f32 *, f32 *);
 typedef struct func_80379244_StructB {
     u8 pad0[4];
     f32 unk4;
@@ -19,11 +20,8 @@ typedef struct func_803794DC_StructG {
 extern func_803794DC_StructG *D_801BBCD8;
 extern u8 D_801BBE22[];
 extern s16 D_803889AC;
+extern u8 D_803889B0;
 extern s32 D_8038A900;
-extern void func_800058DC(s32, void *);
-extern void func_8014B4A0(u16, f32 *);
-extern s32 func_8014C1F0(u16);
-void func_803790F0(s32 arg0, s32 arg1);
 typedef struct func_803794DC_StructB {
     u8 pad0[4];
     f32 unk4;
@@ -37,28 +35,46 @@ typedef struct func_803794DC_StructA {
     u8 pad0[0x30];
     func_803794DC_StructB *unk30;
 } func_803794DC_StructA;
-
-
-extern void D_80130E34(s32, s32, f32, s32, f32 *, f32 *);
-extern s32 D_8014C1F0(u16, f32 *);
-extern void func_8014C194(u16);
+extern func_803794DC_StructA *D_8038A910;
+typedef struct func_80379690_StructB {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    u8 padC[6];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+} func_80379690_StructB;
+typedef struct func_80379690_StructA {
+    u8 pad0[0x30];
+    func_80379690_StructB *unk30;
+} func_80379690_StructA;
+#define OBJ ((func_80379690_StructA *)D_8038A910)
+extern void func_800058DC(s32, void *);
 extern void func_80006088(s32);
-extern void func_80149684();
 extern void func_801170DC(s32);
+extern void func_80149684();
+extern void func_8014B4A0(u16, f32 *);
+extern s32 func_8014C1F0(u16);
+void func_803790F0(s32 arg0, s32 arg1);
+
 extern const f64 D_80389500;
 extern const f64 D_80389508;
-extern u8 D_803889B0;
+extern s32 D_8014C1F0(u16, f32 *);
+extern void func_8014C194(u16);
 
+#undef OBJ
 #define OBJ ((func_803794DC_StructA *)D_8038A900)
 
 void func_80378CD8(s32 arg0, s32 arg1) {
-    u8 pad[4];
-    f32 sp48[3];
+    f32 sp48[4];
     f32 sp44;
     f32 sp40;
     f32 dx;
     f32 dy;
-    u8 pad2[4];
+    f32 dx2;
     void *sp28;
 
     sp44 = 160.0f;
@@ -95,9 +111,9 @@ void func_80378CD8(s32 arg0, s32 arg1) {
             }
 #undef k
 #define k 0.85
-            dx = (sp44 - OBJ->unk30->unk4) / 10.0f;
+            dx2 = (sp44 - OBJ->unk30->unk4) / 10.0f;
             dy = (sp40 - OBJ->unk30->unk8) / 10.0f;
-            OBJ->unk30->unk4 += dx;
+            OBJ->unk30->unk4 += dx2;
             OBJ->unk30->unk8 += dy;
             OBJ->unk30->unk18 = OBJ->unk30->unk18 * k;
             OBJ->unk30->unk1C = OBJ->unk30->unk1C * k;

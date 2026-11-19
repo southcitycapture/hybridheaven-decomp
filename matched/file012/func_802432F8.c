@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+extern s32 func_800058DC(s32, void *);
+
 
 struct func_802432F8_Struct {
     u8 pad0[0x34];
@@ -7,13 +9,11 @@ struct func_802432F8_Struct {
     u8 unk41;
     u8 unk42;
 };
-
 extern void func_8024334C();
 
 void func_802432F8(struct func_802432F8_Struct *arg0, s32 arg1) {
-    u16 *temp_v0;
+    u16 *temp_v0 = arg0->unk34;
 
-    temp_v0 = arg0->unk34;
     if (++arg0->unk42 >= 0x15) {
         arg0->unk42 = 0;
         arg0->unk41 = 0;

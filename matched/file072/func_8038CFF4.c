@@ -95,7 +95,7 @@ typedef struct func_8038CFF4_StructH {
 #define H30(p) (*(u16 *)((u8 *)(p) + 0x30))
 
 void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
-    s16 pad36;
+    s16 a;
     s16 sp34;
     func_8038CFF4_StructO *sp30;
     func_8038CFF4_StructS *a1;
@@ -103,7 +103,6 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
     f32 sp24;
     f64 fv;
     s32 v;
-    s16 a;
 
     sp34 = (s16)(0x2800 - GG.unk232) & 0x1FFF;
     sp30 = (func_8038CFF4_StructO *)((D_801BBBF0.unkDC == arg0->unkC->unkC) ? D_801BBC8C : D_801BBCAC);

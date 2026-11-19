@@ -1,4 +1,38 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_8038DA54_G {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0x1031 - 0xE0];
+    u8 unk1031;
+} func_8038DA54_G;
+extern func_8038DA54_G D_801BBBF0;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern s32 func_800058DC(s32, void *);
+typedef struct func_8038D834_StructA {
+    u8 pad0[0x92];
+    u8 v92;
+    u8 v93;
+    u8 pad94[6];
+    s16 v9A;
+    u8 pad9C[4];
+    u8 vA0;
+    u8 vA1;
+    u8 vA2;
+} func_8038D834_StructA;
+typedef struct func_8038D834_StructB {
+    s16 v0;
+    s16 v2;
+    u8 pad4[0x2D4];
+    u8 v2D8;
+    u8 v2D9;
+} func_8038D834_StructB;
+typedef struct func_8038D834_StructC {
+    u8 pad0[0x30];
+    s32 v30;
+} func_8038D834_StructC;
+void func_8038D834(func_8038D834_StructA *a, func_8038D834_StructB *b, func_8038D834_StructC *c);
+
 struct func_8038DA54_Struct {
     u8 pad0[0xC];
     s32 unkC;
@@ -21,22 +55,13 @@ struct func_8038DA54_Bits {
     u32 a : 2;
     u32 rest : 19;
 };
-typedef struct func_8038DA54_G {
-    u8 pad0[0xDC];
-    s32 unkDC;
-    u8 pad1[0x1031 - 0xE0];
-    u8 unk1031;
-} func_8038DA54_G;
-extern func_8038DA54_G D_801BBBF0;
 extern s32 func_8022AB58();
 extern u8 func_8022B3E0[];
-
 extern u8 D_8038DA54[];
 #define g (&D_801BBBF0)
 void func_8038DA54(struct func_8038DA54_Struct *arg0, s32 arg1) {
     func_8038D834_StructB *a1;
     func_8038D834_StructC *a3;
-    s32 c;
 
     a1 = (arg0->unkC == g->unkDC) ? (func_8038D834_StructB *)D_801BC03C : (func_8038D834_StructB *)D_801BC3D8;
     a3 = (arg0->unkC == g->unkDC) ? (func_8038D834_StructC *)D_801BC3D8 : (func_8038D834_StructC *)D_801BC03C;

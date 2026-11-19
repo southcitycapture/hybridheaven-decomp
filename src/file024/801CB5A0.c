@@ -128,26 +128,33 @@ struct func_801CBCE8_Struct {
     u8 unk22;
 };
 
+#define func_801CBCE8_Struct func_801CBCE8_Struct__func_801CBCE8
+#define func_801CBD54 func_801CBD54__func_801CBCE8
+extern void func_801CBD54();
+
+struct func_801CBCE8_Struct {
+    u8 pad[0x22];
+    u8 unk22;
+};
+
 void func_801CBCE8(s32 arg0, struct func_801CBCE8_Struct **arg1)
 {
-  u8 var_v0;
-  struct func_801CBCE8_Struct *temp_t8;
-  s32 new_var;
+  u8 i;
   if (func_8013EB2C() != 0)
   {
     func_80142570();
-    var_v0 = 0;
-    new_var = arg0;
+    i = 0;
     do
     {
-      ;
-      arg1[var_v0]->unk22 = 0;
-      var_v0++;
+      arg1[i]->unk22 = 0;
+      i++;
     }
-    while (var_v0 < 9);
+    while (i < 9);
     func_800058DC((void *) arg0, func_801CBD54);
   }
 }
+#undef func_801CBCE8_Struct
+#undef func_801CBD54
 
 
 extern void func_80005700(s32);

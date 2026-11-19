@@ -1,8 +1,8 @@
 #include "common.h"
+
 extern s32 D_801BBCCC;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-
 
 typedef struct func_802243B4_StructC {
     u8 pad0[0x12];
@@ -27,8 +27,8 @@ typedef struct func_802243B4_StructD {
     f32 unk14;
 } func_802243B4_StructD;
 
-#define SPD(p) ((s14 > 0.0 ? s14 : (p)->unk10))
-#define RAW(p) ((s16)(s32)(SPD(p) * 128.0f))
+#define SPD(p, speed) (((speed) > 0.0 ? (speed) : (p)->unk10))
+#define RAW(p, speed) ((s16)(s32)(SPD(p, speed) * 128.0f))
 #define WRAP(x) (((x) & 0x1000) ? (((x) & 0x1FFF) - 0x2000) : ((x) & 0x1FFF))
 
 s32 func_802243B4(s32 arg0, s16 arg1) {
@@ -37,9 +37,9 @@ s32 func_802243B4(s32 arg0, s16 arg1) {
     func_802243B4_StructC *m;
     s16 w;
     s16 a;
-    s32 r;
-    s32 t;
-    f32 s14;
+    u8 r;
+    long t;
+    f32 speed;
 
     o = (func_802243B4_StructA *)arg0;
     if (arg0 == D_801BBCCC) {
@@ -49,9 +49,9 @@ s32 func_802243B4(s32 arg0, s16 arg1) {
     }
     m = o->unk24->unk2C;
     w = WRAP((s16)(m->unk12 - arg1));
-    s14 = p->unk14;
+    speed = p->unk14;
     r = 0;
-    a = (WRAP(RAW(p)) < 0) ? -WRAP(RAW(p)) : WRAP(RAW(p));
+    a = (WRAP(RAW(p, speed)) < 0) ? -WRAP(RAW(p, speed)) : WRAP(RAW(p, speed));
     if (w < -0xE00) {
         r = 3;
     } else if (w < -0x600) {
@@ -70,11 +70,10 @@ s32 func_802243B4(s32 arg0, s16 arg1) {
         if (t >= 4) {
             r = 4;
         } else {
-            r = r * 1;
             if (t > 0) {
                 r = 1;
             }
         }
     }
-    return r;
+    return (s32)r;
 }

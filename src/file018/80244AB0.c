@@ -1319,29 +1319,103 @@ typedef struct func_80245A4C_Struct {
     func_80245B90_StructInner *unk5C;
 } func_80245A4C_Struct;
 
-void func_80245A4C(func_80245A4C_Struct *arg0, s32 arg1) {
-    u8 pad[16];
-    func_80245B90_StructInner *sp2C;
-    s32 v;
-    func_80245A4C_Node *n;
+#undef func_80245B90
+#define D_80244AB0 D_80244AB0__func_80245A4C_d1b47d61
+#define D_80258F3C D_80258F3C__func_80245A4C_d1b47d61
+#define func_8012CE9C func_8012CE9C__func_80245A4C_d1b47d61
+#define func_80245A4C_Mid func_80245A4C_Mid__func_80245A4C_d1b47d61
+#define func_80245A4C_Node func_80245A4C_Node__func_80245A4C_d1b47d61
+#define func_80245A4C_Struct func_80245A4C_Struct__func_80245A4C_d1b47d61
+#define func_80245B90 func_80245B90__func_80245A4C_d1b47d61
+#define func_80245B90_Struct func_80245B90_Struct__func_80245A4C_d1b47d61
+#define func_80245B90_StructInner func_80245B90_StructInner__func_80245A4C_d1b47d61
+#define func_80246E60_StructGlobal func_80246E60_StructGlobal__func_80245A4C_d1b47d61
+extern s32 D_80244AB0();
+typedef struct func_80246E60_StructGlobal {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80246E60_StructGlobal;
+extern func_80246E60_StructGlobal D_80258F3C;
+extern s32 func_8012CE9C(s32, void *, func_80246E60_StructGlobal, s32);
+typedef struct func_80245A4C_Node {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    s32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_80245A4C_Node;
+typedef struct func_80245A4C_Mid {
+    u8 pad0[0x2C];
+    func_80245A4C_Node *unk2C;
+} func_80245A4C_Mid;
+typedef struct func_80245B90_StructInner {
+    u8 pad0[0x78];
+    s16 unk78;
+} func_80245B90_StructInner;
+typedef struct func_80245A4C_Struct {
+    u8 pad0[0x24];
+    func_80245A4C_Mid *unk24;
+    u8 pad28[0x34];
+    func_80245B90_StructInner *unk5C;
+} func_80245A4C_Struct;
+typedef struct func_80245B90_Struct {
+    u8 pad0[0x2C];
+    s32 unk2C;
+    s32 unk30;
+    u8 pad34[0x28];
+    func_80245B90_StructInner *unk5C;
+    u8 pad60[0x34];
+    s16 unk94;
+    u8 pad96[0x6];
+    s32 unk9C;
+} func_80245B90_Struct;
+void func_80245B90(func_80245B90_Struct *arg0, s32 arg1);
 
-    sp2C = arg0->unk5C;
-    if (func_80244AB0() == 0) {
+typedef struct func_80245A4C_StructWork {
+    f32 goalX;
+    func_80245B90_StructInner *inner;
+    func_80245A4C_Node *node;
+    s32 angle;
+    s32 context;
+    f32 goalZ;
+} func_80245A4C_StructWork;
+
+void func_80245A4C(func_80245A4C_Struct *arg0, s32 arg1) {
+    func_80245A4C_StructWork work;
+
+    work.inner = arg0->unk5C;
+    work.context = arg1;
+    if (D_80244AB0() == 0) {
         D_8025C708 = 0;
-        if (func_8012CE9C(arg1, sp2C, D_80258F3C, 0xA) == 0) {
-            func_80010550(arg1, sp2C);
-            n = arg0->unk24->unk2C;
-            v = (arg0->unk24->unk2C->unk12 - func_8001EF38(0.0f - n->unk4, 350.0f - *(f32 *)&n->unkC)) & 0x1FFF & 0xFFFF;
-            if ((v < 0x200) || ((v >= 0x1E01) && (v < 0x1FFF))) {
-                sp2C->unk78 = 1;
-                n = arg0->unk24->unk2C;
-                func_80127430(n->unk4, n->unk8, n->unkC, 0x66A, 1.79999995f, 1.0f);
+        if (func_8012CE9C(work.context, work.inner, D_80258F3C, 0xA) == 0) {
+            func_80010550(work.context, work.inner);
+            work.node = arg0->unk24->unk2C;
+            work.goalX = 0.0f;
+            work.goalZ = 350.0f;
+            work.angle = (arg0->unk24->unk2C->unk12 - func_8001EF38(work.goalX - work.node->unk4, work.goalZ - *(f32 *)&work.node->unkC)) & 0x1FFF & 0xFFFF;
+            if ((work.angle < 0x200) || ((work.angle >= 0x1E01) && (work.angle < 0x1FFF))) {
+                work.inner->unk78 = 1;
+                work.node = arg0->unk24->unk2C;
+                func_80127430(work.node->unk4, work.node->unk8, work.node->unkC, 0x66A, 1.79999995f, 1.0f);
                 func_800058DC(arg0, func_80245B90);
             }
-            func_8012A7F4(arg0, 0.0f, 350.0f, 0x40);
+            func_8012A7F4(arg0, work.goalX, work.goalZ, 0x40);
         }
     }
 }
+#undef D_80244AB0
+#undef D_80258F3C
+#undef func_8012CE9C
+#undef func_80245A4C_Mid
+#undef func_80245A4C_Node
+#undef func_80245A4C_Struct
+#undef func_80245B90
+#undef func_80245B90_Struct
+#undef func_80245B90_StructInner
+#undef func_80246E60_StructGlobal
+#define func_80245B90 func_80245B90__func_80245A4C
 #undef func_80245B90
 
 extern func_80246E60_StructGlobal D_80258F18;
@@ -1702,28 +1776,151 @@ typedef struct func_802462CC_Struct {
     func_802462CC_StructI *unk5C;
 } func_802462CC_Struct;
 
-void func_802462CC(func_802462CC_Struct *arg0, s32 arg1) {
-    u8 pad[16];
-    func_802462CC_StructI *sp2C;
-    s32 v;
+#undef func_80244AB0
+#undef func_80246410
+#define D_801BBCD0 D_801BBCD0__func_802462CC_82059ed9
+#define D_80258F3C D_80258F3C__func_802462CC_82059ed9
+#define func_8012CE9C func_8012CE9C__func_802462CC_82059ed9
+#define func_80244AB0 func_80244AB0__func_802462CC_82059ed9
+#define func_80244AB0_Mid func_80244AB0_Mid__func_802462CC_82059ed9
+#define func_80244AB0_Node func_80244AB0_Node__func_802462CC_82059ed9
+#define func_80244AB0_Struct func_80244AB0_Struct__func_802462CC_82059ed9
+#define func_802462CC_Struct func_802462CC_Struct__func_802462CC_82059ed9
+#define func_802462CC_StructI func_802462CC_StructI__func_802462CC_82059ed9
+#define func_802462CC_StructM func_802462CC_StructM__func_802462CC_82059ed9
+#define func_802462CC_StructN func_802462CC_StructN__func_802462CC_82059ed9
+#define func_80246410 func_80246410__func_802462CC_82059ed9
+#define func_80246410_Struct func_80246410_Struct__func_802462CC_82059ed9
+#define func_80246E60_StructGlobal func_80246E60_StructGlobal__func_802462CC_82059ed9
+#define func_802474E4_StructMid func_802474E4_StructMid__func_802462CC_82059ed9
+#define func_802474E4_StructNode func_802474E4_StructNode__func_802462CC_82059ed9
+typedef struct func_802474E4_StructNode {
+    u8 pad0[0x4];
+    f32 unk4;
+    u8 pad8[0x4];
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_802474E4_StructNode;
+typedef struct func_802474E4_StructMid {
+    u8 pad0[0x2C];
+    func_802474E4_StructNode *unk2C;
+} func_802474E4_StructMid;
+extern struct func_802474E4_StructMid *D_801BBCD0;
+typedef struct func_80246E60_StructGlobal {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80246E60_StructGlobal;
+extern func_80246E60_StructGlobal D_80258F3C;
+extern s32 func_8012CE9C(s32, void *, func_80246E60_StructGlobal, s32);
+typedef struct func_80244AB0_Node {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_80244AB0_Node;
+typedef struct func_80244AB0_Mid {
+    u8 pad0[0x2C];
+    func_80244AB0_Node *unk2C;
+} func_80244AB0_Mid;
+typedef struct func_80244AB0_Struct {
+    u8 pad0[0x24];
+    func_80244AB0_Mid *unk24;
+} func_80244AB0_Struct;
+s32 func_80244AB0(func_80244AB0_Struct *arg0);
+typedef struct func_802462CC_StructI {
+    u8 pad0[0x78];
+    s16 unk78;
+} func_802462CC_StructI;
+typedef struct func_802462CC_StructN {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    s32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_802462CC_StructN;
+typedef struct func_802462CC_StructM {
+    u8 pad0[0x2C];
+    func_802462CC_StructN *unk2C;
+} func_802462CC_StructM;
+typedef struct func_802462CC_Struct {
+    u8 pad0[0x24];
+    func_802462CC_StructM *unk24;
+    u8 pad28[0x34];
+    func_802462CC_StructI *unk5C;
+} func_802462CC_Struct;
+typedef struct func_80246410_Struct func_80246410_Struct;
+void func_80246410(func_80246410_Struct *arg0, s32 arg1);
 
-    sp2C = arg0->unk5C;
-    if (func_80244AB0() == 0) {
+typedef struct func_802462CC_StructDelta {
+    f32 x;
+    f32 z;
+} func_802462CC_StructDelta;
+
+typedef struct func_802462CC_StructFacing {
+    func_802462CC_StructI *inner;
+    s32 targetAngle;
+    s32 relativeAngle;
+    func_80246E60_StructGlobal *range;
+    void (*next)(func_80246410_Struct *, s32);
+} func_802462CC_StructFacing;
+
+typedef struct func_802462CC_StructPosition {
+    f32 x;
+    f32 y;
+    s32 z;
+} func_802462CC_StructPosition;
+
+void func_802462CC(func_802462CC_Struct *arg0, s32 arg1) {
+    func_802462CC_StructFacing facing;
+    func_802462CC_StructDelta delta;
+    func_802462CC_StructPosition position;
+
+    facing.inner = arg0->unk5C;
+    facing.range = &D_80258F3C;
+    facing.next = func_80246410;
+    if (func_80244AB0((func_80244AB0_Struct *)arg0) == 0) {
         D_8025C708 = 0;
-        v = func_8001EF38(D_801BBCD0->unk2C->unk4 - arg0->unk24->unk2C->unk4,
-                          D_801BBCD0->unk2C->unkC - *(f32 *)&arg0->unk24->unk2C->unkC);
-        v = (arg0->unk24->unk2C->unk12 - v) & 0x1FFF & 0xFFFF;
-        if (v < 0x200 || (v >= 0x1E01 && v < 0x1FFF)) {
-            sp2C->unk78 = 1;
-            func_80127430(arg0->unk24->unk2C->unk4, arg0->unk24->unk2C->unk8, arg0->unk24->unk2C->unkC, 0x66A, 1.79999995f, 1.0f);
-            func_800058DC(arg0, func_80246410);
+        delta.x = D_801BBCD0->unk2C->unk4 - arg0->unk24->unk2C->unk4;
+        delta.z = D_801BBCD0->unk2C->unkC - *(f32 *)&arg0->unk24->unk2C->unkC;
+        facing.targetAngle = func_8001EF38(delta.x, delta.z);
+        facing.relativeAngle = (u16)((arg0->unk24->unk2C->unk12 - facing.targetAngle) & 0x1FFF);
+        if (facing.relativeAngle < 0x200 || (facing.relativeAngle >= 0x1E01 && facing.relativeAngle < 0x1FFF)) {
+            facing.inner->unk78 = 1;
+            position.x = arg0->unk24->unk2C->unk4;
+            position.y = arg0->unk24->unk2C->unk8;
+            position.z = arg0->unk24->unk2C->unkC;
+            func_80127430(position.x, position.y, position.z, 0x66A, 1.8f, 1.0f);
+            func_800058DC(arg0, facing.next);
         }
-        if (func_8012CE9C(arg1, sp2C, D_80258F3C, 0xA) == 0) {
-            func_80010550(arg1, sp2C);
+        if (func_8012CE9C(arg1, facing.inner, *facing.range, 0xA) == 0) {
+            func_80010550(arg1, facing.inner);
             func_8012A94C(arg0, 0x40);
         }
     }
 }
+#undef D_801BBCD0
+#undef D_80258F3C
+#undef func_8012CE9C
+#undef func_80244AB0
+#undef func_80244AB0_Mid
+#undef func_80244AB0_Node
+#undef func_80244AB0_Struct
+#undef func_802462CC_Struct
+#undef func_802462CC_StructI
+#undef func_802462CC_StructM
+#undef func_802462CC_StructN
+#undef func_80246410
+#undef func_80246410_Struct
+#undef func_80246E60_StructGlobal
+#undef func_802474E4_StructMid
+#undef func_802474E4_StructNode
+#define func_80244AB0 func_80244AB0__decl
+#define func_80246410 func_80246410__func_802462CC
 #undef func_80246410
 
 

@@ -60,7 +60,6 @@ void func_80212A28(struct func_80212A28_Struct *arg0);
 u8 func_80212A48(struct func_80212A28_Struct *arg0);
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
-
 typedef struct func_8020F4D4_StructA {
     u8 pad0[0x3C];
     u16 unk3C;
@@ -115,12 +114,8 @@ s32 func_8020F4D4(func_8020F4D4_StructA *arg0, func_8020F4D4_StructO **arg1) {
     f64 k;
     f32 temp_fa0;
     f32 temp_fa1;
-    f32 temp_fv0;
     f32 temp_fv0_2;
-    f32 temp_fv0_3;
-    f32 temp_fv1_2;
     s32 temp_v0_4;
-extern s32 func_801FD68C();    u8 temp_t4;
     struct func_8020C39C_StructInner *temp_v0_2;
 
     sp48 = arg0->unk3C++;

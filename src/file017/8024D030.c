@@ -429,33 +429,55 @@ void func_8024DDE4(struct func_8024DDE4_Struct *arg0);
 
 extern void func_80380F94(f32, f32, s32, f32, f32, f32, s32);
 
+#undef func_80020718
+#undef func_8024DDE4
+#undef func_8024F0B0
+#define func_8024DDE4 func_8024DDE4__func_8024DD20_a23e6574
+#define func_8024DDE4_Struct func_8024DDE4_Struct__func_8024DD20_a23e6574
+#define func_8024F0B0 func_8024F0B0__func_8024DD20_a23e6574
+#define func_80380F94 func_80380F94__func_8024DD20_a23e6574
+struct func_8024DDE4_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+};
+void func_8024DDE4(struct func_8024DDE4_Struct *arg0);
+extern void func_8024F0B0();
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
+
+
 void func_8024DD20(struct func_8024DDE4_Struct *arg0)
 {
+extern void func_8024F0B0();
   u16 temp_s1;
+
   temp_s1 = arg0->unk3C;
-  arg0->unk3C = (u16) (temp_s1 + 1);
-  func_8024F0B0();
-  if (((s32) temp_s1) >= 0x3C)
+  arg0->unk3C = temp_s1 + 1;
+  func_8024F0B0(arg0);
+  if (temp_s1 >= 0x3C)
   {
     if (temp_s1 == 0x3C)
     {
-      if (!arg0)
-      {
-      }
       func_80020718(0x184);
     }
     func_801C4058(arg0, 0xBE4CCCCD, 0xBECCCCCD, 0);
     if ((temp_s1 % 10) == 0)
     {
-      func_80380F94(-143.0f, 0.0f, 0xC3020000, 0.0f, 0.0f, 0.0f, 10);
+      func_80380F94(-143.0f, 0.0f, -130.0f, 0.0f, 0.0f, 0.0f, 10);
     }
   }
-  if (((s32) temp_s1) >= 0x5A)
+  if (temp_s1 >= 0x5A)
   {
     arg0->unk3C = 0;
     func_800058DC(arg0, func_8024DDE4);
   }
 }
+#undef func_8024DDE4
+#undef func_8024DDE4_Struct
+#undef func_8024F0B0
+#undef func_80380F94
+#define func_80020718 func_80020718__func_8024DD20
+#define func_8024DDE4 func_8024DDE4__func_8024DD20
+#define func_8024F0B0 func_8024F0B0__func_8024DD20
 #undef func_80020718
 #undef func_8024DDE4
 #undef func_8024F0B0

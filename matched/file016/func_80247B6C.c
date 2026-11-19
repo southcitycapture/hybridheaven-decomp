@@ -99,7 +99,7 @@ void func_80247B6C(func_80247B6C_StructObj *arg0, void *arg1) {
     func_80247B6C_StructAnim *anim;
     s32 i;
     f32 camera0, camera1, camera2, camera3, camera4, camera5;
-    s32 j;
+    func_80247B6C_StructData *position;
     f32 vec[3];
     f32 dx, dy, dz;
 
@@ -116,9 +116,10 @@ void func_80247B6C(func_80247B6C_StructObj *arg0, void *arg1) {
         vec[0] = 10.0f;
         vec[2] = 10.0f;
         vec[1] = -40.0f;
-        dz = G.unkE0->unk2C->unkC - vec[2];
-        dx = G.unkE0->unk2C->unk4 - vec[0];
-        dy = G.unkE0->unk2C->unk8 - vec[1];
+        position = G.unkE0->unk2C;
+        dz = position->unkC - vec[2];
+        dx = position->unk4 - vec[0];
+        dy = position->unk8 - vec[1];
         if ((f64)func_8002FC20(dz * dz + (dx * dx + dy * dy)) < 35.0 && (f64)G.unkE0->unk2C->unk4 <= 40.0) {
             G.unk18E = 1;
             G.unk190 = 0;
@@ -194,8 +195,8 @@ loop6:
     case 9: {
         func_80020718(0x176);
         for (i = 0; i < 2; i = (i + 1) & 0xFF) {
-        NODES[i]->unk30->unk8 = -340.5f;
-        NODES[i]->unk30->unkC = 310.5f;
+            NODES[i]->unk30->unk8 = -340.5f;
+            NODES[i]->unk30->unkC = 310.5f;
         }
         camera0 = (f64)G.unkE8->unk2C->unk30 - 1020.0;
         camera1 = ((f64)G.unkE8->unk2C->unk34 - -180.0) - 340.5;

@@ -1,8 +1,17 @@
-#include "context.h"
+#include "common.h"
+struct func_8038D5C0_StructGlobal {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 padE0[0xB90 - 0xE0];
+    f32 unkB90;
+    u8 padB94[0x1031 - 0xB94];
+    u8 unk1031;
+};
 
-struct func_8038CFF4_Obj {
+
+struct func_8038CFF4_StructObj {
     u8 pad0[0xC];
-    struct func_8038CFF4_Obj *unkC2;
+    struct func_8038CFF4_StructObj *unkC2;
     u8 pad10[0x91 - 0x10];
     u8 unk91;
     u8 unk92;
@@ -13,17 +22,17 @@ struct func_8038CFF4_Obj {
     u8 pad9A[2];
     u32 unk9C;
 };
-struct func_8038CFF4_Obj0 {
+struct func_8038CFF4_StructObj0 {
     u8 pad0[0xC];
     s32 unkC;
 };
-struct func_8038CFF4_Ent {
+struct func_8038CFF4_StructEnt {
     u8 pad0[4];
     u16 unk4;
     s16 unk6;
     s16 unk8;
 };
-struct func_8038CFF4_Pl {
+struct func_8038CFF4_StructPl {
     u8 pad0[6];
     s16 unk6;
     u8 pad8[0x30 - 8];
@@ -41,7 +50,7 @@ struct func_8038CFF4_Pl {
     u8 pad314[0x396 - 0x314];
     u8 unk396;
 };
-struct func_8038CFF4_G {
+struct func_8038CFF4_StructG {
     u8 pad0[0xDC];
     s32 unkDC;
     u8 padE0[0x232 - 0xE0];
@@ -55,7 +64,7 @@ struct func_8038D5C0_StructGlobal;
 extern struct func_8038D5C0_StructGlobal D_801BBBF0;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
-#define D_801BBBF0 (((struct func_8038CFF4_G *)&D_801BBBF0)[0])
+#define D_801BBBF0 (((struct func_8038CFF4_StructG *)&D_801BBBF0)[0])
 extern u8 D_801BBC8C[];
 extern u8 D_801BBCAC[];
 extern f32 func_8001EAD0(s16);
@@ -66,23 +75,21 @@ extern void func_80228FD0(void *, void *, s32);
 extern s32 func_80229260(void *, void *, void *, s32);
 extern s32 func_802292D0();
 
-#define ISP1 (dc == ((struct func_8038CFF4_Obj0 *)arg0->unkC2)->unkC)
+#define ISP1 (dc == ((struct func_8038CFF4_StructObj0 *)arg0->unkC2)->unkC)
 
-void func_8038CFF4(struct func_8038CFF4_Obj *arg0, void *arg1) {
-    s16 sp36;
-    s16 sp34;
-    struct func_8038CFF4_Ent *sp30;
-    s32 sp2C;
-    struct func_8038CFF4_Pl *a1;
-    struct func_8038CFF4_Pl *v1;
+void func_8038CFF4(struct func_8038CFF4_StructObj *arg0, void *arg1) {
     s16 ang;
+    s16 sp34;
+    struct func_8038CFF4_StructEnt *sp30;
     s32 dc;
+    struct func_8038CFF4_StructPl *a1;
+    struct func_8038CFF4_StructPl *v1;
 
     sp34 = (s16)(0x2800 - D_801BBBF0.unk232) & 0x1FFF;
     dc = D_801BBBF0.unkDC;
     sp30 = ISP1 ? (void *)D_801BBC8C : (void *)D_801BBCAC;
     a1 = ISP1 ? (void *)D_801BC03C : (void *)D_801BC3D8;
-    v1 = (dc != ((struct func_8038CFF4_Obj0 *)arg0->unkC2)->unkC) ? (void *)D_801BC03C : (void *)D_801BC3D8;
+    v1 = (dc != ((struct func_8038CFF4_StructObj0 *)arg0->unkC2)->unkC) ? (void *)D_801BC03C : (void *)D_801BC3D8;
     if ((arg0->unk91 == 1) && (D_801BBBF0.unk1031 == 7)) {
         arg0->unk91 = 2;
     }

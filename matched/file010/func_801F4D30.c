@@ -110,7 +110,6 @@ typedef struct func_801F60D8_Obj {
 } func_801F60D8_Obj;
 void func_801F6C58(func_801F60D8_Obj *arg0, s32 arg1);
 
-
 typedef struct func_801F4D30_StructInner {
     u16 pad0;
     u16 id;
@@ -174,9 +173,8 @@ void func_801F4D30(func_801F4D30_Struct *arg0, s32 arg1)
     value = (inner->flags >> 8) & 0xFF;
     if (value == 0) {
         arg0->field9A = 40;
-        inner = *(func_801F4D30_StructInner *volatile *)&arg0->inner;
-    }
-    else arg0->field9A = value;
+        inner = (func_801F4D30_StructInner *)*(s32 *)&arg0->inner;
+    } else arg0->field9A = value;
     value = (inner->flags >> 8) & 0xFF;
     if (value == 0) arg0->field9C = 40;
     else arg0->field9C = value;

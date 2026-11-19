@@ -1,5 +1,12 @@
 #include "common.h"
+typedef struct func_80239048_Copy {
+    s32 v[4];
+} func_80239048_Copy;
+extern func_80239048_Copy D_80164F40;
 extern u8 D_801BBBF0[];
+extern u8 D_8023E408[];
+extern u8 D_8023E468[];
+extern u8 D_8023E4D0[];
 typedef struct func_80235FF8_StructP { s16 x; s16 y; s16 w; s16 h; } func_80235FF8_P;
 typedef struct func_80235FF8_StructS { u8 pad[0x10]; s32 unk10; u8 pad2[0x1C]; func_80235FF8_P *unk30; } func_80235FF8_S;
 extern func_80235FF8_S *D_80240874;
@@ -26,7 +33,10 @@ struct func_80236788_Struct {
 #define G ((struct func_80236788_Struct *)D_8023E3B8)
 extern void func_80002364(s32, s32, s32, u8);
 extern void func_800058DC();
+extern void func_80005E44(void *, void *);
 u8 func_80006214();
+extern void func_8012C89C(void *, s32, s32, s32);
+extern s32 func_801302CC(void);
 extern void func_80145310(s32, s32, s32);
 extern void func_80147218(void *);
 typedef struct func_80237004_Struct {
@@ -62,7 +72,9 @@ typedef struct func_802393F8_Struct3 {
 } func_802393F8_Struct3;
 
 typedef struct func_802393F8_Struct2 {
-    u8 pad0[0x30];
+    u8 pad0[0x14];
+    void *unk14;
+    u8 pad18[0x18];
     func_802393F8_Struct3 *unk30;
 } func_802393F8_Struct2;
 
@@ -78,14 +90,14 @@ typedef struct func_802393F8_Struct5 {
     func_802393F8_Struct3 *unk2C;
 } func_802393F8_Struct5;
 
-typedef struct func_802393F8_Glob {
+typedef struct func_802393F8_StructGlob {
     u8 pad0[0xE0];
     func_802393F8_Struct4 *unkE0;
     u8 padE4[0x448 - 0xE4];
     func_802393F8_Struct4 **unk448;
     u8 pad44C[0x1030 - 0x44C];
     u8 unk1030;
-} func_802393F8_Glob;
+} func_802393F8_StructGlob;
 
 typedef struct func_802393F8_Struct {
     u8 pad0[0xA3];
@@ -96,37 +108,18 @@ typedef struct func_802393F8_Struct {
     s16 unkAC;
 } func_802393F8_Struct;
 
-typedef struct func_802393F8_Vec {
-    s32 a[4];
-} func_802393F8_Vec;
-
-extern func_802393F8_Vec D_80164F40;
-extern f32 D_802405B4;
-extern f32 D_802405B8;
-extern f32 D_802405BC;
-extern u8 D_8023E408[];
-extern u8 D_8023E468[];
-extern u8 D_8023E4D0[];
-extern void func_80005E44(void *, void *);
-extern void func_8012C89C(void *, s32, s32, s32);
-extern s32 func_801302CC();
-
 #undef G
-#define G ((func_802393F8_Glob *)D_801BBBF0)
+#define G ((func_802393F8_StructGlob *)D_801BBBF0)
 
-void func_802393F8(func_802393F8_Struct *arg0, func_802393F8_Struct2 **arg1, s32 i) {
-    f32 lit3;
-    f32 lit2;
-    func_802393F8_Vec sp78;
-    f32 lit1;
+void func_802393F8(func_802393F8_Struct *arg0, func_802393F8_Struct2 **arg1) {
+    s8 i;
+    f32 scale;
+    func_80239048_Copy sp78;
 
-    if (i) {}
     sp78 = D_80164F40;
     func_80147218(arg0);
     func_80002364(0x0F000000, 8, 2, G->unk1030 ^ 1);
-    lit1 = D_802405BC;
-    lit2 = D_802405B8;
-    lit3 = D_802405B4;
+    scale = 0.02f;
     for (i = 0; i < 2; i = (s8)(i + 1)) {
         func_80005E44(arg0, &sp78);
         func_80006214(arg0);
@@ -150,9 +143,9 @@ void func_802393F8(func_802393F8_Struct *arg0, func_802393F8_Struct2 **arg1, s32
             arg1[i]->unk30->unkC = (*G->unk448)->unk24->unk2C->unkC;
             arg1[i]->unk30->unk12 = (*G->unk448)->unk24->unk2C->unk12 + (i << 0xC) - 0x800;
         }
-        arg1[i]->unk30->unk18 = lit1;
-        arg1[i]->unk30->unk1C = lit2;
-        arg1[i]->unk30->unk20 = lit3;
+        arg1[i]->unk30->unk18 = scale;
+        arg1[i]->unk30->unk1C = 0.1f;
+        arg1[i]->unk30->unk20 = 0.05f;
         arg1[i]->unk30->unk10 = 0;
         arg1[i]->unk30->unk14 = 0;
     }
@@ -160,7 +153,7 @@ void func_802393F8(func_802393F8_Struct *arg0, func_802393F8_Struct2 **arg1, s32
     func_802345B0((s32)arg0, (s32 *)arg1, 0xF, -0x46, 0, 1);
     D_80240874 = (void *)arg1[i];
     D_80240878 = (void *)arg1[i + 1];
-    D_8024087C = (void *)((s32 *)D_80240874)[5];
+    D_8024087C = ((func_802393F8_Struct2 *)D_80240874)->unk14;
     arg0->unkAC = 0;
     arg0->unkA3 = 2;
     arg0->unkA5 = 0;

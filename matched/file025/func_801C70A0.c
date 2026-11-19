@@ -1,6 +1,4 @@
 #include "common.h"
-#define LP(p,l) LQ(p,l)
-#define LQ(p,l) p##_##l
 typedef struct func_801C6580_Struct4 {
     u8 pad0[0x30];
     f32 unk30;
@@ -67,12 +65,12 @@ typedef struct func_801C70A0_Struct {
 extern s32 D_801DA5A4[];
 
 void func_801C70A0(func_801C70A0_Struct *arg0, func_801C6580_Struct2 **arg1) {
-    s32 pad[2];
+    f32 dist2;
+    f32 distance;
     f32 sp24;
     f32 sp20;
     func_801C6580_Struct4 *temp;
     s32 index;
-    f32 distance;
     f32 ratio;
 
     ratio = (f32)arg0->unkB0 / (f32)arg0->unkB2;
@@ -84,7 +82,8 @@ void func_801C70A0(func_801C70A0_Struct *arg0, func_801C6580_Struct2 **arg1) {
     sp24 = D_801BBCD8->unk2C->unk3C - D_801BBCD8->unk2C->unk30;
     sp20 = D_801BBCD8->unk2C->unk44 - D_801BBCD8->unk2C->unk38;
     (*arg1)->unk30->unk12 = ((s16)func_8001EF38(sp24, sp20) + 0x1000) & 0x1FFF;
-    distance = func_8002FC20(sp24 * sp24 + sp20 * sp20);
+    dist2 = sp24 * sp24 + sp20 * sp20;
+    distance = func_8002FC20(dist2);
     temp = D_801BBCD8->unk2C;
     (*arg1)->unk30->unk10 = func_8001EF38(temp->unk40 - temp->unk34, distance) & 0x1FFF;
     if (++arg0->unkB0 > arg0->unkB2) {

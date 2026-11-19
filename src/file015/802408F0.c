@@ -402,19 +402,52 @@ extern void func_80240C00(void);
 #define PLAYER ((func_802412F8_StructA *)D_801BBCD0)
 extern u8 D_802581B8[];
 
+#undef PLAYER
+#undef func_80240C00
+#define func_801C2F0C func_801C2F0C__func_802412F8_24b5a237
+#define func_80240C00 func_80240C00__func_802412F8_24b5a237
+#define func_802412F8_StructA func_802412F8_StructA__func_802412F8_24b5a237
+#define func_802412F8_StructB func_802412F8_StructB__func_802412F8_24b5a237
+#define PLAYER ((func_802412F8_StructA *)D_801BBCD0)
+extern void func_801C2F0C(s32, s16 *);
+extern void func_80240C00();
+
+
+typedef struct func_802412F8_StructB {
+    u8 pad0[4];
+    f32 f4, f8, fC;
+    u8 pad10[2];
+    s16 s12;
+    u8 pad14[0x1C];
+    f32 f30, f34, f38, f3C, f40, f44;
+} func_802412F8_StructB;
+typedef struct func_802412F8_StructA {
+    u8 pad[0x2C];
+    func_802412F8_StructB *p;
+} func_802412F8_StructA;
+#define PLAYER ((func_802412F8_StructA *)D_801BBCD0)
+
 void func_802412F8(s32 arg0, s32 arg1) {
-    u8 pad[4];
+    s32 hit;
     f32 sp50;
 
     sp50 = func_8001EAD0(PLAYER->p->s12);
-    if (func_801C3DC8(arg0, (f32)((f64)PLAYER->p->f4 - (f64)sp50 * 40.0), PLAYER->p->f8 + 20.0f,
+    hit = func_801C3DC8(arg0, (f32)((f64)PLAYER->p->f4 - (f64)sp50 * 40.0), PLAYER->p->f8 + 20.0f,
                       (f32)((f64)PLAYER->p->fC - (f64)func_8001EB64(PLAYER->p->s12) * 40.0),
-                      PLAYER->p->f4, PLAYER->p->f8 + 17.0f, PLAYER->p->fC, 0.200000003f, 35.0f) == 0) {
+                      PLAYER->p->f4, PLAYER->p->f8 + 17.0f, PLAYER->p->fC, 0.200000003f, 35.0f);
+    if (hit == 0) {
         func_8011AAF4(D_802581B8, 0x171, (void *)arg0, 2, 1, 0.0f, (*(func_802412F8_StructA **)((u8 *)&D_801BBCD0 + 8))->p->f30, (*(func_802412F8_StructA **)((u8 *)&D_801BBCD0 + 8))->p->f34, (*(func_802412F8_StructA **)((u8 *)&D_801BBCD0 + 8))->p->f38, 0.0f, (*(func_802412F8_StructA **)((u8 *)&D_801BBCD0 + 8))->p->f3C, (*(func_802412F8_StructA **)((u8 *)&D_801BBCD0 + 8))->p->f40, (*(func_802412F8_StructA **)((u8 *)&D_801BBCD0 + 8))->p->f44, 0.0f, 35.0f, -1, -1);
         func_801C2F0C(1, 0);
         func_800058DC((void *)arg0, (void *)func_80240C00);
     }
 }
+#undef PLAYER
+#undef func_801C2F0C
+#undef func_80240C00
+#undef func_802412F8_StructA
+#undef func_802412F8_StructB
+#define PLAYER ((func_802412F8_StructA *)D_801BBCD0)
+#define func_80240C00 func_80240C00__func_802412F8
 #undef func_80240C00
 
 #define D_801BBBF0 D_801BBBF0__func_8024148C

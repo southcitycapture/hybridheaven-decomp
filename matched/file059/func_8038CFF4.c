@@ -81,11 +81,11 @@ typedef struct func_8038CFF4_StructO {
 
 void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
     s16 sp3E;
-    s16 sp3C;
+    s16 cooldown;
     s16 sp3A;
-    s16 sp38;
+    s16 distance;
     func_8038CFF4_StructO *sp34;
-    s32 pad30;
+    u8 state;
     func_8038CFF4_StructS *a1;
     func_8038CFF4_StructS *t0;
     u8 sp27;
@@ -146,9 +146,10 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                 if (arg0->unk91 == 2) {
                     arg0->unk92 = 3;
                 }
-                v = arg0->unk92;
-                if (1 == (v | 0)) {
-                    if ((a1->unk6 >= 0x47) || ((t0->unk385 < 8) && (a1->unk6 >= 0x33))) {
+                state = arg0->unk92;
+                if (state == 1) {
+                    distance = a1->unk6;
+                    if ((distance >= 0x47) || ((t0->unk385 < 8) && (distance >= 0x33))) {
                         func_802292D0(sp34, a1);
                         arg0->unk91 = 1;
                         arg0->unk92 = 2;
@@ -157,16 +158,14 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                     func_80228FD0(arg0, sp34, 4);
                     return;
                 }
-                if (2 == (v | 0)) {
-                    v = B32(a1) & 3;
-                    if (2U == (v | 0)) {
+                if (state == 2) {
+                    if ((B32(a1) & 3) == 2U) {
                         arg0->unk92 = 3;
-                        v = B32(a1) & 3;
                     }
-                    if (v == 0) {
+                    if ((B32(a1) & 3) == 0) {
                         arg0->unk92 = 1;
                     }
-                } else if (v == 3) {
+                } else if (state == 3) {
                     if (((a1->unk6 >= 0x64) || (t0->unk385 < 8)) && (func_80228D90(arg0, a1) != 0)) {
                         B32(a1) = B32(a1) & 0xFFFC;
                         sp34->unk4 = 0x8000;
@@ -175,7 +174,7 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                         return;
                     }
                     func_80228FD0(arg0, sp34, 4);
-                } else if (v == 4) {
+                } else if (state == 4) {
                     sp3E = (s16)(func_80228C20(arg0) + sp3A) & 0x1FFF;
                     sp34->unk6 = -D_8001EB64(sp3E) * 80.0f;
                     sp34->unk8 = D_8001EAD0(sp3E) * 80.0f;
@@ -192,7 +191,8 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                 if ((v & 3) == 2U) {
                     B32(a1) = v & 0xFFFC;
                 }
-                if (arg0->unk98 == 0) {
+                cooldown = arg0->unk98;
+                if (cooldown == 0) {
                     sp3E = (s16)(func_80228C20(arg0) + sp3A) & 0x1FFF;
                     if (GB90 > 60.0f) {
                         arg0->unk9A = 0x1E;
@@ -212,7 +212,7 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                     sp34->unk6 = -D_8001EB64(sp3E) * 40.0f;
                     sp34->unk8 = D_8001EAD0(sp3E) * 40.0f;
                 } else {
-                    arg0->unk98--;
+                    arg0->unk98 = cooldown - 1;
                 }
             }
         }

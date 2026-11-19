@@ -1,8 +1,17 @@
-#include "context.h"
+#include "common.h"
+extern u16 D_801BBBF8;
+extern void func_800058DC(void *, void *);
+extern s32 func_80010550();
+extern void func_80011198(s32, s32);
+typedef struct func_8037769C_Glob {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_8037769C_Glob;
+
 extern void func_8014B4A0(u16, f32 *);
 extern func_8037769C_Glob D_80388778;
 extern void func_80011140(s32, void *, func_8037769C_Glob, s32);
-
 extern void func_801C4908(void *, s32, s32, s32);
 extern s32 func_8012AE54(void *, s32, s32, f32);
 extern void func_80376DC0();
@@ -18,8 +27,7 @@ struct func_80376CA8_Struct {
 };
 
 void func_80376CA8(struct func_80376CA8_Struct *arg0, s32 arg1) {
-    u8 pad[0x10];
-    f32 sp2C[3];
+    f32 sp2C[7];
     struct func_80376CA8_Obj *temp_s0;
 
     temp_s0 = arg0->unk5C;

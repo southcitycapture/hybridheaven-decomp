@@ -1,6 +1,7 @@
 #include "common.h"
 
 
+
 typedef struct func_8011BC20_Node {
     u8 pad0[0x30];
     f32 unk30;
@@ -359,5 +360,6 @@ void func_8011BC20(f32 arg0, f32 arg1, f32 arg2, s16 arg3, s16 arg4) {
         }
     }
     if ((sp40 == 0.0f || sp3C == 0.0f || sp38 == 0.0f) && D_801636F8 && sp4A && sp48) {
+        t = 1;
     }
 }

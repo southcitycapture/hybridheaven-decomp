@@ -1,4 +1,13 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+extern void D_801C4058(void *, f32, f32, s32);
+extern s32 D_8025DDE0;
+extern void func_800058DC(s32, void (*)());
+extern void func_80020718(s32);
+extern void func_801515B0(s32, u8, s32);
+extern s32 func_801516CC(s32);
+extern void func_8024CCC4();
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
@@ -11,11 +20,10 @@ typedef struct func_8024B524_StructO { u8 pad[0x22]; u8 b22; } func_8024B524_Str
 typedef struct func_8024B524_StructP { u8 pad[0x4B]; u8 b4B; } func_8024B524_StructP;
 
 void func_8024B524(u8 *arg0, u8 *arg1) {
-    s32 pad;
+    func_8024B524_StructP *p;
     s32 sp38;
     s32 i;
     u8 t;
-    func_8024B524_StructP *p;
 
     sp38 = (*(u16 *)(arg0 + 0x3C))++;
     func_8024CCC4(arg0, arg1);

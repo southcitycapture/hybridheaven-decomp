@@ -124,8 +124,6 @@ typedef struct {
 } func_801F19A0_Arg0;
 
 #define BASE ((u8 *)&D_801BBBF0)
-#define d ((func_801F19A0_Data *)x)
-#define p2 ((func_801F19A0_Mid **)x)
 
 extern u8 D_8017B608[];
 
@@ -141,15 +139,15 @@ void func_801F19A0(func_801F19A0_Arg0 *arg0, func_801F19A0_Mid **arg1) {
         arg0->unk2C |= 0xC20;
         func_8012636C(arg0, 0);
         x = arg0->unk38;
-        h = (f32)d->unk8 / 10.0 + 0.5;
-        b = ABS((s16)(((f32)(s16)(d->unk10 >> 16) + 0.5 - h) / 2.0));
+        h = (f32)((func_801F19A0_Data *)x)->unk8 / 10.0 + 0.5;
+        b = ABS((s16)(((f32)(s16)(((func_801F19A0_Data *)x)->unk10 >> 16) + 0.5 - h) / 2.0));
         arg0->unkA0 = 0.0f;
         arg0->unkA4 = 0.0f;
         arg0->unk90 = b + h;
         if ((f32)arg0->unk90 < (*(func_801F1D74_StructE0 **)(BASE + 0xE0))->unk2C->unk8) {
-            arg0->unk24->unk30->unk8 = (f32)(s16)(d->unk10 >> 16) + 0.5;
+            arg0->unk24->unk30->unk8 = (f32)(s16)(((func_801F19A0_Data *)x)->unk10 >> 16) + 0.5;
         } else {
-            arg0->unk24->unk30->unk8 = (f32)d->unk8 / 10.0 + 0.5;
+            arg0->unk24->unk30->unk8 = (f32)((func_801F19A0_Data *)x)->unk8 / 10.0 + 0.5;
         }
         func_8012C89C(arg0, 0, arg0->unk38->unk18 >> 20, (arg0->unk38->unk18 >> 16) & 0xF);
         arg0->unk74 = func_8000522C(*(u16 *)D_80171CEC[arg0->unk36][0],
@@ -175,13 +173,13 @@ void func_801F19A0(func_801F19A0_Arg0 *arg0, func_801F19A0_Mid **arg1) {
             func_80005E44(arg0, &spawn);
             func_80006214(arg0);
             func_8012636C(arg0, 1);
-            (*p2)->unk30->unk8 = arg1[0]->unk30->unk8;
-            (*p2)->unk30->unk24 |= 0x100;
-            (*p2)->unk30->unk30 = (s32)D_8017B608 | 0x40000000;
-            (*p2)->unk30->unk4B = 0x40;
-            (*p2)->unk30->unk48 = 0xFF;
-            (*p2)->unk30->unk49 = 0xFF;
-            (*p2)->unk30->unk4A = 0xFF;
+            (*(func_801F19A0_Mid **)x)->unk30->unk8 = arg1[0]->unk30->unk8;
+            (*(func_801F19A0_Mid **)x)->unk30->unk24 |= 0x100;
+            (*(func_801F19A0_Mid **)x)->unk30->unk30 = (s32)D_8017B608 | 0x40000000;
+            (*(func_801F19A0_Mid **)x)->unk30->unk4B = 0x40;
+            (*(func_801F19A0_Mid **)x)->unk30->unk48 = 0xFF;
+            (*(func_801F19A0_Mid **)x)->unk30->unk49 = 0xFF;
+            (*(func_801F19A0_Mid **)x)->unk30->unk4A = 0xFF;
             func_8012C89C(arg0, 1, arg0->unk38->unk18 >> 20, ((arg0->unk38->unk18 >> 16) & 0xF) + 2);
         }
         func_800058DC(arg0, func_801F1D74);

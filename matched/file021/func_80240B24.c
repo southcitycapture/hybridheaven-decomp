@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+extern void func_800058DC(void *, void *);
+
 
 struct func_80240B24_Struct {
     u8 pad0[0x3C];
@@ -10,15 +12,17 @@ struct func_80240B24_Local {
     s32 unk4;
     f32 unk8;
     s16 unkC;
+    s32 unk10;
+    s32 unk14;
+    s32 unk18;
+    s32 unk1C;
 };
-
 extern s32 func_801C3044();
 extern void func_801C2F0C(s32 arg0, s16 *arg1);
 extern u8 D_801BBFAC[];
 extern void func_80240BA0();
 
 void func_80240B24(struct func_80240B24_Struct *arg0, s32 arg1) {
-    u8 pad[0x10];
     struct func_80240B24_Local sp;
 
     if (func_801C3044() == 0) {

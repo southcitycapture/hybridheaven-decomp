@@ -1275,13 +1275,17 @@ s32 func_8014C068(s32 arg0) {
 
 
 
+#define func_8014B7CC func_8014B7CC__func_8014C0A8
+extern void *func_8014B7CC(s32);
+
+
 s32 func_8014C0A8(s32 arg0) {
     u8 *temp_v0;
     u8 temp_v1;
-    s32 *temp_a0;
+    s32 *p;
 
-    temp_a0 = &arg0;
-    temp_v0 = func_8014B7CC(arg0 & 0xFFFF);
+    p = &arg0;
+    temp_v0 = func_8014B7CC(*p & 0xFFFF);
     if (temp_v0 != NULL) {
         temp_v1 = *temp_v0;
         if ((temp_v1 & 2) && (temp_v1 & 4)) {
@@ -1290,16 +1294,17 @@ s32 func_8014C0A8(s32 arg0) {
     }
     return 0;
 }
+#undef func_8014B7CC
 
 
 
-s32 func_8014C0F0(s32 arg0) {
+
+
+s32 func_8014C0F0(u16 arg0) {
     u8 *temp_v0;
     u8 temp_v1;
-    s32 *temp_a0;
 
-    temp_a0 = &arg0;
-    temp_v0 = func_8014B7CC(arg0 & 0xFFFF);
+    temp_v0 = func_8014B7CC(arg0);
     if (temp_v0 != NULL) {
         temp_v1 = *temp_v0;
         if ((temp_v1 & 2) && (temp_v1 & 8)) {
@@ -1373,13 +1378,26 @@ struct func_8014C23C_Struct {
     struct func_8014C23C_Inner *unk4;
 };
 
+#define func_8014B7CC func_8014B7CC__func_8014C23C
+#define func_8014C23C_Inner func_8014C23C_Inner__func_8014C23C
+#define func_8014C23C_Struct func_8014C23C_Struct__func_8014C23C
+extern void *func_8014B7CC(s32);
+struct func_8014C23C_Inner {
+    u8 pad0[0xA8];
+    u16 unkA8;
+};
+struct func_8014C23C_Struct {
+    u8 unk0;
+    u8 pad1[3];
+    struct func_8014C23C_Inner *unk4;
+};
+
+
 s32 func_8014C23C(s32 arg0) {
     struct func_8014C23C_Struct *temp_v0;
     struct func_8014C23C_Inner *temp_v1;
-    s32 *temp_ptr;
 
-    temp_ptr = &arg0;
-    temp_v0 = (struct func_8014C23C_Struct *) func_8014B7CC(arg0 & 0xFFFF);
+    temp_v0 = (struct func_8014C23C_Struct *) func_8014B7CC(*(u32 *) &arg0 & 0xFFFF);
     if ((temp_v0 != NULL) && (temp_v0->unk0 & 2)) {
         temp_v1 = temp_v0->unk4;
         if (temp_v1 != NULL) {
@@ -1388,6 +1406,9 @@ s32 func_8014C23C(s32 arg0) {
     }
     return 0;
 }
+#undef func_8014B7CC
+#undef func_8014C23C_Inner
+#undef func_8014C23C_Struct
 
 
 u8 *func_8014C294(void) {

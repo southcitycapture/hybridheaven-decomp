@@ -94,8 +94,27 @@ extern s32 func_801C3044();
 extern u8 D_801BBFAC[];
 extern void func_80240BA0();
 
+#define func_80240B24_Local func_80240B24_Local__func_80240B24
+#define func_80240B24_Struct func_80240B24_Struct__func_80240B24
+
+
+struct func_80240B24_Struct {
+    u8 pad0[0x3C];
+    u16 unk3C;
+};
+
+struct func_80240B24_Local {
+    s16 unk0;
+    s32 unk4;
+    f32 unk8;
+    s16 unkC;
+    s32 unk10;
+    s32 unk14;
+    s32 unk18;
+    s32 unk1C;
+};
+
 void func_80240B24(struct func_80240B24_Struct *arg0, s32 arg1) {
-    u8 pad[0x10];
     struct func_80240B24_Local sp;
 
     if (func_801C3044() == 0) {
@@ -109,4 +128,6 @@ void func_80240B24(struct func_80240B24_Struct *arg0, s32 arg1) {
         func_800058DC(arg0, (void *)func_80240BA0);
     }
 }
+#undef func_80240B24_Local
+#undef func_80240B24_Struct
 

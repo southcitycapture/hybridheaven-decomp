@@ -1,4 +1,27 @@
-#include "context.h"
+#include "common.h"
+extern s32 func_800058DC(s32, void *);
+struct func_8038D7E8_StructA {
+    u8 pad0[0x9A];
+    s16 unk9A;
+    u8 pad1[0xA1 - 0x9C];
+    u8 unkA1;
+    u8 unkA2;
+};
+struct func_8038D7E8_StructB {
+    u8 pad0[0x30];
+    s32 unk30;
+};
+struct func_8038D7E8_StructC {
+    u8 pad0[0x38];
+    s32 unk38;
+    u8 pad1[0xA6 - 0x3C];
+    u8 unkA6;
+    u8 pad2[0x2D8 - 0xA7];
+    u8 unk2D8;
+    u8 unk2D9;
+};
+s32 func_8038D7E8(struct func_8038D7E8_StructA *arg0, struct func_8038D7E8_StructC *arg1, struct func_8038D7E8_StructB *arg2);
+
 extern u8 D_801BBBF0[];
 extern u8 D_801BC3D8[];
 extern u8 D_801BC03C;
@@ -22,7 +45,6 @@ void func_8038D990(struct func_8038D990_Struct *arg0, s32 arg1) {
     struct func_8038D7E8_StructB *a2;
     s32 v0;
     u32 v1;
-    u32 f;
 
     a3 = (*(s32 *)(D_801BBBF0 + 0xDC) == *(s32 *)((u8 *)arg0 + 0xC)) ? (struct func_8038D7E8_StructC *)&D_801BC03C : (struct func_8038D7E8_StructC *)D_801BC3D8;
     a2 = (*(s32 *)(D_801BBBF0 + 0xDC) == *(s32 *)((u8 *)arg0 + 0xC)) ? (struct func_8038D7E8_StructB *)D_801BC3D8 : (struct func_8038D7E8_StructB *)&D_801BC03C;
@@ -56,12 +78,11 @@ void func_8038D990(struct func_8038D990_Struct *arg0, s32 arg1) {
     }
     v0 = a2->unk30;
     v1 = ((u32)v0 << 11) >> 30;
-    f = ((u32)v0 << 3) >> 28;
-    if (v1 != 0 || f * 1 == 2) {
+    if (v1 != 0 || 2 == (((u32)v0 << 3) >> 28)) {
         func_8038D7E8((void *)arg0, a3, a2);
         return;
     }
-    if (v1 == 0 && f * 1 != 2 && (arg0->unk9A & 8)) {
+    if (v1 == 0 && 2 != (((u32)v0 << 3) >> 28) && (arg0->unk9A & 8)) {
         arg0->unk9A = 0;
         arg0->unk92 = arg0->unk93;
         func_8038D7E8((void *)arg0, a3, a2);
@@ -73,7 +94,7 @@ void func_8038D990(struct func_8038D990_Struct *arg0, s32 arg1) {
         func_8038D7E8((void *)arg0, a3, a2);
         return;
     }
-    if (v1 != 0 && (((u32)v0 << 3) >> 31) &&!(arg0->unk9A & 4)) {
+    if (v1 != 0 && (((u32)v0 << 3) >> 31) && !(arg0->unk9A & 4)) {
         func_8038D7E8((void *)arg0, a3, a2);
         return;
     }
