@@ -32,7 +32,7 @@ struct func_801FADFC_Struct;
 void func_801FADFC(struct func_801FADFC_Struct *arg0, s32 arg1);
 
 void func_801FAC3C(struct func_801FAC3C_A *arg0, struct func_801FAC3C_A **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp20;
 
     *(struct func_801FA6FC_Local *)&sp20 = D_80164F40;

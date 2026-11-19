@@ -27,7 +27,6 @@ typedef struct func_801E510C_Struct {
 s32 func_801E510C(s32 arg0, s32 arg1) {
     u32 v;
     f32 q;
-    f32 k;
     func_801E510C_StructC *c;
 
     if (func_801C1088(4, 1, 0x87) != 0) {

@@ -36,6 +36,21 @@ struct func_80203830_Struct {
     s32 unkA0;
 };
 
+#define func_80203830_Struct func_80203830_Struct__func_80203830
+
+
+struct func_80203830_Struct {
+    u8 pad0[0x94];
+    s32 unk94;
+    u8 unk98;
+    u8 unk99;
+    u8 unk9A;
+    u8 unk9B;
+    s16 unk9C;
+    u8 pad1[0x2];
+    s32 unkA0;
+};
+
 s32 func_80203830(void *arg0, s32 arg1)
 {
   s32 stride;
@@ -63,7 +78,7 @@ s32 func_80203830(void *arg0, s32 arg1)
   s->unkA0 = 0;
   s->unk9B = 0;
   *((s16 *) (D_801BBBF0 + 0x354)) = 0;
- stride = 0x18; var_v0 = 0; do { temp_a0 = D_801BBBF0 + (var_v0 * stride); arg1 = arg1;
+ stride = 0x18; var_v0 = 0; do { temp_a0 = D_801BBBF0 + (var_v0 * stride);
     var_v0 = (var_v0 + 1) & 0xFF;
     *((s8 *) (temp_a0 + 0x1090)) = 0;
     *((s32 *) (temp_a0 + 0x1088)) = 0;
@@ -72,6 +87,7 @@ s32 func_80203830(void *arg0, s32 arg1)
   while (var_v0 < 5);
   return 1;
 }
+#undef func_80203830_Struct
 
 
 

@@ -315,12 +315,37 @@ extern struct func_80006F8C_StructE D_8005D050[][60];
 extern u8 D_80062D20[];
 extern struct func_80006F8C_Struct *D_8008D5D8[];
 
+#define D_8005D050 D_8005D050__func_80006F8C
+#define D_8008D5D8 D_8008D5D8__func_80006F8C
+#define func_80006F8C_Struct func_80006F8C_Struct__func_80006F8C
+#define func_80006F8C_StructB func_80006F8C_StructB__func_80006F8C
+#define func_80006F8C_StructE func_80006F8C_StructE__func_80006F8C
+
+struct func_80006F8C_StructB {
+    u8 pad[0x6C];
+    u16 unk6C;
+};
+struct func_80006F8C_Struct {
+    struct func_80006F8C_Struct *unk0;
+    u8 pad4[4];
+    struct func_80006F8C_Struct *unk8;
+    u8 padC[0x1C];
+    u16 unk28;
+    u16 unk2A;
+    struct func_80006F8C_StructB *unk2C;
+};
+struct func_80006F8C_StructE {
+    struct func_80006F8C_Struct *unk0;
+    u8 pad[0x80];
+};
+extern struct func_80006F8C_StructE D_8005D050[][60];
+extern struct func_80006F8C_Struct *D_8008D5D8[];
+
 void func_80006F8C(u16 arg0, struct func_80006F8C_Struct *arg1) {
     struct func_80006F8C_Struct *s1;
     s32 s2;
     s32 a0;
     s32 v;
-    u8 n;
     u8 *p;
     s32 t;
 
@@ -356,6 +381,11 @@ void func_80006F8C(u16 arg0, struct func_80006F8C_Struct *arg1) {
         } while (arg1 != NULL);
     }
 }
+#undef D_8005D050
+#undef D_8008D5D8
+#undef func_80006F8C_Struct
+#undef func_80006F8C_StructB
+#undef func_80006F8C_StructE
 
 
 typedef struct func_80007114_StructVec {

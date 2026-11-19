@@ -19,7 +19,6 @@ extern s8 D_8025C704;
 
 void func_80244458(void *arg0, s32 *arg1)
 {
-  s32 temp_v0;
   func_800058DC(arg0, func_80243F08);
   D_8025C6F8 = 1;
   D_8025C6FA = 0;

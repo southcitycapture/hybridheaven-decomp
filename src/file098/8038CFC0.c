@@ -454,10 +454,45 @@ typedef struct func_8038DA0C_StructB2 {
 } func_8038DA0C_StructB2;
 
 
+#define D_801BBBF0 D_801BBBF0__func_8038DA0C
+#define func_8038DA0C_StructB2 func_8038DA0C_StructB2__func_8038DA0C
+#define func_8038DA0C_StructG func_8038DA0C_StructG__func_8038DA0C
+#define func_8038DA0C_StructO func_8038DA0C_StructO__func_8038DA0C
+
+typedef struct func_8038DA0C_StructO {
+    u8 pad0[0xC];
+    s32 unkC;
+    u8 pad10[0x81];
+    u8 unk91;
+    u8 pad92[8];
+    s16 unk9A;
+    u8 pad9C[4];
+    u8 unkA0;
+    u8 padA1[7];
+    u8 unkA8;
+    u8 padA9[3];
+    void *unkAC;
+    void *unkB0;
+} func_8038DA0C_StructO;
+
+typedef struct func_8038DA0C_StructG {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 padE0[0x1031 - 0xE0];
+    u8 unk1031;
+} func_8038DA0C_StructG;
+
+extern func_8038DA0C_StructG D_801BBBF0;
+typedef struct func_8038DA0C_StructB2 {
+    u8 pad0[0x38];
+    u32 flag:1;
+    u32 x:2;
+    u32 b28:1;
+} func_8038DA0C_StructB2;
+
 void func_8038DA0C(func_8038DA0C_StructO *arg0, void *arg1) {
     func_8038D800_StructB *a1;
     func_8038D800_StructC *a2;
-    u32 v;
     u32 t;
 
     a1 = (D_801BBBF0.unkDC == arg0->unkC) ? (func_8038D800_StructB *)&D_801BC03C : (func_8038D800_StructB *)&D_801BC3D8;
@@ -509,6 +544,10 @@ void func_8038DA0C(func_8038DA0C_StructO *arg0, void *arg1) {
         func_8038D800((func_8038D800_StructA *)arg0, a1, a2);
     }
 }
+#undef D_801BBBF0
+#undef func_8038DA0C_StructB2
+#undef func_8038DA0C_StructG
+#undef func_8038DA0C_StructO
 
 
 struct func_8038DC3C_Struct1 {

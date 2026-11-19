@@ -20,7 +20,7 @@ typedef struct func_80242240_Struct0 {
 } func_80242240_Struct0;
 
 void func_80242240(func_80242240_Struct0 *arg0, s32 arg1) {
-    register struct func_80242178_Struct *globals;
+    struct func_80242178_Struct *globals;
     if ((D_801BBCCC[0x63] != 0) &&
         (func_80133A24(0x145) == 0) &&
         (func_80126CC0((s32)arg0, func_80127014) != 0)) {

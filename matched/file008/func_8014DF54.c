@@ -2,10 +2,8 @@
 
 s32 func_8014DF54(func_8014D2E0_Struct *arg0, func_8014C2B0_Struct_Sub **arg1)
 {
-    register func_8014D2E0_Struct_Table *table;
-    s32 flag;
+    func_8014D2E0_Struct_Table *table;
     f32 value;
-    f32 state2value;
 
     if (arg0->unk93 == 1) goto state1;
     if (arg0->unk93 == 2) goto state2;

@@ -14,12 +14,12 @@ good tooling get on real work, and what it costs. Every function is checked by t
 
 | | Matched | |
 |---|---:|---|
-| **Code** | **90.06%** | 2,545,728 of 2,826,840 bytes |
-| Functions | 98.0% | 15,579 of 15,891 |
-| Data | 95.41% | 1,017,036 of 1,065,936 bytes |
-| Fully linked | 33.08% | 235 of 539 source files complete |
+| **Code** | **90.16%** | 2,548,640 of 2,826,840 bytes |
+| Functions | 98.1% | 15,587 of 15,891 |
+| Data | 95.36% | 1,016,508 of 1,065,936 bytes |
+| Fully linked | 33.37% | 237 of 539 source files complete |
 
-_Updated 2026-11-19 03:46 UTC by the publishing loop._
+_Updated 2026-11-19 10:28 UTC by the publishing loop._
 
 ![Progress over time, with the Christmas forecast](docs/img/progress.svg)
 

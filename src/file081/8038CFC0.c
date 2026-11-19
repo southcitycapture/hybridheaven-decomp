@@ -258,6 +258,7 @@ struct func_8038D548_Struct {
 
 extern s32 D_801BBCCC;
 struct func_8038D5C0_StructObj;
+#define func_8038D5C0 func_8038D5C0__decl260
 void func_8038D5C0(struct func_8038D5C0_StructObj *arg0, void *arg1);
 
 void func_8038D548(struct func_8038D548_Struct *arg0, s32 arg1) {
@@ -280,6 +281,7 @@ void func_8038D548(struct func_8038D548_Struct *arg0, s32 arg1) {
     func_8038D45C(arg0, var_a1, var_a2);
     func_800058DC((s32)arg0, (void *)func_8038D5C0);
 }
+#undef func_8038D5C0
 
 
 struct func_8038D5C0_StructObj {
@@ -320,10 +322,59 @@ extern s32 func_8022AB58(void *, void *, void *);
 extern void func_8038D45C(void *, void *, void *, void *);
 extern u8 func_8022B3E0[];
 
+#undef func_8038D45C
+#define D_801BBBF0 D_801BBBF0__func_8038D5C0
+#define D_801BC03C D_801BC03C__func_8038D5C0
+#define D_801BC3D8 D_801BC3D8__func_8038D5C0
+#define func_800058DC func_800058DC__func_8038D5C0
+#define func_8038D45C func_8038D45C__func_8038D5C0
+#define func_8038D5C0_StructA func_8038D5C0_StructA__func_8038D5C0
+#define func_8038D5C0_StructB func_8038D5C0_StructB__func_8038D5C0
+#define func_8038D5C0_StructGlobal func_8038D5C0_StructGlobal__func_8038D5C0
+#define func_8038D5C0_StructObj func_8038D5C0_StructObj__func_8038D5C0
+
+struct func_8038D5C0_StructObj {
+    u8 pad0[0x0C];
+    s32 unkC;
+    u8 pad10[0x91 - 0x10];
+    u8 unk91;
+    u8 pad92[0x9A - 0x92];
+    s16 unk9A;
+    u8 pad9C[0xA8 - 0x9C];
+    u8 unkA8;
+    u8 padA9[0xB0 - 0xA9];
+    void *unkB0;
+};
+
+struct func_8038D5C0_StructA {
+    u8 pad0[0x30];
+    u16 unk30;
+};
+
+struct func_8038D5C0_StructB {
+    u8 pad0[0x30];
+    s32 unk30;
+    u8 pad34[0x396 - 0x34];
+    u8 unk396;
+};
+
+struct func_8038D5C0_StructGlobal {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 padE0[0xB90 - 0xE0];
+    f32 unkB90;
+    u8 padB94[0x1031 - 0xB94];
+    u8 unk1031;
+};
+extern s32 func_800058DC(void *, void *);
+extern void func_8038D45C(void *, void *, void *, void *);
+extern struct func_8038D5C0_StructGlobal D_801BBBF0;
+extern struct func_8038D5C0_StructB D_801BC03C;
+extern struct func_8038D5C0_StructA D_801BC3D8;
+
 void func_8038D5C0(struct func_8038D5C0_StructObj *arg0, void *arg1) {
     struct func_8038D5C0_StructA *var_a1;
     struct func_8038D5C0_StructB *var_a2;
-    u8 temp_v0_4;
     s16 temp_v0;
     s16 temp_v0_2;
     u32 temp_v0_3;
@@ -383,6 +434,16 @@ void func_8038D5C0(struct func_8038D5C0_StructObj *arg0, void *arg1) {
         arg0->unk9A = (s16) (arg0->unk9A ^ 8);
     }
 }
+#undef D_801BBBF0
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef func_800058DC
+#undef func_8038D45C
+#undef func_8038D5C0_StructA
+#undef func_8038D5C0_StructB
+#undef func_8038D5C0_StructGlobal
+#undef func_8038D5C0_StructObj
+#define func_8038D45C D_8038D45C
 
 
 struct func_8038D7B4_Arg0 {

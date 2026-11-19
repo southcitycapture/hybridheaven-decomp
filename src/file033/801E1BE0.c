@@ -893,9 +893,7 @@ s32 func_801E3790(s32 arg0, s32 arg1)
   m1 = (15.6f);
   new_var2 = 0x3C;
   m2 = (-53.9f);
-  if (m5)
-  {
-  }
+
   new_var = m5;
   m5 = m2;
   if (func_8038BEF8(0.0f, 1.0f, -9.6f, 52.6f, (-86.3f), (1.2f), (41.7f), (-96.9f), new_var, m1, m2, new_var, m1, m5) != 0)
@@ -4046,18 +4044,19 @@ extern f32 D_801F4850;
 extern f32 D_801F4854;
 extern f32 D_801F4858;
 
+
 s32 func_801E8C60(s32 arg0, s32 arg1)
 {
   f32 sp20;
   f32 sp24;
   float new_var;
- do { sp20 = (0.8999999761581421f); sp24 = (18.899999618530273f); new_var = 0.0f; } while (0);
-  if (func_8038BEF8(new_var, 2.5f, 12.7f, 14.4f, -47.0f, 4.0f, (18.299999237060547f), (-44.70000076293945f), sp20, sp24, -59.5f, sp20, sp24, -59.5f))
+ do { sp20 = 0.899999976f; sp24 = 18.8999996f; new_var = 0.0f; } while (0);
+  if (func_8038BEF8(new_var, 2.5f, 12.7f, 14.4f, -47.0f, 4.0f, 18.2999992f, (-44.7000008f), sp20, sp24, -59.5f, sp20, sp24, -59.5f))
   {
     return 2;
   }
   return 1;
- if (1) { }
+
 }
 
 
@@ -6767,20 +6766,45 @@ s32 func_801EDBE0(s32 arg0, s32 arg1) {
 
 extern f32 D_801F4AD8;
 
+#define func_801E6018_Ext func_801E6018_Ext__func_801EDBF0
+#define func_801E6018_Obj func_801E6018_Obj__func_801EDBF0
+#define func_801E6018_Out func_801E6018_Out__func_801EDBF0
+struct func_801E6018_Out {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+};
+struct func_801E6018_Ext {
+    u8 pad0[0x2C];
+    struct func_801E6018_Out *unk2C;
+};
+struct func_801E6018_Obj {
+    u8 pad0[0x8];
+    struct func_801E6018_Obj *unk8;
+    u8 pad1[0x24 - 0xC];
+    struct func_801E6018_Ext *unk24;
+};
+
 s32 func_801EDBF0(s32 arg0, s32 arg1)
 {
-  register struct func_801E6018_Obj **slot;
+  struct func_801E6018_Obj **slot;
   short new_var;
   new_var = 0x24;
   slot = (struct func_801E6018_Obj **) (func_801DAAF0 + new_var);
   (*slot)->unk8->unk8->unk8->unk24->unk2C->unk4 = 35.0f;
   (*slot)->unk8->unk8->unk8->unk24->unk2C->unk8 = 0.0f;
-  (*slot)->unk8->unk8->unk8->unk24->unk2C->unkC = (-40.29999923706055f);
+  (*slot)->unk8->unk8->unk8->unk24->unk2C->unkC = (-40.2999992f);
   (*slot)->unk8->unk8->unk8->unk24->unk2C->unk12 = 0x171C;
   func_801CC470(2, 0x03200052, 0, 1, 1.0f);
   func_801D58D0(0);
   return 0x11;
 }
+#undef func_801E6018_Ext
+#undef func_801E6018_Obj
+#undef func_801E6018_Out
 
 /* starting point: func_801E56F8 (file053), whose assembly is 95% the same as this function's */
 

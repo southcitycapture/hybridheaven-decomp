@@ -12,7 +12,6 @@ extern f64 D_8018D6D0;
 void func_801318D8(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10, void *arg11, f32 arg12, f32 arg13) {
     f32 sp3C;
     f32 sp38;
-    f32 fa0;
     f32 fa1;
     f32 ft4;
     f32 ft5;

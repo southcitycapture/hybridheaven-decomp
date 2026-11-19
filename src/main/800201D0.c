@@ -1844,10 +1844,27 @@ extern func_80022B6C_Struct D_800CBAC4[];
 
 
 /* GGA: sndAddSlot */
+#undef CAT
+#undef CAT2
+#undef D_800CBAC4
+#undef func_80022B6C_Struct
+#define D_800CBAC4 D_800CBAC4__func_80022C8C_7a23a831
+#define func_80022B6C_Struct func_80022B6C_Struct__func_80022C8C_7a23a831
+#define CAT2(a, b) a##b
+#define CAT(a, b) CAT2(a, b)
+#define CAT2(a, b) a##b
+#define CAT(a, b) CAT2(a, b)
+typedef struct func_80022B6C_Struct {
+    u16 unk0;
+    u16 unk2;
+} func_80022B6C_Struct;
+extern func_80022B6C_Struct D_800CBAC4[];
+
+
+/* GGA: sndAddSlot */
 void func_80022C8C(void) {
     s32 value;
     s32 i;
-    u16 *p;
 
     value = (D_800CBB48 &= 0x7FFF);
     for (i = 0; i < 1; i++) {
@@ -1864,6 +1881,14 @@ void func_80022C8C(void) {
         }
     }
 }
+#undef CAT2
+#undef CAT
+#undef D_800CBAC4
+#undef func_80022B6C_Struct
+#define CAT(a, b) CAT2(a, b)
+#define CAT2(a, b) a##b
+#define D_800CBAC4 D_800CBAC4__func_80022C8C
+#define func_80022B6C_Struct func_80022B6C_Struct__func_80022C8C
 #undef CAT2
 #undef CAT
 #undef D_800CBAC4
@@ -2632,10 +2657,58 @@ extern void func_8002AB10(s32, void *, f32);
 #define Q ((func_80023BF4_Struct *) D_800CBDA4)
 
 /* GGA: trkSetPitch */
+#undef Q
+#define func_80023BF4_Struct func_80023BF4_Struct__func_80023BF4
+#define func_80023D04_Struct func_80023D04_Struct__func_80023BF4
+typedef struct func_80023D04_Struct {
+    u32 unk0;
+    u8 pad4[2];
+    u8 unk6;
+    u8 pad7[0x3A - 7];
+    u16 unk3A;
+    u8 pad3C[4];
+    s16 unk40;
+    s16 unk42;
+    u8 pad44[4];
+    u8 unk48;
+    u8 pad49;
+    u16 unk4A;
+    u16 unk4C;
+    u8 pad4E[0xAA - 0x4E];
+    s16 unkAA;
+    u8 padAC[8];
+    s16 unkB4;
+    u16 unkB6;
+    u8 padB8[6];
+    u8 unkBE;
+    u8 padBF[9];
+    s16 unkC8;
+} func_80023D04_Struct;
+#define Q ((func_80023D04_Struct *) D_800CBDA4)
+
+typedef struct func_80023BF4_Struct {
+    u8 pad0[6];
+    u8 unk6;
+    u8 pad7[0x28 - 7];
+    s32 unk28;
+    u8 pad2C[0x36 - 0x2C];
+    s16 unk36;
+    u16 unk38;
+    u8 pad3A[0xA8 - 0x3A];
+    s16 unkA8;
+    u8 padAA[0xB0 - 0xAA];
+    f32 unkB0;
+    u8 padB4[0xC6 - 0xB4];
+    s16 unkC6;
+} func_80023BF4_Struct;
+
+
+#define Q ((func_80023BF4_Struct *) D_800CBDA4)
+
+/* GGA: trkSetPitch */
 void func_80023BF4(void) {
     f32 *tbl;
     f32 v;
-    f32 lo;
     u32 frac;
     s32 x;
 
@@ -2658,6 +2731,10 @@ void func_80023BF4(void) {
         func_8002AB10(D_800498F0, &D_800CBBE0[D_800CBAB4 * 0x1C], v);
     }
 }
+#undef Q
+#undef func_80023BF4_Struct
+#undef func_80023D04_Struct
+#define Q ((func_80023BF4_Struct *) D_800CBDA4)
 #undef Q
 
 

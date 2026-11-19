@@ -56,7 +56,6 @@ void func_8038D8D8(struct func_8038D8D8_StructA *arg0, s32 arg1) {
     B *a2;
     u32 v;
     u32 hi;
-    u32 lo;
 
     a3 = (D_801BBBF0.unkDC == arg0->unkC) ? (B *)&D_801BC03C : (B *)D_801BC3D8;
     a2 = (D_801BBBF0.unkDC == arg0->unkC) ? (B *)D_801BC3D8 : (B *)&D_801BC03C;

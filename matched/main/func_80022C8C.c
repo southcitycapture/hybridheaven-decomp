@@ -15,7 +15,6 @@ extern void (*D_80047E0C[])(void);
 void func_80022C8C(void) {
     s32 value;
     s32 i;
-    u16 *p;
 
     value = (D_800CBB48 &= 0x7FFF);
     for (i = 0; i < 1; i++) {

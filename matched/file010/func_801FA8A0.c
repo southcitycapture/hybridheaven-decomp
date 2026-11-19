@@ -26,7 +26,7 @@ struct func_801FAAA4_Struct;
 void func_801FAAA4(struct func_801FAAA4_Struct *arg0, s32 arg1);
 
 void func_801FA8A0(struct func_801FA8A0_Obj *arg0, struct func_801FA8A0_Outer **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp28;
 
     *(struct func_801FA6FC_Local *)&sp28 = D_80164F40;

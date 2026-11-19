@@ -12,7 +12,6 @@ typedef struct func_801CC350_StructBuffer {
 
 s32 func_801CC350(void) {
     func_801CC350_StructBuffer *p;
-    u8 *q;
     s32 i;
     s32 k;
     u8 *entry;

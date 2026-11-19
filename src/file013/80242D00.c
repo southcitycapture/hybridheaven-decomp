@@ -148,8 +148,27 @@ typedef struct func_80242E90_StructC {
 } func_80242E90_StructC;
 
 
+#define func_80242E90_StructA func_80242E90_StructA__func_80242E90
+#define func_80242E90_StructB func_80242E90_StructB__func_80242E90
+#define func_80242E90_StructC func_80242E90_StructC__func_80242E90
+
+typedef struct func_80242E90_StructB {
+    u8 pad[4];
+    f32 x, y, z;
+} func_80242E90_StructB;
+typedef struct func_80242E90_StructA {
+    u8 pad[0x2C];
+    func_80242E90_StructB *data;
+} func_80242E90_StructA;
+typedef struct func_80242E90_StructC {
+    u8 pad[0x24];
+    func_80242E90_StructA *data;
+    u8 pad28[0x80];
+    u16 timer;
+} func_80242E90_StructC;
+
 void func_80242E90(func_80242E90_StructC *arg0, s32 arg1) {
-    register u8 *temp_v0 = (u8 *)&D_801BBBF0;
+    u8 *temp_v0 = (u8 *)&D_801BBBF0;
     u16 temp_t8;
     s32 temp_v1;
 
@@ -166,6 +185,9 @@ void func_80242E90(func_80242E90_StructC *arg0, s32 arg1) {
     }
     func_802039B0(arg0, arg1);
 }
+#undef func_80242E90_StructA
+#undef func_80242E90_StructB
+#undef func_80242E90_StructC
 
 
 /* Original readonly objects; named loads retain their original addresses. */

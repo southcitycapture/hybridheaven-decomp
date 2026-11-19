@@ -15,7 +15,6 @@ struct func_80244518_StructObj {
 };
 
 void func_80244518(struct func_80244518_StructObj *arg0, s32 arg1) {
-    s16 temp_v1;
     s32 is_zero;
     struct func_80246478_Child *temp_s1;
 

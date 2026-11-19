@@ -15,7 +15,6 @@ f32 func_801D44A4(f32 arg0, f32 arg1)
   s32 i;
   f32 a;
   f32 b;
-  f32 z;
   if (arg1 == 0.0f)
   {
     if (arg0 < 0.0f)

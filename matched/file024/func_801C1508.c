@@ -29,7 +29,6 @@ void func_801C1A30(s32 arg0, s32 arg1);
 
 void func_801C1508(func_801C1508_StructP *arg0, s32 arg1) {
     func_801C1508_StructB *p;
-    f32 t;
 
     if (func_801C1334() & 0xB000) {
         func_800058DC((s32)arg0, (void *)func_801C1A30);

@@ -25,7 +25,6 @@ struct func_8012E774_Obj {
 };
 
 void func_8012E774(struct func_8012E774_Obj *arg0) {
-    s32 a;
     s32 b;
     s32 p;
 

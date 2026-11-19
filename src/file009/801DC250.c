@@ -382,12 +382,99 @@ extern func_801DCDBC_StructG D_801BBBF0__func_801DCDBC2;
         break;                                          \
     }
 
+#undef ANGLE
+#undef D_801BBBF4
+#undef D_801BBF44
+#undef D_801E15E8
+#undef E0TAB
+#undef E8TAB
+#undef E8TAB2
+#undef F
+#undef G2
+#undef I
+#undef OBJ
+#undef RAY10
+#undef SETHIT
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_801DCCB0
+#define D_801BBBF0__func_801DCDBC D_801BBBF0__func_801DCDBC__func_801DCDBC_5c91b75e
+#define D_801BBBF0__func_801DCDBC2 D_801BBBF0__func_801DCDBC2__func_801DCDBC_5c91b75e
+#define D_801BBBF4 D_801BBBF4__func_801DCDBC_5c91b75e
+#define D_801BBCD0__func_801DCDBC D_801BBCD0__func_801DCDBC__func_801DCDBC_5c91b75e
+#define D_801BBF44 D_801BBF44__func_801DCDBC_5c91b75e
+#define D_801E15E8 D_801E15E8__func_801DCDBC_5c91b75e
+#define func_8001EAD0 func_8001EAD0__func_801DCDBC_5c91b75e
+#define func_8001EB64 func_8001EB64__func_801DCDBC_5c91b75e
+#define func_801DCCB0 func_801DCCB0__func_801DCDBC_5c91b75e
+#define func_801DCDBC_StructA func_801DCDBC_StructA__func_801DCDBC_5c91b75e
+#define func_801DCDBC_StructG func_801DCDBC_StructG__func_801DCDBC_5c91b75e
+#define func_801DCDBC_StructObj func_801DCDBC_StructObj__func_801DCDBC_5c91b75e
+#define func_801DCDBC_StructPos func_801DCDBC_StructPos__func_801DCDBC_5c91b75e
+#define func_801DCDBC_Vec func_801DCDBC_Vec__func_801DCDBC_5c91b75e
+extern u16 D_801BBBF4;
+extern u8 D_801BBF44[];
+extern u16 D_801E15E8[][8];
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+void func_801DCCB0(s32 a0, s32 a1, s32 arg2);
+
+
+typedef struct func_801DCDBC_StructA {
+    s32 id;
+    u16 k;
+    u16 flags;
+    f32 scale;
+} func_801DCDBC_StructA;
+typedef struct func_801DCDBC_Vec {
+    f32 x, y, z;
+} func_801DCDBC_Vec;
+typedef struct func_801DCDBC_StructPos {
+    u8 pad0[0x12];
+    s16 angle;
+} func_801DCDBC_StructPos;
+typedef struct func_801DCDBC_StructObj {
+    u8 pad0[0x2C];
+    func_801DCDBC_StructPos *pos;
+} func_801DCDBC_StructObj;
+typedef struct func_801DCDBC_StructG {
+    u8 pad0[4];
+    u16 unk4;
+    u8 pad6[0xE0 - 6];
+    func_801DCDBC_StructObj *unkE0;
+    u8 padE4[0x35B - 0xE4];
+    u8 unk35B;
+} func_801DCDBC_StructG;
+
+extern func_801DCDBC_StructG D_801BBBF0__func_801DCDBC;
+extern func_801DCDBC_StructObj *D_801BBCD0__func_801DCDBC;
+#define G2 D_801BBBF0__func_801DCDBC
+extern func_801DCDBC_StructG D_801BBBF0__func_801DCDBC2;
+#define E8TAB2 (D_801E15E8[D_801E16A0[D_801BBBF0__func_801DCDBC2.unk4]][D_801BBBF0__func_801DCDBC2.unk35B])
+#define OBJ D_801BBCD0__func_801DCDBC
+#define F(n) func_80011590((u32)((n) * f) & 0xFFFF)
+#define I(n) func_80011590(n)
+#define E0TAB (*(u16 *)(D_801E15E0 + (D_801E16A0[G2.unk4] * 16 + G2.unk35B * 2)))
+#define E8TAB (D_801E15E8[D_801E16A0[G2.unk4]][G2.unk35B])
+#define ANGLE (OBJ->pos->angle)
+#define RAY10 c = func_8001EAD0(ANGLE); d = func_8001EB64(ANGLE); func_801C5A1C(pos.x, pos.y, pos.z, c * 10.0 + pos.x, pos.y, d * 10.0 + pos.z)
+#define SETHIT()                                        \
+    switch (D_801BBF44[6]) {                            \
+    case 4:                                             \
+    case 10:                                            \
+        *arg1 = 0x6A7;                                  \
+        break;                                          \
+    case 3:                                             \
+        *arg1 = 0x6A8;                                  \
+        break;                                          \
+    }
+
 void func_801DCDBC(func_801DCDBC_StructA *anim, u16 *arg1, f32 *arg2, func_801DCDBC_Vec pos) {
     f32 f = anim->scale;
     f32 d, c, b, a;
 
     switch (anim->id) {
-    case 0x01680002 + 0:
+    case 0x01680002:
         if (anim->k == F(13.0f)) {
             *arg1 = D_801E15E8[D_801E16A0[D_801BBBF4]][D_801BBF44[7]];
         }
@@ -531,6 +618,46 @@ void func_801DCDBC(func_801DCDBC_StructA *anim, u16 *arg1, f32 *arg2, func_801DC
         break;
     }
 }
+#undef G2
+#undef OBJ
+#undef F
+#undef I
+#undef E0TAB
+#undef E8TAB
+#undef E8TAB2
+#undef ANGLE
+#undef RAY10
+#undef SETHIT
+#undef D_801BBBF0__func_801DCDBC
+#undef D_801BBBF0__func_801DCDBC2
+#undef D_801BBBF4
+#undef D_801BBCD0__func_801DCDBC
+#undef D_801BBF44
+#undef D_801E15E8
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_801DCCB0
+#undef func_801DCDBC_StructA
+#undef func_801DCDBC_StructG
+#undef func_801DCDBC_StructObj
+#undef func_801DCDBC_StructPos
+#undef func_801DCDBC_Vec
+#define ANGLE (OBJ->pos->angle)
+#define D_801BBBF4 D_801BBBF4__func_801DCDBC
+#define D_801BBF44 D_801BBF44__func_801DCDBC
+#define D_801E15E8 D_801E15E8__func_801DCDBC
+#define E0TAB (*(u16 *)(D_801E15E0 + (D_801E16A0[G2.unk4] * 16 + G2.unk35B * 2)))
+#define E8TAB (D_801E15E8[D_801E16A0[G2.unk4]][G2.unk35B])
+#define E8TAB2 (D_801E15E8[D_801E16A0[D_801BBBF0__func_801DCDBC2.unk4]][D_801BBBF0__func_801DCDBC2.unk35B])
+#define F(n) func_80011590((u32)((n) * f) & 0xFFFF)
+#define G2 D_801BBBF0__func_801DCDBC
+#define I(n) func_80011590(n)
+#define OBJ D_801BBCD0__func_801DCDBC
+#define RAY10 c = func_8001EAD0(ANGLE); d = func_8001EB64(ANGLE); func_801C5A1C(pos.x, pos.y, pos.z, c * 10.0 + pos.x, pos.y, d * 10.0 + pos.z)
+#define SETHIT()                                        \
+#define func_8001EAD0 func_8001EAD0__func_801DCDBC
+#define func_8001EB64 func_8001EB64__func_801DCDBC
+#define func_801DCCB0 func_801DCCB0__func_801DCDBC
 #undef G2
 #undef OBJ
 #undef F

@@ -7,7 +7,6 @@ extern void func_803803E4();
 void func_80380168(s32 arg0, s32 *arg1) {
     s16 sp46;
     u8 sp45;
-    struct func_8037EABC_Struct *temp_t6;
     extern u8 func_80006214();
 
     sp45 = func_80006214();

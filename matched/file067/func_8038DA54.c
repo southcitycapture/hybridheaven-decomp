@@ -36,7 +36,6 @@ extern u8 D_8038DA54[];
 void func_8038DA54(struct func_8038DA54_Struct *arg0, s32 arg1) {
     func_8038D834_StructB *a1;
     func_8038D834_StructC *a3;
-    s32 d;
     s32 c;
 
     a1 = (arg0->unkC == g->unkDC) ? (func_8038D834_StructB *)D_801BC03C : (func_8038D834_StructB *)D_801BC3D8;

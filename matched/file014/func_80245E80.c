@@ -14,7 +14,6 @@ void func_80245E80(struct func_80245E80_StructObj *arg0, s32 arg1)
 {
     void *child;
     u16 old;
-    u16 next;
 
     child = arg0->unk5C;
     if (func_8012CE9C(arg1, child, *(struct func_802438E4_Table *)&D_802484C4, 10) == 0) {

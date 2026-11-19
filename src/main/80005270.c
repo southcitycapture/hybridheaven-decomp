@@ -1397,11 +1397,12 @@ s32 func_800065EC(void *a0, void *a1) {
 extern u32 D_8008D5C8[];
 extern u32 D_8008D5CC;
 
+
+
 u32 func_8000671C(void)
 {
   int new_var;
   u32 limit;
-  u32 temp_v1;
   limit = D_8008D5CC;
   ;
   if (D_8008D5C8[0] < D_8008D5CC)
@@ -1417,11 +1418,12 @@ u32 func_8000671C(void)
 extern u32 D_8008D5C0[];
 extern u32 D_8008D5C4;
 
+
+
 u32 func_80006754(void)
 {
   int new_var;
   u32 limit;
-  u32 temp_v1;
   limit = D_8008D5C4;
   ;
   if (D_8008D5C0[0] < D_8008D5C4)

@@ -386,12 +386,52 @@ extern func_8038D7F0_Struct0 D_801BBBF0;
 extern s32 func_8022AB58();
 extern u8 func_8022B3E0[];
 
+#define D_801BBBF0 D_801BBBF0__func_8038D7F0
+#define func_8038D7F0_Struct0 func_8038D7F0_Struct0__func_8038D7F0
+#define func_8038D7F0_Struct1 func_8038D7F0_Struct1__func_8038D7F0
+#define func_8038D7F0_Struct2 func_8038D7F0_Struct2__func_8038D7F0
+
+typedef struct func_8038D7F0_Struct0 {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 padE0[0xB90 - 0xE0];
+    f32 unkB90;
+    u8 padB94[0x1031 - 0xB94];
+    u8 unk1031;
+} func_8038D7F0_Struct0;
+
+typedef struct func_8038D7F0_Struct1 {
+    u8 pad0[0xC];
+    s32 unkC;
+    u8 pad10[0x91 - 0x10];
+    u8 unk91;
+    u8 unk92;
+    u8 unk93;
+    u8 pad94[0x9A - 0x94];
+    s16 unk9A;
+    u8 pad9C[0xA8 - 0x9C];
+    u8 unkA8;
+    u8 padA9[0xB0 - 0xA9];
+    void *unkB0;
+} func_8038D7F0_Struct1;
+
+typedef struct func_8038D7F0_Struct2 {
+    u8 pad0[0x30];
+    u32 unk30;
+    u32 unk34;
+    u32 b38_0 : 1;
+    u32 b38_1 : 2;
+    u32 b38_3 : 1;
+    u32 b38_4 : 28;
+}func_8038D7F0_Struct2;
+
+extern func_8038D7F0_Struct0 D_801BBBF0;
+
 void func_8038D7F0(func_8038D7F0_Struct1 *arg0, s32 arg1) {
     func_8038D7F0_Struct2 *a3;
     func_8038D7F0_Struct2 *a2;
     s32 v0;
     u32 v1;
-    u32 a1;
     s32 t;
 
     a3 = (func_8038D7F0_Struct2 *)((D_801BBBF0.unkDC == arg0->unkC) ? D_801BC03C : D_801BC3D8);
@@ -456,6 +496,10 @@ void func_8038D7F0(func_8038D7F0_Struct1 *arg0, s32 arg1) {
         func_8038D664(arg0, a3, a2);
     }
 }
+#undef D_801BBBF0
+#undef func_8038D7F0_Struct0
+#undef func_8038D7F0_Struct1
+#undef func_8038D7F0_Struct2
 
 /* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
 

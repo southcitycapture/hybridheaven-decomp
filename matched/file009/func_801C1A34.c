@@ -49,7 +49,6 @@ void func_801C1A34(struct func_801C1B38_Obj *arg0, s32 arg1)
 {
     struct func_801C1A34_StructGlobal *g;
     void *fn;
-    u32 t;
 
     arg0->unk2C &= ~0x80;
     arg0->unk2C |= 0x20;

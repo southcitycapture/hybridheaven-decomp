@@ -67,8 +67,7 @@ u8 func_80226AA4(void *arg0p, s32 arg1p, s8 *arg2p) {
         g[7] = *arg2;
         func_801465A0(arg0, arg1p, *(u16 *)(D_801BBBF0 + 0x44C), 0x1BB, 0x2D);
         *arg2 += 4;
-    } else {
-    }
+    } 
     if (func_80147598() != 0) {
         g[0xA] = *arg2;
         k2 = func_80006214(arg0) & 0xFF;

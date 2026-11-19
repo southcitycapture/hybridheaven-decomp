@@ -30,9 +30,7 @@ struct func_801E4FE0_Struct0 {
 
 s32 func_801E4FE0(s32 arg0, s32 arg1)
 {
-  struct func_801E4FE0_Struct3 *temp_v0;
   struct func_801E4FE0_Struct0 **new_var;
-  struct func_801E4FE0_Struct0 *temp_t6;
   if (func_801CE274() == 0)
   {
     new_var = (struct func_801E4FE0_Struct0 **) (func_801DAAF0 + 0x24);

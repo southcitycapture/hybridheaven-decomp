@@ -62,7 +62,6 @@ void func_8036648C(func_8036648C_StructO *arg0, s32 arg1) {
     func_8036648C_StructA *a;
     func_8036648C_StructA *b;
     func_8036648C_StructI *o;
-    u8 v;
     u32 k;
 
     if ((s32)arg0 == G80364D2C->unkDC) {

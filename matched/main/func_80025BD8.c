@@ -11,7 +11,6 @@ extern u8 D_800CBAD0[];
 void func_80025BD8(void) {
     s32 var_a0;
     u8 var_a2;
-    s32 var_v1;
     u8 temp_a2;
     struct func_80025BD8_Struct *ptr;
 

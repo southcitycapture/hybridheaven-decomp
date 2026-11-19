@@ -652,10 +652,46 @@ struct func_8014B8DC_Struct {
 };
 extern s32 func_8012FF58();
 
+#undef func_8012FF58
+#undef func_8014B0BC_Struct
+#define func_8012FF58 func_8012FF58__func_8014B8DC_c116939f
+#define func_8014B0BC_Struct func_8014B0BC_Struct__func_8014B8DC_c116939f
+#define func_8014B8DC_Inner func_8014B8DC_Inner__func_8014B8DC_c116939f
+#define func_8014B8DC_Struct func_8014B8DC_Struct__func_8014B8DC_c116939f
+struct func_8014B0BC_Struct {
+    u8 unk0;
+    u8 unk1;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    s16 unk8;
+    u16 unkA;
+    u8 unkC;
+    u8 unkD;
+    u16 unkE;
+};
+
+struct func_8014B8DC_Inner {
+    u8 pad[0x90];
+    f32 unk90;
+    f32 unk94;
+    f32 unk98;
+    s16 unk9C;
+};
+struct func_8014B8DC_Struct {
+    u8 unk0;
+    u8 unk1;
+    u16 unk2;
+    struct func_8014B8DC_Inner *unk4;
+    u8 unk8;
+    u8 unk9;
+    u8 pad[2];
+};
+extern s32 func_8012FF58();
+
 void func_8014B8DC(void) {
     struct func_8014B8DC_Struct *p;
     s32 s;
-    u8 *end;
     s8 *a;
     struct func_8014B0BC_Struct *b;
 
@@ -686,6 +722,12 @@ void func_8014B8DC(void) {
         if ((u8 *)p == &D_801BF178) break;
     }
 }
+#undef func_8012FF58
+#undef func_8014B0BC_Struct
+#undef func_8014B8DC_Inner
+#undef func_8014B8DC_Struct
+#define func_8012FF58 func_8012FF58__func_8014B8DC
+#define func_8014B0BC_Struct func_8014B0BC_Struct__func_8014B8DC
 #undef func_8012FF58
 #undef func_8014B0BC_Struct
 

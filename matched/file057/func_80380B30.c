@@ -27,7 +27,7 @@ void func_80380B30(func_80380B30_S *arg0, s32 arg1)
   arg0->unk44 = f;
   arg0->unk24->unk2C->unk30 = ((u32) D_80389880) | 0x40000000;
   arg0->unk40 = (f32) (((f64) (arg0->unk24->unk2C->unk4 - D_8038CFB4->unk2C->unk4)) * k);
- if (1) { } if (1) { } if (1) { } if (1) { } if (1) { }
+     
   arg0->unk48 = (f32) (((f64) (arg0->unk24->unk2C->unkC - D_8038CFB4->unk2C->unkC)) * k);
   arg0->unk90 = func_8012C6B4(0x300) + 0x100;
   arg0->unk3C = func_8012C6B4(0x3C) + 0x1E;

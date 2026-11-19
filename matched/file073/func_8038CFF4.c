@@ -94,7 +94,6 @@ void func_8038CFF4(struct func_8038CFF4_StructObj *arg0, s32 arg1)
     void *opponent;
     f32 x;
     f64 distance;
-    s16 direction2;
     u8 oldTimer;
     s16 angleValue;
     s32 angleValue2;

@@ -80,7 +80,6 @@ func_80151DA4_Struct func_80151DA4(void) {
     s16 b;
     s16 c;
     func_80151DA4_Obj *o;
-    u16 v;
 
     s = D_80089474;
     if (D_801BBBF0.unk170 != 0) {

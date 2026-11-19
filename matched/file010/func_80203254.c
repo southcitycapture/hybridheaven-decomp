@@ -31,7 +31,6 @@ void func_80203254(struct func_80203254_Struct *arg0, struct func_80203254_Struc
 {
   f32 fv;
   f32 v;
-  s16 t;
   s32 f;
   struct func_80203254_StructM *m;
   u8 s;

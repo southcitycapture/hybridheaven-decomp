@@ -1214,11 +1214,87 @@ extern u8 D_80386480[];
 
 #define GB ((u8 *)&D_801BBBF0)
 
+#undef D_801BBBF0
+#undef D_80386450
+#undef D_80386470
+#undef D_80386480
+#undef G80364D2C
+#undef GB
+#undef func_8013C6FC
+#undef func_802237B0
+#undef func_803643CC_Glob
+#undef func_80366648
+#undef func_803673B4_StructGlobal
+#define D_801BBBF0 D_801BBBF0__func_8036648C_88d456a3
+#define D_80386450 D_80386450__func_8036648C_88d456a3
+#define D_80386470 D_80386470__func_8036648C_88d456a3
+#define D_80386480 D_80386480__func_8036648C_88d456a3
+#define func_8013C6FC func_8013C6FC__func_8036648C_88d456a3
+#define func_802237B0 func_802237B0__func_8036648C_88d456a3
+#define func_803643CC_Glob func_803643CC_Glob__func_8036648C_88d456a3
+#define func_8036648C_StructA func_8036648C_StructA__func_8036648C_88d456a3
+#define func_8036648C_StructI func_8036648C_StructI__func_8036648C_88d456a3
+#define func_8036648C_StructO func_8036648C_StructO__func_8036648C_88d456a3
+#define func_80366648 func_80366648__func_8036648C_88d456a3
+#define func_803673B4_StructGlobal func_803673B4_StructGlobal__func_8036648C_88d456a3
+typedef struct func_803673B4_StructGlobal {
+    u8 pad[0xDC];
+    s32 unkDC;
+    u8 padE0[0xC];
+    s32 unkEC;
+} func_803673B4_StructGlobal;
+extern struct func_803673B4_StructGlobal D_801BBBF0;
+typedef struct func_803643CC_Glob {
+    u8 pad[0xDC];
+    s32 unkDC;
+    u8 padE0[0xC];
+    s32 unkEC;
+} func_803643CC_Glob;
+#define G80364D2C ((func_803643CC_Glob *)&D_801BBBF0)
+extern void func_802237B0(s32, s32);
+
+
+typedef struct func_8036648C_StructA {
+    u8 pad0[2];
+    s16 unk2;
+    u8 pad4[0x2C];
+    union {
+        struct {
+            u32 b31 : 1;
+            u32 b29 : 2;
+            u32 b25 : 4;
+            u32 pad21 : 4;
+            u32 b19 : 2;
+            u32 rest : 19;
+        } bf;
+        u16 h;
+    } u30;
+    u8 pad34[0x392 - 0x34];
+    u8 unk392;
+} func_8036648C_StructA;
+
+typedef struct func_8036648C_StructI {
+    u8 pad0[0x7C];
+    void *unk7C;
+    s16 unk80;
+} func_8036648C_StructI;
+
+typedef struct func_8036648C_StructO {
+    u8 pad0[0x5C];
+    func_8036648C_StructI *unk5C;
+} func_8036648C_StructO;
+extern void func_8013C6FC(s32, s32, s32);
+extern void func_80366648();
+extern u8 D_80386450[];
+extern u8 D_80386470[];
+extern u8 D_80386480[];
+
+#define GB ((u8 *)&D_801BBBF0)
+
 void func_8036648C(func_8036648C_StructO *arg0, s32 arg1) {
     func_8036648C_StructA *a;
     func_8036648C_StructA *b;
     func_8036648C_StructI *o;
-    u8 v;
     u32 k;
 
     if ((s32)arg0 == G80364D2C->unkDC) {
@@ -1271,6 +1347,31 @@ void func_8036648C(func_8036648C_StructO *arg0, s32 arg1) {
     o->unk80 = 2;
     func_800058DC((s32)arg0, (void *)func_80366648);
 }
+#undef G80364D2C
+#undef GB
+#undef D_801BBBF0
+#undef D_80386450
+#undef D_80386470
+#undef D_80386480
+#undef func_8013C6FC
+#undef func_802237B0
+#undef func_803643CC_Glob
+#undef func_8036648C_StructA
+#undef func_8036648C_StructI
+#undef func_8036648C_StructO
+#undef func_80366648
+#undef func_803673B4_StructGlobal
+#define D_801BBBF0 D_801BBBF0__func_8036648C
+#define D_80386450 D_80386450__func_8036648C
+#define D_80386470 D_80386470__func_8036648C
+#define D_80386480 D_80386480__func_8036648C
+#define G80364D2C ((func_803643CC_Glob *)&D_801BBBF0)
+#define GB ((u8 *)&D_801BBBF0)
+#define func_8013C6FC func_8013C6FC__func_8036648C
+#define func_802237B0 func_802237B0__func_8036648C
+#define func_803643CC_Glob func_803643CC_Glob__func_8036648C
+#define func_80366648 func_80366648__func_8036648C
+#define func_803673B4_StructGlobal func_803673B4_StructGlobal__func_8036648C
 #undef G80364D2C
 #undef GB
 #undef D_801BBBF0
@@ -2276,12 +2377,406 @@ extern u8 D_803868E8[];
 #define GL ((func_80367518_StructGlobal *)&D_801BBBF0)
 extern f64 D_8038AA08;
 
+#undef ACAT
+#undef ACAT2
+#undef D_801BBBF0
+#undef D_803868E8
+#undef D_8038AA08
+#undef GL
+#undef P0_141
+#undef P0_172
+#undef P0_188
+#undef P0_247
+#undef P0_268
+#undef P0_281
+#undef P0_324
+#undef P0_376
+#undef P0_404
+#undef P0_412
+#undef P0_432
+#undef P0_452
+#undef P0_461
+#undef P0_487
+#undef P0_524
+#undef P0_525
+#undef P0_529
+#undef P0_544
+#undef P0_545
+#undef P0_546
+#undef P0_547
+#undef P0_550
+#undef P0_573
+#undef P0_598
+#undef P0_616
+#undef P0_623
+#undef P0_644
+#undef P0_668
+#undef P0_697
+#undef P0_727
+#undef P0_728
+#undef P0_730
+#undef P0_731
+#undef P1_141
+#undef P1_172
+#undef P1_247
+#undef P1_268
+#undef P1_281
+#undef P1_324
+#undef P1_376
+#undef P1_404
+#undef P1_412
+#undef P1_432
+#undef P1_452
+#undef P1_461
+#undef P1_487
+#undef P1_524
+#undef P1_525
+#undef P1_529
+#undef P1_544
+#undef P1_545
+#undef P1_547
+#undef P1_550
+#undef P1_573
+#undef P1_598
+#undef P1_616
+#undef P1_623
+#undef P1_644
+#undef P1_668
+#undef P1_697
+#undef P1_727
+#undef P1_728
+#undef P1_730
+#undef P1_731
+#undef SA0_109
+#undef SA0_114
+#undef SA0_172
+#undef SA0_188
+#undef SA0_247
+#undef SA0_268
+#undef SA0_281
+#undef SA0_324
+#undef SA0_376
+#undef SA0_404
+#undef SA0_412
+#undef SA0_432
+#undef SA0_452
+#undef SA0_461
+#undef SA0_487
+#undef SA0_524
+#undef SA0_525
+#undef SA0_529
+#undef SA0_544
+#undef SA0_545
+#undef SA0_546
+#undef SA0_547
+#undef SA0_550
+#undef SA0_573
+#undef SA0_598
+#undef SA0_616
+#undef SA0_623
+#undef SA0_644
+#undef SA0_668
+#undef SA0_697
+#undef SA0_727
+#undef SA0_728
+#undef SA0_730
+#undef SA0_731
+#undef SA1_123
+#undef SA1_127
+#undef SA1_172
+#undef SA1_247
+#undef SA1_268
+#undef SA1_281
+#undef SA1_324
+#undef SA1_376
+#undef SA1_404
+#undef SA1_412
+#undef SA1_432
+#undef SA1_452
+#undef SA1_461
+#undef SA1_487
+#undef SA1_524
+#undef SA1_525
+#undef SA1_529
+#undef SA1_544
+#undef SA1_545
+#undef SA1_547
+#undef SA1_550
+#undef SA1_573
+#undef SA1_598
+#undef SA1_616
+#undef SA1_623
+#undef SA1_644
+#undef SA1_668
+#undef SA1_697
+#undef SA1_727
+#undef SA1_728
+#undef SA1_730
+#undef SA1_731
+#undef Z0
+#undef Z1
+#undef func_80005670
+#undef func_8013A334
+#undef func_8036445C_StructA0
+#undef func_8036445C_StructA1
+#undef func_8036445C_StructAnim
+#undef func_8036445C_StructJ
+#undef func_8036445C_StructK
+#undef func_803673B4_StructGlobal
+#define D_801BBBF0 D_801BBBF0__func_80367518_2f4cffe4
+#define D_803868E8 D_803868E8__func_80367518_2f4cffe4
+#define func_80005670 func_80005670__func_80367518_2f4cffe4
+#define func_8013A334 func_8013A334__func_80367518_2f4cffe4
+#define func_8036445C_StructA0 func_8036445C_StructA0__func_80367518_2f4cffe4
+#define func_8036445C_StructA1 func_8036445C_StructA1__func_80367518_2f4cffe4
+#define func_8036445C_StructAnim func_8036445C_StructAnim__func_80367518_2f4cffe4
+#define func_8036445C_StructJ func_8036445C_StructJ__func_80367518_2f4cffe4
+#define func_8036445C_StructK func_8036445C_StructK__func_80367518_2f4cffe4
+#define func_803673B4_StructGlobal func_803673B4_StructGlobal__func_80367518_2f4cffe4
+#define func_80367518_StructArg func_80367518_StructArg__func_80367518_2f4cffe4
+#define func_80367518_StructGlobal func_80367518_StructGlobal__func_80367518_2f4cffe4
+#define func_80367518_StructLink func_80367518_StructLink__func_80367518_2f4cffe4
+#define func_80367518_StructResult func_80367518_StructResult__func_80367518_2f4cffe4
+#define func_80367518_StructSource func_80367518_StructSource__func_80367518_2f4cffe4
+#define arg0 ((func_8036445C_StructA0 *)arg0_)
+#define arg1 ((func_8036445C_StructA1 *)arg1_)
+#define ACAT2(a, b) a##b
+#define ACAT(a, b) ACAT2(a, b)
+#define func_8036445C_StructA0 ACAT(SA0_, __LINE__)
+#define func_8036445C_StructA1 ACAT(SA1_, __LINE__)
+#define arg0_ ACAT(P0_, __LINE__)
+#define arg1_ ACAT(P1_, __LINE__)
+#define SA0_109 func_8036445C_StructA0
+#define SA0_114 func_8036445C_StructA0
+#define SA1_123 func_8036445C_StructA1
+#define SA1_127 func_8036445C_StructA1
+#define P0_141 arg0_
+#define P1_141 arg1_
+#define Z0 *q0)(int
+#define Z1 *q1)(int
+#define SA0_172 Z0
+#define SA0_188 Z0
+#define SA0_247 Z0
+#define SA0_268 Z0
+#define SA0_281 Z0
+#define SA0_324 Z0
+#define SA0_376 Z0
+#define SA0_404 Z0
+#define SA0_412 Z0
+#define SA0_432 Z0
+#define SA0_452 Z0
+#define SA0_461 Z0
+#define SA0_487 Z0
+#define SA0_524 Z0
+#define SA0_525 Z0
+#define SA0_529 Z0
+#define SA0_544 Z0
+#define SA0_545 Z0
+#define SA0_546 Z0
+#define SA0_547 Z0
+#define SA0_550 Z0
+#define SA0_573 Z0
+#define SA0_598 Z0
+#define SA0_616 Z0
+#define SA0_623 Z0
+#define SA0_644 Z0
+#define SA0_668 Z0
+#define SA0_697 Z0
+#define SA0_727 Z0
+#define SA0_728 Z0
+#define SA0_730 Z0
+#define SA0_731 Z0
+#define SA1_172 Z1
+#define SA1_247 Z1
+#define SA1_268 Z1
+#define SA1_281 Z1
+#define SA1_324 Z1
+#define SA1_376 Z1
+#define SA1_404 Z1
+#define SA1_412 Z1
+#define SA1_432 Z1
+#define SA1_452 Z1
+#define SA1_461 Z1
+#define SA1_487 Z1
+#define SA1_524 Z1
+#define SA1_525 Z1
+#define SA1_529 Z1
+#define SA1_544 Z1
+#define SA1_545 Z1
+#define SA1_547 Z1
+#define SA1_550 Z1
+#define SA1_573 Z1
+#define SA1_598 Z1
+#define SA1_616 Z1
+#define SA1_623 Z1
+#define SA1_644 Z1
+#define SA1_668 Z1
+#define SA1_697 Z1
+#define SA1_727 Z1
+#define SA1_728 Z1
+#define SA1_730 Z1
+#define SA1_731 Z1
+#define P0_172
+#define P0_188
+#define P0_247
+#define P0_268
+#define P0_281
+#define P0_324
+#define P0_376
+#define P0_404
+#define P0_412
+#define P0_432
+#define P0_452
+#define P0_461
+#define P0_487
+#define P0_524
+#define P0_525
+#define P0_529
+#define P0_544
+#define P0_545
+#define P0_546
+#define P0_547
+#define P0_550
+#define P0_573
+#define P0_598
+#define P0_616
+#define P0_623
+#define P0_644
+#define P0_668
+#define P0_697
+#define P0_727
+#define P0_728
+#define P0_730
+#define P0_731
+#define P1_172
+#define P1_247
+#define P1_268
+#define P1_281
+#define P1_324
+#define P1_376
+#define P1_404
+#define P1_412
+#define P1_432
+#define P1_452
+#define P1_461
+#define P1_487
+#define P1_524
+#define P1_525
+#define P1_529
+#define P1_544
+#define P1_545
+#define P1_547
+#define P1_550
+#define P1_573
+#define P1_598
+#define P1_616
+#define P1_623
+#define P1_644
+#define P1_668
+#define P1_697
+#define P1_727
+#define P1_728
+#define P1_730
+#define P1_731
+typedef struct func_803673B4_StructGlobal {
+    u8 pad[0xDC];
+    s32 unkDC;
+    u8 padE0[0xC];
+    s32 unkEC;
+} func_803673B4_StructGlobal;
+extern struct func_803673B4_StructGlobal D_801BBBF0;
+typedef struct func_8036445C_StructAnim {
+    u8 pad0[0xC];
+    u16 unkC;
+    u8 pad0E[0xE];
+    s32 unk1C;
+    u8 pad20[2];
+    u16 unk22;
+    u8 pad24[0x7C - 0x24];
+    void *unk7C;
+    s16 unk80;
+    s16 unk82;
+    u8 pad84[0x9C - 0x84];
+    u8 unk9C;
+} func_8036445C_StructAnim;
+typedef struct func_8036445C_StructA0 {
+    u8 pad0[0x36];
+    u16 unk36;
+    u8 pad38[0x5C - 0x38];
+    func_8036445C_StructAnim *unk5C;
+} func_8036445C_StructA0;
+#define arg0 ((func_8036445C_StructA0 *)arg0_)
+typedef struct func_8036445C_StructJ {
+    u8 pad0[0x12];
+    s16 unk12;
+} func_8036445C_StructJ;
+typedef struct func_8036445C_StructK {
+    u8 pad0[0x2C];
+    func_8036445C_StructJ *unk2C;
+} func_8036445C_StructK;
+typedef struct func_8036445C_StructA1 {
+    func_8036445C_StructK *unk0;
+    u8 pad4[0x4C - 4];
+    struct { u8 pad[0x22]; u8 unk22; } *unk4C;
+} func_8036445C_StructA1;
+#define arg1 ((func_8036445C_StructA1 *)arg1_)
+extern s32 func_8013A334(void *, s32, s32, s32);
+#undef arg0
+#undef arg1
+#undef arg0_
+#undef arg1_
+
+typedef struct func_80367518_StructSource {
+    u16 unk0;
+    u8 pad2[0x22];
+    s32 unk24;
+    s32 unk28;
+    u16 unk2C;
+} func_80367518_StructSource;
+
+typedef struct func_80367518_StructLink {
+    u8 pad0[0x2C];
+    func_80367518_StructSource *unk2C;
+} func_80367518_StructLink;
+
+typedef struct func_80367518_StructArg {
+    u8 pad0[0x4C];
+    func_80367518_StructLink *unk4C;
+    u8 pad50[0xC];
+    s32 unk5C;
+} func_80367518_StructArg;
+
+typedef struct func_80367518_StructResult {
+    u8 pad0[0x2C];
+    f32 unk2C;
+    f32 unk30;
+    f32 unk34;
+    u16 unk38;
+    u16 unk3A;
+    u8 pad3C[4];
+    s32 unk40;
+    s32 unk44;
+    f32 unk48;
+    f32 unk4C;
+    f32 unk50;
+} func_80367518_StructResult;
+
+typedef struct func_80367518_StructGlobal {
+    u8 pad0[0x1038];
+    f32 unk1038;
+    f32 unk103C;
+    f32 unk1040;
+} func_80367518_StructGlobal;
+extern void *func_80005670(void *, void *);
+extern u8 D_803868E8[];
+#define GL ((func_80367518_StructGlobal *)&D_801BBBF0)
+
 void func_80367518(func_80367518_StructArg *arg0, func_80367518_StructArg *arg1) {
     s32 sp34;
     func_80367518_StructResult *sp30;
-    register func_80367518_StructSource *temp_v1;
+    func_80367518_StructSource *temp_v1;
     f32 v[3];
-    register f64 temp_fv0;
+    f64 temp_fv0;
 
     sp34 = arg0->unk5C;
     sp30 = func_80005670(arg0, D_803868E8);
@@ -2301,6 +2796,302 @@ void func_80367518(func_80367518_StructArg *arg0, func_80367518_StructArg *arg1)
         sp30->unk50 = GL->unk1040;
     }
 }
+#undef ACAT2
+#undef ACAT
+#undef SA0_109
+#undef SA0_114
+#undef SA1_123
+#undef SA1_127
+#undef P0_141
+#undef P1_141
+#undef Z0
+#undef Z1
+#undef SA0_172
+#undef SA0_188
+#undef SA0_247
+#undef SA0_268
+#undef SA0_281
+#undef SA0_324
+#undef SA0_376
+#undef SA0_404
+#undef SA0_412
+#undef SA0_432
+#undef SA0_452
+#undef SA0_461
+#undef SA0_487
+#undef SA0_524
+#undef SA0_525
+#undef SA0_529
+#undef SA0_544
+#undef SA0_545
+#undef SA0_546
+#undef SA0_547
+#undef SA0_550
+#undef SA0_573
+#undef SA0_598
+#undef SA0_616
+#undef SA0_623
+#undef SA0_644
+#undef SA0_668
+#undef SA0_697
+#undef SA0_727
+#undef SA0_728
+#undef SA0_730
+#undef SA0_731
+#undef SA1_172
+#undef SA1_247
+#undef SA1_268
+#undef SA1_281
+#undef SA1_324
+#undef SA1_376
+#undef SA1_404
+#undef SA1_412
+#undef SA1_432
+#undef SA1_452
+#undef SA1_461
+#undef SA1_487
+#undef SA1_524
+#undef SA1_525
+#undef SA1_529
+#undef SA1_544
+#undef SA1_545
+#undef SA1_547
+#undef SA1_550
+#undef SA1_573
+#undef SA1_598
+#undef SA1_616
+#undef SA1_623
+#undef SA1_644
+#undef SA1_668
+#undef SA1_697
+#undef SA1_727
+#undef SA1_728
+#undef SA1_730
+#undef SA1_731
+#undef P0_172
+#undef P0_188
+#undef P0_247
+#undef P0_268
+#undef P0_281
+#undef P0_324
+#undef P0_376
+#undef P0_404
+#undef P0_412
+#undef P0_432
+#undef P0_452
+#undef P0_461
+#undef P0_487
+#undef P0_524
+#undef P0_525
+#undef P0_529
+#undef P0_544
+#undef P0_545
+#undef P0_546
+#undef P0_547
+#undef P0_550
+#undef P0_573
+#undef P0_598
+#undef P0_616
+#undef P0_623
+#undef P0_644
+#undef P0_668
+#undef P0_697
+#undef P0_727
+#undef P0_728
+#undef P0_730
+#undef P0_731
+#undef P1_172
+#undef P1_247
+#undef P1_268
+#undef P1_281
+#undef P1_324
+#undef P1_376
+#undef P1_404
+#undef P1_412
+#undef P1_432
+#undef P1_452
+#undef P1_461
+#undef P1_487
+#undef P1_524
+#undef P1_525
+#undef P1_529
+#undef P1_544
+#undef P1_545
+#undef P1_547
+#undef P1_550
+#undef P1_573
+#undef P1_598
+#undef P1_616
+#undef P1_623
+#undef P1_644
+#undef P1_668
+#undef P1_697
+#undef P1_727
+#undef P1_728
+#undef P1_730
+#undef P1_731
+#undef GL
+#undef D_801BBBF0
+#undef D_803868E8
+#undef func_80005670
+#undef func_8013A334
+#undef func_8036445C_StructA0
+#undef func_8036445C_StructA1
+#undef func_8036445C_StructAnim
+#undef func_8036445C_StructJ
+#undef func_8036445C_StructK
+#undef func_803673B4_StructGlobal
+#undef func_80367518_StructArg
+#undef func_80367518_StructGlobal
+#undef func_80367518_StructLink
+#undef func_80367518_StructResult
+#undef func_80367518_StructSource
+#define ACAT(a, b) ACAT2(a, b)
+#define ACAT2(a, b) a##b
+#define D_801BBBF0 D_801BBBF0__func_80367518
+#define D_803868E8 D_803868E8__func_80367518
+#define D_8038AA08 D_8038AA08__func_80367518
+#define GL ((func_80367518_StructGlobal *)&D_801BBBF0)
+#define P0_141 arg0_
+#define P0_172
+#define P0_188
+#define P0_247
+#define P0_268
+#define P0_281
+#define P0_324
+#define P0_376
+#define P0_404
+#define P0_412
+#define P0_432
+#define P0_452
+#define P0_461
+#define P0_487
+#define P0_524
+#define P0_525
+#define P0_529
+#define P0_544
+#define P0_545
+#define P0_546
+#define P0_547
+#define P0_550
+#define P0_573
+#define P0_598
+#define P0_616
+#define P0_623
+#define P0_644
+#define P0_668
+#define P0_697
+#define P0_727
+#define P0_728
+#define P0_730
+#define P0_731
+#define P1_141 arg1_
+#define P1_172
+#define P1_247
+#define P1_268
+#define P1_281
+#define P1_324
+#define P1_376
+#define P1_404
+#define P1_412
+#define P1_432
+#define P1_452
+#define P1_461
+#define P1_487
+#define P1_524
+#define P1_525
+#define P1_529
+#define P1_544
+#define P1_545
+#define P1_547
+#define P1_550
+#define P1_573
+#define P1_598
+#define P1_616
+#define P1_623
+#define P1_644
+#define P1_668
+#define P1_697
+#define P1_727
+#define P1_728
+#define P1_730
+#define P1_731
+#define SA0_109 func_8036445C_StructA0
+#define SA0_114 func_8036445C_StructA0
+#define SA0_172 Z0
+#define SA0_188 Z0
+#define SA0_247 Z0
+#define SA0_268 Z0
+#define SA0_281 Z0
+#define SA0_324 Z0
+#define SA0_376 Z0
+#define SA0_404 Z0
+#define SA0_412 Z0
+#define SA0_432 Z0
+#define SA0_452 Z0
+#define SA0_461 Z0
+#define SA0_487 Z0
+#define SA0_524 Z0
+#define SA0_525 Z0
+#define SA0_529 Z0
+#define SA0_544 Z0
+#define SA0_545 Z0
+#define SA0_546 Z0
+#define SA0_547 Z0
+#define SA0_550 Z0
+#define SA0_573 Z0
+#define SA0_598 Z0
+#define SA0_616 Z0
+#define SA0_623 Z0
+#define SA0_644 Z0
+#define SA0_668 Z0
+#define SA0_697 Z0
+#define SA0_727 Z0
+#define SA0_728 Z0
+#define SA0_730 Z0
+#define SA0_731 Z0
+#define SA1_123 func_8036445C_StructA1
+#define SA1_127 func_8036445C_StructA1
+#define SA1_172 Z1
+#define SA1_247 Z1
+#define SA1_268 Z1
+#define SA1_281 Z1
+#define SA1_324 Z1
+#define SA1_376 Z1
+#define SA1_404 Z1
+#define SA1_412 Z1
+#define SA1_432 Z1
+#define SA1_452 Z1
+#define SA1_461 Z1
+#define SA1_487 Z1
+#define SA1_524 Z1
+#define SA1_525 Z1
+#define SA1_529 Z1
+#define SA1_544 Z1
+#define SA1_545 Z1
+#define SA1_547 Z1
+#define SA1_550 Z1
+#define SA1_573 Z1
+#define SA1_598 Z1
+#define SA1_616 Z1
+#define SA1_623 Z1
+#define SA1_644 Z1
+#define SA1_668 Z1
+#define SA1_697 Z1
+#define SA1_727 Z1
+#define SA1_728 Z1
+#define SA1_730 Z1
+#define SA1_731 Z1
+#define Z0 *q0)(int
+#define Z1 *q1)(int
+#define func_80005670 func_80005670__func_80367518
+#define func_8013A334 func_8013A334__func_80367518
+#define func_8036445C_StructA0 ACAT(SA0_, __LINE__)
+#define func_8036445C_StructA1 ACAT(SA1_, __LINE__)
+#define func_8036445C_StructAnim func_8036445C_StructAnim__func_80367518
+#define func_8036445C_StructJ func_8036445C_StructJ__func_80367518
+#define func_8036445C_StructK func_8036445C_StructK__func_80367518
+#define func_803673B4_StructGlobal func_803673B4_StructGlobal__func_80367518
 #undef ACAT2
 #undef ACAT
 #undef SA0_109

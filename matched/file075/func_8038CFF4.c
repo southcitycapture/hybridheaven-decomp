@@ -104,8 +104,7 @@ void func_8038CFF4(func_8038CFF4_StructE *arg0, s32 arg1) {
     f32 sp24;
     s32 t;
     u32 v;
-    register u32 v5;
-    u32 x;
+    u32 v5;
     u8 one;
 
     sp34 = (s16)(0x2800 - GLOBAL.unk232) & 0x1FFF;

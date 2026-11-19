@@ -39,7 +39,6 @@ extern void func_8038D770();
 void func_8038D770(func_8038D770_Struct *arg0, s32 arg1) {
     func_8038D770_StructC *a1;
     func_8038D770_StructC *a2;
-    u32 v;
     u32 t;
 
     if (D_801BBBF0.unkDC == arg0->unkC) {

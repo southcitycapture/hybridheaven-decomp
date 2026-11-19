@@ -21,7 +21,6 @@ typedef struct func_801E70D0_StructA {
 
 s32 func_801E70D0(s32 arg0, s32 arg1) {
     func_801E70D0_StructC *temp_v1;
-    u8 v;
     f32 f;
 
     if (func_801C1088(3, 9, 0x1E) != 0) {

@@ -645,9 +645,17 @@ struct func_80240F4C_Self {
 };
 
 
+#define func_80240F4C_Self func_80240F4C_Self__func_80240F4C
+
+struct func_80240F4C_Self {
+    u8 pad0[0x36];
+    u16 unk36;
+    u8 pad1[0x90 - 0x38];
+    f32 unk90;
+};
+
 void func_80240F4C(struct func_80240F4C_Self *arg0, s32 arg1)
 {
-  f32 temp_fv0;
   s32 var_v0;
   D_801BBD76 = 1;
   ;
@@ -663,6 +671,7 @@ void func_80240F4C(struct func_80240F4C_Self *arg0, s32 arg1)
     func_80005700(arg0);
   }
 }
+#undef func_80240F4C_Self
 
 extern u8 D_80164F40[];
 struct func_80240FE8_Self { u8 pad[0x2C]; s32 unk2C; };

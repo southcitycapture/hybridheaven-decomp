@@ -8,9 +8,7 @@ extern func_8024388C_StructD D_80246CA0;
 
 void func_80243A70(func_80243A70_Struct *arg0, s32 arg1) {
     func_80243688_StructE *sp2C;
-    s32 temp_t6;
     s32 temp_v1;
-    u8 var_v0;
 
     sp2C = arg0->unk5C;
     if (func_8012CE9C(arg1, sp2C, D_80246CA0, 10) == 0) {

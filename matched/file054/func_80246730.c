@@ -14,7 +14,6 @@ extern s32 func_8012FE50();
 extern struct func_80246730_Struct D_801BBBF0;
 
 void func_80246730(void) {
-    u16 var;
     s32 five;
 
     five = 2;

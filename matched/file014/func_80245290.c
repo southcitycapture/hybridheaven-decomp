@@ -31,7 +31,6 @@ extern void func_8024541C();
 void func_80245290(struct func_80245290_Struct *arg0, s32 arg1) {
     struct func_80246478_Child *s1;
     f32 sp60[3];
-    s16 v;
     extern void func_80020744();
 
     s1 = arg0->unk5C;

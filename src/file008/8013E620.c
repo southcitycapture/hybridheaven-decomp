@@ -1,4 +1,20 @@
 #include "common.h"
+extern s32 func_801415C4(arg0, arg1);
+extern u16 D_80089474[];
+extern u16 D_801BBF42;
+extern void func_800023A8(s32);
+extern void func_80017990(void *);
+void func_80140E88(u8 arg0, u8 arg1, s32 arg2);
+s32 func_8014115C(void);
+s32 func_801411D0(void);
+s32 func_8014150C(u8 arg0, u8 *arg1);
+extern void func_80142B28(u8, u8);
+extern void func_80142FC4(void);
+extern s32 func_80143B5C(void);
+extern u8 D_80180668[];
+extern u8 D_80180598[];
+extern u8 D_801806E4[];
+extern u8 D_8018071C[];
 
 #define D_801BEBD8 D_801BEBD8__func_8013E620
 #define D_801BEBDC D_801BEBDC__func_8013E620
@@ -154,9 +170,18 @@ extern u8 D_80180598[];
 extern u8 D_801806E4[];
 extern u8 D_8018071C[];
 
+#define arg0 ((u8 *)arg)
+extern u8 D_801BEB84[];
+extern s8 D_801BEBCC;
+extern s8 D_801BEC03;
+extern s8 D_801BEC04;
+s32 func_800178E8();                                /* extern */
+extern void func_8014307C(s32 a0, s32 a1, void *p);
+
+
+
 s32 func_8013E850(void)
 {
-    u16 v;
 
     if (func_800178E8() == 0) return 0;
     if (*(u8 *)&D_801BEC03 == 1U) {
@@ -206,6 +231,7 @@ s32 func_8013E850(void)
     }
     return 0;
 }
+#undef arg0
 #undef D_80089474
 #undef D_80180598
 #undef D_80180668
@@ -1251,9 +1277,15 @@ s32 func_8014115C(void) {
 
 
 
+extern u8 D_801BEB84[];
+extern s8 D_801BEC02;
+extern s8 D_801BEC05;
+#define arg0 ((u8 *)arg)
+
+extern u8 D_801BEBAC[];
+
 s32 func_801411D0(void)
 {
-  u8 x;
   s32 y = *((u8 *) (&D_801BEC02));
   if (((*((u8 *) (&D_801BEC02))) == 1) && (D_801BEB84[(*((u8 *) (&D_801BEC05))) * 8] == 1))
   {
@@ -1265,6 +1297,7 @@ s32 func_801411D0(void)
   }
   return 1;
 }
+#undef arg0
 
 #define D_80141568 D_80141568__func_80141268
 #define D_80141628 D_80141628__func_80141268

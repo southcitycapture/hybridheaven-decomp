@@ -37,7 +37,7 @@ extern u8 D_80254C18[];
 extern f32 D_8025A250;
 extern f32 D_8025A254;
 void func_80251BEC(func_80251BEC_StructA *arg0, func_80251BEC_StructN **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp20;
     *(func_8024E43C_StructV *)&sp20 = D_80164F40;
     sp20.a[1] = 0x80000600;

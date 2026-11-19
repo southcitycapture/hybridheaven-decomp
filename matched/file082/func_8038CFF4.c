@@ -107,7 +107,6 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
     func_8038CFF4_StructP *b;
     u8 sp1B;
     s32 v;
-    s32 t;
     f64 d;
 
     sp2C = (s16)(0x2800 - D_801BBBF0.unk232) & 0x1FFF;

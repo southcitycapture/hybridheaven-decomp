@@ -16,5 +16,5 @@ s32 func_801E8C60(s32 arg0, s32 arg1)
     return 2;
   }
   return 1;
- if (1) { }
+ 
 }

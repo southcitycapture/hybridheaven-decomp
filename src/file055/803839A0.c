@@ -112,8 +112,15 @@ extern s32 D_8038DBBC;
 extern s32 D_8038DBD8;
 
 
+#undef D_8038DBBC
+#undef D_8038DBD8
+#define D_8038DBBC D_8038DBBC__func_80383BCC_2ece3390
+#define D_8038DBD8 D_8038DBD8__func_80383BCC_2ece3390
+extern s32 D_8038DBBC;
+extern s32 D_8038DBD8;
+
+
 void func_80383BCC(void) {
-    s32 t;
 
     switch (D_8038DBB8) {
     case 0:
@@ -153,6 +160,10 @@ void func_80383BCC(void) {
         break;
     }
 }
+#undef D_8038DBBC
+#undef D_8038DBD8
+#define D_8038DBBC D_8038DBBC__func_80383BCC
+#define D_8038DBD8 D_8038DBD8__func_80383BCC
 #undef D_8038DBBC
 #undef D_8038DBD8
 

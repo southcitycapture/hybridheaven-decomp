@@ -107,14 +107,50 @@ typedef struct func_80228D90_StructGlobal {
     s16 unkB98;
 } func_80228D90_StructGlobal;
 
+#define func_80228D90_StructAngle func_80228D90_StructAngle__func_80228D90
+#define func_80228D90_StructArg func_80228D90_StructArg__func_80228D90
+#define func_80228D90_StructGlobal func_80228D90_StructGlobal__func_80228D90
+#define func_80228D90_StructInner func_80228D90_StructInner__func_80228D90
+#define func_80228D90_StructMid func_80228D90_StructMid__func_80228D90
+#define func_80228D90_StructObj func_80228D90_StructObj__func_80228D90
+
+typedef struct func_80228D90_StructAngle {
+    u8 pad[0x12];
+    s16 angle;
+} func_80228D90_StructAngle;
+typedef struct func_80228D90_StructObj {
+    u8 pad[0x2C];
+    func_80228D90_StructAngle *unk2C;
+} func_80228D90_StructObj;
+typedef struct func_80228D90_StructMid {
+    u8 pad[0x24];
+    func_80228D90_StructObj *unk24;
+} func_80228D90_StructMid;
+typedef struct func_80228D90_StructInner {
+    u8 pad[0xC];
+    func_80228D90_StructMid *unkC;
+} func_80228D90_StructInner;
+typedef struct func_80228D90_StructArg {
+    u8 pad[0xC];
+    func_80228D90_StructInner *unkC;
+} func_80228D90_StructArg;
+typedef struct func_80228D90_StructGlobal {
+    u8 pad[0xDC];
+    func_80228D90_StructMid *unkDC;
+    u8 pad1[0x75C - 0xE0];
+    s16 unk75C;
+    u8 pad2[0xAF8 - 0x75E];
+    s16 unkAF8;
+    u8 pad3[0xB98 - 0xAFA];
+    s16 unkB98;
+} func_80228D90_StructGlobal;
+
 s32 func_80228D90(func_80228D90_StructArg *arg0) {
     s16 temp_a1;
     s16 var_a0;
     s16 var_v1;
     s16 angle;
-    s32 temp_a2;
     s32 var_v0;
-    s32 var_v0_2;
     s32 var_v1_2;
     s32 var_v1_3;
     func_80228D90_StructMid *temp_v1;
@@ -130,6 +166,13 @@ s32 func_80228D90(func_80228D90_StructArg *arg0) {
     }
     return 0;
 }
+#undef ANGLE_DIFF
+#undef func_80228D90_StructAngle
+#undef func_80228D90_StructArg
+#undef func_80228D90_StructGlobal
+#undef func_80228D90_StructInner
+#undef func_80228D90_StructMid
+#undef func_80228D90_StructObj
 
 #define D_801BBE22 D_801BBE22__func_80228E5C
 #define D_80228C20 D_80228C20__func_80228E5C

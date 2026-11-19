@@ -751,7 +751,24 @@ u8 arg0;
 }
 #undef D_8038638C
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/8035EF60/func_8035FFA8.s")
+#define func_8035FF0C func_8035FF0C__func_8035FFA8
+#define func_8035FF38 func_8035FF38__func_8035FFA8
+void *func_8035FF0C(u8 arg0);
+extern u8 func_8035FF38();
+
+
+typedef struct func_8035FFA8_Struct {
+    u8 pad0[0x30];
+    u32 flags30;
+    u8 pad34[0x2D9 - 0x34];
+    u8 unk2D9;
+    u8 pad2DA[2];
+    u8 unk2DC;
+} func_8035FFA8_Struct;
+
+void *func_8035FFA8(arg0) void *arg0; { register func_8035FFA8_Struct *p; p = arg0; if (p == NULL) {} loop: { register u32 value; register void *result; if ((value = (u8)p->unk2D9, 3 == ((p->flags30 << 9) >> 30))) { value = func_8035FF38(value & 0xFF) & 0xFF; } if ((result = func_8035FF0C(value)) != NULL) { return result; } p->unk2D9 = 0; p->unk2DC = 0; goto loop; } }
+#undef func_8035FF0C
+#undef func_8035FF38
 
 
 

@@ -57,9 +57,7 @@ void func_80251978(func_80251978_StructP *arg0, func_80251978_StructO **arg1)
   (*arg1)->p->b49 = 0xFF;
   (*arg1)->p->b4A = 0x80;
   (*arg1)->p->b4B = 0;
-  if (!arg1)
-  {
-  }
+  
   (*arg1)->p->b4C = 0x80;
   (*arg1)->p->b4D = 0xFF;
   (*arg1)->p->b4E = 0;

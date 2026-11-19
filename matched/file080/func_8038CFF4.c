@@ -63,7 +63,7 @@ extern void func_802292D0(struct func_8038CFF4_StructA *, struct func_8038CFF4_S
 void func_8038CFF4(struct func_8038CFF4_StructO *arg0, s32 arg1) {
     s16 h;
     s16 sp34;
-    register struct func_8038CFF4_StructA *sp30;
+    struct func_8038CFF4_StructA *sp30;
     s32 t;
     struct func_8038CFF4_StructB *a1;
     struct func_8038CFF4_StructB *v1;

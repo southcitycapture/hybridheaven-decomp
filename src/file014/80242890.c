@@ -1419,8 +1419,60 @@ struct func_80244518_StructObj {
     s16 unk94;
 };
 
+#undef D_80010550
+#undef D_802484B8
+#undef HZP
+#undef HZQ
+#undef func_80243820
+#undef func_802438E4_Table
+#undef func_802448C8
+#undef func_80244988
+#undef func_80246478_Child
+#undef func_80246828_Triple
+#define D_80010550 D_80010550__func_80244518_833bad18
+#define D_802484B8 D_802484B8__func_80244518_833bad18
+#define func_802438E4_Table func_802438E4_Table__func_80244518_833bad18
+#define func_80244518_StructObj func_80244518_StructObj__func_80244518_833bad18
+#define func_802448C8 func_802448C8__func_80244518_833bad18
+#define func_80244988 func_80244988__func_80244518_833bad18
+#define func_80246478_Child func_80246478_Child__func_80244518_833bad18
+#define func_80246828_Triple func_80246828_Triple__func_80244518_833bad18
+extern void func_802448C8(struct func_80244F98_Obj *arg0, s32 arg1);
+extern void func_80244988(struct func_80244F98_Obj *arg0, s32 arg1);
+#define HZQ(p, l) p##_##l
+#define HZP(p, l) HZQ(p, l)
+#define func_80243820 HZP(hA, __LINE__)
+#define func_802448C8 HZP(hB, __LINE__)
+#define func_80244988 HZP(hC, __LINE__)
+extern s32 D_80010550(s32, void *);
+struct func_80246828_Triple {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+extern struct func_80246828_Triple D_802484B8;
+struct func_802438E4_Table {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+#define func_802448C8 D_802448C8
+#define func_80244988 D_80244988
+struct func_80246478_Child {
+    u8 pad0[0x78];
+    s16 unk78;
+};
+
+struct func_80244518_StructObj {
+    u8 pad0[0x2C];
+    u32 unk2C;
+    u8 pad1[0x2C];
+    struct func_80246478_Child *unk5C;
+    u8 pad2[0x34];
+    s16 unk94;
+};
+
 void func_80244518(struct func_80244518_StructObj *arg0, s32 arg1) {
-    s16 temp_v1;
     s32 is_zero;
     struct func_80246478_Child *temp_s1;
 
@@ -1439,6 +1491,27 @@ void func_80244518(struct func_80244518_StructObj *arg0, s32 arg1) {
         }
     }
 }
+#undef HZQ
+#undef HZP
+#undef func_80243820
+#undef D_80010550
+#undef D_802484B8
+#undef func_802438E4_Table
+#undef func_80244518_StructObj
+#undef func_802448C8
+#undef func_80244988
+#undef func_80246478_Child
+#undef func_80246828_Triple
+#define D_80010550 D_80010550__func_80244518
+#define D_802484B8 D_802484B8__func_80244518
+#define HZP(p, l) HZQ(p, l)
+#define HZQ(p, l) p##_##l
+#define func_80243820 HZP(hA, __LINE__)
+#define func_802438E4_Table func_802438E4_Table__func_80244518
+#define func_802448C8 HZP(hB, __LINE__)
+#define func_80244988 HZP(hC, __LINE__)
+#define func_80246478_Child func_80246478_Child__func_80244518
+#define func_80246828_Triple func_80246828_Triple__func_80244518
 #undef HZQ
 #undef HZP
 #undef func_80243820
@@ -2376,10 +2449,42 @@ extern u8 D_8024A71C[];
 extern struct func_802438E4_Table D_802484E8;
 extern void func_8024541C();
 
+#undef CP
+#undef CQ
+#undef D_802484E8
+#undef D_8024A71C
+#undef func_8024541C
+#define D_802484E8 D_802484E8__func_80245290_088cb4ba
+#define D_8024A71C D_8024A71C__func_80245290_088cb4ba
+#define func_80245290_Info func_80245290_Info__func_80245290_088cb4ba
+#define func_80245290_Struct func_80245290_Struct__func_80245290_088cb4ba
+#define func_8024541C func_8024541C__func_80245290_088cb4ba
+#define CQ(p, l) p##_##l
+#define CP(p, l) CQ(p, l)
+
+struct func_80245290_Info {
+    u8 pad0[0x10];
+    u32 unk10;
+};
+struct func_80245290_Struct {
+    u8 pad0[0x38];
+    struct func_80245290_Info *unk38;
+    u8 pad1[0x20];
+    struct func_80246478_Child *unk5C;
+    u8 pad2[0x34];
+    s16 unk94;
+    u8 pad3[0x6];
+    s16 unk9C;
+    s16 unk9E;
+    s16 unkA0;
+};
+extern u8 D_8024A71C[];
+extern struct func_802438E4_Table D_802484E8;
+extern void func_8024541C();
+
 void func_80245290(struct func_80245290_Struct *arg0, s32 arg1) {
     struct func_80246478_Child *s1;
     f32 sp60[3];
-    s16 v;
 extern void func_80020744();
 
     s1 = arg0->unk5C;
@@ -2398,6 +2503,18 @@ extern void func_80020744();
         }
     }
 }
+#undef CQ
+#undef CP
+#undef D_802484E8
+#undef D_8024A71C
+#undef func_80245290_Info
+#undef func_80245290_Struct
+#undef func_8024541C
+#define CP(p, l) CQ(p, l)
+#define CQ(p, l) p##_##l
+#define D_802484E8 D_802484E8__func_80245290
+#define D_8024A71C D_8024A71C__func_80245290
+#define func_8024541C func_8024541C__func_80245290
 #undef CQ
 #undef CP
 #undef D_802484E8
@@ -2753,11 +2870,22 @@ struct func_80245E80_StructObj {
     u16 unkA4;
 };
 
+#define func_80245E80_StructObj func_80245E80_StructObj__func_80245E80
+
+struct func_80245E80_StructObj {
+    u8 pad0[0x5C];
+    void *unk5C;
+    u8 pad1[0x34];
+    u16 unk94;
+    u8 pad2[0xC];
+    u16 unkA2;
+    u16 unkA4;
+};
+
 void func_80245E80(struct func_80245E80_StructObj *arg0, s32 arg1)
 {
     void *child;
     u16 old;
-    u16 next;
 
     child = arg0->unk5C;
     if (func_8012CE9C(arg1, child, *(struct func_802438E4_Table *)&D_802484C4, 10) == 0) {
@@ -2773,6 +2901,7 @@ void func_80245E80(struct func_80245E80_StructObj *arg0, s32 arg1)
         }
     }
 }
+#undef func_80245E80_StructObj
 
 #define func_80010550 func_80010550__func_80245F30
 #define func_8012CE9C func_8012CE9C__func_80245F30

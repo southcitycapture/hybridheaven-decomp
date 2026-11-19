@@ -45,7 +45,6 @@ extern u8 func_8022B3E0[];
 void func_8038D5C0(struct func_8038D5C0_StructObj *arg0, void *arg1) {
     struct func_8038D5C0_StructA *var_a1;
     struct func_8038D5C0_StructB *var_a2;
-    u8 temp_v0_4;
     s16 temp_v0;
     s16 temp_v0_2;
     u32 temp_v0_3;

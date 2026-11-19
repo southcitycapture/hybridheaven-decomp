@@ -145,6 +145,7 @@ void func_801C276C(s32 arg0, struct func_80002A04_Struct *arg1) {
 }
 
 
+
 void func_801C278C(s32 arg0, s32 arg1, s32 arg2)
 {
   u32 var_v0;
@@ -154,9 +155,7 @@ void func_801C278C(s32 arg0, s32 arg1, s32 arg2)
     do
     {
       var_v0 += 1;
-      if (!var_v0)
-      {
-      }
+
     }
     while (var_v0 != 3);
     while (1)

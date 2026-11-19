@@ -4,7 +4,6 @@ extern s32 D_801EA4BC;
 
 void func_801E3B78(void)
 {
-  s32 temp_t7;
   func_801CCEC8(0, *(((s8 *) (&D_801EA4BC)) + 3), 0, 0);
   ;
   if ((D_801EA4BC += 4) >= 0x70)

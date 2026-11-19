@@ -47,7 +47,7 @@ void func_8037AFD0(func_8037A6F4_StructO *arg0, s32 arg1) {
     func_8037A6F4_StructP *p;
 
     p = arg0->unk5C;
-    if ((u16)(p->unk20 + 0) == 0) {
+    if ((u16)(p->unk20) == 0) {
         cam = (func_8037AC08_StructCam *)D_801BBCD0->unk2C;
         cam->unk12 = (s16)(cam->unk12 - 0x800) & 0x1FFF;
     }

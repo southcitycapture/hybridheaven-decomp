@@ -966,12 +966,29 @@ typedef struct func_8014F940_Struct_A {
     func_8014F940_Struct_P *unk38;
 } func_8014F940_Struct_A;
 
+#undef DTI
+#undef GD
+#undef func_8014F940_Struct_A
+#undef func_8014F940_Struct_P
+#define func_8014F940_Struct_A func_8014F940_Struct_A__func_8014DF54_c05c6912
+#define func_8014F940_Struct_P func_8014F940_Struct_P__func_8014DF54_c05c6912
+#define DTI(i) (*(func_8014D2E0_Struct_Table *)((u8 *)D_8018294C + (i) * 20))
+#define GD ((func_8014D2E0_Struct_G *)D_801BBBF0)
+typedef struct func_8014F940_Struct_P {
+    u8 pad0[6];
+    s16 unk6;
+    s16 unk8;
+    s16 unkA;
+} func_8014F940_Struct_P;
+typedef struct func_8014F940_Struct_A {
+    u8 pad0[0x38];
+    func_8014F940_Struct_P *unk38;
+} func_8014F940_Struct_A;
+
 s32 func_8014DF54(func_8014D2E0_Struct *arg0, func_8014C2B0_Struct_Sub **arg1)
 {
-    register func_8014D2E0_Struct_Table *table;
-    s32 flag;
+    func_8014D2E0_Struct_Table *table;
     f32 value;
-    f32 state2value;
 
     if (arg0->unk93 == 1) goto state1;
     if (arg0->unk93 == 2) goto state2;
@@ -1028,6 +1045,14 @@ state3:
 end:
     return 1;
 }
+#undef DTI
+#undef GD
+#undef func_8014F940_Struct_A
+#undef func_8014F940_Struct_P
+#define DTI(i) (*(func_8014D2E0_Struct_Table *)((u8 *)D_8018294C + (i) * 20))
+#define GD ((func_8014D2E0_Struct_G *)D_801BBBF0)
+#define func_8014F940_Struct_A func_8014F940_Struct_A__func_8014DF54
+#define func_8014F940_Struct_P func_8014F940_Struct_P__func_8014DF54
 #undef DTI
 #undef GD
 #undef func_8014F940_Struct_A
@@ -1093,8 +1118,42 @@ typedef struct func_8014E3C8_Struct_Table {
 #define ET ((func_8014E3C8_Struct_Table *)D_8018294C)
 #define MOVE(i, field, op, fn) arg1[i]->unk30->field op (f64)fn(arg0->unk24->unk30->unk12) * (f64)ET[arg0->unk90].unk8
 
+#undef D_8018294C
+#undef ET
+#undef MOVE
+#define func_8014E3C8_Struct func_8014E3C8_Struct__func_8014E3C8_020ee69a
+#define func_8014E3C8_Struct_Pos func_8014E3C8_Struct_Pos__func_8014E3C8_020ee69a
+#define func_8014E3C8_Struct_Table func_8014E3C8_Struct_Table__func_8014E3C8_020ee69a
+
+typedef struct func_8014E3C8_Struct_Pos {
+    u8 pad0[0x6];
+    s16 unk6;
+    s16 unk8;
+    s16 unkA;
+} func_8014E3C8_Struct_Pos;
+typedef struct func_8014E3C8_Struct {
+    u8 pad0[0x24];
+    func_8014C2B0_Struct_Sub *unk24;
+    u8 pad28[0x10];
+    func_8014E3C8_Struct_Pos *unk38;
+    u8 pad3C[0x38];
+    s32 unk74;
+    u8 pad78[0x18];
+    u8 unk90, unk91, unk92, unk93;
+    f32 unk94;
+    s32 unk98;
+} func_8014E3C8_Struct;
+typedef struct func_8014E3C8_Struct_Table {
+    u8 pad0[6];
+    u16 unk6;
+    f32 unk8;
+    u8 padC[6];
+    u16 unk12;
+} func_8014E3C8_Struct_Table;
+#define ET ((func_8014E3C8_Struct_Table *)D_8018294C)
+#define MOVE(i, field, op, fn) arg1[i]->unk30->field op (f64)fn(arg0->unk24->unk30->unk12) * (f64)ET[arg0->unk90].unk8
+
 s32 func_8014E3C8(func_8014E3C8_Struct *arg0, func_8014C2B0_Struct_Sub **arg1) {
-    s32 saved;
     u16 sound;
     f32 cur;
     func_8014E3C8_Struct_Table *table;
@@ -1175,6 +1234,14 @@ closing:
 done:
     return 1;
 }
+#undef ET
+#undef MOVE
+#undef func_8014E3C8_Struct
+#undef func_8014E3C8_Struct_Pos
+#undef func_8014E3C8_Struct_Table
+#define D_8018294C D_8018294C__func_8014E3C8
+#define ET ((func_8014E3C8_Struct_Table *)D_8018294C)
+#define MOVE(i, field, op, fn) arg1[i]->unk30->field op (f64)fn(arg0->unk24->unk30->unk12) * (f64)ET[arg0->unk90].unk8
 #undef ET
 #undef MOVE
 #undef D_8018294C

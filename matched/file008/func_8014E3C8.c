@@ -35,7 +35,6 @@ typedef struct func_8014E3C8_Struct_Table {
 #define MOVE(i, field, op, fn) arg1[i]->unk30->field op (f64)fn(arg0->unk24->unk30->unk12) * (f64)ET[arg0->unk90].unk8
 
 s32 func_8014E3C8(func_8014E3C8_Struct *arg0, func_8014C2B0_Struct_Sub **arg1) {
-    s32 saved;
     u16 sound;
     f32 cur;
     func_8014E3C8_Struct_Table *table;

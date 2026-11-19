@@ -1,6 +1,5 @@
-#define func_80108718 func_80108718_ctx38
-#define func_80108814 func_80108814_ctx48
-#include "context.h"
+#include "common.h"
+
 
 typedef struct func_8010ACF8_StructNode {
     u8 type;
@@ -18,18 +17,17 @@ typedef struct func_8010ACF8_StructArg {
     u8 pad1C[4];
     f32 distance;
 } func_8010ACF8_StructArg;
-
 extern s32 func_8010B73C();
 
 s32 func_8010ACF8(func_8010ACF8_StructArg *arg0)
 {
     s32 result;
-    f32 fa, fb, fc, fd, fe;
-    u8 v;
-    s16 minX, minY, minZ;
-    s16 maxX, maxY, maxZ;
+    f32 firstX, secondX, firstY, secondY, firstZ;
+    s16 minY, minX;
+    f32 secondZ;
+    s16 maxX, minZ, maxY;
+    s32 maxZ;
     func_8010ACF8_StructNode *node;
-    func_8010ACF8_StructNode *base;
     func_8010ACF8_StructNode *start;
 
     arg0->distance = 2147483648.0f;
@@ -39,26 +37,32 @@ s32 func_8010ACF8(func_8010ACF8_StructArg *arg0)
     }
     if (arg0->node->type == 0xFE) {
         node = arg0->node;
-        if (arg0->a[0] < arg0->b[0]) {
-            minX = (s16)arg0->a[0];
-            maxX = (s16)arg0->b[0];
+        firstX = arg0->a[0];
+        secondX = arg0->b[0];
+        if (firstX < secondX) {
+            minX = (s16)firstX;
+            maxX = (s16)secondX;
         } else {
-            minX = (s16)arg0->b[0];
-            maxX = (s16)arg0->a[0];
+            minX = (s16)secondX;
+            maxX = (s16)firstX;
         }
-        if (arg0->a[1] < arg0->b[1]) {
-            minY = (s16)arg0->a[1];
-            maxY = (s16)arg0->b[1];
+        firstY = arg0->a[1];
+        secondY = arg0->b[1];
+        if (firstY < secondY) {
+            minY = (s16)firstY;
+            maxY = (s16)secondY;
         } else {
-            minY = (s16)arg0->b[1];
-            maxY = (s16)arg0->a[1];
+            minY = (s16)secondY;
+            maxY = (s16)firstY;
         }
-        if (arg0->a[2] < arg0->b[2]) {
-            minZ = (s16)arg0->a[2];
-            maxZ = (s16)arg0->b[2];
+        firstZ = arg0->a[2];
+        secondZ = arg0->b[2];
+        if (firstZ < secondZ) {
+            minZ = (s16)firstZ;
+            maxZ = (s16)secondZ;
         } else {
-            minZ = (s16)arg0->b[2];
-            maxZ = (s16)arg0->a[2];
+            minZ = (s16)secondZ;
+            maxZ = (s16)firstZ;
         }
         start = arg0->node;
         if (start->type != 0xFF) {

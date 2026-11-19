@@ -44,9 +44,7 @@ void func_80383210(func_80383210_Struct *arg0, void *arg1)
       else
       {
         func_800058DC(arg0, func_803833A8);
-        if (!arg0)
-        {
-        }
+        
       }
     }
     arg0->unkB0 = 0x1F;

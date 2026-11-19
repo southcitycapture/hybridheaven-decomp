@@ -651,9 +651,40 @@ typedef struct func_801C1508_StructP {
 extern func_801C1508_StructA *D_801BBCD8;
 void func_801C1A30(s32 arg0, s32 arg1);
 
+#undef func_801C11BC
+#undef func_801C1334
+#undef func_801C1624
+#undef func_801C1A30
+#define D_801BBCD8 D_801BBCD8__func_801C1508_e1b5f387
+#define func_801C11BC func_801C11BC__func_801C1508_e1b5f387
+#define func_801C1508_StructA func_801C1508_StructA__func_801C1508_e1b5f387
+#define func_801C1508_StructB func_801C1508_StructB__func_801C1508_e1b5f387
+#define func_801C1508_StructP func_801C1508_StructP__func_801C1508_e1b5f387
+#define func_801C1624 func_801C1624__func_801C1508_e1b5f387
+extern s32 func_801C11BC();
+
+typedef struct func_801C1508_StructB {
+    u8 pad[0x30];
+    f32 unk30;
+    f32 unk34;
+    u8 pad2[4];
+    f32 unk3C;
+    f32 unk40;
+    f32 unk44;
+} func_801C1508_StructB;
+typedef struct func_801C1508_StructA {
+    u8 pad[0x2C];
+    func_801C1508_StructB *unk2C;
+} func_801C1508_StructA;
+typedef struct func_801C1508_StructP {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_801C1508_StructP;
+extern func_801C1508_StructA *D_801BBCD8;
+extern u8 func_801C1624[];
+
 void func_801C1508(func_801C1508_StructP *arg0, s32 arg1) {
     func_801C1508_StructB *p;
-    f32 t;
 
     if (func_801C1334() & 0xB000) {
         func_800058DC((s32)arg0, (void *)func_801C1A30);
@@ -667,6 +698,16 @@ void func_801C1508(func_801C1508_StructP *arg0, s32 arg1) {
         func_800058DC((s32)arg0, (void *)func_801C1624);
     }
 }
+#undef D_801BBCD8
+#undef func_801C11BC
+#undef func_801C1508_StructA
+#undef func_801C1508_StructB
+#undef func_801C1508_StructP
+#undef func_801C1624
+#define func_801C11BC func_801C11BC__func_801C1508
+#define func_801C1334 func_801C1334__func_801C1508
+#define func_801C1624 func_801C1624__decl
+#define func_801C1A30 func_801C1A30__func_801C1508
 #undef func_801C11BC
 #undef func_801C1334
 #undef func_801C1A30
@@ -1523,9 +1564,33 @@ struct func_801C2D78_Struct_Arg0 {
     u16 unk3C;
 };
 
+#define func_801C2D78_Struct_Arg0 func_801C2D78_Struct_Arg0__func_801C2D78
+#define func_801C2D78_Struct_Arg1 func_801C2D78_Struct_Arg1__func_801C2D78
+#define func_801C2D78_Struct_Inner func_801C2D78_Struct_Inner__func_801C2D78
+#define func_801C2D78_Struct_Mid func_801C2D78_Struct_Mid__func_801C2D78
+
+struct func_801C2D78_Struct_Inner {
+    u8 pad[0x4D];
+    u8 unk4D;
+};
+
+struct func_801C2D78_Struct_Mid {
+    u8 pad[0x30];
+    struct func_801C2D78_Struct_Inner *unk30;
+};
+
+struct func_801C2D78_Struct_Arg1 {
+    u8 pad[0x8];
+    struct func_801C2D78_Struct_Mid *unk8;
+};
+
+struct func_801C2D78_Struct_Arg0 {
+    u8 pad[0x3C];
+    u16 unk3C;
+};
+
 void func_801C2D78(struct func_801C2D78_Struct_Arg0 *arg0, struct func_801C2D78_Struct_Arg1 *arg1)
 {
-  s32 temp_t7;
   ;
   if (((++arg0->unk3C) % 3) == 0)
   {
@@ -1534,6 +1599,10 @@ void func_801C2D78(struct func_801C2D78_Struct_Arg0 *arg0, struct func_801C2D78_
   }
  ;
 }
+#undef func_801C2D78_Struct_Arg0
+#undef func_801C2D78_Struct_Arg1
+#undef func_801C2D78_Struct_Inner
+#undef func_801C2D78_Struct_Mid
 
 #define func_801C2FDC func_801C2FDC__func_801C2DB8
 void func_801C2FDC(s32 arg0, s32 *arg1);
@@ -2912,8 +2981,29 @@ typedef struct func_801C5A00_StructState {
 
 extern func_801C5A00_StructEntry D_801CC988[];
 
+#define D_801CC988 D_801CC988__func_801C5A00
+#define func_801C5A00_StructEntry func_801C5A00_StructEntry__func_801C5A00
+#define func_801C5A00_StructState func_801C5A00_StructState__func_801C5A00
+
+typedef struct func_801C5A00_StructEntry {
+    u8 unk0;
+    u8 unk1;
+    u16 unk2;
+    u8 unk4;
+    u8 unk5;
+    u16 unk6;
+} func_801C5A00_StructEntry;
+
+typedef struct func_801C5A00_StructState {
+    u8 pad[4];
+    u16 unk4;
+    u8 pad6[0x172];
+    u16 unk178;
+} func_801C5A00_StructState;
+
+extern func_801C5A00_StructEntry D_801CC988[];
+
 void func_801C5A00(void) {
-    u16 temp_t8;
     u16 var_t0;
     func_801C5A00_StructEntry *temp_v0;
 
@@ -2931,6 +3021,9 @@ void func_801C5A00(void) {
     func_80152240();
     func_800023EC();
 }
+#undef D_801CC988
+#undef func_801C5A00_StructEntry
+#undef func_801C5A00_StructState
 
 
 /* Original readonly objects; named loads retain their original addresses. */

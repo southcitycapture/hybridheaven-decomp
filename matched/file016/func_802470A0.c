@@ -16,7 +16,6 @@ extern f64 D_8024F138;
 void func_802470A0(struct func_802470A0_SO *arg0, struct func_802470A0_SA *arg1) {
     f32 sp2C;
     f32 t;
-    struct func_802470A0_SC *c;
     struct func_802470A0_S6 *s;
 
     s = arg0->unk38;

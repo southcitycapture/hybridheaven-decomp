@@ -235,9 +235,9 @@ extern f64 D_8038AA08;
 void func_80367518(func_80367518_StructArg *arg0, func_80367518_StructArg *arg1) {
     s32 sp34;
     func_80367518_StructResult *sp30;
-    register func_80367518_StructSource *temp_v1;
+    func_80367518_StructSource *temp_v1;
     f32 v[3];
-    register f64 temp_fv0;
+    f64 temp_fv0;
 
     sp34 = arg0->unk5C;
     sp30 = func_80005670(arg0, D_803868E8);

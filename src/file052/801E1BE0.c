@@ -401,8 +401,8 @@ s32 func_801E2CB4(s32 arg0, s32 arg1) {
 
 extern s32 func_801C81F0(f32, f32, s32, f32, f32, f32, f32, s32);
 
+
 s32 func_801E2CFC(s32 arg0, s32 arg1) {
-    s32 var_t6;
 
     switch (D_801E57E8) {
     case 1: case 2: case 4: case 6: case 7: case 9: case 11: case 13: case 14: case 15: case 16: case 17: case 18: case 19: case 21: case 22: case 24: case 26: case 27: case 29: case 31:

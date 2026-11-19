@@ -109,6 +109,124 @@ extern void func_80228FD0(struct func_8038CFF4_StructObj *, struct func_8038CFF4
 extern s32 func_80229260(struct func_8038CFF4_StructObj *, struct func_8038CFF4_StructPlayer *, struct func_8038CFF4_StructInput *, s32);
 extern void func_802292D0(struct func_8038CFF4_StructInput *, struct func_8038CFF4_StructPlayer *);
 
+#undef D_801BBBF0
+#undef D_801BBC8C
+#undef D_801BBCAC
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8001EF38
+#undef func_80228C20
+#undef func_80228D90
+#undef func_80228FD0
+#undef func_80229260
+#undef func_802292D0
+#undef func_8038D98C_G
+#define D_801BBBF0 D_801BBBF0__func_8038CFF4_c3496aac
+#define D_801BBC8C D_801BBC8C__func_8038CFF4_c3496aac
+#define D_801BBCAC D_801BBCAC__func_8038CFF4_c3496aac
+#define D_801BC03C D_801BC03C__func_8038CFF4_c3496aac
+#define D_801BC3D8 D_801BC3D8__func_8038CFF4_c3496aac
+#define func_8001EAD0 func_8001EAD0__func_8038CFF4_c3496aac
+#define func_8001EB64 func_8001EB64__func_8038CFF4_c3496aac
+#define func_8001EF38 func_8001EF38__func_8038CFF4_c3496aac
+#define func_80228C20 func_80228C20__func_8038CFF4_c3496aac
+#define func_80228D90 func_80228D90__func_8038CFF4_c3496aac
+#define func_80228FD0 func_80228FD0__func_8038CFF4_c3496aac
+#define func_80229260 func_80229260__func_8038CFF4_c3496aac
+#define func_802292D0 func_802292D0__func_8038CFF4_c3496aac
+#define func_8038CFF4_StructGlobal func_8038CFF4_StructGlobal__func_8038CFF4_c3496aac
+#define func_8038CFF4_StructInput func_8038CFF4_StructInput__func_8038CFF4_c3496aac
+#define func_8038CFF4_StructLink func_8038CFF4_StructLink__func_8038CFF4_c3496aac
+#define func_8038CFF4_StructObj func_8038CFF4_StructObj__func_8038CFF4_c3496aac
+#define func_8038CFF4_StructPlayer func_8038CFF4_StructPlayer__func_8038CFF4_c3496aac
+#define func_8038D98C_G func_8038D98C_G__func_8038CFF4_c3496aac
+struct func_8038D98C_G {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0xB90 - 0xE0];
+    f32 unkB90;
+    u8 pad2[0x1031 - 0xB94];
+    u8 unk1031;
+};
+extern struct func_8038D98C_G D_801BBBF0;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+
+
+struct func_8038CFF4_StructGlobal {
+    u8 pad0[0x232];
+    s16 angle;
+};
+
+struct func_8038CFF4_StructLink {
+    u8 pad0[0xC];
+    u32 index;
+    u8 pad1[0x88];
+    s16 count;
+};
+
+struct func_8038CFF4_StructObj {
+    u8 pad0[0xC];
+    struct func_8038CFF4_StructLink *link;
+    u8 pad1[0x80];
+    u8 timer;
+    u8 phase;
+    u8 state;
+    u8 pad2[2];
+    u8 active;
+    u8 pad3[4];
+    s16 count;
+};
+
+struct func_8038CFF4_StructInput {
+    u8 pad0[4];
+    u16 buttons;
+    s16 x;
+    s16 y;
+};
+
+struct func_8038CFF4_StructPlayer {
+    u8 pad0[6];
+    s16 distance;
+    u8 pad1[0x28];
+    u32 pad30a : 3;
+    u32 kind : 4;
+    u32 pad30b : 2;
+    u32 enabled : 2;
+    u32 pad30c : 2;
+    u32 mode : 3;
+    u32 pad30d : 6;
+    u32 submode : 2;
+    u32 pad30e : 8;
+    u8 pad2[4];
+    u32 flag31 : 1;
+    u32 flag30 : 2;
+    u32 flag28 : 1;
+    u32 flag27 : 2;
+    u32 pad38 : 26;
+    u8 pad3[0x2FC - 0x3C];
+    u8 selection;
+    u8 pad4[0x312 - 0x2FD];
+    s16 other;
+    u8 pad5[0x328 - 0x314];
+    u8 action;
+    u8 action2;
+    s16 actionAngle;
+};
+
+extern struct func_8038CFF4_StructInput D_801BBC8C[];
+extern struct func_8038CFF4_StructInput D_801BBCAC[];
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern s32 func_8001EF38(f32, f32);
+extern s32 func_80228C20(struct func_8038CFF4_StructObj *);
+extern s32 func_80228D90(struct func_8038CFF4_StructObj *);
+extern void func_80228FD0(struct func_8038CFF4_StructObj *, struct func_8038CFF4_StructInput *, s32);
+extern s32 func_80229260(struct func_8038CFF4_StructObj *, struct func_8038CFF4_StructPlayer *, struct func_8038CFF4_StructInput *, s32);
+extern void func_802292D0(struct func_8038CFF4_StructInput *, struct func_8038CFF4_StructPlayer *);
+
 void func_8038CFF4(struct func_8038CFF4_StructObj *arg0, s32 arg1)
 {
     s16 direction;
@@ -119,7 +237,6 @@ void func_8038CFF4(struct func_8038CFF4_StructObj *arg0, s32 arg1)
     void *opponent;
     f32 x;
     f64 distance;
-    s16 direction2;
     u8 oldTimer;
     s16 angleValue;
     s32 angleValue2;
@@ -265,6 +382,39 @@ void func_8038CFF4(struct func_8038CFF4_StructObj *arg0, s32 arg1)
         }
     }
 }
+#undef D_801BBBF0
+#undef D_801BBC8C
+#undef D_801BBCAC
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8001EF38
+#undef func_80228C20
+#undef func_80228D90
+#undef func_80228FD0
+#undef func_80229260
+#undef func_802292D0
+#undef func_8038CFF4_StructGlobal
+#undef func_8038CFF4_StructInput
+#undef func_8038CFF4_StructLink
+#undef func_8038CFF4_StructObj
+#undef func_8038CFF4_StructPlayer
+#undef func_8038D98C_G
+#define D_801BBBF0 D_801BBBF0__func_8038CFF4
+#define D_801BBC8C D_801BBC8C__func_8038CFF4
+#define D_801BBCAC D_801BBCAC__func_8038CFF4
+#define D_801BC03C D_801BC03C__func_8038CFF4
+#define D_801BC3D8 D_801BC3D8__func_8038CFF4
+#define func_8001EAD0 func_8001EAD0__func_8038CFF4
+#define func_8001EB64 func_8001EB64__func_8038CFF4
+#define func_8001EF38 func_8001EF38__func_8038CFF4
+#define func_80228C20 func_80228C20__func_8038CFF4
+#define func_80228D90 func_80228D90__func_8038CFF4
+#define func_80228FD0 func_80228FD0__func_8038CFF4
+#define func_80229260 func_80229260__func_8038CFF4
+#define func_802292D0 func_802292D0__func_8038CFF4
+#define func_8038D98C_G func_8038D98C_G__func_8038CFF4
 #undef D_801BBBF0
 #undef D_801BBC8C
 #undef D_801BBCAC

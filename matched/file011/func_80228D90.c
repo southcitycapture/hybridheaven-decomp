@@ -36,9 +36,7 @@ s32 func_80228D90(func_80228D90_StructArg *arg0) {
     s16 var_a0;
     s16 var_v1;
     s16 angle;
-    s32 temp_a2;
     s32 var_v0;
-    s32 var_v0_2;
     s32 var_v1_2;
     s32 var_v1_3;
     func_80228D90_StructMid *temp_v1;

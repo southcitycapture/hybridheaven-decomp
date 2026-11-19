@@ -22,13 +22,10 @@ struct func_80240F7C_Struct {
 };
 
 void func_80240F7C(struct func_80240F7C_Struct *arg0, struct func_80240F7C_StructObj **arg1) {
-    u16 temp_v0_5;
     u8 temp_a0;
     u8 temp_a0_2;
     struct func_80240F7C_StructObj *temp_v0;
-    struct func_80240F7C_StructObj *temp_v0_2;
     struct func_80240F7C_StructObj *temp_v0_3;
-    struct func_80240F7C_StructObj *temp_v0_4;
     struct func_80240F7C_StructInner *temp_v1;
     struct func_80240F7C_StructInner *temp_v1_2;
 

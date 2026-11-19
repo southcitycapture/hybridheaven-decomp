@@ -74,7 +74,7 @@ void func_801EF440(func_801EF440_StructA *arg0) {
             sp40 = DOT / (MAG(v) * MAG(u));
             sp48 = MAG(v);
             sp44 = MAG(u) * sp40 / sp48;
-            if (sp44) {}
+            
             for (i = 0; i < 3; i++) {
                 a[i] = v[i] * sp44 * 0.6;
             }

@@ -25,7 +25,6 @@ extern void func_8002AB10(s32, void *, f32);
 void func_80023BF4(void) {
     f32 *tbl;
     f32 v;
-    f32 lo;
     u32 frac;
     s32 x;
 

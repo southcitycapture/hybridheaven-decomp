@@ -1526,8 +1526,30 @@ void func_802472D4(struct func_80247380_Struct *arg0, volatile s32 arg1) {
 
 extern void func_80247498();
 
-void func_80247380(struct func_80247380_Struct *arg0, volatile s32 arg1) {
-    u16 temp_v0;
+#undef func_80247498
+#define D_802529B8 D_802529B8__func_80247380_341351fb
+#define func_802466A4_Vec func_802466A4_Vec__func_80247380_341351fb
+#define func_80247380_Struct func_80247380_Struct__func_80247380_341351fb
+#define func_80247498 func_80247498__func_80247380_341351fb
+struct func_802466A4_Vec {
+    s32 x;
+    s32 y;
+    s32 z;
+};
+struct func_80247380_Struct {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad1[0x5C - 0x3E];
+    s32 unk5C;
+    u8 pad2[0x92 - 0x60];
+    u16 unk92;
+};
+
+
+extern struct func_802466A4_Vec D_802529B8;
+extern void func_80247498();
+
+void func_80247380(struct func_80247380_Struct *arg0, s32 arg1) {
     u16 temp_v0_2;
     s32 value = arg0->unk5C;
 
@@ -1547,6 +1569,11 @@ void func_80247380(struct func_80247380_Struct *arg0, volatile s32 arg1) {
         func_800058DC(arg0, func_8024770C);
     }
 }
+#undef D_802529B8
+#undef func_802466A4_Vec
+#undef func_80247380_Struct
+#undef func_80247498
+#define func_80247498 func_80247498__func_80247380
 #undef func_80247498
 
 #define func_80247568 func_80247568__func_80247498

@@ -28,9 +28,7 @@ extern f64 D_80219600;
 
 void func_80201E44(func_80201E44_Struct *arg0, s32 arg1)
 {
-  f32 a;
   f32 b;
-  f32 c;
   if (func_801FD5BC(arg0->unk90, arg0->unk94, arg0->unk98) != 0)
   {
     arg0->unk40 = 0.0f;

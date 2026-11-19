@@ -11,7 +11,6 @@ struct func_80025B4C_Struct {
 /* GGA: sndCmdRepeat */
 void func_80025B4C(void)
 {
-  u8 temp_a0;
   ;
   switch ((s32) ((struct func_80025B4C_Struct *) D_800CBDA4)->unk70)
   {

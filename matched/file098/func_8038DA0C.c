@@ -38,7 +38,6 @@ extern s32 func_8022AB58();
 void func_8038DA0C(func_8038DA0C_StructO *arg0, void *arg1) {
     func_8038D800_StructB *a1;
     func_8038D800_StructC *a2;
-    u32 v;
     u32 t;
 
     a1 = (D_801BBBF0.unkDC == arg0->unkC) ? (func_8038D800_StructB *)&D_801BC03C : (func_8038D800_StructB *)&D_801BC3D8;

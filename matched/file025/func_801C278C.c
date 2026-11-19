@@ -9,9 +9,7 @@ void func_801C278C(s32 arg0, s32 arg1, s32 arg2)
     do
     {
       var_v0 += 1;
-      if (!var_v0)
-      {
-      }
+      
     }
     while (var_v0 != 3);
     while (1)

@@ -93,7 +93,7 @@ void func_8038CFF4(struct func_8038CFF4_StructArg *arg0, s32 arg1) {
     struct func_8038CFF4_StructState *var_t0;
     s16 temp_v0_4;
     s16 temp_v0_6;
-    register s32 temp_v1_2;
+    s32 temp_v1_2;
     s16 temp_v1_3;
     s32 temp_v0;
     s32 temp_v0_3;

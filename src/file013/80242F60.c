@@ -544,11 +544,14 @@ void func_80243930(func_80243930_Struct *arg0, s32 arg1) {
 
 extern func_8024388C_StructD D_80246CA0;
 
+#define func_80010550 func_80010550__func_80243A70
+#define func_8012CE9C func_8012CE9C__func_80243A70
+extern s32 func_80010550(s32, void *);
+extern s32 func_8012CE9C(s32, void *, func_8024388C_StructD, s32);
+
 void func_80243A70(func_80243A70_Struct *arg0, s32 arg1) {
     func_80243688_StructE *sp2C;
-    s32 temp_t6;
     s32 temp_v1;
-    u8 var_v0;
 
     sp2C = arg0->unk5C;
     if (func_8012CE9C(arg1, sp2C, D_80246CA0, 10) == 0) {
@@ -571,6 +574,8 @@ void func_80243A70(func_80243A70_Struct *arg0, s32 arg1) {
         }
     }
 }
+#undef func_80010550
+#undef func_8012CE9C
 
 
 typedef struct func_80243B70_StructB {

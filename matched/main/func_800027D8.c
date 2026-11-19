@@ -11,7 +11,7 @@ void func_800027D8(s32 arg0)
   temp_a2 = arg0 & 0xFF;
   new_var2 = ((0xFFFFFFFF & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF;
   temp_a2 = arg0 & 0xFF;
-  new_var = (new_var = &arg0);
+  new_var = (&arg0);
   new_var3 = 0xFFFFFFFFFFFFFFFF;
   if (((temp_a2 && temp_a2) & ((((((new_var2 & new_var3) & new_var3) & new_var3) & new_var3) & new_var3) & new_var3)) && temp_a2)
   {

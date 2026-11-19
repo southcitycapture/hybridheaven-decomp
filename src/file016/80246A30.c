@@ -216,7 +216,8 @@ void func_80246E00(struct func_80246E00_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/80246A30/func_80246ED4.s")
+/* hh-block asm/nonmatchings/file016/80246A30/_mrg_keep_2e475daa98aee1ca.s {"functions":["func_80246ED4"],"rodata":[[".late_rodata","asm/nonmatchings/file016/80246A30/func_802470A0.s","D_8024F138"]]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file016/80246A30/_mrg_keep_2e475daa98aee1ca.s")
 
 #define func_802470A0 func_802470A0__func_80246F28
 
@@ -296,10 +297,31 @@ extern f32 func_8012FFDC(f32, f32, f32, s32, f32, f32);
 extern void func_801FCA4C(f32, f32, f32, f32, s32);
 extern struct func_802470A0_SB *D_801BBCD8;
 
+
+
+#define D_801BBCD8 D_801BBCD8__func_802470A0
+#define D_8024F138 D_8024F138__func_802470A0
+#define func_802470A0_S6 func_802470A0_S6__func_802470A0
+#define func_802470A0_SA func_802470A0_SA__func_802470A0
+#define func_802470A0_SB func_802470A0_SB__func_802470A0
+#define func_802470A0_SC func_802470A0_SC__func_802470A0
+#define func_802470A0_SD func_802470A0_SD__func_802470A0
+#define func_802470A0_SE func_802470A0_SE__func_802470A0
+#define func_802470A0_SO func_802470A0_SO__func_802470A0
+
+struct func_802470A0_SB { u8 pad[0x2C]; struct func_802470A0_SC *unk2C; };
+struct func_802470A0_SC { u8 pad[0x30]; s32 unk30; f32 unk34; f32 unk38; };
+struct func_802470A0_S6 { u8 pad[6]; s16 unk6; s16 unk8; s16 unkA; u8 padC[4]; u32 unk10; };
+struct func_802470A0_SO { u8 pad[0x38]; struct func_802470A0_S6 *unk38; u8 pad3C[0x54]; f32 unk90; };
+struct func_802470A0_SD { u8 pad[0x30]; struct func_802470A0_SE *unk30; };
+struct func_802470A0_SE { u8 pad[0x4D]; u8 unk4D; };
+struct func_802470A0_SA { struct func_802470A0_SD *unk0; };
+extern struct func_802470A0_SB *D_801BBCD8;
+extern f64 D_8024F138;
+
 void func_802470A0(struct func_802470A0_SO *arg0, struct func_802470A0_SA *arg1) {
     f32 sp2C;
     f32 t;
-    struct func_802470A0_SC *c;
     struct func_802470A0_S6 *s;
 
     s = arg0->unk38;
@@ -312,9 +334,18 @@ void func_802470A0(struct func_802470A0_SO *arg0, struct func_802470A0_SA *arg1)
     if (func_80133A24(0xBF)) {
         sp2C = -sp2C;
     }
-    arg0->unk90 = arg0->unk90 - sp2C * 5.12;
+    arg0->unk90 = arg0->unk90 - sp2C * D_8024F138;
     arg1->unk0->unk30->unk4D = (s32)arg0->unk90 % 256;
 }
+#undef D_801BBCD8
+#undef D_8024F138
+#undef func_802470A0_S6
+#undef func_802470A0_SA
+#undef func_802470A0_SB
+#undef func_802470A0_SC
+#undef func_802470A0_SD
+#undef func_802470A0_SE
+#undef func_802470A0_SO
 
 
 struct func_80247294_StructD {

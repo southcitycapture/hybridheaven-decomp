@@ -38,7 +38,6 @@ void func_8036C744(struct func_80369C7C_Obj1 *arg0, s32 arg1) {
     func_8036C744_St *a3;
     struct func_80369C7C_Obj3 *sp24;
     func_8036C744_Rec *rec;
-    s32 v;
 
     if (arg0 != D_801BBBF0.unkDC) {
         sp34 = D_801BBBF0.unkDC;

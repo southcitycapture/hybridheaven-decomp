@@ -15,7 +15,6 @@ typedef struct func_80139254_Struct {
 } func_80139254_Struct;
 
 void func_80139254(func_80139254_Struct *arg0, s32 arg1) {
-    u32 t;
     func_80139254_StructInner *p;
 
     p = arg0->unk38;

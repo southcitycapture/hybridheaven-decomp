@@ -62,7 +62,7 @@ s32 func_80203830(void *arg0, s32 arg1)
   s->unkA0 = 0;
   s->unk9B = 0;
   *((s16 *) (D_801BBBF0 + 0x354)) = 0;
- stride = 0x18; var_v0 = 0; do { temp_a0 = D_801BBBF0 + (var_v0 * stride); arg1 = arg1;
+ stride = 0x18; var_v0 = 0; do { temp_a0 = D_801BBBF0 + (var_v0 * stride); 
     var_v0 = (var_v0 + 1) & 0xFF;
     *((s8 *) (temp_a0 + 0x1090)) = 0;
     *((s32 *) (temp_a0 + 0x1088)) = 0;

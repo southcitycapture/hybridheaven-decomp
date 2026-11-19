@@ -17,11 +17,8 @@ typedef struct func_801E6314_Vec {
 } func_801E6314_Vec;
 
 s32 func_801E6314(s32 arg0, s32 arg1) {
-    u8 *temp_t7;
     u8 *temp_t8;
-    u8 *temp_t9;
     u8 *temp_t0;
-    u8 *temp_t1;
     u8 *temp_t2;
     func_801E6314_Vec *temp_v0;
 

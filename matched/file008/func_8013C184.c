@@ -3,7 +3,6 @@
 void func_8013C184(struct func_8013BFB8_Struct *arg0, u16 *arg1) {
     struct func_8013BFB8_Struct2 *temp_v1;
     u16 temp_v0;
-    u16 temp_t7;
 
     temp_v1 = arg0->unk5C;
     if (temp_v1->unk9E != 0) {

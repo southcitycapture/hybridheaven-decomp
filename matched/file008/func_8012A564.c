@@ -37,8 +37,7 @@ s32 func_8012A564(func_8012AE54_StructArg *arg0, f32 arg1) {
     if (v != NULL) {
         d = (v->x - D_801BBCD0->vec->x) * (v->x - D_801BBCD0->vec->x) +
             (v->y - D_801BBCD0->vec->y) * (v->y - D_801BBCD0->vec->y);
-        if (d) {
-        }
+        
         if (arg1 * arg1 > d) {
             return 1;
         }
@@ -47,8 +46,7 @@ s32 func_8012A564(func_8012AE54_StructArg *arg0, f32 arg1) {
     v = obj->unk30;
     d = (v->x - D_801BBCD0->vec->x) * (v->x - D_801BBCD0->vec->x) +
         (v->y - D_801BBCD0->vec->y) * (v->y - D_801BBCD0->vec->y);
-    if (d) {
-    }
+    
     if (arg1 * arg1 > d) {
         return 1;
     }

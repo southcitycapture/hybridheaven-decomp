@@ -2738,8 +2738,21 @@ struct func_80246730_Struct {
 
 extern s32 func_8012FE50();
 
+#define D_801BBBF0 D_801BBBF0__func_80246730
+#define func_80246730_Struct func_80246730_Struct__func_80246730
+
+struct func_80246730_Struct {
+    u8 pad0[4];
+    u16 unk4;
+    u8 pad6[0x34D - 6];
+    u8 unk34D;
+    u8 pad34E[0x3A6 - 0x34E];
+    u8 unk3A6;
+    u8 unk3A7;
+};
+extern struct func_80246730_Struct D_801BBBF0;
+
 void func_80246730(void) {
-    u16 var;
     s32 five;
 
     five = 2;
@@ -2753,6 +2766,8 @@ void func_80246730(void) {
     D_801BBBF0.unk4 = 0xC2;
     func_8012FE50(0xF, D_801BBBF0.unk4, 1, 6, 0);
 }
+#undef D_801BBBF0
+#undef func_80246730_Struct
 
 
 /* C-owned readonly prefix; private load aliases retain IDO scheduling. */

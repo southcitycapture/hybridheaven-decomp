@@ -21,7 +21,6 @@ extern s32 func_8012FF58();
 void func_8014B8DC(void) {
     struct func_8014B8DC_Struct *p;
     s32 s;
-    u8 *end;
     s8 *a;
     struct func_8014B0BC_Struct *b;
 

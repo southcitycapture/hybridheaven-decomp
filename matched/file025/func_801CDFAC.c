@@ -33,7 +33,6 @@ extern u8 D_801BC025[];
 extern struct func_801CDFAC_H D_80171CF0;
 
 void func_801CDFAC(struct func_801CDFAC_Obj *arg0, struct func_801CDFAC_A *arg1) {
-    struct func_801CDFAC_Struct *t;
     func_801CDFAC_V *p;
     struct func_801CDFAC_Obj2 *o;
     if (func_801CC540() != 0) {

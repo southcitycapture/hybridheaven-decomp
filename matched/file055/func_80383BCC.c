@@ -8,7 +8,6 @@ extern s32 D_8038DBD8;
 
 
 void func_80383BCC(void) {
-    s32 t;
 
     switch (D_8038DBB8) {
     case 0:

@@ -856,10 +856,25 @@ typedef struct func_8023B608_Ent {
     u8 pad1[7];
 } func_8023B608_Ent;
 
+#undef B
+#undef func_8023A398
+#define func_8023A398 func_8023A398__func_8023B608
+#define func_8023A790 func_8023A790__func_8023B608
+#define func_8023B2E8 func_8023B2E8__func_8023B608
+#define func_8023B608_Ent func_8023B608_Ent__func_8023B608
+#define B ((u8 *)&D_80240880)
+extern void func_8023A790(s32);
+extern void func_8023B2E8(void);
+extern s8 func_8023A398(void *, s32);
+
+typedef struct func_8023B608_Ent {
+    u8 unk0;
+    u8 pad1[7];
+} func_8023B608_Ent;
+
 void func_8023B608(void *arg0, void *arg1) {
     s32 v;
     s32 i;
-    s32 n;
     u8 *data;
 
     D_80240880.unk6A = D_80240880.unk6B = 0xFF;
@@ -883,6 +898,13 @@ void func_8023B608(void *arg0, void *arg1) {
     func_8023B2E8();
     func_8023A790((s32)arg0);
 }
+#undef B
+#undef func_8023A398
+#undef func_8023A790
+#undef func_8023B2E8
+#undef func_8023B608_Ent
+#define B ((u8 *)&D_80240880)
+#define func_8023A398 func_8023A398__merge_frozen
 
 #define func_8023B608 func_8023B608__func_8023B704
 #define func_8023B86C func_8023B86C__func_8023B704

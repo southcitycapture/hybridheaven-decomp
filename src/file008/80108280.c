@@ -76,40 +76,45 @@ s32 func_801083BC(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
 }
 
 
-void func_8010843C(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
-    s32 *sp28;
-    s32 *sp2C;
 
-    sp28 = &arg2;
-    sp2C = &arg3;
+
+struct func_8010843C_StructArg {
+    s32 value;
+};
+
+void func_8010843C(f32 arg0, f32 arg1, struct func_8010843C_StructArg arg2, struct func_8010843C_StructArg arg3, f32 arg4, f32 arg5) {
     D_801BBAD4 = func_80108664;
-    func_80108868(arg0, arg1, arg2, arg3, arg4, arg5);
+    func_80108868(arg0, arg1, arg2.value, arg3.value, arg4, arg5);
 }
 
 s32 func_80108670(s32 arg0);
 s32 func_80108670(s32 arg0);
 
-void func_80108480(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
-    s32 *sp28;
-    s32 *sp2C;
 
-    sp28 = &arg2;
-    sp2C = &arg3;
+
+struct func_80108480_StructArgs {
+    s32 first;
+    s32 second;
+};
+
+void func_80108480(f32 arg0, f32 arg1, struct func_80108480_StructArgs args, f32 arg4, f32 arg5) {
     D_801BBAD4 = func_80108670;
-    func_80108868(arg0, arg1, arg2, arg3, arg4, arg5);
+    func_80108868(arg0, arg1, args.first, args.second, arg4, arg5);
 }
 
 s32 func_801086C4(s32 arg0);
 s32 func_801086C4(s32 arg0);
 
-void func_801084C4(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
-    s32 *sp28;
-    s32 *sp2C;
 
-    sp28 = &arg2;
-    sp2C = &arg3;
+
+struct func_801084C4_StructPair {
+    s32 first;
+    s32 second;
+};
+
+void func_801084C4(f32 arg0, f32 arg1, struct func_801084C4_StructPair args, f32 arg4, f32 arg5) {
     D_801BBAD4 = func_801086C4;
-    func_80108868(arg0, arg1, arg2, arg3, arg4, arg5);
+    func_80108868(arg0, arg1, args.first, args.second, arg4, arg5);
 }
 
 #define func_80108718 func_80108718__decl114
@@ -117,42 +122,46 @@ s32 func_80108718(s32 arg0);
 #define func_80108718 func_80108718__decl115
 s32 func_80108718(s32 arg0);
 
-void func_80108508(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
-    s32 *sp28;
-    s32 *sp2C;
+#undef func_80108718
+s32 func_80108718(u8 arg0);
 
-    sp28 = &arg2;
-    sp2C = &arg3;
+#undef func_80108718
+
+struct func_80108508_StructRange {
+    s32 start;
+    s32 end;
+};
+
+void func_80108508(f32 arg0, f32 arg1, struct func_80108508_StructRange range, f32 arg4, f32 arg5) {
     D_801BBAD4 = func_80108718;
-    func_80108868(arg0, arg1, arg2, arg3, arg4, arg5);
-#undef func_80108718
+    func_80108868(arg0, arg1, range.start, range.end, arg4, arg5);
 }
+#define func_80108718 func_80108718__decl115
 #undef func_80108718
 
 s32 func_8010876C(s32 arg0);
 s32 func_8010876C(s32 arg0);
 
-void func_8010854C(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
-    s32 *sp28;
-    s32 *sp2C;
 
-    sp28 = &arg2;
-    sp2C = &arg3;
+
+struct func_8010854C_StructPair {
+    s32 first;
+    s32 second;
+};
+
+void func_8010854C(f32 arg0, f32 arg1, struct func_8010854C_StructPair pair, f32 arg4, f32 arg5) {
     D_801BBAD4 = func_8010876C;
-    func_80108868(arg0, arg1, arg2, arg3, arg4, arg5);
+    func_80108868(arg0, arg1, pair.first, pair.second, arg4, arg5);
 }
 
 s32 func_801087C0(s32 arg0);
 s32 func_801087C0(s32 arg0);
 
-void func_80108590(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
-    s32 *sp28;
-    s32 *sp2C;
 
-    sp28 = &arg2;
-    sp2C = &arg3;
+
+void func_80108590(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     D_801BBAD4 = func_801087C0;
-    func_80108868(arg0, arg1, arg2, arg3, arg4, arg5);
+    func_80108868(arg0, arg1, *(s32 *)&arg2, *(s32 *)&arg3, arg4, arg5);
 }
 
 
@@ -327,15 +336,39 @@ typedef struct func_8010ACF8_StructArg {
 } func_8010ACF8_StructArg;
 extern s32 func_8010B73C();
 
+#undef func_8010B73C
+#define func_8010ACF8_StructArg func_8010ACF8_StructArg__func_8010ACF8_1562c122
+#define func_8010ACF8_StructNode func_8010ACF8_StructNode__func_8010ACF8_1562c122
+#define func_8010B73C func_8010B73C__func_8010ACF8_1562c122
+
+
+typedef struct func_8010ACF8_StructNode {
+    u8 type;
+    u8 pad1[3];
+    s16 next;
+    u8 pad6[2];
+    s16 min[3];
+    s16 max[3];
+} func_8010ACF8_StructNode;
+
+typedef struct func_8010ACF8_StructArg {
+    func_8010ACF8_StructNode *node;
+    f32 a[3];
+    f32 b[3];
+    u8 pad1C[4];
+    f32 distance;
+} func_8010ACF8_StructArg;
+extern s32 func_8010B73C();
+
 s32 func_8010ACF8(func_8010ACF8_StructArg *arg0)
 {
     s32 result;
-    f32 fa, fb, fc, fd, fe;
-    u8 v;
-    s16 minX, minY, minZ;
-    s16 maxX, maxY, maxZ;
+    f32 firstX, secondX, firstY, secondY, firstZ;
+    s16 minY, minX;
+    f32 secondZ;
+    s16 maxX, minZ, maxY;
+    s32 maxZ;
     func_8010ACF8_StructNode *node;
-    func_8010ACF8_StructNode *base;
     func_8010ACF8_StructNode *start;
 
     arg0->distance = 2147483648.0f;
@@ -345,26 +378,32 @@ s32 func_8010ACF8(func_8010ACF8_StructArg *arg0)
     }
     if (arg0->node->type == 0xFE) {
         node = arg0->node;
-        if (arg0->a[0] < arg0->b[0]) {
-            minX = (s16)arg0->a[0];
-            maxX = (s16)arg0->b[0];
+        firstX = arg0->a[0];
+        secondX = arg0->b[0];
+        if (firstX < secondX) {
+            minX = (s16)firstX;
+            maxX = (s16)secondX;
         } else {
-            minX = (s16)arg0->b[0];
-            maxX = (s16)arg0->a[0];
+            minX = (s16)secondX;
+            maxX = (s16)firstX;
         }
-        if (arg0->a[1] < arg0->b[1]) {
-            minY = (s16)arg0->a[1];
-            maxY = (s16)arg0->b[1];
+        firstY = arg0->a[1];
+        secondY = arg0->b[1];
+        if (firstY < secondY) {
+            minY = (s16)firstY;
+            maxY = (s16)secondY;
         } else {
-            minY = (s16)arg0->b[1];
-            maxY = (s16)arg0->a[1];
+            minY = (s16)secondY;
+            maxY = (s16)firstY;
         }
-        if (arg0->a[2] < arg0->b[2]) {
-            minZ = (s16)arg0->a[2];
-            maxZ = (s16)arg0->b[2];
+        firstZ = arg0->a[2];
+        secondZ = arg0->b[2];
+        if (firstZ < secondZ) {
+            minZ = (s16)firstZ;
+            maxZ = (s16)secondZ;
         } else {
-            minZ = (s16)arg0->b[2];
-            maxZ = (s16)arg0->a[2];
+            minZ = (s16)secondZ;
+            maxZ = (s16)firstZ;
         }
         start = arg0->node;
         if (start->type != 0xFF) {
@@ -387,6 +426,10 @@ s32 func_8010ACF8(func_8010ACF8_StructArg *arg0)
     }
     return result;
 }
+#undef func_8010ACF8_StructArg
+#undef func_8010ACF8_StructNode
+#undef func_8010B73C
+#define func_8010B73C func_8010B73C__func_8010ACF8
 #undef func_80108718
 #undef func_80108814
 #undef func_8010B73C

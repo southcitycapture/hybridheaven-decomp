@@ -8,7 +8,6 @@ extern u8 D_801BCC21;
 void func_8037BB28(u8 *arg0, u8 *arg1) {
     u8 *var_v0;
     u8 *temp_v0;
-    s32 temp_v1;
     s32 temp_a0;
 
     arg1 = arg0;

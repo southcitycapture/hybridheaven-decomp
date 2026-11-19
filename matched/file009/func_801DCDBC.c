@@ -65,7 +65,7 @@ void func_801DCDBC(func_801DCDBC_StructA *anim, u16 *arg1, f32 *arg2, func_801DC
     f32 d, c, b, a;
 
     switch (anim->id) {
-    case 0x01680002 + 0:
+    case 0x01680002:
         if (anim->k == F(13.0f)) {
             *arg1 = D_801E15E8[D_801E16A0[D_801BBBF4]][D_801BBF44[7]];
         }

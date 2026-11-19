@@ -772,10 +772,32 @@ extern struct func_801D2810_Struct D_801DB284[];
 u64 D_801E1428;
 extern u32 D_801E1430;
 
+#undef D_801DB284
+#undef D_801E1430
+#undef func_80034C24
+#undef func_801C0B2C
+#undef func_801D2810_Struct
+#define D_801DB284 D_801DB284__func_801D2810_4bc9fc6d
+#define D_801E1430 D_801E1430__func_801D2810_4bc9fc6d
+#define func_80034C24 func_80034C24__func_801D2810_4bc9fc6d
+#define func_801C0B2C func_801C0B2C__func_801D2810_4bc9fc6d
+#define func_801D2810_Struct func_801D2810_Struct__func_801D2810_4bc9fc6d
+u8 func_801D2810_bss_prefix[8];
+
+
+struct func_801D2810_Struct {
+    f32 unk0;
+    s32 unk4;
+};
+extern f64 func_80034C24();
+extern u64 func_801C0B2C();
+extern struct func_801D2810_Struct D_801DB284[];
+u64 D_801E1428;
+extern u32 D_801E1430;
+
 void func_801D2810(void *arg0) {
     u64 d;
     s32 k;
-    struct func_801D2810_Struct *e;
 
     d = func_801C0B2C() - D_801E1428;
     if ((f64)D_801DB284[D_801E1430].unk0 <= func_80034C24(d) / (1e+06)) {
@@ -800,6 +822,16 @@ end:
         D_801E1430 = D_801E1430 % 15U;
     }
 }
+#undef D_801DB284
+#undef D_801E1430
+#undef func_80034C24
+#undef func_801C0B2C
+#undef func_801D2810_Struct
+#define D_801DB284 D_801DB284__func_801D2810_aabfb903
+#define D_801E1430 D_801E1430__func_801D2810_aabfb903
+#define func_80034C24 func_80034C24__func_801D2810_aabfb903
+#define func_801C0B2C func_801C0B2C__func_801D2810_aabfb903
+#define func_801D2810_Struct func_801D2810_Struct__func_801D2810_aabfb903
 #undef D_801DB284
 #undef D_801E1430
 #undef func_80034C24

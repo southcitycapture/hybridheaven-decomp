@@ -355,10 +355,45 @@ struct func_8038D7D0_StructG {
 extern struct func_8038D7D0_StructG D_801BBBF0;
 extern void func_8022B3E0();
 
+#define D_801BBBF0 D_801BBBF0__func_8038D7D0
+#define func_8038D7D0_Struct func_8038D7D0_Struct__func_8038D7D0
+#define func_8038D7D0_StructA func_8038D7D0_StructA__func_8038D7D0
+#define func_8038D7D0_StructG func_8038D7D0_StructG__func_8038D7D0
+struct func_8038D7D0_StructG {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0x1031 - 0xE0];
+    u8 unk1031;
+};
+
+struct func_8038D7D0_Struct {
+    u8 pad0[0xC];
+    s32 unkC;
+    u8 pad10[0x91 - 0x10];
+    u8 unk91;
+    u8 pad92[0x9A - 0x92];
+    s16 unk9A;
+    u8 pad9C[0xA0 - 0x9C];
+    u8 unkA0;
+    u8 padA1[0xA8 - 0xA1];
+    u8 unkA8;
+    u8 padA9[0xB0 - 0xA9];
+    void (*unkB0)();
+};
+
+struct func_8038D7D0_StructA {
+    s16 unk0;
+    s16 unk2;
+    u8 pad4[0x30 - 0x4];
+    u16 unk30;
+};
+
+
+extern struct func_8038D7D0_StructG D_801BBBF0;
+
 void func_8038D7D0(struct func_8038D7D0_Struct *arg0, s32 arg1) {
     struct func_8038D7D0_StructA *var_a1;
     struct func_8038D7D0_StructA *var_a2;
-    s32 temp_v1;
 
     var_a1 = (D_801BBBF0.unkDC == arg0->unkC) ? &D_801BC03C : &D_801BC3D8;
     var_a2 = (D_801BBBF0.unkDC == arg0->unkC) ? &D_801BC3D8 : &D_801BC03C;
@@ -385,6 +420,10 @@ void func_8038D7D0(struct func_8038D7D0_Struct *arg0, s32 arg1) {
         func_8038D630(arg0, var_a1, var_a2);
     }
 }
+#undef D_801BBBF0
+#undef func_8038D7D0_Struct
+#undef func_8038D7D0_StructA
+#undef func_8038D7D0_StructG
 
 void *func_8022A834(s32 arg0, struct func_8022A834_Struct *arg1);
 

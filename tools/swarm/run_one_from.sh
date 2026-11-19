@@ -9,6 +9,8 @@ FUNC=$1; SEG=$2; HH=${HH_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}; cd "$HH"
 [ -n "$BATCH" ] && [ -f "queue/$BATCH/STOP" ] && exit 0
 # queue/BATCH/PAUSE: wait (don't skip) until it's gone; chatgpt_pacer.sh paces plan lanes this way (11-08)
 while [ -n "$BATCH" ] && [ -f "queue/$BATCH/PAUSE" ]; do sleep 60; [ -f "queue/$BATCH/STOP" ] && exit 0; done
+# queue/BATCH/SKIP: "FUNC SEG" lines another lane has taken (11-19: Terra and Sonnet split the honest-C repairs)
+[ -n "$BATCH" ] && [ -f "queue/$BATCH/SKIP" ] && grep -qx "$FUNC $SEG" "queue/$BATCH/SKIP" && exit 0
 [ -z "$AB_NOSKIP" ] && [ -f "matched/$SEG/$FUNC.c" ] && exit 0   # AB_NOSKIP=1: paired A/B arms run every function
 # PINS=file of "FUNC SEG /abs/path/attempt.c" lines: start from that exact attempt (11-17: archived attempts have no
 # score files, so FROM=best cannot rank them; score_attempts.py finds the real best)

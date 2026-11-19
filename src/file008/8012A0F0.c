@@ -103,6 +103,46 @@ typedef struct func_8012AE54_StructArg {
 } func_8012AE54_StructArg;
 
 
+#undef D_801BBCD0
+#undef func_8012A72C_Obj
+#undef func_8012A72C_Vec
+#undef func_8012AE54_StructArg
+#undef func_8012AE54_StructObj
+#undef func_8012AE54_StructVec
+#define D_801BBCD0 D_801BBCD0__func_8012A564_3d4a9eb5
+#define func_8012A72C_Obj func_8012A72C_Obj__func_8012A564_3d4a9eb5
+#define func_8012A72C_Vec func_8012A72C_Vec__func_8012A564_3d4a9eb5
+#define func_8012AE54_StructArg func_8012AE54_StructArg__func_8012A564_3d4a9eb5
+#define func_8012AE54_StructObj func_8012AE54_StructObj__func_8012A564_3d4a9eb5
+#define func_8012AE54_StructVec func_8012AE54_StructVec__func_8012A564_3d4a9eb5
+struct func_8012A72C_Vec {
+    u8 pad0[4];
+    f32 x;
+    u8 pad1[4];
+    f32 y;
+};
+struct func_8012A72C_Obj {
+    u8 pad0[0x2C];
+    struct func_8012A72C_Vec *vec;
+};
+extern struct func_8012A72C_Obj *D_801BBCD0;
+typedef struct func_8012AE54_StructVec {
+    u8 pad0[4];
+    f32 x;
+    u8 pad1[4];
+    f32 y;
+} func_8012AE54_StructVec;
+typedef struct func_8012AE54_StructObj {
+    u8 pad0[0x2C];
+    func_8012AE54_StructVec *unk2C;
+    func_8012AE54_StructVec *unk30;
+} func_8012AE54_StructObj;
+typedef struct func_8012AE54_StructArg {
+    u8 pad0[0x24];
+    func_8012AE54_StructObj *unk24;
+} func_8012AE54_StructArg;
+
+
 s32 func_8012A564(func_8012AE54_StructArg *arg0, f32 arg1) {
     func_8012AE54_StructObj *obj;
     func_8012AE54_StructVec *v;
@@ -113,8 +153,7 @@ s32 func_8012A564(func_8012AE54_StructArg *arg0, f32 arg1) {
     if (v != NULL) {
         d = (v->x - D_801BBCD0->vec->x) * (v->x - D_801BBCD0->vec->x) +
             (v->y - D_801BBCD0->vec->y) * (v->y - D_801BBCD0->vec->y);
-        if (d) {
-        }
+
         if (arg1 * arg1 > d) {
             return 1;
         }
@@ -123,13 +162,24 @@ s32 func_8012A564(func_8012AE54_StructArg *arg0, f32 arg1) {
     v = obj->unk30;
     d = (v->x - D_801BBCD0->vec->x) * (v->x - D_801BBCD0->vec->x) +
         (v->y - D_801BBCD0->vec->y) * (v->y - D_801BBCD0->vec->y);
-    if (d) {
-    }
+
     if (arg1 * arg1 > d) {
         return 1;
     }
     return 0;
 }
+#undef D_801BBCD0
+#undef func_8012A72C_Obj
+#undef func_8012A72C_Vec
+#undef func_8012AE54_StructArg
+#undef func_8012AE54_StructObj
+#undef func_8012AE54_StructVec
+#define D_801BBCD0 D_801BBCD0__func_8012A564
+#define func_8012A72C_Obj func_8012A72C_Obj__func_8012A564
+#define func_8012A72C_Vec func_8012A72C_Vec__func_8012A564
+#define func_8012AE54_StructArg func_8012AE54_StructArg__func_8012A564
+#define func_8012AE54_StructObj func_8012AE54_StructObj__func_8012A564
+#define func_8012AE54_StructVec func_8012AE54_StructVec__func_8012A564
 #undef D_801BBCD0
 #undef func_8012A72C_Obj
 #undef func_8012A72C_Vec

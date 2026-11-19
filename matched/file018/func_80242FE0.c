@@ -65,9 +65,7 @@ void func_80242FE0(struct func_80242FE0_Struct *arg0, s32 arg1)
       func_80127430(b->unk4, b->unk8, b->unkC, 0x66A, D_8025BF60, 1.0f);
       func_800058DC(arg0, func_8024312C);
     }
-    if (sp28)
-    {
-    }
+    
     func_8012A94C(arg0, 0x40);
   }
 }

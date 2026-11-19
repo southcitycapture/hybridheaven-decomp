@@ -9,7 +9,7 @@ extern func_80242F38_StructGlobal D_802520D4;
 extern u8 D_802521D8[];
 extern void func_80242B14();
 
-void func_80242A54(func_80242A54_StructArg *arg0, void ** volatile arg1)
+void func_80242A54(func_80242A54_StructArg *arg0, void ** arg1)
 {
   s32 new_var2;
   unsigned int new_var;
@@ -21,7 +21,5 @@ void func_80242A54(func_80242A54_StructArg *arg0, void ** volatile arg1)
     func_800179B0(D_802521D8);
     func_800058DC(arg0, func_80242B14);
   }
-  if (1)
-  {
-  }
+  
 }

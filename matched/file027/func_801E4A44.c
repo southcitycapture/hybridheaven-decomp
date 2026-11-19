@@ -49,7 +49,7 @@ s32 func_801E4A44(s32 arg0, s32 arg1) {
         ((func_801E4A44_StructA *)D_8038D8D0)->unk20->unk30->unk8 = (f32)((f32)(func_80034C24(t) / D_801F5848 - 4.0) / 9.0f * 18.0f + D_801F5850);
         f = func_80034C24(t) / D_801F5858;
         a = (f - (f32)(s32)f) * 360.0f * D_801F5860;
-        if (a) {}
+        
         ((func_801E4A44_StructA *)D_8038D8D0)->unk20->unk30->unk14 = (s32)(func_80029280(a) *8.0f * 2048.0f / 90.0f);
     }
     return 9;

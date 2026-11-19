@@ -4,7 +4,7 @@ extern s32 func_80010550(s32, s32);
 
 void func_801C2BDC(struct func_801C2E20_Struct0 *arg0, s32 arg1)
 {
-    register s32 temp_a2;
+    s32 temp_a2;
 
     temp_a2 = arg0->unk5C;
     if (D_801BBBF0.unk1B4 & 1) {

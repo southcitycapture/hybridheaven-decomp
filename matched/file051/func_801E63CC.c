@@ -13,11 +13,8 @@ extern f32 D_801E7938;
 
 s32 func_801E63CC(s32 arg0, s32 arg1) {
     func_801E63CC_Struct *temp_v0;
-    u8 *temp_t6;
     u8 *temp_t7;
-    u8 *temp_t8;
     u8 *temp_t9;
-    u8 *temp_t0;
     u8 *temp_t1;
 
     func_801C1000(4, 3);

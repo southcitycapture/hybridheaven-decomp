@@ -47,7 +47,7 @@ void func_801369B8(func_801369B8_Struct *arg0, s32 arg1) {
     if (D_80135E60(arg0, (f32)((arg0->unk38->unk10 >> 16) & 0xFF), 0, 0.0f) != 0) {
         t = D_801268F4(0);
         B->unk192 = 5;
-        if (t) {}
+        
         B->unk198 = func_8001EAD0(arg0->unk24->unk30->unk12) * 20.0f + arg0->unk24->unk30->unk4;
         B->unk1A0 = func_8001EB64(arg0->unk24->unk30->unk12) * 20.0f + arg0->unk24->unk30->unkC;
         B->unkF14 = arg0->unk24->unk30->unk4;

@@ -25,7 +25,6 @@ extern u8 D_8018071C[];
 
 s32 func_8013E850(void)
 {
-    u16 v;
 
     if (func_800178E8() == 0) return 0;
     if (*(u8 *)&D_801BEC03 == 1U) {

@@ -11,9 +11,9 @@ extern f32 D_801EC620;
 s32 func_801E2AE0(s32 arg0, s32 arg1) {
     f32 height = 30.0f;
     f32 depth = D_801EC614;
-    if (height) {}
-    if (height) {}
-    if (height) {}
+    
+    
+    
 
     if (func_8038BEF8(0.0f, 7.0f, -8.9f, 30.2f, 5.0f,
                       D_801EC618, D_801EC61C, D_801EC620,

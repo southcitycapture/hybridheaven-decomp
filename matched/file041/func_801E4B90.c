@@ -10,9 +10,7 @@ s32 func_801E4B90(s32 arg0, s32 arg1)
   if (func_801C0B8C(0x6ACFC0) != 0)
   {
     func_801C7BE4();
-    if ((!D_801E889C) && (!D_801E889C))
-    {
-    }
+    
     b = (f32 *) D_801E89D0;
     a = (f32 *) D_801E8960;
     a[0x10 / 4] = D_801E889C;

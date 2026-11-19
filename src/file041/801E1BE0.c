@@ -620,9 +620,9 @@ s32 func_801E2BA4(s32 arg0, s32 arg1) {
 }
 
 
+
 s32 func_801E2BE0(void)
 {
-    s32 temp_t7;
 
     func_801CCEC8(0, *(((s8 *) (&D_801E7FE8)) + 3), 0, 0);
     if ((D_801E7FE8 += 4) >= 0x70)
@@ -1459,20 +1459,25 @@ s32 func_801E4980(s32 arg0, s32 arg1) {
 #define A(o) (*(f32 *)(D_801E8960 + (o)))
 #define B(o) (*(f32 *)(D_801E89D0 + (o)))
 
+#undef A
+#undef B
+#define A(o) (*(f32 *)(D_801E8960 + (o)))
+#define B(o) (*(f32 *)(D_801E89D0 + (o)))
+
+#define A(o) (*(f32 *)(D_801E8960 + (o)))
+#define B(o) (*(f32 *)(D_801E89D0 + (o)))
+
 s32 func_801E4990(s32 arg0, s32 arg1)
 {
   u8 *new_var3;
   u8 (*new_var)[];
-  f32 k;
   u8 *new_var2;
   float new_var4;
   if (func_801C0B8C(0) != 0)
   {
     func_801C7B3C();
     func_801C7BE4();
-    if (359.0f && 359.0f)
-    {
-    }
+
     *((f32 *) (D_801E8960 + 0x10)) = 359.0f;
     *((f32 *) (D_801E8960 + 0x30)) = 359.0f;
     *((f32 *) (D_801E8960 + 0x34)) = 359.0f;
@@ -1535,6 +1540,10 @@ s32 func_801E4990(s32 arg0, s32 arg1)
   }
   return 5;
 }
+#undef A
+#undef B
+#define A(o) (*(f32 *)(D_801E8960 + (o)))
+#define B(o) (*(f32 *)(D_801E89D0 + (o)))
 
 
 s32 func_801C7C08(f32 a, f32 b, void *c, void *d);
@@ -1548,6 +1557,7 @@ s32 func_801E4B44(s32 arg0, s32 arg1) {
 
 
 
+
 s32 func_801E4B90(s32 arg0, s32 arg1)
 {
   f32 *a;
@@ -1555,9 +1565,7 @@ s32 func_801E4B90(s32 arg0, s32 arg1)
   if (func_801C0B8C(0x6ACFC0) != 0)
   {
     func_801C7BE4();
-    if ((!359.0f) && (!359.0f))
-    {
-    }
+
     b = (f32 *) D_801E89D0;
     a = (f32 *) D_801E8960;
     a[0x10 / 4] = 359.0f;

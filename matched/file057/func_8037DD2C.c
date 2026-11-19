@@ -9,7 +9,6 @@ extern u8 func_8037DEE4[];
 #define G ((struct func_8037DD2C_Struct0 *)&D_8008DA88)
 
 void func_8037DD2C(struct func_8037DD2C_Arg *arg0, s32 arg1) {
-    s32 v;
     func_8037DCEC((s32)arg0, (void *)G->unk0, 0xFF);
     if (arg0->unk96 == 0) {
         func_8037DCEC((s32)arg0, (void *)G->unk4, 0xFF);

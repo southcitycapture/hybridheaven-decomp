@@ -79,9 +79,14 @@ typedef struct func_801CC350_StructBuffer {
     u8 pad[0xE0];
 } func_801CC350_StructBuffer;
 
+#define func_801CC350_StructBuffer func_801CC350_StructBuffer__func_801CC350
+
+typedef struct func_801CC350_StructBuffer {
+    u8 pad[0xE0];
+} func_801CC350_StructBuffer;
+
 s32 func_801CC350(void) {
     func_801CC350_StructBuffer *p;
-    u8 *q;
     s32 i;
     s32 k;
     u8 *entry;
@@ -119,6 +124,7 @@ s32 func_801CC350(void) {
     }
     return 1;
 }
+#undef func_801CC350_StructBuffer
 
 typedef struct func_801CC470_Struct {
     s32 unk0;

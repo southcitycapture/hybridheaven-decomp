@@ -1826,11 +1826,40 @@ struct func_801E4FE0_Struct0 {
     struct func_801E4FE0_Struct1 *unk8;
 };
 
+#undef func_801E4FE0_Struct3
+#undef func_8038D33C
+#define func_801E4FE0_Struct0 func_801E4FE0_Struct0__func_801E4FE0_0d8fd9e8
+#define func_801E4FE0_Struct1 func_801E4FE0_Struct1__func_801E4FE0_0d8fd9e8
+#define func_801E4FE0_Struct2 func_801E4FE0_Struct2__func_801E4FE0_0d8fd9e8
+#define func_801E4FE0_Struct3 func_801E4FE0_Struct3__func_801E4FE0_0d8fd9e8
+#define func_8038D33C func_8038D33C__func_801E4FE0_0d8fd9e8
+void func_8038D33C(f32 fa0, f32 fa1, s32 a2, s32 a3, f32 f14, f32 f16);
+
+struct func_801E4FE0_Struct3 {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    s32 unkC;
+};
+
+struct func_801E4FE0_Struct2 {
+    u8 pad0[0x2C];
+    struct func_801E4FE0_Struct3 *unk2C;
+};
+
+struct func_801E4FE0_Struct1 {
+    u8 pad0[0x24];
+    struct func_801E4FE0_Struct2 *unk24;
+};
+
+struct func_801E4FE0_Struct0 {
+    u8 pad0[0x8];
+    struct func_801E4FE0_Struct1 *unk8;
+};
+
 s32 func_801E4FE0(s32 arg0, s32 arg1)
 {
-  struct func_801E4FE0_Struct3 *temp_v0;
   struct func_801E4FE0_Struct0 **new_var;
-  struct func_801E4FE0_Struct0 *temp_t6;
   if (func_801CE274() == 0)
   {
     new_var = (struct func_801E4FE0_Struct0 **) (func_801DAAF0 + 0x24);
@@ -1842,6 +1871,13 @@ s32 func_801E4FE0(s32 arg0, s32 arg1)
   }
   return 0x29;
 }
+#undef func_801E4FE0_Struct0
+#undef func_801E4FE0_Struct1
+#undef func_801E4FE0_Struct2
+#undef func_801E4FE0_Struct3
+#undef func_8038D33C
+#define func_801E4FE0_Struct3 func_801E4FE0_Struct3__func_801E4FE0
+#define func_8038D33C func_8038D33C__func_801E4FE0
 #undef func_801E4FE0_Struct3
 #undef func_8038D33C
 

@@ -15,7 +15,7 @@ struct func_801FD884_Struct {
 s32 func_80108590(f32, f32, f32, f32, f32, f32);
 
 void func_801FD884(struct func_801FD884_Struct *arg0, s32 arg1) {
-    volatile f32 pad[3];
+    f32 pad[3];
     f32 sp28[1];
     f32 sp24[1];
     f32 two;

@@ -27,8 +27,7 @@ void func_801CD288(struct func_801CD288_Struct *arg0, s32 arg1) {
     p = &arg0->unk78[3];
     t = D_801CE330(arg0, 0x15, sp6C, sp68, sp64, 0xFF, 0xFF, 0xFF, 0xFF, 0x40, 0x40, 0x40, 0, 1, 0x18, D_801E3438, 1);
     *p += sp5F;
-    if (t) {
-    }
+    
     if (*p >= 6) {
         func_800058DC(arg0, func_801CD1CC);
     }

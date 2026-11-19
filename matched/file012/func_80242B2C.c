@@ -35,9 +35,7 @@ extern void func_8022AAA8(void *);
 extern f64 D_802491E8;
 
 void func_80242B2C(func_80242B2C_StructA *arg0, func_80242B2C_StructB *arg1) {
-    f64 a;
     f64 b;
-    s32 t;
 
     if ((arg1->unk38 >> 31) != 0) {
         if ((f64)arg1->unk2 < (f64)arg1->unk0 * 0.5) {

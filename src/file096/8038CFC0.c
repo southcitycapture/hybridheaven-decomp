@@ -162,13 +162,62 @@ extern u8 D_801BBBF0[];
 extern u8 func_8022B3E0[];
 extern s32 func_8022AB58();
 
+#undef D_801BBBF0
+#undef func_8022AB58
+#undef func_8022B3E0
+#define D_801BBBF0 D_801BBBF0__func_8038D8F0_c88d5c24
+#define func_8022AB58 func_8022AB58__func_8038D8F0_c88d5c24
+#define func_8022B3E0 func_8022B3E0__func_8038D8F0_c88d5c24
+#define func_8038D8F0_A func_8038D8F0_A__func_8038D8F0_c88d5c24
+#define func_8038D8F0_B func_8038D8F0_B__func_8038D8F0_c88d5c24
+#define func_8038D8F0_G func_8038D8F0_G__func_8038D8F0_c88d5c24
+#define func_8038D8F0_Struct func_8038D8F0_Struct__func_8038D8F0_c88d5c24
+
+typedef struct func_8038D8F0_Struct {
+    u8 pad0[0xC];
+    s32 unkC;
+    u8 pad1[0x81];
+    u8 unk91;
+    u8 pad1c[8];
+    s16 unk9A;
+    u8 pad2[4];
+    u8 unkA0;
+    u8 pad3[7];
+    u8 unkA8;
+    u8 pad4[7];
+    s32 unkB0;
+} func_8038D8F0_Struct;
+typedef struct func_8038D8F0_A {
+    s16 unk0;
+    s16 unk2;
+    u8 pad4[0x2C];
+    u16 unk30;
+    u8 pad5[6];
+    u32 a38 : 1;
+    u32 : 2;
+    u32 b38 : 1;
+} func_8038D8F0_A;
+typedef struct func_8038D8F0_B {
+    u8 pad4[0x30];
+    u32 : 11;
+    u32 f30 : 2;
+} func_8038D8F0_B;
+typedef struct func_8038D8F0_G {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0xAB0];
+    f32 unkB90;
+} func_8038D8F0_G;
+extern u8 D_801BBBF0[];
+extern u8 func_8022B3E0[];
+extern s32 func_8022AB58();
+
 void func_8038D8F0(func_8038D8F0_Struct *arg0, s32 arg1)
 {
   func_8038D8F0_A *a1;
   func_8038D8F0_B *a2;
   u32 t;
   u32 f;
-  s32 c;
   ;
   if (arg0->unkC == ((func_8038D8F0_G *) D_801BBBF0)->unkDC)
   {
@@ -261,6 +310,16 @@ void func_8038D8F0(func_8038D8F0_Struct *arg0, s32 arg1)
     func_8038D694();
   }
 }
+#undef D_801BBBF0
+#undef func_8022AB58
+#undef func_8022B3E0
+#undef func_8038D8F0_A
+#undef func_8038D8F0_B
+#undef func_8038D8F0_G
+#undef func_8038D8F0_Struct
+#define D_801BBBF0 D_801BBBF0__func_8038D8F0
+#define func_8022AB58 func_8022AB58__func_8038D8F0
+#define func_8022B3E0 func_8022B3E0__func_8038D8F0
 #undef D_801BBBF0
 #undef func_800058DC
 #undef func_8022AB58

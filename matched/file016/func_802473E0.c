@@ -62,7 +62,6 @@ extern struct func_802473E0_Ent *D_80171CEC[];
 extern void func_80247634();
 
 void func_802473E0(struct func_802473E0_Obj *arg0, struct func_802473E0_Node **arg1) {
-    struct func_802473E0_Node **temp_s1;
     struct func_802473E0_Ent *temp_v0;
     s32 var_v0;
     s8 var_s0;

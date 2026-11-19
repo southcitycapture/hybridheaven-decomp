@@ -240,6 +240,75 @@ extern void func_80133830(void);
 extern void func_80133950(void);
 extern void func_80133A70(void);
 
+#undef G_PTR
+#undef G_U16
+#define D_80089474 D_80089474__func_80151DA4
+#define func_80151DA4_Holder func_80151DA4_Holder__func_80151DA4
+#define func_80151DA4_Obj func_80151DA4_Obj__func_80151DA4
+#define func_80151DA4_Rec func_80151DA4_Rec__func_80151DA4
+#define func_80151DA4_Rec6 func_80151DA4_Rec6__func_80151DA4
+#define func_80151DA4_Struct func_80151DA4_Struct__func_80151DA4
+#define G_PTR(o) (*(func_80151DA4_Holder **)((u8 *)&D_801BBBF0 + (o)))
+#define G_U16(o) (*(u16 *)((u8 *)&D_801BBBF0 + (o)))
+
+typedef struct func_80151DA4_Struct {
+    u16 unk0;
+    u16 unk2;
+    u16 unk4;
+    s16 unk6;
+    s16 unk8;
+    u8 pad[0x1C - 0xA];
+    s32 unk1C;
+} func_80151DA4_Struct;
+
+typedef struct func_80151DA4_Rec {
+    u16 unk0;
+    u16 unk2;
+    u8 unk4;
+    u8 unk5;
+    s16 unk6;
+    s16 unk8;
+    u8 unkA;
+    u8 unkB;
+    s16 unkC;
+    s16 unkE;
+    u8 unk10;
+    u8 unk11;
+} func_80151DA4_Rec;
+
+typedef struct func_80151DA4_Rec6 {
+    u16 w[3];
+} func_80151DA4_Rec6;
+
+typedef struct func_80151DA4_Obj {
+    u8 pad0[4];
+    f32 unk4;
+    u8 pad8[4];
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[0x30 - 0x14];
+    f32 unk30;
+    u8 pad34[4];
+    f32 unk38;
+    f32 unk3C;
+    u8 pad40[4];
+    f32 unk44;
+    s32 unk48;
+    s32 unk4C;
+    s32 unk50;
+} func_80151DA4_Obj;
+
+typedef struct func_80151DA4_Holder {
+    u8 pad[0x2C];
+    func_80151DA4_Obj *unk2C;
+} func_80151DA4_Holder;
+
+#define G_U16(o) (*(u16 *)((u8 *)&D_801BBBF0 + (o)))
+#define G_PTR(o) (*(func_80151DA4_Holder **)((u8 *)&D_801BBBF0 + (o)))
+
+extern func_80151DA4_Struct D_80089474;
+
 func_80151DA4_Struct func_80151DA4(void) {
     func_80151DA4_Struct s;
     func_80151DA4_Rec *rec;
@@ -247,7 +316,6 @@ func_80151DA4_Struct func_80151DA4(void) {
     s16 b;
     s16 c;
     func_80151DA4_Obj *o;
-    u16 v;
 
     s = D_80089474;
     if (D_801BBBF0.unk170 != 0) {
@@ -319,6 +387,16 @@ func_80151DA4_Struct func_80151DA4(void) {
     }
     return s;
 }
+#undef G_PTR
+#undef G_U16
+#undef D_80089474
+#undef func_80151DA4_Holder
+#undef func_80151DA4_Obj
+#undef func_80151DA4_Rec
+#undef func_80151DA4_Rec6
+#undef func_80151DA4_Struct
+#define G_PTR(o) (*(func_80151DA4_Holder **)((u8 *)&D_801BBBF0 + (o)))
+#define G_U16(o) (*(u16 *)((u8 *)&D_801BBBF0 + (o)))
 
 extern u16 D_801BBD5E;
 extern void func_80150584(void);

@@ -115,7 +115,6 @@ typedef struct func_80123BF0_StructM {
 #define G(T, o) (*(T *)((u8 *)&D_800892B0 + (o)))
 
 void func_80123BF0(s32 arg0, s32 arg1) {
-    u8 *p;
     u8 *q;
     s32 i;
 

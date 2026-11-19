@@ -531,8 +531,25 @@ struct func_801FD884_Struct {
     f32 unkA0;
 };
 
+#define func_801FD884_Struct func_801FD884_Struct__func_801FD884
+#define func_801FDB3C func_801FDB3C__func_801FD884
+extern s32 func_801FDB3C(s32 arg0);
+
+struct func_801FD884_Struct {
+    u8 pad0[0x40];
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    u8 pad1[0x90 - 0x4C];
+    f32 unk90;
+    f32 unk94;
+    f32 unk98;
+    f32 unk9C;
+    f32 unkA0;
+};
+
 void func_801FD884(struct func_801FD884_Struct *arg0, s32 arg1) {
-    volatile f32 pad[3];
+    f32 pad[3];
     f32 sp28[1];
     f32 sp24[1];
     f32 two;
@@ -552,6 +569,8 @@ void func_801FD884(struct func_801FD884_Struct *arg0, s32 arg1) {
         func_801FDB3C((s32)arg0);
     }
 }
+#undef func_801FD884_Struct
+#undef func_801FDB3C
 
 #define D_802172B8 D_802172B8__func_801FD97C
 #define func_8012C4D0 func_8012C4D0__func_801FD97C

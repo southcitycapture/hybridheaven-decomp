@@ -10,9 +10,7 @@ s32 func_801E3790(s32 arg0, s32 arg1)
   m1 = (15.6f);
   new_var2 = 0x3C;
   m2 = (-53.9f);
-  if (m5)
-  {
-  }
+  
   new_var = m5;
   m5 = m2;
   if (func_8038BEF8(0.0f, 1.0f, -9.6f, 52.6f, (-86.3f), (1.2f), (41.7f), (-96.9f), new_var, m1, m2, new_var, m1, m5) != 0)

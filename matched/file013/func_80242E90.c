@@ -19,7 +19,7 @@ extern void func_800208C4(s32);
 extern void func_802039B0(void *, s32);
 
 void func_80242E90(func_80242E90_StructC *arg0, s32 arg1) {
-    register u8 *temp_v0 = (u8 *)&D_801BBBF0;
+    u8 *temp_v0 = (u8 *)&D_801BBBF0;
     u16 temp_t8;
     s32 temp_v1;
 

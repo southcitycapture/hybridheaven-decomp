@@ -4,8 +4,7 @@
 extern struct func_802466A4_Vec D_802529B8;
 extern void func_80247498();
 
-void func_80247380(struct func_80247380_Struct *arg0, volatile s32 arg1) {
-    u16 temp_v0;
+void func_80247380(struct func_80247380_Struct *arg0, s32 arg1) {
     u16 temp_v0_2;
     s32 value = arg0->unk5C;
 

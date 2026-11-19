@@ -2630,6 +2630,46 @@ typedef struct func_8036C744_Bits {
     u8 rest : 5;
 } func_8036C744_Bits;
 
+#undef func_8036BF98
+#undef func_8036D938
+#define func_8036BF98 func_8036BF98__func_8036C744_b53bb991
+#define func_8036C744_Bits func_8036C744_Bits__func_8036C744_b53bb991
+#define func_8036C744_Link func_8036C744_Link__func_8036C744_b53bb991
+#define func_8036C744_Rec func_8036C744_Rec__func_8036C744_b53bb991
+#define func_8036C744_St func_8036C744_St__func_8036C744_b53bb991
+#define func_8036C744_Struct func_8036C744_Struct__func_8036C744_b53bb991
+#define func_8036C744_Sub func_8036C744_Sub__func_8036C744_b53bb991
+#define func_8036C744_Tgt func_8036C744_Tgt__func_8036C744_b53bb991
+#define func_8036D938 func_8036D938__func_8036C744_b53bb991
+
+typedef struct func_8036C744_Rec { u8 pad0[1]; u8 unk1; u8 pad2[6]; u16 unk8; u8 padA[6]; s32 unk10; } func_8036C744_Rec;
+typedef struct func_8036C744_Link { u8 pad0[8]; s32 unk8; } func_8036C744_Link;
+typedef struct func_8036C744_Tgt { u8 pad0[0x7C]; func_8036C744_Link *unk7C; s16 unk80; u16 unk82; } func_8036C744_Tgt;
+typedef struct func_8036C744_Sub { u8 pad0[0x12]; u16 unk12; } func_8036C744_Sub;
+typedef struct func_8036C744_Struct { u8 pad0[0x5C]; func_8036C744_Tgt *unk5C; } func_8036C744_Struct;
+typedef struct func_8036C744_St {
+    u8 pad0[0x2D4];
+    func_8036C744_Sub *unk2D4;
+    u8 unk2D8;
+    u8 pad2D9;
+    u8 unk2DA;
+    u8 unk2DB;
+    u8 pad2DC[2];
+    u8 unk2DE;
+    u8 pad2DF[0x2EC - 0x2DF];
+    f32 unk2EC;
+    u8 pad2F0[0x314 - 0x2F0];
+    u8 unk314[4];
+} func_8036C744_St;
+extern func_8036C744_Rec *func_8036BF98();
+extern void func_8036D938();
+typedef struct func_8036C744_Bits {
+    u8 pad0[0x31];
+    u8 b7 : 1;
+    u8 b65 : 2;
+    u8 rest : 5;
+} func_8036C744_Bits;
+
 void func_8036C744(struct func_80369C7C_Obj1 *arg0, s32 arg1) {
     struct func_80369C7C_Obj1 *sp34;
     func_8036C744_Tgt *t0;
@@ -2637,7 +2677,6 @@ void func_8036C744(struct func_80369C7C_Obj1 *arg0, s32 arg1) {
     func_8036C744_St *a3;
     struct func_80369C7C_Obj3 *sp24;
     func_8036C744_Rec *rec;
-    s32 v;
 
     if (arg0 != D_801BBBF0.unkDC) {
         sp34 = D_801BBBF0.unkDC;
@@ -2702,6 +2741,17 @@ void func_8036C744(struct func_80369C7C_Obj1 *arg0, s32 arg1) {
         func_800058DC((s32)sp34, func_8036B0D4);
     }
 }
+#undef func_8036BF98
+#undef func_8036C744_Bits
+#undef func_8036C744_Link
+#undef func_8036C744_Rec
+#undef func_8036C744_St
+#undef func_8036C744_Struct
+#undef func_8036C744_Sub
+#undef func_8036C744_Tgt
+#undef func_8036D938
+#define func_8036BF98 func_8036BF98__func_8036C744
+#define func_8036D938 func_8036D938__func_8036C744
 #undef func_8036BF98
 #undef func_8036D938
 

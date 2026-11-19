@@ -42,23 +42,46 @@ struct func_801D0700_Struct {
     s32 unk24;
 };
 
+#define D_8008DA88 D_8008DA88__func_801D0700
+#define func_801D0700_Struct func_801D0700_Struct__func_801D0700
+#define func_801D0818 func_801D0818__func_801D0700
+#define func_801D0A74_Struct func_801D0A74_Struct__func_801D0700
+struct func_801D0A74_Struct {
+    u8 pad0[0x24];
+    u8 *unk24;
+    u8 pad1[0x30 - 0x28];
+    u8 *unk30;
+};
+extern struct func_801D0A74_Struct D_8008DA88;
+
+extern void func_801D0818();
+
+struct func_801D0700_Struct {
+    u8 pad[0x24];
+    s32 unk24;
+};
+
 void func_801D0700(struct func_801D0700_Struct *arg0, s32 arg1) {
     if (arg0->unk24 != 0) {
         func_8012D844(arg0, 0x57, 0);
         if (D_801DAFE8 != 0) {
             func_80006214(arg0);
             *(s32 *)(*(s32 *)(D_8008DA88.unk30 + 0x2C) + 0x28) = *(s32 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158) + 4) + 0x18);
-            *(u16 *)(*(s32 *)(D_8008DA88.unk30 + 0x2C) + 0) = *(u16 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158) + 0) + 0);
-            *(u16 *)(*(s32 *)(D_8008DA88.unk30 + 0x2C) + 0x2C) = *(u16 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158) + 0) + 2);
+            *(u16 *)(*(s32 *)(D_8008DA88.unk30 + 0x2C)) = *(u16 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158)));
+            *(u16 *)(*(s32 *)(D_8008DA88.unk30 + 0x2C) + 0x2C) = *(u16 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158)) + 2);
             *(s32 *)(*(s32 *)(D_8008DA88.unk24 + 0x2C) + 0x28) = *(s32 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158) + 4) + 0x1C);
-            *(u16 *)(*(s32 *)(D_8008DA88.unk24 + 0x2C) + 0) = *(u16 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158) + 0) + 0);
-            *(u16 *)(*(s32 *)(D_8008DA88.unk24 + 0x2C) + 0x2C) = *(u16 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158) + 0) + 2);
+            *(u16 *)(*(s32 *)(D_8008DA88.unk24 + 0x2C)) = *(u16 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158)));
+            *(u16 *)(*(s32 *)(D_8008DA88.unk24 + 0x2C) + 0x2C) = *(u16 *)(*(s32 *)(*(s32 *)(D_80171CF0 + 0x158)) + 2);
         }
         func_800058DC(arg0, func_801D0818);
         return;
     }
     func_800058DC(arg0, func_801D0700);
 }
+#undef D_8008DA88
+#undef func_801D0700_Struct
+#undef func_801D0818
+#undef func_801D0A74_Struct
 
 extern u8 D_801E1308;
 

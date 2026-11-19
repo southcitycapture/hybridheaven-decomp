@@ -43,7 +43,6 @@ void func_8038D7F0(func_8038D7F0_Struct1 *arg0, s32 arg1) {
     func_8038D7F0_Struct2 *a2;
     s32 v0;
     u32 v1;
-    u32 a1;
     s32 t;
 
     a3 = (func_8038D7F0_Struct2 *)((D_801BBBF0.unkDC == arg0->unkC) ? D_801BC03C : D_801BC3D8);

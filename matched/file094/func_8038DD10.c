@@ -50,9 +50,7 @@ extern s32 func_8022AB58();
 void func_8038DD10(struct func_8038DD10_Struct *arg0, s32 arg1) {
     struct func_8038DD10_Struct2 *a3;
     struct func_8038DD10_Struct3 *a2;
-    s32 v1;
     u32 w;
-    u32 f;
     u32 g;
 
     a3 = (D_801BBBF0.unkDC == arg0->unkC) ? (void *)D_801BC03C : (void *)D_801BC3D8;

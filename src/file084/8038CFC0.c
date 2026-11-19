@@ -148,12 +148,67 @@ extern u8 D_8038D8D8[];
 #define B struct func_8038D8D8_StructB
 #define CALL() func_8038D734((void *)arg0, (void *)((s32)a3 * 1), (void *)a2)
 
+#undef B
+#undef CALL
+#define D_801BBBF0 D_801BBBF0__func_8038D8D8
+#define func_8038D8D8_StructA func_8038D8D8_StructA__func_8038D8D8
+#define func_8038D8D8_StructB func_8038D8D8_StructB__func_8038D8D8
+#define func_8038D8D8_StructC func_8038D8D8_StructC__func_8038D8D8
+#define func_8038D8D8_StructG func_8038D8D8_StructG__func_8038D8D8
+#define B struct func_8038D8D8_StructB
+#define CALL() func_8038D734((void *)arg0, (void *)((s32)a3 * 1), (void *)a2)
+
+struct func_8038D8D8_StructA {
+    u8 pad0[0xC];
+    s32 unkC;
+    u8 pad1[0x91 - 0x10];
+    u8 unk91;
+    u8 unk92;
+    u8 unk93;
+    u8 pad2[0x9A - 0x94];
+    s16 unk9A;
+    u8 pad3[0xA8 - 0x9C];
+    u8 unkA8;
+    u8 pad4[0xB0 - 0xA9];
+    void *unkB0;
+};
+struct func_8038D8D8_StructG {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0xB90 - 0xE0];
+    f32 unkB90;
+    u8 pad2[0x1031 - 0xB94];
+    u8 unk1031;
+};
+struct func_8038D8D8_StructB {
+    u8 pad0[0x30];
+    u32 unk30;
+    u32 pad34;
+    u32 f0:1;
+    u32 f1:1;
+    u32 f2:1;
+    u32 f3:1;
+    u32 rest:28;
+    u8 pad3c[0xA6 - 0x3C];
+    u8 unkA6;
+};
+struct func_8038D8D8_StructC {
+    u32 pad0:3;
+    u32 f3:4;
+    u32 pad1:4;
+    u32 f11:2;
+    u32 rest:19;
+};
+extern struct func_8038D8D8_StructG D_801BBBF0;
+
+#define B struct func_8038D8D8_StructB
+#define CALL() func_8038D734((void *)arg0, (void *)((s32)a3 * 1), (void *)a2)
+
 void func_8038D8D8(struct func_8038D8D8_StructA *arg0, s32 arg1) {
     B *a3;
     B *a2;
     u32 v;
     u32 hi;
-    u32 lo;
 
     a3 = (D_801BBBF0.unkDC == arg0->unkC) ? (B *)&D_801BC03C : (B *)D_801BC3D8;
     a2 = (D_801BBBF0.unkDC == arg0->unkC) ? (B *)D_801BC3D8 : (B *)&D_801BC03C;
@@ -213,6 +268,15 @@ void func_8038D8D8(struct func_8038D8D8_StructA *arg0, s32 arg1) {
         CALL();
     }
 }
+#undef B
+#undef CALL
+#undef D_801BBBF0
+#undef func_8038D8D8_StructA
+#undef func_8038D8D8_StructB
+#undef func_8038D8D8_StructC
+#undef func_8038D8D8_StructG
+#define B struct func_8038D8D8_StructB
+#define CALL() func_8038D734((void *)arg0, (void *)((s32)a3 * 1), (void *)a2)
 
 /* starting point: func_8038D900 (file061), whose assembly is 91% the same as this function's */
 

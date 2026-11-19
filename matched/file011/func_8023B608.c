@@ -13,7 +13,6 @@ typedef struct func_8023B608_Ent {
 void func_8023B608(void *arg0, void *arg1) {
     s32 v;
     s32 i;
-    s32 n;
     u8 *data;
 
     D_80240880.unk6A = D_80240880.unk6B = 0xFF;

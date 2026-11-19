@@ -1051,10 +1051,14 @@ void func_8013BFB8(struct func_8013BFB8_Struct *arg0, u16 *arg1) {
 }
 
 
+#define func_8013BFB8_Struct func_8013BFB8_Struct__func_8013C184
+#define func_8013BFB8_Struct2 func_8013BFB8_Struct2__func_8013C184
+struct func_8013BFB8_Struct2 { u8 pad0[0xE]; u16 unkE; u8 pad1[0x8E]; u16 unk9E; u16 unkA0; };
+struct func_8013BFB8_Struct { u8 pad0[0x5C]; struct func_8013BFB8_Struct2 *unk5C; };
+
 void func_8013C184(struct func_8013BFB8_Struct *arg0, u16 *arg1) {
     struct func_8013BFB8_Struct2 *temp_v1;
     u16 temp_v0;
-    u16 temp_t7;
 
     temp_v1 = arg0->unk5C;
     if (temp_v1->unk9E != 0) {
@@ -1068,6 +1072,8 @@ void func_8013C184(struct func_8013BFB8_Struct *arg0, u16 *arg1) {
         }
     }
 }
+#undef func_8013BFB8_Struct
+#undef func_8013BFB8_Struct2
 
 
 struct func_8013C244_Pair { u16 a; u16 b; };

@@ -51,7 +51,6 @@ extern u8 func_8022B3E0[];
 void func_8038D9D0(func_8038D9D0_StructA *arg0, s32 arg1) {
     func_8038D9D0_StructP *a3;
     func_8038D9D0_StructP *a2;
-    u32 b;
     u32 f;
 
     a3 = (func_8038D9D0_StructP *)(D_801BBBF0.unkDC == arg0->unkC ? D_801BC03C : D_801BC3D8);

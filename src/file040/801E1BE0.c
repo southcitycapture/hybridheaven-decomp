@@ -566,9 +566,9 @@ s32 func_801E2D88(s32 arg0, s32 arg1) {
 }
 
 
+
 void func_801E2DC4(void)
 {
-  s32 temp_t7;
   func_801CCEC8(0, *(((s8 *) (&D_801E821C)) + 3), 0, 0);
   ;
   if ((D_801E821C += 4) >= 0x70)
@@ -2471,11 +2471,12 @@ tail:
 
 
 
+
 s32 func_801E7338(s32 arg0, s32 arg1)
 {
   f64 new_var;
   u64 temp_ret;
-  volatile unsigned long long pad;
+  unsigned long long pad;
   f32 four;
   if (func_801C0B8C(0x2711A0B) != 0)
   {

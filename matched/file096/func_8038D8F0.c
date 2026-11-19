@@ -45,7 +45,6 @@ void func_8038D8F0(func_8038D8F0_Struct *arg0, s32 arg1)
   func_8038D8F0_B *a2;
   u32 t;
   u32 f;
-  s32 c;
   ;
   if (arg0->unkC == ((func_8038D8F0_G *) D_801BBBF0)->unkDC)
   {

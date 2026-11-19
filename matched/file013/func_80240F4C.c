@@ -11,7 +11,6 @@ extern void func_80126E88(s32, void *);
 
 void func_80240F4C(struct func_80240F4C_Self *arg0, s32 arg1)
 {
-  f32 temp_fv0;
   s32 var_v0;
   D_801BBD76 = 1;
   ;

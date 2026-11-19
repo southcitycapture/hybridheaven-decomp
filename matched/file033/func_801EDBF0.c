@@ -4,7 +4,7 @@ extern f32 D_801F4AD8;
 
 s32 func_801EDBF0(s32 arg0, s32 arg1)
 {
-  register struct func_801E6018_Obj **slot;
+  struct func_801E6018_Obj **slot;
   short new_var;
   new_var = 0x24;
   slot = (struct func_801E6018_Obj **) (func_801DAAF0 + new_var);

@@ -27,7 +27,6 @@ void func_80006F8C(u16 arg0, struct func_80006F8C_Struct *arg1) {
     s32 s2;
     s32 a0;
     s32 v;
-    u8 n;
     u8 *p;
     s32 t;
 

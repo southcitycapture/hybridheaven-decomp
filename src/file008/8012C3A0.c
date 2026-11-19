@@ -1390,8 +1390,34 @@ struct func_8012E774_Obj {
     s32 unk8C;
 };
 
+#define func_8012E774_Glob func_8012E774_Glob__func_8012E774
+#define func_8012E774_Obj func_8012E774_Obj__func_8012E774
+
+struct func_8012E774_Glob {
+    u8 pad0[0xFE];
+    u16 unkFE;
+    u8 pad1[0x84];
+    u16 unk184;
+    u8 pad2[0x2B2];
+    f32 unk438;
+    f32 unk43C;
+    f32 unk440;
+};
+
+struct func_8012E774_Obj {
+    u8 pad0[0x1C];
+    s32 unk1C;
+    s32 unk20;
+    s32 unk24;
+    u8 pad1[0x4];
+    s32 unk2C;
+    u8 pad2[0x42];
+    u16 unk72;
+    u8 pad3[0x18];
+    s32 unk8C;
+};
+
 void func_8012E774(struct func_8012E774_Obj *arg0) {
-    s32 a;
     s32 b;
     s32 p;
 
@@ -1410,6 +1436,8 @@ void func_8012E774(struct func_8012E774_Obj *arg0) {
         ((struct func_8012E774_Glob *) D_801BBBF0)->unk438 = ((struct func_8012E774_Glob *) D_801BBBF0)->unk43C;
     }
 }
+#undef func_8012E774_Glob
+#undef func_8012E774_Obj
 
 #undef G
 #define B_801BBBF0 B_801BBBF0__func_8012E81C

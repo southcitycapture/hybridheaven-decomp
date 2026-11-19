@@ -59,17 +59,14 @@ extern s8 D_8021AFD0;
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 
 void func_801F2438(struct func_801F2438_StructObj *arg0, struct func_801F2438_StructPair *arg1) {
-    f32 temp_fv0;
     f32 rate;
     f32 speed;
     f32 low;
-    f64 temp_fv1;
     f64 var_fv0;
     s32 temp_t0;
     s16 temp_t1;
     s16 temp_v0;
     struct func_801F2438_StructData *temp_v1;
-    struct func_801F2438_StructPos *var_v0;
     struct func_801F2438_StructPos *var_a2;
     u32 value;
 

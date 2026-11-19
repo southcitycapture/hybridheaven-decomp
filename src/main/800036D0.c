@@ -56,6 +56,9 @@ extern u16 D_8005D024;
 extern u16 D_8005D026;
 extern u8 D_80089518[];
 
+#define func_80003D3C func_80003D3C__func_80003824
+extern u8 *func_80003D3C(u8 *);
+
 u8 *func_80003824(u32 arg0, u8 *arg1, s32 arg2) {
     u8 *src;
     s32 pad[4];
@@ -63,7 +66,6 @@ u8 *func_80003824(u32 arg0, u8 *arg1, s32 arg2) {
     u32 size;
     u32 end;
     u32 bands;
-    u16 nb;
     u8 cmd;
     u16 n;
     u16 off;
@@ -190,6 +192,7 @@ u8 *func_80003824(u32 arg0, u8 *arg1, s32 arg2) {
     }
     return arg1;
 }
+#undef func_80003D3C
 
 extern s32 D_8005D020;
 

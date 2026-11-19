@@ -16,9 +16,7 @@ s32 func_801E20F4(s32 arg0, s32 arg1)
   a = D_801E6BF4;
   b = D_801E6BF8;
   c = D_801E6BFC;
-  if (1)
-  {
-  }
+  
   d = 71.0f;
   if (D_8038C17C(0.0f, 1.5f, 9.1f, 5.4f, D_801E6C00, D_801E6C04, D_801E6C08, -13.0f, a, b, c, a, b, c, d, d) != 0)
   {

@@ -89,6 +89,15 @@ extern s32 func_80146894(s32, s32, u8 *, s32, f32, s32);
 
 struct func_80226AA4_Struct { u8 pad[0x28]; s16 unk28; };
 
+
+#define D_8023F090 D_8023F090__func_80226AA4
+#define func_80147598 func_80147598__func_80226AA4
+#define func_80226AA4_Struct func_80226AA4_Struct__func_80226AA4
+extern s32 func_80147598();
+extern f32 D_8023F090;
+
+struct func_80226AA4_Struct { u8 pad[0x28]; s16 unk28; };
+
 u8 func_80226AA4(void *arg0p, s32 arg1p, s8 *arg2p) {
 #define arg0 ((s32)arg0p)
 #define arg1 ((s32 *)arg1p)
@@ -145,7 +154,6 @@ u8 func_80226AA4(void *arg0p, s32 arg1p, s8 *arg2p) {
         g[7] = *arg2;
         func_801465A0(arg0, arg1p, *(u16 *)(D_801BBBF0 + 0x44C), 0x1BB, 0x2D);
         *arg2 += 4;
-    } else {
     }
     if (func_80147598() != 0) {
         g[0xA] = *arg2;
@@ -196,7 +204,7 @@ u8 func_80226AA4(void *arg0p, s32 arg1p, s8 *arg2p) {
     O(arg1[k4])->unk28 = 0x800;
     func_801451C0((void *)arg1[k4], 0);
     g[0x18] = *arg2;
-    s2 += (func_80146894(arg0, 1, arg2, 0xC1C40000, 203.5f, 0x18));
+    s2 += (func_80146894(arg0, 1, arg2, 0xC1C40000, D_8023F090, 0x18));
     g[0x19] = *arg2;
     s2 += (func_80146208(arg0, arg2, 4, -0x27, 0xBB, 0x20, 0x20, 0, 0, 0xFF, 0x209, 2));
     g[0x1F] = *arg2;
@@ -213,6 +221,9 @@ u8 func_80226AA4(void *arg0p, s32 arg1p, s8 *arg2p) {
 #undef t
 #undef t2
 }
+#undef D_8023F090
+#undef func_80147598
+#undef func_80226AA4_Struct
 
 #define func_801451C0 func_801451C0__func_80227484
 
@@ -1082,3 +1093,5 @@ void func_80228ABC(func_80228ABC_Struct *arg0, u8 *arg1)
 #undef D_801BEC60
 #undef func_80228320
 
+/* Readonly constants retained after the last ASM donor became C. */
+static const f32 D_8023F090__rodata[] = {203.5f};

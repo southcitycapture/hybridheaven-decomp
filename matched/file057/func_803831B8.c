@@ -7,7 +7,6 @@ struct func_803831B8_Struct {
 
 u8 func_803831B8(struct func_803831B8_Struct *arg0, u8 *arg1)
 {
-  s32 temp_t6;
   if (arg0->unk9C < 6)
   {
     do

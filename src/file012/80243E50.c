@@ -124,10 +124,34 @@ extern u8 D_8017DC94[];
 extern u8 D_8017DC95[];
 extern u8 D_80388410[];
 
+#undef D_8017DC44
+#undef D_8017DC4A
+#undef D_8017DC92
+#undef D_8017DC93
+#undef D_8017DC94
+#undef D_8017DC95
+#undef D_80388410
+#undef func_80376D10
+#define D_8017DC44 D_8017DC44__func_80244174_8b1c8a88
+#define D_8017DC4A D_8017DC4A__func_80244174_8b1c8a88
+#define D_8017DC92 D_8017DC92__func_80244174_8b1c8a88
+#define D_8017DC93 D_8017DC93__func_80244174_8b1c8a88
+#define D_8017DC94 D_8017DC94__func_80244174_8b1c8a88
+#define D_8017DC95 D_8017DC95__func_80244174_8b1c8a88
+#define D_80388410 D_80388410__func_80244174_8b1c8a88
+#define func_80376D10 func_80376D10__func_80244174_8b1c8a88
+extern s32 func_80376D10(void);
+extern u8 D_8017DC44[];
+extern u8 D_8017DC4A[];
+extern u8 D_8017DC92[];
+extern u8 D_8017DC93[];
+extern u8 D_8017DC94[];
+extern u8 D_8017DC95[];
+extern u8 D_80388410[];
+
 s32 func_80244174(u8 arg0, u8 arg1, s8 arg2) {
     s32 var_sp34;
     u16 var_sp32;
-    s32 absv;
     s16 count;
     s32 end;
     s16 val;
@@ -179,6 +203,22 @@ s32 func_80244174(u8 arg0, u8 arg1, s8 arg2) {
     }
     return val & 0xFFFF;
 }
+#undef D_8017DC44
+#undef D_8017DC4A
+#undef D_8017DC92
+#undef D_8017DC93
+#undef D_8017DC94
+#undef D_8017DC95
+#undef D_80388410
+#undef func_80376D10
+#define D_8017DC44 D_8017DC44__func_80244174
+#define D_8017DC4A D_8017DC4A__func_80244174
+#define D_8017DC92 D_8017DC92__func_80244174
+#define D_8017DC93 D_8017DC93__func_80244174
+#define D_8017DC94 D_8017DC94__func_80244174
+#define D_8017DC95 D_8017DC95__func_80244174
+#define D_80388410 D_80388410__func_80244174
+#define func_80376D10 func_80376D10__func_80244174
 #undef D_8017DC44
 #undef D_8017DC4A
 #undef D_8017DC92

@@ -13,8 +13,157 @@ s32 func_803879D0(u8 arg0, u16 arg1) {
     return temp_lo & 0xFFFF;
 }
 
-/* hh-block asm/nonmatchings/file056/803879D0/_mrg_keep_text_func_80387A20.s {"functions":["func_80387A20"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/803879D0/_mrg_keep_text_func_80387A20.s")
+#define D_80388F00 D_80388F00__func_80387A20
+#define func_80005670 func_80005670__func_80387A20
+#define func_8022B640 func_8022B640__func_80387A20
+#define func_803879D0 func_803879D0__func_80387A20
+s32 func_803879D0(u8 arg0, u16 arg1);
+
+
+typedef struct func_80387A20_Struct {
+    u8 pad[0x90];
+    u16 amount;
+    u16 kind;
+    u8 pad94[4];
+    u8 boost;
+    u8 pad99[1];
+    u16 duration;
+} func_80387A20_Struct;
+
+typedef struct func_80387A20_StructStats {
+    u16 maximum;
+    u16 current;
+    u8 pad04[0x3C];
+    u16 boost40;
+    u16 boost42;
+    u16 pad44;
+    u16 boost46;
+} func_80387A20_StructStats;
+
+#define STATS ((func_80387A20_StructStats *)&D_8017DC40)
+
+extern u8 D_80388F00[];
+extern func_80387A20_Struct *func_80005670(s32, s32);
+extern s32 func_8022B640(s32);
+
+#define HEALTH_CASE(n, percent, limit) \
+    amount = func_803879D0(percent, limit); \
+    ptr = func_80005670(arg0, (s32)D_80388F00); \
+    if (amount < STATS->maximum - STATS->current) { ptr->amount = amount; } \
+    else { ptr->amount = STATS->maximum - STATS->current; } \
+    ptr->kind = n
+
+#define BOOST_CASE(n, field) \
+    ptr = func_80005670(arg0, (s32)D_80388F00); \
+    ptr->kind = ptr->amount = 0; \
+    ptr->boost = n; \
+    ptr->duration = (u16)(func_8022B640(5) + 16); \
+    STATS->field = STATS->field + ptr->duration
+
+void func_80387A20(register s32 arg0, u8 arg1) {
+    func_80387A20_Struct *ptr;
+    u16 amount;
+
+    switch (arg1) {
+    case 1:
+        amount = func_803879D0(25, 100);
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        if (amount < STATS->maximum - STATS->current) {
+            ptr->amount = amount;
+        } else {
+            ptr->amount = STATS->maximum - STATS->current;
+        }
+        ptr->kind = 1;
+        break;
+    case 2:
+        amount = func_803879D0(50, 500);
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        if (amount < STATS->maximum - STATS->current) {
+            ptr->amount = amount;
+        } else {
+            ptr->amount = STATS->maximum - STATS->current;
+        }
+        ptr->kind = 2;
+        break;
+    case 3:
+        amount = func_803879D0(75, 1000);
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        if (amount < STATS->maximum - STATS->current) {
+            ptr->amount = amount;
+        } else {
+            ptr->amount = STATS->maximum - STATS->current;
+        }
+        ptr->kind = 3;
+        break;
+    case 4:
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        ptr->amount = 0xFFFF;
+        ptr->kind = 4;
+        break;
+    case 9:
+        amount = func_803879D0(25, 100);
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        if (amount < STATS->maximum - STATS->current) {
+            ptr->amount = amount;
+        } else {
+            ptr->amount = STATS->maximum - STATS->current;
+        }
+        ptr->kind = 9;
+        break;
+    case 10:
+        amount = func_803879D0(50, 500);
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        if (amount < STATS->maximum - STATS->current) {
+            ptr->amount = amount;
+        } else {
+            ptr->amount = STATS->maximum - STATS->current;
+        }
+        ptr->kind = 10;
+        break;
+    case 11:
+        amount = func_803879D0(75, 1000);
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        if (amount < STATS->maximum - STATS->current) {
+            ptr->amount = amount;
+        } else {
+            ptr->amount = STATS->maximum - STATS->current;
+        }
+        ptr->kind = 11;
+        break;
+    case 12:
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        ptr->amount = 0xFFFF;
+        ptr->kind = 12;
+        break;
+    case 16:
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        ptr->amount = ptr->kind = 0;
+        ptr->boost = 1;
+        ptr->duration = (u16)(func_8022B640(5) + 16);
+        STATS->boost40 = STATS->boost40 + ptr->duration;
+        break;
+    case 17:
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        ptr->amount = ptr->kind = 0;
+        ptr->boost = 2;
+        ptr->duration = (u16)(func_8022B640(5) + 16);
+        STATS->boost42 = STATS->boost42 + ptr->duration;
+        break;
+    case 18:
+        ptr = func_80005670(arg0, (s32)D_80388F00);
+        ptr->amount = ptr->kind = 0;
+        ptr->boost = 3;
+        ptr->duration = (u16)(func_8022B640(5) + 16);
+        STATS->boost46 = STATS->boost46 + ptr->duration;
+    }
+}
+#undef STATS
+#undef HEALTH_CASE
+#undef BOOST_CASE
+#undef D_80388F00
+#undef func_80005670
+#undef func_8022B640
+#undef func_803879D0
 
 typedef struct func_80387DDC_Struct {
     u8 pad0[8];
@@ -268,6 +417,7 @@ void func_80388444(func_80388444_Struct *arg0, s32 arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
+
 static const unsigned char rodata_803879D0[] = {
     0x25, 0x6D, 0x25, 0x73, 0x00, 0x00, 0x00, 0x00, 0x25, 0x6D, 0xA3, 0xCF, 0xA3, 0xC6, 0xA3, 0xC6,
     0xA3, 0xC5, 0xA3, 0xCE, 0xA3, 0xC3, 0xA3, 0xC5, 0xA1, 0xB8, 0xA3, 0xD5, 0xA3, 0xD0, 0xA1, 0xB8,
@@ -281,9 +431,6 @@ static const unsigned char rodata_803879D0[] = {
     0xA3, 0xD2, 0xA3, 0xC5, 0xA3, 0xC6, 0xA3, 0xD2, 0xA3, 0xC5, 0xA3, 0xD3, 0xA3, 0xC8, 0x00, 0x00,
     0x25, 0x6D, 0xA3, 0xC8, 0xA3, 0xD0, 0xA1, 0xB8, 0xA3, 0xD2, 0xA3, 0xC5, 0xA3, 0xC6, 0xA3, 0xD2,
     0xA3, 0xC5, 0xA3, 0xD3, 0xA3, 0xC8, 0xA1, 0xB8, 0x25, 0x70, 0x25, 0x64, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x38, 0x7A, 0x58, 0x80, 0x38, 0x7A, 0xB8,
-    0x80, 0x38, 0x7B, 0x18, 0x80, 0x38, 0x7B, 0x78, 0x80, 0x38, 0x7D, 0xCC, 0x80, 0x38, 0x7D, 0xCC,
-    0x80, 0x38, 0x7D, 0xCC, 0x80, 0x38, 0x7D, 0xCC, 0x80, 0x38, 0x7B, 0x9C, 0x80, 0x38, 0x7B, 0xFC,
-    0x80, 0x38, 0x7C, 0x5C, 0x80, 0x38, 0x7C, 0xBC, 0x80, 0x38, 0x7D, 0xCC, 0x80, 0x38, 0x7D, 0xCC,
-    0x80, 0x38, 0x7D, 0xCC, 0x80, 0x38, 0x7C, 0xE0, 0x80, 0x38, 0x7D, 0x30, 0x80, 0x38, 0x7D, 0x80,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-owned-pool func_80387A20 80389E98 80389EE0 */

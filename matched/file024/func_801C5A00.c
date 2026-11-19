@@ -21,7 +21,6 @@ typedef struct func_801C5A00_StructState {
 extern func_801C5A00_StructEntry D_801CC988[];
 
 void func_801C5A00(void) {
-    u16 temp_t8;
     u16 var_t0;
     func_801C5A00_StructEntry *temp_v0;
 

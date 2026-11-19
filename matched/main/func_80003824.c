@@ -17,7 +17,6 @@ u8 *func_80003824(u32 arg0, u8 *arg1, s32 arg2) {
     u32 size;
     u32 end;
     u32 bands;
-    u16 nb;
     u8 cmd;
     u16 n;
     u16 off;

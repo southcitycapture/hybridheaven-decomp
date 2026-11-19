@@ -119,8 +119,31 @@ typedef struct func_802414B0_StructLocal {
 
 extern void func_80241574();
 
+#undef func_80241574
+#define func_802414B0_Struct func_802414B0_Struct__func_802414B0_bf0ba309
+#define func_802414B0_StructLocal func_802414B0_StructLocal__func_802414B0_bf0ba309
+#define func_80241574 func_80241574__func_802414B0_bf0ba309
+
+typedef struct func_802414B0_Struct {
+    u8 pad0[0x90];
+    f32 unk90;
+    f32 unk94;
+    f32 unk98;
+    s16 unk9C;
+} func_802414B0_Struct;
+
+typedef struct func_802414B0_StructLocal {
+    f32 pos[3];
+    s16 a;
+    s32 b;
+    f32 c;
+    s16 d;
+    s16 e;
+} func_802414B0_StructLocal;
+extern void func_80241574();
+
 void func_802414B0(void *arg0, void *arg1) {
-    register func_802414B0_Struct *obj;
+    func_802414B0_Struct *obj;
     func_802414B0_StructLocal loc;
 
     obj = arg0;
@@ -137,6 +160,10 @@ void func_802414B0(void *arg0, void *arg1) {
         func_800058DC(obj, &func_80241574);
     }
 }
+#undef func_802414B0_Struct
+#undef func_802414B0_StructLocal
+#undef func_80241574
+#define func_80241574 func_80241574__func_802414B0
 #undef func_80241574
 
 #define func_802415DC func_802415DC__func_80241574
@@ -425,7 +452,6 @@ void func_80241C28(s32 arg0, s32 arg1) {
     *p1 = arg1;
 }
 
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_80241C34.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_80241C34.s","D_8025C324"]]} */
 /* Readonly diagnostics, formerly _ro_func_80241C34.s. */
 const u8 D_8025C324[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -642,7 +668,6 @@ void func_80241C34(func_80241C34_StructSelf *arg0, func_80241C34_StructNode **ar
 #undef func_8024245C
 #undef func_802441AC
 
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_8024245C.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_8024245C.s","D_8025C35C"]]} */
 /* Readonly diagnostics, formerly _ro_func_8024245C.s. */
 const u8 D_8025C35C[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -679,7 +704,6 @@ void func_8024245C(u8 *arg0, u8 *arg1) {
 }
 
 #undef func_802425DC
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_802425DC.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_802425DC.s","D_8025C394"],[".rodata","asm/nonmatchings/file017/802414B0/func_802425DC.s","D_8025C3CC"]]} */
 /* Readonly diagnostics, formerly _ro_func_802425DC.s. */
 const u8 D_8025C394[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -724,7 +748,6 @@ void func_802425DC(struct func_802425DC_StructE *arg0, s32 arg1) {
 #undef func_80243CC0
 #define func_802425DC func_802425DC__decl
 
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_8024278C.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_8024278C.s","D_8025C404"]]} */
 /* Readonly diagnostics, formerly _ro_func_8024278C.s. */
 const u8 D_8025C404[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -764,7 +787,6 @@ void func_8024278C(struct func_8024278C_S0 *arg0, struct func_8024278C_SA *arg1)
 #undef func_80243E48
 
 #undef func_802428B8
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_802428B8.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_802428B8.s","D_8025C43C"]]} */
 /* Readonly diagnostics, formerly _ro_func_802428B8.s. */
 const u8 D_8025C43C[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -804,7 +826,6 @@ void func_802428B8(struct func_802428B8_StructD *arg0, struct func_802428B8_Stru
 #undef func_80242A5C
 #define func_802428B8 func_802428B8__decl
 
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_80242A5C.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_80242A5C.s","D_8025C474"],[".rodata","asm/nonmatchings/file017/802414B0/func_80242A5C.s","D_8025C4AC"]]} */
 /* Readonly diagnostics, formerly _ro_func_80242A5C.s. */
 const u8 D_8025C474[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -968,7 +989,6 @@ void func_80242C3C(struct func_80242C3C_StructSelf *arg0, struct func_80242C3C_S
 #undef func_802441AC_Struct
 #define CAM (((func_80241C34_StructCamOwner **)((u8 *)&D_801BBBF0 + 0xE0))[0]->unk2C)
 
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_80242D80.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_80242D80.s","D_8025C4E4"]]} */
 /* Readonly diagnostics, formerly _ro_func_80242D80.s. */
 const u8 D_8025C4E4[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -1081,7 +1101,6 @@ void func_80242F50(struct func_80242F50_Self *arg0, struct func_80242F50_Obj *ar
 }
 #undef func_80242FD8
 
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_80242FD8.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_80242FD8.s","D_8025C51C"],[".rodata","asm/nonmatchings/file017/802414B0/func_80242FD8.s","D_8025C554"],[".rodata","asm/nonmatchings/file017/802414B0/func_80242FD8.s","D_8025C58C"]]} */
 /* Readonly diagnostics, formerly _ro_func_80242FD8.s. */
 const u8 D_8025C51C[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -1130,7 +1149,6 @@ void func_80242FD8(u16 *arg0, struct func_80242FD8_S3 *arg1) {
 }
 
 #undef func_80243290
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_80243290.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_80243290.s","D_8025C5C4"],[".rodata","asm/nonmatchings/file017/802414B0/func_80243290.s","D_8025C5FC"],[".rodata","asm/nonmatchings/file017/802414B0/func_80243290.s","D_8025C634"]]} */
 /* Readonly diagnostics, formerly _ro_func_80243290.s. */
 const u8 D_8025C5C4[0x38] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c";
@@ -1223,7 +1241,6 @@ void func_80243290(struct func_80243290_Struct *arg0, void *arg1) {
 #undef func_80243588_StructSelf
 #define func_80243290 func_80243290__decl
 
-/* hh-block asm/nonmatchings/file017/802414B0/_ro_func_80243588.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file017/802414B0/func_80243588.s","D_8025C66C"]]} */
 /* Readonly diagnostics, formerly _ro_func_80243588.s. */
 const u8 D_8025C66C[0x4C] =
     "/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s02demo.c\000"

@@ -81,11 +81,77 @@ struct func_801C3070_StructGlobal {
     u16 mode;
 };
 
+#undef func_800058DC
+#undef func_801C3174
+#undef func_801C3174_Obj
+#undef func_801C3174_Sub
+#undef func_801C32EC
+#undef func_801C32EC_Obj
+#undef func_801C32EC_Sub
+#undef func_801C3468
+#undef func_801C35B8
+#undef func_801C3698
+#undef func_801C3828
+#define func_800058DC func_800058DC__func_801C3070_d2b07423
+#define func_801C3070_StructGlobal func_801C3070_StructGlobal__func_801C3070_d2b07423
+#define func_801C3174 func_801C3174__func_801C3070_d2b07423
+#define func_801C3174_Obj func_801C3174_Obj__func_801C3070_d2b07423
+#define func_801C3174_Sub func_801C3174_Sub__func_801C3070_d2b07423
+#define func_801C32EC func_801C32EC__func_801C3070_d2b07423
+#define func_801C32EC_Obj func_801C32EC_Obj__func_801C3070_d2b07423
+#define func_801C32EC_Sub func_801C32EC_Sub__func_801C3070_d2b07423
+#define func_801C3468 func_801C3468__func_801C3070_d2b07423
+#define func_801C35B8 func_801C35B8__func_801C3070_d2b07423
+#define func_801C3698 func_801C3698__func_801C3070_d2b07423
+#define func_801C3828 func_801C3828__func_801C3070_d2b07423
+extern void func_800058DC(void *a, void *b);
+struct func_801C3174_Sub {
+    u8 pad[0x78];
+    s16 unk78;
+};
+struct func_801C3174_Obj {
+    u8 pad0[0x2C];
+    s32 unk2C;
+    u8 pad1[0x10];
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    u8 pad2[0x10];
+    struct func_801C3174_Sub *unk5C;
+};
+void func_801C3174(struct func_801C3174_Obj *arg0, s32 arg1);
+struct func_801C32EC_Sub {
+    u8 pad[0x78];
+    s16 unk78;
+};
+struct func_801C32EC_Obj {
+    u8 pad0[0x2C];
+    s32 unk2C;
+    u8 pad1[0x10];
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    u8 pad2[0x10];
+    struct func_801C32EC_Sub *unk5C;
+};
+void func_801C32EC(struct func_801C32EC_Obj *arg0, s32 arg1);
+void func_801C3468(struct func_801C3174_Obj *arg0, s32 arg1);
+void func_801C35B8(struct func_801C3174_Obj *arg0, s32 arg1);
+void func_801C3698(struct func_801C3174_Obj *arg0, s32 arg1);
+void func_801C3828(struct func_801C3174_Obj *arg0, s32 arg1);
+
+
+struct func_801C3070_StructGlobal {
+    u8 pad[0x1D8];
+    u16 state;
+    u16 timer;
+    u16 mode;
+};
+
 void func_801C3070(struct func_801C3174_Obj *arg0, s32 arg1)
 {
     struct func_801C3070_StructGlobal *g;
     void *fn;
-    u32 t;
 
     arg0->unk2C &= ~0x80;
     arg0->unk2C |= 0x20;
@@ -105,6 +171,29 @@ void func_801C3070(struct func_801C3174_Obj *arg0, s32 arg1)
     case 7: func_800058DC(arg0, func_801C32EC); break;
     }
 }
+#undef func_800058DC
+#undef func_801C3070_StructGlobal
+#undef func_801C3174
+#undef func_801C3174_Obj
+#undef func_801C3174_Sub
+#undef func_801C32EC
+#undef func_801C32EC_Obj
+#undef func_801C32EC_Sub
+#undef func_801C3468
+#undef func_801C35B8
+#undef func_801C3698
+#undef func_801C3828
+#define func_800058DC func_800058DC__func_801C3070
+#define func_801C3174 func_801C3174__func_801C3070
+#define func_801C3174_Obj func_801C3174_Obj__func_801C3070
+#define func_801C3174_Sub func_801C3174_Sub__func_801C3070
+#define func_801C32EC func_801C32EC__func_801C3070
+#define func_801C32EC_Obj func_801C32EC_Obj__func_801C3070
+#define func_801C32EC_Sub func_801C32EC_Sub__func_801C3070
+#define func_801C3468 func_801C3468__func_801C3070
+#define func_801C35B8 func_801C35B8__func_801C3070
+#define func_801C3698 func_801C3698__func_801C3070
+#define func_801C3828 func_801C3828__func_801C3070
 #undef func_800058DC
 #undef func_801C3174
 #undef func_801C3174_Obj

@@ -22,7 +22,6 @@ struct func_801C2D78_Struct_Arg0 {
 
 void func_801C2D78(struct func_801C2D78_Struct_Arg0 *arg0, struct func_801C2D78_Struct_Arg1 *arg1)
 {
-  s32 temp_t7;
   ;
   if (((++arg0->unk3C) % 3) == 0)
   {

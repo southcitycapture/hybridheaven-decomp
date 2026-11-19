@@ -8,7 +8,6 @@ extern u8 D_801CF300[];
 void func_801C7C64(func_801C659C_Ret *arg0, s32 arg1) {
     s32 var_s0;
     func_801C659C_Obj30 *temp_v0;
-    s32 result;
     s16 val;
 
     temp_v0 = D_801CFD80[arg0->unk90]->unk30;

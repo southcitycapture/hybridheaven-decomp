@@ -301,14 +301,42 @@ struct func_80240F7C_Struct {
     u16 unk3C;
 };
 
+#define func_80240F7C_Struct func_80240F7C_Struct__func_80240F7C
+#define func_80240F7C_StructInner func_80240F7C_StructInner__func_80240F7C
+#define func_80240F7C_StructObj func_80240F7C_StructObj__func_80240F7C
+#define func_80241068 func_80241068__func_80240F7C
+#define func_80241068_Struct func_80241068_Struct__func_80240F7C
+typedef struct func_80241068_Struct {
+    u8 pad[0x74];
+    s32 unk74;
+} func_80241068_Struct;
+
+struct func_80241068_Struct;
+void func_80241068(struct func_80241068_Struct *arg0, s32 arg1);
+
+
+struct func_80240F7C_StructInner {
+    u8 pad[0x4B];
+    u8 unk4B;
+};
+
+struct func_80240F7C_StructObj {
+    u8 pad[0x22];
+    u8 unk22;
+    u8 pad2[0xD];
+    struct func_80240F7C_StructInner *unk30;
+};
+
+struct func_80240F7C_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+};
+
 void func_80240F7C(struct func_80240F7C_Struct *arg0, struct func_80240F7C_StructObj **arg1) {
-    u16 temp_v0_5;
     u8 temp_a0;
     u8 temp_a0_2;
     struct func_80240F7C_StructObj *temp_v0;
-    struct func_80240F7C_StructObj *temp_v0_2;
     struct func_80240F7C_StructObj *temp_v0_3;
-    struct func_80240F7C_StructObj *temp_v0_4;
     struct func_80240F7C_StructInner *temp_v1;
     struct func_80240F7C_StructInner *temp_v1_2;
 
@@ -342,6 +370,11 @@ void func_80240F7C(struct func_80240F7C_Struct *arg0, struct func_80240F7C_Struc
         func_800058DC(arg0, &func_80241068);
     }
 }
+#undef func_80240F7C_Struct
+#undef func_80240F7C_StructInner
+#undef func_80240F7C_StructObj
+#undef func_80241068
+#undef func_80241068_Struct
 
 #define D_801BBCD0 D_801BBCD0__func_80241068
 #define D_801BBCD8 D_801BBCD8__func_80241068

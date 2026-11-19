@@ -63,7 +63,6 @@ extern void func_80247B6C();
 extern void func_80249250();
 
 void func_802478F4(struct func_802478F4_Obj *arg0, struct func_802478F4_Node **arg1) {
-    struct func_802478F4_Node **temp_s1;
     struct func_802478F4_Ent *temp_v0;
     s32 var_v0;
     s8 var_s0;

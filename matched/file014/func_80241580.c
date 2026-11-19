@@ -62,7 +62,6 @@ extern void func_802416D4();
 void func_80241580(s32 arg0, struct func_80241580_StructA **arg1) {
     f32 temp_fv0;
     struct func_80241580_StructB *temp_v1;
-    struct func_80241580_StructGlobal *g;
 
     if (((struct func_80241580_StructGlobal *)&D_801BBBF0)->unkE0 != 0) {
         func_80005E44((void *)arg0, &D_80164F40);

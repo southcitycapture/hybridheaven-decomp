@@ -125,8 +125,22 @@ typedef struct func_80139254_Struct {
     func_80139254_StructInner *unk38;
 } func_80139254_Struct;
 
+#define func_80139254_Struct func_80139254_Struct__func_80139254
+#define func_80139254_StructInner func_80139254_StructInner__func_80139254
+
+typedef struct func_80139254_StructInner {
+    u8 pad[0x10];
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+} func_80139254_StructInner;
+
+typedef struct func_80139254_Struct {
+    u8 pad[0x38];
+    func_80139254_StructInner *unk38;
+} func_80139254_Struct;
+
 void func_80139254(func_80139254_Struct *arg0, s32 arg1) {
-    u32 t;
     func_80139254_StructInner *p;
 
     p = arg0->unk38;
@@ -134,4 +148,6 @@ void func_80139254(func_80139254_Struct *arg0, s32 arg1) {
         func_801FC720(p->unk14 >> 16, p->unk14 & 0xFFFF, p->unk18 >> 16);
     }
 }
+#undef func_80139254_Struct
+#undef func_80139254_StructInner
 

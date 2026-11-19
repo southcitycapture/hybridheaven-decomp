@@ -9,16 +9,13 @@ s32 func_801E4990(s32 arg0, s32 arg1)
 {
   u8 *new_var3;
   u8 (*new_var)[];
-  f32 k;
   u8 *new_var2;
   float new_var4;
   if (func_801C0B8C(0) != 0)
   {
     func_801C7B3C();
     func_801C7BE4();
-    if (D_801E8898 && D_801E8898)
-    {
-    }
+    
     *((f32 *) (D_801E8960 + 0x10)) = D_801E8898;
     *((f32 *) (D_801E8960 + 0x30)) = D_801E8898;
     *((f32 *) (D_801E8960 + 0x34)) = D_801E8898;

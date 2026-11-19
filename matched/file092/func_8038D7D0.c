@@ -31,7 +31,6 @@ extern void func_8022B3E0();
 void func_8038D7D0(struct func_8038D7D0_Struct *arg0, s32 arg1) {
     struct func_8038D7D0_StructA *var_a1;
     struct func_8038D7D0_StructA *var_a2;
-    s32 temp_v1;
 
     var_a1 = (D_801BBBF0.unkDC == arg0->unkC) ? &D_801BC03C : &D_801BC3D8;
     var_a2 = (D_801BBBF0.unkDC == arg0->unkC) ? &D_801BC3D8 : &D_801BC03C;

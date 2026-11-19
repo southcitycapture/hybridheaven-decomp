@@ -12,7 +12,6 @@ extern u8 D_80388410[];
 s32 func_80244174(u8 arg0, u8 arg1, s8 arg2) {
     s32 var_sp34;
     u16 var_sp32;
-    s32 absv;
     s16 count;
     s32 end;
     s16 val;

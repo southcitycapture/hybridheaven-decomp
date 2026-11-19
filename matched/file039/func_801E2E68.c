@@ -13,9 +13,7 @@ extern f32 D_801EB230;
 s32 func_801E2E68(s32 arg0, s32 arg1)
 {
   f32 temp = D_801EB210;
-  if (1)
-  {
-  }
+  
   if (D_8038C17C(0.0f, D_801EB214, 0x3E99999A, 0x40A66666, D_801EB218, D_801EB21C, D_801EB220, D_801EB224, 9.5f, temp, D_801EB228, D_801EB22C, temp, D_801EB230, 41.5f, 41.5f) != 0)
   {
     D_8038C158();

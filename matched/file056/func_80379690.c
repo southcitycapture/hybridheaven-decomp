@@ -82,7 +82,6 @@ extern u8 D_80379690[];
 void func_80379690(s32 arg0, s32 arg1) {
     f32 sp44;
     f32 sp40;
-    u8 pad[4];
     f32 t;
     f32 u;
     s32 v;

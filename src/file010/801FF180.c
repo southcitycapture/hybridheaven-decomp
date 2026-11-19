@@ -2594,9 +2594,7 @@ typedef struct func_80201E44_Struct {
 
 void func_80201E44(func_80201E44_Struct *arg0, s32 arg1)
 {
-  f32 a;
   f32 b;
-  f32 c;
   if (func_801FD5BC(arg0->unk90, arg0->unk94, arg0->unk98) != 0)
   {
     arg0->unk40 = 0.0f;
@@ -3185,7 +3183,6 @@ void func_80203254(struct func_80203254_Struct *arg0, struct func_80203254_Struc
 {
   f32 fv;
   f32 v;
-  s16 t;
   s32 f;
   struct func_80203254_StructM *m;
   u8 s;

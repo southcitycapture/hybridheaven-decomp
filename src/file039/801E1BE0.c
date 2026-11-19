@@ -513,12 +513,11 @@ s32 func_801E2E14(s32 arg0, s32 arg1) {
 }
 
 
+
 s32 func_801E2E68(s32 arg0, s32 arg1)
 {
   f32 temp = 1.39999998f;
-  if (1)
-  {
-  }
+
   if (D_8038C17C(0.0f, 2.00000095f, 0x3E99999A, 0x40A66666, (-382.399994f), (-3.79999995f), 5.30000019f, (-384.299988f), 9.5f, temp, (-404.200012f), 7.9000001f, temp, (-404.899994f), 41.5f, 41.5f) != 0)
   {
     D_8038C158();
@@ -894,9 +893,9 @@ s32 func_801E3B3C(s32 arg0, s32 arg1) {
 extern void func_801CCEC8(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 extern s32 D_801EA4BC;
 
+
 void func_801E3B78(void)
 {
-  s32 temp_t7;
   func_801CCEC8(0, *(((s8 *) (&D_801EA4BC)) + 3), 0, 0);
   ;
   if ((D_801EA4BC += 4) >= 0x70)

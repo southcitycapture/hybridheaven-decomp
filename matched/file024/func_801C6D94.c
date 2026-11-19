@@ -56,7 +56,7 @@ extern f32 D_801CF39C;
 
 void func_801C6D94(s32 arg0, func_801C6D94_Struct **arg1) {
     func_801C659C_Struct16 spA0;
-    register u8 i;
+    u8 i;
     u8 temp_s4;
     u8 k;
 #define temp_fs0 0.2f

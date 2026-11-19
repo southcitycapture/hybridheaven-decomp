@@ -33,7 +33,6 @@ extern void *D_801BCCC0;
 void func_8024173C(func_8024173C_S0 *arg0, func_8024173C_S2 **arg1) {
     s32 i;
     f32 k;
-    f64 m;
 
     for (i = 0; i < 5; i++) {
         arg1[i]->unk30->unk8 += 0.125;

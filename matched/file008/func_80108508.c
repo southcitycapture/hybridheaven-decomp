@@ -1,13 +1,16 @@
-#include "context.h"
-s32 func_80108718(s32 arg0);
-s32 func_80108718(s32 arg0);
+#include "common.h"
+s32 func_80108718(u8 arg0);
+extern s32 func_80108868(f32, f32, s32, s32, f32, f32);
+extern void (*D_801BBAD4)(void);
 
-void func_80108508(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
-    s32 *sp28;
-    s32 *sp2C;
+#undef func_80108718
 
-    sp28 = &arg2;
-    sp2C = &arg3;
+struct func_80108508_StructRange {
+    s32 start;
+    s32 end;
+};
+
+void func_80108508(f32 arg0, f32 arg1, struct func_80108508_StructRange range, f32 arg4, f32 arg5) {
     D_801BBAD4 = func_80108718;
-    func_80108868(arg0, arg1, arg2, arg3, arg4, arg5);
+    func_80108868(arg0, arg1, range.start, range.end, arg4, arg5);
 }

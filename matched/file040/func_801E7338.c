@@ -10,7 +10,7 @@ s32 func_801E7338(s32 arg0, s32 arg1)
 {
   f64 new_var;
   u64 temp_ret;
-  volatile unsigned long long pad;
+  unsigned long long pad;
   f32 four;
   if (func_801C0B8C(0x2711A0B) != 0)
   {

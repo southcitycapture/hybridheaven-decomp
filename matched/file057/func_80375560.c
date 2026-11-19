@@ -24,7 +24,6 @@ extern func_80375560_StructNode *D_8038CD00[];
 
 void func_80375560(func_80375560_Struct *arg0, func_80375560_StructNode **arg1) {
     func_80375560_StructNode **cursor;
-    s32 popped;
     s32 i;
     u8 depth;
     u8 *out;

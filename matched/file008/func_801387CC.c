@@ -33,7 +33,6 @@ void func_801387CC(func_801387CC_Struct *arg0, s32 arg1) {
     s32 sp60;
     s32 sp5C;
     s32 temp_v1;
-    u16 temp_t7;
     func_801387CC_StructInner *temp_v1_2;
     func_801387CC_StructInner *temp_v1_3;
 

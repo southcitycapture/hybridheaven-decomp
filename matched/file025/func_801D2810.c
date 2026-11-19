@@ -16,7 +16,6 @@ extern u32 D_801E1430;
 void func_801D2810(void *arg0) {
     u64 d;
     s32 k;
-    struct func_801D2810_Struct *e;
 
     d = func_801C0B2C() - D_801E1428;
     if ((f64)D_801DB284[D_801E1430].unk0 <= func_80034C24(d) / (1e+06)) {
