@@ -35,7 +35,6 @@ extern s32 func_80375A04(void *);
 void func_803762E0(struct func_803762E0_O *arg0, s32 arg1) {
     struct func_803762E0_S *sp24;
     f32 one;
-    f32 f;
 
     sp24 = arg0->unk5C;
     func_803757E0(arg0, arg1, 4, (arg0->unk38->unk10 >> 8) & 0xFF);

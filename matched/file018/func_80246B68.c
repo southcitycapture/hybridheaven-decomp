@@ -18,7 +18,6 @@ extern void func_80247FEC();
 
 void func_80246B68(func_80246B68_Struct *arg0, s32 arg1) {
     func_80246B68_StructInner *sp2C;
-    s16 temp_v1;
 
     sp2C = arg0->unk5C;
     if ((func_80244AB0() == 0) &&

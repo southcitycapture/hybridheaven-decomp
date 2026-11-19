@@ -25,7 +25,6 @@ void func_80386D54(struct func_80386D54_StructArg0 *arg0, struct func_80386D54_S
   s32 sp34;
   u8 temp_a0;
   extern void func_80005700();
-  int new_var;
   sp34 = arg0->unk3C++;
   func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, (f32) func_8012C6B4(0x2000), 0.0f, 0.0f, 0x18);
   temp_a0 = (*arg1)->unk30->unk4B;

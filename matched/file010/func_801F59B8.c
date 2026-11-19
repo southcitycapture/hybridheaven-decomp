@@ -22,7 +22,6 @@ void func_801F59B8(struct func_801F5BAC_Struct *arg0, s32 arg1) {
     u8 sp38;
     u8 sp37;
     f32 fa0, fa1, fv0;
-    struct func_801F5BAC_Node *p;
     f64 temp_ft4;
     s32 t;
 

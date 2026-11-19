@@ -18,7 +18,7 @@ extern f64 D_80389CA0;
 
 void func_80385918(func_80385918_Struct *arg0, s32 arg1) {
     s32 cnt;
-    register f32 fs1;
+    f32 fs1;
     s32 r0;
     s32 r1;
     s32 r2;

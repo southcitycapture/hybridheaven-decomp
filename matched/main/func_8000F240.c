@@ -18,7 +18,7 @@ void func_8000F240(struct func_8000F240_StructA *arg0, f32 arg1, u8 arg2)
   struct func_8000F240_StructA *temp_a0;
   struct func_8000F240_StructA *temp_v0;
   s32 var_s1;
-  arg0 = arg0;
+  
   var_s1 = arg2;
   loop_1:
   arg0->unk2C->unk64 = arg1;

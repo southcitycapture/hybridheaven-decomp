@@ -53,7 +53,7 @@ extern f64 D_8025DC78;
 extern u8 D_802599D0[];
 
 void func_80256CB0(func_80256CB0_StructA *arg0, func_80256CB0_StructM **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp28;
 
     *(func_80257B10_V *)&sp28 = D_80164F40;

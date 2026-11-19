@@ -33,9 +33,7 @@ void func_8022BD28(struct func_8022BD28_Struct *arg0)
   f64 b;
   f64 c;
   u8 f;
-  s32 t;
   u16 new_var2;
-  struct func_8022BD28_StructG *g;
   ;
   k = 1.0f;
   new_var = (u8 *) arg0;

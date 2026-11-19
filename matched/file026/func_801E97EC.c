@@ -16,8 +16,6 @@ extern f64 D_801FC798;
 s32 func_801E97EC(s32 arg0, s32 arg1) {
     f64 t;
     f64 z;
-    f64 zero;
-    f64 two;
     u64 r;
 
     if (func_801C0B8C(0x071E275A) != 0) {

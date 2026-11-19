@@ -19,7 +19,7 @@ typedef struct func_801CD668_StructEntry {
 } func_801CD668_StructEntry;
 
 void func_801CD668(func_801CD668_StructIn *arg0, func_801CD668_StructEntry **arg1, s32 arg2) {
-    volatile u8 pad[8];
+    u8 pad[8];
     u8 sp27;
     u8 sp26;
     u8 sp25;

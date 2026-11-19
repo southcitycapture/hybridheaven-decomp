@@ -67,7 +67,7 @@ extern f32 D_8025DBFC;
 extern f32 D_8025DC00;
 
 void func_80254D48(func_80254D48_Struct *arg0, func_80254D48_Args *arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp20;
 
     *(func_80257B10_V *)&sp20 = D_80164F40;

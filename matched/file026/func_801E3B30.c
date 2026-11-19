@@ -57,7 +57,7 @@ struct func_801E3B30_StructRoot {
 
 s32 func_801E3B30(s32 arg0, s32 arg1) {
     s32 i;
-    register u8 *buffer;
+    u8 *buffer;
 
     buffer = D_8038D88C;
     for (i = 0; 6 > i; i++) {

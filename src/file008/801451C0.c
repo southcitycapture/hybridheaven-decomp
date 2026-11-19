@@ -704,11 +704,12 @@ end:
 
 extern f32 D_801BEC60[];
 
+
+
 f32 func_80146A9C(s16 *arg0, u8 arg1)
 {
   f32 *temp_v0;
   float new_var;
-  f32 temp_fa0;
   temp_v0 = &D_801BEC60[arg1];
   ;
   new_var = ((f32) arg0[1]) - (*temp_v0);
@@ -1381,6 +1382,7 @@ void func_801477C4(func_801477C4_Struct *arg0, f32 arg1) {
 }
 
 
+
 void func_801477F8(s32 arg0, s32 arg1, s32 arg2)
 {
   u32 var_v0;
@@ -1390,9 +1392,7 @@ void func_801477F8(s32 arg0, s32 arg1, s32 arg2)
     do
     {
       var_v0 += 1;
-      if (!var_v0)
-      {
-      }
+
     }
     while (var_v0 != 3);
     while (1)

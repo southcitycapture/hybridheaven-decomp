@@ -34,7 +34,6 @@ void func_801F8AE8(struct func_801F8AE8_Struct0 *arg0, s32 arg1) {
     struct func_801F8AE8_Struct3 *sp74;
     f32 sp68[3];
     func_801F467C_Struct sp5C;
-    struct func_801F8AE8_Struct2 *v;
 
     sp74 = arg0->unk5C;
     func_8012A94C(arg0, 0x100);

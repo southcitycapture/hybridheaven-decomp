@@ -21,15 +21,12 @@ extern u8 D_80090F58[];
 extern u8 D_80091CC8[];
 
 void func_8001DE38(s32 arg0, func_8001DE38_Struct **arg1) {
-    u8 *p0;
     u8 *p1;
-    u8 *p2;
     u8 *p3;
     s32 i;
     u8 *p;
     func_8001DE38_Struct **q;
     func_8001DE38_Struct *t;
-    u8 *data;
 
     for (i = 0; i < 40; i++) {
         func_80005E44(arg0, D_8004480C);

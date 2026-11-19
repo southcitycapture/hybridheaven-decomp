@@ -46,7 +46,7 @@ void *func_8035AFEC(s32 arg0, u8 arg1)
   }
   else
   {
- sp24 = D_801BBBF0.unkEC; } if (arg0 == unkDC) { var_a2 = D_801BC03C; } else { var_a2 = D_801BC3D8; } sp1F = ((u8 *) var_a2)[0x2D9]; temp_v0 = func_80005670(sp24, &D_8038557C, var_a2, (void *) arg0); D_8038CC14 = (s32) temp_v0; var_a0 = temp_v0; if (temp_v0 != 0) { ((func_8035AFEC_Struct *) temp_v0)->unk30 = sp1F; ((func_8035AFEC_Struct *) D_8038CC14)->unk40 = arg1; if (1) { }
+ sp24 = D_801BBBF0.unkEC; } if (arg0 == unkDC) { var_a2 = D_801BC03C; } else { var_a2 = D_801BC3D8; } sp1F = ((u8 *) var_a2)[0x2D9]; temp_v0 = func_80005670(sp24, &D_8038557C, var_a2, (void *) arg0); D_8038CC14 = (s32) temp_v0; var_a0 = temp_v0; if (temp_v0 != 0) { ((func_8035AFEC_Struct *) temp_v0)->unk30 = sp1F; ((func_8035AFEC_Struct *) D_8038CC14)->unk40 = arg1; 
     (*((func_8035AFEC_Struct *) D_8038CC14)).unk7C = ((u8 *) var_a2)[0x2DA];
     ((func_8035AFEC_Struct *) D_8038CC14)->unk8C = sp24;
     ((func_8035AFEC_Struct *) D_8038CC14)->unk90 = (s32) arg0;

@@ -14,7 +14,5 @@ void func_80148B6C(void)
   new_var2 = 0;
   r = (u32) ((((new_var = func_8001EAD0(D_80181DA4[new_var2])) + 1.0f) * 255.0f) / d);
   sp1C->unkB = r;
-  {
-  }
   D_80181DA4[new_var2] += 0x200;
 }

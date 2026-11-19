@@ -3471,10 +3471,33 @@ struct func_8022310C_Obj {
     u16 unk80;
 };
 
+#undef func_8022321C
+#undef func_80223260
+#define func_8021F9C8_Actor func_8021F9C8_Actor__func_8022310C_5c961c57
+#define func_8022310C_Obj func_8022310C_Obj__func_8022310C_5c961c57
+#define func_8022310C_Var func_8022310C_Var__func_8022310C_5c961c57
+#define func_80223260 func_80223260__func_8022310C_5c961c57
+struct func_8021F9C8_Actor {
+    u8 pad0[0x5C];
+    s32 unk5C;
+};
+
+extern void func_80223260();
+
+struct func_8022310C_Var {
+    u8 pad0[0x30];
+    s32 unk30;
+};
+
+struct func_8022310C_Obj {
+    u8 pad0[0x7C];
+    void *unk7C;
+    u16 unk80;
+};
+
 void func_8022310C(s32 arg0, s32 arg1) {
     struct func_8022310C_Var *var_v1;
     struct func_8022310C_Obj *sp18;
-    u32 temp_v0;
 
     if (arg0 == D_801BBCCC) {
         var_v1 = (struct func_8022310C_Var *) &D_801BC03C;
@@ -3498,6 +3521,12 @@ void func_8022310C(s32 arg0, s32 arg1) {
     }
     func_800058DC(arg0, (void *) func_80223260);
 }
+#undef func_8021F9C8_Actor
+#undef func_8022310C_Obj
+#undef func_8022310C_Var
+#undef func_80223260
+#define func_8022321C func_8022321C__func_8022310C
+#define func_80223260 func_80223260__func_8022310C
 #undef func_8022321C
 #undef func_80223260
 

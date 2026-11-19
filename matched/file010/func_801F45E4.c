@@ -25,7 +25,6 @@ typedef struct func_801F45E4_StructA1 {
 
 void func_801F45E4(func_801F45E4_StructA0 *arg0, func_801F45E4_StructA1 *arg1, f32 arg2, f32 arg3)
 {
-  register f32 t;
   arg1->unk0 = arg2 - arg0->unk24->unk2C->unk4;
   arg1->unk8 = arg3 - arg0->unk24->unk2C->unkC;
   ;

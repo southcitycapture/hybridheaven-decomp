@@ -23,7 +23,6 @@ s32 func_8022BA44(s32 arg0) {
     struct func_8022BA44_Struct *var_a0;
     struct func_8022BA44_Struct *var_a1;
     s32 temp_v0;
-    s32 unused;
     extern void func_80232E94();
 
     if (D_801BCC20 == 0) {

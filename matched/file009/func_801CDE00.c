@@ -19,7 +19,7 @@ extern func_801CDE00_StructTable D_801E13E4;
 extern void func_8012CF8C(void *, s32 *, u16, s32);
 
 u8 func_801CDE00(func_801CDE00_Struct *arg0, s32 arg1) {
-    volatile s32 pad;
+    s32 pad;
     s32 *data;
     func_801CDE00_StructTable table = D_801E13E4;
     u16 id;

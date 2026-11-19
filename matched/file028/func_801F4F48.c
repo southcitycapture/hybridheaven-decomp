@@ -3,7 +3,7 @@
 extern s32 D_80208E10[];
 
 s32 func_801F4F48(s32 arg0, s32 arg1) {
-    register s32 timer;
+    s32 timer;
 
     switch (timer = D_80207058) {
         case 0:

@@ -39,7 +39,7 @@ extern u8 D_80217B60[];
 extern f32 D_8021A820;
 
 void func_80207654(func_80207654_StructA *arg0, func_80207654_StructO **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp20;
 
     *(struct func_802070F4_Local *)&sp20 = D_80164F40;

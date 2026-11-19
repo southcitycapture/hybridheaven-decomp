@@ -16,7 +16,7 @@ void func_801C2E9C(struct func_801C2E9C_Struct2 *arg0, struct func_801C2E9C_Stru
   temp_t9 = (((((((((((*temp_t8) + 1) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & (0xFFFFFFFFu & 0xFFFFFFFFFFFFFFFFu)) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu;
   new_var = 0xFFFF;
   temp_t0 = temp_t9 & new_var;
-  *((0, temp_t8)) = temp_t9;
+  *((temp_t8)) = temp_t9;
   if (temp_t0 >= 4)
   {
     func_80005700(arg0);

@@ -2146,9 +2146,25 @@ typedef struct func_80246B68_Struct {
 } func_80246B68_Struct;
 
 
+#define func_80246B68_Struct func_80246B68_Struct__func_80246B68
+#define func_80246B68_StructInner func_80246B68_StructInner__func_80246B68
+#define func_80247FEC func_80247FEC__func_80246B68
+
+typedef struct func_80246B68_StructInner {
+    u8 pad[0x78];
+    s16 unk78;
+} func_80246B68_StructInner;
+
+typedef struct func_80246B68_Struct {
+    u8 pad[0x5C];
+    func_80246B68_StructInner *unk5C;
+    u8 pad60[0x34];
+    s16 unk94;
+} func_80246B68_Struct;
+extern void func_80247FEC();
+
 void func_80246B68(func_80246B68_Struct *arg0, s32 arg1) {
     func_80246B68_StructInner *sp2C;
-    s16 temp_v1;
 
     sp2C = arg0->unk5C;
     if ((func_80244AB0() == 0) &&
@@ -2166,6 +2182,9 @@ void func_80246B68(func_80246B68_Struct *arg0, s32 arg1) {
         }
     }
 }
+#undef func_80246B68_Struct
+#undef func_80246B68_StructInner
+#undef func_80247FEC
 
 #define func_80246DA0 func_80246DA0__func_80246C5C
 typedef struct func_80246DA0_StructInner {
@@ -3302,6 +3321,24 @@ typedef struct func_80248860_Struct {
 
 extern void func_802454C4();
 
+#undef func_802454C4
+#define func_802454C4 func_802454C4__func_80248860_9318b360
+#define func_80248860_Struct func_80248860_Struct__func_80248860_9318b360
+#define func_80248860_StructInner func_80248860_StructInner__func_80248860_9318b360
+
+typedef struct func_80248860_StructInner {
+    u8 pad0[0x78];
+    s16 unk78;
+} func_80248860_StructInner;
+
+typedef struct func_80248860_Struct {
+    u8 pad0[0x5C];
+    func_80248860_StructInner *unk5C;
+    u8 pad60[0x34];
+    s16 unk94;
+} func_80248860_Struct;
+extern void func_802454C4();
+
 void func_80248860(func_80248860_Struct *arg0, s32 arg1)
 {
   s16 temp_v0;
@@ -3311,7 +3348,7 @@ void func_80248860(func_80248860_Struct *arg0, s32 arg1)
   temp_a1 = arg0->unk5C;
   new_var2 = arg0->unk94;
   new_var = &func_802454C4;
-  temp_v0 = ((0, arg0))->unk94;
+  temp_v0 = ((arg0))->unk94;
   arg0->unk94 = arg0->unk94 - 1;
   if (new_var2 == 0)
   {
@@ -3325,6 +3362,10 @@ void func_80248860(func_80248860_Struct *arg0, s32 arg1)
     func_800058DC(arg0, &func_8024564C);
   }
 }
+#undef func_802454C4
+#undef func_80248860_Struct
+#undef func_80248860_StructInner
+#define func_802454C4 func_802454C4__func_80248860
 #undef func_802454C4
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file018/80244AB0/func_802488D0.s")

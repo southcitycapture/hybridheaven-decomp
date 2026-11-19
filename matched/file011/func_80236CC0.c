@@ -148,7 +148,6 @@ void func_80236CC0(func_80236CC0_Struct *arg0, s32 arg1) {
     u32 a;
     s32 hi;
     s32 m;
-    s32 m2;
 
     sp2C = arg0->unk98;
     sp28 = arg0->unk9C;

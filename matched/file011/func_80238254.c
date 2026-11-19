@@ -26,8 +26,6 @@ extern void func_80237B7C();
 
 void func_80238254(func_80238254_Struct *arg0, s32 arg1) {
     func_80238254_StructP *p = arg0->unk94;
-    u16 b;
-    u16 a;
     s8 t;
 
     if (arg0->unkA2 == 0 && func_80235D48() == 0) {

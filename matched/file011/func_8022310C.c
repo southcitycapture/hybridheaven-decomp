@@ -20,7 +20,6 @@ struct func_8022310C_Obj {
 void func_8022310C(s32 arg0, s32 arg1) {
     struct func_8022310C_Var *var_v1;
     struct func_8022310C_Obj *sp18;
-    u32 temp_v0;
 
     if (arg0 == D_801BBCCC) {
         var_v1 = (struct func_8022310C_Var *) &D_801BC03C;

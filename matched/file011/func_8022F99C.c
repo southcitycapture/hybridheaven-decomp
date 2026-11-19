@@ -42,7 +42,6 @@ void func_8022F99C(func_8022F99C_Struct *arg0) {
     func_8022F99C_Struct *obj;
     s32 div;
     u8 c;
-    u16 v;
     s32 sum;
     u8 *base;
     u32 w;

@@ -447,12 +447,28 @@ struct func_8000F240_StructA {
     struct func_8000F240_StructB *unk2C;
 };
 
+#define func_8000F240_StructA func_8000F240_StructA__func_8000F240
+#define func_8000F240_StructB func_8000F240_StructB__func_8000F240
+
+struct func_8000F240_StructB {
+    u8 pad0[0x64];
+    f32 unk64;
+};
+
+struct func_8000F240_StructA {
+    struct func_8000F240_StructA *unk0;
+    u8 pad4[0x4];
+    struct func_8000F240_StructA *unk8;
+    u8 padC[0x20];
+    struct func_8000F240_StructB *unk2C;
+};
+
 void func_8000F240(struct func_8000F240_StructA *arg0, f32 arg1, u8 arg2)
 {
   struct func_8000F240_StructA *temp_a0;
   struct func_8000F240_StructA *temp_v0;
   s32 var_s1;
-  arg0 = arg0;
+
   var_s1 = arg2;
   loop_1:
   arg0->unk2C->unk64 = arg1;
@@ -473,6 +489,8 @@ void func_8000F240(struct func_8000F240_StructA *arg0, f32 arg1, u8 arg2)
     }
   }
 }
+#undef func_8000F240_StructA
+#undef func_8000F240_StructB
 
 
 

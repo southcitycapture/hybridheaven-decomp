@@ -65,7 +65,7 @@ extern f32 D_80208DA0;
 #define O(i) (((func_801FC008_StructA **)D_8038D8D0)[i])->unk30
 
 s32 func_801FC008(s32 arg0, s32 arg1) {
-    register f32 k;
+    f32 k;
     func_80005E44(D_8038D8CC, func_8038D830 + 0x5C);
     func_80005E44(D_8038D8CC, func_8038D830 + 0x5C);
     func_80005E44(D_8038D8CC, func_8038D830 + 0x5C);
@@ -84,8 +84,7 @@ s32 func_801FC008(s32 arg0, s32 arg1) {
     func_8012C89C(D_8038D8CC, 6, 0x2D9, 6);
     func_8012C89C(D_8038D8CC, 7, 0x2D9, 7);
     k = D_80208DA0;
-    if (k) {
-    }
+    
     goto L;
 L:
     O(0)->unk4 = 22.0f; O(0)->unk8 = 0.0f; O(0)->unkC = -28.0f; O(0)->unk12 = 0;

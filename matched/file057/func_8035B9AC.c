@@ -42,7 +42,6 @@ void func_8035B9AC(func_8035B9AC_Arg *arg0, s32 arg1) {
     func_8035B9AC_Pos *sp9C;
     func_8035B9AC_Holder *h;
     func_8035B9AC_Out sp88;
-    f32 v;
     f32 big;
 
     h = arg0->unkC;

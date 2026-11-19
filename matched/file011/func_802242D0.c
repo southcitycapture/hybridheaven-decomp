@@ -33,7 +33,6 @@ s32 func_802242D0(struct func_802242D0_StructA *arg0) {
     s32 var_a0;
     s32 var_a1;
     s32 var_v0_2;
-    s32 var_v0_3;
 
     if (arg0 == (void *)D_801BBBF0.unkDC) {
         var_v1 = (u8 *)&D_801BC03C;

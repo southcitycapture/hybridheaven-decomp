@@ -118,7 +118,6 @@ s32 func_8020F4D4(func_8020F4D4_StructA *arg0, func_8020F4D4_StructO **arg1) {
     f32 temp_fv0;
     f32 temp_fv0_2;
     f32 temp_fv0_3;
-    f32 temp_fv1;
     f32 temp_fv1_2;
     s32 temp_v0_4;
 extern s32 func_801FD68C();    u8 temp_t4;

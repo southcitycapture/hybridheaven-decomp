@@ -3,7 +3,6 @@
 extern f64 D_802089E8;
 
 s32 func_801EE890(s32 arg0, s32 arg1) {
-    u8 *p;
     if (D_80206474 == 0) goto c0;
     if (D_80206474 == 1) goto c1;
     if (D_80206474 == 2) goto c2;

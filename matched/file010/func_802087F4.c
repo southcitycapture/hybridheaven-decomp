@@ -55,7 +55,7 @@ extern f32 D_8021A868;
 
 void func_802087F4(struct func_802087F4_Struct4 *arg0, struct func_802087F4_Struct3 *arg1)
 {
-  register f32 f;
+  f32 f;
   struct func_802087F4_Struct5 sp;
   *((struct func_802087F4_Struct6 *) (&sp)) = *((struct func_802087F4_Struct6 *) (&D_80164F40));
   sp.b = 0x80000400;

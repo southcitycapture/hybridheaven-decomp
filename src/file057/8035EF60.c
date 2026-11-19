@@ -418,13 +418,56 @@ extern void D_8013A28C(s32, func_8035F6B4_Arg);
 
 #define B38 (*((u8 *)p + 0x38))
 
+#undef B38
+#undef D_8013A28C
+#define D_8013A28C D_8013A28C__func_8035F6B4_b9c16605
+#define func_8035F6B4_Arg func_8035F6B4_Arg__func_8035F6B4_b9c16605
+#define func_8035F6B4_Flags func_8035F6B4_Flags__func_8035F6B4_b9c16605
+#define func_8035F6B4_Sub func_8035F6B4_Sub__func_8035F6B4_b9c16605
+
+typedef struct func_8035F6B4_Flags {
+    u8 pad0[2];
+    s16 unk2;
+    u8 pad4[0x30 - 4];
+    u32 a30 : 1;
+    u32 b30 : 2;
+    u32 c30 : 6;
+    u32 d30 : 2;
+    u32 e30 : 2;
+    u32 f30 : 3;
+    u8 g32 : 3;
+    u8 h32 : 5;
+    u8 pad33;
+    u8 pad34[4];
+    u32 x38 : 3;
+    u32 t38 : 1;
+    u32 u38 : 2;
+    u32 rest38 : 26;
+} func_8035F6B4_Flags;
+
+typedef struct func_8035F6B4_Sub {
+    s32 a;
+    s16 b;
+    s16 c;
+    f32 d;
+} func_8035F6B4_Sub;
+
+typedef struct func_8035F6B4_Arg {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_8035F6B4_Arg;
+
+extern void D_8013A28C(s32, func_8035F6B4_Arg);
+
+#define B38 (*((u8 *)p + 0x38))
+
 void func_8035F6B4(void *arg0, void **arg1)
 {
     s32 sp1C_[1];
 #define sp1C sp1C_[0]
     func_8035F6B4_Flags *p;
     func_8035F6B4_Sub *q;
-    s16 t;
 
     sp1C = *(s32 *)((u8 *)arg0 + 0x5C);
     if (arg0 == *(void **)(D_801BBBF0 + 0xDC)) {
@@ -471,6 +514,14 @@ void func_8035F6B4(void *arg0, void **arg1)
         }
     }
 }
+#undef sp1C
+#undef B38
+#undef D_8013A28C
+#undef func_8035F6B4_Arg
+#undef func_8035F6B4_Flags
+#undef func_8035F6B4_Sub
+#define B38 (*((u8 *)p + 0x38))
+#define D_8013A28C D_8013A28C__func_8035F6B4
 #undef sp1C
 #undef B38
 #undef D_8013A28C

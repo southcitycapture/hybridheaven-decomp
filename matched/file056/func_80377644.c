@@ -11,7 +11,7 @@ extern u16 D_801BBBF8;
 extern void func_8037769C();
 
 void func_80377644(struct func_80377644_Struct *arg0, s32 arg1) {
-    volatile void *home;
+    void *home;
 
     home = &arg1;
     if (func_8014C0A8(D_801BBBF8) == 0) {

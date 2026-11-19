@@ -33,7 +33,6 @@ typedef struct func_801CF758_StructInput {
 void func_801CF758(func_801CF758_StructObj *arg0, func_801CF758_StructInput **arg1) {
     u16 sp26;
     s32 var_v1;
-    u16 temp_v0;
 
     sp26 = (*arg1)->unk30->unk3E;
     func_8012D7A8();

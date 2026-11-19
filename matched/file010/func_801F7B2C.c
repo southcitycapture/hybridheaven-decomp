@@ -19,8 +19,6 @@ void func_801F7B2C(func_801F7B2C_Struct *arg0, s32 arg1) {
     u8 sp26;
     s16 temp_v0;
     s16 temp_v0_2;
-    u16 temp_v0_3;
-    s32 cond;
 
     sp26 = (u8) (u32) (((f64) (func_8001EB64(arg0->unk94) + 1.0f) * 0.5 * 60.0) + 50.0);
     sp27 = (u8) (u32) (((f64) (func_8001EB64((s16) (arg0->unk94 + 0x1000)) + 1.0f) * 0.5 * 50.0) + 30.0);

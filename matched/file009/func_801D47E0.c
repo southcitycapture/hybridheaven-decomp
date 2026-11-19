@@ -36,7 +36,6 @@ void func_801D47E0(func_801D47E0_Struct *arg0, func_801D47E0_StructC **arg1) {
     s32 j;
     s16 ang;
     func_801D47E0_StructB *p;
-    u16 t;
 
     {
         extern void func_801CD878();

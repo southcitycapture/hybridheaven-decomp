@@ -6,7 +6,7 @@ extern f32 D_80389AF4;
 extern f32 D_80389AF8;
 
 void func_80381A7C(struct func_80381A7C_A0 *arg0, struct func_803813A8_StructOut **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp20;
 
     *(struct func_803813A8_Struct16 *)&sp20 = D_80164F40;

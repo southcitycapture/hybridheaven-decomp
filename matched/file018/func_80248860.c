@@ -23,7 +23,7 @@ void func_80248860(func_80248860_Struct *arg0, s32 arg1)
   temp_a1 = arg0->unk5C;
   new_var2 = arg0->unk94;
   new_var = &func_802454C4;
-  temp_v0 = ((0, arg0))->unk94;
+  temp_v0 = ((arg0))->unk94;
   arg0->unk94 = arg0->unk94 - 1;
   if (new_var2 == 0)
   {

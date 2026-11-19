@@ -37,7 +37,6 @@ struct func_801EB8E8_StructNode {
 s32 func_801EB8E8(s32 arg0, s32 arg1) {
     s32 i;
     s32 j;
-    f32 step;
 
     if (func_801C0B8C(0x53EC60) != 0) {
         for (j = 0; j < 5; j++) {

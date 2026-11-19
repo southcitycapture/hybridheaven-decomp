@@ -83,12 +83,11 @@ s32 func_801CDA0C(void *arg0, u16 arg1, s32 arg2, s32 arg3) {
     s32 flags;
     func_801CDCE4_StructPair *data;
     s32 result;
-    register u16 id, index;
+    u16 id, index;
     func_801CDA0C_StructDesc *desc;
     func_801CDA0C_StructWork *work;
     s32 texture;
     s32 bits;
-    u8 count;
     s32 i;
     s32 j;
     struct func_801D35BC_StructObj **entry;

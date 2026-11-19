@@ -21,9 +21,7 @@ void func_801F6008(struct func_801F6008_Struct *arg0, s32 arg1)
   f32 var_ft0;
   sp24 = arg0->unk5C;
   func_80010550(arg1, sp24, arg1);
-  if ((arg0 && arg0) && arg0)
-  {
-  }
+  
   if (func_801F48C8(arg0, 0xA) != 0)
   {
     sp24->unk78 = 1;

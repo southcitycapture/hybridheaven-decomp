@@ -28,7 +28,6 @@ extern f32 D_801DD300;
 void func_801CB450(func_801CB450_StructArg *arg0, func_801CB450_StructOuter **arg1) {
     f32 ratio;
     s32 done;
-    u16 count;
 
     ratio = (f32)(u32)arg0->unkB0 / (f32)(u32)arg0->unkB2;
     (*arg1)->unk30->unk8 += arg0->unkAC * ((D_801DD300 * ratio) + 1.0f);

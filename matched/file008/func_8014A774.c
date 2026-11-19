@@ -23,7 +23,7 @@ void func_8014A774(s32 arg0, s32 arg1) {
     func_80148DDC_V sp34;
     u8 *sp30;
     func_801493A0_Inner *v;
-    register f32 fv0;
+    f32 fv0;
 
     sp54 = 160.0f;
     sp50 = 120.0f;

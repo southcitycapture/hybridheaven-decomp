@@ -343,6 +343,53 @@ extern s32 func_80016B6C(s32 arg0, s32 arg1);
 extern s32 *func_80016BA0(u32 arg0, s32 *arg1);
 extern s32 func_8001F540();
 /* GGA: picDecode8 */
+#undef XC
+#undef XC2
+#undef func_800158C0
+#define D_8008DFB0 D_8008DFB0__func_80015798_1455619d
+#define D_8008DFB4 D_8008DFB4__func_80015798_1455619d
+#define func_800158C0 func_800158C0__func_80015798_1455619d
+#define func_800158C0_Struct func_800158C0_Struct__func_80015798_1455619d
+#define func_80015A64 func_80015A64__func_80015798_1455619d
+#define func_80015A64_Struct func_80015A64_Struct__func_80015798_1455619d
+#define func_80016058 func_80016058__func_80015798_1455619d
+#define func_80016058_Struct func_80016058_Struct__func_80015798_1455619d
+#define func_80016B6C func_80016B6C__func_80015798_1455619d
+#define func_80016BA0 func_80016BA0__func_80015798_1455619d
+typedef struct func_800158C0_Struct {
+    s32 unk0;
+    s32 unk4;
+    u8 pad8[8];
+    s32 unk10;
+    u8 pad14[8];
+    s32 unk1C;
+    s32 unk20;
+    void (*unk24)(struct func_800158C0_Struct *, s32, s32, s32);
+    s32 (*unk28)(struct func_800158C0_Struct *, s32, s32);
+} func_800158C0_Struct;
+typedef struct func_80015A64_Struct {
+    u8 pad0[0x14];
+    s32 unk14;
+    u8 pad18[8];
+    u16 *unk20;
+} func_80015A64_Struct;
+typedef struct func_80016058_Struct {
+    s32 unk0;
+    s32 unk4;
+    u8 pad8[0x1C];
+    void (*unk24)(struct func_80016058_Struct *, s32, s32, s32);
+} func_80016058_Struct;
+extern s32 func_800158C0(s32 arg0, s32 arg1, func_800158C0_Struct *arg2);
+extern void func_80015A64(s32 arg0, func_80015A64_Struct *arg1);
+extern void func_80016058(func_80016058_Struct *arg0);
+extern s32 func_80016B6C(s32 arg0, s32 arg1);
+extern s32 *func_80016BA0(u32 arg0, s32 *arg1);
+extern u8 *D_8008DFB0;
+extern s32 D_8008DFB4;
+#define XC2(a, b) a##b
+#define XC(a, b) XC2(a, b)
+#define func_800158C0 XC(f800158C0_, __LINE__)
+/* GGA: picDecode8 */
 s32 func_80015798(s32 arg0, u8 *arg1, struct func_80015B50_Struct *arg2) {
     s32 n;
     s32 i;
@@ -359,7 +406,7 @@ s32 func_80015798(s32 arg0, u8 *arg1, struct func_80015B50_Struct *arg2) {
     D_8008DFB4 = (s32)func_80016BA0(n / 8 + 1, &sp3C);
     func_80016058((void *)arg2);
     {
-        register s32 v;
+        s32 v;
         for (i = 0; i < n; i++) {
             if (func_80016B6C(D_8008DFB4, i) != 0) {
                 v = D_8008DFB0[i];
@@ -372,6 +419,21 @@ s32 func_80015798(s32 arg0, u8 *arg1, struct func_80015B50_Struct *arg2) {
     }
     return (s32)arg1;
 }
+#undef XC2
+#undef XC
+#undef D_8008DFB0
+#undef D_8008DFB4
+#undef func_800158C0
+#undef func_800158C0_Struct
+#undef func_80015A64
+#undef func_80015A64_Struct
+#undef func_80016058
+#undef func_80016058_Struct
+#undef func_80016B6C
+#undef func_80016BA0
+#define XC(a, b) XC2(a, b)
+#define XC2(a, b) a##b
+#define func_800158C0 XC(f800158C0_, __LINE__)
 #undef XC2
 #undef XC
 #undef D_8008DFB0

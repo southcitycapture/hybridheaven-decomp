@@ -15,7 +15,7 @@ typedef struct func_8022C0A0_Struct {
 void func_8022C0A0(void) {
     func_8022C0A0_Struct *p;
     s32 a0;
-    register s32 a1;
+    s32 a1;
     s32 t;
 
     t = D_801BBBF0[0x1030];

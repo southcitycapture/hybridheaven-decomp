@@ -7,7 +7,6 @@ u16 func_80230500(s32 arg0, u8 arg1) {
     u8 i;
     s32 r;
     s32 t;
-    f32 q;
     u16 n;
 
     sum = 0;

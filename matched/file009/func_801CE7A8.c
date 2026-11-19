@@ -30,7 +30,6 @@ extern void func_801CE898();
 void func_801CE7A8(func_801CE7A8_Struct *arg0, func_801CE7A8_StructB **arg1) {
     u16 temp_v1;
     u16 var_a2;
-    u16 temp_v0_2;
 
     temp_v1 = (*arg1)->unk30->unk3E;
     if (arg0->unk97 >= 0xD || arg0->unk97 == 5) {

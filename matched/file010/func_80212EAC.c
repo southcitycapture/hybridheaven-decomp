@@ -35,7 +35,7 @@ extern u8 D_80217CE0[];
 extern f32 D_8021ADC0;
 
 void func_80212EAC(func_80212EAC_Arg0 *arg0, func_80212EAC_Outer **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp28;
 
     *(struct func_802070F4_Local *)&sp28 = D_80164F40;

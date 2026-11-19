@@ -21,6 +21,5 @@ void func_801C83BC(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
             func_801C88A4(arg3 * dx + arg0, arg1, arg3 * dz + arg2, 1.0f, 1.0f, 1.0f, 1.0f, scale * r, 0x5A);
         }
     }
-    if (scale) {
-    }
+    
 }

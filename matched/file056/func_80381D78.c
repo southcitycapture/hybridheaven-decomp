@@ -7,8 +7,8 @@ extern f32 D_80389B04;
 extern void func_8012D918(void *, s32, s32, s32, s32);
 
 void func_80381D78(struct func_80381D78_A0 *arg0, struct func_80381D78_Out **arg1) {
-    register f32 k;
-    register s32 t;
+    f32 k;
+    s32 t;
     struct { s32 a[2]; } sp28;
     *(struct func_803813A8_Struct16 *)&sp28 = D_80164F40;
     sp28.a[1] = 0x80000300;

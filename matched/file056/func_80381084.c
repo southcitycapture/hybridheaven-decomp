@@ -46,7 +46,7 @@ extern void func_80006214(void *);
 extern void func_8012C89C(void *, s32, s32, s32);
 extern u8 D_8017B5A8[];
 void func_80381084(struct func_80381084_StructArg0 *arg0, struct func_80381084_StructOuter **arg1) {
-    register f32 fv;
+    f32 fv;
     struct { s32 a[3]; } sp20;
 
     *(struct func_80381084_StructCopy *)&sp20 = *(struct func_80381084_StructCopy *)&D_80164F40;

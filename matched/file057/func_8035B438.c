@@ -45,7 +45,6 @@ extern f32 D_8038A074;
 void func_8035B438(func_8035B438_Struct *arg0, s32 arg1) {
     func_8035B438_StructC *v;
 
-    u16 c;
     u16 d;
 
     v = arg0->unkC->unk24->unk2C;

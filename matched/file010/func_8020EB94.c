@@ -139,7 +139,7 @@ common:
     func_801FDB3C(sp60);
    }
   }
-  if(sp60!=0) {}
+  
   arg1->unk4->unk30->unk4=arg0->unk94;
   arg1->unk4->unk30->unk8=arg0->unk98+6.0f;
   arg1->unk4->unk30->unkC=arg0->unk9C;

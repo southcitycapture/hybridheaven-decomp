@@ -3,7 +3,7 @@ extern u8 D_80388E98[];
 extern f32 D_80389B24;
 extern void func_8012D918(void *, s32, s32, s32, s32);
 void func_8038259C(struct func_803813A8_StructA *arg0, struct func_803813A8_StructOut **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp28;
     *(struct func_803813A8_Struct16 *)&sp28 = D_80164F40;
     sp28.a[1] = 0x80000600;

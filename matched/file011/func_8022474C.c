@@ -24,7 +24,6 @@ s32 func_8022474C(s32 arg0, s16 arg1) {
     s16 a;
     s16 lim;
     s32 q;
-    s32 t;
     f32 s14;
 
     if (arg0 == D_801BBCCC) {

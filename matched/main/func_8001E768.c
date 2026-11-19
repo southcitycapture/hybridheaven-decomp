@@ -15,7 +15,6 @@ struct func_8001E768_Struct {
 };
 
 void func_8001E768(void *arg0, struct func_8001E87C_Struct **arg1) {
-    u16 temp_t0;
     u8 temp_t9;
 
     if ((((struct func_8001E768_Struct *)&D_801BBBF0)->unk15D & 0xF) == 1) {

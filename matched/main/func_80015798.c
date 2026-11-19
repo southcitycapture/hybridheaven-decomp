@@ -21,7 +21,7 @@ s32 func_80015798(s32 arg0, u8 *arg1, struct func_80015B50_Struct *arg2) {
     D_8008DFB4 = (s32)func_80016BA0(n / 8 + 1, &sp3C);
     func_80016058((void *)arg2);
     {
-        register s32 v;
+        s32 v;
         for (i = 0; i < n; i++) {
             if (func_80016B6C(D_8008DFB4, i) != 0) {
                 v = D_8008DFB0[i];

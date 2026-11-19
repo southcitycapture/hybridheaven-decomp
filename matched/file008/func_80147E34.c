@@ -76,9 +76,7 @@ s32 func_80147E34(void *arg0, u16 arg1, u8 arg2, f32 arg3, f32 arg4, f32 arg5, s
     s.h1C = 0x1000;
     s.f40[1] = (0.06f);
     s.f40[2] = (0.06f);
-    if ((0.3f))
-    {
-    }
+    
     if (((s8 *) arg0)[0x91] == 1)
     {
       s.h1E = 0xAAA;

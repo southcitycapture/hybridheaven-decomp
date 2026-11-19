@@ -35,7 +35,6 @@ void func_8037296C(struct func_8037296C_Struct *arg0, s32 arg1)
 {
   struct func_8037296C_StructB *sp3C;
   struct func_8037296C_StructC sp20;
-  void *temp_a1;
   if (D_801BBCCC == ((s32) arg0->unkC))
   {
     sp3C = (struct func_8037296C_StructB *) D_801BC03C;

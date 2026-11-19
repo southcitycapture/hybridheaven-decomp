@@ -17,7 +17,6 @@ void func_802397A8(func_802397A8_Struct *arg0, s32 *arg1) {
     u16 sp3A;
     u8 pad[4];
     func_802397A8_StructA sp28;
-    u8 pad2[4];
     sp3C = arg0->unk94;
     sp3A = ((func_802397A8_StructB *)sp3C)->unkC;
     sp28 = D_8023E51C;

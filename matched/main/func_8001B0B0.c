@@ -29,7 +29,7 @@ typedef struct func_8001B0B0_StructRecord {
 } func_8001B0B0_StructRecord;
 
 void func_8001B0B0(s32 arg0, func_8001B0B0_Struct **arg1) {
-    register u32 i;
+    u32 i;
     func_8001B0B0_StructRecord *src;
 
     i = 0, src = (func_8001B0B0_StructRecord *)D_8008EF70;

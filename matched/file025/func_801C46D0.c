@@ -44,7 +44,7 @@ void func_801C46D0(func_801C46D0_Struct *arg0, func_801C46D0_StructA **arg1)
   (*arg1)->unk30->unk12 = (s32) ((arg0->unkA0 * 2048.0f) / 90.0f);
   (*arg1)->unk30->unk14 = (s32) ((arg0->unkA4 * 2048.0f) / 90.0f);
   (*arg1)->unk30->unk18 = k;
- if (1) { } if (1) { } if (1) { } if (1) { }
+    
   (*arg1)->unk30->unk1C = k;
   (*arg1)->unk30->unk20 = k;
   func_800058DC(arg0, func_801C480C);

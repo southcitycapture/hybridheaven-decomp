@@ -43,7 +43,6 @@ void func_8035F6B4(void *arg0, void **arg1)
 #define sp1C sp1C_[0]
     func_8035F6B4_Flags *p;
     func_8035F6B4_Sub *q;
-    s16 t;
 
     sp1C = *(s32 *)((u8 *)arg0 + 0x5C);
     if (arg0 == *(void **)(D_801BBBF0 + 0xDC)) {

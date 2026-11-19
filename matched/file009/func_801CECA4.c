@@ -50,9 +50,7 @@ extern f64 D_801E3580;
 void func_801CECA4(func_801CECA4_Struct *arg0, func_801CECA4_StructA **arg1) {
     f32 t;
     f32 v;
-    f64 k;
     u8 i;
-    s32 j;
     s32 old;
     s32 c;
     func_801CECA4_StructB *s;

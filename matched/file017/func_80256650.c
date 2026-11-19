@@ -53,7 +53,7 @@ void func_80256650(func_80256650_StructC *arg0, func_80256650_StructA *arg1)
   func_8012D814(arg0, 0x4B0, 1, 0x3F800000, 1);
   {
     (void) 0.02f;
- if (1) { } if (1) { } if (1) { } if (1) { } if (1) { } if (1) { }
+      
     arg1->unk0->unk30->unk24 |= 0x300;
     arg1->unk0->unk30->unk30 = ((u32) D_802599D0) | 0x40000000;
     arg1->unk0->unk30->unk4 = 0.0f;

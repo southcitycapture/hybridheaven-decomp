@@ -58,7 +58,6 @@ typedef struct func_801D0594_Struct {
 void func_801D0594(func_801D0594_Struct *arg0, func_801D0594_StructC **arg1) {
     f32 temp_fs2;
     f32 temp;
-    f32 k;
     f64 var_fs1;
     u32 temp_v0;
     u8 j;

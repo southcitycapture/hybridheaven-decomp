@@ -24,7 +24,6 @@ extern f64 D_801FD388;
 s32 func_801F6CDC(s32 arg0, s32 arg1) {
     f64 fv;
     f64 z;
-    u32 w;
     u32 v;
     u64 r;
 

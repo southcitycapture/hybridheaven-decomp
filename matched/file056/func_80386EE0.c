@@ -23,7 +23,6 @@ void func_80386EE0(struct func_80386420_StructArg0 *arg0, struct func_80386EE0_S
 {
   u16 temp_a2;
   struct func_80386EE0_StructInner *temp_v0;
-  s16 temp_t1;
   temp_a2 = arg0->unk3C;
   arg0->unk3C = (u16) (temp_a2 + 1);
   temp_v0 = (*arg1)->unk30;

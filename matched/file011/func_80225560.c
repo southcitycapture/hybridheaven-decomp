@@ -6,7 +6,7 @@ s32 func_80225560(void *arg0, u8 arg1) {
     u8 *var_v1;
 
     var_v1 = *(u8 **)((u8 *)arg0 + 0x5C);
-    arg1 = arg1;
+    
     if (arg1 >= 0x26) {
         arg1 = 0;
     }

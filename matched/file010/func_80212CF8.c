@@ -35,7 +35,7 @@ extern u8 D_80217CE0[];
 extern f32 D_8021ADBC;
 
 void func_80212CF8(func_80212CF8_Struct0 *arg0, func_80212CF8_StructO **arg1) {
-    register f32 k;
+    f32 k;
     struct {
         s32 a[3];
     } sp;

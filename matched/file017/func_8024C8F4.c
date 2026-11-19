@@ -6,7 +6,7 @@ extern u8 D_80175C58[];
 extern f32 D_8025D02C;
 
 void func_8024C8F4(s32 arg0, func_8024A610_Node **arg1) {
-    register f32 k;
+    f32 k;
     struct { s32 a[3]; } sp28;
 
     *(func_8024A610_V *)&sp28 = D_80164F40;

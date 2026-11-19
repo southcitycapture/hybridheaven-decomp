@@ -635,6 +635,13 @@ void func_801C839C(void) {
 f32 func_801C78F8(void);
 s32 func_801C88A4(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, u16 arg8);
 
+#undef func_801C78F8
+#undef func_801C88A4
+#define func_801C78F8 func_801C78F8__func_801C83BC_163aea04
+#define func_801C88A4 func_801C88A4__func_801C83BC_163aea04
+f32 func_801C78F8(void);
+s32 func_801C88A4(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, u16 arg8);
+
 void func_801C83BC(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     f32 dx;
     f32 dz;
@@ -652,9 +659,12 @@ void func_801C83BC(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
             func_801C88A4(arg3 * dx + arg0, arg1, arg3 * dz + arg2, 1.0f, 1.0f, 1.0f, 1.0f, scale * r, 0x5A);
         }
     }
-    if (scale) {
-    }
+
 }
+#undef func_801C78F8
+#undef func_801C88A4
+#define func_801C78F8 func_801C78F8__func_801C83BC
+#define func_801C88A4 func_801C88A4__func_801C83BC
 #undef func_801C78F8
 #undef func_801C88A4
 
@@ -2620,10 +2630,36 @@ typedef struct func_801CB450_StructOuter {
     func_801CB450_StructInner *unk30;
 } func_801CB450_StructOuter;
 
+#define func_801CB450_StructArg func_801CB450_StructArg__func_801CB450
+#define func_801CB450_StructInner func_801CB450_StructInner__func_801CB450
+#define func_801CB450_StructOuter func_801CB450_StructOuter__func_801CB450
+
+typedef struct func_801CB450_StructArg {
+    u8 pad[0xAC];
+    f32 unkAC;
+    u16 unkB0;
+    u16 unkB2;
+} func_801CB450_StructArg;
+
+typedef struct func_801CB450_StructInner {
+    u8 pad[8];
+    f32 unk8;
+    u8 padC[4];
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    u8 pad16[0x35];
+    u8 unk4B;
+} func_801CB450_StructInner;
+
+typedef struct func_801CB450_StructOuter {
+    u8 pad[0x30];
+    func_801CB450_StructInner *unk30;
+} func_801CB450_StructOuter;
+
 void func_801CB450(func_801CB450_StructArg *arg0, func_801CB450_StructOuter **arg1) {
     f32 ratio;
     s32 done;
-    u16 count;
 
     ratio = (f32)(u32)arg0->unkB0 / (f32)(u32)arg0->unkB2;
     (*arg1)->unk30->unk8 += arg0->unkAC * (((-0.800000012f) * ratio) + 1.0f);
@@ -2635,6 +2671,9 @@ void func_801CB450(func_801CB450_StructArg *arg0, func_801CB450_StructOuter **ar
         func_80005700((s32)arg0);
     }
 }
+#undef func_801CB450_StructArg
+#undef func_801CB450_StructInner
+#undef func_801CB450_StructOuter
 
 #define D_801D9C10 D_801D9C10__func_801CB5E4
 #define D_801DAA00 D_801DAA00__func_801CB5E4

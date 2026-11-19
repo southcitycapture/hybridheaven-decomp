@@ -29,7 +29,6 @@ extern void func_8001EB64(s16);
 void func_80224E00(struct func_80224F5C_Arg0 *arg0, s16 arg1) {
     func_80224E00_Struct *p;
     f32 b0, bc, c8, d4, b8, c4, d0, dc;
-    s16 a;
 
     p = ((func_80224E00_Arg *)arg0)->unk5C;
     func_8001EAD0(arg1, arg1);
