@@ -91,8 +91,11 @@ def try_one(job):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--jobs", type=int, default=8); ap.add_argument("--no-try", action="store_true")
+    ap.add_argument("--strings", action="store_true")
     a = ap.parse_args()
     os.chdir(HH)
+    if a.strings:
+        return strings_main(a.jobs)
     import srcbuild
     reg = srcbuild.registry()
     byfile = {}
@@ -144,9 +147,6 @@ def main():
     print("own-unit char/u8 array externs (strings etc.): %d declarations" % arrays)
 
 
-if __name__ == "__main__":
-    main()
-
 
 def literal_form(seg, fn, text):
     """srcbuild add's literal gate (11-18, Fable 5.2): the candidate with each own-unit f32/f64 extern that no other C
@@ -178,3 +178,68 @@ def literal_form(seg, fn, text):
         if off + w <= len(ro):
             vals[name] = (kind, struct.unpack(">d" if w == 8 else ">f", ro[off:off + w])[0])
     return literalise(text, vals) if vals else None
+
+
+# ---- strings (11-18): own-unit `extern char/u8 D_X[]` read by one function are most likely its string literals ----
+STRARR = re.compile(r'^\s*extern\s+(?:const\s+)?(char|u8|s8|unsigned char)\s+(D_([0-9A-F]{8}))\s*\[\s*\d*\s*\]\s*;\s*$', re.M)
+
+
+def c_string(raw):
+    """exact C string literal for raw bytes (octal escapes for anything outside printable ASCII)"""
+    out = []
+    for i, b in enumerate(raw):
+        ch = chr(b)
+        if ch in '"\\': out.append('\\' + ch)
+        elif ch == '\n': out.append('\\n')
+        elif ch == '\t': out.append('\\t')
+        elif 0x20 <= b < 0x7f:
+            # an octal escape must not swallow a following digit
+            if out and re.match(r'\\[0-7]{3}$', out[-1]) and ch in '01234567': out.append('""')
+            out.append(ch)
+        else: out.append('\\%03o' % b)
+    return '"%s"' % ''.join(out)
+
+
+def string_form(seg, fn, text, bodies_cache={}):
+    """the snippet with each single-user own-unit char array extern replaced by its string literal; None if none"""
+    import srcbuild
+    cf = srcbuild.file_of(seg, fn); base = srcbuild.FILE_RODATA.get((seg, cf))
+    if not cf or base is None: return None
+    size = srcbuild.file_rodata_size(seg, cf)
+    own = [(m[2], int(m[3], 16)) for m in STRARR.finditer(text) if base <= int(m[3], 16) < base + size]
+    if not own: return None
+    sp = os.path.join(HH, "src/%s/%s.c" % (seg, cf)); ro = ro_bytes(seg, cf)
+    if not os.path.exists(sp) or ro is None: return None
+    src = open(sp).read()
+    names = [n for (s, n) in srcbuild.registry() if s == seg and srcbuild.file_of(s, n) == cf]
+    vals = {}
+    for name, addr in own:
+        cs, asm = users(name, seg, cf, src, names)
+        if cs != [fn] or asm: continue
+        off = addr - base
+        end = ro.find(b'\0', off)
+        if end < 0: continue
+        vals[name] = ro[off:end]
+    if not vals: return None
+    for name, raw in vals.items():
+        text = re.sub(r'^\s*extern\s+(?:const\s+)?(?:char|u8|s8|unsigned char)\s+%s\s*\[\s*\d*\s*\]\s*;\s*\n' % name, '', text, flags=re.M)
+        text = re.sub(r'\b%s\b' % name, c_string(raw), text)
+    return text
+
+
+def strings_main(jobs_n):
+    import srcbuild
+    reg = srcbuild.registry(); jobs = []
+    for (seg, fn), text in sorted(reg.items()):
+        alt = string_form(seg, fn, text)
+        if alt and alt != text: jobs.append((seg, fn, text, alt))
+    res = []
+    with ProcessPoolExecutor(jobs_n) as ex:
+        for seg, fn, out in ex.map(try_one, jobs): res.append(dict(seg=seg, func=fn, **{"try": out}))
+    json.dump(res, open(os.path.join(HH, "build/string_audit.json"), "w"), indent=1)
+    conv = [r for r in res if r["try"].get("converts")]
+    print("functions with single-user own-unit string externs: %d; string form code-equal when tried: %d" % (len(res), len(conv)))
+
+
+if __name__ == "__main__":
+    main()

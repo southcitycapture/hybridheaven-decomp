@@ -39,6 +39,29 @@ if [ "$v" = FAIL ] && [ -d .attempts ]; then
     fi
   done
 fi
+# HONEST=1 (honest-C repair, 11-19): a match counts only if the source passes the hard rules (tools/hh/rule_check.py);
+# otherwise the newest matching snapshot that does, else FAIL (the starting copy itself matches, tricks and all)
+honest_ok() { "$HH/.venv/bin/python" - "$1" "$FUNC" <<'PYEOF'
+import re, sys, os
+sys.path.insert(0, os.environ["HH"] + "/tools/hh"); import rule_check as RC
+t = open(sys.argv[1]).read(); fn = sys.argv[2]
+m = re.search(r'(?m)^[^\n;#]*\b%s\s*\([^;{]*\)\s*\{' % re.escape(fn), t)
+if not m: sys.exit(1)
+i, d = m.end(), 1
+while i < len(t) and d: d += (t[i] == '{') - (t[i] == '}'); i += 1
+sys.exit(1 if [h for h in RC.hits("", whole_body=t[m.end():i - 1]) if h[1] == "hard"] else 0)
+PYEOF
+}
+if [ -n "$HONEST" ] && [ "$v" = MATCH ] && ! HH=$HH honest_ok attempt.c; then
+  v=FAIL; echo "match keeps a flagged trick" > honest.txt
+  for r in $(grep -l '^MATCH' .attempts/*.res 2>/dev/null | sort -t/ -k2 -n -r); do
+    c=${r%.res}.c
+    HH=$HH honest_ok "$c" || continue
+    "$HH/.venv/bin/python" "$HH/tools/hh/try_func.py" "$FUNC" "$c" --seg "$SEG" 2>/dev/null | grep -q '^MATCH' || continue
+    "$HH/.venv/bin/python" "$HH/tools/hh/srcbuild.py" infile "$SEG" "$FUNC" "$PWD/$c" > /dev/null 2>&1 || continue
+    cp attempt.c attempt.final.c 2>/dev/null; cp "$c" attempt.c; v=MATCH; echo "honest match in snapshot $c" > honest.txt; break
+  done
+fi
 [ "$v" = ERROR ] && sleep 30   # back off before the next launch
 "$HH/.venv/bin/python" - "$FUNC" "$SEG" "$MODEL" "$v" "$start" <<'PY'
 import json, sys, time, os

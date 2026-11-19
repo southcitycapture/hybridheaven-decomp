@@ -1160,6 +1160,15 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         DEAD = re.compile(r'\bif\s*\(\s*0\s*\)\s*\{')
         for k in [k for k, t in new.items() if DEAD.search(t)]:
             print("refused %s %s: if (0) block (fakematch)" % k); new.pop(k)
+        # source-honesty rules (11-19, tools/hh/rule_check.py): padding/unused locals, empty blocks, self-assignment,
+        # + 0 / * 1 / !!, (0, x), register/volatile steering, same-type casts
+        import rule_check
+        for k in list(new):
+            b = fn_body(new[k], k[1])
+            hard = [h for h in rule_check.hits("", whole_body=rule_check.body_of(b) if b and "{" in b else (b or "")) if h[1] == "hard"] if b else []
+            if hard:
+                print("refused %s %s: %s (fakematch rules)" % (k[0], k[1], ", ".join(sorted({"%s %s" % (r, d) for r, _, d in hard}))[:200]))
+                new.pop(k)
         # skip candidates rejected before with the same text while their file's registered functions were the same:
         # the loop re-offers the last few batches every cycle, and each retried reject costs a one-at-a-time rebuild of
         # its file (cycles 23-25 hit the 60 min integrate timeout that way)

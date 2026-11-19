@@ -93,6 +93,24 @@ if [ -n "$TYPES" ] && [ "$TYPES" != 0 ]; then cat "$HH/tools/swarm/types_note.md
 if [ -n "$PREVIOUS" ] && [ -f "$PREVIOUS" ]; then
   sed 's/^#include "common.h"/#include "context.h"/' "$PREVIOUS" > "$W/previous.c"
   cat "$HH/tools/swarm/${NOTE_FILE:-fix_note.md}" >> "$W/prompt.md"
+  # HONEST=1 (honest-C repair, 11-19): list this function's rule_check hits in previous.c
+  if [ -n "$HONEST" ]; then
+    { echo; echo "### RULE HITS in previous.c"; "$HH/.venv/bin/python" - "$PREVIOUS" "$FUNC" <<'PYEOF'
+import re, sys
+sys.path.insert(0, __import__("os").environ.get("HH", "") + "/tools/hh")
+import rule_check as RC
+t = open(sys.argv[1]).read(); fn = sys.argv[2]
+m = re.search(r'(?m)^[^\n;#]*\b%s\s*\([^;{]*\)\s*\{' % re.escape(fn), t)
+body = ""
+if m:
+    i, d = m.end(), 1
+    while i < len(t) and d: d += (t[i] == '{') - (t[i] == '}'); i += 1
+    body = t[m.end():i - 1]
+for r, k, d in RC.hits("", whole_body=body):
+    if k == "hard": print("- %s: `%s`" % (r, " ".join(d.split())))
+PYEOF
+    } >> "$W/prompt.md"
+  fi
   # PIN_HDRS=1: use the headers the previous attempt was scored with (11-17: a 99.9% archived attempt scored 18/1776
   # against a freshly generated context.h); the fresh one stays as context.fresh.h for reference
   pd=$(dirname "$PREVIOUS"); [ "$(basename "$pd")" = .attempts ] && pd=$(dirname "$pd")

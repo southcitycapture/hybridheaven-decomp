@@ -14,12 +14,12 @@ good tooling get on real work, and what it costs. Every function is checked by t
 
 | | Matched | |
 |---|---:|---|
-| **Code** | **90.03%** | 2,544,980 of 2,826,840 bytes |
-| Functions | 98.0% | 15,577 of 15,891 |
-| Data | 95.41% | 1,017,004 of 1,065,936 bytes |
+| **Code** | **90.06%** | 2,545,728 of 2,826,840 bytes |
+| Functions | 98.0% | 15,579 of 15,891 |
+| Data | 95.41% | 1,017,036 of 1,065,936 bytes |
 | Fully linked | 33.08% | 235 of 539 source files complete |
 
-_Updated 2026-11-18 21:20 UTC by the publishing loop._
+_Updated 2026-11-19 00:16 UTC by the publishing loop._
 
 ![Progress over time, with the Christmas forecast](docs/img/progress.svg)
 
@@ -28,24 +28,47 @@ the code number because one unmatched function holds back its whole file.
 
 ## When will it be done?
 
-Forecast as of 2026-11-17, re-estimated as the rate changes:
+Forecast as of 2026-11-18, re-estimated as the rate changes:
 
 | Milestone | Estimate | Why |
 |---|---|---|
 | ~~80% of code~~ | reached 2026-11-08 | Fixing a bug in our match checker landed 28 already-solved functions at once. |
-| 90% of code | late November | The weekly gain has held at about 6 points for three weeks: tooling fixes keep unlocking functions models had already solved. |
-| 95% of code | early December | Needs most of the remaining 2-7 KB functions, many of which already match every instruction and are blocked by layout details. |
-| **Christmas 2026** | **95-98%** | The steady rate, plus a planned push on the hardest functions around the start of December. |
-| 100% of code | **possible by Christmas if the giants fall**; otherwise early 2027 | Six giant functions (7-14 KB, 2.1% of the code) have not matched under any setup yet. |
+| ~~90% of code~~ | **reached 2026-11-18** | Scoring every saved attempt directly turned up near-finished work, including three giant functions (7-11 KB) that were already at 99%+. |
+| 95% of code | early to mid December | Needs most of the remaining 2-7 KB functions. Many already match every instruction and are blocked by readonly-data layout or assembler scheduling. |
+| **Christmas 2026** | **95-98%** | The steady rate, plus a planned push on the hardest functions at the start of December. |
+| 100% of code | **possible by Christmas if the last giants fall**; otherwise early 2027 | Three giant functions (7-14 KB, 1.1% of the code) are still open. |
 
-By function count we are much further along (about 98%) than by code size: what is left is mostly the big functions.
+By function count we are much further along (98%) than by code size: what is left is mostly the bigger functions.
 Data and fully-linked progress follow the code: the remaining data sits in the same files as the unmatched functions.
 
-What is left, by size (share of all code): giants of 7 KB or more 2.1%, big functions of 2-7 KB 4.0%, medium 3.4%,
-small 2.8%, library code built with other flags 0.5%.
+What is left, by size (share of all code): giants of 7 KB or more 1.1% (3 functions), big functions of 2-7 KB 3.0%
+(24), medium 4.7% (121), small 1.2% (164).
+
+**How honest is the number?** Every function counts only if the compiler reproduces it byte for byte inside its real
+file. On top of that we refuse known "fakematch" tricks at landing (`if (0)` blocks, padding variables, macros that
+redefine C keywords), and we report two kinds of scaffolding separately in `progress.py`: functions whose file's
+readonly data is placed by a checked layout plan (needed while a file is still part assembly), and functions that
+still read their own float literals through frozen bytes.
 
 ## What we've learned so far
 
+- **Score what you already have.** Re-checking all 36,000 saved attempts directly (not trusting what each worker
+  reported) found two giant functions sitting at 99.4% and 99.8%. Short retries from those exact files matched three
+  giants in one evening and pushed us past 90%.
+- **Retries from a near miss are the cheapest wins.** Starting a worker from a function's best saved attempt, with
+  the exact headers it was scored against, matched about 1 in 4 of the 98-99.9% functions and 1 in 6 at 95-98%.
+- **Gate fakematches at the door.** An audit found 14 landed functions that relied on `if (0)` blocks to steer the
+  compiler. A worker found honest C for 10 of them in minutes each, and landing now refuses the trick outright.
+- **Have a second model review the tricky tooling.** Our readonly-layout tool (it reorders a part-assembly file's
+  constant data the way the original all-C build had it) looked safe, but a review by a second model showed a plan
+  could in principle reorder single jump-table entries. It now only merges frozen data at its original address with
+  the compiler's own output in order, and every build re-checks every plan.
+- **Put literals back where they belong.** 192 functions read their own float constants through names pointing at
+  frozen bytes; rewriting them as plain literals (`0.01f`) gave identical code. New landings try the literal form
+  first.
+- **A "lead" model didn't help in a fair test.** With every arm starting from the same attempt on the same 8 big
+  functions, Terra alone and Opus alone each matched 1, and Sol or Opus leading Terra helpers matched 0. The near
+  misses were blocked by tooling (scheduling, readonly layout), not by the model.
 - **Tooling matters as much as the model.** The same model goes from 16% to 73% when the task is narrowed: the working
   code as a starting point, a note saying what to fix, and a check inside the real file.
 - **Models complement each other.** On the same 40 hard functions, Claude Opus matched 11 and the best GPT model 6, but
