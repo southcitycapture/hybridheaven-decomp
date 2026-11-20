@@ -1,6 +1,20 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_80242080_Struct3 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+} func_80242080_Struct3;
+extern func_80242080_Struct3 D_80164F40;
+void func_80005E44(void *, void *);
+extern s32 D_80006214(void *);
+#define func_80006214 D_80006214
+extern s32 func_8001EF38(f32, f32);
+void func_8012C89C(void *, s32, s32, s32);
+void func_802467B0(f32 arg0, f32 arg1, s32 arg2, s32 arg3);
 
-typedef struct func_80244CA8_B {
+
+typedef struct func_80244CA8_StructB {
     u8 pad0[4];
     f32 unk4;
     f32 unk8;
@@ -17,12 +31,12 @@ typedef struct func_80244CA8_B {
     u8 unk4D;
     u8 unk4E;
     u8 unk4F;
-} func_80244CA8_B;
-typedef struct func_80244CA8_Struct {
+} func_80244CA8_StructB;
+typedef struct func_80244CA8_StructModel {
     u8 pad0[0x30];
-    func_80244CA8_B *unk30;
-} func_80244CA8_Struct;
-typedef struct func_80244CA8_Obj {
+    func_80244CA8_StructB *unk30;
+} func_80244CA8_StructModel;
+typedef struct func_80244CA8_StructObj {
     u8 pad0[0x40];
     f32 unk40;
     f32 unk44;
@@ -34,11 +48,11 @@ typedef struct func_80244CA8_Obj {
     f32 unk9C;
     u8 padA0[2];
     s16 unkA2;
-} func_80244CA8_Obj;
-typedef struct func_80244CA8_G {
+} func_80244CA8_StructObj;
+typedef struct func_80244CA8_StructG {
     u8 pad0[0xE0];
     u8 **unkE0;
-} func_80244CA8_G;
+} func_80244CA8_StructG;
 extern u8 D_8017AF90[];
 extern u8 D_801BBBF0[];
 extern f32 D_8024F054;
@@ -48,10 +62,11 @@ extern f32 func_8002FC20(f32);
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 
-#define T ((func_80244CA8_B *)((func_80244CA8_G *)D_801BBBF0)->unkE0[0xB])
-void func_80244CA8(func_80244CA8_Obj *arg0, func_80244CA8_Struct **arg1) {
+#define T ((func_80244CA8_StructB *)((func_80244CA8_StructG *)D_801BBBF0)->unkE0[0xB])
+void func_80244CA8(func_80244CA8_StructObj *arg0, func_80244CA8_StructModel **arg1) {
     func_80242080_Struct3 sp30;
-    u8 pad[8];
+    f32 dx;
+    f32 dz;
     f32 sp24;
     f32 k;
     sp30 = D_80164F40;
@@ -73,7 +88,9 @@ void func_80244CA8(func_80244CA8_Obj *arg0, func_80244CA8_Struct **arg1) {
     (*arg1)->unk30->unk8 = arg0->unk98;
     (*arg1)->unk30->unkC = arg0->unk9C;
     arg0->unkA2 = func_8001EF38(T->unk4 - arg0->unk94, T->unkC - arg0->unk9C);
-    sp24 = func_8002FC20((T->unkC - arg0->unk9C) * (T->unkC - arg0->unk9C) + (T->unk4 - arg0->unk94) * (T->unk4 - arg0->unk94)) * D_8024F058 * D_8024F060;
+    dx = T->unk4 - arg0->unk94;
+    dz = T->unkC - arg0->unk9C;
+    sp24 = func_8002FC20(dx * dx + dz * dz) * D_8024F058 * D_8024F060;
     arg0->unk40 = func_8001EAD0(arg0->unkA2) * sp24;
     arg0->unk48 = func_8001EB64(arg0->unkA2) * sp24;
     arg0->unk92 = 0;

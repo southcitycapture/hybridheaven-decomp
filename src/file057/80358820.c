@@ -382,8 +382,43 @@ void func_80358A40(struct func_80358A40_Struct *arg0, s32 arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_2777d05c0c3ed3bf.s {"functions":["func_80358A80"],"rodata":[],"rodata_bytes":[2151194316,8575724,4]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_2777d05c0c3ed3bf.s")
+
+
+#define D_8038CC10 D_8038CC10__func_80358A80
+#define func_80358964_StructA func_80358964_StructA__func_80358A80
+#define func_80358964_StructArg func_80358964_StructArg__func_80358A80
+#define func_80358A40 func_80358A40__func_80358A80
+typedef struct func_80358964_StructA {
+    u8 pad0[0x30];
+    u8 unk30;
+    u8 pad1[0x4C - 0x31];
+    s16 unk4C;
+} func_80358964_StructA;
+extern func_80358964_StructA *D_8038CC10;
+typedef struct func_80358964_StructArg {
+    u8 pad0[0x6C];
+    s32 unk6C;
+    s32 unk70;
+    f32 unk74;
+} func_80358964_StructArg;
+extern void func_80358A40();
+
+
+void func_80358A80(func_80358964_StructArg *arg0, s32 arg1) {
+    func_801CE3F8(arg0, 5, arg0->unk6C, arg0->unk70, arg0->unk74,
+                  0xFF, 0xD7, 0, 0xA0, 0xFF, 0xFF, 0xFF,
+                  0x20, 6, 0x3C, 0.01f, 0xC);
+    func_80020718(0x111);
+    D_8038CC10->unk4C = 1;
+    func_800058DC(arg0, func_80358A40);
+}
+#undef D_8038CC10
+#undef func_80358964_StructA
+#undef func_80358964_StructArg
+#undef func_80358A40
+
+void func_80358B48(void) {
+}
 
 #define D_8038CC10 D_8038CC10__func_80358B50
 #define func_800058DC func_800058DC__func_80358B50
@@ -3469,9 +3504,6 @@ L3CC:
 
 
 
-static const unsigned char rodata_80358820[] = {
-    0x64, 0x0A, 0x00, 0x00,
-};
 /* hh-owned-pool func_80358820 80389E64 80389EC8 */
 /* hh-owned-pool func_80358964 80389EC8 80389ECC */
 /* hh-owned-pool func_80358B50 80389ED0 80389ED4 */
@@ -3490,3 +3522,9 @@ static const unsigned char rodata_80358820[] = {
 /* hh-owned-pool func_8035B9AC 8038A088 8038A0A8 */
 /* hh-owned-pool func_8035BD6C 8038A0A8 8038A0B4 */
 /* hh-owned-pool func_8035C230 8038A0B4 8038A0E0 */
+
+static const unsigned char rodata_80358820_80389E60[] = {
+    0x64, 0x0A, 0x00, 0x00,
+};
+/* hh-placed-function func_80358A80 */
+/* hh-rodata-layout [640,[[0,0,640]]] */

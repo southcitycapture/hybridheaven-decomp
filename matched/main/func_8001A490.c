@@ -1,4 +1,27 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_8001A584_StructEnt {
+    u8 flag;
+    u8 pad1;
+    s16 x;
+    s16 y;
+    u8 b6, b7, b8, b9, bA, bB, bC, bD;
+    u16 w0E;
+    u16 w10;
+    u16 w12;
+} func_8001A584_StructEnt;
+typedef struct func_8001A584_StructOut {
+    s16 x;
+    s16 y;
+    u8 b4, b5, b6, b7, b8, b9, bA, bB;
+    u16 w0C;
+    u16 w0E;
+    u16 w10;
+} func_8001A584_StructOut;
+typedef struct func_8001A584_StructObj {
+    u8 pad[0x2C];
+    func_8001A584_StructOut *out;
+} func_8001A584_StructObj;
+
 
 typedef struct func_8001A490_StructTable {
     void *values[10];
@@ -26,11 +49,12 @@ void func_8001A584(s32 arg0, struct func_8001A584_StructObj **a1);
 #define E(i) ((func_8001A490_StructEnt *)D_8008EEA0)[i]
 
 void func_8001A490(s32 arg0, s32 arg1) {
-    s32 pad;
+    void **values;
     func_8001A490_StructTable table;
     s32 i;
 
     table = D_800442E8;
+    values = table.values;
     for (i = 0; i < 10; i++) {
         E(i).flag = 0;
         E(i).x = 0;
@@ -46,8 +70,8 @@ void func_8001A490(s32 arg0, s32 arg1) {
         E(i).w0E = 0;
         E(i).w10 = 0;
         E(i).w12 = 0;
-        func_80005E44(arg0, table.values[i]);
+        func_80005E44(arg0, values[i]);
     }
-    func_80005E44(arg0, table.values[3]);
+    func_80005E44(arg0, values[3]);
     func_800058DC(arg0, (void (*)(void))func_8001A584);
 }

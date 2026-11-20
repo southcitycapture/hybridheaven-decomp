@@ -71,6 +71,21 @@ def literalise(text, vals):
     return text
 
 
+def pool_values(text, base, ro):
+    """Decode finite scalar externs entirely inside the unit's readonly extent."""
+    import math
+    values = {}
+    for m in EXTERN.finditer(text):
+        kind, name, address = m.groups()
+        off = int(address, 16) - base
+        fmt = '>f' if kind in ('f32', 'float') else '>d'
+        if 0 <= off <= len(ro) - struct.calcsize(fmt):
+            value, = struct.unpack_from(fmt, ro, off)
+            if math.isfinite(value):
+                values[name] = kind, value
+    return values
+
+
 def try_one(job):
     seg, fn, text, alt = job
     out = {}
@@ -170,13 +185,10 @@ def literal_form(seg, fn, text):
         if fn in funcs: return None      # merged with others: can't separate its references, leave it alone
         p = os.path.join(HH, m[3])
         if os.path.exists(p): asm.append(open(p, errors="replace").read())
-    asm = "\n".join(asm); vals = {}
-    for kind, name, addr in own:
-        if any(re.search(r'\b%s\b' % name, b) for b in bodies) or re.search(r'%%(?:hi|lo|gp_rel)\(%s\b' % name, asm):
-            continue
-        off = addr - base; w = 8 if kind in ("f64", "double") else 4
-        if off + w <= len(ro):
-            vals[name] = (kind, struct.unpack(">d" if w == 8 else ">f", ro[off:off + w])[0])
+    asm = "\n".join(asm)
+    vals = {name: value for name, value in pool_values(text, base, ro[:size]).items()
+            if not any(re.search(r'\b%s\b' % name, b) for b in bodies)
+            and not re.search(r'%%(?:hi|lo|gp_rel)\(%s\b' % name, asm)}
     return literalise(text, vals) if vals else None
 
 

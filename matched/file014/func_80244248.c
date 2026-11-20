@@ -16,7 +16,6 @@ struct func_80244248_StructObj {
     struct func_80246478_Child *unk5C;
 };
 extern s32 D_8012A94C(void *, s32);
-extern f32 D_8024AAE8;
 extern void func_80244328();
 
 void func_80244248(struct func_80244248_StructObj *arg0, s32 arg1) {
@@ -28,7 +27,7 @@ void func_80244248(struct func_80244248_StructObj *arg0, s32 arg1) {
         func_80010550(arg1, sp2C);
         if (D_8012A94C(arg0, 0x40) == 0) {
             temp_v0 = arg0->unk24->unk2C;
-            func_80127430(temp_v0->unk4, temp_v0->unk8, temp_v0->unkC, 0x66D, D_8024AAE8, 1.0f);
+            func_80127430(temp_v0->unk4, temp_v0->unk8, temp_v0->unkC, 0x66D, (1.2f), 1.0f);
             sp2C->unk78 = 1;
             func_800058DC(arg0, func_80244328);
         }

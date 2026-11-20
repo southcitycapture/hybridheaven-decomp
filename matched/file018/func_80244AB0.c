@@ -28,8 +28,6 @@ extern void func_8037BB4C(s16, f32, f32, s16);
 extern f32 D_8002FC20(f32);
 extern void D_80127430(f32, f32, f32, s32, f32, f32);
 extern u8 D_8025BF90[];
-extern f32 D_8025C57C;
-
 /* used by later functions in this file before their own declarations */
 struct func_80246E60_StructGlobal;
 extern struct func_80246E60_StructGlobal D_80258F48;
@@ -71,7 +69,7 @@ s32 func_80244AB0(func_80244AB0_Struct *arg0) {
     dy = n->unk8 - m->unk8;
     dz = n->unkC - m->unkC;
     if (dx * dx + dy * dy + dz * dz < 900.0f) {
-        D_80127430(sp50, m->unk8, m->unkC, 0x6BD, D_8025C57C, 1.0f);
+        D_80127430(sp50, m->unk8, m->unkC, 0x6BD, (1.2f), 1.0f);
         func_8037BB4C(arg0->unk24->unk2C->unk12, 2.0f, 2.0f, D_8025C7E6);
         return 0;
     }

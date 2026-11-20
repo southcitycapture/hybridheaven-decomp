@@ -1,11 +1,5 @@
 #include "context.h"
 
-/* rodata literals D_801FC31C..D_801FC360: exact target float values */
-extern f32 D_801FC360;
-extern f32 D_801FC35C;
-extern f32 D_801FC354;
-extern f32 D_801FC358;
-
 #define E8044_P8(p) (*(u8 **)((u8 *)(p) + 8))
 #define E8044_NODE (*(u8 **)(*(u8 **)(E8044_P8(E8044_P8(E8044_P8(E8044_P8(*(u8 **)&D_801DAB14)))) + 0x24) + 0x2C))
 
@@ -37,8 +31,8 @@ c2:
         func_801CC470(3, 0x1B8001F, 0, 0, 10.0f);
         D_801FB394 = 0;
         func_8038BE98(39.6f);
-        func_8038BD50(D_801FC354, D_801FC358, -18.2f);
-        D_8038BD88(D_801FC35C, D_801FC360, -5.3f);
+        func_8038BD50(-191.6f, 6.9f, -18.2f);
+        D_8038BD88(-194.3f, 13.9f, -5.3f);
         D_8038C158();
         return 0xE;
     }

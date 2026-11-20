@@ -374,33 +374,48 @@ typedef struct func_80369CF4_Struct {
     u32 unk0;
 } func_80369CF4_Struct;
 
-s32 func_80369CF4(struct func_80369C7C_Obj1 *arg0, s16 arg1) {
+#undef func_803698D0
+#define func_803698D0 func_803698D0__func_80369CF4
+#define func_8036B7EC_Struct func_8036B7EC_Struct__func_80369CF4
+#define HQ2(a, b) a##b
+#define HQ(a, b) HQ2(a, b)
+#define HQ2(a, b) a##b
+#define HQ(a, b) HQ2(a, b)
+#define D_801BBBF0 HQ(HQD_, __LINE__)
+typedef struct func_8036B7EC_Struct {
+    u32 unk0;
+    u8 pad[0xC - 4];
+    s16 unkC;
+} func_8036B7EC_Struct;
+func_8036B7EC_Struct *func_803698D0(u8 *arg0);
+
+#undef D_801BBBF0
+
+s32 func_80369CF4(struct func_80369C7C_Obj1__func_80369F54 *arg0, s16 arg1) {
     u8 *p;
     s16 v1;
     u32 t;
     s16 s;
-    s32 x;
-    s32 ret;
 
-    if (arg0 == D_801BBBF0.unkDC) {
+    if ((void *)arg0 == D_801BBBF0.unkDC) {
         p = D_801BC03C;
     } else {
         p = D_801BC3D8;
     }
     if (p[0x2D8] == 6 || p[0x2D8] == 8) {
-        if (arg0 != D_801BBBF0.unkDC) {
+        if ((void *)arg0 != D_801BBBF0.unkDC) {
             v1 = 0;
         } else {
             v1 = 0x1000;
         }
-        s = v1 + D_801BBBF0.unkB98;
-        s = s * 1;
+        s = (s16)(v1 + D_801BBBF0.unkB98);
+        s &= 0x1FFF;
         if (((s16)(s - arg1) & 0x1FFF) >= 0x1001) {
             return 1;
         }
         return 0;
     }
-    t = (((func_80369CF4_Struct *)func_803698D0(p))->unk0 << 11) >> 30;
+    t = (func_803698D0(p)->unk0 << 11) >> 30;
     if (t == 0) {
         return 0;
     }
@@ -409,6 +424,11 @@ s32 func_80369CF4(struct func_80369C7C_Obj1 *arg0, s16 arg1) {
     }
     return 1;
 }
+#undef HQ2
+#undef HQ
+#undef func_803698D0
+#undef func_8036B7EC_Struct
+#define func_803698D0 func_803698D0__decl316
 #undef func_803698D0
 
 #define D_8038B0A8 D_8038B0A8__func_80369DEC
@@ -455,8 +475,8 @@ s32 func_80369DEC(struct func_80369C7C_Obj1 *arg0, s16 arg1) {
         return func_80369CF4(arg0, arg1);
     }
     d = (f64)(s16)((s16)(x - arg1) & 0x1FFF);
-    if ((D_8038B0A8 < d) & (d < D_8038B0B0)) return 1;
-    if ((D_8038B0B8 < d) & (d < D_8038B0C0)) return 0;
+    if (((4505.6) < d) & (d < (7782.4))) return 1;
+    if (((409.6) < d) & (d < (3686.4))) return 0;
     return 2;
 }
 #undef ACAT2
@@ -2115,8 +2135,10 @@ s32 func_8036B854(struct func_80369C7C_Obj1 *arg0) {
 #undef func_80369C7C_Obj3
 #undef func_80369C7C_Struct
 
-/* hh-block asm/nonmatchings/file057/803698D0/_mrg_keep_tail_20baa73ae2912622.s {"functions":["func_8036BA40"],"rodata":[],"rodata_bytes":[2151198984,8580392,56]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/_mrg_keep_tail_20baa73ae2912622.s")
+/* hh-block asm/nonmatchings/file057/803698D0/_ro_regular_60bdfcb60afefabd.s {"functions":[],"rodata":[],"rodata_bytes":[2151198984,8580392,48],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/_ro_regular_60bdfcb60afefabd.s")
+/* hh-block asm/nonmatchings/file057/803698D0/_mrg_keep_text_738a774443520dfa.s {"functions":["func_8036BA40"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/_mrg_keep_text_738a774443520dfa.s")
 
 #define AnimEarly0 AnimEarly0__func_8036BBBC
 #define D_801BBBF0 D_801BBBF0__func_8036BBBC
@@ -2241,15 +2263,122 @@ extern s32 func_80364340(s32, void *, func_8036BBBC_Vec);
 extern void func_803709D0(s32, func_8036BBBC_Vec, s32);
 extern void func_8036265C(s32, s32);
 
+#undef D_801BBBF0
+#undef D_8038CC64
+#undef func_8013A334
+#undef func_801DB6B8
+#undef func_802254F8
+#undef func_802264D0
+#undef func_8036048C
+#undef func_8036265C
+#undef func_80364340
+#undef func_8036BF18
+#undef func_803709D0
+#define D_80011590 D_80011590__func_8036BBBC_39c5fb95
+#define D_8038CC64 D_8038CC64__func_8036BBBC_39c5fb95
+#define func_8013A334 func_8013A334__func_8036BBBC_39c5fb95
+#define func_801DB6B8 func_801DB6B8__func_8036BBBC_39c5fb95
+#define func_802254F8 func_802254F8__func_8036BBBC_39c5fb95
+#define func_802264D0 func_802264D0__func_8036BBBC_39c5fb95
+#define func_8036048C func_8036048C__func_8036BBBC_39c5fb95
+#define func_8036265C func_8036265C__func_8036BBBC_39c5fb95
+#define func_80364340 func_80364340__func_8036BBBC_39c5fb95
+#define func_8036BBBC_Tgt func_8036BBBC_Tgt__func_8036BBBC_39c5fb95
+#define func_8036BBBC_Vec func_8036BBBC_Vec__func_8036BBBC_39c5fb95
+#define func_8036BF18 func_8036BF18__func_8036BBBC_39c5fb95
+#define func_803709D0 func_803709D0__func_8036BBBC_39c5fb95
+#define HQ2(a, b) a##b
+#define HQ(a, b) HQ2(a, b)
+#define HQ2(a, b) a##b
+#define HQ(a, b) HQ2(a, b)
+#define D_801BBBF0 HQ(HQD_, __LINE__)
+extern u16 D_80011590(u16);
+#define func_80011590 D_80011590
+typedef struct func_8036BBBC_Tgt {
+    u8 pad0[0x1C];
+    void *unk1C;
+    u16 unk20;
+    u8 pad22[0x80 - 0x22];
+    u16 unk80;
+} func_8036BBBC_Tgt;
+typedef struct func_8036BBBC_Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+} func_8036BBBC_Vec;
+extern void func_8013A334(func_8036BBBC_Vec *, s32, func_8036BBBC_Tgt *, u8);
+extern s32 func_801DB6B8(s32, s32, s32);
+extern void func_802264D0(s32, s32);
+extern void func_8036265C(s32, s32);
+void func_8036BF18(s32 arg0, s32 arg1);
+
+
+#undef D_801BBBF0
+
+typedef struct func_8036BBBC_StructCur {
+    u8 unk0;
+    u8 unk1;
+    u16 unk2;
+    s16 unk4;
+    u8 pad6[2];
+    void **unk8;
+} func_8036BBBC_StructCur;
+
+typedef struct func_8036BBBC_StructCurBits {
+    u32 top : 2;
+} func_8036BBBC_StructCurBits;
+
+typedef struct func_8036BBBC_StructObj {
+    u8 pad0[0x5C];
+    func_8036BBBC_Tgt *unk5C;
+} func_8036BBBC_StructObj;
+
+typedef struct func_8036BBBC_StructState {
+    u8 pad0[0x30];
+    u32 pad30 : 8;
+    u32 b31_7 : 1;
+    u32 f60 : 2;
+    u32 f18 : 2;
+    u32 pad31 : 3;
+    u32 e0 : 3;
+    u32 b10 : 1;
+    u32 pad32 : 4;
+    u32 pad33 : 8;
+    u8 pad34[0x2F8 - 0x34];
+    u8 unk2F8;
+    u8 pad2F9;
+    u8 unk2FA;
+    u8 pad2FB[0x314 - 0x2FB];
+    func_8036BBBC_Vec unk314;
+    u8 unk320;
+    u8 unk321;
+} func_8036BBBC_StructState;
+
+typedef struct func_8036BBBC_StructSub {
+    u8 pad0[0x12];
+    s16 unk12;
+} func_8036BBBC_StructSub;
+
+typedef struct func_8036BBBC_StructMdl {
+    u8 pad0[0x2C];
+    func_8036BBBC_StructSub *unk2C;
+} func_8036BBBC_StructMdl;
+
+extern func_8036BBBC_StructCur *D_8038CC64;
+extern void func_802254F8(s32, s32, s32);
+extern s32 func_8036048C(s32, s32, func_8036BBBC_Vec);
+extern s32 func_80364340(s32, void *, func_8036BBBC_Vec);
+extern void func_803709D0(s32, func_8036BBBC_Vec, s32);
+
 void func_8036BBBC(s32 arg0, s32 arg1) {
-    s32 tmp;
+    func_8036BBBC_StructMdl **model;
     s32 sp50;
     func_8036BBBC_Tgt *sp4C;
-    s32 pad48;
-    func_8036BBBC_State *sp44;
-    s32 pad40;
+    u8 animationIndex;
+    func_8036BBBC_StructState *sp44;
+    func_8036BBBC_StructCur *current;
     func_8036BBBC_Vec sp34;
-    func_8036BBBC_State *var_s0;
+    func_8036BBBC_StructState *var_s0;
     s32 var_v1;
 
     if (arg0 != (s32)D_801BBBF0.unkDC) {
@@ -2257,21 +2386,22 @@ void func_8036BBBC(s32 arg0, s32 arg1) {
     } else {
         sp50 = (s32)D_801BBBF0.unkEC;
     }
-    sp4C = ((func_8036BBBC_Obj *)arg0)->unk5C;
+    sp4C = ((func_8036BBBC_StructObj *)arg0)->unk5C;
     if (arg0 == (s32)D_801BBBF0.unkDC) {
-        var_s0 = (func_8036BBBC_State *)D_801BC03C;
+        var_s0 = (func_8036BBBC_StructState *)D_801BC03C;
     } else {
-        var_s0 = (func_8036BBBC_State *)D_801BC3D8;
+        var_s0 = (func_8036BBBC_StructState *)D_801BC3D8;
     }
     if (arg0 != (s32)D_801BBBF0.unkDC) {
-        sp44 = (func_8036BBBC_State *)D_801BC03C;
+        sp44 = (func_8036BBBC_StructState *)D_801BC03C;
     } else {
-        sp44 = (func_8036BBBC_State *)D_801BC3D8;
+        sp44 = (func_8036BBBC_StructState *)D_801BC3D8;
     }
     func_802237B0((void *)arg0, 1);
     if (sp4C->unk80 == 0) {
-        if ((s32)*D_8038CC64->unk8 == ((s32 *)sp4C)[7]) {
-            if (sp4C->unk20 == func_80011590(D_8038CC64->unk2) * 1) {
+        current = D_8038CC64;
+        if ((s32)*current->unk8 == ((s32 *)sp4C)[7]) {
+            if (sp4C->unk20 == func_80011590(current->unk2)) {
                 func_8013A334(&sp34, arg1, sp4C, D_8038CC64->unk1);
                 sp44->unk320 = func_8036048C(arg0, arg1, sp34);
                 sp44->unk2FA = 1;
@@ -2288,14 +2418,15 @@ void func_8036BBBC(s32 arg0, s32 arg1) {
             }
         }
     }
-    func_8013A334((func_8036BBBC_Vec *)((u8 *)var_s0 + 0x314), arg1, sp4C, D_8038CC64->unk1);
+    animationIndex = D_8038CC64->unk1;
+    func_8013A334((func_8036BBBC_Vec *)((u8 *)var_s0 + 0x314), arg1, sp4C, animationIndex);
     if (func_801DB6B8(arg0, arg1, 0) != 0) {
         var_s0->b10 = 0;
         sp44->b10 = 1;
-        var_s0->f18 = ((func_8036BBBC_CurBits *)D_8038CC64)->top;
+        var_s0->f18 = ((func_8036BBBC_StructCurBits *)D_8038CC64)->top;
         var_s0->e0 = 0;
         if (var_s0->f18 != 0) {
-            func_80368E58(arg0, arg1, D_8038CC64->unk4, ((func_8036BBBC_CurBits *)D_8038CC64)->top);
+            func_80368E58(arg0, arg1, D_8038CC64->unk4, ((func_8036BBBC_StructCurBits *)D_8038CC64)->top);
             return;
         }
         if (var_s0->f60 == 3) {
@@ -2303,14 +2434,42 @@ void func_8036BBBC(s32 arg0, s32 arg1) {
         } else {
             var_v1 = D_8038CC64->unk4;
         }
-        (*(func_8036BBBC_Mdl **)arg1)->unk2C->unk12 += var_v1;
-        (*(func_8036BBBC_Mdl **)arg1)->unk2C->unk12 &= 0x1FFF;
+        model = (func_8036BBBC_StructMdl **)arg1;
+        (*model)->unk2C->unk12 += var_v1;
+        (*model)->unk2C->unk12 &= 0x1FFF;
         if (sp4C->unk1C == (void *)0x01900110) {
             var_s0->f60 = var_s0->f60 ^ 1;
         }
         func_800058DC(arg0, func_8036265C);
     }
 }
+#undef HQ2
+#undef HQ
+#undef func_80011590
+#undef D_80011590
+#undef D_8038CC64
+#undef func_8013A334
+#undef func_801DB6B8
+#undef func_802254F8
+#undef func_802264D0
+#undef func_8036048C
+#undef func_8036265C
+#undef func_80364340
+#undef func_8036BBBC_Tgt
+#undef func_8036BBBC_Vec
+#undef func_8036BF18
+#undef func_803709D0
+#define D_801BBBF0 D_801BBBF0__func_8036BBBC
+#define D_8038CC64 D_8038CC64__func_8036BBBC
+#define func_8013A334 func_8013A334__func_8036BBBC
+#define func_801DB6B8 func_801DB6B8__func_8036BBBC
+#define func_802254F8 func_802254F8__func_8036BBBC
+#define func_802264D0 func_802264D0__func_8036BBBC
+#define func_8036048C func_8036048C__func_8036BBBC
+#define func_8036265C func_8036265C__func_8036BBBC
+#define func_80364340 func_80364340__func_8036BBBC
+#define func_8036BF18 func_8036BF18__func_8036BBBC
+#define func_803709D0 func_803709D0__func_8036BBBC
 #undef AnimL_72
 #undef AnimL_77
 #undef AnimL_562
@@ -3491,7 +3650,7 @@ void func_8036E204(s32 arg0, s32 arg1) {
             return;
         }
         sp30 = func_80225664(arg0, 0x019001C0);
-        *(f32 *)&sp30.w[2] = D_8038B138;
+        *(f32 *)&sp30.w[2] = (1.2f);
         if (func_80011140(arg1, sp44, sp30, 5) != 0) {
             func_800058DC(arg0, func_8036E39C);
         }
@@ -3684,6 +3843,8 @@ void func_8036E780(void *arg0, struct func_80369C7C_Obj2 **arg1) {
 /* hh-owned-pool func_8036B854 8038B0E8 8038B108 */
 
 
+
+
 static const unsigned char rodata_803698D0_8038AD70[] = {
     0xBF, 0xB2, 0xB5, 0xBB, 0xA5, 0xE2, 0xA1, 0xBC, 0xA5, 0xB7, 0xA5, 0xE7, 0xA5, 0xF3, 0x20, 0x25,
     0x64, 0x20, 0xA4, 0xAC, 0xB8, 0xAB, 0xA4, 0xC4, 0xA4, 0xAB, 0xA4, 0xEA, 0xA4, 0xDE, 0xA4, 0xBB,
@@ -3736,10 +3897,10 @@ static const unsigned char rodata_803698D0_8038AD70[] = {
     0x20, 0x20, 0x3D, 0x20, 0x25, 0x64, 0x0A, 0x00, 0xB5, 0xBB, 0x20, 0xB7, 0xAB, 0xA4, 0xEA, 0xCA,
     0xD6, 0xA4, 0xB7, 0xB2, 0xF3, 0xBF, 0xF4, 0x20, 0x25, 0x64, 0x0A, 0x00, 0xB2, 0xF3, 0xC8, 0xF2,
     0xCA, 0xFD, 0xB8, 0xFE, 0x20, 0x73, 0x65, 0x6C, 0x65, 0x63, 0x74, 0x5F, 0x6E, 0x6F, 0x20, 0x25,
-    0x64, 0x20, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xB1, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
-    0x40, 0xBE, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x40, 0x79, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
-    0x40, 0xAC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCD,
+    0x64, 0x20, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-placed-function func_80369DEC */
 /* hh-placed-function func_80369F54 */
 /* hh-placed-function func_8036A680 */
-/* hh-rodata-layout [976,[[0,0,976]]] */
+/* hh-placed-function func_8036E204 */
+/* hh-rodata-layout [976,[[0,920,48],[48,0,920],[968,968,8]]] */

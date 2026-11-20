@@ -514,6 +514,45 @@ def _annotate(seg, cfile, text):
     except KeyError: return None
 
 
+def literal_body_variant(seg, cfile, text, name, snippet):
+    """Keep the frozen declarations and private aliases for a literal-only edit."""
+    import literal_audit as literals
+    base = S.FILE_RODATA.get((seg, cfile))
+    recipe = 'matched/%s/%s.c' % (seg, name)
+    if base is None or not os.path.isfile(recipe):
+        return None
+    with open(recipe) as f:
+        old = f.read()
+    lines = text.splitlines(keepends=True)
+    start = end = None
+    depth, opened = 0, False
+    for i, line in enumerate(lines):
+        if start is None:
+            m = S.DEFN.match(line) or S.KR_DEFN.match(line)
+            if not m or m[1] != name:
+                continue
+            start = i
+        depth += line.count('{') - line.count('}')
+        opened |= '{' in line
+        if opened and depth == 0:
+            end = i + 1
+            break
+    if end is None:
+        return None
+    body = ''.join(lines[start:end])
+    lo = S.file_span(seg, cfile)[0] + base - int(cfile, 16)
+    ro = S.IMG[lo:lo + S.file_rodata_size(seg, cfile)]
+    values = literals.pool_values(old, base, ro)
+    values = {n: v for n, v in values.items() if not re.search(r'\b%s\b' % n, snippet)}
+    if not values or normalize(literals.literalise(old, values)) != snippet:
+        return None
+    updated = literals.literalise(body, values)
+    if updated == body:
+        return None
+    # Declarations (possibly privately aliased) do not allocate storage.
+    return ''.join(lines[:start]) + updated + ''.join(lines[end:])
+
+
 def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
     """Candidate texts with `snippet` in place of its asm entry: plain declarations, then private aliases, then the
     snippet's own file-scope declarations hoisted to the top of the file; each also with the file's clashing
@@ -521,6 +560,14 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
     lines0 = text.splitlines(); snippet = normalize(snippet)
     loc0 = locate(lines0, seg, cfile, name)
     if loc0 is None:
+        literal = literal_body_variant(seg, cfile, text, name, snippet)
+        if literal is not None:
+            import rodata_owned
+            placed = rodata_owned.place_frozen(S, seg, cfile, kept_blocks.data_only(S, literal), name)
+            if placed is not None:
+                annotated = _annotate(seg, cfile, placed)
+                if annotated is not None:
+                    yield 'placed-readonly-literal-body', annotated
         # Rechecking/replacing an existing C function must use its frozen neighbours too, not a registry re-render.
         for i, l in enumerate(lines0):
             m = S.DEFN.match(l) or S.KR_DEFN.match(l)

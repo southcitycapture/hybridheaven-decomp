@@ -44,16 +44,31 @@ extern f64 D_8018B3A0;
 extern u16 D_801BBC1C;
 
 
+#define D_801BBBF0 D_801BBBF0__func_80123360
+#define func_80123270_Struct func_80123270_Struct__func_80123360
+typedef struct func_80123270_Struct {
+    u8 pad0[0x32];
+    s16 unk32;
+    u8 pad1[0x198 - 0x34];
+    f32 unk198;
+    f32 unk19C;
+    f32 unk1A0;
+} func_80123270_Struct;
+extern func_80123270_Struct D_801BBBF0;
+
 void func_80123360(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 *arg6, f32 *arg7, f32 *arg8, f32 *arg9, f32 *arg10, f32 *arg11, s16 *arg12) {
-    f32 pad[3];
+    f64 midpoint_y;
+    f32 delta_x;
     f32 sp38;
     f32 sp34;
     s16 temp_t2;
 
-    sp38 = func_8002FC20(((arg3 - arg0) * (arg3 - arg0)) + ((arg5 - arg2) * (arg5 - arg2)));
-    temp_t2 = (s16)(func_8001EF38(arg5 - arg2, arg3 - arg0) + 0x600) & 0x1FFF;
+    delta_x = arg3 - arg0;
+    sp38 = func_8002FC20((delta_x * delta_x) + ((arg5 - arg2) * (arg5 - arg2)));
+    temp_t2 = (s16)(func_8001EF38(arg5 - arg2, delta_x) + 0x600) & 0x1FFF;
     *arg9 = (f32) ((f64) (arg0 + arg3) * 0.5);
-    *arg10 = (f32) ((f64) (arg1 + arg4) * 0.5 + 8.0);
+    midpoint_y = (f64) (arg1 + arg4) * 0.5;
+    *arg10 = (f32) (midpoint_y + 8.0);
     *arg11 = (f32) ((f64) (arg2 + arg5) * 0.5);
     *arg12 = temp_t2;
     if (sp38 > 20.0) {
@@ -66,13 +81,15 @@ void func_80123360(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f
         sp34 = 55.0f;
     }
     *arg6 = *arg9 - (func_8001EB64(*arg12) * sp34);
-    *arg7 = (f32) ((f64) (arg1 + arg4) * 0.5 + (35.0));
+    *arg7 = (f32) (midpoint_y + (35.0));
     *arg8 = *arg11 - (func_8001EAD0(*arg12) * sp34);
     if (func_801084C4(*arg9, *arg10, *arg11, *arg6, *arg7, *arg8) != 0) {
         *arg6 = *(f32 *)((u8 *)&D_801BBBF0 + 0x380);
         *arg8 = *(f32 *)((u8 *)&D_801BBBF0 + 0x388);
     }
 }
+#undef D_801BBBF0
+#undef func_80123270_Struct
 
 
 /* Original readonly objects; named loads retain their original addresses. */

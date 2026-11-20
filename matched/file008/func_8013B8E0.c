@@ -1,51 +1,12 @@
 #include "common.h"
 extern u16 D_8017D1D4[];
-typedef struct T_D_8017D244 { /* size >= 0x6 */
-    /* 0x000 */ u16 unk0; /* 1 use */
-    /* 0x002 */ u8 pad2[0x2];
-    /* 0x004 */ u16 unk4; /* 1 use */
-} T_D_8017D244;
-extern T_D_8017D244 D_8017D244;
 struct func_8013B19C_Struct {
     u8 pad[4];
     u16 unk4;
     u8 pad6[0x1A];
 };
 extern struct func_8013B19C_Struct D_8017D460[];
-extern u16 D_8017DBC0[];
 extern u8 D_801BBBF0[];
-typedef struct T_D_80162DD0 { /* size >= 0x14 */
-    /* 0x000 */ s32 unk0; /* 1 use */
-    /* 0x004 */ s32 unk4; /* 3 uses */
-    /* 0x008 */ s32 unk8; /* 1 use */
-    /* 0x00C */ s32 unkC; /* 3 uses */
-    /* 0x010 */ s32 unk10; /* 1 use */
-} T_D_80162DD0;
-extern T_D_80162DD0 D_801E1460;
-typedef struct T_D_8017D1D4 { /* size >= 0x6 */
-    /* 0x000 */ u16 unk0; /* 3 uses */
-    /* 0x002 */ u8 pad2[0x2];
-    /* 0x004 */ u16 unk4; /* 2 uses */
-} T_D_8017D1D4;
-typedef struct T_D_8017D460_elem_p14 { /* size >= 0x6 */
-    /* 0x000 */ u16 unk0; /* 1 use */
-    /* 0x002 */ u8 pad2[0x2];
-    /* 0x004 */ u16 unk4; /* 1 use */
-} T_D_8017D460_elem_p14;
-typedef struct T_D_8017D460_elem { /* size 0x20 */
-    /* 0x000 */ s32 unk0; /* 1 use */
-    /* 0x004 */ u16 unk4; /* 3 uses */
-    /* 0x006 */ u16 unk6; /* 1 use */
-    /* 0x008 */ s32 unk8; /* 1 use */
-    /* 0x00C */ s32 unkC; /* 1 use */
-    /* 0x010 */ u8 unk10; /* 1 use */
-    /* 0x011 */ u8 unk11; /* 1 use */
-    /* 0x012 */ u8 pad12[0x2];
-    /* 0x014 */ struct T_D_8017D460_elem_p14 *unk14; /* 1 use */
-    /* 0x018 */ s32 unk18; /* 1 use */
-    /* 0x01C */ u16 unk1C; /* 1 use */
-    /* 0x01E */ u8 pad1E[0x2];
-} T_D_8017D460_elem;
 typedef struct T_func_80107830_a0 { /* size >= 0xB4; compacted: the 1 of 53 fields this function uses (full type: include/types/main.h) */
     /* 0x000 */ u8 pad0[0x24];
     /* 0x024 */ struct T_func_801451C0_a0 *mid; /* 369 uses */
@@ -78,6 +39,7 @@ typedef struct T_D_801BBBF0 { /* size >= 0x1154; compacted: the 16 of 458 fields
     /* 0x1128 */ f32 unk1128; /* 3 uses */
     /* 0x112C */ u8 pad112C[0x28];
 } T_D_801BBBF0;
+#define G ((T_D_801BBBF0 *)D_801BBBF0)
 typedef struct T_func_8012CE9C_a1 { /* size >= 0xE0; compacted: the 5 of 64 fields this function uses (full type: include/types/main.h) */
     /* 0x000 */ u8 pad0[0xC];
     /* 0x00C */ u16 count; /* 91 uses */
@@ -144,6 +106,7 @@ typedef struct T_func_8012636C_a0 { /* size >= 0xB0 */
     /* 0x0A4 */ u8 padA4[0xB];
     /* 0x0AF */ u8 unkAF; /* 1 use */
 } T_func_8012636C_a0;
+extern s32 func_80005670(void *, void *);
 extern void func_80005700(s32);
 extern void func_800058DC(void *, void *);
 extern void func_8012D844(void *, u16, u16);
@@ -165,6 +128,20 @@ struct func_8013B83C_Outer {
     struct func_8013B83C_Mid *unkC;
 };
 void func_8013B83C(struct func_8013B83C_Outer *arg0, s32 arg1);
+typedef struct func_8013B8E0_StructT {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[0x58];
+    u16 unk6C;
+} func_8013B8E0_StructT;
+typedef struct func_8013B8E0_StructO {
+    u8 pad[0x2C];
+    func_8013B8E0_StructT *unk2C;
+} func_8013B8E0_StructO;
 struct func_8013C6FC_StructInner {
     u8 pad[0xC];
     u16 unkC;
@@ -179,57 +156,70 @@ void func_8013C6FC(struct func_8013C6FC_Struct *arg0, s32 arg1, u8 arg2);
 extern void func_8013C7F8(s32 arg0, s32 arg1, u8 arg2);
 
 
-typedef struct func_8013B8E0_StructT {
-    u8 pad0[4];
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    u8 pad10[2];
-    s16 unk12;
-    u8 pad14[0x58];
-    u16 unk6C;
-} func_8013B8E0_StructT;
+typedef struct func_8013B8E0_StructPair {
+    u16 unk0;
+    u8 pad2[2];
+    u16 unk4;
+} func_8013B8E0_StructPair;
 
-typedef struct func_8013B8E0_StructO {
-    u8 pad[0x2C];
-    func_8013B8E0_StructT *unk2C;
-} func_8013B8E0_StructO;
-extern s32 func_80005670(void *, void *);
+typedef struct func_8013B8E0_StructEntry {
+    s32 unk0;
+    u16 unk4;
+    u16 unk6;
+    s32 unk8;
+    s32 unkC;
+    u8 unk10;
+    u8 unk11;
+    u8 pad12[2];
+    func_8013B8E0_StructPair *unk14;
+    s32 unk18;
+    u16 unk1C;
+    u8 pad1E[2];
+} func_8013B8E0_StructEntry;
+
+typedef struct func_8013B8E0_StructSelection {
+    s32 index;
+    func_8013B8E0_StructEntry *setupEntry;
+} func_8013B8E0_StructSelection;
+
+extern func_8013B8E0_StructPair D_8017D244;
+extern u16 D_8017DBC0[];
+extern u8 D_801E1460[];
 extern void func_8012636C(void *, s32);
 extern void func_8012B1E4(void *, s32);
 extern void func_801394CC(void);
 extern void func_80139528(s32);
 extern s32 func_80139894(void *, void *, s32, u16);
 
-#define G ((T_D_801BBBF0 *)D_801BBBF0)
-
 void func_8013B8E0(T_func_8012636C_a0 *arg0, func_8013B8E0_StructO **arg1) {
-    s32 pad[2];
-    T_D_8017D460_elem *e;
-    s32 pad2;
+    func_8013B8E0_StructSelection selection;
+    func_8013B8E0_StructEntry *e;
+    s32 gameMode;
     u16 sp26;
-    s32 t;
-    s32 d;
+    s32 mode;
     u8 i;
     T_func_8012CE9C_a1 *obj;
     func_8013B8E0_StructT *v1;
-    T_D_8017D460_elem_p14 *p;
+    func_8013B8E0_StructPair *p;
 
     obj = arg0->obj;
     sp26 = arg0->unk70;
-    e = (T_D_8017D460_elem *)&D_8017D460[func_8013B19C(arg0->unk36)];
+    selection.index = func_8013B19C(arg0->unk36);
+    e = (func_8013B8E0_StructEntry *)&D_8017D460[selection.index];
     func_801394CC();
-    d = e->unk11;
-    if (d != 0) {
-        if (d != 1) {
-            if (d != 2) goto zero;
+    mode = e->unk11;
+    if (mode != 0) {
+        if (mode != 1) {
+            if (mode != 2) goto zero;
             func_80139528(0x13);
         }
         func_80139528(6);
+        selection.setupEntry = e;
     } else {
-zero:;
+zero:
+        selection.setupEntry = e;
     }
-    if (func_80139894(arg0, obj, e->unk18, sp26) != 0) {
+    if (func_80139894(arg0, obj, selection.setupEntry->unk18, sp26) != 0) {
         func_80005700((s32)arg0);
         return;
     }
@@ -265,7 +255,7 @@ zero:;
         obj->unkA0 = 1;
     }
     if (obj->unkE == 0x141 || obj->unkE == 0x142) {
-        func_8012D894(arg0, ((T_D_8017D1D4 *)D_8017D1D4)->unk0, ((T_D_8017D1D4 *)D_8017D1D4)->unk4);
+        func_8012D894(arg0, ((func_8013B8E0_StructPair *)D_8017D1D4)->unk0, ((func_8013B8E0_StructPair *)D_8017D1D4)->unk4);
         obj->unkA0 = 1;
     }
     if (obj->mode == 0 || obj->mode == 2) {
@@ -288,8 +278,9 @@ zero:;
     arg0->unk63 = 1;
     func_800058DC(arg0, arg0->unk64);
     arg0->unk64 = 0;
-    if (G->unk2C == 4 || G->unk2C == 10 || G->unk2C == 11 || G->unk2C == 15 || G->unk2C == 5) {
-        arg0->unk64 = (void *)func_80005670(arg0, &D_801E1460);
+    gameMode = G->unk2C;
+    if (gameMode == 4 || gameMode == 10 || gameMode == 11 || gameMode == 15 || gameMode == 5) {
+        arg0->unk64 = (void *)func_80005670(arg0, D_801E1460);
     }
     func_8013C7F8((s32)arg0, (s32)arg1, 0);
     func_8013C6FC((void *)arg0, (s32)arg1, 1);

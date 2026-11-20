@@ -31,7 +31,6 @@ typedef struct func_8011A878_Struct {
 } func_8011A878_Struct;
 
 extern f32 func_8002FC20(f32);
-extern f64 D_80189E90;
 #define s ((func_8011A878_Struct *)&D_801BBBF0)
 
 void func_8011A878(f32 arg0, f32 arg1)
@@ -47,7 +46,7 @@ void func_8011A878(f32 arg0, f32 arg1)
   {
     p = ((func_8011A878_Struct *) (&D_801BBBF0))->unkE0->unk2C;
     sp24 = func_8002FC20(((p->unk4 - arg0) * (p->unk4 - arg0)) + ((p->unkC - arg1) * (p->unkC - arg1)));
-    if ((((f64) func_8002FC20((f32) ((((func_8011A878_Struct *) (&D_801BBBF0))->unkA2 * ((func_8011A878_Struct *) (&D_801BBBF0))->unkA2) + (((func_8011A878_Struct *) (&D_801BBBF0))->unkA4 * ((func_8011A878_Struct *) (&D_801BBBF0))->unkA4)))) < 40.0) || (((f64) sp24) < D_80189E90))
+    if ((((f64) func_8002FC20((f32) ((((func_8011A878_Struct *) (&D_801BBBF0))->unkA2 * ((func_8011A878_Struct *) (&D_801BBBF0))->unkA2) + (((func_8011A878_Struct *) (&D_801BBBF0))->unkA4 * ((func_8011A878_Struct *) (&D_801BBBF0))->unkA4)))) < 40.0) || (((f64) sp24) < (0.2)))
     {
       p = ((func_8011A878_Struct *) (&D_801BBBF0))->unkE8->unk2C;
       ((func_8011A878_Struct *) (&D_801BBBF0))->unk232 = func_8001EF38(p->unk44 - p->unk38, p->unk3C - p->unk30);

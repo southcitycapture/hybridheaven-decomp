@@ -1,4 +1,12 @@
-#include "context.h"
+#include "common.h"
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
+
 
 struct func_80025460_Struct {
     u8 pad0[0x18];
@@ -15,23 +23,17 @@ struct func_80025460_Struct {
 /* GGA: sndCmdPortamentoCalc */
 void func_80025460(void)
 {
-  struct func_80025460_Struct *p;
-  s32 divisor;
-  s32 temp_a0;
-  s32 temp_a1;
-  p = (struct func_80025460_Struct *) D_800CBDA4;
-  divisor = (s32) (((((u32) (((struct func_80025460_Struct *) D_800CBDA4)->unk7D << 0x10)) / ((struct func_80025460_Struct *) D_800CBDA4)->unk18) + 1) & 0xFFFF);
-  temp_a0 = ((struct func_80025460_Struct *) D_800CBDA4)->unk80 - ((struct func_80025460_Struct *) D_800CBDA4)->unk28;
-  ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = temp_a0 / divisor;
-  p = (struct func_80025460_Struct *) D_800CBDA4;
-  ;
-  if (((struct func_80025460_Struct *) D_800CBDA4)->unk84 == 0)
-  {
-    if (temp_a0 < 0)
-    {
-      ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 - 1;
-      return;
+    s32 divisor;
+    s32 temp_a0;
+
+    divisor = (s32) (((((u32) (((struct func_80025460_Struct *) D_800CBDA4)->unk7D << 0x10)) / ((struct func_80025460_Struct *) D_800CBDA4)->unk18) + 1) & 0xFFFF);
+    temp_a0 = ((struct func_80025460_Struct *) D_800CBDA4)->unk80 - ((struct func_80025460_Struct *) D_800CBDA4)->unk28;
+    ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = temp_a0 / divisor;
+    if (((struct func_80025460_Struct *) D_800CBDA4)->unk84 == 0) {
+        if (temp_a0 < 0) {
+            ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 - 1;
+            return;
+        }
+        ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 + 1;
     }
-    ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 + 1;
-  }
 }

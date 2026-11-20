@@ -137,14 +137,12 @@ extern void func_80241D7C();
 extern void func_80241E64(void);
 
 #undef extern
-
-extern f64 D_80249AA0;
 extern void D_80020744(s32, void *, s32);
 
 void func_80240DF4(struct func_80240D94_Self *arg0, struct func_80240D94_Outer **arg1, s32 arg2) {
     s32 temp_v1;
 
-    (*arg1)->unk30->unk8 -= D_80249AA0;
+    (*arg1)->unk30->unk8 -= (0.2);
     temp_v1 = arg0->unk90;
     arg0->unk90 = temp_v1 - 1;
     if (temp_v1 == 0) {

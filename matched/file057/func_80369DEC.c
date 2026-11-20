@@ -12,12 +12,6 @@ typedef struct { int id; unsigned short frame; unsigned char pad6[2]; float spee
 #define func_80369DEC func_80369DEC_ctx
 #include "context.h"
 #undef func_80369DEC
-
-extern f64 D_8038B0A8;
-extern f64 D_8038B0B0;
-extern f64 D_8038B0B8;
-extern f64 D_8038B0C0;
-
 s32 func_80369DEC(struct func_80369C7C_Obj1 *arg0, s16 arg1) {
     u8 *p;
     s16 off;
@@ -34,7 +28,7 @@ s32 func_80369DEC(struct func_80369C7C_Obj1 *arg0, s16 arg1) {
         return func_80369CF4(arg0, arg1);
     }
     d = (f64)(s16)((s16)(x - arg1) & 0x1FFF);
-    if ((D_8038B0A8 < d) & (d < D_8038B0B0)) return 1;
-    if ((D_8038B0B8 < d) & (d < D_8038B0C0)) return 0;
+    if (((4505.6) < d) & (d < (7782.4))) return 1;
+    if (((409.6) < d) & (d < (3686.4))) return 0;
     return 2;
 }

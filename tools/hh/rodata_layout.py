@@ -34,6 +34,7 @@ def mapping(raw, size, spans):
 FROZEN_BLOB = re.compile(r'^static const unsigned char (rodata_([0-9A-F]+)(?:_([0-9A-F]{8}))?)\[\] = \{([^}]+)\};', re.M)
 HH_BLOCK = re.compile(r'^/\* hh-block (\S+) (\{.*\}) \*/$', re.M)
 PRAGMA = re.compile(r'^#pragma GLOBAL_ASM\("asm/nonmatchings/([^/"]+)/([0-9A-F]+)/[^"]*"\)', re.M)
+UNIT = re.compile(r'^/\* hh-layout-unit (\w+)/([0-9A-F]{8}) \*/\n?', re.M)
 
 
 def frozen_units(text, base, symbols, ro_index):
@@ -149,18 +150,30 @@ def check_plan(text, raw, size, spans, base, symbols, ro_index, refs, runs, alig
     return spans
 
 
-def plan_base(text):
+def plan_base(text, source=None):
     m = PRAGMA.search(text)
     if m is None:
-        raise ValueError('cannot tell the unit of a readonly layout plan')
+        units = UNIT.findall(text)
+        blobs = FROZEN_BLOB.findall(text)
+        if len(units) != 1 or not blobs or any(b[1] != units[0][1] for b in blobs):
+            raise ValueError('cannot tell the unit of a readonly layout plan')
+        unit = units[0]
+    else:
+        unit = m.groups()
+        if any(u != unit for u in UNIT.findall(text)):
+            raise ValueError('readonly layout unit disagrees with GLOBAL_ASM')
+    if source is not None:
+        source = Path(source)
+        if (source.parent.name, source.stem) != unit:
+            raise ValueError('readonly layout unit disagrees with the source path')
     import srcbuild
-    base = srcbuild.FILE_RODATA.get((m[1], m[2]))
+    base = srcbuild.FILE_RODATA.get(unit)
     if base is None:
-        raise ValueError('no readonly base for %s/%s' % (m[1], m[2]))
+        raise ValueError('no readonly base for %s/%s' % unit)
     return base
 
 
-def apply(text, obj, _unchecked=False):
+def apply(text, obj, _unchecked=False, *, source=None):
     plans = LAYOUT.findall(text)
     if not plans:
         return
@@ -180,7 +193,7 @@ def apply(text, obj, _unchecked=False):
     symbols = elf.symbol_entries
     if not _unchecked:      # _unchecked: synthetic unit tests only; every build path runs the guardrails
         refs, runs = readonly_refs(elf, ro, symbols, SHT_REL)
-        check_plan(text, ro.data, size, spans, plan_base(text), symbols, ro.index, refs, runs, max(16, ro.sh_addralign))
+        check_plan(text, ro.data, size, spans, plan_base(text, source), symbols, ro.index, refs, runs, max(16, ro.sh_addralign))
     placed, offsets = mapping(ro.data, size, spans)
 
     def unit_move(old):
@@ -261,7 +274,7 @@ def audit(paths):
             if r.returncode:
                 print('FAIL %s: compile' % p); bad += 1; continue
             try:
-                apply(text, o); print('ok   %s' % p)
+                apply(text, o, source=p); print('ok   %s' % p)
             except ValueError as e:
                 print('FAIL %s: %s' % (p, e)); bad += 1
     return bad
@@ -271,4 +284,4 @@ if __name__ == '__main__':
     if sys.argv[1] == '--audit':
         import glob
         sys.exit(1 if audit(sorted(glob.glob('src/*/*.c'))) else 0)
-    apply(Path(sys.argv[1]).read_text(), sys.argv[2])
+    apply(Path(sys.argv[1]).read_text(), sys.argv[2], source=sys.argv[1])

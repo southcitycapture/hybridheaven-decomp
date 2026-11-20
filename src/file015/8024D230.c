@@ -110,6 +110,7 @@ void func_8024D384(s32 arg0, s32 arg1) {
 }
 #undef func_8024D424
 
+/* hh-block asm/nonmatchings/file015/8024D230/_ro_func_8024D424.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024D230/func_8024D424.s","D_80259850"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/8024D230/_ro_func_8024D424.s")
 
 #define func_801C2F0C func_801C2F0C__func_8024D424
@@ -205,6 +206,7 @@ void func_8024D564(void *arg0, void *arg1) {
 }
 #undef func_8024D5DC
 
+/* hh-block asm/nonmatchings/file015/8024D230/_ro_func_8024D5DC.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024D230/func_8024D5DC.s","D_80259890"],[".rodata","asm/nonmatchings/file015/8024D230/func_8024D5DC.s","D_802598D0"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/8024D230/_ro_func_8024D5DC.s")
 
 #define func_8024D2A4_Sub func_8024D2A4_Sub__func_8024D5DC
@@ -371,7 +373,129 @@ void func_8024DA8C(struct func_8024DA8C_Struct *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file015/8024D230/func_8024DB10.s")
+#undef G
+/* hh-block asm/nonmatchings/file015/8024D230/_ro_named_func_8024DB10.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024D230/func_8024DB10.s","D_80259928"]]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file015/8024D230/_ro_named_func_8024DB10.s")
+
+#define D_801BBBF0 D_801BBBF0__func_8024DB10
+#define D_80254220 D_80254220__func_8024DB10
+#define D_8025422C D_8025422C__func_8024DB10
+#define D_80254238 D_80254238__func_8024DB10
+#define D_802542F0 D_802542F0__func_8024DB10
+#define D_8025438C D_8025438C__func_8024DB10
+#define D_80254470 D_80254470__func_8024DB10
+#define D_802544D4 D_802544D4__func_8024DB10
+#define D_802545D4 D_802545D4__func_8024DB10
+#define D_80259928 D_80259928__func_8024DB10
+#define func_80017990 func_80017990__func_8024DB10
+#define func_80151790 func_80151790__func_8024DB10
+#define func_8024D2A4_Sub func_8024D2A4_Sub__func_8024DB10
+#define func_8024D2A4_Top func_8024D2A4_Top__func_8024DB10
+#define func_8024D5DC_Struct_G func_8024D5DC_Struct_G__func_8024DB10
+#define func_8024D5DC_Struct_P func_8024D5DC_Struct_P__func_8024DB10
+#define func_8024D5DC_Struct_T func_8024D5DC_Struct_T__func_8024DB10
+#define func_8024DFA4 func_8024DFA4__func_8024DB10
+#define G (*(struct func_8024D5DC_Struct_G *)&D_801BBBF0)
+extern u8 D_8025422C[];
+extern u8 D_802545D4[];
+struct func_8024D2A4_Sub {
+    u8 pad[0x40];
+    f32 unk40;
+    u8 pad2[4];
+    f32 unk48;
+};
+struct func_8024D2A4_Top {
+    u8 pad[0xDC];
+    struct func_8024D2A4_Sub *unkDC;
+};
+extern struct func_8024D2A4_Top D_801BBBF0;
+struct func_8024D5DC_Struct_T { u8 pad[4]; f32 unk4; f32 unk8; f32 unkC; };
+struct func_8024D5DC_Struct_P { u8 pad[0x2C]; struct func_8024D5DC_Struct_T *unk2C; };
+struct func_8024D5DC_Struct_G {
+    u8 pad[0xE0];
+    struct func_8024D5DC_Struct_P *unkE0;
+    u8 pad2[0x104];
+    f32 unk1E8, unk1EC, unk1F0, unk1F4, unk1F8, unk1FC;
+};
+#define G (*(struct func_8024D5DC_Struct_G *)&D_801BBBF0)
+extern s32 func_80151790(s32);
+extern void func_8024DFA4();
+
+
+typedef struct func_8024DB10_Struct {
+    u8 pad[0x90];
+    u16 unk90;
+} func_8024DB10_Struct;
+extern void func_80017990(void *);
+extern u8 D_80254220[];
+extern u8 D_80254238[];
+extern u8 D_802542F0[];
+extern u8 D_8025438C[];
+extern u8 D_80254470[];
+extern u8 D_802544D4[];
+extern u8 D_80259928[];
+
+void func_8024DB10(func_8024DB10_Struct *arg0, s32 arg1) {
+    if (func_80151790(D_8025A2E4) == 0 && func_800178E8() != 0) {
+        switch (arg0->unk90++) {
+        case 0:
+            func_8015115C(D_8025A2E4, D_80254214);
+            func_800179B0(D_802542F0);
+            return;
+        case 1:
+            func_8015115C(D_8025A2E4, D_8025422C);
+            func_80017990(D_8025438C);
+            return;
+        case 2:
+            func_8015115C(D_8025A2E4, D_80254220);
+            func_80017990(D_80254470);
+            return;
+        case 3:
+            func_8015115C(D_8025A2E4, D_80254238);
+            func_80017990(D_802544D4);
+            return;
+        case 4:
+            G.unk1E8 = 593.6f;
+            G.unk1EC = -120.0f;
+            G.unk1F0 = 71.0f;
+            G.unk1F4 = 584.1f;
+            G.unk1F8 = -120.4f;
+            G.unk1FC = 106.8f;
+            func_8011AAF4(D_80259928, 0x205, arg0, 0, 1, 0.0f,
+                         G.unk1E8, G.unk1EC, G.unk1F0, 0.0f,
+                         G.unk1F4, G.unk1F8, G.unk1FC, 0.0f,
+                         35.0f, -1, -1);
+            func_800179B0(D_802545D4);
+            func_8015115C(D_8025A2E4, D_8025422C);
+            arg0->unk90 = 0;
+            func_800058DC(arg0, func_8024DFA4);
+            break;
+        }
+    }
+}
+#undef G
+#undef D_801BBBF0
+#undef D_80254220
+#undef D_8025422C
+#undef D_80254238
+#undef D_802542F0
+#undef D_8025438C
+#undef D_80254470
+#undef D_802544D4
+#undef D_802545D4
+#undef D_80259928
+#undef func_80017990
+#undef func_80151790
+#undef func_8024D2A4_Sub
+#undef func_8024D2A4_Top
+#undef func_8024D5DC_Struct_G
+#undef func_8024D5DC_Struct_P
+#undef func_8024D5DC_Struct_T
+#undef func_8024DFA4
+#define G (*(struct func_8024D5DC_Struct_G *)&D_801BBBF0)
+
+void func_8024DD1C(void) {
+}
 
 #define func_8024DDA0 func_8024DDA0__func_8024DD24
 
@@ -404,6 +528,7 @@ void func_8024DD24(func_8024DD24_Struct *arg0, s32 arg1)
 }
 #undef func_8024DDA0
 
+/* hh-block asm/nonmatchings/file015/8024D230/_ro_func_8024DDA0.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024D230/func_8024DDA0.s","D_802599A8"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/8024D230/_ro_func_8024DDA0.s")
 
 #define func_8024DF34 func_8024DF34__func_8024DDA0
@@ -470,6 +595,7 @@ void func_8024DF34(struct func_8024DF34_Struct *arg0, s32 arg1) {
 }
 #undef func_8024DFA4
 
+/* hh-block asm/nonmatchings/file015/8024D230/_ro_func_8024DFA4.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file015/8024D230/func_8024DFA4.s","D_802599E8"],[".rodata","asm/nonmatchings/file015/8024D230/func_8024DFA4.s","D_80259A28"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file015/8024D230/_ro_func_8024DFA4.s")
 
 #define func_8024D2A4_Sub func_8024D2A4_Sub__func_8024DFA4

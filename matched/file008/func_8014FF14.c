@@ -5,9 +5,6 @@ float func_8001EB64(short);
 #include "context.h"
 
 extern u8 D_801904E8[];
-extern f64 D_801906D0;
-extern f64 D_801906D8;
-extern f64 D_801906E0;
 extern void func_80005700(s32);
 extern void func_8011AAF4(u8 *, s32, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 
@@ -44,9 +41,9 @@ void func_8014FF14(s32 arg0, s32 arg1) {
     x = S->unk1E8;
     a = S->unk1EC;
     b = S->unk1F0;
-    S->unk1E8 = x + (S->unk334 - x) * D_801906D0;
-    S->unk1EC = a + (S->unk338 - a) * D_801906D8;
-    S->unk1F0 = b + (S->unk33C - b) * D_801906E0;
+    S->unk1E8 = x + (S->unk334 - x) * (0.3);
+    S->unk1EC = a + (S->unk338 - a) * (0.4);
+    S->unk1F0 = b + (S->unk33C - b) * (0.3);
     S->unk1F4 = S->unk1F4 + (S->unk340 - S->unk1F4) * 0.5;
     S->unk1F8 = S->unk1F8 + (S->unk344 - S->unk1F8) * 0.5;
     c = S->unk1FC;

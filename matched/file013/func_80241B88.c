@@ -40,20 +40,16 @@ typedef struct func_80241B88_Struct_Self {
 
 extern func_80241B88_Struct_G *D_801BBCD0;
 extern u8 D_80249A54[];
-extern f32 D_80249AE0;
-extern f32 D_80249AE4;
-extern f32 D_80249AE8;
-
 void func_80241B88(func_80241B88_Struct_Self *arg0, func_80241B88_Struct_A *arg1) {
     f32 dx;
     f32 dz;
     func_80241B88_Struct_Pos *pos;
 
     pos = D_801BBCD0->unk2C;
-    dx = D_80249AE0 - pos->unk4;
+    dx = (677.0f) - pos->unk4;
     dz = 332.0f - pos->unkC;
     if (!((dx * dx) + (dz * dz) > 100.0f)) {
-        if (func_8011AAF4(D_80249A54, 0x246, (s32)arg0, 0, 1, 0.0f, D_80249AE4, 25.0f, 294.0f, 0.0f, 672.0f, 22.0f, D_80249AE8, 0.0f, 35.0f, -1, -1) == 0) {
+        if (func_8011AAF4(D_80249A54, 0x246, (s32)arg0, 0, 1, 0.0f, (681.0f), 25.0f, 294.0f, 0.0f, 672.0f, 22.0f, (363.0f), 0.0f, 35.0f, -1, -1) == 0) {
             arg0->unk94 = 0x12;
             arg1->unk8->unk30->unk12 = 0x1000;
             func_80020744(0x1BD);

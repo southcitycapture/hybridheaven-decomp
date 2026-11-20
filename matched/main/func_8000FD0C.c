@@ -1,12 +1,17 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_8000FCD0_Struct {
+    s32 x;
+    s32 y;
+    s32 z;
+} func_8000FCD0_Struct;
+void func_8000FCD0(u16 *arg0, func_8000FCD0_Struct *arg1, func_8000FCD0_Struct *arg2);
 
 extern void func_800279F0(void *, s32);
 extern u16 func_8000FC60(func_8000FCD0_Struct *, u16, void *);
 
 u16 func_8000FD0C(u32 **arg0, u16 arg1, void *arg2, u16 *arg3, u32 arg4) {
-    u8 pad[4];
-    u16 sp5A;
     func_8000FCD0_Struct *p;
+    u16 sp5A;
     s32 i;
     s32 j;
     u32 m;

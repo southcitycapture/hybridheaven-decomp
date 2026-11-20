@@ -25,8 +25,6 @@ typedef struct func_8014F358_Struct_Arg {
 } func_8014F358_Struct_Arg;
 
 extern void func_801C3C3C(s32);
-extern f32 D_80190680;
-
 s32 func_8014F358(f32 arg0, f32 arg1) {
     func_8014F358_Struct_Arg s;
 
@@ -36,7 +34,7 @@ s32 func_8014F358(f32 arg0, f32 arg1) {
     s.unk10 = 0x0168003F;
     s.unk18 = 0;
     s.unk1A = 0x3C;
-    s.z = D_80190680;
+    s.z = (0.6f);
     s.unk14 = 1.0f;
     if (D_801C2F0C(2, &s) != 0) {
         func_801C3C3C(0);

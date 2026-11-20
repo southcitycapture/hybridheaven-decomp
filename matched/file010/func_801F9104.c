@@ -11,8 +11,6 @@ typedef struct func_801F9104_StructPos {
     f32 unk8;
     f32 unkC;
 } func_801F9104_StructPos;
-
-extern f32 D_80218D18;
 extern s32 D_8012A94C(void *, s32);
 extern void func_8013A334(f32 *, s32, void *, s32);
 void func_800058DC(void *, s32);
@@ -28,7 +26,7 @@ void func_801F9104(func_801F9104_StructObj *arg0, s32 arg1) {
     t = arg0->unk5C;
     func_8013A334(vec, arg1, t, 6);
     arg1 = D_8012A94C(arg0, 0x100);
-    if (D_801F3C90(arg0, 1.0f, D_80218D18, POS->unk4, POS->unk8 + 25.0f, POS->unkC, D_80218D18, vec[0], vec[1], vec[2], D_80218D18, 35.0f) != 0) {
+    if (D_801F3C90(arg0, 1.0f, (0.15f), POS->unk4, POS->unk8 + 25.0f, POS->unkC, (0.15f), vec[0], vec[1], vec[2], (0.15f), 35.0f) != 0) {
         func_800058DC(arg0, (s32)func_801F91C0);
     }
 }

@@ -146,8 +146,11 @@ struct func_8013BCD8_Obj {
 void func_8013BCD8(struct func_8013BCD8_Obj *arg0, s32 arg1);
 
 
-typedef struct func_8013B268_Vec { s32 x, y, z; } func_8013B268_Vec;
-typedef struct func_8013B268_Entry {
+typedef struct func_8013B268_StructVec {
+    s32 x, y, z;
+} func_8013B268_Vec;
+
+typedef struct func_8013B268_StructEntry {
     s32 unk0;
     u16 unk4, unk6;
     s32 unk8, unkC;
@@ -158,7 +161,8 @@ typedef struct func_8013B268_Entry {
     u16 unk1C;
     u8 pad1E[2];
 } func_8013B268_Entry;
-typedef struct func_8013B268_Data {
+
+typedef struct func_8013B268_StructData {
     u8 pad0[4];
     s32 unk4;
     u8 pad8[4];
@@ -174,7 +178,8 @@ typedef struct func_8013B268_Data {
     u16 unk9E, unkA0;
     u8 padA2[0x3E];
 } func_8013B268_Data;
-typedef struct func_8013B268_Obj {
+
+typedef struct func_8013B268_StructObj {
     u8 pad0[0x2C];
     s32 unk2C;
     u8 pad30[6];
@@ -206,12 +211,12 @@ func_8013B268_Obj *func_8013B268(func_8013B268_Obj *arg0, u16 arg1, u8 arg2, u8 
     func_8013B268_Data *data;
     func_8013B268_Obj *obj;
     u8 source, index;
+    s16 missing = 0xFF;
 #define entry ((func_8013B268_Entry *)&D_8017D460[source])
 
     index = func_8013B158();
-    temp = func_8013B19C(arg1);
-    source = temp;
-    if (index == 0xFF || temp * 1 == 0xFF) return NULL;
+    source = temp = func_8013B19C(arg1);
+    if (index == missing || missing == temp) return NULL;
     if ((arg2 & 0xF) == 2 || (arg2 & 0xF) == 0) {
         obj = arg0;
         func_800058DC(obj, func_8013B8E0);
@@ -282,3 +287,4 @@ func_8013B268_Obj *func_8013B268(func_8013B268_Obj *arg0, u16 arg1, u8 arg2, u8 
     }
     return obj;
 }
+#undef entry

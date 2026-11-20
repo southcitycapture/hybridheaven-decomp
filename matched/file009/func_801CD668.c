@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+u8 func_801CD500(u8 arg0, u8 arg1, f32 arg2);
+
 
 typedef struct func_801CD668_StructIn {
     u8 pad0[0x78];
@@ -18,32 +20,34 @@ typedef struct func_801CD668_StructEntry {
     func_801CD668_StructOut *unk30;
 } func_801CD668_StructEntry;
 
-void func_801CD668(func_801CD668_StructIn *arg0, func_801CD668_StructEntry **arg1, s32 arg2) {
-    u8 pad[8];
-    u8 sp27;
-    u8 sp26;
-    u8 sp25;
-    s32 var_a0;
-    u8 temp_v0;
-    func_801CD668_StructEntry **var_a1;
-    func_801CD668_StructEntry *temp_t7;
+typedef struct func_801CD668_StructIterator {
+    u8 alpha;
+    u8 blue;
+    u8 green;
+    u8 red;
+    s32 index;
+    func_801CD668_StructEntry **entry;
+} func_801CD668_StructIterator;
+
+void func_801CD668(void *input, void **entries, f32 arg2) {
+    func_801CD668_StructIterator iter;
     func_801CD668_StructOut *temp_v1;
 
-    sp27 = func_801CD500(arg0->unk78, arg0->unk7C, arg2);
-    sp26 = func_801CD500(arg0->unk79, arg0->unk7D, arg2);
-    sp25 = func_801CD500(arg0->unk7A, arg0->unk7E, arg2);
-    temp_v0 = func_801CD500(arg0->unk7B, arg0->unk7F, arg2);
-    var_a0 = 0;
-    if ((s32)arg0->unk94 > 0) {
-        var_a1 = arg1;
+    iter.red = func_801CD500(((func_801CD668_StructIn *)input)->unk78, ((func_801CD668_StructIn *)input)->unk7C, arg2);
+    iter.green = func_801CD500(((func_801CD668_StructIn *)input)->unk79, ((func_801CD668_StructIn *)input)->unk7D, arg2);
+    iter.blue = func_801CD500(((func_801CD668_StructIn *)input)->unk7A, ((func_801CD668_StructIn *)input)->unk7E, arg2);
+    iter.alpha = func_801CD500(((func_801CD668_StructIn *)input)->unk7B, ((func_801CD668_StructIn *)input)->unk7F, arg2);
+    iter.index = 0;
+    if ((s32)((func_801CD668_StructIn *)input)->unk94 > 0) {
+        iter.entry = (func_801CD668_StructEntry **)entries;
         do {
-            temp_v1 = (*var_a1)->unk30;
-            var_a0 += 1;
-            var_a1 += 1;
-            temp_v1->unk48 = sp27;
-            temp_v1->unk49 = sp26;
-            temp_v1->unk4A = sp25;
-            temp_v1->unk4B = temp_v0;
-        } while (var_a0 < (s32)arg0->unk94);
+            temp_v1 = (*iter.entry)->unk30;
+            iter.index += 1;
+            iter.entry += 1;
+            temp_v1->unk48 = iter.red;
+            temp_v1->unk49 = iter.green;
+            temp_v1->unk4A = iter.blue;
+            temp_v1->unk4B = iter.alpha;
+        } while (iter.index < (s32)((func_801CD668_StructIn *)input)->unk94);
     }
 }

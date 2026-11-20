@@ -1,6 +1,6 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/80246A30/D_8024F110.s")
+
 
 #define func_80246A84 func_80246A84__func_80246A30
 
@@ -216,8 +216,21 @@ void func_80246E00(struct func_80246E00_Struct *arg0, s32 arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file016/80246A30/_mrg_keep_2e475daa98aee1ca.s {"functions":["func_80246ED4"],"rodata":[[".late_rodata","asm/nonmatchings/file016/80246A30/func_802470A0.s","D_8024F138"]]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/80246A30/_mrg_keep_2e475daa98aee1ca.s")
+
+#define func_80246C90 func_80246C90__func_80246ED4
+extern void func_80246C90(s32 arg0, s32 arg1);
+
+
+void func_80246ED4(s32 arg0, s32 arg1) {
+    if (func_801C3D20(18.0f, -18.0f, 15.0f) != 0) {
+        return;
+    }
+    func_800058DC(arg0, func_80246C90);
+}
+#undef func_80246C90
+
+void func_80246F20(void) {
+}
 
 #define func_802470A0 func_802470A0__func_80246F28
 
@@ -334,7 +347,7 @@ void func_802470A0(struct func_802470A0_SO *arg0, struct func_802470A0_SA *arg1)
     if (func_80133A24(0xBF)) {
         sp2C = -sp2C;
     }
-    arg0->unk90 = arg0->unk90 - sp2C * D_8024F138;
+    arg0->unk90 = arg0->unk90 - sp2C * (5.12);
     arg1->unk0->unk30->unk4D = (s32)arg0->unk90 % 256;
 }
 #undef D_801BBCD8
@@ -383,3 +396,13 @@ s32 func_80247294(struct func_80247294_StructA *arg0, struct func_80247294_Struc
     return 1;
 }
 
+/* Readonly constants retained after the last ASM donor became C. */
+
+static const unsigned char rodata_80246A30[] = {
+    0xA5, 0xD9, 0xA5, 0xEB, 0xA5, 0xC8, 0xA5, 0xB3, 0xA5, 0xF3, 0xA5, 0xD9, 0xA5, 0xA2, 0xA1, 0xBC,
+    0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0x0A, 0x00,
+};
+/* hh-owned-pool func_80246A30 8024F128 8024F12C */
+/* hh-owned-pool func_80246A84 8024F12C 8024F130 */
+/* hh-owned-pool func_80246ADC 8024F130 8024F134 */
+/* hh-owned-pool func_802470A0 8024F138 8024F140 */

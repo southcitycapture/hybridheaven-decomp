@@ -1892,5 +1892,8 @@ void func_80380E10(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_80380E4C.s")
 
+void func_80380E80(void) {
+}
+
 
 #undef func_8037FED4

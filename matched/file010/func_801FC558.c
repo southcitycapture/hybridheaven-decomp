@@ -19,9 +19,6 @@ void func_8002096C(u16, s32, s16);
 
 extern f32 func_8001EB64(s16);
 extern f32 func_8002FC20(f32);
-extern f32 D_80218F5C;
-extern f32 D_80218F60;
-
 void func_801FC558(s32 arg0) {
     s32 sp34;
     u8 pad[20];
@@ -29,8 +26,8 @@ void func_801FC558(s32 arg0) {
     f32 a;
     f32 b;
 
-    sp34 = ((s16)(func_8001EF38(D_801BBCD8->unk2C->unk30 - D_80218F5C, D_801BBCD8->unk2C->unk38 - -328.0f) + 0x270)) & 0x1FFF;
-    a = D_80218F60 - D_801BBCD8->unk2C->unk30;
+    sp34 = ((s16)(func_8001EF38(D_801BBCD8->unk2C->unk30 - (-5.9e+02f), D_801BBCD8->unk2C->unk38 - -328.0f) + 0x270)) & 0x1FFF;
+    a = (-5.9e+02f) - D_801BBCD8->unk2C->unk30;
     b = -328.0f - D_801BBCD8->unk2C->unk38;
     sp1C = func_8002FC20(a * a + b * b);
     func_8002096C(0x1F9, 1, (s16)(s32)(((func_8001EAD0((s16)sp34) * sp1C) / 268.0f) * -64.0f));

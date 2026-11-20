@@ -1226,8 +1226,34 @@ void func_801496E4(s32 arg0, s32 arg1) {
     func_801493A0();
 }
 
-/* hh-block asm/nonmatchings/file008/80147D60/_mrg_keep_text_func_80149708.s {"functions":["func_80149708"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80147D60/_mrg_keep_text_func_80149708.s")
+#define D_801492C8 D_801492C8__func_80149708
+#define func_80005700 func_80005700__func_80149708
+extern void func_80005700(s32);
+
+
+typedef struct func_80149708_Struct {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad1[0x90 - 0x3E];
+    u8 unk90;
+} func_80149708_Struct;
+
+extern s32 D_801492C8(u8, void *);
+
+void func_80149708(func_80149708_Struct *arg0, s32 arg1) {
+    do {
+        if (--arg0->unk3C != 0) {
+            break;
+        }
+        func_80126E88(D_801492C8(arg0->unk90, arg0) & 0xFFFF);
+        func_80005700((s32)arg0);
+    } while (0);
+}
+#undef D_801492C8
+#undef func_80005700
+
+void func_8014975C(void) {
+}
 
 
 struct func_80149764_Struct {

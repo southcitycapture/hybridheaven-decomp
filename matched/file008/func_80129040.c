@@ -21,22 +21,6 @@ typedef struct func_80129040_StructA {
     u8 pad98[4];
     f32 unk9C;
 } func_80129040_StructA;
-
-extern f64 D_8018CD48;
-extern f64 D_8018CD50;
-extern f64 D_8018CD58;
-extern f64 D_8018CD60;
-extern f64 D_8018CD68;
-extern f64 D_8018CD70;
-extern f64 D_8018CD78;
-extern f64 D_8018CD80;
-extern f64 D_8018CD88;
-extern f64 D_8018CD90;
-extern f64 D_8018CD98;
-extern f64 D_8018CDA0;
-extern f64 D_8018CDA8;
-extern f64 D_8018CDB0;
-
 void func_80129040(func_80129040_StructA *arg0, func_80129040_StructB **arg1) {
     f64 k;
     f64 c;
@@ -45,38 +29,38 @@ void func_80129040(func_80129040_StructA *arg0, func_80129040_StructB **arg1) {
     f64 c2, d2, k3, c3, d3, c4, d4;
     f32 r;
     if (arg0->unk94 < 1.0f) {
-        arg0->unk94 = arg0->unk94 + D_8018CD48;
+        arg0->unk94 = arg0->unk94 + (0.01);
     }
     if (arg0->unk24->unk30->unk4A != 0) {
         arg0->unk24->unk30->unk4A -= 5;
     }
-    k = D_8018CD50;
+    k = (0.0439453125);
     arg0->unk92 += 0xA;
     r = func_8001EAD0((s16)(arg0->unk92 / k));
-    k = D_8018CD58;
-    c = D_8018CD60;
-    d = D_8018CD68;
+    k = (0.0439453125);
+    c = (0.02);
+    d = (0.002);
     (*arg1)->unk30->unk18 = arg0->unk94 * (c + d * r);
     if (arg0->unk9C != 0.0f) {
         (*arg1)->unk30->unk4B -= 0x10;
         r = func_8001EAD0((s16)(arg0->unk92 / k));
-        c2 = D_8018CD70;
-        d = D_8018CD78;
-        (*arg1)->unk30->unk18 = arg0->unk94 * (c2 + D_8018CD80 * r);
+        c2 = (0.05);
+        d = (0.002);
+        (*arg1)->unk30->unk18 = arg0->unk94 * (c2 + (0.01) * r);
         (*arg1)->unk30->unk1C = arg0->unk94 * d + c2;
         if ((*arg1)->unk30->unk4B < 0x80) {
             func_80005700(arg0);
         }
     } else {
-        (*arg1)->unk30->unk4B = (*arg1)->unk30->unk4B - D_8018CD88;
+        (*arg1)->unk30->unk4B = (*arg1)->unk30->unk4B - (3.4444444444444446);
         r = func_8001EAD0((s16)(arg0->unk92 / k));
-        k3 = D_8018CD90;
-        c3 = D_8018CD98;
-        d3 = D_8018CDA0;
+        k3 = (0.0439453125);
+        c3 = (0.02);
+        d3 = (0.002);
         (*arg1)->unk30->unk18 = arg0->unk94 * (c3 + d3 * r);
         r = func_8001EB64((s16)(arg0->unk92 / k3));
-        c3 = D_8018CDA8;
-        d3 = D_8018CDB0;
+        c3 = (0.02);
+        d3 = (0.002);
         (*arg1)->unk30->unk1C = arg0->unk94 * (c3 + d3 * r);
         if ((*arg1)->unk30->unk4B < 0x20) {
             func_80005700(arg0);

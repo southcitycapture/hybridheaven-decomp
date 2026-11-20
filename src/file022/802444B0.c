@@ -38,8 +38,9 @@ extern f32 D_80252860;
 extern f64 D_80252868;
 
 
+
 void func_802444B0(u16 temp_a0) {
-    s32 unused;
+    s32 size_random;
     s32 sp90;
     s32 sp8C;
     s32 sp88;
@@ -50,7 +51,8 @@ void func_802444B0(u16 temp_a0) {
         sp88 = func_8012C6B4(0x3E8);
         sp8C = func_8012C6B4(0x3E8);
         sp90 = func_8012C6B4(0x3E8);
-        func_80129FB8((f32) (((f64) (sp88 - 0x1F4) / 10.0) + 70.0), (f32) (((f64) (sp8C - 0x1F4) / 50.0) + (-770.0) + ((f64) (temp_a0 - 0x294) / 5.0)), (f32) (((f64) (sp90 - 0x1F4) / 10.0) + 245.0), 0.0f, 0.0f, 0.0f, 0.0f, 0x4B, 0x4B, 0x4B, 0x32, 0x32, 0x32, 0xDC, -4, (f32) (((f64) func_8012C6B4(0x14) / 100.0) + 2.0), 0xA, 0);
+        size_random = func_8012C6B4(0x14);
+        func_80129FB8((f32) (((f64) (sp88 - 0x1F4) / 10.0) + 70.0), (f32) (((f64) (sp8C - 0x1F4) / 50.0) + (-770.0) + ((f64) (temp_a0 - 0x294) / 5.0)), (f32) (((f64) (sp90 - 0x1F4) / 10.0) + 245.0), 0.0f, 0.0f, 0.0f, 0.0f, 0x4B, 0x4B, 0x4B, 0x32, 0x32, 0x32, 0xDC, -4, (f32) (((f64) size_random / 100.0) + 2.0), 0xA, 0);
         sp88 = func_8012C6B4(0x3E8);
         sp8C = func_8012C6B4(0x3E8);
         sp90 = func_8012C6B4(0x3E8);

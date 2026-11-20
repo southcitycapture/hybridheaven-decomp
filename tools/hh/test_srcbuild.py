@@ -261,7 +261,7 @@ class AllFilesTests(unittest.TestCase):
                 p = root / path
                 p.parent.mkdir(parents=True, exist_ok=True)
                 p.write_text(text)
-            for name in ('srcbuild.py', 'try_func.py', 'workdir.py', 'bss_layout.py', 'idoflags.py'):
+            for name in ('srcbuild.py', 'try_func.py', 'workdir.py', 'bss_layout.py', 'idoflags.py', 'stub_split.py', 'kept_blocks.py'):
                 put('tools/hh/' + name, (Path(S.HH) / 'tools/hh' / name).read_text())
             put('build/expanded.bin', '')
             put('build/expanded.json', '{"files":[]}')

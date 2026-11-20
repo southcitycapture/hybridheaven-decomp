@@ -1,5 +1,4 @@
-#include "context.h"
-
+#include "common.h"
 struct func_80006F8C_StructB {
     u8 pad[0x6C];
     u16 unk6C;
@@ -13,13 +12,15 @@ struct func_80006F8C_Struct {
     u16 unk2A;
     struct func_80006F8C_StructB *unk2C;
 };
-extern s32 func_80006AB4(void *);
 struct func_80006F8C_StructE {
     struct func_80006F8C_Struct *unk0;
     u8 pad[0x80];
 };
 extern struct func_80006F8C_StructE D_8005D050[][60];
 extern u8 D_80062D20[];
+extern s32 func_80006AB4(void *);
+
+
 extern struct func_80006F8C_Struct *D_8008D5D8[];
 
 void func_80006F8C(u16 arg0, struct func_80006F8C_Struct *arg1) {
@@ -27,7 +28,6 @@ void func_80006F8C(u16 arg0, struct func_80006F8C_Struct *arg1) {
     s32 s2;
     s32 a0;
     s32 v;
-    u8 *p;
     s32 t;
 
     s2 = 0;

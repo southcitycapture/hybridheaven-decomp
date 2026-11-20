@@ -63,9 +63,11 @@ def place_frozen(S, seg, cfile, text, name, log=None):
         for fn, refs in addrfix.mine_refs_many(obj, functions).items():
             orig = functions[fn]
             for pos, (kind, sym, add) in (refs or {}).items():
-                if sym != '<section .rodata>' or kind != 'hi' or pos not in orig:
+                if sym != '<section .rodata>' or kind not in ('hi', 'lo') or pos not in orig:
                     continue
-                _, label, delta = orig[pos]
+                original_kind, label, delta = orig[pos]
+                if original_kind != kind:
+                    continue
                 key = extent(label)
                 if key is None:
                     continue
@@ -74,11 +76,11 @@ def place_frozen(S, seg, cfile, text, name, log=None):
                 found[key] = add - delta
         return found
 
-    def raw_only(match):
+    def raw_block(match):
         path = match[1]
         block = S._rd(path)
         raw = kept_blocks.BYTE_RANGE.search(block)
-        if raw and not S.asm_weights(path)[0] and '.section .late_rodata' not in block:
+        if raw:
             return block, tuple(int(v, 16) for v in raw.groups())
         return None
 
@@ -113,15 +115,19 @@ def place_frozen(S, seg, cfile, text, name, log=None):
                 '\n'.join('    ' + ', '.join('0x%02X' % b for b in raw[i:i+16]) + ','
                           for i in range(0, len(raw), 16))))
         def trim(match):
-            data = raw_only(match)
+            data = raw_block(match)
             if not data:
                 return match[0]
-            _, (address, offset, length) = data
+            block, (address, offset, length) = data
             spans = sorted((a, b) for a, b in new if a < address + length and b > address)
             if not spans:
                 return match[0]
             cursor, end = address, address + length
             out = []
+            # Don't let a range header swallow other readonly items that were
+            # appended when the original instruction donors were merged.
+            if not kept_blocks.exact_raw_range(S, block, address, offset, length):
+                return match[0]
             for lo, hi in spans + [(end, end)]:
                 lo = min(lo, end)
                 if lo > cursor:
@@ -132,6 +138,13 @@ def place_frozen(S, seg, cfile, text, name, log=None):
                     kept_blocks.rebuild(S, seg, cfile, path, recipe)
                     out.append('#pragma GLOBAL_ASM("%s")' % path)
                 cursor = max(cursor, hi)
+            functions = re.findall(r'^glabel (func_[0-9A-F]{8})$', block, re.M)
+            if functions:
+                recipe = dict(functions=functions, rodata=[])
+                key = hashlib.sha1(json.dumps(recipe, sort_keys=True).encode()).hexdigest()[:16]
+                path = f'asm/nonmatchings/{seg}/{cfile}/_mrg_keep_text_{key}.s'
+                kept_blocks.rebuild(S, seg, cfile, path, recipe)
+                out.append('#pragma GLOBAL_ASM("%s")' % path)
             return '\n'.join(out)
 
         changed = PRAGMA.sub(trim, text)
@@ -156,10 +169,12 @@ def place_frozen(S, seg, cfile, text, name, log=None):
             ro_index = elf.get_section_index('.rodata')
             raw_ranges = []
             for pragma in PRAGMA.finditer(text):
-                data = raw_only(pragma)
+                data = raw_block(pragma)
                 if not data:
                     continue
                 block, (address, _, length) = data
+                if '.section .late_rodata' in block:
+                    continue
                 label = re.search(r'^dlabel (\w+)', block, re.M)
                 if label and label[1] in srcs:
                     ranges.append((srcs[label[1]], address-base, length))
@@ -186,6 +201,9 @@ def place_frozen(S, seg, cfile, text, name, log=None):
         if linked is None:
             return None
         _, have = linked
+        # ld may round up its output section. Those bytes have no input
+        # offsets in the object and cannot participate in a placement span.
+        have = have[:len(ro)]
         if any(have[a:a+n] != want[b:b+n] for a, b, n in ranges):
             if log: log('readonly entries do not match the original values')
             return None
@@ -218,6 +236,9 @@ def place_frozen(S, seg, cfile, text, name, log=None):
             else:
                 merged.append([a, b, n])
         text = re.sub(r'^/\* hh-placed-function .* \*/\n', '', text, flags=re.M)
+        text = layout.UNIT.sub('', text)
+        if not layout.PRAGMA.search(text) and layout.FROZEN_BLOB.search(text):
+            text += f'/* hh-layout-unit {seg}/{cfile} */\n'
         text += ''.join('/* hh-placed-function %s */\n' % n for n in sorted(picked))
         return text + '/* hh-rodata-layout %s */\n' % json.dumps([size, merged], separators=(',', ':'))
 

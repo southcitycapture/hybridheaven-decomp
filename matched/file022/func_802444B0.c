@@ -1,17 +1,38 @@
-#include "context.h"
+#include "common.h"
 
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
 extern s32 func_8012C6B4(s32);
-extern f64 D_80252770, D_80252778, D_80252780, D_80252788;
-extern f64 D_80252790, D_80252798, D_802527A0, D_802527A8;
-extern f64 D_802527B0, D_802527B8, D_802527C0, D_802527C8;
-extern f64 D_802527D0, D_802527D8, D_802527E0, D_802527E8;
-extern f64 D_802527F0, D_802527F8, D_80252800, D_80252808;
-extern f64 D_80252810, D_80252818, D_80252820;
-extern f32 D_80252828, D_8025282C, D_80252830;
-extern f64 D_80252848, D_80252850, D_80252858;
+extern f64 D_80252770;
+extern f64 D_80252778;
+extern f64 D_80252780;
+extern f64 D_80252788;
+extern f64 D_80252790;
+extern f64 D_80252798;
+extern f64 D_802527A0;
+extern f64 D_802527A8;
+extern f64 D_802527B0;
+extern f64 D_802527B8;
+extern f64 D_802527C0;
+extern f64 D_802527C8;
+extern f64 D_802527D0;
+extern f64 D_802527D8;
+extern f64 D_802527E0;
+extern f64 D_802527E8;
+extern f64 D_802527F0;
+extern f64 D_802527F8;
+extern f64 D_80252800;
+extern f64 D_80252808;
+extern f64 D_80252810;
+extern f64 D_80252818;
+extern f64 D_80252820;
+extern f32 D_80252828;
+extern f32 D_8025282C;
+extern f32 D_80252830;
+extern f64 D_80252848;
+extern f64 D_80252850;
+extern f64 D_80252858;
 void func_802444B0(u16 temp_a0) {
-    s32 unused;
+    s32 size_random;
     s32 sp90;
     s32 sp8C;
     s32 sp88;
@@ -22,7 +43,8 @@ void func_802444B0(u16 temp_a0) {
         sp88 = func_8012C6B4(0x3E8);
         sp8C = func_8012C6B4(0x3E8);
         sp90 = func_8012C6B4(0x3E8);
-        func_80129FB8((f32) (((f64) (sp88 - 0x1F4) / 10.0) + D_80252770), (f32) (((f64) (sp8C - 0x1F4) / 50.0) + D_80252778 + ((f64) (temp_a0 - 0x294) / 5.0)), (f32) (((f64) (sp90 - 0x1F4) / 10.0) + D_80252780), 0.0f, 0.0f, 0.0f, 0.0f, 0x4B, 0x4B, 0x4B, 0x32, 0x32, 0x32, 0xDC, -4, (f32) (((f64) func_8012C6B4(0x14) / 100.0) + 2.0), 0xA, 0);
+        size_random = func_8012C6B4(0x14);
+        func_80129FB8((f32) (((f64) (sp88 - 0x1F4) / 10.0) + D_80252770), (f32) (((f64) (sp8C - 0x1F4) / 50.0) + D_80252778 + ((f64) (temp_a0 - 0x294) / 5.0)), (f32) (((f64) (sp90 - 0x1F4) / 10.0) + D_80252780), 0.0f, 0.0f, 0.0f, 0.0f, 0x4B, 0x4B, 0x4B, 0x32, 0x32, 0x32, 0xDC, -4, (f32) (((f64) size_random / 100.0) + 2.0), 0xA, 0);
         sp88 = func_8012C6B4(0x3E8);
         sp8C = func_8012C6B4(0x3E8);
         sp90 = func_8012C6B4(0x3E8);

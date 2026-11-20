@@ -1,18 +1,12 @@
-#include "context.h"
-
-extern s16 D_800CBACA;
+#include "common.h"
+extern u16 D_800CBACA;
 extern s8 D_800CBACC;
+extern void (*D_80047E0C[])(void);
+
 
 void func_80022C2C(void)
 {
-  s16 *new_var;
-  volatile s16 *p;
-  new_var = &D_800CBACA;
-  new_var = &D_800CBACA;
-  p = new_var;
-  new_var[0] = 0;
-  D_800CBACC = 0;
-  if (!new_var)
-  {
-  }
+    u16 *slot = &D_800CBACA;
+
+    D_800CBACC = *slot = 0;
 }

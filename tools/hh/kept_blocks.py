@@ -23,6 +23,29 @@ def catalog(S, seg, cfile):
     return out
 
 
+def exact_raw_range(S, block, address, offset, size):
+    """Check whether the readonly payload is exactly the recorded raw range."""
+    words = []
+    section = '.text'
+    for line in block.splitlines():
+        if line.startswith('.section '):
+            section = line.split()[1]
+            continue
+        if section == '.text' or not line.strip():
+            continue
+        if section not in ('.rodata', '.late_rodata'):
+            return False
+        match = re.fullmatch(r'/\* ([0-9A-F]+) ([0-9A-F]{8}) ([0-9A-F]{8}) \*/\s*\.word 0x([0-9A-F]{8})', line)
+        if match:
+            rom, vram, bits, value = match.groups()
+            if bits != value or int(rom, 16) != offset + len(words) * 4 or int(vram, 16) != address + len(words) * 4:
+                return False
+            words.append(bytes.fromhex(bits))
+        elif not re.fullmatch(r'(?:nonmatching|dlabel|\.late_rodata_alignment)\s+\w+\s*', line.strip()):
+            return False
+    return len(words) * 4 == size and b''.join(words) == S.IMG[offset:offset + size]
+
+
 def data_only(S, text):
     """Stage orphaned late objects as regular readonly input for a layout plan.
 

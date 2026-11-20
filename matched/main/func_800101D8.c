@@ -1,12 +1,22 @@
-#include "context.h"
-
+#include "common.h"
+extern u8 D_800631F0[];
+typedef struct func_800101D8_Ent {
+    s16 a, b, c, pad;
+    f32 x, y, z;
+} func_800101D8_Ent;
+extern func_800101D8_Ent D_80063670[];
+extern u16 D_80063DF0[];
 typedef struct func_800101D8_Struct {
     s32 unk0;
     u16 unk4;
     u16 unk6;
     s32 unk8;
 } func_800101D8_Struct;
-typedef struct func_800101D8_Sub {
+
+
+#undef a
+
+typedef struct func_800101D8_StructSub {
     u8 pad0[0x10];
     s16 unk10;
     s16 unk12;
@@ -21,38 +31,34 @@ typedef struct func_800101D8_Sub {
     func_800101D8_Struct unk5C;
     u8 pad68[2];
     s8 unk6A;
-} func_800101D8_Sub;
-typedef struct func_800101D8_Obj {
-    u8 pad0[0x2C];
-    func_800101D8_Sub *unk2C;
-} func_800101D8_Obj;
-typedef struct func_800101D8_Ent {
-    s16 a, b, c, pad;
-    f32 x, y, z;
-} func_800101D8_Ent;
+} func_800101D8_StructSub;
 
-extern func_800101D8_Ent D_80063670[];
-#define E (&D_80063670[i] - 1)
+typedef struct func_800101D8_StructObj {
+    u8 pad0[0x2C];
+    func_800101D8_StructSub *unk2C;
+} func_800101D8_StructObj;
+
 extern u16 D_80010068(u16, void *, u16, void *, void *, void *, u16 *, u16 *);
 
 u16 func_800101D8(u16 arg0, u32 **arg1, u16 arg2) {
     func_800101D8_Struct *p;
     func_800101D8_Struct sp60;
     u16 n;
-    u16 *q;
+    func_800101D8_Ent *entry;
     s32 i;
     u16 sp52;
     u16 sp50;
     u16 sp4E;
     u16 sp4C;
-    func_800101D8_Sub *s;
-    s32 pad44;
+    func_800101D8_StructSub *s;
+    u16 *animation_flags_out;
 
     p = &((func_800101D8_Struct *)D_800631F0)[arg0];
     sp60 = *p;
     sp4C = 0;
     sp4E = sp60.unk6;
-    n = D_80010068(arg0, arg1, arg2, D_80063DF0, D_800631F0, D_80063670, &sp52, &sp50);
+    animation_flags_out = &sp52;
+    n = D_80010068(arg0, arg1, arg2, D_80063DF0, D_800631F0, D_80063670, animation_flags_out, &sp50);
     if (sp4E & 1) {
         if (p->unk4 >= sp50) {
             p->unk4 = sp50;
@@ -100,14 +106,15 @@ u16 func_800101D8(u16 arg0, u32 **arg1, u16 arg2) {
     if (n >= 2) {
         do {
             if (arg0 == D_80063DF0[i]) {
-                s = ((func_800101D8_Obj **)arg1)[i]->unk2C;
+                s = ((func_800101D8_StructObj **)arg1)[i]->unk2C;
                 if (s->unk28 != 0) {
-                    s->unk10 = E->a;
-                    s->unk12 = E->b;
-                    s->unk14 = E->c;
-                    s->unk18 = E->x;
-                    s->unk1C = E->y;
-                    s->unk20 = E->z;
+                    entry = &D_80063670[i] - 1;
+                    s->unk10 = entry->a;
+                    s->unk12 = entry->b;
+                    s->unk14 = entry->c;
+                    s->unk18 = entry->x;
+                    s->unk1C = entry->y;
+                    s->unk20 = entry->z;
                     s->unk5C = *p;
                     s->unk6A = sp4C;
                 }

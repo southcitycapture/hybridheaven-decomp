@@ -353,12 +353,14 @@ s32 func_8001FD14(struct func_8001FD14_Struct *arg0, struct func_8001FD14_Struct
 
 extern u32 D_8004795C;
 
-void func_8001FEBC(s32 arg0) {
-    u32 *flag;
 
-    flag = &D_8004795C;
+
+
+void func_8001FEBC(s32 arg0) {
+    u32 *flag = &D_8004795C;
+
     if ((func_80033C60() >> 2) == 0) {
-        if (D_8004795C == 0) {
+        if (*flag == 0) {
             *flag = 0;
         }
     }

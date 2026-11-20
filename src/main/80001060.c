@@ -14,10 +14,11 @@ u16 func_8000106C(void) {
     return D_80037754;
 }
 
+#define func_80001124 func_80001124__main
 
 extern void func_80028B10(void);
 extern s32 func_8002C0B0(void);
-extern void func_80001124(void *);
+extern void func_80001124(void *arg0);
 extern void func_80028260(void *, s32, void (*)(void *), void *, void *, s32);
 extern void func_80034C90(void *);
 extern s32 D_80000300;
@@ -40,12 +41,9 @@ void main(void) {
     func_80028260(D_80057BD0, 1, func_80001124, 0, D_80059D80, 9);
     func_80034C90(D_80057BD0);
 }
+#undef func_80001124
 
-#define D_8005BF30 D_8005BF30__func_80001124
-#define D_8005BF48 D_8005BF48__func_80001124
 #define func_800011B0 func_800011B0__func_80001124
-#define func_8002AC60 func_8002AC60__func_80001124
-#define func_80030B60 func_80030B60__func_80001124
 #if __LINE__ == 2
 void func_80001124_alignment(void) {
 }
@@ -54,6 +52,7 @@ void func_80001124_alignment2(void) {
 void func_80001124_alignment3(void) {
 }
 #endif
+
 extern void func_8002AC60(s32, void *, void *, s32);
 extern void func_80030B60(s32, s32);
 extern void func_800011B0(s32 arg0);
@@ -68,53 +67,16 @@ void func_80001124(void *arg0) {
     for (;;) {
     }
 }
-#undef D_8005BF30
-#undef D_8005BF48
 #undef func_800011B0
-#undef func_8002AC60
-#undef func_80030B60
 
-#define D_80037730 D_80037730__func_800011B0
-#define D_80037748 D_80037748__func_800011B0
-#define D_8003774C D_8003774C__func_800011B0
-#define D_8005C268 D_8005C268__func_800011B0
-#define D_8005C280 D_8005C280__func_800011B0
-#define D_8005C288 D_8005C288__func_800011B0
-#define D_8005C2A0 D_8005C2A0__func_800011B0
-#define D_8005C4B0 D_8005C4B0__func_800011B0
-#define D_8005CD78 D_8005CD78__func_800011B0
-#define D_800CE9C0 D_800CE9C0__func_800011B0
-#define D_800F41C0 D_800F41C0__func_800011B0
-#define D_800F51C0 D_800F51C0__func_800011B0
-#define D_80107830 D_80107830__func_800011B0
-#define D_80162DD0 D_80162DD0__func_800011B0
-#define D_8038F800 D_8038F800__func_800011B0
-#define func_80000460 func_80000460__func_800011B0
-#define func_800006FC func_800006FC__func_800011B0
-#define func_80000934 func_80000934__func_800011B0
-#define func_80001454 func_80001454__func_800011B0
+#define func_80001060 func_80001060__func_800011B0
 #define func_80001BB0 func_80001BB0__func_800011B0
-#define func_80001BC0 func_80001BC0__func_800011B0
-#define func_80001E70 func_80001E70__func_800011B0
-#define func_800020B0 func_800020B0__func_800011B0
-#define func_8000290C func_8000290C__func_800011B0
-#define func_8000469C func_8000469C__func_800011B0
-#define func_80005444 func_80005444__func_800011B0
-#define func_80005624 func_80005624__func_800011B0
-#define func_80007B70 func_80007B70__func_800011B0
-#define func_80016DF0 func_80016DF0__func_800011B0
-#define func_8001F204 func_8001F204__func_800011B0
-#define func_800266B0 func_800266B0__func_800011B0
-#define func_80030610 func_80030610__func_800011B0
-#define func_80032890 func_80032890__func_800011B0
-#define func_80133AAC func_80133AAC__func_800011B0
-#define func_801BF1A0 func_801BF1A0__func_800011B0
-#if __LINE__ == 2
-extern s32 D_80037730;
-void X_alignment(void) { D_80037730 = 0; }
-void X_alignment2(void) { D_80037730 = 0; }
-void X_alignment3(void) { D_80037730 = 0; }
-#endif
+u16 func_80001060(void);
+
+typedef struct func_800011B0_StructClient {
+    struct func_800011B0_StructClient *next;
+    void *messageQueue;
+} func_800011B0_StructClient;
 extern void func_80000460(void *, s32, s32);
 extern s32 func_800006FC(void *);
 extern void func_80000934(void *, void *, void *);
@@ -152,10 +114,9 @@ extern u8 D_8038F800[];
 extern u8 func_801BF1A0[];
 
 void func_800011B0(s32 arg0) {
-    u8 pad[8];
-    u8 sp34[4];
+    s16 event;
+    func_800011B0_StructClient client;
     s16 *sp30;
-    s16 v;
 
     sp30 = NULL;
     func_80001E70();
@@ -176,7 +137,7 @@ void func_800011B0(s32 arg0) {
         func_80000460(D_8005C4B0, 0, 1);
     }
     D_80037730 = 0;
-    func_80000934(D_8005C4B0, sp34, D_8005C288);
+    func_80000934(D_8005C4B0, &client, D_8005C288);
     D_8005CD78 = func_800006FC(D_8005C4B0);
     if (func_80001060() != 0) {
         func_80032890(0xAA);
@@ -194,9 +155,10 @@ void func_800011B0(s32 arg0) {
     func_80005444(0xA, 0x64, 0xA, 0xA, 0xA);
     func_80005624(D_80162DD0);
     func_80133AAC(2);
-    while (1) {
+    do {
         func_800266B0(D_8005C288, &sp30, 1);
-        switch (*sp30) {
+        event = *sp30;
+        switch (event) {
         case 1:
             func_8000290C();
             if (D_80037748 == 0) {
@@ -204,51 +166,18 @@ void func_800011B0(s32 arg0) {
             } else {
                 func_80001BB0();
             }
-            break;
+            continue;
         case 2:
-            break;
+            continue;
         case 3:
             D_80037748 = 1;
             D_8003774C = 0;
-            break;
+            continue;
         }
-    }
+    } while (1);
 }
-#undef D_80037730
-#undef D_80037748
-#undef D_8003774C
-#undef D_8005C268
-#undef D_8005C280
-#undef D_8005C288
-#undef D_8005C2A0
-#undef D_8005C4B0
-#undef D_8005CD78
-#undef D_800CE9C0
-#undef D_800F41C0
-#undef D_800F51C0
-#undef D_80107830
-#undef D_80162DD0
-#undef D_8038F800
-#undef func_80000460
-#undef func_800006FC
-#undef func_80000934
-#undef func_80001454
+#undef func_80001060
 #undef func_80001BB0
-#undef func_80001BC0
-#undef func_80001E70
-#undef func_800020B0
-#undef func_8000290C
-#undef func_8000469C
-#undef func_80005444
-#undef func_80005624
-#undef func_80007B70
-#undef func_80016DF0
-#undef func_8001F204
-#undef func_800266B0
-#undef func_80030610
-#undef func_80032890
-#undef func_80133AAC
-#undef func_801BF1A0
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80001060/func_80001454.s")
 

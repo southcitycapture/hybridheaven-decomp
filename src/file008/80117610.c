@@ -751,6 +751,9 @@ X:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80117610/func_801190F4.s")
 
+void func_80119134(void) {
+}
+
 /* hh-block asm/nonmatchings/file008/80117610/_ro_func_8011913C.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file008/80117610/func_8011913C.s","D_80189A14"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80117610/_ro_func_8011913C.s")
 

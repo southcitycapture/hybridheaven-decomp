@@ -48,6 +48,12 @@ void func_80242F70(u8 *arg0) {
 /* hh-block asm/nonmatchings/file013/80242F60/_mrg_keep_text_func_80242F80.s {"functions":["func_80242F80"],"rodata":[]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file013/80242F60/_mrg_keep_text_func_80242F80.s")
 
+void func_80242FC0(void) {
+}
+
+void func_80242FC8(void) {
+}
+
 
 typedef struct func_80242FD0_StructB {
     u8 pad0[4];

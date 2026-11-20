@@ -24,7 +24,6 @@ typedef struct func_80241484_Struct_Arg0 {
 } func_80241484_Struct_Arg0;
 
 extern func_80241484_Struct_Arg0 *D_801BCCA8;
-extern f64 D_80252538;
 extern void func_80241518();
 
 void func_80241484(func_80241484_Struct_Arg0 *arg0, func_80241484_Struct_Arg1 *arg1) {
@@ -37,7 +36,7 @@ void func_80241484(func_80241484_Struct_Arg0 *arg0, func_80241484_Struct_Arg1 *a
     temp_v0 = arg0->unk92;
     arg0->unk92 = (u16) (temp_v0 - 1);
     if (temp_v0 != 0) {
-        temp_f0 = D_80252538;
+        temp_f0 = (0.0005);
         temp_v0_2 = arg1->unk14->unk30;
         temp_v0_2->unk18 = (f32) ((f64) temp_v0_2->unk18 + temp_f0);
         temp_v0_2 = arg1->unk14->unk30;

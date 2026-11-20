@@ -27,7 +27,6 @@ typedef struct func_80241D7C_Struct_Arg0 {
 
 extern void func_800179B0(void *, void *, void *, s16);
 extern u8 D_802456C0[];
-extern f64 D_80249AF8;
 extern void func_80241E64(void);
 
 void func_80241D7C(void *arg0, void *arg1)
@@ -35,7 +34,7 @@ void func_80241D7C(void *arg0, void *arg1)
   f32 temp_fv0;
   s16 temp_a3;
   func_80241D7C_Struct_Inner *new_var;
-  ((func_80241D7C_Struct_Arg0 *) arg0)->unk90 = (f32) (((f64) ((func_80241D7C_Struct_Arg0 *) arg0)->unk90) + D_80249AF8);
+  ((func_80241D7C_Struct_Arg0 *) arg0)->unk90 = (f32) (((f64) ((func_80241D7C_Struct_Arg0 *) arg0)->unk90) + (0.00015));
   temp_fv0 = ((func_80241D7C_Struct_Arg0 *) arg0)->unk90;
   ((func_80241D7C_Struct_Arg1 *) arg1)->unk0->unk30->unk20 = temp_fv0;
   ((func_80241D7C_Struct_Arg1 *) arg1)->unk0->unk30->unk1C = temp_fv0;

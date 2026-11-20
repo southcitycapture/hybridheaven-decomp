@@ -1,4 +1,14 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_801DE6F4_StructVec {
+    f32 x, y, z;
+} func_801DE6F4_StructVec;
+void func_801DC9C4(func_801DE6F4_StructVec pos, u16 arg3, f32 arg4);
+typedef struct func_801DFAA4_StructB {
+    u8 pad0[0x2C];
+    f32 *unk2C;
+} func_801DFAA4_StructB;
+u8 func_801DFE00(s32 arg0);
+
 
 typedef struct func_801DFE50_StructInfo {
     u8 pad[0xE];
@@ -19,12 +29,10 @@ extern f32 D_801E3FAC;
 
 void func_801DFE50(func_801DFE50_StructArg *arg0, u8 arg1) {
     func_801DFE50_StructInfo *info;
-    u32 pad40;
+    s32 eventActive;
     f32 scale;
     func_801DE6F4_StructVec pos;
     u8 variant;
-    u16 id;
-    u32 pad24;
 
     info = arg0->unk5C;
     scale = D_801E3FAC;
@@ -39,23 +47,23 @@ void func_801DFE50(func_801DFE50_StructArg *arg0, u8 arg1) {
         if (D_801BBBF4 == 0x29) {
             variant = 1;
         } else if (D_801BBBF4 == 0x38) {
-            if (func_80020DAC(0x238)) {
+            eventActive = func_80020DAC(0x238);
+            if (eventActive) {
                 variant = 1;
             }
         }
     }
-    if (info->id == 0x29) goto a;
-    if (info->id == 0x2C) goto a;
-    if (info->id == 0x50) goto b;
-    if (info->id == 0x11B) goto c;
-    if (info->id != 0x11C) goto c;
-    goto c;
-a:
+    switch (info->id) {
+    case 0x29:
+    case 0x2C:
     func_801DC9C4(pos, D_801E202C[arg1][variant], scale);
     return;
-b:
+    case 0x50:
     func_801DC9C4(pos, D_801E2048[arg1][variant], scale);
     return;
-c:
+    case 0x11B:
+    case 0x11C:
+    default:
     func_801DC9C4(pos, D_801E2010[arg1][variant], scale);
+    }
 }

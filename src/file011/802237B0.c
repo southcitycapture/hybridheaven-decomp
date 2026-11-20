@@ -1595,13 +1595,20 @@ void *func_80225664(void *arg0, s32 arg1, s32 arg2) {
 #undef D_801BC3D8
 
 
+#define func_80225560 func_80225560__func_802256E4
+#define func_80225664 func_80225664__func_802256E4
+s32 func_80225560(void *arg0, u8 arg1);
+void *func_80225664(void *arg0, s32 arg1, s32 arg2);
+
+
 void func_802256E4(s32 arg0, s32 arg1, s32 arg2)
 {
-  s32 *unused;
-  unused = &arg2;
- do { } while (0);
-  func_80225664(arg0, arg1, func_80225560(arg1, arg2 ^ 0));
+    u32 selector = *(u32 *)&arg2;
+
+    func_80225664((void *)arg0, arg1, func_80225560((void *)arg1, (u8)selector));
 }
+#undef func_80225560
+#undef func_80225664
 
 extern f32 D_8002FC20(f32);
 

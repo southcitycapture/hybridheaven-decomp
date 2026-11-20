@@ -24,15 +24,13 @@ struct func_802423C0_Obj {
     f32 unk90;
     s16 unk94;
 };
-
-extern f64 D_80249B00;
 extern void func_802424D8();
 
 void func_802423C0(struct func_802423C0_Obj *arg0, struct func_802423C0_Pair *arg1)
 {
   f32 temp_fv0;
   s16 temp_v0;
-  arg0->unk90 = (f32) (((f64) arg0->unk90) - D_80249B00);
+  arg0->unk90 = (f32) (((f64) arg0->unk90) - (0.0003));
   temp_fv0 = arg0->unk90;
   arg1->unk0->unk30->unk20 = temp_fv0;
   arg1->unk0->unk30->unk1C = temp_fv0;

@@ -1,75 +1,88 @@
-#include "context.h"
+#include "common.h"
+
 
 extern s16 D_80046934[];
 
+struct func_8001EF38_StructTerms
+{
+  f32 abs_y;
+  f32 abs_x;
+  f32 product;
+};
+
 s16 func_8001EF38(f32 arg0, f32 arg1)
 {
-  s16 pad2;
-  u8 pad[8];
+  struct func_8001EF38_StructTerms terms;
   s16 sp2;
-  f32 a;
-  f32 b;
-  s32 v;
-  s32 *new_var;
+  s16 v;
+  s16 *new_var;
   s32 i;
   if (arg1 < 0.0f)
   {
-    a = -arg1;
+    terms.abs_y = -arg1;
   }
   else
   {
-    a = arg1;
+    terms.abs_y = arg1;
   }
   if (arg0 < 0.0f)
   {
-    b = -arg0;
+    terms.abs_x = -arg0;
   }
   else
   {
-    b = arg0;
+    terms.abs_x = arg0;
   }
   new_var = &v;
-  if (b < a)
+  if (terms.abs_x < terms.abs_y)
   {
     if (arg1 == 0.0f)
     {
       return 0;
     }
-    i = (s32) ((b * 2048.0f) / a);
+    i = (s32) ((terms.abs_x * 2048.0f) / terms.abs_y);
     if (((u32) i) >= 0x801U)
     {
       i = 0x800;
     }
     v = D_80046934[i];
-    if ((i != 0) && ((arg1 * arg0) < 0.0f))
+    if (i != 0)
     {
-      v = (s16) ((*new_var) + 1);
+      terms.product = arg1 * arg0;
+      if (terms.product < 0.0f)
+      {
+        v = (s16) ((*new_var) + 1);
+      }
     }
     sp2 = *new_var;
   }
   else
-    if (a < b)
+    if (terms.abs_y < terms.abs_x)
   {
     if (arg0 == 0.0f)
     {
       return 0;
     }
-    i = (s32) ((a * 2048.0f) / b);
+    i = (s32) ((terms.abs_y * 2048.0f) / terms.abs_x);
     if (((u32) i) >= 0x801U)
     {
       i = 0x800;
     }
     v = (s16) (0x800 - D_80046934[i]);
-    if ((i != 0) && ((arg1 * arg0) > 0.0f))
+    if (i != 0)
     {
-      v = (s16) ((*new_var) - 1);
+      terms.product = arg1 * arg0;
+      if (terms.product > 0.0f)
+      {
+        v = (s16) ((*new_var) - 1);
+      }
     }
     sp2 = *new_var;
   }
   else
   {
     v = 0x400;
-    if (a == b)
+    if (terms.abs_y == terms.abs_x)
     {
       sp2 = *new_var;
     }

@@ -1,7 +1,6 @@
 #include "context.h"
 
 extern void D_802233B0(s32, s32, void *, void *);
-extern f32 D_8038B138;
 struct func_8036E39C_Arg;
 void func_8036E39C(struct func_8036E39C_Arg *arg0, s32 arg1);
 
@@ -38,7 +37,7 @@ void func_8036E204(s32 arg0, s32 arg1) {
             return;
         }
         sp30 = func_80225664(arg0, 0x019001C0);
-        *(f32 *)&sp30.w[2] = D_8038B138;
+        *(f32 *)&sp30.w[2] = (1.2f);
         if (func_80011140(arg1, sp44, sp30, 5) != 0) {
             func_800058DC(arg0, func_8036E39C);
         }

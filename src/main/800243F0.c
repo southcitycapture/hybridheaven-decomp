@@ -851,9 +851,55 @@ extern u8 D_80048200[];
 #define P ((struct func_80025150_Struct *)D_800CBDA4)
 
 /* GGA: sndCmdVibratoStep */
+#undef P
+#define D_800CBDA4 D_800CBDA4__func_80025150
+#define func_800243F0_Struct func_800243F0_Struct__func_80025150
+#define func_80024F18_Struct func_80024F18_Struct__func_80025150
+#define func_80025150_Struct func_80025150_Struct__func_80025150
+#define P ((struct func_80024F18_Struct *)D_800CBDA4)
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
+struct func_80024F18_Struct {
+    u8 pad0[0x93];
+    u8 unk93;
+    u8 pad94;
+    u8 unk95;
+    u8 pad96[3];
+    u8 unk99;
+    u16 unk9A;
+    u8 pad9C[2];
+    u8 unk9E;
+    u8 pad9F;
+    s16 unkA0;
+};
+#define P ((struct func_80024F18_Struct *)D_800CBDA4)
+
+
+struct func_80025150_Struct {
+    u8 pad0[6];
+    u8 unk6;
+    u8 pad1[0x36 - 7];
+    s16 unk36;
+    u8 pad2[0x94 - 0x38];
+    u8 unk94;
+    u8 unk95;
+    u16 unk96;
+    u8 unk98;
+    u8 unk99;
+    u8 pad3[2];
+    u16 unk9C;
+};
+#define P ((struct func_80025150_Struct *)D_800CBDA4)
+
+/* GGA: sndCmdVibratoStep */
 void func_80025150(void *arg0) {
-    if (arg0) {}
-    if (P->unk94 == 0) {
+    arg0 = D_800CBDA4;
+    if (((struct func_80025150_Struct *)arg0)->unk94 == 0) {
         P->unk96 = P->unk96 + P->unk95;
         if (P->unk96 >= 0x100) {
             P->unk96 = P->unk96 & 0xFF;
@@ -874,6 +920,12 @@ void func_80025150(void *arg0) {
         }
     }
 }
+#undef P
+#undef D_800CBDA4
+#undef func_800243F0_Struct
+#undef func_80024F18_Struct
+#undef func_80025150_Struct
+#define P ((struct func_80025150_Struct *)D_800CBDA4)
 
 
 struct func_80025280_Struct {
@@ -975,28 +1027,50 @@ struct func_80025460_Struct {
 };
 
 /* GGA: sndCmdPortamentoCalc */
+#define D_800CBDA4 D_800CBDA4__func_80025460
+#define func_800243F0_Struct func_800243F0_Struct__func_80025460
+#define func_80025460_Struct func_80025460_Struct__func_80025460
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
+
+
+struct func_80025460_Struct {
+    u8 pad0[0x18];
+    u16 unk18;
+    u8 pad1[0x28 - 0x1A];
+    s32 unk28;
+    u8 pad2[0x7D - 0x2C];
+    u8 unk7D;
+    u8 pad3[0x80 - 0x7E];
+    s32 unk80;
+    s32 unk84;
+};
+
+/* GGA: sndCmdPortamentoCalc */
 void func_80025460(void)
 {
-  struct func_80025460_Struct *p;
-  s32 divisor;
-  s32 temp_a0;
-  s32 temp_a1;
-  p = (struct func_80025460_Struct *) D_800CBDA4;
-  divisor = (s32) (((((u32) (((struct func_80025460_Struct *) D_800CBDA4)->unk7D << 0x10)) / ((struct func_80025460_Struct *) D_800CBDA4)->unk18) + 1) & 0xFFFF);
-  temp_a0 = ((struct func_80025460_Struct *) D_800CBDA4)->unk80 - ((struct func_80025460_Struct *) D_800CBDA4)->unk28;
-  ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = temp_a0 / divisor;
-  p = (struct func_80025460_Struct *) D_800CBDA4;
-  ;
-  if (((struct func_80025460_Struct *) D_800CBDA4)->unk84 == 0)
-  {
-    if (temp_a0 < 0)
-    {
-      ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 - 1;
-      return;
+    s32 divisor;
+    s32 temp_a0;
+
+    divisor = (s32) (((((u32) (((struct func_80025460_Struct *) D_800CBDA4)->unk7D << 0x10)) / ((struct func_80025460_Struct *) D_800CBDA4)->unk18) + 1) & 0xFFFF);
+    temp_a0 = ((struct func_80025460_Struct *) D_800CBDA4)->unk80 - ((struct func_80025460_Struct *) D_800CBDA4)->unk28;
+    ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = temp_a0 / divisor;
+    if (((struct func_80025460_Struct *) D_800CBDA4)->unk84 == 0) {
+        if (temp_a0 < 0) {
+            ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 - 1;
+            return;
+        }
+        ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 + 1;
     }
-    ((struct func_80025460_Struct *) D_800CBDA4)->unk84 = ((struct func_80025460_Struct *) D_800CBDA4)->unk84 + 1;
-  }
 }
+#undef D_800CBDA4
+#undef func_800243F0_Struct
+#undef func_80025460_Struct
 
 
 
@@ -1246,24 +1320,60 @@ struct func_80025940_Struct {
 #define O ((struct func_80025940_Struct *)D_800CBDA4)
 
 /* GGA: sndCmdLoopEnd */
-void func_80025940(void) {
-    s32 temp_v0;
+#undef O
+#define D_800CBDA4 D_800CBDA4__func_80025940
+#define func_800243F0_Struct func_800243F0_Struct__func_80025940
+#define func_80025940_Struct func_80025940_Struct__func_80025940
+#define O ((struct func_80025940_Struct *)D_800CBDA4)
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
 
-    temp_v0 = *D_800CBDA0;
-    D_800CBDA0 += 1;
+
+struct func_80025940_Struct {
+    u8 pad0[0x32];
+    s16 unk32;
+    u8 pad34[0x40 - 0x34];
+    s16 unk40;
+    u8 pad42[0x5E - 0x42];
+    u8 unk5E;
+    u8 pad5F;
+    u8 *unk60;
+};
+#define O ((struct func_80025940_Struct *)D_800CBDA4)
+
+/* GGA: sndCmdLoopEnd */
+void func_80025940(void) {
+    s16 temp_v0;
+
+    temp_v0 = *D_800CBDA0++;
     O->unk5E++;
-    if ((temp_v0 == 0) || (temp_v0 * 1 != O->unk5E)) {
-        O->unk40 += (s8)*D_800CBDA0;
-        D_800CBDA0 += 1;
-        O->unk32 += (s8)*D_800CBDA0 * 8;
-        D_800CBDA0 += 1;
-        D_800CBDA0 = O->unk60;
-        return;
+    if (temp_v0 != 0) {
+        s32 passesOverLimit = O->unk5E - temp_v0;
+        if (passesOverLimit == 0) {
+            goto loop_done;
+        }
     }
+    O->unk40 += (s8)*D_800CBDA0;
+    D_800CBDA0 += 1;
+    O->unk32 += (s8)*D_800CBDA0 * 8;
+    D_800CBDA0 += 1;
+    D_800CBDA0 = O->unk60;
+    return;
+loop_done:
     O->unk40 = 0;
     O->unk32 = O->unk40;
     D_800CBDA0 += 2;
 }
+#undef O
+#undef D_800CBDA4
+#undef func_800243F0_Struct
+#undef func_80025940_Struct
+#define O ((struct func_80025940_Struct *)D_800CBDA4)
 
 
 struct func_80025A00_Struct {
@@ -1401,14 +1511,33 @@ struct func_80025BD8_Struct {
 };
 
 /* GGA: sndCmdFxMix */
+#undef func_80025BD8_Struct
+#define D_800CBDA4 D_800CBDA4__func_80025BD8_5f8996b9
+#define func_800243F0_Struct func_800243F0_Struct__func_80025BD8_5f8996b9
+#define func_80025BD8_Struct func_80025BD8_Struct__func_80025BD8_5f8996b9
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
+
+
+struct func_80025BD8_Struct {
+    u32 unk0;
+    u8 pad4[0xC];
+    u8 unk10;
+};
+
+/* GGA: sndCmdFxMix */
 void func_80025BD8(void) {
     s32 var_a0;
     u8 var_a2;
-    u8 temp_a2;
     struct func_80025BD8_Struct *ptr;
 
     ptr = (struct func_80025BD8_Struct *) D_800CBDA4;
-    if ((u32) (ptr->unk0 & 0x7FFF) < 0x100U) {
+    if ((ptr->unk0 & 0x7FFF) < 0x100U) {
         var_a0 = 0;
     } else {
         var_a0 = 1;
@@ -1420,10 +1549,14 @@ void func_80025BD8(void) {
         var_a2 = 0x7F;
     }
     if (var_a2 != ptr->unk10) {
-        ptr->unk10 = (u8) var_a2;
-        func_80030770(D_800498F0, D_800CBBE0 + D_800CBAB4 * 0x1C, (u8) var_a2);
+        ptr->unk10 = var_a2;
+        func_80030770(D_800498F0, D_800CBBE0 + D_800CBAB4 * 0x1C, var_a2);
     }
 }
+#undef D_800CBDA4
+#undef func_800243F0_Struct
+#undef func_80025BD8_Struct
+#define func_80025BD8_Struct func_80025BD8_Struct__func_80025BD8
 #undef func_80025BD8_Struct
 
 

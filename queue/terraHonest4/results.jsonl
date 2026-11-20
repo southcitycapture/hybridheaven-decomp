@@ -1,0 +1,1 @@
+{"func": "func_801133D0", "segment": "file008", "model": "openai/gpt-6.1-terra", "verified": "FAIL", "claimed": "RESULT: FAIL 231/441 The debug-flag control flow and entity-pointer register still differ.", "checks": 57, "turns": 131, "seconds": 1412, "input_tokens": 239733, "output_tokens": 23013, "exit": "0", "cost_usd_equiv": 0.0}

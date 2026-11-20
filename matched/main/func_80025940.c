@@ -1,4 +1,13 @@
-#include "context.h"
+#include "common.h"
+extern u8 *D_800CBDA0;
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
+
 
 struct func_80025940_Struct {
     u8 pad0[0x32];
@@ -14,19 +23,23 @@ struct func_80025940_Struct {
 
 /* GGA: sndCmdLoopEnd */
 void func_80025940(void) {
-    s32 temp_v0;
+    s16 temp_v0;
 
-    temp_v0 = *D_800CBDA0;
-    D_800CBDA0 += 1;
+    temp_v0 = *D_800CBDA0++;
     O->unk5E++;
-    if ((temp_v0 == 0) || (temp_v0 * 1 != O->unk5E)) {
-        O->unk40 += (s8)*D_800CBDA0;
-        D_800CBDA0 += 1;
-        O->unk32 += (s8)*D_800CBDA0 * 8;
-        D_800CBDA0 += 1;
-        D_800CBDA0 = O->unk60;
-        return;
+    if (temp_v0 != 0) {
+        s32 passesOverLimit = O->unk5E - temp_v0;
+        if (passesOverLimit == 0) {
+            goto loop_done;
+        }
     }
+    O->unk40 += (s8)*D_800CBDA0;
+    D_800CBDA0 += 1;
+    O->unk32 += (s8)*D_800CBDA0 * 8;
+    D_800CBDA0 += 1;
+    D_800CBDA0 = O->unk60;
+    return;
+loop_done:
     O->unk40 = 0;
     O->unk32 = O->unk40;
     D_800CBDA0 += 2;

@@ -1,76 +1,5 @@
 #include "common.h"
-#define a0
-#define a1
-extern u8 D_801BBBF0[];
-typedef struct func_80232E94_Obj2 {
-    u8 pad0[0x9C];
-    u8 unk9C;
-} func_80232E94_Obj2;
-typedef struct func_80232E94_Obj {
-    u8 pad0[0x5C];
-    func_80232E94_Obj2 *unk5C;
-} func_80232E94_Obj;
-typedef struct func_80232E94_Struct {
-    u8 pad0[0x30];
-    u8 unk30;
-    u8 pad1[0x2D8 - 0x31];
-    u8 unk2D8;
-    u8 pad2[0x2DA - 0x2D9];
-    u8 unk2DA;
-    u8 pad3[0x396 - 0x2DB];
-    u8 unk396;
-} func_80232E94_Struct;
-typedef struct func_80232E94_G {
-    u8 pad0[0xDC];
-    func_80232E94_Obj *unkDC;
-    u8 padE0[0xEC - 0xE0];
-    func_80232E94_Obj *unkEC;
-    u8 padF0[0x44C - 0xF0];
-    func_80232E94_Struct unk44C;
-    u8 pad7E8[0x1030 - 0x44C - sizeof(func_80232E94_Struct)];
-    u8 unk1030;
-} func_80232E94_G;
-#define G ((func_80232E94_G *)D_801BBBF0)
-#define A (G.unkDC->unk36)
-#define B (G.unkEC->unk36)
-struct func_80230728_Inner {
-    u8 pad0[4];
-    u8 unk4;
-    u8 pad5[5];
-    u8 unkA;
-    u8 pad0B[0x15 - 0xB];
-    s8 unk15[1];
-};
-struct func_80230728_Struct {
-    u8 pad0[0x2D];
-    s8 unk2D;
-    u8 pad2E[0x38 - 0x2E];
-    u32 unk38;
-    u8 pad3C[0x52 - 0x3C];
-    u16 unk52;
-    u16 unk54;
-    s16 unk56;
-    u8 pad58[0xAA - 0x58];
-    s16 unkAA;
-    u8 unkAC;
-    u8 pad_AD[0x2D4 - 0xAD];
-    struct func_80230728_Inner *unk2D4;
-    u8 pad2D8[2];
-    u8 unk2DA;
-    u8 unk2DB;
-    u8 pad2DC[0x399 - 0x2DC];
-    u8 unk399;
-};
-#define arg0 ((struct func_80230728_Struct *)a0)
-#define arg1 ((struct func_80230728_Struct *)a1)
 
-#undef a0
-#undef a1
-#undef arg0
-#undef arg1
-#undef A
-#undef B
-#undef G
 
 typedef struct func_8022DB40_StructB {
     u8 pad0[7];
@@ -84,7 +13,10 @@ typedef struct func_8022DB40_StructB {
     u8 padF[2];
     u8 unk11;
 } func_8022DB40_StructB;
-typedef struct func_8022DB40_Ent { s16 v; u8 pad[4]; } func_8022DB40_Ent;
+typedef struct func_8022DB40_StructEnt {
+    s16 v;
+    u8 pad[4];
+} func_8022DB40_StructEnt;
 typedef struct func_8022DB40_Struct {
     u8 pad0[0x30];
     u32 unk30;
@@ -100,13 +32,14 @@ typedef struct func_8022DB40_Struct {
     u8 pad8E[0x9A - 0x8E];
     u16 unk9A;
     u8 pad9C[0xAA - 0x9C];
-    func_8022DB40_Ent unkAA[1];
+    func_8022DB40_StructEnt unkAA[1];
     u8 pad_[0x2D4 - 0xB0];
     func_8022DB40_StructB *unk2D4;
 } func_8022DB40_Struct;
 extern f32 func_8002FC20(f32, s32, u16, u16);
-u16 func_8022DB40(func_8022DB40_Struct *self) {
-    u32 res;
+
+u16 func_8022DB40(void *object) {
+    func_8022DB40_Struct *self = object;
     func_8022DB40_StructB *p;
     u16 w82, w84, w86, w88, w8A, w8C;
     s16 sp22;
@@ -124,14 +57,14 @@ u16 func_8022DB40(func_8022DB40_Struct *self) {
     w8C = self->unk8C;
     switch (p->unk9) {
     case 0:
-        if (((u32)(self->unk30 << 9) >> 0x1E) == 2) {
+        if (((self->unk30 << 9) >> 0x1E) == 2) {
             self->unk9A = (u32)((f64)(f32)w86 * 1.5 + (f64)(f32)w8A * 0.5 + (f64)w84 + 0.5);
         } else {
             self->unk9A = (u32)((f64)(f32)w86 * 1.5 + (f64)(f32)w8C * 0.5 + (f64)w84 + 0.5);
         }
         break;
     case 1:
-        if (((u32)(self->unk30 << 9) >> 0x1E) == 2) {
+        if (((self->unk30 << 9) >> 0x1E) == 2) {
             self->unk9A = (u32)((f64)(f32)w88 * 1.5 + (f64)(f32)w8A * 0.5 + (f64)w84 + 0.5);
         } else {
             self->unk9A = (u32)((f64)(f32)w88 * 1.5 + (f64)(f32)w8C * 0.5 + (f64)w84 + 0.5);

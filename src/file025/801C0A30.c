@@ -193,17 +193,39 @@ void func_801C0EB0(s32 arg0, s32 arg1) {
 }
 
 
-void func_801C0F18(s32 arg0, s32 arg1) {
-    u8 pad[8];
+#define D_801DE838 D_801DE838__func_801C0F18
+#define func_80026E58 func_80026E58__func_801C0F18
+#define func_80026F58 func_80026F58__func_801C0F18
+#define func_801C0C7C_Struct func_801C0C7C_Struct__func_801C0F18
+typedef struct func_801C0C7C_Struct {
+    s32 a0, a4;
+    u64 a8;
+} func_801C0C7C_Struct;
+extern func_801C0C7C_Struct D_801DE838[];
+extern u64 func_80026E58();
+extern u64 func_80026F58();
+
+
+u64 func_801C0F18(s32 arg0, s32 arg1) {
     s32 i;
+    u64 now;
+    u64 scaled;
+    u64 duration;
 
     for (i = 0; i < 32; i++) {
         if (arg0 == D_801DE838[i].a0 && arg1 == D_801DE838[i].a4) {
             break;
         }
     }
-    func_80026E58(func_80026F58(func_80031190() - D_801DE838[i].a8, 64), 3000);
+    now = func_80031190();
+    scaled = func_80026F58(now - D_801DE838[i].a8, 64ULL);
+    duration = func_80026E58(scaled, 3000ULL);
+    return duration;
 }
+#undef D_801DE838
+#undef func_80026E58
+#undef func_80026F58
+#undef func_801C0C7C_Struct
 
 #define D_801DEA40 D_801DEA40__func_801C0FA8
 #define func_801C1134_Struct func_801C1134_Struct__func_801C0FA8

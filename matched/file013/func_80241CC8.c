@@ -22,7 +22,6 @@ struct func_80241CC8_Struct_Self {
 
 extern s32 func_8012C89C(void *, s32, s32, s32);
 extern s16 D_801BBD84;
-extern f64 D_80249AF0;
 extern void func_80241D7C();
 
 void func_80241CC8(struct func_80241CC8_Struct_Self *arg0, struct func_80241CC8_Struct_A *arg1) {
@@ -30,7 +29,7 @@ void func_80241CC8(struct func_80241CC8_Struct_Self *arg0, struct func_80241CC8_
     struct func_80241CC8_Struct_C *temp_v0;
 
     temp_v0 = arg1->unk8->unk30;
-    temp_v0->unkC = (f32) ((f64) temp_v0->unkC - D_80249AF0);
+    temp_v0->unkC = (f32) ((f64) temp_v0->unkC - (0.16666666666666666));
     temp_v1 = arg0->unk94;
     arg0->unk94 = temp_v1 - 1;
     if (temp_v1 == 0) {

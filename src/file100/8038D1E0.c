@@ -93,12 +93,6 @@ s32 func_8038D308(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038D1E0/D_8038DD10.s")
 
-#define D_801BBCD8 D_801BBCD8__func_8038D33C
-#define func_8001EAD0 func_8001EAD0__func_8038D33C
-#define func_8001EF38 func_8001EF38__func_8038D33C
-#define func_800207D0 func_800207D0__func_8038D33C
-#define func_8002FC20 func_8002FC20__func_8038D33C
-
 
 
 struct func_8038D33C_StructB {
@@ -115,52 +109,50 @@ struct func_8038D33C_StructA {
     struct func_8038D33C_StructB *p;
 };
 extern struct func_8038D33C_StructA *D_801BBCD8;
+
 extern f32 func_8002FC20(f32);
 extern s16 func_8001EF38(f32, f32);
 extern f32 func_8001EAD0(s16, s32);
 extern void func_800207D0(u16, s32, u8);
 
 void func_8038D33C(f32 arg0, f32 arg1, f32 arg2, u16 arg3, f32 arg4, f32 arg5) {
-    s32 pad1;
-    u8 sp23;
-    s32 pad0;
-    s16 sp1A;
+    s32 close_volume;
+    u8 volume;
+    f32 maximum_volume;
+    s16 bearing;
     struct func_8038D33C_StructB *p;
-    s16 t;
+    s16 relative_angle;
     s32 a;
-    f32 dx, dy, dz, v, x;
+    f32 dx, dy, dz, distance, level;
 
     arg4 = (arg4 < 0.0f) ? 0.0f : arg4;
     p = D_801BBCD8->p;
     dx = arg0 - p->x;
     dy = arg1 - p->y;
     dz = arg2 - p->z;
-    v = func_8002FC20(dx * dx + dy * dy + dz * dz) * arg5;
-    if (v < 21.0f) {
-        sp23 = 0xC8;
+    distance = func_8002FC20(dx * dx + dy * dy + dz * dz) * arg5;
+    close_volume = 0xC8;
+    if (distance < 21.0f) {
+        volume = close_volume;
     } else {
-        x = (39800.0f / (v + 178.0f)) * arg4;
-        if (255.0f < x) {
-            x = 255.0f;
+        maximum_volume = 255.0f;
+        level = (39800.0f / (distance + 178.0f)) * arg4;
+        if (maximum_volume < level) {
+            level = maximum_volume;
         }
-        sp23 = (u32)x;
+        volume = (u32)level;
     }
     p = D_801BBCD8->p;
-    sp1A = func_8001EF38(arg2 - p->z, arg0 - p->x);
+    bearing = func_8001EF38(arg2 - p->z, arg0 - p->x);
     p = D_801BBCD8->p;
-    t = sp1A - func_8001EF38(p->u44 - p->z, p->u3C - p->x);
-    if (t & 0x1000) {
-        a = (t & 0x1FFF) - 0x2000;
+    relative_angle = bearing - func_8001EF38(p->u44 - p->z, p->u3C - p->x);
+    if (relative_angle & 0x1000) {
+        a = (relative_angle & 0x1FFF) - 0x2000;
     } else {
-        a = t & 0x1FFF;
+        a = relative_angle & 0x1FFF;
     }
-    func_800207D0(arg3, (u32)((f64)func_8001EAD0(a, a) * 63.0 + 64.0) & 0xFF, sp23);
+    func_800207D0(arg3, (u32)((f64)func_8001EAD0(a, a) * 63.0 + 64.0) & 0xFF, volume);
 }
-#undef D_801BBCD8
-#undef func_8001EAD0
-#undef func_8001EF38
-#undef func_800207D0
-#undef func_8002FC20
 
 
 struct func_8038D5F4_Struct {
@@ -197,25 +189,47 @@ void func_8038D5F4(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s
     D_8038E158.unk28 = arg10;
 }
 
+#define func_8038D33C func_8038D33C__func_8038D660
+#define func_8038D5F4_Struct func_8038D5F4_Struct__func_8038D660
+struct func_8038D5F4_Struct {
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    s32 unk18;
+    s32 unk1C;
+    s32 unk20;
+    s32 unk24;
+    s32 unk28;
+    s32 unk2C;
+    s32 unk30;
+};
 
 extern void func_8038D33C(f32 a, f32 b, f32 c, u16 d, f32 e, f32 f);
 
+struct func_8038D660_Interpolation {
+    f32 x;
+    f32 y;
+    f32 fraction;
+    u16 angle;
+};
+
 s32 func_8038D660(void) {
-    u8 pad[8];
-    f32 sp24;
-    f32 sp20;
-    f32 t;
+    struct func_8038D660_Interpolation interpolation;
     f32 z;
 
     if ((u32)D_8038E158.unk18 >= (u32)D_8038E158.unk2C) {
-        t = (f32)(u32)D_8038E158.unk2C / (f32)(u32)D_8038E158.unk18;
-        sp20 = (D_8038E158.unkC - D_8038E158.unk0) * t + D_8038E158.unk0;
-        sp24 = (D_8038E158.unk10 - D_8038E158.unk4) * t + D_8038E158.unk4;
-        z = (D_8038E158.unk14 - D_8038E158.unk8) * t + D_8038E158.unk8;
+        interpolation.fraction = (f32)(u32)D_8038E158.unk2C / (f32)(u32)D_8038E158.unk18;
+        interpolation.x = (D_8038E158.unkC - D_8038E158.unk0) * interpolation.fraction + D_8038E158.unk0;
+        interpolation.y = (D_8038E158.unk10 - D_8038E158.unk4) * interpolation.fraction + D_8038E158.unk4;
+        z = (D_8038E158.unk14 - D_8038E158.unk8) * interpolation.fraction + D_8038E158.unk8;
         if (D_8038E158.unk30 == D_8038E158.unk20) {
-            func_8038D33C(sp20, sp24, z, *(u16 *)((u8 *)&D_8038E158 + 0x1E), 1.20000005f, 1.0f);
+            func_8038D33C(interpolation.x, interpolation.y, z, *(u16 *)((u8 *)&D_8038E158 + 0x1E), 1.20000005f, 1.0f);
         } else if (D_8038E158.unk30 == D_8038E158.unk24) {
-            func_8038D33C(sp20, sp24, z, *(u16 *)((u8 *)&D_8038E158 + 0x1E), 1.20000005f, 1.0f);
+            interpolation.angle = *(u16 *)((u8 *)&D_8038E158 + 0x1E);
+            func_8038D33C(interpolation.x, interpolation.y, z, interpolation.angle, 1.20000005f, 1.0f);
         }
         D_8038E158.unk30++;
         if ((u32)D_8038E158.unk28 < (u32)D_8038E158.unk30) {
@@ -226,6 +240,8 @@ s32 func_8038D660(void) {
     }
     return 1;
 }
+#undef func_8038D33C
+#undef func_8038D5F4_Struct
 
 
 s32 func_8038D7D4(s32 arg0, s32 arg1) {

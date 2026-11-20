@@ -1,10 +1,34 @@
-#include "context.h"
+#include "common.h"
+extern s32 D_800498F0;
+extern u8 *D_80096A98[];
+extern u8 D_800CBBE0[];
+extern void (*D_80047E0C[])(void);
+extern void *D_800CBDA4;
+extern u32 D_801B5520;
+extern void func_80022528(void);
 
-typedef struct func_8002059C_C { u8 pad[0x8]; s32 v8; } func_8002059C_C;
-typedef struct func_8002059C_B { u8 pad[0x10]; func_8002059C_C *p10; } func_8002059C_B;
-typedef struct func_8002059C_A { u8 pad[0xC]; func_8002059C_B *arr[1]; } func_8002059C_A;
-typedef struct func_8002059C_T { u8 pad[4]; func_8002059C_A *p4; } func_8002059C_T;
-typedef struct func_8002059C_S {
+
+typedef struct func_8002059C_StructWave {
+    u8 pad[0x8];
+    s32 v8;
+} func_8002059C_StructWave;
+
+typedef struct func_8002059C_StructInstrument {
+    u8 pad[0x10];
+    func_8002059C_StructWave *p10;
+} func_8002059C_StructInstrument;
+
+typedef struct func_8002059C_StructBank {
+    u8 pad[0xC];
+    func_8002059C_StructInstrument *arr[1];
+} func_8002059C_StructBank;
+
+typedef struct func_8002059C_StructBankEntry {
+    u8 pad[4];
+    func_8002059C_StructBank *p4;
+} func_8002059C_StructBankEntry;
+
+typedef struct func_8002059C_StructTrack {
     u8 pad[0xC];
     u8 unkC;
     u8 unkD;
@@ -16,41 +40,40 @@ typedef struct func_8002059C_S {
     f32 unkB0;
     u16 unkB4;
     u16 unkB6;
-} func_8002059C_S;
-typedef struct func_8002059C_L { s16 a; s16 b; s8 c; } func_8002059C_L;
+} func_8002059C_StructTrack;
 
-extern u32 D_801B5520;
-extern void *D_800CBDA4;
-extern s32 D_800498F0;
-extern u8 D_800CBBE0[];
-extern void func_80022528(void);
-extern func_8002059C_T *D_80096A98[];
+typedef struct func_8002059C_StructVoiceConfig {
+    s16 a;
+    s16 b;
+    s8 c;
+} func_8002059C_StructVoiceConfig;
+
 extern s32 D_800CBE08;
 extern u8 D_801B62A0[];
-extern s32 func_800288C8(s32, void *, func_8002059C_L *);
+extern s32 func_800288C8(s32, void *, func_8002059C_StructVoiceConfig *);
 extern void func_80033D20(s32, void *, s32, f32, s32, s32, s32, s32);
 extern s32 func_80030930(s32, s32, s32);
 
-#define P ((func_8002059C_S *)D_800CBDA4)
+#define P ((func_8002059C_StructTrack *)D_800CBDA4)
 
-/* GGA: sndInitVoices */
 void func_8002059C(void) {
-    func_8002059C_L sp70;
-    u8 pad[0x8];
+    func_8002059C_StructVoiceConfig sp70;
     s32 i;
-    func_8002059C_A *a;
-    func_8002059C_B *b;
-    func_8002059C_C *c;
+    void *voice;
+    func_8002059C_StructBank *a;
+    func_8002059C_StructInstrument *b;
+    func_8002059C_StructWave *c;
 
     for (i = 0; i < 16; i++) {
+        voice = &D_800CBBE0[i * 0x1C];
         sp70.a = 0xA;
         sp70.b = 0;
         sp70.c = 0;
-        func_800288C8(D_800498F0, &D_800CBBE0[i * 0x1C], &sp70);
+        func_800288C8(D_800498F0, voice, &sp70);
         D_800CBDA4 = (u8 *)&D_801B5520 + i * 0xD8;
-        ((func_8002059C_S *)D_800CBDA4)->unkD = 0;
+        ((func_8002059C_StructTrack *)D_800CBDA4)->unkD = 0;
         P->unkC = P->unkD;
-        a = D_80096A98[P->unkC]->p4;
+        a = ((func_8002059C_StructBankEntry *)D_80096A98[P->unkC])->p4;
         b = a->arr[P->unkD];
         c = b->p10;
         P->unk14 = c->v8;
@@ -58,7 +81,7 @@ void func_8002059C(void) {
         P->unkB4 = 0;
         P->unkB6 = 0;
         P->unkE = 1;
-        func_80033D20(D_800498F0, &D_800CBBE0[i * 0x1C], P->unk14, 1.0f, 0, 0x40, 0, 0);
+        func_80033D20(D_800498F0, voice, P->unk14, 1.0f, 0, 0x40, 0, 0);
     }
     func_80022528();
     D_800CBE08 = func_80030930(D_800498F0, 0, 0);

@@ -1,7 +1,5 @@
 #include "context.h"
 extern void func_800058DC(void *, void *);
-
-extern f64 D_80252510;
 extern void func_80240ED0();
 
 typedef struct func_80240E54_Struct {
@@ -24,7 +22,7 @@ void func_80240E54(u8 *arg0, func_80240E54_Outer **arg1) {
     *(u16 *)(arg0 + 0x92) = (u16) (temp_v0 - 1);
     if (temp_v0 != 0) {
         temp_v0_2 = (*arg1)->unk2C;
-        temp_f0 = D_80252510;
+        temp_f0 = (5e-05);
         temp_v0_2->unk18 = (f32) ((f64) temp_v0_2->unk18 + temp_f0);
         temp_v0_2 = (*arg1)->unk2C;
         temp_v0_2->unk1C = (f32) ((f64) temp_v0_2->unk1C + temp_f0);

@@ -326,8 +326,41 @@ void func_801D4068(struct func_801D4068_StructA *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D3300/func_801D4148.s")
 
+void func_801D4388(void) {
+}
+
 /* hh-block asm/nonmatchings/file025/801D3300/_mrg_keep_1d384092044fb377.s {"functions":["func_801D4390"],"rodata":[[".late_rodata","asm/nonmatchings/file025/801D3300/func_801D4390.s","D_801DD554"],[".late_rodata","asm/nonmatchings/file025/801D3300/func_801D44A4.s","D_801DD558"],[".late_rodata","asm/nonmatchings/file025/801D3300/func_801D44A4.s","D_801DD55C"],[".late_rodata","asm/nonmatchings/file025/801D3300/func_801D44A4.s","D_801DD560"],[".late_rodata","asm/nonmatchings/file025/801D3300/func_801D44A4.s","D_801DD564"],[".late_rodata","asm/nonmatchings/file025/801D3300/func_801D44A4.s","D_801DD568"],[".late_rodata","asm/nonmatchings/file025/801D3300/func_801D44A4.s","D_801DD56C"],[".late_rodata","asm/nonmatchings/file025/801D3300/func_801D44A4.s","D_801DD570"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file025/801D3300/_mrg_keep_1d384092044fb377.s")
+
+void func_801D4454(void) {
+}
+
+void func_801D445C(void) {
+}
+
+void func_801D4464(void) {
+}
+
+void func_801D446C(void) {
+}
+
+void func_801D4474(void) {
+}
+
+void func_801D447C(void) {
+}
+
+void func_801D4484(void) {
+}
+
+void func_801D448C(void) {
+}
+
+void func_801D4494(void) {
+}
+
+void func_801D449C(void) {
+}
 
 
 extern f32 D_801DB428[];

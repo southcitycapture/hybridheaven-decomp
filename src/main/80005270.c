@@ -116,6 +116,32 @@ typedef struct func_80005444_StructSmall {
     u8 pad[0x30];
 } func_80005444_StructSmall;
 
+#undef G8
+#define D_800892B0 D_800892B0__func_80005444
+#define func_80005444_StructNode func_80005444_StructNode__func_80005444
+#define func_80005444_StructSmall func_80005444_StructSmall__func_80005444
+#define func_80005CDC_Struct func_80005CDC_Struct__func_80005444
+#define G8 ((u8 *)&D_800892B0)
+struct func_80005CDC_Struct {
+    u8 pad0[0xB6];
+    u16 unkB6;
+    u8 padB8[0x4];
+    s32 unkBC;
+    u8 padC0[0x4];
+    u8 *unkC4;
+};
+extern struct func_80005CDC_Struct D_800892B0;
+#define G8 ((u8 *)&D_800892B0)
+
+typedef struct func_80005444_StructNode {
+    struct func_80005444_StructNode *next;
+    u8 pad[0xB0];
+} func_80005444_StructNode;
+typedef struct func_80005444_StructSmall {
+    struct func_80005444_StructSmall *next;
+    u8 pad[0x30];
+} func_80005444_StructSmall;
+
 void func_80005444(u16 arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
     u16 i;
     s32 count;
@@ -147,20 +173,26 @@ void func_80005444(u16 arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
     *(u16 *)(G8 + 0xB4) = arg3;
     count = arg3;
     *(void **)(G8 + 0xB8) = func_8001F290(count * 0xB8);
-    size = count * 1;
-    *(void **)(G8 + 0xC0) = func_8001F290(size * 1, size);
+    size = count * sizeof(u8);
+    *(void **)(G8 + 0xC0) = func_8001F290(size);
     func_800279F0(*(void **)(G8 + 0xC0), size);
     D_800892B0.unkB6 = arg4;
     count = arg4;
     D_800892B0.unkBC = (s32)func_8001F290(count * 0x50);
-    size = count * 1;
-    D_800892B0.unkC4 = func_8001F290(size * 1, size);
+    size = count * sizeof(*D_800892B0.unkC4);
+    D_800892B0.unkC4 = func_8001F290(size);
     func_800279F0(D_800892B0.unkC4, size);
     count = arg2 << 6;
     D_800792F0 = func_8001F290(count);
     D_80089338 = func_8001F290(count);
     *(u16 *)(G8 + 0x90) = arg2;
 }
+#undef G8
+#undef D_800892B0
+#undef func_80005444_StructNode
+#undef func_80005444_StructSmall
+#undef func_80005CDC_Struct
+#define G8 ((u8 *)&D_800892B0)
 
 
 extern u8 D_80089378[];

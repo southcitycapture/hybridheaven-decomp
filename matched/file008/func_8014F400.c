@@ -70,14 +70,6 @@ typedef struct func_8014F400_Struct_G {
 extern void func_80005670(void *, void *);
 extern s32 func_8010843C(f32, f32, f32, f32, f32, f32);
 extern u8 D_801826AC[];
-extern f64 D_80190688;
-extern f64 D_80190690;
-extern f64 D_80190698;
-extern f64 D_801906A0;
-extern f64 D_801906A8;
-extern f64 D_801906B0;
-extern f64 D_801906B8;
-
 void func_8014F400(arg0)
     func_8014F400_Struct *arg0;
 {
@@ -85,13 +77,13 @@ void func_8014F400(arg0)
 
     if (arg0->unk92 == 2) {
         GG->unk334 = (f32)arg0->unk38->unk6 / 10.0 -
-                     func_8001EAD0(arg0->unk24->unk30->unk12) * ((f32)TBL[arg0->unk90].unk6 * D_80190688 + 50.0);
+                     func_8001EAD0(arg0->unk24->unk30->unk12) * ((f32)TBL[arg0->unk90].unk6 * (0.8) + 50.0);
         GG->unk33C = (f32)arg0->unk38->unkA / 10.0 -
-                     func_8001EB64(arg0->unk24->unk30->unk12) * ((f32)TBL[arg0->unk90].unk6 * D_80190690 + 50.0);
+                     func_8001EB64(arg0->unk24->unk30->unk12) * ((f32)TBL[arg0->unk90].unk6 * (0.8) + 50.0);
     } else {
-        GG->unk334 = func_8001EAD0(arg0->unk24->unk30->unk12) * ((f32)TBL[arg0->unk90].unk6 * D_80190698 + 50.0) +
+        GG->unk334 = func_8001EAD0(arg0->unk24->unk30->unk12) * ((f32)TBL[arg0->unk90].unk6 * (0.8) + 50.0) +
                      (f32)arg0->unk38->unk6 / 10.0;
-        GG->unk33C = func_8001EB64(arg0->unk24->unk30->unk12) * ((f32)TBL[arg0->unk90].unk6 * D_801906A0 + 50.0) +
+        GG->unk33C = func_8001EB64(arg0->unk24->unk30->unk12) * ((f32)TBL[arg0->unk90].unk6 * (0.8) + 50.0) +
                      (f32)arg0->unk38->unkA / 10.0;
     }
     GG->unk338 = arg0->unk24->unk30->unk8 + 20.0f;
@@ -100,10 +92,10 @@ void func_8014F400(arg0)
     } else {
         angle = arg0->unk24->unk30->unk12;
     }
-    GG->unk340 = func_8001EAD0(angle) * ((f32)TBL[arg0->unk90].unkC * 0.5 + D_801906A8) +
+    GG->unk340 = func_8001EAD0(angle) * ((f32)TBL[arg0->unk90].unkC * 0.5 + (0.01)) +
                  (f32)arg0->unk38->unk6 / 10.0;
-    GG->unk344 = (f32)TBL[arg0->unk90].unk6 * D_801906B0 + 10.0f + (f32)arg0->unk38->unk8 / 10.0;
-    GG->unk348 = func_8001EB64(angle) * ((f32)TBL[arg0->unk90].unkC * 0.5 + D_801906B8) +
+    GG->unk344 = (f32)TBL[arg0->unk90].unk6 * (0.2) + 10.0f + (f32)arg0->unk38->unk8 / 10.0;
+    GG->unk348 = func_8001EB64(angle) * ((f32)TBL[arg0->unk90].unkC * 0.5 + (0.01)) +
                  (f32)arg0->unk38->unkA / 10.0;
     if (func_8010843C(GG->unk340, GG->unk344, GG->unk348, GG->unk334, GG->unk338, GG->unk33C) != 0) {
         GG->unk334 = GG->unk380;

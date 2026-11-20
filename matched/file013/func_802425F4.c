@@ -164,7 +164,6 @@
 extern f32 func_8001518C(f32);
 extern f32 func_80029280(f32);
 extern f32 func_80032720(f32);
-extern f64 D_80249B20;
 struct func_802425F4_StructA { u8 pad[0x90]; f32 unk90; };
 struct func_802425F4_StructB {
     u8 pad0[0xF20];
@@ -176,7 +175,7 @@ struct func_802425F4_StructB {
 void func_802425F4(struct func_802425F4_StructA *arg0, s32 arg1) {
     f32 t;
 
-    arg0->unk90 = (f32)((f64)arg0->unk90 + D_80249B20);
+    arg0->unk90 = (f32)((f64)arg0->unk90 + (0.2));
     t = func_80029280(func_8001518C(arg0->unk90)) * 40.0f;
     ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF26 = (s32)(t + 40.0f);
     ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF28 = 0x28;

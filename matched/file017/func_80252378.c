@@ -1,5 +1,8 @@
 #include "common.h"
 extern void func_800058DC();
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern void func_80020718(s32);
 extern s32 func_8012C6B4(s32);
 typedef struct func_802525FC_Struct {
     u8 pad[0x3C];
@@ -11,29 +14,26 @@ typedef struct func_802538A4_Struct {
     u8 pad[0x96];
     u16 unk96;
 } func_802538A4_Struct;
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
-#undef func_80252378
+
 typedef struct func_80252378_Struct {
     u8 pad[0x3C];
     u16 unk3C;
 } func_80252378_Struct;
+
 extern f64 D_8025D7E8;
 extern f64 D_8025D7F0;
-extern void func_80020718(s32);
-extern f32 func_8001EAD0(s16);
-extern f32 func_8001EB64(s16);
-extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
 void func_80252378(func_80252378_Struct *arg0, s32 arg1) {
     f32 sp4C;
     f32 sp48;
-    u8 pad[12];
-    s32 sp38;
-    f32 sp34;
-    s32 sp30;
     s32 t;
     s32 d;
     u16 s;
+    s32 sp38;
+    f32 sp34;
+    s32 sp30;
 
     s = arg0->unk3C;
     arg0->unk3C = s + 1;

@@ -1,4 +1,26 @@
-#include "context.h"
+#include "common.h"
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
+struct func_80024F18_Struct {
+    u8 pad0[0x93];
+    u8 unk93;
+    u8 pad94;
+    u8 unk95;
+    u8 pad96[3];
+    u8 unk99;
+    u16 unk9A;
+    u8 pad9C[2];
+    u8 unk9E;
+    u8 pad9F;
+    s16 unkA0;
+};
+#define P ((struct func_80024F18_Struct *)D_800CBDA4)
+
 
 struct func_80025150_Struct {
     u8 pad0[6];
@@ -19,8 +41,8 @@ extern u8 D_80048200[];
 
 /* GGA: sndCmdVibratoStep */
 void func_80025150(void *arg0) {
-    if (arg0) {}
-    if (P->unk94 == 0) {
+    arg0 = D_800CBDA4;
+    if (((struct func_80025150_Struct *)arg0)->unk94 == 0) {
         P->unk96 = P->unk96 + P->unk95;
         if (P->unk96 >= 0x100) {
             P->unk96 = P->unk96 & 0xFF;

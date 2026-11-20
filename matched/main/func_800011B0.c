@@ -1,10 +1,10 @@
-#include "context.h"
-#if __LINE__ == 2
-extern s32 D_80037730;
-void X_alignment(void) { D_80037730 = 0; }
-void X_alignment2(void) { D_80037730 = 0; }
-void X_alignment3(void) { D_80037730 = 0; }
-#endif
+#include "common.h"
+u16 func_80001060(void);
+
+typedef struct func_800011B0_StructClient {
+    struct func_800011B0_StructClient *next;
+    void *messageQueue;
+} func_800011B0_StructClient;
 extern void func_80000460(void *, s32, s32);
 extern s32 func_800006FC(void *);
 extern void func_80000934(void *, void *, void *);
@@ -28,15 +28,24 @@ extern s32 D_80000300;
 extern s32 D_80037730;
 extern s16 D_8003774C;
 extern u16 D_80037748;
-extern u8 D_8005C268[], D_8005C280[], D_8005C288[], D_8005C2A0[], D_8005C4B0[];
+extern u8 D_8005C268[];
+extern u8 D_8005C280[];
+extern u8 D_8005C288[];
+extern u8 D_8005C2A0[];
+extern u8 D_8005C4B0[];
 extern s32 D_8005CD78;
-extern u8 D_800CE9C0[], D_800F41C0[], D_800F51C0[], D_80107830[], D_80162DD0[], D_8038F800[], func_801BF1A0[];
+extern u8 D_800CE9C0[];
+extern u8 D_800F41C0[];
+extern u8 D_800F51C0[];
+extern u8 D_80107830[];
+extern u8 D_80162DD0[];
+extern u8 D_8038F800[];
+extern u8 func_801BF1A0[];
 
 void func_800011B0(s32 arg0) {
-    u8 pad[8];
-    u8 sp34[4];
+    s16 event;
+    func_800011B0_StructClient client;
     s16 *sp30;
-    s16 v;
 
     sp30 = NULL;
     func_80001E70();
@@ -57,7 +66,7 @@ void func_800011B0(s32 arg0) {
         func_80000460(D_8005C4B0, 0, 1);
     }
     D_80037730 = 0;
-    func_80000934(D_8005C4B0, sp34, D_8005C288);
+    func_80000934(D_8005C4B0, &client, D_8005C288);
     D_8005CD78 = func_800006FC(D_8005C4B0);
     if (func_80001060() != 0) {
         func_80032890(0xAA);
@@ -75,9 +84,10 @@ void func_800011B0(s32 arg0) {
     func_80005444(0xA, 0x64, 0xA, 0xA, 0xA);
     func_80005624(D_80162DD0);
     func_80133AAC(2);
-    while (1) {
+    do {
         func_800266B0(D_8005C288, &sp30, 1);
-        switch (*sp30) {
+        event = *sp30;
+        switch (event) {
         case 1:
             func_8000290C();
             if (D_80037748 == 0) {
@@ -85,13 +95,13 @@ void func_800011B0(s32 arg0) {
             } else {
                 func_80001BB0();
             }
-            break;
+            continue;
         case 2:
-            break;
+            continue;
         case 3:
             D_80037748 = 1;
             D_8003774C = 0;
-            break;
+            continue;
         }
-    }
+    } while (1);
 }

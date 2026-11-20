@@ -94,6 +94,20 @@ class GuardrailTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'no GLOBAL_ASM'):
             self.check([[0, 0, 8]], text='int x;\n', raw=self.RAW[:8], size=8)
 
+    def test_frozen_only_context_must_agree_with_the_source_path(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        import sys
+
+        text = self.TEXT.split('\n', 1)[1] + '/* hh-layout-unit file999/80000000 */\n'
+        state = SimpleNamespace(FILE_RODATA={('file999', '80000000'): 0x80000000})
+        with patch.dict(sys.modules, {'srcbuild': state}):
+            self.assertEqual(rodata_layout.plan_base(text, 'src/file999/80000000.c'), 0x80000000)
+            with self.assertRaisesRegex(ValueError, 'source path'):
+                rodata_layout.plan_base(text, 'src/file998/80000000.c')
+            with self.assertRaisesRegex(ValueError, 'cannot tell the unit'):
+                rodata_layout.plan_base(text.splitlines()[1] + '\n')
+
 
 class AuditTest(unittest.TestCase):
     """Every committed plan passes the guardrails on its pre-layout object (Fable: --audit in the test suite)."""

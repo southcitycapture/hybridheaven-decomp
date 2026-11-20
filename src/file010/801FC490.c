@@ -71,6 +71,23 @@ extern f32 func_8002FC20(f32);
 extern f32 D_80218F5C;
 extern f32 D_80218F60;
 
+#define D_801BBCD8 D_801BBCD8__func_801FC558
+#define func_801FCAE0_Struct1 func_801FCAE0_Struct1__func_801FC558
+#define func_801FCAE0_Struct2 func_801FCAE0_Struct2__func_801FC558
+typedef struct func_801FCAE0_Struct2 {
+    u8 pad0[0x30];
+    f32 unk30;
+    u8 pad1[4];
+    f32 unk38;
+    f32 unk3C;
+    u8 pad2[4];
+    f32 unk44;
+} func_801FCAE0_Struct2;
+typedef struct func_801FCAE0_Struct1 {
+    u8 pad0[0x2C];
+    func_801FCAE0_Struct2 *unk2C;
+} func_801FCAE0_Struct1;
+extern func_801FCAE0_Struct1 *D_801BBCD8;
 void func_801FC558(s32 arg0) {
     s32 sp34;
     u8 pad[20];
@@ -78,13 +95,16 @@ void func_801FC558(s32 arg0) {
     f32 a;
     f32 b;
 
-    sp34 = ((s16)(func_8001EF38(D_801BBCD8->unk2C->unk30 - D_80218F5C, D_801BBCD8->unk2C->unk38 - -328.0f) + 0x270)) & 0x1FFF;
-    a = D_80218F60 - D_801BBCD8->unk2C->unk30;
+    sp34 = ((s16)(func_8001EF38(D_801BBCD8->unk2C->unk30 - (-5.9e+02f), D_801BBCD8->unk2C->unk38 - -328.0f) + 0x270)) & 0x1FFF;
+    a = (-5.9e+02f) - D_801BBCD8->unk2C->unk30;
     b = -328.0f - D_801BBCD8->unk2C->unk38;
     sp1C = func_8002FC20(a * a + b * b);
     func_8002096C(0x1F9, 1, (s16)(s32)(((func_8001EAD0((s16)sp34) * sp1C) / 268.0f) * -64.0f));
     func_8002096C(0x1F9, 2, (s16)(s32)(func_8001EB64((s16)((s16)(func_8001EF38(D_801BBCD8->unk2C->unk3C - D_801BBCD8->unk2C->unk30, D_801BBCD8->unk2C->unk44 - D_801BBCD8->unk2C->unk38) + 0x270) & 0x1FFF)) * 127.0f));
 }
+#undef D_801BBCD8
+#undef func_801FCAE0_Struct1
+#undef func_801FCAE0_Struct2
 
 
 struct func_801FC6AC_Struct {
@@ -291,6 +311,10 @@ void func_801FCBA8(u16 arg0) {
 
 /* Original readonly objects; named loads retain their original addresses. */
 
+
+
+
+
 static const unsigned char rodata_801FC490[] = {
     0x65, 0x72, 0x72, 0x20, 0x3D, 0x20, 0x25, 0x64, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xB2, 0xBB, 0xB3, 0xDA, 0xCD, 0xD1, 0xA5, 0xBF, 0xA5, 0xB9, 0xA5, 0xAF, 0xA5, 0xBB, 0xA5, 0xC3,
@@ -307,9 +331,9 @@ static const unsigned char rodata_801FC490[] = {
     0xEA, 0xBB, 0xFE, 0xB4, 0xD6, 0xB7, 0xD0, 0xB2, 0xE1, 0xB8, 0xE5, 0x42, 0x67, 0x6D, 0x58, 0xB1,
     0xE9, 0xC1, 0xD5, 0x0A, 0x00, 0x00, 0x00, 0x00, 0xC6, 0xB1, 0xA4, 0xB8, 0xB6, 0xCA, 0xA4, 0xAC,
     0xA4, 0xCA, 0xA4, 0xC3, 0xA4, 0xC6, 0xA4, 0xA4, 0xA4, 0xEB, 0xA4, 0xCE, 0xA4, 0xC7, 0xB1, 0xE9,
-    0xC1, 0xD5, 0xA4, 0xB7, 0xA4, 0xDE, 0xA4, 0xBB, 0xA4, 0xF3, 0x0A, 0x00, 0xC4, 0x13, 0x80, 0x00,
-    0xC4, 0x13, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0xC1, 0xD5, 0xA4, 0xB7, 0xA4, 0xDE, 0xA4, 0xBB, 0xA4, 0xF3, 0x0A, 0x00,
 };
+/* hh-owned-pool func_801FC558 80218F5C 80218F64 */
 /* hh-owned-pool func_801FC830 80218F68 80218F70 */
 /* hh-owned-pool func_801FC9C0 80218F70 80218F78 */
 /* hh-owned-pool func_801FCA4C 80218F78 80218F80 */

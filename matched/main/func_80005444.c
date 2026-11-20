@@ -1,8 +1,18 @@
-#include "context.h"
+#include "common.h"
+struct func_80005CDC_Struct {
+    u8 pad0[0xB6];
+    u16 unkB6;
+    u8 padB8[0x4];
+    s32 unkBC;
+    u8 padC0[0x4];
+    u8 *unkC4;
+};
+extern struct func_80005CDC_Struct D_800892B0;
+#define G8 ((u8 *)&D_800892B0)
+
 extern void func_800279F0(void *, s32);
 extern s32 D_80043394;
 extern u16 D_80043398;
-
 extern void *func_8001F290();
 extern void *D_800792F0;
 extern void *D_80089338;
@@ -47,14 +57,14 @@ void func_80005444(u16 arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
     *(u16 *)(G8 + 0xB4) = arg3;
     count = arg3;
     *(void **)(G8 + 0xB8) = func_8001F290(count * 0xB8);
-    size = count * 1;
-    *(void **)(G8 + 0xC0) = func_8001F290(size * 1, size);
+    size = count * sizeof(u8);
+    *(void **)(G8 + 0xC0) = func_8001F290(size);
     func_800279F0(*(void **)(G8 + 0xC0), size);
     D_800892B0.unkB6 = arg4;
     count = arg4;
     D_800892B0.unkBC = (s32)func_8001F290(count * 0x50);
-    size = count * 1;
-    D_800892B0.unkC4 = func_8001F290(size * 1, size);
+    size = count * sizeof(*D_800892B0.unkC4);
+    D_800892B0.unkC4 = func_8001F290(size);
     func_800279F0(D_800892B0.unkC4, size);
     count = arg2 << 6;
     D_800792F0 = func_8001F290(count);

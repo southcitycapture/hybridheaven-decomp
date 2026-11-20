@@ -1,5 +1,7 @@
-#include "context.h"
-
+#include "common.h"
+extern u8 D_8025C7E8;
+extern void func_801FCA4C(f32, f32, s32, s32, u16);
+extern void func_801FCAE0(f32, f32, s32, u16);
 typedef struct func_802491C4_StructNode {
     u8 pad[4];
     f32 x, y;
@@ -16,8 +18,16 @@ typedef struct func_802491C4_Struct {
     u16 kind;
 } func_802491C4_Struct;
 
+
+typedef struct func_802491C4_StructPosition {
+    f32 x;
+    f32 y;
+    s32 z;
+} func_802491C4_StructPosition;
+
 void func_802491C4(func_802491C4_Struct *arg0) {
-    s32 pad[6];
+    func_802491C4_StructPosition firstPosition;
+    func_802491C4_StructPosition secondPosition;
     u16 id;
     s32 k;
     func_802491C4_StructNode *node;
@@ -47,7 +57,13 @@ b3:     id = 0x57A;
     }
 done:
     node = arg0->mid->node;
-    func_801FCA4C(node->x, node->y, node->z, 0x442F0000, id);
+    firstPosition.x = node->x;
+    firstPosition.y = node->y;
+    firstPosition.z = node->z;
+    func_801FCA4C(firstPosition.x, firstPosition.y, firstPosition.z, 0x442F0000, id);
     node = arg0->mid->node;
-    func_801FCAE0(node->x, node->y, node->z, id);
+    secondPosition.x = node->x;
+    secondPosition.y = node->y;
+    secondPosition.z = node->z;
+    func_801FCAE0(secondPosition.x, secondPosition.y, secondPosition.z, id);
 }

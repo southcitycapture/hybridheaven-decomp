@@ -12,8 +12,8 @@ extern u8 D_801BC3D8;
 
 extern u8 D_801BBC8C[];
 extern u8 D_801BBCAC[];
-extern f32 D_8001EAD0(s16);
-extern f32 D_8001EB64(s16);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
 extern s32 func_8001EF38(f32, f32);
 extern s32 func_80228C20();
 extern s32 func_80228D90();
@@ -81,6 +81,21 @@ typedef struct func_8038CFF4_StructO {
     s16 unk8;
 } func_8038CFF4_StructO;
 
+typedef struct func_8038CFF4_StructStatus {
+    u8 pad0[0x30];
+    u32 f30_0:3;
+    u32 f30_3:4;
+    u32 f30_7:4;
+    u32 f30_11:2;
+    u32 f30_rest:19;
+} func_8038CFF4_StructStatus;
+
+typedef struct func_8038CFF4_StructOpponent {
+    func_8038CFF4_StructStatus status;
+    u8 pad34[0x2DE];
+    s16 unk312;
+} func_8038CFF4_StructOpponent;
+
 #define GG D_801BBBF0
 #define G232 (*(s16 *)((u8 *)&D_801BBBF0 + 0x232))
 #define GB90 (*(f32 *)((u8 *)&D_801BBBF0 + 0xB90))
@@ -90,15 +105,15 @@ typedef struct func_8038CFF4_StructO {
 
 void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
     f32 sp3C;
-    s32 pad38;
+    f32 cosine;
     s16 sp36;
     s16 sp34;
     func_8038CFF4_StructO *sp30;
-    s32 pad2C;
+    f32 sine;
     func_8038CFF4_StructS *a1;
-    func_8038CFF4_StructS *t0;
+    func_8038CFF4_StructOpponent *t0;
+    func_8038CFF4_StructStatus *opponentStatus;
     f64 fv;
-    s32 v;
 
     sp34 = (s16)(0x2800 - G232) & 0x1FFF;
     sp30 = (arg0->unkC->unkC == GG.unkDC) ? (func_8038CFF4_StructO *)D_801BBC8C : (func_8038CFF4_StructO *)D_801BBCAC;
@@ -107,20 +122,20 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
     } else {
         a1 = (func_8038CFF4_StructS *)&D_801BC3D8;
     }
-    if (arg0->unkC->unkC != GG.unkDC) {
-        t0 = (func_8038CFF4_StructS *)&D_801BC03C;
-    } else {
-        t0 = (func_8038CFF4_StructS *)&D_801BC3D8;
-    }
-    if (t0) {}
+    t0 = (arg0->unkC->unkC != GG.unkDC) ? (func_8038CFF4_StructOpponent *)&D_801BC03C : (func_8038CFF4_StructOpponent *)&D_801BC3D8;
+    opponentStatus = &t0->status;
     if ((arg0->unk91 == 1) && (GG.unk1031 == 7)) {
         arg0->unk91 = 2;
     }
-    if ((a1->f30_9 != 0) && (a1->f30_3 != 1)) {
+    if ((a1->f30_9 == 0) || (a1->f30_3 == 1)) {
+        return;
+    }
         if ((GG.unk1031 >= 7) && (GG.unk1031 != 0xF)) {
             arg0->unk92 = arg0->unk95 = 0;
         }
-        if ((GG.unk1031 == 5) && !(H30(a1) & 7) && (func_80229260(arg0, a1, sp30, 10) == 0)) {
+        if ((GG.unk1031 != 5) || (H30(a1) & 7) || (func_80229260(arg0, a1, sp30, 10) != 0)) {
+            return;
+        }
             if (a1->f30_27 == 3) {
                 B33(a1) &= 0xFFE7;
             }
@@ -137,8 +152,9 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                     arg0->unk98 = 0x1E;
                     a1->unk328 = 3;
                     a1->unk329 = 0;
-                    sp3C = D_8001EB64((s16)(func_80228C20(arg0) + 0x1000)) * 80.0f / 20.0;
-                    a1->unk32A = (s16)(func_8001EF38(sp3C, D_8001EAD0((s16)(func_80228C20(arg0) + 0x1000)) * 80.0f / 20.0) - sp34) & 0x1FFF;
+                    sp3C = func_8001EB64((s16)(func_80228C20(arg0) + 0x1000)) * 80.0f / 20.0;
+                    cosine = func_8001EAD0((s16)(func_80228C20(arg0) + 0x1000)) * 80.0f / 20.0;
+                    a1->unk32A = (s16)(func_8001EF38(sp3C, cosine) - sp34) & 0x1FFF;
                     return;
                 }
                 if (fv > 20.0) {
@@ -146,7 +162,7 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                     arg0->unk92 = 0;
                     return;
                 }
-                if (((t0->f30_11 != 0) && (t0->unk312 != 0)) || (t0->f30_3 == 2U)) {
+                if (((opponentStatus->f30_11 != 0) && (t0->unk312 != 0)) || (opponentStatus->f30_3 == 2U)) {
                     if (a1->unk6 >= 0x64) {
                         sp30->unk4 = 0x8000;
                     }
@@ -159,8 +175,7 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                 if (arg0->unk91 == 2) {
                     arg0->unk92 = 4;
                 }
-                v = arg0->unk92;
-                if (1 == (v | 0)) {
+                if (arg0->unk92 == 1) {
                     if ((a1->f38_0 != 0) || (a1->unk2D8 == 2)) {
                         arg0->unk92 = 3;
                         return;
@@ -179,25 +194,23 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                     }
                     return;
                 }
-                if (2 == (v | 0)) {
+                if (arg0->unk92 == 2) {
                     if (a1->f38_0 != 0) {
                         arg0->unk92 = 3;
                     }
-                    v = B32(a1) & 3;
-                    if (2U == (v | 0)) {
+                    if ((B32(a1) & 3) == 2U) {
                         arg0->unk92 = 4;
-                        v = B32(a1) & 3;
                     }
-                    if (v == 0) {
+                    if ((B32(a1) & 3) == 0) {
                         arg0->unk92 = 1;
                     }
-                } else if (v == 3) {
+                } else if (arg0->unk92 == 3) {
                     arg1 = arg0->unk90++ >= 0x15;
                     if (arg1) {
                         arg0->unk92 = 4;
                         arg0->unk90 = 0;
                     }
-                } else if (v == 4) {
+                } else if (arg0->unk92 == 4) {
                     if ((a1->unk6 >= 0x64) && (func_80228D90(arg0, a1) != 0)) {
                         B32(a1) = B32(a1) & 0xFFFC;
                         sp30->unk4 = 0x8000;
@@ -211,9 +224,8 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                 if (arg0->unk91 == 1) {
                     arg0->unk91 = 2;
                 }
-                v = B32(a1);
-                if ((v & 3) == 2U) {
-                    B32(a1) = v & 0xFFFC;
+                if ((B32(a1) & 3) == 2U) {
+                    B32(a1) &= 0xFFFC;
                 }
                 sp36 = (s16)(func_80228C20(arg0) + sp34) & 0x1FFF;
                 if (GB90 > 35.0) {
@@ -221,16 +233,16 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                 }
                 if (arg0->unk98 > 0) {
                     sp30->unk2 = 0x2000;
-                    sp30->unk6 = -D_8001EB64(sp36) * 40.0f;
-                    sp30->unk8 = D_8001EAD0(sp36) * 40.0f;
+                    sine = -func_8001EB64(sp36);
+                    sp30->unk6 = sine * 40.0f;
+                    sp30->unk8 = func_8001EAD0(sp36) * 40.0f;
                     arg0->unk98--;
                     return;
                 }
                 if (a1->unk6 >= 0x64) {
-                    sp30->unk6 = -D_8001EB64(sp36) * 80.0f;
-                    sp30->unk8 = D_8001EAD0(sp36) * 80.0f;
+                    sine = -func_8001EB64(sp36);
+                    sp30->unk6 = sine * 80.0f;
+                    sp30->unk8 = func_8001EAD0(sp36) * 80.0f;
                 }
             }
-        }
-    }
 }

@@ -195,7 +195,7 @@ void func_80240B84(struct func_80240B84_Struct *arg0, s32 arg1) {
 
 
 void func_80240BE8(s32 arg0, s32 arg1) {
-    if (func_8011AAF4(D_802498E8, 0xE6, arg0, 0, 2, 1.0f, 668.0f, 35.0f, 179.0f, 1.5f, D_80249A90, 18.0f, 249.0f, 0.0f, 35.0f, -1, -1) == 0) {
+    if (func_8011AAF4(D_802498E8, 0xE6, arg0, 0, 2, 1.0f, 668.0f, 35.0f, 179.0f, 1.5f, (673.0f), 18.0f, 249.0f, 0.0f, 35.0f, -1, -1) == 0) {
         func_80020744(0x1BF);
         *(s16 *)((u8 *)&D_801BBBF0 + 0x194) = 1;
         *(s16 *)((u8 *)&D_801BBBF0 + 0x192) = 4;
@@ -262,7 +262,7 @@ void func_80240D94(struct func_80240D94_Self *arg0, struct func_80240D94_Outer *
     struct func_80240D94_Inner *temp_v0;
 
     temp_v0 = (*arg1)->unk30;
-    temp_v0->unk8 = (f32) ((f64) temp_v0->unk8 + D_80249A98);
+    temp_v0->unk8 = (f32) ((f64) temp_v0->unk8 + (0.2));
     temp_v1 = arg0->unk90;
     arg0->unk90 = temp_v1 - 1;
     if (temp_v1 == 0) {
@@ -431,7 +431,7 @@ extern void D_80020744(s32, void *, s32);
 void func_80240DF4(struct func_80240D94_Self *arg0, struct func_80240D94_Outer **arg1, s32 arg2) {
     s32 temp_v1;
 
-    (*arg1)->unk30->unk8 -= D_80249AA0;
+    (*arg1)->unk30->unk8 -= (0.2);
     temp_v1 = arg0->unk90;
     arg0->unk90 = temp_v1 - 1;
     if (temp_v1 == 0) {
@@ -680,8 +680,8 @@ void func_80240FE8(struct func_80240FE8_Self *arg0, struct func_80240D94_Outer *
     func_80005F6C(arg0, D_80164F40);
     func_80005F6C(arg0, D_80164F40);
     func_80006214(arg0);
-    func_801264D4(arg0, 0, 676.3f, 0.0f, D_80249AA8, 0);
-    func_801264D4(arg0, 1, 676.3f, 0.0f, D_80249AAC, 0);
+    func_801264D4(arg0, 0, 676.3f, 0.0f, (334.8f), 0);
+    func_801264D4(arg0, 1, 676.3f, 0.0f, (334.8f), 0);
     arg0->unk2C |= 0x20;
     func_8012C89C(arg0, 0, 0x80, 0);
     func_8012C89C(arg0, 1, 0x80, 2);
@@ -866,7 +866,7 @@ void func_80241428(s32 arg0, s32 arg1) {
 
 
 void func_802414F8(s32 arg0, s32 arg1) {
-    func_8011AAF4(D_802499D0, 0x198, arg0, 2, 1, 0.0f, D_80249AB4, 21.0f, 248.0f, 0.0f, D_80249AB8, 18.0f, 318.0f, 0.0f, 35.0f, -1, -1);
+    func_8011AAF4(D_802499D0, 0x198, arg0, 2, 1, 0.0f, (6.7e+02f), 21.0f, 248.0f, 0.0f, (677.0f), 18.0f, 318.0f, 0.0f, 35.0f, -1, -1);
     D_801BBD84 = 2;
     {
         extern void func_80133980();
@@ -1012,6 +1012,9 @@ void func_80241984(struct func_80241984_Struct *arg0, s32 arg1) {
 
 /* hh-block asm/nonmatchings/file013/802408F0/_mrg_keep_text_func_802419B4.s {"functions":["func_802419B4"],"rodata":[]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file013/802408F0/_mrg_keep_text_func_802419B4.s")
+
+void func_80241A30(void) {
+}
 
 
 /* context.h declarations used by this function (same types, struct body stays in context.h) */
@@ -1241,10 +1244,10 @@ void func_80241B88(func_80241B88_Struct_Self *arg0, func_80241B88_Struct_A *arg1
     func_80241B88_Struct_Pos *pos;
 
     pos = D_801BBCD0->unk2C;
-    dx = D_80249AE0 - pos->unk4;
+    dx = (677.0f) - pos->unk4;
     dz = 332.0f - pos->unkC;
     if (!((dx * dx) + (dz * dz) > 100.0f)) {
-        if (func_8011AAF4(D_80249A54, 0x246, (s32)arg0, 0, 1, 0.0f, D_80249AE4, 25.0f, 294.0f, 0.0f, 672.0f, 22.0f, D_80249AE8, 0.0f, 35.0f, -1, -1) == 0) {
+        if (func_8011AAF4(D_80249A54, 0x246, (s32)arg0, 0, 1, 0.0f, (681.0f), 25.0f, 294.0f, 0.0f, 672.0f, 22.0f, (363.0f), 0.0f, 35.0f, -1, -1) == 0) {
             arg0->unk94 = 0x12;
             arg1->unk8->unk30->unk12 = 0x1000;
             func_80020744(0x1BD);
@@ -1298,7 +1301,7 @@ void func_80241CC8(struct func_80241CC8_Struct_Self *arg0, struct func_80241CC8_
     struct func_80241CC8_Struct_C *temp_v0;
 
     temp_v0 = arg1->unk8->unk30;
-    temp_v0->unkC = (f32) ((f64) temp_v0->unkC - D_80249AF0);
+    temp_v0->unkC = (f32) ((f64) temp_v0->unkC - (0.16666666666666666));
     temp_v1 = arg0->unk94;
     arg0->unk94 = temp_v1 - 1;
     if (temp_v1 == 0) {
@@ -1348,7 +1351,7 @@ void func_80241D7C(void *arg0, void *arg1)
   f32 temp_fv0;
   s16 temp_a3;
   func_80241D7C_Struct_Inner *new_var;
-  ((func_80241D7C_Struct_Arg0 *) arg0)->unk90 = (f32) (((f64) ((func_80241D7C_Struct_Arg0 *) arg0)->unk90) + D_80249AF8);
+  ((func_80241D7C_Struct_Arg0 *) arg0)->unk90 = (f32) (((f64) ((func_80241D7C_Struct_Arg0 *) arg0)->unk90) + (0.00015));
   temp_fv0 = ((func_80241D7C_Struct_Arg0 *) arg0)->unk90;
   ((func_80241D7C_Struct_Arg1 *) arg1)->unk0->unk30->unk20 = temp_fv0;
   ((func_80241D7C_Struct_Arg1 *) arg1)->unk0->unk30->unk1C = temp_fv0;
@@ -1750,7 +1753,7 @@ void func_802423C0(struct func_802423C0_Obj *arg0, struct func_802423C0_Pair *ar
 {
   f32 temp_fv0;
   s16 temp_v0;
-  arg0->unk90 = (f32) (((f64) arg0->unk90) - D_80249B00);
+  arg0->unk90 = (f32) (((f64) arg0->unk90) - (0.0003));
   temp_fv0 = arg0->unk90;
   arg1->unk0->unk30->unk20 = temp_fv0;
   arg1->unk0->unk30->unk1C = temp_fv0;
@@ -1789,15 +1792,15 @@ void func_802424D8(struct func_802424D8_S *arg0, struct func_802424D8_R *arg1) {
     extern void func_800058DC();
     extern void func_80133980();
     c = ((struct func_802424D8_R2 *)arg1)->unk8->unk30;
-    c->unkC = c->unkC + D_80249B08;
+    c->unkC = c->unkC + (0.16666666666666666);
     if (arg0->unk94--) {
     } else {
         D_801BBBF0.unk194 = 1;
         D_801BBBF0.unk192 = 2;
-        D_801BBBF0.unk198 = D_80249B10;
+        D_801BBBF0.unk198 = (677.0f);
         D_801BBBF0.unk1A0 = 312.0f;
-        D_801BBBF0.unkF04 = D_80249B14;
-        D_801BBBF0.unkF08 = D_80249B18;
+        D_801BBBF0.unkF04 = (0.6f);
+        D_801BBBF0.unkF08 = (0.4f);
         D_801BBBF0.unkF10 = 0x0168003E;
         D_801BBBF0.unkF0C = 0x1000;
         D_801BBBF0.unkF00 = 0x1102;
@@ -1994,7 +1997,7 @@ struct func_802425F4_StructB {
 void func_802425F4(struct func_802425F4_StructA *arg0, s32 arg1) {
     f32 t;
 
-    arg0->unk90 = (f32)((f64)arg0->unk90 + D_80249B20);
+    arg0->unk90 = (f32)((f64)arg0->unk90 + (0.2));
     t = func_80029280(func_8001518C(arg0->unk90)) * 40.0f;
     ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF26 = (s32)(t + 40.0f);
     ((struct func_802425F4_StructB *)&D_801BBBF0)->unkF28 = 0x28;
@@ -2233,19 +2236,34 @@ void func_80242840(struct func_80242840_Struct *arg0, s32 arg1) {
 
 /* Original readonly objects; named loads retain their original addresses. */
 
-static const unsigned char rodata_802408F0_80249A90[] = {
-    0x44, 0x28, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
-    0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x43, 0xA7, 0x66, 0x66, 0x43, 0xA7, 0x66, 0x66,
-    0x44, 0x29, 0x40, 0x00, 0x44, 0x27, 0x80, 0x00, 0x44, 0x29, 0x40, 0x00, 0x44, 0x29, 0x13, 0x33,
-    0x43, 0xA9, 0x80, 0x00, 0x43, 0xA9, 0x80, 0x00, 0x43, 0xA9, 0x80, 0x00, 0x38, 0xD1, 0xB7, 0x17,
-    0x43, 0xAC, 0x80, 0x00, 0x44, 0x29, 0x40, 0x00,
+
+
+
+
+
+
+
+
+
+
+
+static const unsigned char rodata_802408F0_80249AB0[] = {
+    0x44, 0x29, 0x40, 0x00,
 };
-static const unsigned char rodata_802408F0_80249AE0[] = {
-    0x44, 0x29, 0x40, 0x00, 0x44, 0x2A, 0x40, 0x00, 0x43, 0xB5, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xC5, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x3F, 0x23, 0xA9, 0x2A, 0x30, 0x55, 0x32, 0x61,
-    0x3F, 0x33, 0xA9, 0x2A, 0x30, 0x55, 0x32, 0x61, 0x3F, 0xC5, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55,
-    0x44, 0x29, 0x40, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x3E, 0xCC, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00,
-    0x3F, 0xC9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static const unsigned char rodata_802408F0_80249ABC[] = {
+    0x44, 0x29, 0x13, 0x33, 0x43, 0xA9, 0x80, 0x00, 0x43, 0xA9, 0x80, 0x00, 0x43, 0xA9, 0x80, 0x00,
+    0x38, 0xD1, 0xB7, 0x17, 0x43, 0xAC, 0x80, 0x00, 0x44, 0x29, 0x40, 0x00,
 };
+/* hh-placed-function func_80240BE8 */
+/* hh-placed-function func_80240D94 */
+/* hh-placed-function func_80240DF4 */
+/* hh-placed-function func_80240FE8 */
+/* hh-placed-function func_802414F8 */
 /* hh-placed-function func_80241AF0 */
-/* hh-rodata-layout [160,[[0,0,72],[72,80,80],[152,72,8]]] */
+/* hh-placed-function func_80241B88 */
+/* hh-placed-function func_80241CC8 */
+/* hh-placed-function func_80241D7C */
+/* hh-placed-function func_802423C0 */
+/* hh-placed-function func_802424D8 */
+/* hh-placed-function func_802425F4 */
+/* hh-rodata-layout [160,[[0,32,4],[4,44,28],[32,0,32],[64,36,8],[72,72,88]]] */

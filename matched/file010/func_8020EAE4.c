@@ -1,7 +1,4 @@
 #include "common.h"
-
-extern f64 D_8021ABA8;
-
 struct func_8020EAE4_Inner {
     u8 pad0[4];
     f32 unk4;
@@ -30,7 +27,7 @@ s32 func_8020EAE4(struct func_8020EAE4_Arg0 *arg0, struct func_8020EAE4_Outer **
     f64 k;
     struct func_8020EAE4_Inner *temp_v0;
 
-    k = D_8021ABA8;
+    k = (0.01);
     temp_v0 = (*arg1)->unk30;
     temp_v0->unk18 = (f32) ((f64) temp_v0->unk18 + k);
     temp_v0 = (*arg1)->unk30;

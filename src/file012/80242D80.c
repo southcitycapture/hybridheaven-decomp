@@ -460,16 +460,39 @@ struct func_80243538_Struct {
 };
 
 
-void func_80243538(struct func_80243538_Struct *arg0, s32 arg1) {
-    u16 *temp_v0;
+#undef func_802436A4
+#define func_800058DC func_800058DC__func_80243538
+#define func_80243538_Struct func_80243538_Struct__func_80243538
+#define func_802436A4 func_802436A4__func_80243538
+extern s32 func_800058DC(s32, void *);
+extern u8 func_802436A4[];
 
-    temp_v0 = arg0->unk34;
+
+struct func_80243538_StructInner {
+    u8 pad0[4];
+    u16 unk4;
+};
+
+struct func_80243538_Struct {
+    u8 pad0[0x34];
+    struct func_80243538_StructInner *unk34;
+    u8 pad38[0xA];
+    u8 unk42;
+};
+
+void func_80243538(struct func_80243538_Struct *arg0, s32 arg1) {
+    struct func_80243538_StructInner *inner = arg0->unk34;
+
     if (++arg0->unk42 >= 0x15) {
         arg0->unk42 = 0;
-        temp_v0[2] = 0x8000;
-        func_800058DC((s32)arg0, func_802436A4);
+        inner->unk4 = 0x8000;
+        func_800058DC((s32)arg0, (void *)func_802436A4);
     }
 }
+#undef func_800058DC
+#undef func_80243538_Struct
+#undef func_802436A4
+#define func_802436A4 func_802436A4__merge_frozen
 
 
 void func_80243588(u16 arg0, s8 *arg1, s8 *arg2) {

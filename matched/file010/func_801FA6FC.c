@@ -34,7 +34,6 @@ struct func_801FA6FC_Outer {
 
 extern struct func_801FA6FC_Local D_80164F40;
 extern u8 D_801BBBF0[];
-extern f32 D_80218E08;
 extern s32 func_8000C3B0(void *);
 extern void func_80005E44(void *, void *);
 extern void func_80006214(void *);
@@ -60,7 +59,7 @@ void func_801FA6FC(struct func_801FA6FC_Obj *arg0, struct func_801FA6FC_Outer **
         func_8012C784(arg0, 0, 0);
         (*arg1)->unk30->unk24 = 0x15;
         r = func_8000C3B0(*arg1);
-        fv = D_80218E08;
+        fv = (0.01f);
         (*arg1)->unk30->unk30 = r;
         (*arg1)->unk30->unk18 = fv;
         (*arg1)->unk30->unk1C = fv;

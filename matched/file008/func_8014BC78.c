@@ -1,69 +1,15 @@
 #include "common.h"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-s32 func_801C0B8C(u64 time);
-
-
-
-
-
-void *func_8014B7CC(s32);
-s32 func_8014B2CC(s32 arg0);
-s32 func_8014B33C(s32 arg0);
-s32 func_8014B36C(s32 arg0);
-s32 func_8014B3F0(s32 arg0);
-extern u8 D_801BED38;
 extern u8 D_801BEF38;
-void *func_8014B5E8(void);
-s32 func_8014C068(s32 arg0);
-s32 func_8014C0A8(s32 arg0);
-s32 func_8014C0F0(s32 arg0);
-struct func_8014C1F0_Struct {
-    u8 unk0;
-    u8 pad1[3];
-    s32 unk4;
-    u8 unk8;
-    u8 unk9;
-};
-s32 func_8014C138(unsigned int arg0);
-s32 func_8014C194(unsigned int arg0);
-s32 func_8014C1F0(s32 arg0);
-struct func_8014C23C_Inner {
-    u8 pad0[0xA8];
-    u16 unkA8;
-};
-struct func_8014C23C_Struct {
-    u8 unk0;
-    u8 pad1[3];
-    struct func_8014C23C_Inner *unk4;
-};
-s32 func_8014C23C(s32 arg0);
-u8 *func_8014C294(void);
-s32 func_8014C2A0(void);
 
-typedef struct {
+
+typedef struct func_8014BC78_StructElem {
     f32 x;
     f32 y;
     f32 z;
     f32 r;
 } func_8014BC78_Elem;
 
-typedef struct {
+typedef struct func_8014BC78_StructObj {
     u8 pad0[0x90];
     f32 x;
     f32 y;
@@ -71,7 +17,7 @@ typedef struct {
     s16 rot;
 } func_8014BC78_Obj;
 
-typedef struct {
+typedef struct func_8014BC78_StructEntry {
     u8 flags;
     u8 pad1;
     u16 id;
@@ -81,105 +27,116 @@ typedef struct {
     u8 padA[2];
 } func_8014BC78_Entry;
 
-f32 func_8001EAD0(s16);
-f32 func_8001EB64(s16);
-f32 func_8002FC20(f32);
+typedef struct func_8014BC78_StructQuery {
+    f32 x;
+    f32 z;
+    f32 y;
+    f32 radius;
+    f32 best;
+    f32 rotated_x;
+    f32 rotated_z;
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 origin_distance;
+    func_8014BC78_Entry *entry;
+    func_8014BC78_Elem **table;
+} func_8014BC78_Query;
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern f32 func_8002FC20(f32);
 extern func_8014BC78_Elem *D_80181E40[];
 extern func_8014BC78_Elem *D_80181F94[];
+
 u16 func_8014BC78(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
-    u8 pad[0x20];
-    f32 best;
-    func_8014BC78_Entry *e;
-    func_8014BC78_Elem **tbl;
+    func_8014BC78_Query query;
     func_8014BC78_Elem *p;
     func_8014BC78_Obj *o;
     s32 j;
     s32 i;
     s16 ang;
     u8 k;
-    f32 rx;
-    f32 rz;
-    f32 dx;
-    f32 dy;
-    f32 dz;
-    f32 d;
     u16 ret;
 
     ret = 0;
-    best = (1e+05f);
+    query.x = arg0;
+    query.z = arg2;
+    query.y = arg1;
+    query.radius = arg3;
+    query.best = (1e+05f);
     for (j = 0; j < 48; j++) {
-        e = &((func_8014BC78_Entry *)&D_801BEF38)[j];
-        k = e->flags;
+        query.entry = &((func_8014BC78_Entry *)&D_801BEF38)[j];
+        k = query.entry->flags;
         if (!(k & 1)) {
             continue;
         }
-        if ((o = e->obj) == 0 ) {
+        if ((o = query.entry->obj) == 0 ) {
             continue;
         }
         if (!(k & 2)) {
-            k = e->idx0;
-            tbl = &D_80181E40[k];
+            k = query.entry->idx0;
+            query.table = &D_80181E40[k];
             ang = o->rot;
-            if (*tbl == 0 ) {
+            if (*query.table == 0 ) {
                 continue;
             }
             i = 0;
-            if ((*tbl)->r == 0.0f) {
+            if ((*query.table)->r == 0.0f) {
                 continue;
             }
             do {
-                rz = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->z * func_8001EB64(ang) - ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->x * func_8001EAD0(ang);
-                rx = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->z * func_8001EAD0(ang) + ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->x * func_8001EB64(ang);
-                o = e->obj;
-                dx = arg0 - (o->x + rx);
-                dz = arg2 - (o->z + rz);
-                dy = arg1 - (((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->y + o->y);
-                if (func_8002FC20(dx * dx + dz * dz + dy * dy) <= ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->r + arg3) {
-                    o = e->obj;
-                    dx = arg0 - o->x;
-                    dz = arg1 - o->y;
-                    dy = arg2 - o->z;
-                    d = func_8002FC20(dx * dx + dz * dz + dy * dy);
-                    if (d < best) {
-                        best = d;
-                        ret = e->id;
+                query.rotated_z = ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->z * func_8001EB64(ang) - ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->x * func_8001EAD0(ang);
+                query.rotated_x = ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->z * func_8001EAD0(ang) + ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->x * func_8001EB64(ang);
+                o = query.entry->obj;
+                query.dx = query.x - (o->x + query.rotated_x);
+                query.dz = query.z - (o->z + query.rotated_z);
+                query.dy = query.y - (((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->y + o->y);
+                if (func_8002FC20(query.dx * query.dx + query.dz * query.dz + query.dy * query.dy) <= ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->r + query.radius) {
+                    o = query.entry->obj;
+                    query.dx = query.x - o->x;
+                    query.dz = query.y - o->y;
+                    query.dy = query.z - o->z;
+                    query.origin_distance = func_8002FC20(query.dx * query.dx + query.dz * query.dz + query.dy * query.dy);
+                    if (query.origin_distance < query.best) {
+                        query.best = query.origin_distance;
+                        ret = query.entry->id;
                     }
                     break;
                 }
                 i += 16;
-            } while ((p = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) )->r != 0.0f);
+            } while ((p = ((func_8014BC78_Elem *)((u8 *)*query.table + i)) )->r != 0.0f);
         } else {
-            k = e->idx1;
-            tbl = &D_80181F94[k];
+            k = query.entry->idx1;
+            query.table = &D_80181F94[k];
             ang = o->rot;
-            if (*tbl == 0 ) {
+            if (*query.table == 0 ) {
                 continue;
             }
             i = 0;
-            if ((*tbl)->r == 0.0f) {
+            if ((*query.table)->r == 0.0f) {
                 continue;
             }
             do {
-                rz = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->z * func_8001EB64(ang) - ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->x * func_8001EAD0(ang);
-                rx = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->z * func_8001EAD0(ang) + ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->x * func_8001EB64(ang);
-                o = e->obj;
-                dx = arg0 - (o->x + rx);
-                dz = arg2 - (o->z + rz);
-                dy = arg1 - (((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->y + o->y);
-                if (func_8002FC20(dx * dx + dz * dz + dy * dy) <= ((func_8014BC78_Elem *)((u8 *)*tbl + i)) ->r + arg3) {
-                    o = e->obj;
-                    dx = arg0 - o->x;
-                    dz = arg1 - o->y;
-                    dy = arg2 - o->z;
-                    d = func_8002FC20(dx * dx + dz * dz + dy * dy);
-                    if (d < best) {
-                        best = d;
-                        ret = e->id;
+                query.rotated_z = ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->z * func_8001EB64(ang) - ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->x * func_8001EAD0(ang);
+                query.rotated_x = ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->z * func_8001EAD0(ang) + ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->x * func_8001EB64(ang);
+                o = query.entry->obj;
+                query.dx = query.x - (o->x + query.rotated_x);
+                query.dz = query.z - (o->z + query.rotated_z);
+                query.dy = query.y - (((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->y + o->y);
+                if (func_8002FC20(query.dx * query.dx + query.dz * query.dz + query.dy * query.dy) <= ((func_8014BC78_Elem *)((u8 *)*query.table + i)) ->r + query.radius) {
+                    o = query.entry->obj;
+                    query.dx = query.x - o->x;
+                    query.dz = query.y - o->y;
+                    query.dy = query.z - o->z;
+                    query.origin_distance = func_8002FC20(query.dx * query.dx + query.dz * query.dz + query.dy * query.dy);
+                    if (query.origin_distance < query.best) {
+                        query.best = query.origin_distance;
+                        ret = query.entry->id;
                     }
                     break;
                 }
                 i += 16;
-            } while ((p = ((func_8014BC78_Elem *)((u8 *)*tbl + i)) )->r != 0.0f);
+            } while ((p = ((func_8014BC78_Elem *)((u8 *)*query.table + i)) )->r != 0.0f);
         }
     }
     return ret;

@@ -28,7 +28,6 @@ typedef struct func_80150BAC_StructC {
 
 f32 func_8001EAD0(s16);
 f32 func_8001EB64(s16);
-extern f32 D_801906F0;
 extern void *D_801BBCD0;
 extern void func_80150C8C();
 
@@ -41,7 +40,7 @@ void func_80150BAC(s32 arg0, s32 arg1) {
     sp20.unk10 = 0x01680003;
     sp20.unk18 = 0x1000;
     sp20.unk1A = 0x5A;
-    sp20.unk8 = D_801906F0;
+    sp20.unk8 = (0.2f);
     sp20.unk14 = 1.0f;
     func_801C2F0C(2, (struct func_80150970_Struct *)&sp20);
     func_800058DC(arg0, (void *)func_80150C8C);

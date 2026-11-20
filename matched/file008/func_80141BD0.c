@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 
 typedef struct func_80141BD0_StructEntry {
     u8 a, b, c, d;
@@ -14,8 +15,7 @@ extern func_80141BD0_StructHdr D_801814A0;
 
 void func_80141BD0(s32 arg0, s32 arg1) {
     s32 i;
-    u16 sum;
-    u16 pad;
+    u32 sum;
     func_80141BD0_StructHdr data;
 
     data = D_801814A0;
@@ -38,6 +38,7 @@ void func_80141BD0(s32 arg0, s32 arg1) {
     sum = 0;
     for (i = 0; i < 255; i++) {
         sum += ((u8 *)arg1)[i];
+        sum = (u16)sum;
     }
     ((u8 *)arg1)[i] = sum;
 }

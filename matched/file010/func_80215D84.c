@@ -22,12 +22,6 @@ extern void func_8012D918(void *, s32, s32, s32, s32);
 extern u16 func_8012FF58(void);
 extern s32 func_801FD644(f32, f32, f32, f32, s32, f32, f32, u32);
 extern f32 func_801FD780(u8);
-extern f64 D_8021AF50;
-extern f64 D_8021AF58;
-extern f64 D_8021AF60;
-extern f64 D_8021AF68;
-extern f64 D_8021AF70;
-
 s32 func_80215D84(func_8020FB98_Struct *arg0, func_80215D84_Outer **arg1) {
     s32 cnt;
     s32 pad;
@@ -48,10 +42,10 @@ s32 func_80215D84(func_8020FB98_Struct *arg0, func_80215D84_Outer **arg1) {
             func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, 0.0f, 0.0f, 0.0f, 2);
         }
     }
-    if (arg1[0]->unk30->unk1C < D_8021AF50) {
-        arg1[0]->unk30->unk1C += D_8021AF58;
+    if (arg1[0]->unk30->unk1C < (0.3)) {
+        arg1[0]->unk30->unk1C += (0.05);
     }
-    k = D_8021AF60;
+    k = (0.001);
     arg1[0]->unk30->unk8 = arg1[0]->unk30->unk1C * 100.0f + arg0->unk98;
     arg1[0]->unk30->unk18 -= k;
     arg1[0]->unk30->unk20 -= k;
@@ -64,7 +58,7 @@ s32 func_80215D84(func_8020FB98_Struct *arg0, func_80215D84_Outer **arg1) {
         }
     }
     func_8012D918(arg0, 0x4B5, 1, 1, 0);
-    k = D_8021AF68;
+    k = (0.0008);
     arg1[1]->unk30->unk18 += k;
     arg1[1]->unk30->unk1C += k;
     arg1[1]->unk30->unk20 += k;
@@ -74,7 +68,7 @@ s32 func_80215D84(func_8020FB98_Struct *arg0, func_80215D84_Outer **arg1) {
             arg1[1]->unk22 = 0;
         }
     }
-    k = D_8021AF70;
+    k = (0.0016);
     arg1[2]->unk30->unk18 += k;
     arg1[2]->unk30->unk20 += k;
     if (arg1[2]->unk22 != 0) {

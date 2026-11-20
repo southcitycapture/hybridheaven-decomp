@@ -1,4 +1,18 @@
-#include "context.h"
+#include "common.h"
+typedef struct func_80242080_Struct3 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+} func_80242080_Struct3;
+extern func_80242080_Struct3 D_80164F40;
+extern u8 D_80249A58[];
+void func_80005E44(void *, void *);
+extern s32 D_80006214(void *);
+#define func_80006214 D_80006214
+void func_8012C89C(void *, s32, s32, s32);
+void func_802467B0(f32 arg0, f32 arg1, s32 arg2, s32 arg3);
+
 extern f32 D_8024F0B8;
 typedef struct func_80245B20_StructB {
     u8 pad0[4];
@@ -31,12 +45,16 @@ typedef struct func_80245B20_StructP {
     f32 unk98;
     f32 unk9C;
 } func_80245B20_StructP;
+typedef struct func_80245B20_StructColor {
+    s32 full;
+    s32 dim;
+} func_80245B20_StructColor;
 extern void func_8012D918(void *, s32, s32, s32, s32);
 
 void func_80245B20(func_80245B20_StructP *arg0, func_80245B20_StructA **arg1) {
     func_80242080_Struct3 sp;
-    u8 pad[8];
     f32 k;
+    func_80245B20_StructColor color;
     sp = D_80164F40;
     sp.unk4 = 0x80000600;
     func_80005E44(arg0, &sp);
@@ -49,11 +67,13 @@ void func_80245B20(func_80245B20_StructP *arg0, func_80245B20_StructA **arg1) {
     (*arg1)->unk30->unk18 = k;
     (*arg1)->unk30->unk1C = k;
     (*arg1)->unk30->unk20 = k;
-    (*arg1)->unk30->unk48 = 0xFF;
-    (*arg1)->unk30->unk49 = 0xC8;
-    (*arg1)->unk30->unk4A = 0xC8;
-    (*arg1)->unk30->unk4B = 0xFF;
-    (*arg1)->unk30->unk4C = 0xFF;
+    color.full = 0xFF;
+    color.dim = 0xC8;
+    (*arg1)->unk30->unk48 = color.full;
+    (*arg1)->unk30->unk49 = color.dim;
+    (*arg1)->unk30->unk4A = color.dim;
+    (*arg1)->unk30->unk4B = color.full;
+    (*arg1)->unk30->unk4C = color.full;
     (*arg1)->unk30->unk4D = 0;
     (*arg1)->unk30->unk4E = 0;
     (*arg1)->unk30->unk4 = arg0->unk94;

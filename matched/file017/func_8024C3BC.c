@@ -1,12 +1,6 @@
-#include "context.h"
-struct func_8024C560_StructInner {
-    u8 pad[0x22];
-    u8 unk22;
-};
-struct func_8024C560_Struct {
-    s32 pad0;
-    struct func_8024C560_StructInner *unk4;
-};
+#include "common.h"
+extern void func_800058DC(s32, void (*)());
+extern void func_801C2F0C(s32, s32);
 void func_8024C560(s32 arg0, struct func_8024C560_Struct *arg1);
 
 typedef struct func_8024C3BC_StructInner {
@@ -36,23 +30,20 @@ extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32
 extern void func_801FBB20(void);
 
 void func_8024C3BC(func_8024C3BC_StructArg *arg0, s32 arg1) {
-    f32 cosine;
+    f32 radius;
     f32 sine;
-    f64 offset;
-    f32 x, y, z;
-    func_8024C3BC_StructInner *p;
-    func_8024C3BC_StructInner *q;
 
+    radius = 35.0f;
     sine = func_8001EAD0(D_801BBCD0->inner->angle);
     if (D_801C3DC8(arg0, D_801BBCD0->inner->x - sine * 40.0, D_801BBCD0->inner->y + 20.0f,
             D_801BBCD0->inner->z - func_8001EB64(D_801BBCD0->inner->angle) * 40.0,
-            D_801BBCD0->inner->x, D_801BBCD0->inner->y + 17.0f, D_801BBCD0->inner->z, D_8025D024, 35.0f) == 0) {
+            D_801BBCD0->inner->x, D_801BBCD0->inner->y + 17.0f, D_801BBCD0->inner->z, D_8025D024, radius) == 0) {
         func_8011AAF4(D_8025CF00, 0x4B1, arg0, 2, 1, 0.0f,
             D_801BBCD8->inner->a, D_801BBCD8->inner->b, D_801BBCD8->inner->c, 0.0f,
-            D_801BBCD8->inner->d, D_801BBCD8->inner->e, D_801BBCD8->inner->f, 0.0f, 35.0f, -1, -1);
+            D_801BBCD8->inner->d, D_801BBCD8->inner->e, D_801BBCD8->inner->f, 0.0f, radius, -1, -1);
         arg0->state = 0;
         func_801C2F0C(1, NULL);
         func_801FBB20();
-        func_800058DC(arg0, func_8024C560);
+        func_800058DC((s32) arg0, func_8024C560);
     }
 }

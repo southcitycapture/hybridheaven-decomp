@@ -1131,6 +1131,14 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
     if mode == "all":
         kept, rejected = run(reg, set(), every_file=True)
         print("rebuilt from registry: %d functions in C, %d rejected" % (len(kept), len(rejected)))
+        # A re-split that only shortens a function (a stub split off its end, tools/hh/stub_split.py) leaves a
+        # committed file "right" by the guard above while it no longer includes the new function at all, and make
+        # does not rebuild objects when only asm changes, so the stale object hides it until a clean build
+        import stub_split
+        missing, problems = stub_split.fix_sources(False)
+        for l in missing + problems: print("source lacks a function of its unit: " + l)
+        if missing or problems:
+            print("run tools/hh/stub_split.py insert (empty stubs), then make"); sys.exit(1)
         # every_file already rebuilds stale no-registry files. A second all-asm pass would bypass its committed
         # source guard and discard intentional C-owned readonly data, hh-block recipes, or placeholder formatting.
         os.makedirs("matched_rejected", exist_ok=True)

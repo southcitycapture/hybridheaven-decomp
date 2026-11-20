@@ -42,11 +42,6 @@ extern s32 func_8000C3B0(void *);
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern s32 func_8012C6B4();
-extern f32 D_8021A7C8;
-extern f32 D_8021A7CC;
-extern f64 D_8021A7D0;
-extern f64 D_8021A7D8;
-
 void func_80206598(struct func_80206598_Arg0 *arg0, struct func_80206598_Outer **arg1) {
     struct func_80206598_Local loc;
     u8 pad[4];
@@ -59,7 +54,7 @@ void func_80206598(struct func_80206598_Arg0 *arg0, struct func_80206598_Outer *
     func_8012C89C(arg0, 0, 0xCF, 2);
     arg1[0]->unk30->unk24 = 0x13;
     arg1[0]->unk30->unk30 = func_8000C3B0(arg1[0]);
-    arg1[0]->unk30->unk20 = D_8021A7C8;
+    arg1[0]->unk30->unk20 = (0.01f);
     arg1[0]->unk30->unk18 = arg1[0]->unk30->unk1C = arg1[0]->unk30->unk20;
     arg1[0]->unk30->unk24 |= 0x400;
     arg1[0]->unk30->unk4C = D_801BBBF0[0xF32];
@@ -69,7 +64,7 @@ void func_80206598(struct func_80206598_Arg0 *arg0, struct func_80206598_Outer *
     func_8012C89C(arg0, 1, 0xCF, 3);
     arg1[1]->unk30->unk24 = 0x13;
     arg1[1]->unk30->unk30 = func_8000C3B0(arg1[1]);
-    arg1[1]->unk30->unk20 = D_8021A7CC;
+    arg1[1]->unk30->unk20 = (0.01f);
     arg1[1]->unk30->unk18 = arg1[1]->unk30->unk1C = arg1[1]->unk30->unk20;
     arg1[1]->unk30->unk24 |= 0x400;
     arg1[1]->unk30->unk4C = D_801BBBF0[0xF32];
@@ -78,6 +73,6 @@ void func_80206598(struct func_80206598_Arg0 *arg0, struct func_80206598_Outer *
     arg1[1]->unk30->unk4F = D_801BBBF0[0xF35];
     arg0->unk3C = func_8012C6B4(0x3C) + 10;
     arg0->unk44 = 0.0f;
-    arg0->unk40 = func_8001EAD0(arg0->unkA2) * D_8021A7D0;
-    arg0->unk48 = func_8001EB64(arg0->unkA2) * D_8021A7D8;
+    arg0->unk40 = func_8001EAD0(arg0->unkA2) * (0.4);
+    arg0->unk48 = func_8001EB64(arg0->unkA2) * (0.4);
 }

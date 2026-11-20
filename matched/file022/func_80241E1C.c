@@ -18,9 +18,6 @@ extern void func_801268F4(s32);
 extern void func_80203830(s32, void *);
 extern void func_80241EF4();
 extern u8 D_80250054[];
-extern f32 D_8025256C;
-extern f32 D_80252570;
-
 void func_80241E1C(s32 arg0, s32 arg1) {
     void *temp_v0;
     f32 temp_fa0;
@@ -30,8 +27,8 @@ void func_80241E1C(s32 arg0, s32 arg1) {
     if (*(u8 *)((u8 *) ((func_80241E1C_Struct *) &D_801BBBF0)->unkDC + 0x63) != 0) {
         temp_v0 = *(void **)((u8 *) ((func_80241E1C_Struct *) &D_801BBBF0)->unkE0 + 0x2C);
         temp_fv0 = -52.0f - *(f32 *)((u8 *)temp_v0 + 0x4);
-        temp_fv1 = D_8025256C - *(f32 *)((u8 *)temp_v0 + 0x8);
-        temp_fa0 = D_80252570 - *(f32 *)((u8 *)temp_v0 + 0xC);
+        temp_fv1 = (-329.0f) - *(f32 *)((u8 *)temp_v0 + 0x8);
+        temp_fa0 = (281.0f) - *(f32 *)((u8 *)temp_v0 + 0xC);
         if (!(((temp_fv0 * temp_fv0) + (temp_fv1 * temp_fv1) + (temp_fa0 * temp_fa0)) > 900.0f)) {
             func_801268F4(0);
             func_80203830(arg0, D_80250054);

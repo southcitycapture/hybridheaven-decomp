@@ -92,9 +92,9 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
     s16 sp36;
     s16 sp34;
     func_8038CFF4_StructO *sp30;
-    s32 pad2C;
-    func_8038CFF4_StructS *a1;
     func_8038CFF4_StructS *t1;
+    func_8038CFF4_StructS *a1;
+    u8 *opponent_data;
     u8 sp23;
     f64 fv;
     s32 v;
@@ -111,16 +111,14 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
         a1 = (func_8038CFF4_StructS *)D_801BC3D8;
     }
     if (arg0->unkC->unkC == GG.unkDC) {
-        t1 = (func_8038CFF4_StructS *)D_801BC3D8;
+        opponent_data = D_801BC3D8;
     } else {
-        t1 = (func_8038CFF4_StructS *)D_801BC03C;
+        opponent_data = D_801BC03C;
     }
-    if ((s32)t1 == (s32)&D_801BBBF0 + 0x44C) {
-        arg1 = ((func_8038CFF4_StructU *)GG.unkDC)->unk5C->unk1C;
-    } else {
-        arg1 = GEC->unk5C->unk1C;
-    }
-    if (t1) {}
+    t1 = (func_8038CFF4_StructS *)opponent_data;
+    arg1 = ((s32)opponent_data == (s32)&D_801BBBF0 + 0x44C)
+        ? ((func_8038CFF4_StructU *)GG.unkDC)->unk5C->unk1C
+        : GEC->unk5C->unk1C;
     sp23 = func_8022559C(arg1, a1);
     if ((a1->f30_9 != 0) && (a1->f30_3 != 1)) {
         if ((GG.unk1031 >= 7) && (GG.unk1031 != 0xF)) {
@@ -143,8 +141,7 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                         sp30->unk4 = 0x8000;
                     }
                 } else {
-                    v = arg0->unk92;
-                    if (1 == (v | 0)) {
+                    if (arg0->unk92 == 1) {
                         if (a1->f38_0 != 0) {
                             arg0->unk90 = 0;
                             arg0->unk92 = 3;
@@ -169,24 +166,22 @@ void func_8038CFF4(func_8038CFF4_StructP *arg0, s32 arg1) {
                         func_80228FD0(arg0, sp30, 4);
                         return;
                     }
-                    if (v == 2) {
+                    if (arg0->unk92 == 2) {
                         if (a1->f38_0 != 0) {
                             arg0->unk92 = 3;
                         }
-                        v = B32(a1) & 3;
-                        if (2U == (v | 0)) {
+                        if ((B32(a1) & 3) == 2U) {
                             arg0->unk92 = 4;
-                            v = B32(a1) & 3;
                         }
-                        if (v == 0) {
+                        if ((B32(a1) & 3) == 0) {
                             arg0->unk92 = 1;
                         }
-                    } else if (v == 3) {
+                    } else if (arg0->unk92 == 3) {
                         if (++arg0->unk90 >= 0xB) {
                             arg0->unk92 = 4;
                             arg0->unk90 = 0;
                         }
-                    } else if (v == 4) {
+                    } else if (arg0->unk92 == 4) {
                         if ((a1->unk6 >= 0x64) && (func_80228D90(arg0, a1) != 0)) {
                             B32(a1) = B32(a1) & 0xFFFC;
                             sp30->unk4 = 0x8000;

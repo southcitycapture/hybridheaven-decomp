@@ -33,6 +33,29 @@ extern u8 D_80096AB0[];
 extern u8 D_80191520[];
 
 /* GGA: sndInit */
+#define D_80096A98 D_80096A98__func_800201D0
+#define func_800201D0_StructA func_800201D0_StructA__func_800201D0
+#define func_800201D0_StructB func_800201D0_StructB__func_800201D0
+#define func_800203C4 func_800203C4__func_800201D0
+#define func_800203C4_Struct func_800203C4_Struct__func_800201D0
+#define func_8002059C_A func_8002059C_A__func_800201D0
+#define func_8002059C_B func_8002059C_B__func_800201D0
+#define func_8002059C_C func_8002059C_C__func_800201D0
+#define func_8002059C_T func_8002059C_T__func_800201D0
+typedef struct func_8002059C_C { u8 pad[0x8]; s32 v8; } func_8002059C_C;
+typedef struct func_8002059C_B { u8 pad[0x10]; func_8002059C_C *p10; } func_8002059C_B;
+typedef struct func_8002059C_A { u8 pad[0xC]; func_8002059C_B *arr[1]; } func_8002059C_A;
+typedef struct func_8002059C_T { u8 pad[4]; func_8002059C_A *p4; } func_8002059C_T;
+extern func_8002059C_T *D_80096A98[];
+extern void (*D_80047E0C[])(void);
+typedef struct func_800203C4_Struct { s32 unk0; void *unk4; void *unk8; } func_800203C4_Struct;
+void func_800203C4(func_800203C4_Struct *arg0);
+
+
+typedef struct { s32 a, b, c, d; s32 e; void *f; s32 g; s8 h; void *i; } func_800201D0_StructA;
+typedef struct { s32 a, b, c; } func_800201D0_StructB;
+
+/* GGA: sndInit */
 void func_800201D0(void) {
     func_800201D0_StructA a;
     func_800201D0_StructB b;
@@ -42,17 +65,19 @@ void func_800201D0(void) {
     s32 s;
     s32 j;
 
-    for (i = 0; i < 0x100000; i++) {}
+    for (i = 0; i < 0x100000;) {
+        i++;
+    }
     func_800305D0(D_80096A88, D_80096AB0, 0x35000);
     off = 0;
     for (j = 0; j < 6; j++) {
         n = D_80047978[j] - D_80047960[j];
         s = D_80047960[j];
-        D_80096A98[j] = D_80191520 + off;
+        D_80096A98[j] = (func_8002059C_T *)(D_80191520 + off);
         for (i = 0; i != n; i++) {
             (D_80191520 + off)[i] = 0;
         }
-        func_80001FE8(s * 1, D_80096A98[j], n, s);
+        func_80001FE8(s, D_80096A98[j], n);
         off += n;
     }
     for (j = 0; j < 6; j++) {
@@ -70,9 +95,20 @@ void func_800201D0(void) {
     b.b = 1;
     b.c = 0x1000;
     func_8001F8A0(&a, 0xC, &b);
-    func_800203C4(D_80096A70);
-    for (i = 0; i < 0x100000; i++) {}
+    func_800203C4((func_800203C4_Struct *)D_80096A70);
+    for (i = 0; i < 0x100000;) {
+        i++;
+    }
 }
+#undef D_80096A98
+#undef func_800201D0_StructA
+#undef func_800201D0_StructB
+#undef func_800203C4
+#undef func_800203C4_Struct
+#undef func_8002059C_A
+#undef func_8002059C_B
+#undef func_8002059C_C
+#undef func_8002059C_T
 
 extern s32 D_800498F0;
 extern u16 D_800CBAB2;
@@ -230,23 +266,73 @@ extern s32 func_80030930(s32, s32, s32);
 #define P ((func_8002059C_S *)D_800CBDA4)
 
 /* GGA: sndInitVoices */
-void func_8002059C(void) {
-    func_8002059C_L sp70;
+#undef D_80096A98
+#undef P
+#define func_800288C8 func_800288C8__func_8002059C_762b68b6
+
+
+typedef struct func_8002059C_StructWave {
     u8 pad[0x8];
+    s32 v8;
+} func_8002059C_StructWave;
+
+typedef struct func_8002059C_StructInstrument {
+    u8 pad[0x10];
+    func_8002059C_StructWave *p10;
+} func_8002059C_StructInstrument;
+
+typedef struct func_8002059C_StructBank {
+    u8 pad[0xC];
+    func_8002059C_StructInstrument *arr[1];
+} func_8002059C_StructBank;
+
+typedef struct func_8002059C_StructBankEntry {
+    u8 pad[4];
+    func_8002059C_StructBank *p4;
+} func_8002059C_StructBankEntry;
+
+typedef struct func_8002059C_StructTrack {
+    u8 pad[0xC];
+    u8 unkC;
+    u8 unkD;
+    u8 unkE;
+    u8 padF;
+    u8 pad10[4];
+    s32 unk14;
+    u8 pad18[0xB0 - 0x18];
+    f32 unkB0;
+    u16 unkB4;
+    u16 unkB6;
+} func_8002059C_StructTrack;
+
+typedef struct func_8002059C_StructVoiceConfig {
+    s16 a;
+    s16 b;
+    s8 c;
+} func_8002059C_StructVoiceConfig;
+
+extern s32 func_800288C8(s32, void *, func_8002059C_StructVoiceConfig *);
+
+#define P ((func_8002059C_StructTrack *)D_800CBDA4)
+
+void func_8002059C(void) {
+    func_8002059C_StructVoiceConfig sp70;
     s32 i;
-    func_8002059C_A *a;
-    func_8002059C_B *b;
-    func_8002059C_C *c;
+    void *voice;
+    func_8002059C_StructBank *a;
+    func_8002059C_StructInstrument *b;
+    func_8002059C_StructWave *c;
 
     for (i = 0; i < 16; i++) {
+        voice = &D_800CBBE0[i * 0x1C];
         sp70.a = 0xA;
         sp70.b = 0;
         sp70.c = 0;
-        func_800288C8(D_800498F0, &D_800CBBE0[i * 0x1C], &sp70);
+        func_800288C8(D_800498F0, voice, &sp70);
         D_800CBDA4 = (u8 *)&D_801B5520 + i * 0xD8;
-        ((func_8002059C_S *)D_800CBDA4)->unkD = 0;
+        ((func_8002059C_StructTrack *)D_800CBDA4)->unkD = 0;
         P->unkC = P->unkD;
-        a = D_80096A98[P->unkC]->p4;
+        a = ((func_8002059C_StructBankEntry *)D_80096A98[P->unkC])->p4;
         b = a->arr[P->unkD];
         c = b->p10;
         P->unk14 = c->v8;
@@ -254,11 +340,15 @@ void func_8002059C(void) {
         P->unkB4 = 0;
         P->unkB6 = 0;
         P->unkE = 1;
-        func_80033D20(D_800498F0, &D_800CBBE0[i * 0x1C], P->unk14, 1.0f, 0, 0x40, 0, 0);
+        func_80033D20(D_800498F0, voice, P->unk14, 1.0f, 0, 0x40, 0, 0);
     }
     func_80022528();
     D_800CBE08 = func_80030930(D_800498F0, 0, 0);
 }
+#undef P
+#undef func_800288C8
+#define D_80096A98 D_80096A98__func_8002059C
+#define P ((func_8002059C_S *)D_800CBDA4)
 #undef P
 #undef D_80096A98
 
@@ -1229,7 +1319,234 @@ void func_80021824(s32 kind, u32 id) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_80021968.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800201D0/func_80021C10.s")
+#define D_800CBB50 D_800CBB50__func_80021C10
+#define D_801628F8 D_801628F8__func_80021C10
+#define SndCmd SndCmd__func_80021C10
+#define SndFade SndFade__func_80021C10
+#define SndJingle SndJingle__func_80021C10
+#define SndSe SndSe__func_80021C10
+#define SndSeq SndSeq__func_80021C10
+#define SndTrack SndTrack__func_80021C10
+#define func_80021D50 func_80021D50__func_80021C10
+#define func_80021EB8_StructState func_80021EB8_StructState__func_80021C10
+#define func_80022214 func_80022214__func_80021C10
+#define state ((func_80021EB8_StructState *) D_800CBAD8)
+typedef struct SndSe {
+    /* 0x0 */ u8 prio;  /* low 5 bits: priority */
+    /* 0x1 */ u8 flags; /* high nibble: track - 15 */
+    /* 0x2 */ u8 pad2[2];
+    /* 0x4 */ u8 *data;
+} SndSe; /* size 0x8 */
+typedef struct SndCmd {
+    /* 0x0 */ u16 id;
+    /* 0x2 */ u8 kind;
+    /* 0x3 */ u8 ticks;
+    /* 0x4 */ s16 target;
+} SndCmd; /* size 0x6 */
+typedef struct SndJingle {
+    /* 0x0 */ u8 count;
+    /* 0x1 */ u8 bank;
+    /* 0x2 */ u8 pad2[2];
+    /* 0x4 */ u8 **channels;
+} SndJingle; /* size 0x8 */
+typedef struct SndSeq {
+    /* 0x0 */ u8 count; /* channels */
+    /* 0x1 */ u8 firstTrack;
+    /* 0x2 */ u8 prio;
+    /* 0x3 */ u8 bank;
+    /* 0x04 */ u8 startDelay;
+    /* 0x08 */ u8 **channels;
+    /* 0x0C */ s16 param0[3];
+    /* 0x12 */ s16 slideTarget[3];
+    /* 0x18 */ s16 slide[3];
+    /* 0x1E */ s16 slideStep[3];
+    /* 0x24 */ u8 slideTicks[3];
+} SndSeq;
+typedef struct func_80021EB8_StructState {
+    u8 a, b, c, d, e, f;
+    u8 pad[2];
+    s32 value;
+} func_80021EB8_StructState;
+#define state ((func_80021EB8_StructState *) D_800CBAD8)
+typedef struct SndTrack {
+    /* 0x00 */ u32 id; /* the sound playing (low 15 bits) */
+    /* 0x04 */ u8 prio; /* the playing sound's priority */
+    /* 0x05 */ u8 startDelay;
+    /* 0x06 */ u8 flags;
+    /* 0x07 */ u8 unused7;
+    /* 0x08 */ u8 *data; /* the channel's commands */
+    /* 0x0C */ u8 bank;
+    /* 0x0D */ u8 inst;
+    /* 0x0E */ u8 voiceOn; /* the voice is on */
+    /* 0x0F */ u8 voiceStopTicks;
+    /* 0x10 */ u8 fxmix;
+    /* 0x11 */ u8 pad11[0x3];
+    /* 0x14 */ void *wave; /* ALWaveTable * */
+    /* 0x18 */ u16 tempo; /* the tempo, 8.8 */
+    /* 0x1A */ u16 tempoAcc;
+    /* 0x1C */ u8 tempoSlideTarget; /* a tempo slide's target */
+    /* 0x1D */ u8 tempoSlideTicks; /* and ticks left */
+    /* 0x1E */ s16 tempoSlideStep; /* and step */
+    /* 0x20 */ u8 lastLength; /* the note's length, as last given (trkNextNote) */
+    /* 0x21 */ u8 waitTicks; /* and as played */
+    /* 0x22 */ u8 gate; /* the gate, in 128ths of the length (0: a tie) */
+    /* 0x23 */ u8 lastGate; /* the gate, as last given */
+    /* 0x24 */ u8 noteTicks; /* the note's length left (music) */
+    /* 0x25 */ u8 key; /* the note's key (0x48 and up: a drum, played at 0x3C) */
+    /* 0x26 */ u8 pad26[0x2];
+    /* 0x28 */ s32 note; /* in 1/256 semitones: the key plus the five offsets below */
+    /* 0x2C */ s16 instTune;
+    /* 0x2E */ s16 transpose;
+    /* 0x30 */ s16 detune;
+    /* 0x32 */ s16 loopDetune;
+    /* 0x34 */ s16 loop2Detune;
+    /* 0x36 */ s16 vibratoOffset;
+    /* 0x38 */ u16 wobbleOffset;
+    /* 0x3A */ u16 volume;
+    /* 0x3C */ u8 pad3C[0x4];
+    /* 0x40 */ s16 loopVelocity;
+    /* 0x42 */ s16 loop2Velocity;
+    /* 0x44 */ s16 volSlideStep; /* a volume slide's step */
+    /* 0x46 */ u8 volSlideTarget; /* and target */
+    /* 0x47 */ u8 volSlideTicks; /* and ticks left */
+    /* 0x48 */ u8 velocity;
+    /* 0x49 */ u8 envState; /* 0 attack, 1 decay, 2 sustain, 3 release */
+    /* 0x4A */ u16 envLevel;
+    /* 0x4C */ u16 envTicks; /* until the next state */
+    /* 0x4E */ u16 envAttack;
+    /* 0x50 */ u16 envDecay;
+    /* 0x52 */ u16 envSustain;
+    /* 0x54 */ u16 envDecayLevel;
+    /* 0x56 */ u16 envRelease;
+    /* 0x58 */ u16 pan; /* the expression; 0x8000: given by the sound's id */
+    /* 0x5A */ u8 panSlideTarget;  /* an expression slide's target */
+    /* 0x5B */ u8 panSlideTicks;  /* and ticks left */
+    /* 0x5C */ s16 panSlideStep; /* and step */
+    /* 0x5E */ u8 loopPass;
+    /* 0x5F */ u8 unused5F;
+    /* 0x60 */ u8 *loopStart;
+    /* 0x64 */ u8 loop2Pass;
+    /* 0x65 */ u8 pad65[0x3];
+    /* 0x68 */ u8 *loop2Start;
+    /* 0x6C */ u8 *mark;
+    /* 0x70 */ u8 repeatState;
+    /* 0x71 */ u8 pad71[0x3];
+    /* 0x74 */ u8 *repeatStart;
+    /* 0x78 */ u8 *repeatReturn;
+    /* 0x7C */ u8 portaDelay; /* a portamento's delay */
+    /* 0x7D */ u8 portaTicks; /* and length (ticks) */
+    /* 0x7E */ u8 pad7E[0x2];
+    /* 0x80 */ s32 portaTarget; /* and target note */
+    /* 0x84 */ s32 portaStep; /* and step per tick (a new note first stores the old note here) */
+    /* 0x88 */ u8 bendDelay;
+    /* 0x89 */ u8 bendTicks;
+    /* 0x8A */ s16 bendAmount;
+    /* 0x8C */ u8 glideOn;
+    /* 0x8D */ u8 wobbleNoisePos;
+    /* 0x8E */ u16 wobbleMask;
+    /* 0x90 */ u16 wobblePhase;
+    /* 0x92 */ u8 wobbleSpeed;
+    /* 0x93 */ u8 vibratoDelay; /* vibrato: its delay */
+    /* 0x94 */ u8 vibratoDelayLeft; /* and delay left */
+    /* 0x95 */ u8 vibratoSpeed; /* its phase step */
+    /* 0x96 */ u16 vibratoPhase; /* its phase */
+    /* 0x98 */ u8 vibratoWavePos;
+    /* 0x99 */ u8 vibratoWaveStep; /* its phase step's shift (1, 2, 4, 8 or 0x10) */
+    /* 0x9A */ u16 vibratoDepth; /* its depth */
+    /* 0x9C */ u16 vibratoCurDepth; /* its depth now (rising over unk9E ticks) */
+    /* 0x9E */ u8 vibratoRiseTicks; /* the depth's rise, in ticks */
+    /* 0x9F */ u8 vibratoRiseLeft; /* and ticks left */
+    /* 0xA0 */ u16 vibratoRiseStep; /* and step */
+    /* 0xA2 */ s16 param[3]; /* set by parameter changes, by kind */
+    /* 0xA8 */ s16 param0[3]; /* the sequence's values, by kind (the third adds to the pan) */
+    /* 0xAE */ u8 padAE[0x2];
+    /* 0xB0 */ f32 pitch;
+    /* 0xB4 */ s16 voiceVol;
+    /* 0xB6 */ u16 voiceVolTicks;
+    /* 0xB8 */ u8 scale[3]; /* by kind: 0, or tenths */
+    /* 0xBB */ s8 base[3];
+    /* 0xBE */ u8 stopFadeLevel; /* a volume scale, decaying by unkBF each step */
+    /* 0xBF */ u8 stopFadeStep;
+    /* 0xC0 */ s16 slideTarget[3]; /* slides, by kind (sndStartSlide) */
+    /* 0xC6 */ s16 slide[3];
+    /* 0xCC */ s16 slideStep[3];
+    /* 0xD2 */ u8 slideTicks[3];
+    /* 0xD5 */ u8 stateMuted;
+    /* 0xD6 */ u8 noCrossfade;
+    /* 0xD7 */ u8 unusedD7;
+} SndTrack; /* size 0xD8 in HH (GGA's has a u16 fadeLevel at 0xD8, size 0xDC; HH's loops step 0xD8) */
+typedef struct SndFade {
+    /* 0x0 */ s16 rate;
+    /* 0x2 */ u16 level;
+} SndFade;
+
+
+typedef struct func_80021C10_StructSeq {
+    u8 unk0, unk1, unk2, unk3, unk4, unk5;
+    u8 pad6[2];
+    u8 **unk8;
+} func_80021C10_StructSeq;
+
+extern SndSe D_801628F8[];
+extern u8 *D_800CBB50[];
+extern s32 func_80021D50(s32);
+extern void func_80022214();
+
+#define SEQ ((func_80021C10_StructSeq *)D_800CBAD8)
+#define TRACKS ((SndTrack *)&D_801B5520)
+
+void func_80021C10(void) {
+    u16 id = D_800CBB48 & 0x7FFF;
+    SndSe *se;
+    s32 i;
+    u8 track;
+
+    if (id < 0x6CF) {
+        se = &D_801628F8[id - 0x634];
+        track = se->flags >> 4;
+        track += 15;
+        SEQ->unk2 = se->prio;
+        SEQ->unk2 &= 0x1F;
+        if (track == 15) {
+            for (i = 16; i < 20; i++) {
+                if (id == (TRACKS[i].id & 0x7FFF)) {
+                    track = i;
+                    break;
+                }
+            }
+            if (track == 15) {
+                track = func_80021D50(0);
+            }
+        }
+        if (SEQ->unk2 >= TRACKS[track].prio) {
+            SEQ->unk1 = track;
+            SEQ->unk0 = 1;
+            SEQ->unk8 = D_800CBB50;
+            D_800CBB50[0] = se->data;
+            SEQ->unk3 = 0;
+            SEQ->unk4 = 0;
+            SEQ->unk5 = 0;
+            func_80022214(0);
+        }
+    }
+}
+#undef state
+#undef SEQ
+#undef TRACKS
+#undef D_800CBB50
+#undef D_801628F8
+#undef SndCmd
+#undef SndFade
+#undef SndJingle
+#undef SndSe
+#undef SndSeq
+#undef SndTrack
+#undef func_80021D50
+#undef func_80021EB8_StructState
+#undef func_80022214
+
+void func_80021D48(void) {
+}
 
 
 extern u8 D_801B595C;
@@ -1801,18 +2118,13 @@ void func_80022C08(void) {
 
 
 
+
+
 void func_80022C2C(void)
 {
-  s16 *new_var;
-  volatile s16 *p;
-  new_var = &D_800CBACA;
-  new_var = &D_800CBACA;
-  p = new_var;
-  new_var[0] = 0;
-  D_800CBACC = 0;
-  if (!new_var)
-  {
-  }
+    u16 *slot = &D_800CBACA;
+
+    D_800CBACC = *slot = 0;
 }
 
 

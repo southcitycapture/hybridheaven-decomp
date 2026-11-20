@@ -1,8 +1,28 @@
-#include "context.h"
+#include "common.h"
+struct func_8001EA48_Struct {
+    u8 pad[0x156];
+    s16 unk156;
+    u8 pad2[0x15D - 0x158];
+    u8 unk15D;
+};
+extern struct func_8001EA48_Struct D_801BBBF0;
+extern void func_80006214(s32);
+struct func_8001E87C_Sub {
+    u8 pad[0xB];
+    s8 unkB;
+    u8 pad2[4];
+    s16 unk10;
+};
+struct func_8001E87C_Struct {
+    u8 pad[0x22];
+    u8 unk22;
+    u8 pad2[0xD];
+    struct func_8001E87C_Sub *unk30;
+};
+
 extern s16 D_80089354;
 void func_8001E830(s32 arg0, s32 arg1);
 void func_8001E87C(s32 arg0, struct func_8001E87C_Struct **arg1);
-
 extern void func_800058DC(s32, void (*)(void));
 
 struct func_8001E768_Struct {
@@ -15,8 +35,6 @@ struct func_8001E768_Struct {
 };
 
 void func_8001E768(void *arg0, struct func_8001E87C_Struct **arg1) {
-    u8 temp_t9;
-
     if ((((struct func_8001E768_Struct *)&D_801BBBF0)->unk15D & 0xF) == 1) {
         D_80089354 = 2;
         func_800058DC(arg0, func_8001E830);

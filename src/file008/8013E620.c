@@ -1713,10 +1713,26 @@ typedef struct func_80141BD0_StructHdr {
 
 extern func_80141BD0_StructHdr D_801814A0;
 
+#define D_801814A0 D_801814A0__func_80141BD0
+#define func_80141BD0_StructEntry func_80141BD0_StructEntry__func_80141BD0
+#define func_80141BD0_StructHdr func_80141BD0_StructHdr__func_80141BD0
+
+
+typedef struct func_80141BD0_StructEntry {
+    u8 a, b, c, d;
+    u16 e;
+    u8 f, g;
+} func_80141BD0_StructEntry;
+
+typedef struct func_80141BD0_StructHdr {
+    u8 b[13];
+} func_80141BD0_StructHdr;
+
+extern func_80141BD0_StructHdr D_801814A0;
+
 void func_80141BD0(s32 arg0, s32 arg1) {
     s32 i;
-    u16 sum;
-    u16 pad;
+    u32 sum;
     func_80141BD0_StructHdr data;
 
     data = D_801814A0;
@@ -1739,9 +1755,13 @@ void func_80141BD0(s32 arg0, s32 arg1) {
     sum = 0;
     for (i = 0; i < 255; i++) {
         sum += ((u8 *)arg1)[i];
+        sum = (u16)sum;
     }
     ((u8 *)arg1)[i] = sum;
 }
+#undef D_801814A0
+#undef func_80141BD0_StructEntry
+#undef func_80141BD0_StructHdr
 
 #define D_8008DC18 D_8008DC18__func_80141D08
 #define func_80144E68 func_80144E68__func_80141D08
@@ -2011,14 +2031,20 @@ s32 func_8001F430(s32);
 void func_8001F540(s32);
 void func_801419A4(s32);
 
+#define func_801419A4 func_801419A4__func_80142240
+
+
+void func_801419A4(s32);
+
 u8 func_80142240(u8 arg0) {
-    u8 pad[4];
+    s32 initialResult;
     u8 sp2B;
     u8 sp2A;
     s32 sp24;
 
-    sp2B = func_80002EF0(arg0, 0, 0x3500);
-    if ((sp2B == 0) || (sp2B == 0xC)) {
+    initialResult = func_80002EF0(arg0, 0, 0x3500);
+    sp2B = initialResult;
+    if ((initialResult == 0) || (initialResult == 0xC)) {
         sp24 = func_8001F430(0x100);
         func_801419A4(sp24);
         sp2B = func_800032E0(arg0, 0, 0, 0x100, sp24);
@@ -2029,6 +2055,7 @@ u8 func_80142240(u8 arg0) {
     }
     return sp2B;
 }
+#undef func_801419A4
 
 #define func_8001F430 func_8001F430__func_801422E4
 #define func_8001F540 func_8001F540__func_801422E4

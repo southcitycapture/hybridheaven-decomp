@@ -9,11 +9,23 @@ typedef struct func_80004310_Struct {
 extern func_80004310_Struct D_800892B0;
 extern s32 D_800894F4[];
 
+#define D_800892B0 D_800892B0__func_80004310
+extern u8 D_800892B0[];
+
+
+typedef struct func_80004310_StructState {
+    u8 pad[0x1BD];
+    u8 count;
+    u8 pad2[0x86];
+    s32 values[256];
+} func_80004310_StructState;
+
 void func_80004310(s32 arg0) {
-    volatile u8 *p = &D_800892B0.unk1BD;
-    D_800894F4[*p] = arg0;
-    *p = *p + 1;
+    s8 *counter = (s8 *) &D_800892B0[0x1BD];
+    D_800894F4[*(u8 *) counter] = arg0;
+    *counter = (u8) *counter + 1;
 }
+#undef D_800892B0
 
 
 typedef struct func_8000433C_Struct {
@@ -97,15 +109,21 @@ s32 func_80004484(s32 arg0, s32 arg1) {
 
 extern s32 D_80089470;
 
+#define func_8000469C func_8000469C__func_800044BC
+extern s32 func_8000469C(s32, s32);
+
+
+
 s32 func_800044BC(s32 arg0) {
-    s32 sp18;
+    s32 new_end;
     s32 temp_a1;
 
     temp_a1 = (D_80089470 + 7) & ~7;
-    sp18 = temp_a1;
-    D_80089470 = func_8000469C(arg0, temp_a1);
+    new_end = func_8000469C(arg0, temp_a1);
+    D_80089470 = new_end;
     return temp_a1;
 }
+#undef func_8000469C
 
 
 s32 func_80004838(s32, s32);
@@ -225,6 +243,24 @@ extern s16 D_80089354;
 extern u8 D_8038F800[];
 extern u8 D_80400000[];
 
+#undef func_80004EE8
+#define func_80004D20_Struct func_80004D20_Struct__func_80004D20
+#define func_80004EE8 func_80004EE8__func_80004D20
+#define func_80004F98 func_80004F98__func_80004D20
+#define func_80015420 func_80015420__func_80004D20
+#define func_80015488 func_80015488__func_80004D20
+s32 func_80004EE8(u32 arg0, s32 arg1);
+extern s32 func_80004F98(u32, s32 *);
+
+
+typedef struct func_80004D20_Struct {
+    u8 pad[0xC];
+    s32 unkC;
+    u8 pad2[0x1C];
+} func_80004D20_Struct;
+extern void func_80015420(u8 *, func_80004D20_Struct *);
+extern void func_80015488(u8 *, u8 *, func_80004D20_Struct *);
+
 u8 func_80004D20(s32 arg0, u8 *arg1) {
     u8 *s0;
     u8 *e;
@@ -232,11 +268,11 @@ u8 func_80004D20(s32 arg0, u8 *arg1) {
     u8 *a2;
     func_80004D20_Struct sp34;
     s16 sp32;
-    u32 i;
+    s32 i;
 
     a2 = arg1;
     if (func_80004F98(arg0, 0) < 0x2001U) {
-        s0 = func_8001F290(0x2000);
+        s0 = (u8 *)func_8001F290(0x2000);
         sp67 = 0;
     } else {
         if (func_80001060() != 0) {
@@ -248,7 +284,7 @@ u8 func_80004D20(s32 arg0, u8 *arg1) {
         sp32 = D_80089354;
         D_80089354 = 1;
     }
-    e = func_80004EE8(arg0, s0);
+    e = (u8 *)func_80004EE8(arg0, (s32)s0);
     if (s0[0] == 0x50 && s0[1] == 0x49 && s0[2] == 0x43) {
         func_80015420(s0, &sp34);
         func_80015488(s0, arg1, &sp34);
@@ -260,11 +296,10 @@ u8 func_80004D20(s32 arg0, u8 *arg1) {
                 *a2 = s0[i];
                 i++;
                 a2++;
-            } while (e - s0 > i);
+            } while ((u32)(e - s0) > (u32)i);
         }
     }
     i = a2 - arg1;
-    if (a2) {}
     func_80028A90(arg1, i);
     func_80030640(arg1, i);
     func_800306C0(arg1, i);
@@ -275,6 +310,12 @@ u8 func_80004D20(s32 arg0, u8 *arg1) {
     }
     return sp67;
 }
+#undef func_80004D20_Struct
+#undef func_80004EE8
+#undef func_80004F98
+#undef func_80015420
+#undef func_80015488
+#define func_80004EE8 func_80004EE8__decl166
 #undef func_80004EE8
 
 

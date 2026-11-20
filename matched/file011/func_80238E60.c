@@ -1,4 +1,26 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_802407E0[];
+extern void (*D_80216D10[])(void *, s32);
+extern void func_800058DC();
+void func_80020744(s32);
+typedef struct func_80235C1C_Struct {
+    u8 pad[0xA4];
+    s8 unkA4;
+    s8 unkA5;
+} func_80235C1C_Struct;
+void func_80235C1C(func_80235C1C_Struct *arg0);
+struct func_80236348_StructNode {
+    u8 pad0[0x30];
+    u32 unk30;
+};
+struct func_80236348_StructArg {
+    u8 pad0[0x98];
+    struct func_80236348_StructNode *unk98;
+};
+s32 func_80236348(struct func_80236348_StructArg *arg0);
+extern void func_80239048();
+extern void func_802393F8();
+
 
 typedef struct func_80238E60_Struct94 {
     u8 pad[4];
@@ -24,14 +46,12 @@ typedef struct func_80238E60_Struct {
     u8 pad4[0xAC - 0xA6];
     s16 unkAC;
 } func_80238E60_Struct;
-
 extern void func_80239A5C();
 
 void func_80238E60(func_80238E60_Struct *arg0, s32 arg1) {
     func_80238E60_Struct98 *sp24;
-    s32 pad;
+    s32 temp_a1;
     func_80238E60_Struct94 *var_a3;
-    s16 temp_a1;
     s16 temp_v0;
     s8 prev;
 

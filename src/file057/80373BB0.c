@@ -542,13 +542,129 @@ typedef struct func_80374F04_StructSide {
 extern func_80374F04_StructEnt *func_80374DF0(u8, func_80374F04_StructObj *);
 extern func_80374F04_StructNew *func_80005670(func_80374F04_StructObj *, u8 *, func_80374F04_StructPos *);
 
+#undef G
+#undef NEW
+#undef func_80374DF0
+#define func_80005670 func_80005670__func_80374F04
+#define func_80374DF0 func_80374DF0__func_80374F04
+#define func_80374E88 func_80374E88__func_80374F04
+#define func_80374F04_StructCam func_80374F04_StructCam__func_80374F04
+#define func_80374F04_StructCamOwner func_80374F04_StructCamOwner__func_80374F04
+#define func_80374F04_StructEnt func_80374F04_StructEnt__func_80374F04
+#define func_80374F04_StructGlobal func_80374F04_StructGlobal__func_80374F04
+#define func_80374F04_StructNew func_80374F04_StructNew__func_80374F04
+#define func_80374F04_StructObj func_80374F04_StructObj__func_80374F04
+#define func_80374F04_StructPos func_80374F04_StructPos__func_80374F04
+#define func_80374F04_StructSide func_80374F04_StructSide__func_80374F04
+#define G ((func_80374F04_StructGlobal *)D_801BBBF0)
+#define NEW (*(func_80374F04_StructNew **)(D_801BBBF0 + 0x1118))
+extern void *func_80374DF0(arg0);
+s32 func_80374E88(s32 arg0, u16 *arg1, u8 arg2);
+
+
+typedef struct func_80374F04_StructObj {
+    u8 pad0[0x24];
+    struct func_80374F04_StructObj *unk24;
+    u8 pad28[0x2C - 0x28];
+    void *unk2C;
+    u8 pad30[0x5C - 0x30];
+    u8 *unk5C;
+} func_80374F04_StructObj;
+
+typedef struct func_80374F04_StructPos {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+} func_80374F04_StructPos;
+
+typedef struct func_80374F04_StructEnt {
+    u8 unk0;
+    u8 unk1;
+    u8 pad2[2];
+    u16 unk4;
+    u8 pad6[2];
+    u16 *unk8;
+    u16 *unkC;
+    u16 *unk10;
+} func_80374F04_StructEnt;
+
+typedef struct func_80374F04_StructCam {
+    u8 pad0[0x30];
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+    f32 unk3C;
+    f32 unk40;
+    f32 unk44;
+} func_80374F04_StructCam;
+
+typedef struct func_80374F04_StructCamOwner {
+    u8 pad0[0x2C];
+    func_80374F04_StructCam *unk2C;
+} func_80374F04_StructCamOwner;
+
+typedef struct func_80374F04_StructNew {
+    u8 pad0[0x2C];
+    func_80374F04_StructObj *unk2C;
+    u8 pad30[4];
+    f32 unk34;
+    f32 unk38;
+    f32 unk3C;
+    s16 unk40;
+    s16 unk42;
+    f32 unk44;
+    f32 unk48;
+    s8 unk4C;
+    u8 pad4D[3];
+    f32 unk50;
+    func_80374F04_StructEnt *unk54;
+    u16 *unk58;
+    u16 unk5C;
+    u16 unk5E;
+    f32 unk60;
+    f32 unk64;
+    f32 unk68;
+    f32 unk6C;
+    f32 unk70;
+    f32 unk74;
+    f32 unk78;
+} func_80374F04_StructNew;
+
+typedef struct func_80374F04_StructGlobal {
+    u8 pad0[0x1B];
+    u8 unk1B;
+    u8 pad1C[0xDC - 0x1C];
+    func_80374F04_StructObj *unkDC;
+    u8 padE0[0xE8 - 0xE0];
+    func_80374F04_StructCamOwner *unkE8;
+    func_80374F04_StructObj *unkEC;
+    u8 padF0[0x1118 - 0xF0];
+    func_80374F04_StructNew *unk1118;
+} func_80374F04_StructGlobal;
+
+typedef struct func_80374F04_StructSide {
+    u8 pad0[0x2D8];
+    u8 unk2D8;
+    u8 unk2D9;
+    u8 pad2DA[0x374 - 0x2DA];
+    s8 unk374;
+} func_80374F04_StructSide;
+
+#define G ((func_80374F04_StructGlobal *)D_801BBBF0)
+#define NEW (*(func_80374F04_StructNew **)(D_801BBBF0 + 0x1118))
+
+extern func_80374F04_StructNew *func_80005670(func_80374F04_StructObj *, u8 *, func_80374F04_StructPos *);
+
 void func_80374F04(func_80374F04_StructObj *arg0, f32 arg1) {
     func_80374F04_StructObj *opp;
     s32 r;
     u8 *self;
     u8 *other;
     func_80374F04_StructSide *side;
-    s32 unused;
+    s32 entryId;
     func_80374F04_StructPos *pos;
     func_80374F04_StructEnt *ent;
     u16 *val;
@@ -560,10 +676,11 @@ void func_80374F04(func_80374F04_StructObj *arg0, f32 arg1) {
     other = opp->unk5C;
     side = (arg0 == G->unkDC) ? (func_80374F04_StructSide *)D_801BC03C : (func_80374F04_StructSide *)D_801BC3D8;
     if (G->unk1B != 0 && NEW == NULL) {
-        if (side->unk2D9 < 0x25) {
-            ent = func_80374DF0(0, arg0);
+        entryId = side->unk2D9;
+        if (entryId < 0x25) {
+            ent = func_80374DF0(0);
         } else {
-            ent = func_80374DF0(side->unk2D9, arg0);
+            ent = func_80374DF0(entryId);
         }
         if (ent != NULL) {
             if (ent->unk1 & 1) {
@@ -593,7 +710,6 @@ void func_80374F04(func_80374F04_StructObj *arg0, f32 arg1) {
             cnt = r;
             if (r == 0) return;
 found:
-            if (r) {}
             pos = arg0->unk24->unk2C;
             NEW = func_80005670(arg0, D_80387C64, pos);
             if (NEW != NULL) {
@@ -630,6 +746,22 @@ found:
         }
     }
 }
+#undef G
+#undef NEW
+#undef func_80005670
+#undef func_80374DF0
+#undef func_80374E88
+#undef func_80374F04_StructCam
+#undef func_80374F04_StructCamOwner
+#undef func_80374F04_StructEnt
+#undef func_80374F04_StructGlobal
+#undef func_80374F04_StructNew
+#undef func_80374F04_StructObj
+#undef func_80374F04_StructPos
+#undef func_80374F04_StructSide
+#define G ((func_80374F04_StructGlobal *)D_801BBBF0)
+#define NEW (*(func_80374F04_StructNew **)(D_801BBBF0 + 0x1118))
+#define func_80374DF0 func_80374DF0__decl471
 #undef func_80374DF0
 
 

@@ -1,11 +1,11 @@
 #include "common.h"
+
 extern u8 D_801BBBF0[];
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern void func_8022310C(void *arg0, s32 arg1);
 extern s32 func_802233B0();
 extern s32 func_8022397C();
-
 
 typedef struct func_8035DF80_StructP {
     u8 pad0[0x2];
@@ -44,12 +44,12 @@ typedef struct func_8035DF80_StructT {
 
 typedef struct func_8035DF80_StructObj {
     u8 pad0[0x68];
-    func_8035DF80_StructT *unk68;
+    void *unk68;
 } func_8035DF80_StructObj;
 
 typedef struct func_8035DF80_StructG {
     u8 pad0[0xDC];
-    void *unkDC;
+    func_8035DF80_StructObj *unkDC;
     u8 padE0[0x1031 - 0xE0];
     u8 unk1031;
 } func_8035DF80_StructG;
@@ -68,27 +68,23 @@ extern void func_8035E438();
 extern void func_8035EF60();
 extern void func_8035F994();
 
-void func_8035DF80(func_8035DF80_StructObj *arg0, s32 arg1) {
-    s32 padA[2];
-    func_8035DF80_StructT *t;
-    s32 padB[2];
+void func_8035DF80(void *arg0, s32 arg1) {
+    u32 action;
+    u16 buttons;
+    func_8035DF80_StructT *t = ((func_8035DF80_StructObj *)arg0)->unk68;
+    func_8035DF80_StructObj *focus;
+    s32 c;
     func_8035DF80_StructP *p;
     func_8035DF80_StructP *q;
-    s32 c;
 
-    t = arg0->unk68;
-    if (GG->unkDC) {
-    }
-    if (arg0 == GG->unkDC) {
-        p = (func_8035DF80_StructP *)D_801BC03C;
-    } else {
-        p = (func_8035DF80_StructP *)D_801BC3D8;
-    }
-    if (arg0 != GG->unkDC) {
-        q = (func_8035DF80_StructP *)D_801BC03C;
-    } else {
-        q = (func_8035DF80_StructP *)D_801BC3D8;
-    }
+    focus = GG->unkDC;
+    if (arg0 != focus) goto other_player;
+    p = (func_8035DF80_StructP *)D_801BC03C;
+    goto player_selected;
+other_player:
+    p = (func_8035DF80_StructP *)D_801BC3D8;
+player_selected:
+    q = arg0 != focus ? (func_8035DF80_StructP *)D_801BC03C : (func_8035DF80_StructP *)D_801BC3D8;
     if (p->unk2 <= 0 || p->b29 != 0) {
         func_802233B0(arg0, arg1);
         return;
@@ -110,26 +106,28 @@ void func_8035DF80(func_8035DF80_StructObj *arg0, s32 arg1) {
             func_8022397C(arg0);
             return;
         }
-        if (p->b25 == 3 || p->b25 == 2) {
+        action = p->b25;
+        if (action == 3 || action == 2) {
             p->b25 = 0;
         }
         if (p->b25 == 4 || p->b25 == 1) {
             func_8035E438(arg0, arg1);
             return;
         }
-        if ((t->unk4 & 0x8000) && p->f7 && q->f56 == 0 && (p->f4 != 1 || p->f2 != 2) &&
+        buttons = t->unk4;
+        if ((buttons & 0x8000) && p->f7 && q->f56 == 0 && (p->f4 != 1 || p->f2 != 2) &&
             p->unk6 >= 0x1F && q->unk2 != 0) {
             p->unk328 = 0;
             func_802237EC(arg0);
             return;
         }
-        if ((t->unk4 & 0x10) && q->f56 == 0 && (p->f4 != 1 || p->f2 != 1)) {
+        if ((buttons & 0x10) && q->f56 == 0 && (p->f4 != 1 || p->f2 != 1)) {
             p->unk328 = 0;
             q->f56 = 2;
             p->f56 = q->f56;
             q->hi = 2;
             p->hi = q->hi;
-            func_8035EF60((void *)arg0, arg1);
+            func_8035EF60(arg0, arg1);
             return;
         }
         if (p->unk328 == 3) {

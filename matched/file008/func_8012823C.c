@@ -32,10 +32,6 @@ typedef struct func_8012823C_Struct {
     u8 pad4C[0x44];
     u8 b90;
 } func_8012823C_Struct;
-
-extern f64 D_8018CC38;
-extern f32 D_8018CC40;
-extern f64 D_8018CC48;
 extern u8 func_801283AC[];
 
 void func_8012823C(func_8012823C_Struct *arg0, func_8012823C_Struct24 **arg1) {
@@ -49,9 +45,9 @@ void func_8012823C(func_8012823C_Struct *arg0, func_8012823C_Struct24 **arg1) {
     arg0->p24->p30->b49 = 0;
     arg0->p24->p30->b4A = 0xFF;
     arg0->flags |= 0x20;
-    arg0->f40 = ((f64)(f32)func_8012C6B4(0xC8) - 100.0) / D_8018CC38;
-    arg0->f44 = D_8018CC40;
-    arg0->f48 = ((f64)(f32)func_8012C6B4(0xC8) - 100.0) / D_8018CC48;
+    arg0->f40 = ((f64)(f32)func_8012C6B4(0xC8) - 100.0) / (4e+03);
+    arg0->f44 = (0.1f);
+    arg0->f48 = ((f64)(f32)func_8012C6B4(0xC8) - 100.0) / (4e+03);
     (*arg1)->p30->f18 = 0.0f;
     (*arg1)->p30->f1C = 0.0f;
     func_800058DC(arg0, func_801283AC);

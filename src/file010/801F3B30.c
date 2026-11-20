@@ -2065,6 +2065,12 @@ s32 func_801F55EC(func_801F55EC_Struct *arg0) {
 /* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_0cd9c0ca9152643b.s {"functions":["func_801F5630"],"rodata":[]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_0cd9c0ca9152643b.s")
 
+void func_801F5698(void) {
+}
+
+void func_801F56A0(void) {
+}
+
 #define func_801F57EC func_801F57EC__func_801F56A8
 #define func_801FA074 func_801FA074__func_801F56A8
 
@@ -3514,6 +3520,7 @@ extern f32 D_8021B028;
 extern s32 D_8013A334(f32 *, s32, void *, s32);
 extern s32 D_801F3C90(void *, f32, f32, s32, f32, f32, f32, f32, f32, f32, f32, f32);
 
+
 void func_801F73F0(func_801F74FC_Obj *arg0, s32 arg1) {
     s32 sp4C;
     f32 sp40[3];
@@ -3524,7 +3531,7 @@ void func_801F73F0(func_801F74FC_Obj *arg0, s32 arg1) {
         D_8012CE9C(arg1, sp4C, *(func_801F63E0_Struct3 *)&D_80216EE8, 0x14);
     }
     D_8013A334(sp40, arg1, (void *)sp4C, 6);
-    if (D_801F3C90(arg0, 0.01f, D_80218CC4, *(s32 *)&D_8021B028, (&D_8021B028)[1], (&D_8021B028)[2], D_80218CC4, sp40[0], sp40[1], sp40[2], D_80218CC4, 50.0f) != 0) {
+    if (D_801F3C90(arg0, 0.01f, (0.15f), *(s32 *)&D_8021B028, (&D_8021B028)[1], (&D_8021B028)[2], (0.15f), sp40[0], sp40[1], sp40[2], (0.15f), 50.0f) != 0) {
         func_800058DC(arg0, (s32)func_801F5F5C);
     }
 }
@@ -3598,8 +3605,10 @@ void func_801F75B0(struct func_801F75B0_Struct *arg0, s32 arg1)
 }
 #undef func_801C3B3C
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_de2a9772eff1bedd.s {"functions":["func_801F7638"],"rodata":[],"rodata_bytes":[2149682372,6069444,12]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_de2a9772eff1bedd.s")
+/* hh-block asm/nonmatchings/file010/801F3B30/_ro_regular_6ca86662d1d42ab0.s {"functions":[],"rodata":[],"rodata_bytes":[2149682376,6069448,8],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_ro_regular_6ca86662d1d42ab0.s")
+/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_537f104a7a8fe9ca.s {"functions":["func_801F7638"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_537f104a7a8fe9ca.s")
 
 #define func_801F7A5C func_801F7A5C__func_801F7928
 
@@ -4286,8 +4295,15 @@ void func_801F8900(u8 *arg0, s32 arg1) {
 }
 #undef func_801F8974
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_96ce2dfff86016a8.s {"functions":["func_801F8974"],"rodata":[],"rodata_bytes":[2149682444,6069516,24]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_tail_96ce2dfff86016a8.s")
+/* hh-block asm/nonmatchings/file010/801F3B30/_ro_regular_48aa4ddd4444b07a.s {"functions":[],"rodata":[],"rodata_bytes":[2149682444,6069516,12],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_ro_regular_48aa4ddd4444b07a.s")
+/* hh-block asm/nonmatchings/file010/801F3B30/_ro_regular_8a983c9d208658f2.s {"functions":[],"rodata":[],"rodata_bytes":[2149682460,6069532,8],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_ro_regular_8a983c9d208658f2.s")
+/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_ab7af3045a32cb06.s {"functions":["func_801F8974"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_ab7af3045a32cb06.s")
+
+void func_801F8A3C(void) {
+}
 
 
 extern void func_801F8AE8();
@@ -4626,6 +4642,28 @@ void func_801F91C0(u8 *arg0, s32 arg1);
 
 #define POS ((func_801F9104_StructPos *)D_801BBCD0->unk2C)
 
+#undef POS
+#undef func_801F91C0
+#define func_801F9104_StructObj func_801F9104_StructObj__func_801F9104_76bfe6cf
+#define func_801F9104_StructPos func_801F9104_StructPos__func_801F9104_76bfe6cf
+#define func_801F91C0 func_801F91C0__func_801F9104_76bfe6cf
+#define POS ((func_801F9104_StructPos *)D_801BBCD0->unk2C)
+
+typedef struct func_801F9104_StructObj {
+    u8 pad[0x5C];
+    void *unk5C;
+} func_801F9104_StructObj;
+
+typedef struct func_801F9104_StructPos {
+    u8 pad[4];
+    s32 unk4;
+    f32 unk8;
+    f32 unkC;
+} func_801F9104_StructPos;
+void func_801F91C0(u8 *arg0, s32 arg1);
+
+#define POS ((func_801F9104_StructPos *)D_801BBCD0->unk2C)
+
 void func_801F9104(func_801F9104_StructObj *arg0, s32 arg1) {
     void *t;
     f32 vec[3];
@@ -4633,10 +4671,16 @@ void func_801F9104(func_801F9104_StructObj *arg0, s32 arg1) {
     t = arg0->unk5C;
     func_8013A334(vec, arg1, t, 6);
     arg1 = D_8012A94C(arg0, 0x100);
-    if (D_801F3C90(arg0, 1.0f, D_80218D18, POS->unk4, POS->unk8 + 25.0f, POS->unkC, D_80218D18, vec[0], vec[1], vec[2], D_80218D18, 35.0f) != 0) {
+    if (D_801F3C90(arg0, 1.0f, (0.15f), POS->unk4, POS->unk8 + 25.0f, POS->unkC, (0.15f), vec[0], vec[1], vec[2], (0.15f), 35.0f) != 0) {
         func_800058DC(arg0, (s32)func_801F91C0);
     }
 }
+#undef POS
+#undef func_801F9104_StructObj
+#undef func_801F9104_StructPos
+#undef func_801F91C0
+#define POS ((func_801F9104_StructPos *)D_801BBCD0->unk2C)
+#define func_801F91C0 func_801F91C0__func_801F9104
 #undef func_801F91C0
 
 
@@ -5594,7 +5638,19 @@ void func_801FA074(s32 arg0, s32 arg1) {
 
 
 
-static const unsigned char rodata_801F3B30[] = {
+/* hh-owned-pool func_801F4D30 80218C64 80218CA0 */
+/* hh-owned-pool func_801F5104 80218CA0 80218CA4 */
+/* hh-owned-pool func_801F59B8 80218CA8 80218CB0 */
+/* hh-owned-pool func_801F5BAC 80218CB0 80218CC0 */
+/* hh-owned-pool func_801F70E0 80218CC0 80218CC4 */
+/* hh-owned-pool func_801F7928 80218CD0 80218CE0 */
+/* hh-owned-pool func_801F7DB4 80218CE0 80218D08 */
+/* hh-owned-pool func_801F83B8 80218D08 80218D0C */
+/* hh-owned-pool func_801F9318 80218D24 80218D2C */
+/* hh-owned-pool func_801F97E0 80218D2C 80218D34 */
+
+
+static const unsigned char rodata_801F3B30_802187C0[] = {
     0xA5, 0xAC, 0xA5, 0xE9, 0xA5, 0xB9, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0x21, 0x21, 0x21, 0x21,
     0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21, 0x21,
     0x21, 0x21, 0x0A, 0x00, 0xA5, 0xA8, 0xA5, 0xEC, 0xA5, 0xD9, 0xA1, 0xBC, 0xA5, 0xBF, 0xA5, 0xA8,
@@ -5671,13 +5727,6 @@ static const unsigned char rodata_801F3B30[] = {
     0x65, 0x2F, 0x65, 0x6E, 0x65, 0x6D, 0x79, 0x2F, 0x77, 0x61, 0x6E, 0x64, 0x65, 0x72, 0x65, 0x72,
     0x2E, 0x63, 0x00, 0x00,
 };
-/* hh-owned-pool func_801F4D30 80218C64 80218CA0 */
-/* hh-owned-pool func_801F5104 80218CA0 80218CA4 */
-/* hh-owned-pool func_801F59B8 80218CA8 80218CB0 */
-/* hh-owned-pool func_801F5BAC 80218CB0 80218CC0 */
-/* hh-owned-pool func_801F70E0 80218CC0 80218CC4 */
-/* hh-owned-pool func_801F7928 80218CD0 80218CE0 */
-/* hh-owned-pool func_801F7DB4 80218CE0 80218D08 */
-/* hh-owned-pool func_801F83B8 80218D08 80218D0C */
-/* hh-owned-pool func_801F9318 80218D24 80218D2C */
-/* hh-owned-pool func_801F97E0 80218D2C 80218D34 */
+/* hh-placed-function func_801F73F0 */
+/* hh-placed-function func_801F9104 */
+/* hh-rodata-layout [1408,[[0,1288,8],[8,1356,12],[20,1372,8],[28,0,1252],[1280,1256,32],[1312,1296,60],[1372,1368,4],[1376,1380,16]]] */

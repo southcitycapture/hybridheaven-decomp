@@ -1,6 +1,10 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
 
-typedef struct {
+
+typedef struct func_8022F99C_Struct {
     u8 pad0[0xA];
     s16 unkA;
     u8 padC[0x2C - 0xC];
@@ -26,7 +30,7 @@ typedef struct {
     s16 unk2BA;
 } func_8022F99C_Struct;
 
-typedef struct {
+typedef struct func_8022F99C_StructG {
     u8 pad0[0x2C];
     u16 unk2C;
     u8 pad2E[0x30 - 0x2E];
@@ -35,14 +39,12 @@ typedef struct {
     func_8022F99C_Struct *unkDC;
     u8 padE0[0xEC - 0xE0];
     func_8022F99C_Struct *unkEC;
-} func_8022F99C_G;
+} func_8022F99C_StructG;
 
 void func_8022F99C(func_8022F99C_Struct *arg0) {
     func_8022F99C_Struct *other;
     func_8022F99C_Struct *obj;
     s32 div;
-    u8 c;
-    s32 sum;
     u8 *base;
     u32 w;
 
@@ -53,9 +55,9 @@ void func_8022F99C(func_8022F99C_Struct *arg0) {
         other = (func_8022F99C_Struct *)D_801BC03C;
     }
     if (base == D_801BBBF0) {
-        obj = ((func_8022F99C_G *)D_801BBBF0)->unkDC;
+        obj = ((func_8022F99C_StructG *)D_801BBBF0)->unkDC;
     } else {
-        obj = ((func_8022F99C_G *)D_801BBBF0)->unkEC;
+        obj = ((func_8022F99C_StructG *)D_801BBBF0)->unkEC;
     }
     if (arg0->unkA6 & 0x80) {
         div = 1;
@@ -75,7 +77,7 @@ void func_8022F99C(func_8022F99C_Struct *arg0) {
         goto block_25;
     }
     if (((u32)arg0->unk32 >> 13) == 4 &&
-        ((obj->unk36 != 0xF5 && obj->unk36 != 0xF6) || ((func_8022F99C_G *)D_801BBBF0)->unk2C == 10)) {
+        ((obj->unk36 != 0xF5 && obj->unk36 != 0xF6) || ((func_8022F99C_StructG *)D_801BBBF0)->unk2C == 10)) {
         if (arg0->unk2C++ % 10 == 9) {
             arg0->unk60 = 0xFFFF;
         } else {
@@ -95,7 +97,7 @@ block_25:
         arg0->unk68 = 0;
         return;
     }
-    if (((func_8022F99C_G *)D_801BBBF0)->unk30 % div == 0) {
+    if (((func_8022F99C_StructG *)D_801BBBF0)->unk30 % div == 0) {
         arg0->unk68 += arg0->unk64 % 10;
         arg0->unk60 = arg0->unk64 / 10 + arg0->unk68 / 10;
         if (arg0->unk68 >= 10) {
