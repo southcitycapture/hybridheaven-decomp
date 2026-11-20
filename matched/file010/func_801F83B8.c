@@ -67,7 +67,6 @@ struct func_801F83B8_StructObj {
 };
 extern void func_80130AA0(s32, u16, s32, f32 *, f32 *, f32 *);
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
-extern u8 D_802189D0[];
 void func_801F83B8(struct func_801F83B8_StructObj *arg0, s32 arg1) {
     struct func_801F83B8_StructQ *sp8C;
     f32 a[3];
@@ -95,7 +94,7 @@ void func_801F83B8(struct func_801F83B8_StructObj *arg0, s32 arg1) {
         c[0] += arg0->unk24->unk2C->u4.f;
         c[1] += arg0->unk24->unk2C->unk8;
         c[2] += arg0->unk24->unk2C->unkC;
-        func_8011AAF4(D_802189D0, 0x780, arg0, 0, 1, 3.0f, b[0], b[1], b[2], 3.0f, c[0], c[1], c[2], 0.0f, 35.0f, -1, -1);
+        func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/enemy/wanderer.c", 0x780, arg0, 0, 1, 3.0f, b[0], b[1], b[2], 3.0f, c[0], c[1], c[2], 0.0f, 35.0f, -1, -1);
         func_800058DC(arg0, (s32)func_801F8668);
     }
 }

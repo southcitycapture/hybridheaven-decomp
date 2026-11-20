@@ -1,8 +1,5 @@
 #include "common.h"
 s32 func_80130310(u32 arg0);
-
-
-extern f64 D_8018D680;
 f32 func_8002FC20(f32, f32);
 
 u16 func_801303D8(f32 arg0, f32 arg1) {
@@ -17,7 +14,7 @@ u16 func_801303D8(f32 arg0, f32 arg1) {
     x = arg1 < 0.0f ? -arg1 : arg1, y = arg0 < 0.0f ? -arg0 : arg0;
     len = func_8002FC20(x * x + y * y, x);
     alen = len < 0.0f ? -len : len;
-    if (!((f64) alen < D_8018D680)) {
+    if (!((f64) alen < (1e-06))) {
         x /= len;
         y /= len;
     }

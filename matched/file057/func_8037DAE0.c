@@ -20,8 +20,6 @@ struct func_8037DAE0_Arg {
     u8 padAB[5];
     s16 unkB0;
 };
-extern u8 D_8038BC24[];
-extern u8 D_8038BC2C[];
 extern s32 D_8037D320(void *, u8, s32);
 struct func_8037DD2C_Arg;
 void func_8037DD2C(struct func_8037DD2C_Arg *arg0, s32 arg1);
@@ -41,12 +39,12 @@ void func_8037DAE0(struct func_8037DAE0_Arg *arg0, s32 arg1) {
     if (arg1 != 0 && arg0->unkA0 != 0) {
         x = (arg0->unkB0 << 4) - 0x101;
         v = ABS(x);
-        func_8001B204(arg0->unkA9, (s16)(GT->unk0->unk30->unk0 + 0x468), (s16)(GT->unk0->unk30->unk2 - arg0->unk9A + 3), D_8038BC24, v, arg0->unk98, D_8037D320(arg0, arg1, arg1));
+        func_8001B204(arg0->unkA9, (s16)(GT->unk0->unk30->unk0 + 0x468), (s16)(GT->unk0->unk30->unk2 - arg0->unk9A + 3), "%a%m%s", v, arg0->unk98, D_8037D320(arg0, arg1, arg1));
         arg1 = arg0->unk90;
     }
     if (arg1 == 0 && arg0->unkA2 != 0) {
         x = (arg0->unkB0 << 4) - 0x101;
         v = ABS(x);
-        func_8001B204(arg0->unkAA, (s16)(GT->unk4->unk30->unk0 + 0x468), (s16)(GT->unk4->unk30->unk2 - arg0->unk9B + 3), D_8038BC2C, v, arg0->unk99, D_8037D320(arg0, arg1 ^ 1, arg1));
+        func_8001B204(arg0->unkAA, (s16)(GT->unk4->unk30->unk0 + 0x468), (s16)(GT->unk4->unk30->unk2 - arg0->unk9B + 3), "%a%m%s", v, arg0->unk99, D_8037D320(arg0, arg1 ^ 1, arg1));
     }
 }

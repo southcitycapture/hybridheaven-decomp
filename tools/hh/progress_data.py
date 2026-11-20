@@ -130,12 +130,12 @@ def compiler_ranges(src, obj, out, cc):
     # Compare C bytes before layout, while the asm-processor mask is still in
     # compiler order. Then transport the measured ranges by the very same
     # map used on the real object. Data placed from an ASM block stays ASM.
-    from srcbuild import ASFLAGS
+    from srcbuild import ASFLAGS, asmproc_force
     with tempfile.TemporaryDirectory() as td:
         rebuilt = os.path.join(td, 'prelayout.o')
         compiler, *flags = cc
         subprocess.run([sys.executable, 'tools/asm-processor/build.py', '--input-enc', 'utf-8',
-                        '--output-enc', 'euc-jp', compiler, '--', 'mips-linux-gnu-as'] + ASFLAGS +
+                        '--output-enc', 'euc-jp'] + asmproc_force(text) + [compiler, '--', 'mips-linux-gnu-as'] + ASFLAGS +
                        ['--'] + flags + ['-o', rebuilt, src], check=True, capture_output=True)
         before, _, _ = object_data(rebuilt)
         ranges = {name: c_ranges(raw.get(name, b''), before.get(name, b''), masks[name], objects[name])

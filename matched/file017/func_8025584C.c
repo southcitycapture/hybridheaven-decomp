@@ -20,8 +20,6 @@ extern void func_8025799C();
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 
 extern void func_80133980(s32);
-extern u8 D_8025DAB8[];
-extern u8 D_8025DAF4[];
 extern u8 D_8025975C[];
 
 typedef struct func_8025584C_Struct {
@@ -46,7 +44,7 @@ void func_8025584C(func_8025584C_Struct *arg0, void *arg1) {
     func_8025799C((void *)arg0, arg1);
     zero = 0.0f;
     if (sp70 < 0x3C) {
-        func_8011AAF4(D_8025DAB8, 0x4F8, arg0, 0, 2, 0.8f, -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, zero, 55.0f, -1, -1);
+        func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x4F8, arg0, 0, 2, 0.8f, -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, zero, 55.0f, -1, -1);
         if ((sp70 % 6) == 0) {
             randomAngle = func_8012C6B4(0x2000);
             temp_fv0 = (f32) randomAngle;
@@ -58,7 +56,7 @@ void func_8025584C(func_8025584C_Struct *arg0, void *arg1) {
     }
     if (sp70 >= 0x5A) {
         func_80133980(0x13B);
-        func_8011AAF4(D_8025DAF4, 0x509, arg0, 0, 1, zero, -90.0f, 12.0f, -30.0f, zero, -43.0f, 15.0f, 15.0f, zero, 55.0f, -1, -1);
+        func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x509, arg0, 0, 1, zero, -90.0f, 12.0f, -30.0f, zero, -43.0f, 15.0f, 15.0f, zero, 55.0f, -1, -1);
         arg0->unk92 = 0;
         D_8025DE24 = func_80005670(arg0, D_8025975C);
         func_80020718(0x18F);

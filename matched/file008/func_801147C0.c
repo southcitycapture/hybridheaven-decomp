@@ -4,7 +4,6 @@ typedef struct { u8 pad0[0x22]; u8 unk22; u8 pad23[0xD]; func_801147C0_S4 *unk30
 typedef struct { u8 pad0[4]; func_801147C0_S5 *unk4; } func_801147C0_S1;
 extern u8 D_80163A70[], D_80163A80[];
 extern s16 D_80163A18;
-extern f32 D_8018848C;
 extern void func_800023A8();
 extern void func_80002364();
 extern void func_8012C89C();
@@ -29,7 +28,7 @@ void func_801147C0(func_80113148_StructO *arg0, func_801147C0_S1 *arg1) {
     func_800023A8(3);
     func_80002364(0xC000, 0xA, 0, 3);
     func_8012C89C(arg0, 1, 0xCA, 1);
-    arg1->unk4->unk30->unk20 = D_8018848C;
+    arg1->unk4->unk30->unk20 = (0.005f);
     t = arg1->unk4->unk30;
     t->unk1C = t->unk20;
     arg1->unk4->unk30->unk18 = t->unk20;

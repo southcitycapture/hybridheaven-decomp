@@ -2,8 +2,6 @@
 
 extern void func_8013A334(f32 *, s32, void *, s32);
 extern s32 func_801F3C90();
-extern f32 D_80218D1C;
-extern f32 D_80218D20;
 extern u8 func_801F9318[];
 
 void func_801F91C0(u8 *arg0, s32 arg1) {
@@ -13,7 +11,7 @@ void func_801F91C0(u8 *arg0, s32 arg1) {
     sp4C = *(u8 **)(arg0 + 0x5C);
     func_8013A334(sp40, arg1, sp4C, 6);
     func_801F5210(arg0);
-    func_801F3C90(arg0, 0x3C23D70A, 0x3DCCCCCD, *(s32 *)((u8 *)D_801BBCD0->unk2C + 4), *(f32 *)((u8 *)D_801BBCD0->unk2C + 8) + 23.0f, *(f32 *)((u8 *)D_801BBCD0->unk2C + 0xC), D_80218D1C, sp40[0], sp40[1], sp40[2], D_80218D20, 35.0f);
+    func_801F3C90(arg0, 0x3C23D70A, 0x3DCCCCCD, *(s32 *)((u8 *)D_801BBCD0->unk2C + 4), *(f32 *)((u8 *)D_801BBCD0->unk2C + 8) + 23.0f, *(f32 *)((u8 *)D_801BBCD0->unk2C + 0xC), (0.07f), sp40[0], sp40[1], sp40[2], (0.2f), 35.0f);
     if (*(u16 *)(arg0 + 0x70) == 0x22) {
         func_80020744(0x13C);
     }

@@ -17,7 +17,12 @@ POOL = re.compile(r'^/\* hh-owned-pool (func_[0-9A-F]{8}) ([0-9A-F]+) ([0-9A-F]+
 PRAGMA = re.compile(r'^#pragma GLOBAL_ASM\("([^"]+)"\)', re.M)
 
 
-def place_frozen(S, seg, cfile, text, name, log=None):
+def _why(log, message):
+    if log: log(message)
+    return None
+
+
+def place_frozen(S, seg, cfile, text, name, log=None, owners=None):
     """Place newly compiled pools in a unit's explicit readonly storage.
 
     The surviving explicit objects retain their own bytes. Use the original
@@ -25,6 +30,11 @@ def place_frozen(S, seg, cfile, text, name, log=None):
     the order of the remaining input (legacy pools and migrated ASM). Only
     alignment zeros may be inserted or removed. The caller still verifies
     the entire linked unit.
+
+    owners (rodata_owners.owner_map, method M2): pair pool entries with the
+    owner map's intervals instead of splat's label extents (a jump table
+    without its trailing padding, a literal without its zero word, strings),
+    and release an interval only to the function that is its only user.
     """
     import addrfix
     import rodata_layout as layout
@@ -41,13 +51,17 @@ def place_frozen(S, seg, cfile, text, name, log=None):
     off = S.file_span(seg, cfile)[0] + base - int(cfile, 16)
     want = S.IMG[off:off + size]
     if any(a < base or a + len(b) > base + size or want[a-base:a-base+len(b)] != b for a, b in storage):
-        return None
+        return _why(log, 'frozen storage disagrees with the image')
+    had_plan = bool(layout.LAYOUT.search(text))
     text = layout.LAYOUT.sub('', text)
     path, vram = next((e[1], e[4]) for e in S.entries(seg, cfile) if e[0] == name)
     target = addrfix.target_refs(path, vram)
     items = kept_blocks.catalog(S, seg, cfile)
 
     def extent(label):
+        if owners is not None:
+            iv = owners.get(label)
+            return (iv.lo, iv.hi) if iv else None
         if label not in items:
             return None
         lines = '\n'.join(items[label][1])
@@ -57,6 +71,8 @@ def place_frozen(S, seg, cfile, text, name, log=None):
         if words and address is not None and min(a for a, _ in words) == address:
             return address, max(a + n for a, n in words)
         return None
+
+    released = {}
 
     def emitted(obj, functions):
         found = {}
@@ -74,6 +90,7 @@ def place_frozen(S, seg, cfile, text, name, log=None):
                 if key in found and found[key] != add - delta:
                     raise ValueError('multiple emitters for %#x' % key[0])
                 found[key] = add - delta
+                released.setdefault(key, set()).add((fn, label))
         return found
 
     def raw_block(match):
@@ -85,15 +102,25 @@ def place_frozen(S, seg, cfile, text, name, log=None):
         return None
 
     with tempfile.TemporaryDirectory(dir='build') as td:
-        obj, _ = S.compile_file(text, td)
+        obj, _ = S.compile_file(text, td, planned=owners is not None)
         if obj is None:
-            return None
+            return _why(log, 'candidate does not compile')
         try:
             new = emitted(obj, {name: target})
         except ValueError:
-            return None
-        if not new and not re.search(r'GLOBAL_ASM\("[^\n]*_ro_regular_', text):
-            return None
+            return _why(log, 'two pool entries claim one readonly item')
+        if owners is not None:
+            import rodata_owners
+            for key in new:
+                if not all(fn == name and rodata_owners.releasable(owners, label, name, text)
+                           for fn, label in released[key]):
+                    if log: log('readonly interval %X-%X is not owned by %s alone' % (key[0], key[1], name))
+                    return None
+        # M2: a function with no pool of its own still moves staged data-only blocks (its migrated named items) or
+        # invalidates the file's plan; recompute the layout rather than keep a stale one.
+        if not new and not re.search(r'GLOBAL_ASM\("[^\n]*_ro_regular_', text) and not (
+                owners is not None and (had_plan or re.search(r'GLOBAL_ASM\("[^\n]*_ro_named_', text))):
+            return _why(log, 'no compiler pool entry pairs with an original readonly item')
         # Keep track of earlier placements when adding another C function.
         picked = set(re.findall(r'^/\* hh-placed-function (func_[0-9A-F]{8}) \*/$', text, re.M))
         picked.add(name)
@@ -103,7 +130,7 @@ def place_frozen(S, seg, cfile, text, name, log=None):
             cursor = address
             for lo, hi in sorted(k for k in new if address <= k[0] < address + len(raw)):
                 if lo < cursor or hi > address + len(raw):
-                    return None
+                    return _why(log, 'a pool entry straddles a frozen blob edge')
                 if lo > cursor:
                     chunks.append((cursor, raw[cursor-address:lo-address]))
                 cursor = hi
@@ -152,14 +179,14 @@ def place_frozen(S, seg, cfile, text, name, log=None):
             changed = objects.sub('', changed) + '\n' + '\n'.join(declarations) + '\n'
         if changed != text:
             text = changed
-            obj, _ = S.compile_file(text, td)
+            obj, _ = S.compile_file(text, td, planned=owners is not None)
             if obj is None:
-                return None
+                return _why(log, 'split candidate does not compile')
         try:
             ranges = [(src, a-base, b-a) for (a, b), src in emitted(obj, functions).items()
                       if base <= a < b <= base + size and not any(lo <= a < lo + len(raw) for lo, raw in chunks)]
         except ValueError:
-            return None
+            return _why(log, 'two pool entries claim one readonly item (after the split)')
         with open(obj, 'rb') as f:
             elf = ELFFile(f)
             symbols = elf.get_section_by_name('.symtab')
@@ -193,13 +220,13 @@ def place_frozen(S, seg, cfile, text, name, log=None):
             for address, raw in chunks:
                 start = srcs.get('rodata_%s_%08X' % (cfile, address))
                 if start is None or ro[start:start+len(raw)] != raw:
-                    return None
+                    return _why(log, 'frozen piece %08X missing from the object' % address)
                 ranges.append((start, address-base, len(raw)))
         first = min(S.entries(seg, cfile), key=lambda e: e[2])
         linked = S.try_func.linked_func_bytes(obj, first[0], first[4], int(cfile, 16), base,
                                              want_file=True, bss=S.file_bss(seg, cfile))
         if linked is None:
-            return None
+            return _why(log, 'linked unit cannot be extracted')
         _, have = linked
         # ld may round up its output section. Those bytes have no input
         # offsets in the object and cannot participate in a placement span.
@@ -208,7 +235,7 @@ def place_frozen(S, seg, cfile, text, name, log=None):
             if log: log('readonly entries do not match the original values')
             return None
         if any(x % 4 for span in ranges for x in span):
-            return None
+            return _why(log, 'readonly entries not word aligned')
 
         def residual(data, axis):
             taken = {i for span in ranges for i in range(span[axis], span[axis] + span[2], 4)}
@@ -221,13 +248,14 @@ def place_frozen(S, seg, cfile, text, name, log=None):
             hi, hw = residual(have, 0)
             wi, ww = residual(want, 1)
         except ValueError:
-            return None
+            return _why(log, 'overlapping readonly owners')
         for op, a, b, c, d in difflib.SequenceMatcher(None, hw, ww, autojunk=False).get_opcodes():
             if op == 'equal':
                 ranges.extend((hi[i], wi[j], 4) for i, j in zip(range(a, b), range(c, d)))
             elif any(w != b'\0'*4 for w in hw[a:b] + ww[c:d]):
-                if log: log('unaccounted readonly data at input +%#x / output +%#x' % (
-                    hi[a] if a < len(hi) else len(have), wi[c] if c < len(wi) else len(want)))
+                if log: log('unaccounted readonly data at input +%#x / output +%#x (%s: input %s / output %s)' % (
+                    hi[a] if a < len(hi) else len(have), wi[c] if c < len(wi) else len(want), op,
+                    b''.join(hw[a:min(b, a + 4)]).hex(), b''.join(ww[c:min(d, c + 4)]).hex()))
                 return None
         merged = []
         for a, b, n in sorted(ranges):

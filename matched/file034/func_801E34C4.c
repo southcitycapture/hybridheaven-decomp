@@ -34,11 +34,6 @@ typedef struct func_801E34C4_Struct_A {
     u8 pad0[0x4];
     func_801E34C4_Struct_B *unk4;
 } func_801E34C4_Struct_A;
-
-extern f64 D_801E9500;
-extern f32 D_801E9508;
-extern f64 D_801E9510;
-
 s32 func_801E34C4(s32 arg0, s32 arg1) {
     f32 temp_fv1;
 
@@ -46,8 +41,8 @@ s32 func_801E34C4(s32 arg0, s32 arg1) {
         func_801C0EB0(3, 1);
         return 3;
     }
-    temp_fv1 = (f32) ((func_80034C24(func_801C0F18(3, 1)) / D_801E9500) / 0.5);
-    ((func_801E34C4_Struct_A *) D_8038D8D0)->unk4->unk30->unk4 = (f32) ((10.5f * temp_fv1) + D_801E9508);
-    ((func_801E34C4_Struct_A *) D_8038D8D0)->unk4->unk30->unkC = (f32) (((f64) temp_fv1 * 10.5) + D_801E9510);
+    temp_fv1 = (f32) ((func_80034C24(func_801C0F18(3, 1)) / (1e+06)) / 0.5);
+    ((func_801E34C4_Struct_A *) D_8038D8D0)->unk4->unk30->unk4 = (f32) ((10.5f * temp_fv1) + (-60.6f));
+    ((func_801E34C4_Struct_A *) D_8038D8D0)->unk4->unk30->unkC = (f32) (((f64) temp_fv1 * 10.5) + (290.5));
     return 2;
 }

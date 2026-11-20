@@ -45,7 +45,6 @@ extern u8 func_80250334[];
 
 
 extern u8 D_80255078[];
-extern u8 D_80259CBC[];
 extern func_8024EF6C_Vec D_80254B18;
 extern f32 D_8025A0EC__load_func_8024FCC0;
 extern f32 D_8025A0F0__load_func_8024FCC0;
@@ -70,7 +69,7 @@ void func_8024FCC0(func_8024FCC0_Struct *arg0, s32 arg1) {
     if (v1 >= 0x1E) {
         sp5C = D_80010550((void *)arg1, a2);
     }
-    if ((D_8011AAF4(D_80259CBC, 0x4E5, arg0, 0, 2, D_8025A0EC__load_func_8024FCC0, GG(0), D_8025A0F0__load_func_8024FCC0, GG(2), D_8025A0EC__load_func_8024FCC0, GG(3), -114.5f, GG(5), 0.0f, 35.0f, -1, -1) == 0) && (v1 >= 0x1F) && (sp5C != 0)) {
+    if ((D_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a03_s08showdowndemo.c", 0x4E5, arg0, 0, 2, D_8025A0EC__load_func_8024FCC0, GG(0), D_8025A0F0__load_func_8024FCC0, GG(2), D_8025A0EC__load_func_8024FCC0, GG(3), -114.5f, GG(5), 0.0f, 35.0f, -1, -1) == 0) && (v1 >= 0x1F) && (sp5C != 0)) {
         func_8013A1B4(arg1, D_80254B18, 0xFFFFFF);
         func_800058DC(arg0, func_8024FE38);
     }

@@ -1010,8 +1010,53 @@ void func_80241984(struct func_80241984_Struct *arg0, s32 arg1) {
     func_800058DC(arg0, func_802419B4);
 }
 
-/* hh-block asm/nonmatchings/file013/802408F0/_mrg_keep_text_func_802419B4.s {"functions":["func_802419B4"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file013/802408F0/_mrg_keep_text_func_802419B4.s")
+#define D_801BBBF0 D_801BBBF0__func_802419B4
+#define func_80241AF0_StructBBBF0 func_80241AF0_StructBBBF0__func_802419B4
+typedef struct func_80241AF0_StructBBBF0 {
+    u8 pad0[0x192];
+    s16 unk192;
+    s16 unk194;
+    f32 unk198;
+    f32 unk19C;
+    f32 unk1A0;
+    u8 pad1[0xF00 - 0x1A4];
+    s16 unkF00;
+    u8 pad2[0xF04 - 0xF02];
+    f32 unkF04;
+    f32 unkF08;
+    s16 unkF0C;
+    u8 pad3[0xF10 - 0xF0E];
+    s32 unkF10;
+} func_80241AF0_StructBBBF0;
+extern struct func_80241AF0_StructBBBF0 D_801BBBF0;
+
+
+struct func_802419B4_Struct {
+    u8 pad[0x94];
+    s16 unk94;
+};
+
+void func_802419B4(struct func_802419B4_Struct *arg0, s32 arg1) {
+    s16 temp;
+
+    temp = arg0->unk94;
+    arg0->unk94 = temp - 1;
+    if (temp != 0) {
+        return;
+    } else {
+        D_801BBBF0.unk194 = 1;
+        D_801BBBF0.unk192 = 4;
+        D_801BBBF0.unkF10 = 0x03480010;
+        D_801BBBF0.unkF0C = 0;
+        D_801BBBF0.unkF00 = 0x1000;
+        D_801BBBF0.unkF08 = 4.0f;
+        arg0->unk94 = 0x14;
+        func_800058DC(arg0, func_80241AF0);
+        return;
+    }
+}
+#undef D_801BBBF0
+#undef func_80241AF0_StructBBBF0
 
 void func_80241A30(void) {
 }
@@ -2247,6 +2292,7 @@ void func_80242840(struct func_80242840_Struct *arg0, s32 arg1) {
 
 
 
+
 static const unsigned char rodata_802408F0_80249AB0[] = {
     0x44, 0x29, 0x40, 0x00,
 };
@@ -2254,11 +2300,13 @@ static const unsigned char rodata_802408F0_80249ABC[] = {
     0x44, 0x29, 0x13, 0x33, 0x43, 0xA9, 0x80, 0x00, 0x43, 0xA9, 0x80, 0x00, 0x43, 0xA9, 0x80, 0x00,
     0x38, 0xD1, 0xB7, 0x17, 0x43, 0xAC, 0x80, 0x00, 0x44, 0x29, 0x40, 0x00,
 };
+/* hh-layout-unit file013/802408F0 */
 /* hh-placed-function func_80240BE8 */
 /* hh-placed-function func_80240D94 */
 /* hh-placed-function func_80240DF4 */
 /* hh-placed-function func_80240FE8 */
 /* hh-placed-function func_802414F8 */
+/* hh-placed-function func_802419B4 */
 /* hh-placed-function func_80241AF0 */
 /* hh-placed-function func_80241B88 */
 /* hh-placed-function func_80241CC8 */

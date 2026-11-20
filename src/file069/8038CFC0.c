@@ -180,6 +180,96 @@ typedef struct func_8038CFF4_StructAngles {
 } func_8038CFF4_StructAngles;
 
 
+#undef D_801BBBF0
+#undef func_8038CFF4_StructA
+#undef func_8038CFF4_StructB
+#undef func_8038CFF4_StructC
+#undef func_8038CFF4_StructG
+#undef func_8038CFF4_StructP
+#define D_801BBBF0 D_801BBBF0__func_8038CFF4_59982c13
+#define func_8038CFF4_StructA func_8038CFF4_StructA__func_8038CFF4_59982c13
+#define func_8038CFF4_StructAngles func_8038CFF4_StructAngles__func_8038CFF4_59982c13
+#define func_8038CFF4_StructB func_8038CFF4_StructB__func_8038CFF4_59982c13
+#define func_8038CFF4_StructC func_8038CFF4_StructC__func_8038CFF4_59982c13
+#define func_8038CFF4_StructG func_8038CFF4_StructG__func_8038CFF4_59982c13
+#define func_8038CFF4_StructP func_8038CFF4_StructP__func_8038CFF4_59982c13
+extern u8 D_801BBBF0[];
+
+
+typedef struct func_8038CFF4_StructP {
+    u8 pad0[0x6];
+    s16 unk6;
+    u8 pad8[0x30 - 0x8];
+    union {
+        struct {
+            u32 bf0 : 3;
+            u32 bf3 : 4;
+            u32 bf7 : 2;
+            u32 bf9 : 2;
+            u32 bf11 : 2;
+            u16 bf13 : 3;
+            u32 bf16 : 6;
+            u32 bf22 : 2;
+            u32 bf24 : 3;
+            u32 bf27 : 2;
+            u32 bf29 : 3;
+        } b;
+        struct {
+            u16 h30;
+            u8 unk32;
+            u8 unk33;
+        } c;
+    } u30;
+    u8 pad34[0x38 - 0x34];
+    u32 bf38 : 1;
+    u32 bf38_1 : 31;
+    u8 pad3C[0xA6 - 0x3C];
+    u8 unkA6;
+    u8 padA7[0x2FC - 0xA7];
+    u8 unk2FC;
+    u8 pad2FD[0x312 - 0x2FD];
+    s16 unk312;
+} func_8038CFF4_StructP;
+
+typedef struct func_8038CFF4_StructC {
+    u8 pad0[0x4];
+    u16 unk4;
+    s16 unk6;
+    s16 unk8;
+} func_8038CFF4_StructC;
+
+typedef struct func_8038CFF4_StructG {
+    u8 pad0[0xDC];
+    void *unkDC;
+    u8 padE0[0x232 - 0xE0];
+    s16 unk232;
+    u8 pad234[0xB90 - 0x234];
+    f32 unkB90;
+    u8 padB94[0x1031 - 0xB94];
+    u8 unk1031;
+} func_8038CFF4_StructG;
+
+typedef struct func_8038CFF4_StructB {
+    u8 pad0[0xC];
+    void *unkC;
+} func_8038CFF4_StructB;
+
+typedef struct func_8038CFF4_StructA {
+    u8 pad0[0xC];
+    func_8038CFF4_StructB *unkC;
+    u8 pad10[0x90 - 0x10];
+    u8 unk90;
+    u8 unk91;
+    u8 unk92;
+    u8 pad93[2];
+    u8 unk95;
+} func_8038CFF4_StructA;
+
+typedef struct func_8038CFF4_StructAngles {
+    s16 base;
+    s16 direction;
+} func_8038CFF4_StructAngles;
+
 void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
     func_8038CFF4_StructAngles angles;
     func_8038CFF4_StructC *sp28;
@@ -292,7 +382,7 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
                     sp28->unk8 = func_8001EAD0(angles.direction) * 80.0f;
                     return;
                 }
-                if (((func_8038CFF4_StructG *)D_801BBBF0)->unkB90 > D_8038DAC0) {
+                if (((func_8038CFF4_StructG *)D_801BBBF0)->unkB90 > (35.0)) {
                     func_80228FD0(arg0, sp28, 0x20);
                     return;
                 }
@@ -303,6 +393,19 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
         }
     }
 }
+#undef D_801BBBF0
+#undef func_8038CFF4_StructA
+#undef func_8038CFF4_StructAngles
+#undef func_8038CFF4_StructB
+#undef func_8038CFF4_StructC
+#undef func_8038CFF4_StructG
+#undef func_8038CFF4_StructP
+#define D_801BBBF0 D_801BBBF0__func_8038CFF4
+#define func_8038CFF4_StructA func_8038CFF4_StructA__func_8038CFF4
+#define func_8038CFF4_StructB func_8038CFF4_StructB__func_8038CFF4
+#define func_8038CFF4_StructC func_8038CFF4_StructC__func_8038CFF4
+#define func_8038CFF4_StructG func_8038CFF4_StructG__func_8038CFF4
+#define func_8038CFF4_StructP func_8038CFF4_StructP__func_8038CFF4
 #undef D_801BBBF0
 #undef func_8038CFF4_StructA
 #undef func_8038CFF4_StructB
@@ -548,6 +651,4 @@ void func_8038D9D8(u8 *arg0, s16 *arg1) {
 
 
 /* Original readonly objects; named loads retain their original addresses. */
-static const unsigned char rodata_8038CFC0[] = {
-    0x40, 0x41, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+/* hh-owned-pool func_8038CFF4 8038DAC0 8038DAC8 */

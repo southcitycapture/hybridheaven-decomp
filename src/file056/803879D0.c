@@ -376,6 +376,9 @@ extern void func_8001B204(s32, s32, s32, void *);
 extern u8 D_80389E90[];
 extern u8 D_80389E94[];
 
+#define func_80388444 func_80388444__func_80388388
+
+void func_80388444();
 void func_80388388(void *arg0, s32 *arg1) {
     s32 temp_v0;
     s8 var_s0;
@@ -383,8 +386,8 @@ void func_80388388(void *arg0, s32 *arg1) {
     temp_v0 = *(s32 *) ((u8 *) arg0 + 0xB0);
     *(s32 *) ((u8 *) arg0 + 0xB0) = temp_v0 - 1;
     if ((temp_v0 < 0) || (D_801BCC25 == 0)) {
-        func_8001B204(3, 0, 0, D_80389E90);
-        func_8001B204(4, 0, 0, D_80389E94);
+        func_8001B204(3, 0, 0, "");
+        func_8001B204(4, 0, 0, "");
         var_s0 = 0xD;
         do {
             func_80006088(arg1[var_s0]);
@@ -394,6 +397,7 @@ void func_80388388(void *arg0, s32 *arg1) {
         func_800058DC((s32) arg0, (void *) func_80388444);
     }
 }
+#undef func_80388444
 
 
 typedef struct func_80388444_Struct {
@@ -418,7 +422,9 @@ void func_80388444(func_80388444_Struct *arg0, s32 arg1) {
 
 /* Original readonly objects; named loads retain their original addresses. */
 
-static const unsigned char rodata_803879D0[] = {
+/* hh-owned-pool func_80387A20 80389E98 80389EE0 */
+
+static const unsigned char rodata_803879D0_80389DD0[] = {
     0x25, 0x6D, 0x25, 0x73, 0x00, 0x00, 0x00, 0x00, 0x25, 0x6D, 0xA3, 0xCF, 0xA3, 0xC6, 0xA3, 0xC6,
     0xA3, 0xC5, 0xA3, 0xCE, 0xA3, 0xC3, 0xA3, 0xC5, 0xA1, 0xB8, 0xA3, 0xD5, 0xA3, 0xD0, 0xA1, 0xB8,
     0x25, 0x70, 0x25, 0x64, 0x00, 0x00, 0x00, 0x00, 0x25, 0x6D, 0x25, 0x73, 0x00, 0x00, 0x00, 0x00,
@@ -431,6 +437,7 @@ static const unsigned char rodata_803879D0[] = {
     0xA3, 0xD2, 0xA3, 0xC5, 0xA3, 0xC6, 0xA3, 0xD2, 0xA3, 0xC5, 0xA3, 0xD3, 0xA3, 0xC8, 0x00, 0x00,
     0x25, 0x6D, 0xA3, 0xC8, 0xA3, 0xD0, 0xA1, 0xB8, 0xA3, 0xD2, 0xA3, 0xC5, 0xA3, 0xC6, 0xA3, 0xD2,
     0xA3, 0xC5, 0xA3, 0xD3, 0xA3, 0xC8, 0xA1, 0xB8, 0x25, 0x70, 0x25, 0x64, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-/* hh-owned-pool func_80387A20 80389E98 80389EE0 */
+/* hh-layout-unit file056/803879D0 */
+/* hh-placed-function func_80388388 */
+/* hh-rodata-layout [272,[[0,192,8],[8,0,192],[200,200,72]]] */

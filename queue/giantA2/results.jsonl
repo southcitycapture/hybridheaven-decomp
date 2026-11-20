@@ -1,0 +1,1 @@
+{"func": "func_802039B0", "segment": "file010", "model": "openai/gpt-6.2-astra", "verified": "MATCH", "claimed": "RESULT: MATCH", "checks": 185, "turns": 34, "seconds": 801, "input_tokens": 157522, "output_tokens": 4363, "exit": "0", "cost_usd_equiv": 0.0}

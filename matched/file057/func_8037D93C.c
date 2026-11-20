@@ -36,8 +36,6 @@ extern void func_8001B204();
 extern s32 func_800058DC(void *, void *);
 extern void func_8037DC64();
 extern void func_8037DAE0();
-extern u8 D_8038BC14[];
-extern u8 D_8038BC1C[];
 extern u8 D_801BBBF0[];
 
 void func_8037D93C(void *arg0, s32 arg1) {
@@ -49,13 +47,13 @@ void func_8037D93C(void *arg0, s32 arg1) {
     temp = func_8037D320(obj, obj->unk90);
 
     entry = ((struct func_8037D93C_Table *) *(u8 **) &D_8008DA88)->unk30;
-    func_8001B204(obj->unkA9, (s16) (entry->unk0 + 0x468), (s16) (entry->unk2 - obj->unk9A + 3), D_8038BC14,
+    func_8001B204(obj->unkA9, (s16) (entry->unk0 + 0x468), (s16) (entry->unk2 - obj->unk9A + 3), "%a%m%s",
         (obj->unkB0 * 0xFF) / 4, obj->unk98, temp);
 
     temp = func_8037D320(obj, (obj->unk90 ^ 1) & 0xFF);
 
     entry = ((struct func_8037D93C_Table *) ((u8 **) &D_8008DA88)[1])->unk30;
-    func_8001B204(obj->unkAA, (s16) (entry->unk0 + 0x468), (s16) (entry->unk2 - obj->unk9B + 3), D_8038BC1C,
+    func_8001B204(obj->unkAA, (s16) (entry->unk0 + 0x468), (s16) (entry->unk2 - obj->unk9B + 3), "%a%m%s",
         (obj->unkB0 * 0xFF) / 4, obj->unk99, temp);
 
     obj->unkB0 = obj->unkB0 + 1;

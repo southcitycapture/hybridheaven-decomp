@@ -59,8 +59,6 @@ typedef struct func_801FC008_StructA {
     u8 pad0[0x30];
     func_801FC008_StructB *unk30;
 } func_801FC008_StructA;
-
-extern f32 D_80208DA0;
 #undef O
 #define O(i) (((func_801FC008_StructA **)D_8038D8D0)[i])->unk30
 
@@ -83,7 +81,7 @@ s32 func_801FC008(s32 arg0, s32 arg1) {
     func_8012C89C(D_8038D8CC, 5, 0x2D9, 5);
     func_8012C89C(D_8038D8CC, 6, 0x2D9, 6);
     func_8012C89C(D_8038D8CC, 7, 0x2D9, 7);
-    k = D_80208DA0;
+    k = (0.05f);
     
     goto L;
 L:

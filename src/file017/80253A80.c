@@ -519,6 +519,29 @@ extern u8 D_8025D860[];
 extern u8 D_8025D89C[];
 extern u8 D_8025D8D8[];
 
+#undef func_800058DC
+#undef func_8011AAF4
+#undef func_80254808_Struct
+#undef func_80254808_StructB
+#undef func_80254808_StructN
+#undef func_80254B3C
+#undef func_802577B4
+#define func_800058DC func_800058DC__func_80254808_d7398b0e
+#define func_8011AAF4 func_8011AAF4__func_80254808_d7398b0e
+#define func_80254808_Struct func_80254808_Struct__func_80254808_d7398b0e
+#define func_80254808_StructB func_80254808_StructB__func_80254808_d7398b0e
+#define func_80254808_StructM func_80254808_StructM__func_80254808_d7398b0e
+#define func_80254808_StructN func_80254808_StructN__func_80254808_d7398b0e
+#define func_80254B3C func_80254B3C__func_80254808_d7398b0e
+#define func_802577B4 func_802577B4__func_80254808_d7398b0e
+extern void func_800058DC();
+extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+extern void func_80254B3C();
+extern void func_802577B4(void *, void *);
+typedef struct func_80254808_StructM { s16 a; s32 b; f32 c; s16 d; s32 e; s32 f; s32 g; s32 h; } func_80254808_StructM;
+typedef struct func_80254808_StructN { u8 pad0[0x22]; u8 unk22; } func_80254808_StructN;
+typedef struct func_80254808_StructB { u8 pad0[0x24]; func_80254808_StructN *unk24; } func_80254808_StructB;
+typedef struct func_80254808_Struct { u8 pad0[0x90]; u16 unk90; u8 pad92[6]; u16 unk98; } func_80254808_Struct;
 void func_80254808(func_80254808_Struct *arg0, func_80254808_StructB *arg1) {
     func_80254808_StructM m;
     s32 t;
@@ -543,13 +566,13 @@ void func_80254808(func_80254808_Struct *arg0, func_80254808_StructB *arg1) {
             func_801C2F0C(4, &m);
         }
         if (!(t % 2)) {
-            func_8011AAF4(D_8025D860, 0x360, arg0, 0, 1, 0.0f, -60.0f, 20.0f, 17.0f, 0.0f, -83.0f, 10.0f, -6.0f, 0.0f, 55.0f, -1, -1);
+            func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x360, arg0, 0, 1, 0.0f, -60.0f, 20.0f, 17.0f, 0.0f, -83.0f, 10.0f, -6.0f, 0.0f, 55.0f, -1, -1);
         } else {
-            func_8011AAF4(D_8025D89C, 0x365, arg0, 0, 1, 0.0f, -60.0f, 19.0f, 17.0f, 0.0f, -83.0f, 9.0f, -6.0f, 0.0f, 55.0f, -1, -1);
+            func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x365, arg0, 0, 1, 0.0f, -60.0f, 19.0f, 17.0f, 0.0f, -83.0f, 9.0f, -6.0f, 0.0f, 55.0f, -1, -1);
         }
         arg0->unk98 = -arg0->unk98;
         if (t >= 0x78) {
-            func_8011AAF4(D_8025D8D8, 0x36E, arg0, 0, 1, 0.0f, 120.0f, 166.0f, 174.0f, 0.0f, -35.0f, -9.0f, -39.0f, 0.0f, 55.0f, -1, -1);
+            func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x36E, arg0, 0, 1, 0.0f, 120.0f, 166.0f, 174.0f, 0.0f, -35.0f, -9.0f, -39.0f, 0.0f, 55.0f, -1, -1);
             arg0->unk90 = 0;
             arg1->unk24->unk22 = 1;
             func_801518D4(0, 0, 0x1E);
@@ -557,6 +580,21 @@ void func_80254808(func_80254808_Struct *arg0, func_80254808_StructB *arg1) {
         }
     }
 }
+#undef func_800058DC
+#undef func_8011AAF4
+#undef func_80254808_Struct
+#undef func_80254808_StructB
+#undef func_80254808_StructM
+#undef func_80254808_StructN
+#undef func_80254B3C
+#undef func_802577B4
+#define func_800058DC func_800058DC__func_80254808_bbd20e0f
+#define func_8011AAF4 func_8011AAF4__func_80254808_bbd20e0f
+#define func_80254808_Struct func_80254808_Struct__func_80254808_bbd20e0f
+#define func_80254808_StructB func_80254808_StructB__func_80254808_bbd20e0f
+#define func_80254808_StructN func_80254808_StructN__func_80254808_bbd20e0f
+#define func_80254B3C func_80254B3C__func_80254808_bbd20e0f
+#define func_802577B4 func_802577B4__func_80254808_bbd20e0f
 #undef D_8025D860
 #undef D_8025D89C
 #undef D_8025D8D8
@@ -1203,11 +1241,47 @@ typedef struct func_802556EC_Struct {
     s32 d[5];
 } func_802556EC_Struct;
 
+#undef func_8011AAF4
+#undef func_80133980
+#undef func_802556EC_Args
+#undef func_802556EC_Ctx
+#undef func_802556EC_Inner
+#undef func_802556EC_Node
+#undef func_802556EC_Struct
+#undef func_8025584C
+#undef func_8025799C
+#define func_8011AAF4 func_8011AAF4__func_802556EC_b3fe5e5b
+#define func_80133980 func_80133980__func_802556EC_b3fe5e5b
+#define func_802556EC_Args func_802556EC_Args__func_802556EC_b3fe5e5b
+#define func_802556EC_Ctx func_802556EC_Ctx__func_802556EC_b3fe5e5b
+#define func_802556EC_Inner func_802556EC_Inner__func_802556EC_b3fe5e5b
+#define func_802556EC_Node func_802556EC_Node__func_802556EC_b3fe5e5b
+#define func_802556EC_Struct func_802556EC_Struct__func_802556EC_b3fe5e5b
+#define func_8025584C func_8025584C__func_802556EC_b3fe5e5b
+#define func_8025799C func_8025799C__func_802556EC_b3fe5e5b
+extern void func_80133980(s32);
+
+typedef struct func_802556EC_Inner { u8 pad[0x4B]; u8 unk4B; } func_802556EC_Inner;
+typedef struct func_802556EC_Node { u8 pad[0x30]; func_802556EC_Inner *unk30; } func_802556EC_Node;
+typedef struct func_802556EC_Args { u8 pad[8]; func_802556EC_Node *unk8; } func_802556EC_Args;
+typedef struct func_802556EC_Ctx { u8 pad[0x92]; u16 unk92; } func_802556EC_Ctx;
+extern void func_8025799C();
+extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+extern u8 func_8025584C[];
+
+typedef struct func_802556EC_Struct {
+    s16 a;
+    s16 pad;
+    s32 b;
+    f32 c;
+    s32 d[5];
+} func_802556EC_Struct;
+
 void func_802556EC(func_802556EC_Ctx *arg0, func_802556EC_Args *arg1) {
     func_802556EC_Struct sp;
 
     func_8025799C();
-    func_8011AAF4(D_8025DA7C, 0x4D8, arg0, 0, 2, (0.8f), -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, 0.0f, 55.0f, -1, -1);
+    func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x4D8, arg0, 0, 2, (0.8f), -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, 0.0f, 55.0f, -1, -1);
     if (func_801C3044() == 0) {
         sp.a = 0x1100;
         sp.b = 0x04100026;
@@ -1222,6 +1296,24 @@ void func_802556EC(func_802556EC_Ctx *arg0, func_802556EC_Args *arg1) {
         func_800058DC(arg0, func_8025584C);
     }
 }
+#undef func_8011AAF4
+#undef func_80133980
+#undef func_802556EC_Args
+#undef func_802556EC_Ctx
+#undef func_802556EC_Inner
+#undef func_802556EC_Node
+#undef func_802556EC_Struct
+#undef func_8025584C
+#undef func_8025799C
+#define func_8011AAF4 func_8011AAF4__func_802556EC_9edaea3b
+#define func_80133980 func_80133980__func_802556EC_9edaea3b
+#define func_802556EC_Args func_802556EC_Args__func_802556EC_9edaea3b
+#define func_802556EC_Ctx func_802556EC_Ctx__func_802556EC_9edaea3b
+#define func_802556EC_Inner func_802556EC_Inner__func_802556EC_9edaea3b
+#define func_802556EC_Node func_802556EC_Node__func_802556EC_9edaea3b
+#define func_802556EC_Struct func_802556EC_Struct__func_802556EC_9edaea3b
+#define func_8025584C func_8025584C__func_802556EC_9edaea3b
+#define func_8025799C func_8025799C__func_802556EC_9edaea3b
 #undef D_8025DA7C
 #undef func_8011AAF4
 #undef func_80133980
@@ -1464,6 +1556,64 @@ typedef struct func_8025584C_Struct {
     f32 unkA0;
 } func_8025584C_Struct;
 
+#undef D_8025975C
+#undef D_8025DE24
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8011AAF4
+#undef func_8012C6B4
+#undef func_80133980
+#undef func_8025584C_Struct
+#undef func_80255B30
+#undef func_80255B30_A0
+#undef func_80255B30_A1
+#undef func_80255B30_In
+#undef func_80255B30_Node
+#undef func_8025799C
+#undef func_80380F94
+#define D_8025975C D_8025975C__func_8025584C_107dabd6
+#define D_8025DE24 D_8025DE24__func_8025584C_107dabd6
+#define func_8001EAD0 func_8001EAD0__func_8025584C_107dabd6
+#define func_8001EB64 func_8001EB64__func_8025584C_107dabd6
+#define func_8011AAF4 func_8011AAF4__func_8025584C_107dabd6
+#define func_8012C6B4 func_8012C6B4__func_8025584C_107dabd6
+#define func_80133980 func_80133980__func_8025584C_107dabd6
+#define func_8025584C_Struct func_8025584C_Struct__func_8025584C_107dabd6
+#define func_80255B30 func_80255B30__func_8025584C_107dabd6
+#define func_80255B30_A0 func_80255B30_A0__func_8025584C_107dabd6
+#define func_80255B30_A1 func_80255B30_A1__func_8025584C_107dabd6
+#define func_80255B30_In func_80255B30_In__func_8025584C_107dabd6
+#define func_80255B30_Node func_80255B30_Node__func_8025584C_107dabd6
+#define func_8025799C func_8025799C__func_8025584C_107dabd6
+#define func_80380F94 func_80380F94__func_8025584C_107dabd6
+extern s32 D_8025DE24;
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+extern s32 func_8012C6B4(s32);
+typedef struct func_80255B30_A0 {
+    u8 pad0[0x40]; f32 unk40; f32 unk44; f32 unk48;
+    u8 pad4C[0x92 - 0x4C]; u16 unk92; u8 pad94[4];
+    f32 unk98; f32 unk9C; f32 unkA0;
+} func_80255B30_A0;
+typedef struct func_80255B30_In { u8 pad0[0x4B]; u8 unk4B; } func_80255B30_In;
+typedef struct func_80255B30_Node { u8 pad0[0x30]; func_80255B30_In *unk30; } func_80255B30_Node;
+typedef struct func_80255B30_A1 { u8 pad0[4]; func_80255B30_Node *unk4; func_80255B30_Node *unk8; } func_80255B30_A1;
+void func_80255B30(func_80255B30_A0 *arg0, func_80255B30_A1 *arg1);
+extern void func_8025799C();
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
+extern void func_80133980(s32);
+extern u8 D_8025975C[];
+
+typedef struct func_8025584C_Struct {
+    u8 pad0[0x92];
+    u16 unk92;
+    u8 pad94[4];
+    f32 unk98;
+    f32 unk9C;
+    f32 unkA0;
+} func_8025584C_Struct;
+
 void func_8025584C(func_8025584C_Struct *arg0, void *arg1) {
     f32 sp74;
     s32 sp70;
@@ -1477,7 +1627,7 @@ void func_8025584C(func_8025584C_Struct *arg0, void *arg1) {
     func_8025799C((void *)arg0, arg1);
     zero = 0.0f;
     if (sp70 < 0x3C) {
-        func_8011AAF4(D_8025DAB8, 0x4F8, arg0, 0, 2, 0.8f, -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, zero, 55.0f, -1, -1);
+        func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x4F8, arg0, 0, 2, 0.8f, -91.0f, 21.0f, -8.0f, 4294967296.0f, 1.0f, 11.0f, 4.0f, zero, 55.0f, -1, -1);
         if ((sp70 % 6) == 0) {
             randomAngle = func_8012C6B4(0x2000);
             temp_fv0 = (f32) randomAngle;
@@ -1489,13 +1639,43 @@ void func_8025584C(func_8025584C_Struct *arg0, void *arg1) {
     }
     if (sp70 >= 0x5A) {
         func_80133980(0x13B);
-        func_8011AAF4(D_8025DAF4, 0x509, arg0, 0, 1, zero, -90.0f, 12.0f, -30.0f, zero, -43.0f, 15.0f, 15.0f, zero, 55.0f, -1, -1);
+        func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x509, arg0, 0, 1, zero, -90.0f, 12.0f, -30.0f, zero, -43.0f, 15.0f, 15.0f, zero, 55.0f, -1, -1);
         arg0->unk92 = 0;
         D_8025DE24 = func_80005670(arg0, D_8025975C);
         func_80020718(0x18F);
         func_800058DC(arg0, func_80255B30);
     }
 }
+#undef D_8025975C
+#undef D_8025DE24
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_8011AAF4
+#undef func_8012C6B4
+#undef func_80133980
+#undef func_8025584C_Struct
+#undef func_80255B30
+#undef func_80255B30_A0
+#undef func_80255B30_A1
+#undef func_80255B30_In
+#undef func_80255B30_Node
+#undef func_8025799C
+#undef func_80380F94
+#define D_8025975C D_8025975C__func_8025584C_a09ca3e4
+#define D_8025DE24 D_8025DE24__func_8025584C_a09ca3e4
+#define func_8001EAD0 func_8001EAD0__func_8025584C_a09ca3e4
+#define func_8001EB64 func_8001EB64__func_8025584C_a09ca3e4
+#define func_8011AAF4 func_8011AAF4__func_8025584C_a09ca3e4
+#define func_8012C6B4 func_8012C6B4__func_8025584C_a09ca3e4
+#define func_80133980 func_80133980__func_8025584C_a09ca3e4
+#define func_8025584C_Struct func_8025584C_Struct__func_8025584C_a09ca3e4
+#define func_80255B30 func_80255B30__func_8025584C_a09ca3e4
+#define func_80255B30_A0 func_80255B30_A0__func_8025584C_a09ca3e4
+#define func_80255B30_A1 func_80255B30_A1__func_8025584C_a09ca3e4
+#define func_80255B30_In func_80255B30_In__func_8025584C_a09ca3e4
+#define func_80255B30_Node func_80255B30_Node__func_8025584C_a09ca3e4
+#define func_8025799C func_8025799C__func_8025584C_a09ca3e4
+#define func_80380F94 func_80380F94__func_8025584C_a09ca3e4
 #undef D_8025975C
 #undef D_8025DAB8
 #undef D_8025DAF4
@@ -2025,6 +2205,116 @@ typedef struct func_80255CA0_Node {
 
 typedef struct func_80255CA0_Cmd { s16 a; s32 b; f32 c; s16 d; s32 e; s32 f; s32 g; } func_80255CA0_Cmd;
 extern void D_80005700(s32);
+#undef CAT
+#undef CAT2
+#undef D_80005700
+#undef D_8011AAF4
+#undef D_801BBCD0
+#undef D_8025DE24
+#undef func_8001EAD0__func_80256034
+#undef func_80129FB8
+#undef func_8012C6B4
+#undef func_801C3D20
+#undef func_80251820_Ctx
+#undef func_80251820_Node
+#undef func_80253680_StructInner
+#undef func_80253680_StructOuter
+#undef func_80255B30_A0
+#undef func_80255CA0_In
+#undef func_80255CA0_Node
+#undef func_80256034
+#undef func_80380F94
+#undef hzP
+#undef hzP2
+#undef hzq_592
+#undef hzq_599
+#define D_80005700 D_80005700__func_80255CA0_6a60c741
+#define D_8011AAF4 D_8011AAF4__func_80255CA0_6a60c741
+#define D_801BBCD0 D_801BBCD0__func_80255CA0_6a60c741
+#define D_8025DE24 D_8025DE24__func_80255CA0_6a60c741
+#define func_80129FB8 func_80129FB8__func_80255CA0_6a60c741
+#define func_8012C6B4 func_8012C6B4__func_80255CA0_6a60c741
+#define func_801C3D20 func_801C3D20__func_80255CA0_6a60c741
+#define func_80251820_Ctx func_80251820_Ctx__func_80255CA0_6a60c741
+#define func_80251820_Node func_80251820_Node__func_80255CA0_6a60c741
+#define func_80253680_StructInner func_80253680_StructInner__func_80255CA0_6a60c741
+#define func_80253680_StructOuter func_80253680_StructOuter__func_80255CA0_6a60c741
+#define func_80254B3C_Args_first func_80254B3C_Args_first__func_80255CA0_6a60c741
+#define func_80254B3C_Node_first func_80254B3C_Node_first__func_80255CA0_6a60c741
+#define func_80255B30_A0 func_80255B30_A0__func_80255CA0_6a60c741
+#define func_80255CA0_Cmd func_80255CA0_Cmd__func_80255CA0_6a60c741
+#define func_80255CA0_In func_80255CA0_In__func_80255CA0_6a60c741
+#define func_80255CA0_Node func_80255CA0_Node__func_80255CA0_6a60c741
+#define func_80256034 func_80256034__func_80255CA0_6a60c741
+#define func_80380F94 func_80380F94__func_80255CA0_6a60c741
+#define CAT2(a, b) a##b
+#define CAT(a, b) CAT2(a, b)
+#define func_8001EAD0__func_80256034 CAT(func_8001EAD0__func_80256034Q, __LINE__)
+#define func_80254B3C_Args func_80254B3C_Args_first
+#define func_80254B3C_Node func_80254B3C_Node_first
+#define hzP2(a, b) a##b
+#define hzP(a, b) hzP2(a, b)
+#define func_8001EAD0__func_80256034 hzP(hzq_, __LINE__)
+#define hzq_592 func_8001EAD0__k592
+#define hzq_599 func_8001EAD0__func_80256034
+extern s32 D_8025DE24;
+#define CAT2(a, b) a##b
+#define CAT(a, b) CAT2(a, b)
+#define func_8001EAD0__func_80256034 CAT(func_8001EAD0__func_80256034Q, __LINE__)
+extern s32 func_8012C6B4(s32);
+typedef struct { u8 pad[0x28]; } func_80254B3C_Args_first;
+typedef struct { u8 pad[0x28]; } func_80254B3C_Node_first;
+typedef struct func_80255B30_A0 {
+    u8 pad0[0x40]; f32 unk40; f32 unk44; f32 unk48;
+    u8 pad4C[0x92 - 0x4C]; u16 unk92; u8 pad94[4];
+    f32 unk98; f32 unk9C; f32 unkA0;
+} func_80255B30_A0;
+typedef struct func_80251820_Ctx {
+    u8 pad0[0x2C];
+    s32 unk2C;
+    u8 pad30[0x44];
+    s32 unk74;
+    u8 pad78[0x18];
+    u16 unk90;
+    u16 unk92;
+} func_80251820_Ctx;
+typedef struct func_80251820_Node { u8 pad0[0x22]; u8 unk22; } func_80251820_Node;
+void func_80256034(func_80251820_Ctx *arg0, func_80251820_Node **arg1);
+extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
+
+#undef func_80254B3C_Args
+#undef func_80254B3C_Node
+extern s32 D_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+typedef struct func_80253680_StructInner {
+    u8 pad0[4];
+    f32 x, y, z;
+    u8 pad10[2];
+    s16 angle;
+    u8 pad14[0x1C];
+    f32 a, b, c, d, e, f;
+} func_80253680_StructInner;
+typedef struct func_80253680_StructOuter {
+    u8 pad0[0x2C];
+    func_80253680_StructInner *inner;
+} func_80253680_StructOuter;
+extern func_80253680_StructOuter *D_801BBCD0;
+extern s32 func_801C3D20(f32, f32, f32);
+extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
+typedef struct func_80255CA0_In {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+} func_80255CA0_In;
+typedef struct func_80255CA0_Node {
+    u8 pad0[0x22];
+    u8 unk22;
+    u8 pad23[0xD];
+    func_80255CA0_In *unk30;
+} func_80255CA0_Node;
+
+typedef struct func_80255CA0_Cmd { s16 a; s32 b; f32 c; s16 d; s32 e; s32 f; s32 g; } func_80255CA0_Cmd;
+extern void D_80005700(s32);
 void func_80255CA0(func_80255B30_A0 *arg0, s32 arg1) {
     func_80253680_StructInner *temp_v1;
     func_80255CA0_Cmd sp78;
@@ -2052,7 +2342,7 @@ void func_80255CA0(func_80255B30_A0 *arg0, s32 arg1) {
         func_801C2F0C(5, &sp78);
     }
     if (func_801C3D20(arg0->unk98, arg0->unkA0, 5.0f) != 0) {
-        D_8011AAF4(D_8025DB30, 0x562, arg0, 0, 1, 0.0f, -55.0f, 20.0f, -8.0f, 0.0f, -85.0f, 10.0f, 8.0f, 0.0f, 55.0f, -1, -1);
+        D_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x562, arg0, 0, 1, 0.0f, -55.0f, 20.0f, -8.0f, 0.0f, -85.0f, 10.0f, 8.0f, 0.0f, 55.0f, -1, -1);
         func_80380F94((temp_v1 = D_801BBCD0->inner)->x, temp_v1->y + 10.0f, temp_v1->z, 0.0f, 0.0f, 0.0f, 7);
         arg0->unk92 = 0;
         (*(func_80255CA0_Node **)arg1)->unk22 = 0;
@@ -2061,6 +2351,55 @@ void func_80255CA0(func_80255B30_A0 *arg0, s32 arg1) {
         func_800058DC(arg0, func_80256034);
     }
 }
+#undef CAT2
+#undef CAT
+#undef func_8001EAD0__func_80256034
+#undef hzP2
+#undef hzP
+#undef hzq_592
+#undef hzq_599
+#undef D_80005700
+#undef D_8011AAF4
+#undef D_801BBCD0
+#undef D_8025DE24
+#undef func_80129FB8
+#undef func_8012C6B4
+#undef func_801C3D20
+#undef func_80251820_Ctx
+#undef func_80251820_Node
+#undef func_80253680_StructInner
+#undef func_80253680_StructOuter
+#undef func_80254B3C_Args_first
+#undef func_80254B3C_Node_first
+#undef func_80255B30_A0
+#undef func_80255CA0_Cmd
+#undef func_80255CA0_In
+#undef func_80255CA0_Node
+#undef func_80256034
+#undef func_80380F94
+#define CAT(a, b) CAT2(a, b)
+#define CAT2(a, b) a##b
+#define D_80005700 D_80005700__func_80255CA0_1184064c
+#define D_8011AAF4 D_8011AAF4__func_80255CA0_1184064c
+#define D_801BBCD0 D_801BBCD0__func_80255CA0_1184064c
+#define D_8025DE24 D_8025DE24__func_80255CA0_1184064c
+#define func_8001EAD0__func_80256034 CAT(func_8001EAD0__func_80256034Q, __LINE__)
+#define func_80129FB8 func_80129FB8__func_80255CA0_1184064c
+#define func_8012C6B4 func_8012C6B4__func_80255CA0_1184064c
+#define func_801C3D20 func_801C3D20__func_80255CA0_1184064c
+#define func_80251820_Ctx func_80251820_Ctx__func_80255CA0_1184064c
+#define func_80251820_Node func_80251820_Node__func_80255CA0_1184064c
+#define func_80253680_StructInner func_80253680_StructInner__func_80255CA0_1184064c
+#define func_80253680_StructOuter func_80253680_StructOuter__func_80255CA0_1184064c
+#define func_80255B30_A0 func_80255B30_A0__func_80255CA0_1184064c
+#define func_80255CA0_In func_80255CA0_In__func_80255CA0_1184064c
+#define func_80255CA0_Node func_80255CA0_Node__func_80255CA0_1184064c
+#define func_80256034 func_80256034__func_80255CA0_1184064c
+#define func_80380F94 func_80380F94__func_80255CA0_1184064c
+#define hzP(a, b) hzP2(a, b)
+#define hzP2(a, b) a##b
+#define hzq_592 func_8001EAD0__k592
+#define hzq_599 func_8001EAD0__func_80256034
 #undef CAT2
 #undef CAT
 #undef func_8001EAD0__func_80256034
@@ -3463,66 +3802,6 @@ void func_8025799C(func_8025799C_A0 *arg0, func_8025799C_A1 *arg1)
 
 
 
-static const unsigned char rodata_80253A80[] = {
-    0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
-    0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
-    0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31,
-    0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69,
-    0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31,
-    0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73,
-    0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76,
-    0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F,
-    0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61,
-    0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63,
-    0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D,
-    0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75,
-    0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69,
-    0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30,
-    0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00,
-    0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
-    0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
-    0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31,
-    0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69,
-    0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31,
-    0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73,
-    0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76,
-    0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F,
-    0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61,
-    0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63,
-    0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D,
-    0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75,
-    0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69,
-    0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30,
-    0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00,
-    0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
-    0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
-    0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31,
-    0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69,
-    0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31,
-    0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73,
-    0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76,
-    0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F,
-    0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61,
-    0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63,
-    0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D,
-    0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75,
-    0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69,
-    0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30,
-    0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00,
-    0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
-    0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
-    0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31,
-    0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69,
-    0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31,
-    0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73,
-    0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76,
-    0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x6C, 0x69, 0x67, 0x68, 0x74, 0x70, 0x61, 0x74,
-    0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0xC1, 0xB0, 0x0A, 0x00, 0x00, 0x00, 0x6C, 0x69, 0x67, 0x68,
-    0x74, 0x70, 0x61, 0x74, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0xB8, 0xE5, 0x0A, 0x00, 0x00, 0x00,
-    0x6E, 0x61, 0x76, 0x69, 0x65, 0x66, 0x66, 0x65, 0x63, 0x74, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8,
-    0xC1, 0xB0, 0x0A, 0x00, 0x6E, 0x61, 0x76, 0x69, 0x65, 0x66, 0x66, 0x65, 0x63, 0x74, 0xA5, 0xBB,
-    0xA5, 0xC3, 0xA5, 0xC8, 0xB8, 0xE5, 0x0A, 0x00,
-};
 /* hh-owned-pool func_80254D48 8025DBF8 8025DC04 */
 /* hh-owned-pool func_802556EC 8025DC1C 8025DC20 */
 /* hh-owned-pool func_8025584C 8025DC20 8025DC30 */
@@ -3542,3 +3821,48 @@ static const unsigned char rodata_80253A80[] = {
 static const f32 D_8025DBF8__rodata[] = {0.03999999910593033f};
 static const f32 D_8025DBFC__rodata[] = {0.009999999776482582f};
 static const f32 D_8025DC00__rodata[] = {0.009990000165998936f};
+
+
+
+
+static const unsigned char rodata_80253A80_8025D914[] = {
+    0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
+    0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
+    0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31,
+    0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69,
+    0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31,
+    0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73,
+    0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76,
+    0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F,
+    0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61,
+    0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63,
+    0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D,
+    0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75,
+    0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69,
+    0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30,
+    0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00,
+    0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
+    0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
+    0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31,
+    0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x2F, 0x68, 0x64, 0x69,
+    0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31,
+    0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73,
+    0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x6E, 0x61, 0x76,
+    0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00,
+};
+static const unsigned char rodata_80253A80_8025DB6C[] = {
+    0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
+    0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
+    0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31,
+    0x30, 0x6E, 0x61, 0x76, 0x69, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x6C, 0x69, 0x67, 0x68,
+    0x74, 0x70, 0x61, 0x74, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0xC1, 0xB0, 0x0A, 0x00, 0x00, 0x00,
+    0x6C, 0x69, 0x67, 0x68, 0x74, 0x70, 0x61, 0x74, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0xB8, 0xE5,
+    0x0A, 0x00, 0x00, 0x00, 0x6E, 0x61, 0x76, 0x69, 0x65, 0x66, 0x66, 0x65, 0x63, 0x74, 0xA5, 0xBB,
+    0xA5, 0xC3, 0xA5, 0xC8, 0xC1, 0xB0, 0x0A, 0x00, 0x6E, 0x61, 0x76, 0x69, 0x65, 0x66, 0x66, 0x65,
+    0x63, 0x74, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0xB8, 0xE5, 0x0A, 0x00,
+};
+/* hh-placed-function func_80254808 */
+/* hh-placed-function func_802556EC */
+/* hh-placed-function func_8025584C */
+/* hh-placed-function func_80255CA0 */
+/* hh-rodata-layout [1152,[[0,0,180],[180,540,240],[420,920,12],[432,180,360],[792,780,140],[932,932,220]]] */

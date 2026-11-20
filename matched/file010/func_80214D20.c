@@ -50,11 +50,6 @@ struct func_80214D20_StructPalette {
     u32 green;
     u16 blue;
 };
-extern f64 D_8021AF18;
-extern f64 D_8021AF20;
-extern f32 D_8021AF28;
-extern f64 D_8021AF30;
-extern f64 D_8021AF38;
 extern s32 func_801FD168(f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32);
 extern void func_801FD260(s32, void *);
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
@@ -73,9 +68,9 @@ s32 func_80214D20(struct func_80214D20_StructA0 *arg0, struct func_80214D20_Stru
 
     sp90 = arg0->unk3C++;
     i = 0;
-    arg0->unk44 = (f32)((f64)arg0->unk44 * D_8021AF18);
-    if ((f64)arg0->unk44 < D_8021AF20) {
-        fs2 = D_8021AF28;
+    arg0->unk44 = (f32)((f64)arg0->unk44 * (0.8));
+    if ((f64)arg0->unk44 < (0.1)) {
+        fs2 = (0.2f);
         lim = 0x2000;
         do {
             j = i;
@@ -111,7 +106,7 @@ s32 func_80214D20(struct func_80214D20_StructA0 *arg0, struct func_80214D20_Stru
         random.y = func_8012C6B4(0xC8);
         random.z = func_8012C6B4(0xC8);
         random.size = func_8012C6B4(0x28);
-        func_80129FB8((f32)(((f64)(random.x - 0x64) / 100.0) + (f64)arg0->unk94), (f32)(((f64)(random.y - 0x64) / 100.0) + (f64)arg0->unk98), (f32)(((f64)(random.z - 0x64) / 100.0) + (f64)arg0->unk9C), 0.0f, 0.0f, 0.0f, 0.0f, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x34, 0x50, -6, (f32)(((f64)random.size / D_8021AF30) + D_8021AF38), 9, 0);
+        func_80129FB8((f32)(((f64)(random.x - 0x64) / 100.0) + (f64)arg0->unk94), (f32)(((f64)(random.y - 0x64) / 100.0) + (f64)arg0->unk98), (f32)(((f64)(random.z - 0x64) / 100.0) + (f64)arg0->unk9C), 0.0f, 0.0f, 0.0f, 0.0f, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0x34, 0x50, -6, (f32)(((f64)random.size / (1e+03)) + (0.15)), 9, 0);
     }
     if (!(sp90 % 4)) {
         func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, 0.0f, 0.0f, 0.0f, 0x14);

@@ -139,7 +139,6 @@ void func_80239CF4(func_80239CF4_A *arg0, s32 arg1);
 
 #undef func_80234724
 extern void func_80234724();
-extern u8 D_80240570[];
 extern void func_80020744(s32);
 extern void func_800058DC();
 
@@ -211,7 +210,7 @@ void func_80237B7C(func_80237B7C_Obj *arg0, s32 arg1) {
                 v = arg0->unkA5;
                 arg0->unkAC = 0;
                 e = (func_80237B7C_Struct *)(D_80240828 + v * 12);
-                func_8001B204(v & 0xFF, e->unk0 + 0x3E8, e->unk2, D_80240570, 8, 4, e->unk4);
+                func_8001B204(v & 0xFF, e->unk0 + 0x3E8, e->unk2, "%f%m%s", 8, 4, e->unk4);
                 if (*(u8 *)(&D_8023E3A4) == 0) {
                     func_800058DC(arg0, func_80239BD0);
                     return;

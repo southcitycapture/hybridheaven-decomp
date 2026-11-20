@@ -73,6 +73,7 @@ extern u8 D_801BBBF0[];
 extern u8 D_80249A58[];
 extern u8 D_80249AB8[];
 extern u8 func_80126EAC[];
+#define func_8024216C func_8024216C__decl
 extern u8 func_8024216C[];
 #define func_80242D64 func_80242D64__decl
 extern u8 func_80242D64[];
@@ -148,7 +149,18 @@ void func_80242080(void *arg0, func_80242080_Struct1 **arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file016/80242080/func_8024216C.s")
+#undef func_8024216C
+
+typedef struct func_8024216C_Struct {
+    u8 pad[0x3C];
+    u16 unk3C;
+} func_8024216C_Struct;
+
+void func_8024216C(func_8024216C_Struct *arg0, func_80242080_Struct1 **arg1) {
+    (*arg1)->unk30->unk4B = (s8) (u32) (func_8001EAD0((s16) ((s16) (arg0->unk3C * 0x50) & 0x1FFF)) * 127.0f + 128.0f);
+    arg0->unk3C = (u16) (arg0->unk3C + 1);
+}
+#define func_8024216C func_8024216C__decl
 
 void func_80242278(void) {
 }
@@ -2446,6 +2458,7 @@ void func_802467B0(f32 arg0, f32 arg1, s32 arg2, s32 arg3) {
 /* hh-owned-pool func_802460E0 8024F0D0 8024F100 */
 /* hh-owned-pool func_802467B0 8024F100 8024F104 */
 
+
 static const unsigned char rodata_80242080_8024EC60[] = {
     0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
     0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
@@ -2473,5 +2486,7 @@ static const unsigned char rodata_80242080_8024EC60[] = {
 static const unsigned char rodata_80242080_8024EDBC[] = {
     0xC3, 0x39, 0x99, 0x9A, 0xC1, 0x74, 0xCC, 0xCD, 0x42, 0xB2, 0x33, 0x33, 0x3E, 0x4C, 0xCC, 0xCD,
 };
+/* hh-layout-unit file016/80242080 */
+/* hh-placed-function func_8024216C */
 /* hh-placed-function func_80242B50 */
 /* hh-rodata-layout [1200,[[0,0,340],[340,348,16],[356,340,8],[364,364,836]]] */

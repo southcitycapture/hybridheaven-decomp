@@ -32,8 +32,6 @@ typedef struct {
     f32 unk9C;
 } func_80212EAC_Arg0;
 extern u8 D_80217CE0[];
-extern f32 D_8021ADC0;
-
 void func_80212EAC(func_80212EAC_Arg0 *arg0, func_80212EAC_Outer **arg1) {
     f32 k;
     struct { s32 a[3]; } sp28;
@@ -44,7 +42,7 @@ void func_80212EAC(func_80212EAC_Arg0 *arg0, func_80212EAC_Outer **arg1) {
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 3, 0);
     func_8012D918(arg0, 0x4B7, 0, 0, 0);
-    k = D_8021ADC0;
+    k = (0.04f);
     (*arg1)->unk30->unk24 |= 0x60300;
     (*arg1)->unk30->unk30 = (u32)D_80217CE0 | 0x40000000;
     (*arg1)->unk30->unk18 = k;

@@ -199,6 +199,32 @@ typedef s32 (*func_803714B4_Emitter)(void *, s32, f32, f32, f32, s32, s32, s32, 
 
 #define EMIT D_801CE330
 
+#undef EMIT
+#undef func_8037118C
+#undef func_8037118C_Struct
+#define func_8037118C func_8037118C__func_803714B4_9ce5b897
+#define func_8037118C_Struct func_8037118C_Struct__func_803714B4_9ce5b897
+#define func_803714B4_Struct func_803714B4_Struct__func_803714B4_9ce5b897
+#define EMIT D_801CE330
+struct func_8037118C_Struct {
+    u8 pad[0x4C];
+    u16 unk4C;
+    u16 unk4E;
+};
+void func_8037118C(struct func_8037118C_Struct *arg0, s32 arg1);
+
+
+typedef struct func_803714B4_Struct {
+    u8 pad[0x4C];
+    u16 flags;
+    u8 pad4E[0x6C - 0x4E];
+    f32 x, y, z;
+    u8 type;
+    u8 pad79[3];
+    f32 x2, y2, z2;
+} func_803714B4_Struct;
+#define EMIT D_801CE330
+
 void func_803714B4(func_803714B4_Struct *arg0, s32 arg1) {
     f32 x = arg0->x;
     f32 y = arg0->y;
@@ -211,22 +237,22 @@ void func_803714B4(func_803714B4_Struct *arg0, s32 arg1) {
 
     switch (type) {
     case 0:
-        EMIT(arg0, 0, x, y, z, 255, 160, 0, 255, 255, 64, 0, 0, 10, 10, 0.00999999978f, 0);
+        EMIT(arg0, 0, x, y, z, 255, 160, 0, 255, 255, 64, 0, 0, 10, 10, (0.01f), 0);
         break;
     case 1:
-        EMIT(arg0, 25, x, y, z, 0, 224, 64, 64, 0, 0, 0, 64, 3, 10, 0.00499999989f, 1);
-        EMIT(arg0, 25, x2, y2, z2, 0, 224, 64, 64, 0, 0, 0, 64, 3, 10, 0.00499999989f, 1);
+        EMIT(arg0, 25, x, y, z, 0, 224, 64, 64, 0, 0, 0, 64, 3, 10, (0.005f), 1);
+        EMIT(arg0, 25, x2, y2, z2, 0, 224, 64, 64, 0, 0, 0, 64, 3, 10, (0.005f), 1);
         break;
     case 2:
-        EMIT(arg0, 17, x, y, z, 0, 160, 128, 255, 0, 0, 0, 0, 10, 10, 0.00999999978f, 1);
-        EMIT(arg0, 17, x2, y2, z2, 0, 160, 128, 255, 0, 0, 0, 0, 10, 10, 0.00999999978f, 1);
+        EMIT(arg0, 17, x, y, z, 0, 160, 128, 255, 0, 0, 0, 0, 10, 10, (0.01f), 1);
+        EMIT(arg0, 17, x2, y2, z2, 0, 160, 128, 255, 0, 0, 0, 0, 10, 10, (0.01f), 1);
         break;
     case 3:
         break;
     case 4:
-        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 160, 0, 0, 5, 20, 0.00100000005f, 0);
-        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 80, 0, 0, 6, 20, 0.00100000005f, 0);
-        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 0, 0, 0, 7, 20, 0.00100000005f, 0);
+        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 160, 0, 0, 5, 20, (0.001f), 0);
+        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 80, 0, 0, 6, 20, (0.001f), 0);
+        EMIT(arg0, 0, x, y, z, 255, 255, 255, 255, 255, 0, 0, 0, 7, 20, (0.001f), 0);
         break;
     default:
         arg0->flags = 0x8000;
@@ -234,6 +260,13 @@ void func_803714B4(func_803714B4_Struct *arg0, s32 arg1) {
     }
     func_800058DC(arg0, cb);
 }
+#undef EMIT
+#undef func_8037118C
+#undef func_8037118C_Struct
+#undef func_803714B4_Struct
+#define EMIT D_801CE330
+#define func_8037118C func_8037118C__func_803714B4
+#define func_8037118C_Struct func_8037118C_Struct__func_803714B4
 #undef func_8037118C
 #undef func_8037118C_Struct
 
@@ -392,6 +425,17 @@ typedef struct func_80371D04_Struct {
 
 void func_801CE1C8(void *a0, s32 a1, f32 a2, f32 a3, f32 a4, s32 a5, s32 a6, s32 a7, s32 a8, s32 a9, s32 a10, s32 a11, s32 a12, s32 a13, s32 a14, s32 a15, s32 a16, s32 a17, s32 a18, s32 a19, s32 a20, s32 a21, s32 a22, f32 a23, f32 a24, f32 a25, f32 a26, s32 a27);
 
+#define func_80371D04_Struct func_80371D04_Struct__func_80371D04
+
+typedef struct func_80371D04_Struct {
+    u8 pad0[0x6C];
+    f32 unk6C;
+    f32 unk70;
+    f32 unk74;
+    u8 pad78[0x7A - 0x78];
+    u8 unk7A;
+} func_80371D04_Struct;
+
 void func_80371D04(func_80371D04_Struct *arg0, s32 arg1)
 {
   f32 temp_fv1;
@@ -404,10 +448,11 @@ void func_80371D04(func_80371D04_Struct *arg0, s32 arg1)
   ;
   if ((++arg0->unk7A) >= 5)
   {
-    func_801CE1C8(arg0, 0xE, temp_fv1, temp_fa0, temp_fa1, 0xFF, 0x6F, 0, 0x60, 0xFF, 0, 0, 0, 0, 0, 0, 0, 0, 0, (short) 0, 0, 3, 0x12, 0.0500000007f, 0.0500000007f, 0.0500000007f, 1.0f, 1);
+    func_801CE1C8(arg0, 0xE, temp_fv1, temp_fa0, temp_fa1, 0xFF, 0x6F, 0, 0x60, 0xFF, 0, 0, 0, 0, 0, 0, 0, 0, 0, (short) 0, 0, 3, 0x12, (0.05f), (0.05f), (0.05f), 1.0f, 1);
     func_800058DC(arg0, &func_8037118C);
   }
 }
+#undef func_80371D04_Struct
 
 
 extern u8 D_80387C00[];
@@ -587,16 +632,35 @@ void func_8037118C(struct func_8037118C_Struct *arg0, s32 arg1);
 extern s32 func_8012C6B4(s32 a);
 
 typedef struct func_803721E0_Struct { u8 pad[0x6C]; f32 u6C; f32 u70; f32 u74; u8 u78; u8 pad2[2]; u8 u7B; u8 u7C; } func_803721E0_Struct;
+#undef func_8037118C
+#undef func_8037118C_Struct
+#undef func_803721E0_Struct
+#define func_8037118C func_8037118C__func_803721E0_a3af91b5
+#define func_8037118C_Struct func_8037118C_Struct__func_803721E0_a3af91b5
+#define func_803721E0_Struct func_803721E0_Struct__func_803721E0_a3af91b5
+struct func_8037118C_Struct {
+    u8 pad[0x4C];
+    u16 unk4C;
+    u16 unk4E;
+};
+void func_8037118C(struct func_8037118C_Struct *arg0, s32 arg1);
+typedef struct func_803721E0_Struct { u8 pad[0x6C]; f32 u6C; f32 u70; f32 u74; u8 u78; u8 pad2[2]; u8 u7B; u8 u7C; } func_803721E0_Struct;
 void func_803721E0(func_803721E0_Struct *arg0, s32 arg1) {
     f32 a; f32 b; f32 c; u8 d; s32 t; u8 e; u8 f; s32 v; u8 *p = &arg0->u7B;
     a = arg0->u6C; b = arg0->u70; c = arg0->u74; d = arg0->u78; e = arg0->u7C;
     t = func_8012C6B4(3) + 1; f = t;
-    D_801CE330(arg0, 0x14, a, b, c, 0xFF, 0xFF, 0xFF, 0xFF, 0x40, 0x40, 0x40, 0, t, 0x18, 0.0500000007f, 1);
-    D_801CE330(arg0, 0x15, a, b, c, 0xFF, 0xFF, 0xFF, 0xFF, 0x40, 0x40, 0x40, 0, 1, 0x18, 0.0500000007f, 1);
+    D_801CE330(arg0, 0x14, a, b, c, 0xFF, 0xFF, 0xFF, 0xFF, 0x40, 0x40, 0x40, 0, t, 0x18, (0.05f), 1);
+    D_801CE330(arg0, 0x15, a, b, c, 0xFF, 0xFF, 0xFF, 0xFF, 0x40, 0x40, 0x40, 0, 1, 0x18, (0.05f), 1);
     *p += f;
     if (d != 0 || e != 0) v = 5; else v = 10;
     if (v < *p) func_800058DC(arg0, func_8037118C);
 }
+#undef func_8037118C
+#undef func_8037118C_Struct
+#undef func_803721E0_Struct
+#define func_8037118C func_8037118C__func_803721E0
+#define func_8037118C_Struct func_8037118C_Struct__func_803721E0
+#define func_803721E0_Struct func_803721E0_Struct__func_803721E0
 #undef func_8037118C
 #undef func_8037118C_Struct
 #undef func_803721E0_Struct

@@ -1457,19 +1457,88 @@ typedef struct func_80251350_Struct_Holder {
 extern func_80251350_Struct_Holder *D_801BBCD0;
 extern func_80251350_Struct_Holder *D_801BBCD8;
 extern u8 D_8025D4A8[];
+#undef D_801BBCD0
+#undef D_801BBCD8
+#undef func_80251350_Struct
+#undef func_80251350_Struct_Cam
+#undef func_80251350_Struct_Holder
+#undef func_802514F4
+#undef func_802514F4_Struct
+#undef func_802514F4_StructInner
+#define D_801BBCD0 D_801BBCD0__func_80251350_e759930d
+#define D_801BBCD8 D_801BBCD8__func_80251350_e759930d
+#define func_80251350_Struct func_80251350_Struct__func_80251350_e759930d
+#define func_80251350_Struct_Cam func_80251350_Struct_Cam__func_80251350_e759930d
+#define func_80251350_Struct_Holder func_80251350_Struct_Holder__func_80251350_e759930d
+#define func_802514F4 func_802514F4__func_80251350_e759930d
+#define func_802514F4_Struct func_802514F4_Struct__func_80251350_e759930d
+#define func_802514F4_StructInner func_802514F4_StructInner__func_80251350_e759930d
+struct func_802514F4_StructInner {
+    u8 pad[0x22];
+    u8 unk22;
+};
+struct func_802514F4_Struct {
+    s32 pad0;
+    struct func_802514F4_StructInner *unk4;
+};
+void func_802514F4(s32 arg0, struct func_802514F4_Struct *arg1);
+
+
+typedef struct func_80251350_Struct_Cam {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad1[0x2];
+    s16 unk12;
+    u8 pad2[0x1C];
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+    f32 unk3C;
+    f32 unk40;
+    f32 unk44;
+} func_80251350_Struct_Cam;
+typedef struct func_80251350_Struct {
+    u8 pad[0x74];
+    s32 unk74;
+} func_80251350_Struct;
+typedef struct func_80251350_Struct_Holder {
+    u8 pad[0x2C];
+    func_80251350_Struct_Cam *unk2C;
+} func_80251350_Struct_Holder;
+
+extern func_80251350_Struct_Holder *D_801BBCD0;
+extern func_80251350_Struct_Holder *D_801BBCD8;
 void func_80251350(func_80251350_Struct *arg0, s32 arg1) {
     f32 fieldOfView = 35.0f;
     f32 sp50;
 
     sp50 = func_8001EAD0(D_801BBCD0->unk2C->unk12);
     if (D_801C3DC8(arg0, (f32) ((f64) D_801BBCD0->unk2C->unk4 - ((f64) sp50 * 40.0)), D_801BBCD0->unk2C->unk8 + 20.0f, (f32) ((f64) D_801BBCD0->unk2C->unkC - ((f64) func_8001EB64(D_801BBCD0->unk2C->unk12) * 40.0)), D_801BBCD0->unk2C->unk4, D_801BBCD0->unk2C->unk8 + 17.0f, D_801BBCD0->unk2C->unkC, (0.2f), fieldOfView) == 0) {
-        func_8011AAF4(D_8025D4A8, 0x492, arg0, 2, 1, 0.0f, D_801BBCD8->unk2C->unk30, D_801BBCD8->unk2C->unk34, D_801BBCD8->unk2C->unk38, 0.0f, D_801BBCD8->unk2C->unk3C, D_801BBCD8->unk2C->unk40, D_801BBCD8->unk2C->unk44, 0.0f, fieldOfView, -1, -1);
+        func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10shockdemo.c", 0x492, arg0, 2, 1, 0.0f, D_801BBCD8->unk2C->unk30, D_801BBCD8->unk2C->unk34, D_801BBCD8->unk2C->unk38, 0.0f, D_801BBCD8->unk2C->unk3C, D_801BBCD8->unk2C->unk40, D_801BBCD8->unk2C->unk44, 0.0f, fieldOfView, -1, -1);
         arg0->unk74 = 0;
         func_801C2F0C(1, 0);
         func_801FBB20();
         func_800058DC(arg0, func_802514F4);
     }
 }
+#undef D_801BBCD0
+#undef D_801BBCD8
+#undef func_80251350_Struct
+#undef func_80251350_Struct_Cam
+#undef func_80251350_Struct_Holder
+#undef func_802514F4
+#undef func_802514F4_Struct
+#undef func_802514F4_StructInner
+#define D_801BBCD0 D_801BBCD0__func_80251350_c19bb2ea
+#define D_801BBCD8 D_801BBCD8__func_80251350_c19bb2ea
+#define func_80251350_Struct func_80251350_Struct__func_80251350_c19bb2ea
+#define func_80251350_Struct_Cam func_80251350_Struct_Cam__func_80251350_c19bb2ea
+#define func_80251350_Struct_Holder func_80251350_Struct_Holder__func_80251350_c19bb2ea
+#define func_802514F4 func_802514F4__func_80251350_c19bb2ea
+#define func_802514F4_Struct func_802514F4_Struct__func_80251350_c19bb2ea
+#define func_802514F4_StructInner func_802514F4_StructInner__func_80251350_c19bb2ea
 #undef D_801BBCD0
 #undef D_801BBCD8
 #undef D_8025D4A8
@@ -1627,7 +1696,17 @@ void func_80251750(func_80251750_StructA *arg0, func_80251750_StructE *arg1) {
 
 
 
-static const unsigned char rodata_8024F4F0[] = {
+/* hh-owned-pool func_8024FC74 8025D4E8 8025D510 */
+/* hh-owned-pool func_8024FEC4 8025D510 8025D538 */
+/* hh-owned-pool func_8025006C 8025D538 8025D548 */
+/* hh-owned-pool func_80250730 8025D548 8025D558 */
+/* hh-owned-pool func_802508F0 8025D558 8025D56C */
+/* hh-owned-pool func_80250B54 8025D56C 8025D570 */
+/* hh-owned-pool func_80250C9C 8025D570 8025D588 */
+/* hh-owned-pool func_80251350 8025D58C 8025D590 */
+/* hh-owned-pool func_80251574 8025D590 8025D5B0 */
+
+static const unsigned char rodata_8024F4F0_8025D300[] = {
     0xBE, 0xD7, 0xB7, 0xE2, 0xBD, 0xC3, 0xC9, 0xF4, 0xB2, 0xB0, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8,
     0x0A, 0x00, 0x00, 0x00, 0xA1, 0xE3, 0xBE, 0xD7, 0xB7, 0xE2, 0xBD, 0xC3, 0xC9, 0xF4, 0xB2, 0xB0,
     0xA5, 0xA4, 0xA5, 0xD9, 0xA5, 0xF3, 0xA5, 0xC8, 0xC8, 0xAF, 0xC0, 0xB8, 0xA1, 0xE4, 0x0A, 0x00,
@@ -1654,18 +1733,7 @@ static const unsigned char rodata_8024F4F0[] = {
     0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61,
     0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63,
     0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x73, 0x68, 0x6F, 0x63, 0x6B, 0x64, 0x65,
-    0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x00, 0x00, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F,
-    0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61,
-    0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63,
-    0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x73, 0x68, 0x6F, 0x63, 0x6B, 0x64, 0x65,
     0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x00, 0x00, 0x00,
 };
-/* hh-owned-pool func_8024FC74 8025D4E8 8025D510 */
-/* hh-owned-pool func_8024FEC4 8025D510 8025D538 */
-/* hh-owned-pool func_8025006C 8025D538 8025D548 */
-/* hh-owned-pool func_80250730 8025D548 8025D558 */
-/* hh-owned-pool func_802508F0 8025D558 8025D56C */
-/* hh-owned-pool func_80250B54 8025D56C 8025D570 */
-/* hh-owned-pool func_80250C9C 8025D570 8025D588 */
-/* hh-owned-pool func_80251350 8025D58C 8025D590 */
-/* hh-owned-pool func_80251574 8025D590 8025D5B0 */
+/* hh-placed-function func_80251350 */
+/* hh-rodata-layout [688,[[0,424,64],[64,0,424],[488,488,200]]] */

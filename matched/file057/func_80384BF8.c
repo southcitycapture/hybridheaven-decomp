@@ -2,7 +2,6 @@
 
 extern void func_802169AC();
 extern s32 D_80006214(void *);
-extern u8 D_8038CB24[];
 typedef struct func_80384BF8_Struct {
     u8 pad0[8];
     u8 unk8;
@@ -29,7 +28,7 @@ void func_80384BF8(s32 a0, s32 a1) {
     u8 sp4F;
     s32 c;
 
-    func_8001B204(0, 0x486, 0xB0, D_8038CB24, 4, 0, func_8013D5F4(((func_80384BF8_Arg *)a0)->unkA1));
+    func_8001B204(0, 0x486, 0xB0, "%m%p%s", 4, 0, func_8013D5F4(((func_80384BF8_Arg *)a0)->unkA1));
     func_802169AC(a0, &sp4F, 0x66, 0x50, 0xA6, 0x10, 0x20, 0, 0, 0xFF, 0xCB, 0);
     func_802169AC(a0, &sp4F, 0x76, 0x60, 0xA6, 0x80, 0x20, 0, 0, 0xFF, 0xCB, 1);
     func_802169AC(a0, &sp4F, 0x66, 0xE0, 0xA6, 0x10, 0x20, 0, 0, 0xFF, 0xCB, 2);

@@ -183,15 +183,15 @@ s32 func_801E1BE0(s32 arg0, s32 arg1) {
     func_8038BEC8(5.0f);
     if (func_801C0B8C(0xADF33F) != 0) {
         func_8038D28C(0x8B);
-        func_8038BE98(D_801EB2A0);
-        func_8038BD50(0.0f, D_801EB2A4, 0x4214CCCD);
-        D_8038BD88(0.0f, D_801EB2A8, 0x42C86666);
+        func_8038BE98((6.926f));
+        func_8038BD50(0.0f, (-1.9f), 0x4214CCCD);
+        D_8038BD88(0.0f, (-1.2f), 0x42C86666);
         D_8038C158();
         return 1;
     }
-    func_8038BE98(D_801EB2AC);
-    func_8038BD50(D_801EB2B0, D_801EB2B4, 0xC391199A);
-    D_8038BD88(1.0f, D_801EB2B8, 0xC3957333);
+    func_8038BE98((33.3f));
+    func_8038BD50((8.7f), (8.6f), 0xC391199A);
+    D_8038BD88(1.0f, (14.4f), 0xC3957333);
     return 0;
 }
 
@@ -4654,12 +4654,6 @@ s32 func_801E945C(s32 arg0, s32 arg1) {
 
 /* Readonly constants retained after the last ASM donor became C. */
 
-static const unsigned char rodata_801E1BE0[] = {
-    0x40, 0xDD, 0xA1, 0xCB, 0xBF, 0xF3, 0x33, 0x33, 0xBF, 0x99, 0x99, 0x9A, 0x42, 0x05, 0x33, 0x33,
-    0x41, 0x0B, 0x33, 0x33, 0x41, 0x09, 0x99, 0x9A, 0x41, 0x66, 0x66, 0x66, 0x42, 0x14, 0xCC, 0xCD,
-    0x42, 0xC8, 0x66, 0x66, 0x40, 0xDD, 0xA1, 0xCB, 0x41, 0x80, 0xCC, 0xCD, 0xBF, 0x99, 0x99, 0x9A,
-    0x41, 0x79, 0x99, 0x9A,
-};
 /* hh-owned-pool func_801E1DD8 801EB2D4 801EB2F8 */
 /* hh-owned-pool func_801E1EE8 801EB2F8 801EB320 */
 /* hh-owned-pool func_801E1FCC 801EB320 801EB330 */
@@ -4677,3 +4671,11 @@ static const unsigned char rodata_801E1BE0[] = {
 /* hh-owned-pool func_801E6590 801EB3B8 801EB3C0 */
 /* hh-owned-pool func_801E790C 801EB3C0 801EB3C8 */
 /* hh-owned-pool func_801E7AEC 801EB3C8 801EB3D0 */
+
+static const unsigned char rodata_801E1BE0_801EB2BC[] = {
+    0x42, 0x14, 0xCC, 0xCD, 0x42, 0xC8, 0x66, 0x66, 0x40, 0xDD, 0xA1, 0xCB, 0x41, 0x80, 0xCC, 0xCD,
+    0xBF, 0x99, 0x99, 0x9A, 0x41, 0x79, 0x99, 0x9A,
+};
+/* hh-layout-unit file046/801E1BE0 */
+/* hh-placed-function func_801E1BE0 */
+/* hh-rodata-layout [304,[[0,28,24],[24,0,28],[52,52,252]]] */

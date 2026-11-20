@@ -2,7 +2,6 @@
 
 extern void func_80130E34(s32, s32, s32, s32, f32 *, f32 *);
 extern void func_800023A8(s32);
-extern f64 D_8018FB60;
 extern func_80148DDC_S *D_801BBCCC;
 extern func_80148DDC_S *D_801BBCDC;
 extern u8 D_801BCC20;
@@ -56,7 +55,7 @@ void func_8014A774(s32 arg0, s32 arg1) {
     ten = 10.0f;
     fa0 = (sp54 - P1->unk30->unk4) / ten;
     ft5 = (sp50 - P1->unk30->unk8) / ten;
-    fa1 = (D_8018FB60 - P1->unk30->unk18) / ten;
+    fa1 = ((0.03) - P1->unk30->unk18) / ten;
     P1->unk30->unk4 = P1->unk30->unk4 + fa0;
     P2->unk30->unk4 = P1->unk30->unk4;
     P1->unk30->unk8 = P1->unk30->unk8 + ft5;

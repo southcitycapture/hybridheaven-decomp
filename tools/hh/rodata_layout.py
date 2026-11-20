@@ -87,7 +87,7 @@ def readonly_refs(elf, ro, symbols, SHT_REL):
     return refs, runs
 
 
-def check_plan(text, raw, size, spans, base, symbols, ro_index, refs, runs, align=16):
+def check_plan(text, raw, size, spans, base, symbols, ro_index, refs, runs, align=16, section_align=None):
     """The 11-18 guardrails (Fable 5.2 review of Task 40). A plan may only merge two ordered sequences: frozen units at
     their stated offsets and live compiler output in compiler order, with alignment-only zero padding."""
     # G3: self-expiring scaffolding
@@ -103,25 +103,36 @@ def check_plan(text, raw, size, spans, base, symbols, ro_index, refs, runs, alig
         if a - sp[0][0] + sp[0][1] != want:
             raise ValueError('frozen unit %s placed at +%#x, its address says +%#x' % (label, a - sp[0][0] + sp[0][1], want))
         fz.update(range(a, a + n))
+    # Section-size padding (M2, 11-19): the assembler rounds the input section's size up to its own alignment. Zeros
+    # after the last placed input byte are that padding only when the input length is exactly the placed extent
+    # rounded up to sh_addralign (so fewer than sh_addralign bytes). They are the input's end edge, not a dropped
+    # unit; any other uncovered byte still goes through the anchor and G2 checks below.
+    body = len(raw)
+    if section_align and spans:
+        last = max(src + n for src, _, n in spans)
+        if (last < len(raw) and not any(raw[last:]) and len(raw) % section_align == 0
+                and -(-last // section_align) * section_align == len(raw)):
+            body = last
     # anchors: span boundaries may only fall on referenced offsets, symbol starts, relocation-run starts, unit edges
-    anchors = {0, len(raw)} | {r for r in refs if 0 <= r <= len(raw)} | set(runs)
+    anchors = {0, body} | {r for r in refs if 0 <= r <= len(raw)} | set(runs)
     anchors |= {s.st_value for s in symbols if s.st_shndx == ro_index and s.st_type != 3}
     anchors |= {a for a, n, _, _ in frozen} | {a + n for a, n, _, _ in frozen}
+    anchors = {a for a in anchors if a <= body}
     srt = sorted(anchors)
     for src, dst, n in spans:
         if src not in anchors:
             raise ValueError('readonly span starts at +%#x, inside a unit (not a referenced/symbol/table/frozen edge)' % src)
         end = src + n
         if end not in anchors:
-            nxt = min([x for x in srt if x > end], default=len(raw))
+            nxt = min([x for x in srt if x > end], default=body)
             if nxt - end >= 8 or any(raw[end:nxt]):
                 raise ValueError('readonly span ends at +%#x, inside a unit' % end)
     # G2: dropped input bytes are alignment zeros only
     cov = set()
     for src, dst, n in spans: cov.update(range(src, src + n))
     run = 0
-    for i in range(len(raw) + 1):
-        if i < len(raw) and i not in cov:
+    for i in range(body + 1):
+        if i < body and i not in cov:
             if raw[i] or i in fz: raise ValueError('readonly layout drops input byte +%#x' % i)
             run += 1
         else:
@@ -193,7 +204,8 @@ def apply(text, obj, _unchecked=False, *, source=None):
     symbols = elf.symbol_entries
     if not _unchecked:      # _unchecked: synthetic unit tests only; every build path runs the guardrails
         refs, runs = readonly_refs(elf, ro, symbols, SHT_REL)
-        check_plan(text, ro.data, size, spans, plan_base(text, source), symbols, ro.index, refs, runs, max(16, ro.sh_addralign))
+        check_plan(text, ro.data, size, spans, plan_base(text, source), symbols, ro.index, refs, runs, max(16, ro.sh_addralign),
+                   section_align=ro.sh_addralign)
     placed, offsets = mapping(ro.data, size, spans)
 
     def unit_move(old):
@@ -268,8 +280,8 @@ def audit(paths):
         if not LAYOUT.search(text): continue
         with tempfile.TemporaryDirectory() as td:
             c = Path(td) / 'f.c'; c.write_text(text); o = str(Path(td) / 'f.o')
-            r = subprocess.run([sys.executable, 'tools/asm-processor/build.py', '--input-enc', 'utf-8', '--output-enc', 'euc-jp',
-                                srcbuild.IDO, '--', 'mips-linux-gnu-as'] + srcbuild.ASFLAGS + ['--', '-c'] + srcbuild.CFLAGS + ['-o', o, str(c)],
+            r = subprocess.run([sys.executable, 'tools/asm-processor/build.py', '--input-enc', 'utf-8', '--output-enc', 'euc-jp']
+                               + srcbuild.asmproc_force(text) + [srcbuild.IDO, '--', 'mips-linux-gnu-as'] + srcbuild.ASFLAGS + ['--', '-c'] + srcbuild.CFLAGS + ['-o', o, str(c)],
                                capture_output=True, text=True)
             if r.returncode:
                 print('FAIL %s: compile' % p); bad += 1; continue

@@ -38,10 +38,6 @@ struct func_8020D358_Struct_A0 {
 extern s16 func_8001EF38(f32, f32);
 extern f32 func_8002FC20(f32);
 extern f32 func_801FD780(u8);
-extern f64 D_8021AAC0;
-extern f64 D_8021AAC8;
-extern f32 D_8021AAD0;
-
 s32 func_8020D358(struct func_8020D358_Struct_A0 *arg0, struct func_8020D358_Struct_Out **arg1) {
     f32 dist;
     s32 sp38;
@@ -50,11 +46,11 @@ s32 func_8020D358(struct func_8020D358_Struct_A0 *arg0, struct func_8020D358_Str
 
     sp38 = arg0->unk3C++;
     dist = func_8002FC20(arg0->unk48 * arg0->unk48 + arg0->unk40 * arg0->unk40);
-    t = dist * D_8021AAC0;
+    t = dist * (0.004);
     (*arg1)->unk30->unk18 += t;
     (*arg1)->unk30->unk1C += t;
     (*arg1)->unk30->unk20 += t;
-    arg0->unk44 = arg0->unk44 + D_8021AAC8;
+    arg0->unk44 = arg0->unk44 + (0.006);
     if (sp38 < 4) {
         (*arg1)->unk30->unk4B += 0x30;
     } else if (sp38 >= 0x14) {
@@ -65,7 +61,7 @@ s32 func_8020D358(struct func_8020D358_Struct_A0 *arg0, struct func_8020D358_Str
     }
     if (arg0->unkA8 != 0 && sp38 < 0x14) {
         sp32 = func_8001EF38(arg0->unk40, arg0->unk48);
-        if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 0.2f, sp32, 1.5f, D_8021AAD0, (u32)(func_801FD780(arg0->unk91) * (f32)arg0->unkA8)) != 0) {
+        if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 0.2f, sp32, 1.5f, (0.4f), (u32)(func_801FD780(arg0->unk91) * (f32)arg0->unkA8)) != 0) {
             func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, 0.0f, 0.0f, 0.0f, 2);
         }
     }

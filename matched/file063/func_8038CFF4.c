@@ -80,8 +80,6 @@ extern s32 func_80228D90(void *, void *);
 extern s32 func_80228E5C();
 extern s32 func_80229260(void *, void *, void *, s32);
 extern void func_802292D0(void *, void *);
-extern f64 D_8038DA58;
-
 void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
     s16 t;
     s16 sp34;
@@ -189,7 +187,7 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
                     a->u30.b.bf22 = 0;
                 }
                 t = (s16)(func_80228C20(arg0) + sp34) & 0x1FFF;
-                if (D_801BBBF0.unkB90 > D_8038DA58) {
+                if (D_801BBBF0.unkB90 > (35.0)) {
                     arg0->unk9A = 30;
                 }
                 if (arg0->unk9A-- > 0) {

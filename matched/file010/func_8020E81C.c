@@ -4,7 +4,6 @@ extern void func_801FC830(f32, f32, f32, f32, s32);
 extern s32 func_80150584();
 extern s32 func_801FD168(f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32);
 extern void func_801FD260(s32, void *);
-extern f32 D_8021ABA0;
 extern s32 func_80108590(f32, f32, f32, f32, f32, f32);
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
 extern s32 func_801FD5BC(f32, f32, f32);
@@ -43,7 +42,7 @@ s32 func_8020E81C(func_8020E81C_Struct *arg0, s32 arg1) {
         func_801FD260(temp_v0, arg0);
     }
     sp40[3] = func_8012FF58();
-    if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 1.5f, arg0->unkA2, D_8021ABA0, 0.5f, (u32) ((f32) ((((s32) sp40[3] / 10) * 0xA) + 5) * func_801FD780(arg0->unk91))) != 0) {
+    if (func_801FD644(arg0->unk94, arg0->unk98, arg0->unk9C, 1.5f, arg0->unkA2, (0.2f), 0.5f, (u32) ((f32) ((((s32) sp40[3] / 10) * 0xA) + 5) * func_801FD780(arg0->unk91))) != 0) {
         func_80380F94(arg0->unk94, arg0->unk98, arg0->unk9C, 0.0f, 0.0f, 0.0f, 1);
         func_801FC830(arg0->unk94, arg0->unk98, arg0->unk9C, 400.0f, 0x3CE);
         return 0;

@@ -47,7 +47,6 @@ struct func_801F9D68_StructGlobal {
     u8 padE4[4];
     struct func_801F9D68_StructNode *unkE8;
 };
-extern u8 D_80218BEC[];
 extern void func_801F9EC4(void);
 struct func_801F9D68_StructVec { f32 x, y, z; };
 
@@ -57,7 +56,7 @@ void func_801F9D68(struct func_801F5230_StructArg *arg0, s32 arg1) {
 
     sp5C = arg0->unk5C;
     D_8013A334((f32 *)&sp50, arg1, sp5C, 1);
-    func_8011AAF4(D_80218BEC, 0x986, arg0, 0, 1, 3.0f,
+    func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/enemy/wanderer.c", 0x986, arg0, 0, 1, 3.0f,
         ((struct func_801F9D68_StructGlobal *)&D_801BBBF0)->unkE0->unk2C->unk4,
         ((struct func_801F9D68_StructGlobal *)&D_801BBBF0)->unkE0->unk2C->unk8 + 20.0f,
         ((struct func_801F9D68_StructGlobal *)&D_801BBBF0)->unkE0->unk2C->unkC, 3.0f,

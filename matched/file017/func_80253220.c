@@ -56,7 +56,6 @@ typedef struct func_80253220_StructEntity {
 extern s32 func_801C3044(void);
 extern void func_80126880(s32);
 extern func_80253220_StructEntity *func_801505AC(s32);
-extern u8 D_8025D718[];
 extern f32 D_8025D838;
 
 #define GLOBAL ((func_80253220_StructGlobal *)D_801BBBF0)
@@ -96,7 +95,7 @@ void func_80253220(func_80253220_StructObject *arg0, func_80252FC0_StructArgs *a
     GLOBAL->tx = GLOBAL->camera->position->x;
     GLOBAL->ty = GLOBAL->camera->position->y + 20.0f;
     GLOBAL->tz = GLOBAL->camera->position->z;
-    func_8011AAF4(D_8025D718, 0x455, arg0, 0, 1,
+    func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10transdemo.c", 0x455, arg0, 0, 1,
                   0.0f, GLOBAL->x, GLOBAL->y, GLOBAL->z, 0.0f, GLOBAL->tx, GLOBAL->ty, GLOBAL->tz, 0.0f, 35.0f, -1, -1);
     func_801C42DC(GLOBAL->unkF36, GLOBAL->unkF37, GLOBAL->unkF38, GLOBAL->unkF39,
                   GLOBAL->unkF3A, GLOBAL->unkF3B, GLOBAL->unkF3C, GLOBAL->unkF3D,

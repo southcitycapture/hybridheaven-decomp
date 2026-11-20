@@ -14,11 +14,6 @@ extern s32 func_801C1088(s32, s32, s32);
 extern void func_801C10D8(s32, s32);
 extern u32 func_801C1134(s32, s32);
 extern void func_8038D33C(f32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
-extern f32 D_801E962C;
-extern f32 D_801E9630;
-extern f32 D_801E9634;
-extern f32 D_801E9638;
-
 #define ROOT ((struct func_801E4C90_R *)D_801DAB14)
 
 s32 func_801E4C90(s32 arg0, s32 arg1) {
@@ -30,11 +25,11 @@ s32 func_801E4C90(s32 arg0, s32 arg1) {
         return 0x18;
     }
     t = (f32)func_801C1134(4, 0) / 55.0f;
-    ROOT->unk8->unk24->unk2C->unk4 = -2.25f * t + D_801E962C;
-    ROOT->unk8->unk24->unk2C->unkC = D_801E9630 * t + D_801E9634;
+    ROOT->unk8->unk24->unk2C->unk4 = -2.25f * t + (-56.45f);
+    ROOT->unk8->unk24->unk2C->unkC = (1.6499939f) * t + (299.85f);
     if ((func_801CE2D0(0x02A80023, 0x1E) != 0) || (func_801CE2D0(0x02A80023, 0x32) != 0)) {
         c = ROOT->unk8->unk24->unk2C;
-        func_8038D33C(c->unk4, c->unk8, *(s32 *)&c->unkC, 0x665, D_801E9638, 1.0f);
+        func_8038D33C(c->unk4, c->unk8, *(s32 *)&c->unkC, 0x665, (1.2f), 1.0f);
     }
     return 0x17;
 }

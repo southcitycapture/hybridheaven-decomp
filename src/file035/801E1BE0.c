@@ -319,9 +319,9 @@ s32 func_801C0B8C(u64 time);
 s32 func_801E1BE0(s32 arg0, s32 arg1) {
     func_8038BEC8(5.0f);
     if (func_801C0B8C(0) != 0) {
-        func_8038BE98(D_801E88D0);
-        func_8038BD50(D_801E88D4, 8.5f, 504.7f);
-        D_8038BD88(D_801E88D8, D_801E88DC, 502.6f);
+        func_8038BE98((64.4f));
+        func_8038BD50((571.1f), 8.5f, 504.7f);
+        D_8038BD88((372.4f), (14.2f), 502.6f);
         func_8038D28C(0x6F);
         return 1;
     }
@@ -3599,9 +3599,49 @@ s32 func_801E7EC8(s32 arg0, s32 arg1) {
 
 
 
-static const unsigned char rodata_801E1BE0[] = {
-    0x42, 0x80, 0xCC, 0xCD, 0x44, 0x0E, 0xC6, 0x66, 0x43, 0xBA, 0x33, 0x33, 0x41, 0x63, 0x33, 0x33,
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* hh-owned-pool func_801E1BE0 801E88D0 801E88E0 */
 /* hh-owned-pool func_801E1C74 801E88E0 801E88E4 */
 /* hh-owned-pool func_801E1CC8 801E88E4 801E8908 */
 /* hh-owned-pool func_801E1DEC 801E8908 801E8938 */

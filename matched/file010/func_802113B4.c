@@ -25,10 +25,8 @@ extern s32 func_801FD5BC(f32, f32, f32);
 extern s32 func_801FD644(f32, f32, f32, f32, s32, f32, f32, u32);
 extern f32 func_801FD780(u8);
 extern u16 D_80217C70[];
-extern f64 D_8021ACC0;
-
 s32 func_802113B4(func_802113B4_Struct *arg0, func_8020FB98_Outer **arg1) {
-    arg0->unk44 = arg0->unk44 - D_8021ACC0;
+    arg0->unk44 = arg0->unk44 - (0.15);
     if (func_801FD5BC(arg0->unk94, arg0->unk98, arg0->unk9C) != 0) {
         return 0;
     }

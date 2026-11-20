@@ -30,13 +30,6 @@ typedef struct {
 } func_802119A8_Outer;
 
 extern u8 D_802179D8[];
-extern f64 D_8021ACC8;
-extern f64 D_8021ACD0;
-extern f64 D_8021ACD8;
-extern f64 D_8021ACE0;
-extern f64 D_8021ACE8;
-extern f64 D_8021ACF0;
-
 s32 func_802119A8(func_802119A8_Struct *arg0, func_802119A8_Outer **arg1) {
     s32 v;
     s32 ret;
@@ -68,9 +61,9 @@ c7:
     }
 block:
     ang = (s16)(t * 150) & 0x1FFF;
-    arg1[1]->unk30->unk48 = (func_8001EAD0(ang) * D_8021ACC8 + D_8021ACD0) * (u32)D_802179D8[arg0->unkA8 * 4];
-    arg1[1]->unk30->unk49 = (func_8001EAD0(ang) * D_8021ACD8 + D_8021ACE0) * (u32)D_802179D8[arg0->unkA8 * 4 + 1];
-    arg1[1]->unk30->unk4A = (func_8001EAD0(ang) * D_8021ACE8 + D_8021ACF0) * (u32)D_802179D8[arg0->unkA8 * 4 + 2];
+    arg1[1]->unk30->unk48 = (func_8001EAD0(ang) * (0.3) + (0.7)) * (u32)D_802179D8[arg0->unkA8 * 4];
+    arg1[1]->unk30->unk49 = (func_8001EAD0(ang) * (0.3) + (0.7)) * (u32)D_802179D8[arg0->unkA8 * 4 + 1];
+    arg1[1]->unk30->unk4A = (func_8001EAD0(ang) * (0.3) + (0.7)) * (u32)D_802179D8[arg0->unkA8 * 4 + 2];
     if (arg0->unk90 != 7 && arg0->unk90 != 0) {
         ret = func_801FD68C((func_8020FB98_Struct *)arg0);
         if (ret != 0) {

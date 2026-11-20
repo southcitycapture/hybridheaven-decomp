@@ -88,8 +88,6 @@ extern s32 func_80228E5C();
 extern void func_80228FD0(void *, void *, s32);
 extern s32 func_80229260(void *, void *, void *, s32);
 extern void func_802292D0(void *, void *);
-extern f64 D_8038DAC0;
-
 void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
     func_8038CFF4_StructAngles angles;
     func_8038CFF4_StructC *sp28;
@@ -202,7 +200,7 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, s32 arg1) {
                     sp28->unk8 = func_8001EAD0(angles.direction) * 80.0f;
                     return;
                 }
-                if (((func_8038CFF4_StructG *)D_801BBBF0)->unkB90 > D_8038DAC0) {
+                if (((func_8038CFF4_StructG *)D_801BBBF0)->unkB90 > (35.0)) {
                     func_80228FD0(arg0, sp28, 0x20);
                     return;
                 }

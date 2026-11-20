@@ -25,9 +25,6 @@ typedef struct func_801F8F3C_Obj {
     u8 pad3[5];
     s16 unk98;
 } func_801F8F3C_Obj;
-
-extern u8 D_80218AC0[];
-
 void func_801F8F3C(func_801F8F3C_Obj *arg0, s32 arg1) {
     void *t;
     f32 sp60[3];
@@ -46,7 +43,7 @@ void func_801F8F3C(func_801F8F3C_Obj *arg0, s32 arg1) {
         }
     }
 #define P ((func_801F8F3C_Pos *)D_801BBCD0->unk2C)
-    if (D_8011AAF4(D_80218AC0, 0x856, arg0, 0, 2, 3.0f, P->unk4, P->unk8 + 20.0f, P->unkC, 3.0f, sp60[0], sp60[1], sp60[2], 0.0f, 35.0f, -1, -1) == 0 && arg0->unk92 == 0) {
+    if (D_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/enemy/wanderer.c", 0x856, arg0, 0, 2, 3.0f, P->unk4, P->unk8 + 20.0f, P->unkC, 3.0f, sp60[0], sp60[1], sp60[2], 0.0f, 35.0f, -1, -1) == 0 && arg0->unk92 == 0) {
         func_800058DC(arg0, (s32)func_801F91C0);
     }
 }

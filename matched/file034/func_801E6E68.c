@@ -20,12 +20,6 @@ extern s32 func_801C1088(s32, s32, s32);
 extern void func_801C10D8(s32, s32);
 extern u32 func_801C1134(s32, s32);
 s32 func_801D0408(void);
-
-
-extern f32 D_801E970C;
-extern f32 D_801E9710;
-extern f32 D_801E9714;
-
 typedef struct func_801E6E68_StructLeaf {
     u8 pad[4];
     f32 unk4;
@@ -53,7 +47,7 @@ s32 func_801E6E68(s32 arg0, s32 arg1) {
     }
     temp_fv0 = (f32)func_801C1134(4, 2) / 55.0f;
     root = (func_801E6E68_StructA **)&D_801DAB14;
-    (*root)->unk8->unk8->unk8->unk24->unk2C->unk4 = D_801E970C * temp_fv0 + D_801E9710;
-    (*root)->unk8->unk8->unk8->unk24->unk2C->unkC = 1.5f * temp_fv0 + D_801E9714;
+    (*root)->unk8->unk8->unk8->unk24->unk2C->unk4 = (-1.9000015f) * temp_fv0 + (-54.1f);
+    (*root)->unk8->unk8->unk8->unk24->unk2C->unkC = 1.5f * temp_fv0 + (297.2f);
     return 0x14;
 }

@@ -46,9 +46,6 @@ extern u8 D_801816C0[];
 extern u8 D_80181720[];
 extern u8 D_80181880[];
 extern f32 D_8018F990[];
-extern f32 D_8018F994;
-extern f32 D_8018F998;
-
 u8 func_80146894(void *arg0, s32 arg1, u8 *arg2, f32 arg3, f32 arg4, s8 arg5) {
     u16 *p;
     func_80146894_StructRequest request;
@@ -77,13 +74,13 @@ u8 func_80146894(void *arg0, s32 arg1, u8 *arg2, f32 arg3, f32 arg4, s8 arg5) {
     case 11:
         image = D_80181720;
         request.data.ptr = image;
-        imageScale = D_8018F994;
+        imageScale = (0.72f);
         request.data.sx = request.data.sy = imageScale;
         break;
     case 24:
         image = D_80181880;
         request.data.ptr = image;
-        imageScale = D_8018F998;
+        imageScale = (0.72f);
         request.data.sx = request.data.sy = imageScale;
         break;
     }

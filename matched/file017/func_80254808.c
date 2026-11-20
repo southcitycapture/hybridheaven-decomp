@@ -12,10 +12,6 @@ typedef struct func_80254808_StructM { s16 a; s32 b; f32 c; s16 d; s32 e; s32 f;
 typedef struct func_80254808_StructN { u8 pad0[0x22]; u8 unk22; } func_80254808_StructN;
 typedef struct func_80254808_StructB { u8 pad0[0x24]; func_80254808_StructN *unk24; } func_80254808_StructB;
 typedef struct func_80254808_Struct { u8 pad0[0x90]; u16 unk90; u8 pad92[6]; u16 unk98; } func_80254808_Struct;
-extern u8 D_8025D860[];
-extern u8 D_8025D89C[];
-extern u8 D_8025D8D8[];
-
 void func_80254808(func_80254808_Struct *arg0, func_80254808_StructB *arg1) {
     func_80254808_StructM m;
     s32 t;
@@ -40,13 +36,13 @@ void func_80254808(func_80254808_Struct *arg0, func_80254808_StructB *arg1) {
             func_801C2F0C(4, &m);
         }
         if (!(t % 2)) {
-            func_8011AAF4(D_8025D860, 0x360, arg0, 0, 1, 0.0f, -60.0f, 20.0f, 17.0f, 0.0f, -83.0f, 10.0f, -6.0f, 0.0f, 55.0f, -1, -1);
+            func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x360, arg0, 0, 1, 0.0f, -60.0f, 20.0f, 17.0f, 0.0f, -83.0f, 10.0f, -6.0f, 0.0f, 55.0f, -1, -1);
         } else {
-            func_8011AAF4(D_8025D89C, 0x365, arg0, 0, 1, 0.0f, -60.0f, 19.0f, 17.0f, 0.0f, -83.0f, 9.0f, -6.0f, 0.0f, 55.0f, -1, -1);
+            func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x365, arg0, 0, 1, 0.0f, -60.0f, 19.0f, 17.0f, 0.0f, -83.0f, 9.0f, -6.0f, 0.0f, 55.0f, -1, -1);
         }
         arg0->unk98 = -arg0->unk98;
         if (t >= 0x78) {
-            func_8011AAF4(D_8025D8D8, 0x36E, arg0, 0, 1, 0.0f, 120.0f, 166.0f, 174.0f, 0.0f, -35.0f, -9.0f, -39.0f, 0.0f, 55.0f, -1, -1);
+            func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x36E, arg0, 0, 1, 0.0f, 120.0f, 166.0f, 174.0f, 0.0f, -35.0f, -9.0f, -39.0f, 0.0f, 55.0f, -1, -1);
             arg0->unk90 = 0;
             arg1->unk24->unk22 = 1;
             func_801518D4(0, 0, 0x1E);

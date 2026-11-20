@@ -25,7 +25,6 @@ struct func_801F8AE8_Struct0 {
     struct func_801F8AE8_Struct3 *unk5C;
 };
 extern void func_801FA5C4(void);
-extern u8 D_80218A48[];
 extern void func_801F8C50();
 extern void func_8013A334(f32 *, s32, void *, s32);
 extern s32 D_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
@@ -40,7 +39,7 @@ void func_801F8AE8(struct func_801F8AE8_Struct0 *arg0, s32 arg1) {
     func_8013A334(sp68, arg1, sp74, 6);
     func_801F467C(arg0->unk24->unk2C->unk12, &sp5C);
     func_80147768(&sp5C.unk0, 25.0f);
-    if (D_8011AAF4(D_80218A48, 0x807, arg0, 0, 2, 3.0f, arg0->unk24->unk2C->unk4 + sp5C.unk0 + VEC->unk0, arg0->unk24->unk2C->unk8 + 8.0f + sp5C.unk4, arg0->unk24->unk2C->unkC + sp5C.unk8 + VEC->unk8, 3.0f, sp68[0], sp68[1], sp68[2], 0.0f, 35.0f, -1, -1) == 0) {
+    if (D_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/enemy/wanderer.c", 0x807, arg0, 0, 2, 3.0f, arg0->unk24->unk2C->unk4 + sp5C.unk0 + VEC->unk0, arg0->unk24->unk2C->unk8 + 8.0f + sp5C.unk4, arg0->unk24->unk2C->unkC + sp5C.unk8 + VEC->unk8, 3.0f, sp68[0], sp68[1], sp68[2], 0.0f, 35.0f, -1, -1) == 0) {
         func_801FA5C4();
         arg0->unk3C = 0x32;
         sp74->unk78 = 1;

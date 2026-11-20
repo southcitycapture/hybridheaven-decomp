@@ -612,13 +612,21 @@ def render(seg, cfile, snips, pad=0, keep_ro=True, hoist=False):
     if pad: lines += ['#pragma GLOBAL_ASM("%s")' % pad_asm(seg, cfile, pad), ""]
     return "\n".join(lines) + "\n", ranges
 
-def compile_file(text, td):
+def asmproc_force(text, planned=False):
+    """['--force'] for a unit with a readonly layout plan but no GLOBAL_ASM left (M2): asm-processor skips such files,
+    and only its post-processing gives the frozen readonly pieces (static arrays) the ELF symbols the plan checks.
+    The Makefile passes the same flag for the same files (FULLC_LAYOUT_SRC)."""
+    planned = planned or re.search(r'(?m)^/\* hh-rodata-layout ', text)
+    return ["--force"] if planned and not re.search(r'(?m)^#pragma GLOBAL_ASM', text) else []
+
+def compile_file(text, td, planned=False):
+    """planned: a placement proposal that will carry a readonly layout plan (rodata_owned.place_frozen)."""
     c = os.path.join(td, "f.c"); o = os.path.join(td, "f.o"); open(c, "w").write(text)
     # same string encoding as the Makefile's ASMPROC: the game's strings are EUC-JP, the sources UTF-8. Without it every
     # Japanese string in a file's GLOBAL_ASM data or C literals came out longer (UTF-8), shifting the rest of the file's
     # rodata: the per-file check could reject matching functions (found on the overlay-rodata branch, 89 of 175)
-    r = subprocess.run([sys.executable, "tools/asm-processor/build.py", "--input-enc", "utf-8", "--output-enc", "euc-jp",
-                        IDO, "--", "mips-linux-gnu-as"] + ASFLAGS +
+    r = subprocess.run([sys.executable, "tools/asm-processor/build.py", "--input-enc", "utf-8", "--output-enc", "euc-jp"]
+                       + asmproc_force(text, planned) + [IDO, "--", "mips-linux-gnu-as"] + ASFLAGS +
                        ["--", "-c"] + CFLAGS + ["-o", o, c], capture_output=True, text=True)
     if r.returncode == 0:
         import rodata_layout
@@ -1186,7 +1194,7 @@ if __name__ == "__main__" and sys.argv[1] in ("all", "add"):
         # says nothing about this one, even when the registry text is identical.
         gate_version = sha(''.join(open(p).read() for p in (
             'tools/hh/srcbuild.py', 'tools/hh/reconcile_frozen.py', 'tools/hh/try_func.py', 'tools/hh/mulfix.py', 'tools/hh/idoflags.py',
-             'tools/hh/kept_blocks.py', 'tools/hh/rodata_owned.py', 'tools/hh/rodata_layout.py',
+             'tools/hh/kept_blocks.py', 'tools/hh/rodata_owned.py', 'tools/hh/rodata_layout.py', 'tools/hh/rodata_owners.py',
             'tools/hh/bss_layout.py', 'tools/hh/bss_splits.json', 'hybridheaven.yaml')) + ' '.join(idoflags.BASE))
         byfile = {}
         for (seg, n), t in reg.items(): byfile.setdefault((seg, file_of(seg, n)), []).append(n + sha(t))

@@ -32,8 +32,6 @@ struct func_8037DEE4_Glob {
     u8 pad[4];
     struct func_8037DEE4_Tab *unk4;
 };
-
-extern u8 D_8038BC38[];
 extern void func_8037E0A4();
 
 #define GG ((struct func_8037DEE4_Glob *)&D_8008DA88)
@@ -65,6 +63,6 @@ void func_8037DEE4(struct func_8037DEE4_Arg *arg0, s32 arg1) {
     GG->unk4->unk30->unk2 = (((f32)arg0->unkB0 * (var_fv1 * (f32)arg0->unkB0)) / 2) + (f32) arg0->unkA6;
     var_a0 = func_8037D320(arg0, arg0->unk90 ^ 1);
     temp_v1 = GG->unk4->unk30;
-    func_8001B204(0xE, (s16) (temp_v1->unk0 + 0x468), (s16) ((temp_v1->unk2 - arg0->unk9B) + 3), D_8038BC38, arg0->unk99, var_a0);
+    func_8001B204(0xE, (s16) (temp_v1->unk0 + 0x468), (s16) ((temp_v1->unk2 - arg0->unk9B) + 3), "%m%s", arg0->unk99, var_a0);
     arg0->unkB0++;
 }

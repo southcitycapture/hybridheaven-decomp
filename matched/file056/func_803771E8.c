@@ -3,8 +3,6 @@
 extern void func_801269C0();
 extern void func_801C4A5C(s32, s32);
 extern void func_8001E978(s32, s32, s32, s32, s32, s32, s32, s32);
-extern f64 D_80389380;
-extern f64 D_80389378;
 extern u8 D_8038916C[];
 extern s16 D_80089354;
 extern s32 D_8014B4A0(u16, f32 *);
@@ -54,9 +52,9 @@ void func_803771E8(s32 arg0, s32 arg1) {
     G->unkEF0 |= 0xD0;
     if (D_8014B4A0(G->unk8, &sp.x) != 0) {
         func_801269C0();
-        sp74 = (f32)((f64)func_8001EAD0(sp.a) * D_80389378 + (f64)sp.x);
+        sp74 = (f32)((f64)func_8001EAD0(sp.a) * (7e+01) + (f64)sp.x);
         sp70 = (f32)((f64)sp.y + 25.0);
-        func_8011AAF4(D_8038916C, 0x1E0, arg0, 0, 1, 10.0f, sp74, sp70, (f32)((f64)func_8001EB64(sp.a) * D_80389380 + (f64)sp.z), 10.0f, sp.x, (f32)((f64)sp.y + 15.0), sp.z, 0.0f, 35.0f, -1, -1);
+        func_8011AAF4(D_8038916C, 0x1E0, arg0, 0, 1, 10.0f, sp74, sp70, (f32)((f64)func_8001EB64(sp.a) * (7e+01) + (f64)sp.z), 10.0f, sp.x, (f32)((f64)sp.y + 15.0), sp.z, 0.0f, 35.0f, -1, -1);
         G->unkE0->unk2C->unk4 = sp.x;
         G->unkE0->unk2C->unk8 = sp.y;
         G->unkE0->unk2C->unkC = sp.z;

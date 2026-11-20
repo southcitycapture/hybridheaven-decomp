@@ -314,9 +314,15 @@ def body_for(seg, cfile, name, snippet, sc, i, alias, literals=True):
     ro_end = (ro_start + len(re.findall(r'\b0x[0-9A-Fa-f]{2}\b', owned_bytes[1]))
               if owned_bytes and ro_start is not None else None)
     owned_ranges = [(ro_start, ro_end)] if ro_end is not None else []
+    # M2: frozen pieces at stated addresses (rodata_<file>_<ADDR>) supply their bytes too, and labels a kept block's
+    # recipe already carries are re-staged by merged_paths; staging them again would define them twice.
+    for m in re.finditer(r'(?m)^static const unsigned char rodata_%s_([0-9A-F]{8})\[\] = \{([^}]+)\}' % re.escape(cfile), source):
+        owned_ranges.append((int(m[1], 16), int(m[1], 16) + len(re.findall(r'\b0x[0-9A-Fa-f]{2}\b', m[2]))))
     for _, recipe in kept_blocks.RECIPE.findall(source):
-        span = json.loads(recipe).get('rodata_bytes')
+        recipe = json.loads(recipe)
+        span = recipe.get('rodata_bytes')
         if span: owned_ranges.append((span[0], span[0] + span[2]))
+        c_owned.update(item[2] for item in recipe.get('rodata') or () if len(item) == 3)
     if kb and (c_owned or owned_ranges):
         with open(kb) as fh: kept_text = fh.read()
         items = [(sect, ls) for sect, _, ls in S._ro_items(kept_text)
@@ -568,6 +574,14 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
                 annotated = _annotate(seg, cfile, placed)
                 if annotated is not None:
                     yield 'placed-readonly-literal-body', annotated
+            # M2: the same edit with the pool paired against the owner map (rodata_owners)
+            import rodata_owners
+            owned = rodata_owned.place_frozen(S, seg, cfile, kept_blocks.data_only(S, literal), name,
+                                              owners=rodata_owners.owner_map(S, seg, cfile))
+            if owned is not None and owned != placed:
+                annotated = _annotate(seg, cfile, owned)
+                if annotated is not None:
+                    yield 'placed-owned-literal-body', annotated
         # Rechecking/replacing an existing C function must use its frozen neighbours too, not a registry re-render.
         for i, l in enumerate(lines0):
             m = S.DEFN.match(l) or S.KR_DEFN.match(l)
@@ -622,6 +636,17 @@ def insert_variants(seg, cfile, text, name, snippet, _file_alias=False):
             annotated = _annotate(seg, cfile, placed)
             if annotated is not None:
                 yield 'placed-readonly-' + how, annotated
+    # M2 (11-19): split frozen blobs and raw byte ranges only at owner-map edges; every other piece stays pinned
+    owners = None
+    for how, candidate in pool_candidates:
+        if owners is None:
+            import rodata_owners
+            owners = rodata_owners.owner_map(S, seg, cfile)
+        placed = rodata_owned.place_frozen(S, seg, cfile, kept_blocks.data_only(S, candidate), name, owners=owners)
+        if placed is not None:
+            annotated = _annotate(seg, cfile, placed)
+            if annotated is not None:
+                yield 'placed-owned-' + how, annotated
     for how, candidate in pool_candidates:
         # A final named twin may have no following instruction donor. Give
         # it temporary readonly C storage so the layout planner can compile

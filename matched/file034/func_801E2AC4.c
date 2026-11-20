@@ -40,14 +40,6 @@ extern u8 D_8038D89C[];
 extern u8 D_8017B710[];
 extern u8 D_8017B148[];
 extern u8 D_801E8BC8[];
-extern f32 D_801E94E0;
-extern f32 D_801E94E4;
-extern f32 D_801E94E8;
-extern f32 D_801E94EC;
-extern f32 D_801E94F0;
-extern f32 D_801E94F4;
-extern f32 D_801E94F8;
-
 #define OBJ(i) ((*lst)[i])
 #define Q(i) (OBJ(i)->unk30)
 #define COMMON(i)               \
@@ -103,9 +95,9 @@ s32 func_801E2AC4(s32 arg0, s32 arg1) {
     func_8012C89C(D_8038D8CC, 8, 0x288, 6);
     func_8012C89C(D_8038D8CC, 9, 0x288, 7);
     lst = (func_801E2AC4_O ***)&D_8038D8D0;
-    e0 = D_801E94E0;
-    e4 = D_801E94E4;
-    e8 = D_801E94E8;
+    e0 = (-60.6f);
+    e4 = (290.5f);
+    e8 = (-63.6f);
 
     Q(0)->unk4 = -42.0f;
     Q(0)->unk8 = -470.0f;
@@ -127,19 +119,19 @@ s32 func_801E2AC4(s32 arg0, s32 arg1) {
 
     Q(3)->unk4 = e8;
     Q(3)->unk8 = -470.0f;
-    Q(3)->unkC = D_801E94EC;
+    Q(3)->unkC = (293.6f);
     Q(3)->unk12 = 0xC00;
     COMMON(3)
 
     Q(4)->unk4 = e8;
     Q(4)->unk8 = -470.0f;
-    Q(4)->unkC = D_801E94F0;
+    Q(4)->unkC = (293.6f);
     Q(4)->unk12 = 0xC00;
     COMMON(4)
 
-    Q(5)->unk4 = D_801E94F4;
+    Q(5)->unk4 = (-281.2f);
     Q(5)->unk8 = -470.0f;
-    Q(5)->unkC = D_801E94F8;
+    Q(5)->unkC = (483.8f);
     Q(5)->unk12 = 0xC00;
     COMMON(5)
 

@@ -84,7 +84,7 @@ u16 func_801303D8(f32 arg0, f32 arg1) {
     x = arg1 < 0.0f ? -arg1 : arg1, y = arg0 < 0.0f ? -arg0 : arg0;
     len = func_8002FC20(x * x + y * y, x);
     alen = len < 0.0f ? -len : len;
-    if (!((f64) alen < D_8018D680)) {
+    if (!((f64) alen < (1e-06))) {
         x /= len;
         y /= len;
     }
@@ -134,7 +134,7 @@ done:
 
 
 void func_80130610(u16 arg0) {
-    func_80029280((f32) ((f64) ((f32) arg0 / 32768.0f) * D_8018D688));
+    func_80029280((f32) ((f64) ((f32) arg0 / 32768.0f) * (3.141592653589793)));
 }
 
 
@@ -143,7 +143,7 @@ void func_80130670(u16 arg0) {
     u32 temp_a0;
 
     temp_a0 = arg0;
-    func_80032720((f32) ((f64) ((f32) temp_a0 / 32768.0f) * D_8018D690));
+    func_80032720((f32) ((f64) ((f32) temp_a0 / 32768.0f) * (3.141592653589793)));
 }
 
 
@@ -838,13 +838,20 @@ void func_80131CC4(u16 *arg0, u16 *arg1, u16 *arg2) {
 
 
 
-static const unsigned char rodata_80130310[] = {
-    0x3E, 0xB0, 0xC6, 0xF7, 0xA0, 0xB5, 0xED, 0x8D, 0x40, 0x09, 0x21, 0xFB, 0x54, 0x44, 0x2D, 0x18,
-    0x40, 0x09, 0x21, 0xFB, 0x54, 0x44, 0x2D, 0x18, 0x3F, 0xC9, 0x0F, 0xDB, 0x00, 0x00, 0x00, 0x00,
-    0x54, 0x52, 0x41, 0x4E, 0x53, 0x20, 0x44, 0x41, 0x4D, 0x45, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 /* hh-owned-pool func_80131074 8018D6B0 8018D6B8 */
 /* hh-owned-pool func_801311F8 8018D6B8 8018D6C0 */
 /* hh-owned-pool func_801315A8 8018D6C0 8018D6C8 */
 /* hh-owned-pool func_8013173C 8018D6C8 8018D6D0 */
 /* hh-owned-pool func_801318D8 8018D6D0 8018D6D8 */
+
+
+
+static const unsigned char rodata_80130310_8018D698[] = {
+    0x3F, 0xC9, 0x0F, 0xDB, 0x00, 0x00, 0x00, 0x00, 0x54, 0x52, 0x41, 0x4E, 0x53, 0x20, 0x44, 0x41,
+    0x4D, 0x45, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+/* hh-layout-unit file008/80130310 */
+/* hh-placed-function func_801303D8 */
+/* hh-placed-function func_80130610 */
+/* hh-placed-function func_80130670 */
+/* hh-rodata-layout [96,[[0,24,24],[24,0,24],[48,48,48]]] */

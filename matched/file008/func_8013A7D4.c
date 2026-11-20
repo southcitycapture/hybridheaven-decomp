@@ -34,9 +34,6 @@ extern func_8013A7D4_Input D_80089474;
 extern func_8013A7D4_Entry D_801636B0[];
 extern func_8013A7D4_Entry D_801636E6[];
 extern func_8013A7D4_Entry D_801636EC[];
-extern u8 D_8018DF54[];
-extern u8 D_8018DF68[];
-
 void func_8013A7D4(func_8013A7D4_Arg0 *arg0, func_8013A7D4_Struct *arg1) {
     u16 id;
     u16 count;
@@ -66,8 +63,8 @@ void func_8013A7D4(func_8013A7D4_Arg0 *arg0, func_8013A7D4_Struct *arg1) {
         p++;
     }
     count = p->count;
-    func_8001DFFC(9, 0x14, 0xA0, D_8018DF54, arg1->x, count);
-    func_8001DFFC(0xA, 0x14, 0xAA, D_8018DF68, arg1->unk4, (u16)(arg1->unk8 * 100.0f));
+    func_8001DFFC(9, 0x14, 0xA0, "mot_kind %x  max %d", arg1->x, count);
+    func_8001DFFC(0xA, 0x14, 0xAA, "mot anime_no %d  speed %d", arg1->unk4, (u16)(arg1->unk8 * 100.0f));
     if (D_80089474.buttons & 0x800) {
         if (arg1->x & 0xFFFF) {
             arg1->x--;

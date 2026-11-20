@@ -32,8 +32,6 @@ typedef struct {
     func_80212CF8_StructI *unk30;
 } func_80212CF8_StructO;
 extern u8 D_80217CE0[];
-extern f32 D_8021ADBC;
-
 void func_80212CF8(func_80212CF8_Struct0 *arg0, func_80212CF8_StructO **arg1) {
     f32 k;
     struct {
@@ -46,7 +44,7 @@ void func_80212CF8(func_80212CF8_Struct0 *arg0, func_80212CF8_StructO **arg1) {
     func_80006214(arg0);
     func_8012C89C(arg0, 0, 3, 0);
     func_8012D918(arg0, 0x4B7, 0, 0, 0);
-    k = D_8021ADBC;
+    k = (0.07f);
     ((s32 *)(*arg1)->unk30)[9] |= 0x60300;
     ((s32 *)(*arg1)->unk30)[12] = (s32)D_80217CE0 | 0x40000000;
     ((f32 *)(*arg1)->unk30)[6] = k;

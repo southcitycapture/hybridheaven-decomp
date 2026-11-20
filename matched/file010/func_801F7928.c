@@ -7,7 +7,6 @@ struct func_801F7928_A { u8 pad0[0x2C]; struct func_801F7928_B *unk2C; };
 struct func_801F7928_C { u8 pad0[0x50]; f32 unk50; };
 struct func_801F7928_D { u8 pad0[0x24]; struct func_801F3FFC_Node *unk24; u8 pad1[0x14]; s16 unk3C; u8 pad2[0x1E]; struct func_801F7928_C *unk5C; };
 extern struct func_801F7928_A *D_801BBCD8;
-extern u8 D_80218994[];
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 
 void func_801F7928(struct func_801F7928_D *arg0, s32 arg1) {
@@ -17,7 +16,7 @@ void func_801F7928(struct func_801F7928_D *arg0, s32 arg1) {
 
     c = arg0->unk5C;
     t = (f32)(((f64)c->unk50 * (0.1)) / (18.8));
-    func_8011AAF4(D_80218994, 0x6DD, arg0, 0, 1, 3.0f, D_801BBCD8->unk2C->f30, D_801BBCD8->unk2C->f34 + t, D_801BBCD8->unk2C->f38, 3.0f, D_801BBCD8->unk2C->f3c, D_801BBCD8->unk2C->f40 + t, D_801BBCD8->unk2C->f44, 0.0f, 35.0f, -1, -1);
+    func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/enemy/wanderer.c", 0x6DD, arg0, 0, 1, 3.0f, D_801BBCD8->unk2C->f30, D_801BBCD8->unk2C->f34 + t, D_801BBCD8->unk2C->f38, 3.0f, D_801BBCD8->unk2C->f3c, D_801BBCD8->unk2C->f40 + t, D_801BBCD8->unk2C->f44, 0.0f, 35.0f, -1, -1);
     if ((c->unk50 + arg0->unk24->unk2C->unk8) < D_801BBCD8->unk2C->f34) {
         arg0->unk3C = 0;
         func_800058DC(arg0, (s32)func_801F7A5C);

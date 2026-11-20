@@ -16,9 +16,6 @@ extern s8 D_8025C704;
 extern s16 D_8025C7E6;
 extern void func_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_8037BB4C(s16, f32, f32, s16);
-
-
-extern u8 D_8025BFC8[];
 extern f32 D_8025C580__load;
 extern f32 D_8002FC20(f32);
 extern void D_80127430(f32, f32, f32, s32, f32, f32);
@@ -58,7 +55,7 @@ s32 func_80244CEC(func_80244CEC_StructObj *arg0) {
         z0 = p->z;
         if (z0 < 0.0f) az = -z0; else az = z0;
         if (az + ax > 40.0f) {
-            func_8011AAF4(D_8025BFC8, 0x169, arg0, 0, 1, 4.0f,
+            func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/enemy/e_f40.c", 0x169, arg0, 0, 1, 4.0f,
                 x / length * -120.0f + x, 270.0f,
                 z0 / length * -120.0f + z0, 4294967296.0f,
                 x, p->y + 20.0f, z0, 0.0f, 35.0f, -1, -1);

@@ -13,8 +13,6 @@ struct func_801C9910_Struct {
 
 extern void func_8001B194(u8, s16, s16, s32);
 extern void func_8001B204();
-extern u8 D_801CF3F0[];
-
 void func_801C9910(struct func_801C9910_Struct *arg0, f32 arg1) {
     s16 var_a3;
     s16 sp2C;
@@ -23,7 +21,7 @@ void func_801C9910(struct func_801C9910_Struct *arg0, f32 arg1) {
     if (sp2C < -0x14) {
         if (arg0->unk2A == 1) {
             arg0->unk2A = 2;
-            func_8001B204(arg0->unk22, 0, 0, D_801CF3F0);
+            func_8001B204(arg0->unk22, 0, 0, "");
         }
     } else if (sp2C < 0xF0) {
         if (arg0->unk2A == 0) {

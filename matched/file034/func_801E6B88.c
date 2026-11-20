@@ -32,11 +32,6 @@ typedef struct func_801E6B88_Struct {
     u8 pad28[4];
     struct func_801E6B88_Struct *unk2C;
 } func_801E6B88_Struct;
-
-extern f32 D_801E96F4;
-extern f32 D_801E96F8;
-extern f32 D_801E96FC;
-
 s32 func_801E6B88(s32 arg0, s32 arg1) {
     f32 t;
 
@@ -45,7 +40,7 @@ s32 func_801E6B88(s32 arg0, s32 arg1) {
         return 0x11;
     }
     t = (f32)func_801C1134(4, 2) / 55.0f;
-    ((func_801E6B88_Struct *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unk4 = D_801E96F4 * t + D_801E96F8;
-    ((func_801E6B88_Struct *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unkC = 3.5f * t + D_801E96FC;
+    ((func_801E6B88_Struct *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unk4 = (-3.6000023f) * t + (-48.6f);
+    ((func_801E6B88_Struct *)D_801DAB14)->unk8->unk8->unk8->unk24->unk2C->unkC = 3.5f * t + (292.2f);
     return 0x10;
 }

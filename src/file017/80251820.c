@@ -1149,6 +1149,93 @@ extern f32 D_8025D838;
 
 #define GLOBAL ((func_80253220_StructGlobal *)D_801BBBF0)
 
+#undef D_8025D838
+#undef GLOBAL
+#undef func_80126880
+#undef func_801505AC
+#undef func_801C2F0C
+#undef func_801C3044
+#undef func_80253680
+#undef func_80253680_StructArg
+#define D_8025D838 D_8025D838__func_80253220_cdb80060
+#define func_80126880 func_80126880__func_80253220_cdb80060
+#define func_801505AC func_801505AC__func_80253220_cdb80060
+#define func_801C2F0C func_801C2F0C__func_80253220_cdb80060
+#define func_801C3044 func_801C3044__func_80253220_cdb80060
+#define func_80253220_StructCamera func_80253220_StructCamera__func_80253220_cdb80060
+#define func_80253220_StructEntity func_80253220_StructEntity__func_80253220_cdb80060
+#define func_80253220_StructEvent func_80253220_StructEvent__func_80253220_cdb80060
+#define func_80253220_StructGlobal func_80253220_StructGlobal__func_80253220_cdb80060
+#define func_80253220_StructObject func_80253220_StructObject__func_80253220_cdb80060
+#define func_80253220_StructPosition func_80253220_StructPosition__func_80253220_cdb80060
+#define func_80253680 func_80253680__func_80253220_cdb80060
+#define func_80253680_StructArg func_80253680_StructArg__func_80253220_cdb80060
+extern void func_801C2F0C(s32, void *);
+typedef struct func_80253680_StructArg {
+    u8 pad0[0x74];
+    s32 state;
+} func_80253680_StructArg;
+extern void func_80253680(func_80253680_StructArg *arg0, s32 arg1);
+#undef func_80253220
+
+typedef struct func_80253220_StructObject {
+    u8 pad0[0x2C];
+    s32 flags;
+    u8 pad30[0xC];
+    u16 timer;
+    u8 pad3E[0x5B];
+    u8 kind;
+} func_80253220_StructObject;
+
+typedef struct func_80253220_StructPosition {
+    u8 pad0[4];
+    f32 x, y, z;
+    u8 pad10[2];
+    s16 angle;
+} func_80253220_StructPosition;
+
+typedef struct func_80253220_StructCamera {
+    u8 pad0[0x2C];
+    func_80253220_StructPosition *position;
+} func_80253220_StructCamera;
+
+typedef struct func_80253220_StructGlobal {
+    u8 pad0[0xE0];
+    func_80253220_StructCamera *camera;
+    u8 padE4[0x104];
+    f32 x, y, z, tx, ty, tz;
+    u8 pad200[0xA4];
+    f32 unk2A4, unk2A8;
+    u8 pad2AC[0xC8A];
+    u8 unkF36, unkF37, unkF38, unkF39;
+    u8 unkF3A, unkF3B;
+    s8 unkF3C, unkF3D, unkF3E;
+    u8 unkF3F, unkF40, unkF41;
+    s8 unkF42, unkF43, unkF44;
+    u8 unkF45, unkF46, unkF47, unkF48;
+} func_80253220_StructGlobal;
+
+typedef struct func_80253220_StructEvent {
+    s16 type;
+    s32 sound;
+    f32 volume;
+    s16 duration;
+    u8 padE[0x12];
+} func_80253220_StructEvent;
+
+typedef struct func_80253220_StructEntity {
+    u8 pad0[0x24];
+    func_80252FC0_StructNode *node;
+    u8 pad28[0x4C];
+    s32 state;
+} func_80253220_StructEntity;
+extern s32 func_801C3044(void);
+extern void func_80126880(s32);
+extern func_80253220_StructEntity *func_801505AC(s32);
+extern f32 D_8025D838;
+
+#define GLOBAL ((func_80253220_StructGlobal *)D_801BBBF0)
+
 void func_80253220(func_80253220_StructObject *arg0, func_80252FC0_StructArgs *arg1) {
     u32 alpha;
     func_80253220_StructEntity *entity;
@@ -1184,7 +1271,7 @@ void func_80253220(func_80253220_StructObject *arg0, func_80252FC0_StructArgs *a
     GLOBAL->tx = GLOBAL->camera->position->x;
     GLOBAL->ty = GLOBAL->camera->position->y + 20.0f;
     GLOBAL->tz = GLOBAL->camera->position->z;
-    func_8011AAF4(D_8025D718, 0x455, arg0, 0, 1,
+    func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10transdemo.c", 0x455, arg0, 0, 1,
                   0.0f, GLOBAL->x, GLOBAL->y, GLOBAL->z, 0.0f, GLOBAL->tx, GLOBAL->ty, GLOBAL->tz, 0.0f, 35.0f, -1, -1);
     func_801C42DC(GLOBAL->unkF36, GLOBAL->unkF37, GLOBAL->unkF38, GLOBAL->unkF39,
                   GLOBAL->unkF3A, GLOBAL->unkF3B, GLOBAL->unkF3C, GLOBAL->unkF3D,
@@ -1213,6 +1300,28 @@ void func_80253220(func_80253220_StructObject *arg0, func_80252FC0_StructArgs *a
         func_800058DC(arg0, func_80253680);
     }
 }
+#undef GLOBAL
+#undef D_8025D838
+#undef func_80126880
+#undef func_801505AC
+#undef func_801C2F0C
+#undef func_801C3044
+#undef func_80253220_StructCamera
+#undef func_80253220_StructEntity
+#undef func_80253220_StructEvent
+#undef func_80253220_StructGlobal
+#undef func_80253220_StructObject
+#undef func_80253220_StructPosition
+#undef func_80253680
+#undef func_80253680_StructArg
+#define D_8025D838 D_8025D838__func_80253220
+#define GLOBAL ((func_80253220_StructGlobal *)D_801BBBF0)
+#define func_80126880 func_80126880__func_80253220
+#define func_801505AC func_801505AC__func_80253220
+#define func_801C2F0C func_801C2F0C__func_80253220
+#define func_801C3044 func_801C3044__func_80253220
+#define func_80253680 func_80253680__func_80253220
+#define func_80253680_StructArg func_80253680_StructArg__func_80253220
 #undef GLOBAL
 #undef D_8025D718
 #undef D_8025D838
@@ -1260,6 +1369,48 @@ extern u8 D_8025D758[];
 
 extern void func_801FBB20(void);
 
+#undef func_80253824
+#undef func_80253824_Struct
+#undef func_80253824_StructInner
+#define D_801BBCD0 D_801BBCD0__func_80253680_d4a8881c
+#define D_801BBCD8 D_801BBCD8__func_80253680_d4a8881c
+#define func_801C2F0C func_801C2F0C__func_80253680_d4a8881c
+#define func_80253680_StructArg func_80253680_StructArg__func_80253680_d4a8881c
+#define func_80253680_StructInner func_80253680_StructInner__func_80253680_d4a8881c
+#define func_80253680_StructOuter func_80253680_StructOuter__func_80253680_d4a8881c
+#define func_80253824 func_80253824__func_80253680_d4a8881c
+#define func_80253824_Struct func_80253824_Struct__func_80253680_d4a8881c
+#define func_80253824_StructInner func_80253824_StructInner__func_80253680_d4a8881c
+extern void func_801C2F0C(s32, void *);
+struct func_80253824_StructInner {
+    u8 pad[0x22];
+    u8 unk22;
+};
+struct func_80253824_Struct {
+    s32 pad0;
+    struct func_80253824_StructInner *unk4;
+};
+extern void func_80253824(s32 arg0, struct func_80253824_Struct *arg1);
+
+typedef struct func_80253680_StructInner {
+    u8 pad0[4];
+    f32 x, y, z;
+    u8 pad10[2];
+    s16 angle;
+    u8 pad14[0x1C];
+    f32 a, b, c, d, e, f;
+} func_80253680_StructInner;
+typedef struct func_80253680_StructOuter {
+    u8 pad0[0x2C];
+    func_80253680_StructInner *inner;
+} func_80253680_StructOuter;
+typedef struct func_80253680_StructArg {
+    u8 pad0[0x74];
+    s32 state;
+} func_80253680_StructArg;
+extern func_80253680_StructOuter *D_801BBCD0;
+extern func_80253680_StructOuter *D_801BBCD8;
+
 void func_80253680(func_80253680_StructArg *arg0, s32 arg1) {
     f32 cosine;
     f32 sine;
@@ -1272,7 +1423,7 @@ void func_80253680(func_80253680_StructArg *arg0, s32 arg1) {
     if (D_801C3DC8(arg0, D_801BBCD0->inner->x - sine * 40.0, D_801BBCD0->inner->y + 20.0f,
             D_801BBCD0->inner->z - func_8001EB64(D_801BBCD0->inner->angle) * 40.0,
             D_801BBCD0->inner->x, D_801BBCD0->inner->y + 17.0f, D_801BBCD0->inner->z, 0.200000003f, 35.0f) == 0) {
-        func_8011AAF4(D_8025D758, 0x485, arg0, 2, 1, 0.0f,
+        func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10transdemo.c", 0x485, arg0, 2, 1, 0.0f,
             D_801BBCD8->inner->a, D_801BBCD8->inner->b, D_801BBCD8->inner->c, 0.0f,
             D_801BBCD8->inner->d, D_801BBCD8->inner->e, D_801BBCD8->inner->f, 0.0f, 35.0f, -1, -1);
         arg0->state = 0;
@@ -1281,6 +1432,18 @@ void func_80253680(func_80253680_StructArg *arg0, s32 arg1) {
         func_800058DC(arg0, func_80253824);
     }
 }
+#undef D_801BBCD0
+#undef D_801BBCD8
+#undef func_801C2F0C
+#undef func_80253680_StructArg
+#undef func_80253680_StructInner
+#undef func_80253680_StructOuter
+#undef func_80253824
+#undef func_80253824_Struct
+#undef func_80253824_StructInner
+#define func_80253824 func_80253824__func_80253680
+#define func_80253824_Struct func_80253824_Struct__func_80253680
+#define func_80253824_StructInner func_80253824_StructInner__func_80253680
 #undef func_80253824
 #undef func_80253824_Struct
 #undef func_80253824_StructInner
@@ -1359,6 +1522,8 @@ void func_802538A4(func_802538A4_Struct *arg0, s32 arg1) {
 /* hh-owned-pool func_80253680 8025D83C 8025D840 */
 /* hh-owned-pool func_802538A4 8025D840 8025D860 */
 
+
+
 static const unsigned char rodata_80251820_8025D5B0[] = {
     0xC6, 0xA9, 0xCC, 0xC0, 0xBD, 0xC3, 0xC9, 0xF4, 0xB2, 0xB0, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8,
     0x0A, 0x00, 0x00, 0x00, 0xA1, 0xE3, 0xC6, 0xA9, 0xCC, 0xC0, 0xBD, 0xC3, 0xC9, 0xF4, 0xB2, 0xB0,
@@ -1382,15 +1547,8 @@ static const unsigned char rodata_80251820_8025D5B0[] = {
     0xA5, 0xE2, 0xA1, 0xBC, 0xA5, 0xB7, 0xA5, 0xE7, 0xA5, 0xF3, 0xA5, 0xD1, 0xA5, 0xBF, 0xA1, 0xBC,
     0xA5, 0xF3, 0xA3, 0xB1, 0xA4, 0xCE, 0xC2, 0xB3, 0xA4, 0xAD, 0x0A, 0x00, 0xA5, 0xE2, 0xA1, 0xBC,
     0xA5, 0xB7, 0xA5, 0xE7, 0xA5, 0xF3, 0xA5, 0xD1, 0xA5, 0xBF, 0xA1, 0xBC, 0xA5, 0xF3, 0xA3, 0xB2,
-    0xA4, 0xCE, 0xC2, 0xB3, 0xA4, 0xAD, 0x0A, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F,
-    0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61,
-    0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63,
-    0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x74, 0x72, 0x61, 0x6E, 0x73, 0x64, 0x65,
-    0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x00, 0x00, 0x00, 0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F,
-    0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72, 0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61,
-    0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61, 0x6D, 0x65, 0x2F, 0x73, 0x6F, 0x75, 0x72, 0x63,
-    0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x74, 0x72, 0x61, 0x6E, 0x73, 0x64, 0x65,
-    0x6D, 0x6F, 0x2E, 0x63, 0x00, 0x00, 0x00, 0x00,
+    0xA4, 0xCE, 0xC2, 0xB3, 0xA4, 0xAD, 0x0A, 0x00,
 };
 /* hh-placed-function func_80253220 */
-/* hh-rodata-layout [688,[[0,648,4],[4,0,492],[496,496,152],[648,652,4],[656,656,32]]] */
+/* hh-placed-function func_80253680 */
+/* hh-rodata-layout [688,[[0,648,4],[4,360,128],[132,0,360],[492,488,4],[496,496,152],[648,652,4],[656,656,32]]] */

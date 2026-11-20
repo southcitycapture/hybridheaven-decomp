@@ -19,7 +19,6 @@ extern f32 func_8001EB64(s16);
 extern void func_8011AAF4(void *, s32, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 extern void func_8014C194(u16, void *);
 extern u8 D_8038910C[];
-extern f64 D_80389370;
 extern void func_80376F84();
 
 struct func_80376DC0_Struct {
@@ -47,7 +46,7 @@ void func_80376DC0(struct func_80376DC0_Struct *arg0, s32 arg1) {
         pos.y = sp6C.f[1] + 17.0;
         func_8011AAF4(D_8038910C, 0x17A, (s32)arg0, 0, 1, 10.0f, pos.x, pos.y,
                       sp6C.f[2] + func_8001EB64(sp6C.h + 0xC00) * 9.5, 10.0f, sp6C.f[0],
-                      sp6C.f[1] + D_80389370, sp6C.f[2], 0.0f, 35.0f, -1, -1);
+                      sp6C.f[1] + (15.6), sp6C.f[2], 0.0f, 35.0f, -1, -1);
         func_800058DC(arg0, func_80376F84);
     }
 }

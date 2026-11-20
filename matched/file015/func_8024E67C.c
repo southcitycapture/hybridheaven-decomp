@@ -36,7 +36,6 @@ extern void func_801C3B10(s32);
 extern s32 func_801C3B20(void);
 extern void func_801C3B2C(s32);
 extern void func_8024E7EC();
-extern u8 D_80259B3C[];
 extern f32 D_8025A040;
 extern f32 D_8025A044;
 extern f32 D_8025A048;
@@ -57,7 +56,7 @@ void func_8024E67C(func_8024E67C_StructO *arg0, s32 arg1) {
         F67C(3) = D_8025A048;
         F67C(4) = D_8025A04C;
         F67C(5) = D_8025A050;
-        func_8011AAF4(D_80259B3C, 0x26A, arg0, 0, 1, 0.0f, F67C(0), F67C(1), F67C(2), 0.0f, F67C(3), F67C(4), F67C(5), 0.0f, D_8025A054, -1, -1);
+        func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a03_s08showdowndemo.c", 0x26A, arg0, 0, 1, 0.0f, F67C(0), F67C(1), F67C(2), 0.0f, F67C(3), F67C(4), F67C(5), 0.0f, D_8025A054, -1, -1);
     }
     if (func_80133A24(0x7A) != 0 && func_801C3B20() == 0) {
         func_801C3B2C(2);

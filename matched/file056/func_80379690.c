@@ -66,7 +66,6 @@ typedef struct func_80379690_CamB {
 } func_80379690_CamB;
 
 extern void D_80130E34(s32, s32, f32, s32, f32 *, f32 *);
-extern u8 D_803894F8[];
 extern u8 D_80379690[];
 #define OBJ ((func_80379690_StructA *)D_8038A910)
 #define GB ((u8 *)&D_801BBBF0)
@@ -111,7 +110,7 @@ void func_80379690(s32 arg0, s32 arg1) {
         func_80005700(arg0);
     }
     if (D_803889B4++ >= 0x47) {
-        func_8001B204(0xF, 0, 0, D_803894F8);
+        func_8001B204(0xF, 0, 0, "");
         func_80005700(D_8038A90C);
         func_80006088((s32)D_8038A910);
         func_80149684();

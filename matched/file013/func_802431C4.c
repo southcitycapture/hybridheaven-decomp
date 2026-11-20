@@ -97,8 +97,6 @@ typedef struct func_802431C4_Struct {
 } func_802431C4_Struct;
 extern s32 func_8010843C(f32, f32, f32, f32, f32, f32);
 extern void func_801475C8(f32 *);
-extern f32 D_80249B40;
-
 void func_802431C4(func_802431C4_Struct *arg0, s32 arg1) {
     func_802431C4_StructP *sp44;
     func_802431C4_Vec d;
@@ -109,7 +107,7 @@ void func_802431C4(func_802431C4_Struct *arg0, s32 arg1) {
     v1 = arg0->unk94;
     if ((v1 % 70) == 0) {
         v = arg0->unk24->unk2C;
-        func_80127430(v->unk4, v->unk8, *(s32 *)&v->unkC, 0x65E, D_80249B40, 1.0f);
+        func_80127430(v->unk4, v->unk8, *(s32 *)&v->unkC, 0x65E, (1.2f), 1.0f);
         v1 = arg0->unk94;
     }
     arg0->unk94 = v1 - 1;

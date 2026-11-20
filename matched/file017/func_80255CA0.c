@@ -53,8 +53,6 @@ typedef struct func_80253680_StructOuter {
 extern func_80253680_StructOuter *D_801BBCD0;
 extern s32 func_801C3D20(f32, f32, f32);
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
-extern u8 D_8025DB30[];
-
 typedef struct func_80255CA0_In {
     u8 pad0[4];
     f32 unk4;
@@ -97,7 +95,7 @@ void func_80255CA0(func_80255B30_A0 *arg0, s32 arg1) {
         func_801C2F0C(5, &sp78);
     }
     if (func_801C3D20(arg0->unk98, arg0->unkA0, 5.0f) != 0) {
-        D_8011AAF4(D_8025DB30, 0x562, arg0, 0, 1, 0.0f, -55.0f, 20.0f, -8.0f, 0.0f, -85.0f, 10.0f, 8.0f, 0.0f, 55.0f, -1, -1);
+        D_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/a05_s10navidemo.c", 0x562, arg0, 0, 1, 0.0f, -55.0f, 20.0f, -8.0f, 0.0f, -85.0f, 10.0f, 8.0f, 0.0f, 55.0f, -1, -1);
         func_80380F94((temp_v1 = D_801BBCD0->inner)->x, temp_v1->y + 10.0f, temp_v1->z, 0.0f, 0.0f, 0.0f, 7);
         arg0->unk92 = 0;
         (*(func_80255CA0_Node **)arg1)->unk22 = 0;

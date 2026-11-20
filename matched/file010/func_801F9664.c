@@ -23,8 +23,6 @@ typedef struct func_801F9664_Struct {
     f32 unk8;
     f32 unkC;
 } func_801F9664_Struct;
-
-extern u8 D_80218B38[];
 extern u8 func_801F97E0[];
 extern s32 D_8013A334(f32 *, s32, void *, s32);
 
@@ -34,7 +32,7 @@ void func_801F9664(u8 *arg0, s32 arg1) {
 
     sp64 = *(u8 **)(arg0 + 0x5C);
     D_8013A334(sp58, arg1, sp64, 6);
-    func_8011AAF4(D_80218B38, 0x8F8, arg0, 0, 1, 10.0f, ((func_801F9664_Struct *)D_801BBCD0->unk2C)->unk4, D_801BBCD0->unk2C->unk8 + 22.0f, ((func_801F9664_Struct *)D_801BBCD0->unk2C)->unkC, 0.0f, sp58[0], sp58[1], sp58[2], 0.0f, 50.0f, -1, -1);
+    func_8011AAF4("/hdisk1/u/nu64/rz011_usa/main/game/source/enemy/wanderer.c", 0x8F8, arg0, 0, 1, 10.0f, ((func_801F9664_Struct *)D_801BBCD0->unk2C)->unk4, D_801BBCD0->unk2C->unk8 + 22.0f, ((func_801F9664_Struct *)D_801BBCD0->unk2C)->unkC, 0.0f, sp58[0], sp58[1], sp58[2], 0.0f, 50.0f, -1, -1);
     if (*(u16 *)(arg0 + 0x70) == 0x33) {
         func_80020744(0x13C);
         *(f32 *)(arg0 + 0x48) = 0.0f;
