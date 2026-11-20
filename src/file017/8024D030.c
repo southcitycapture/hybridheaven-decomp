@@ -883,8 +883,86 @@ void func_8024E654(func_8024E654_Struct *arg0, void *arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file017/8024D030/_mrg_keep_tail_ca63872a55a1fd2e.s {"functions":["func_8024E79C"],"rodata":[],"rodata_bytes":[2149962428,6628796,28]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file017/8024D030/_mrg_keep_tail_ca63872a55a1fd2e.s")
+/* hh-block asm/nonmatchings/file017/8024D030/_ro_regular_b2d4da56c793aa8d.s {"functions":[],"rodata":[],"rodata_bytes":[2149962428,6628796,4],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file017/8024D030/_ro_regular_b2d4da56c793aa8d.s")
+
+#define D_802590C0 D_802590C0__func_8024E79C
+#define func_801C2F0C func_801C2F0C__func_8024E79C
+#define func_8024EA0C func_8024EA0C__func_8024E79C
+extern void func_801C2F0C(s32, s32);
+
+
+extern u8 D_802590C0[];
+extern void func_8024EA0C();
+
+struct func_8024E79C_Struct {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad3E[0x5B];
+    u8 unk99;
+};
+
+void func_8024E79C(struct func_8024E79C_Struct *ctx, func_8024D030_Args *arg1) {
+    struct func_8024E79C_Struct *arg0 = ctx;
+    struct func_8024E79C_StructMsg { s16 a; s32 b; f32 c; u8 pad[0x10]; } sp;
+    s32 t;
+    u8 k;
+    s32 c, b, a;
+
+    t = arg0->unk3C++;
+    func_8024F294((func_8024D030_Ctx *)arg0, arg1);
+    if (t < 0x79) {
+        arg1->unk8->unk30->unk4 += (-0.33666666666666667);
+        arg1->unk8->unk30->unk8 += (0.24166666666666667);
+        arg1->unk8->unk30->unkC += (-0.5833333333333334);
+    }
+    if (t >= 0x96) {
+        arg0->unk3C = 0;
+        arg1->unk8->unk22 = 0;
+        arg1->unk0->unk30->unk30 = (u32)D_802590C0 | 0x40000000;
+        arg1->unk10->unk30->unk30 = (u32)D_802590C0 | 0x40000000;
+        arg1->unkC->unk30->unk30 = (u32)D_802590C0 | 0x40000000;
+        func_80020718(0x18A);
+        a = func_80133A24(0x135) == 0;
+        b = func_80133A24(0x134) == 0;
+        c = func_80133A24(0x133) == 0;
+        k = 4;
+        arg0->unk99 = k - (func_80133A24(0x136) == 0) - c - b - a;
+        if (arg0->unk99 == 1) goto c1;
+        if (arg0->unk99 == 2) goto c2;
+        if (arg0->unk99 == 3) goto c3;
+        if (k != arg0->unk99) goto end;
+        goto c4;
+    c1:
+        sp.a = 0x1000;
+        sp.b = 0x04100043;
+        sp.c = 5.0f;
+        func_801C2F0C(4, (s32)&sp);
+        goto end;
+    c2:
+        sp.a = 0x1000;
+        sp.b = 0x0410002C;
+        sp.c = 5.0f;
+        func_801C2F0C(4, (s32)&sp);
+        goto end;
+    c3:
+        sp.a = 0x1100;
+        sp.b = 0x01B80026;
+        sp.c = 3.0f;
+        func_801C2F0C(4, (s32)&sp);
+        goto end;
+    c4:
+        sp.a = 0x1100;
+        sp.b = 0x01B80032;
+        sp.c = 10.0f;
+        func_801C2F0C(4, (s32)&sp);
+    end:
+        func_800058DC(arg0, func_8024EA0C);
+    }
+}
+#undef D_802590C0
+#undef func_801C2F0C
+#undef func_8024EA0C
 
 
 
@@ -1368,6 +1446,7 @@ void func_8024F294(func_8024D030_Ctx *arg0, func_8024D030_Args *arg1) {
 /* hh-owned-pool func_8024F0B0 8025D2E0 8025D2F0 */
 /* hh-owned-pool func_8024F294 8025D2F0 8025D2F8 */
 
+
 static const unsigned char rodata_8024D030_8025D060[] = {
     0xB2, 0xD0, 0xBD, 0xC3, 0xC9, 0xF4, 0xB2, 0xB0, 0xA5, 0xBB, 0xA5, 0xC3, 0xA5, 0xC8, 0x0A, 0x00,
     0xA1, 0xE3, 0xB2, 0xD0, 0xBD, 0xC3, 0xC9, 0xF4, 0xB2, 0xB0, 0xA5, 0xA4, 0xA5, 0xD9, 0xA5, 0xF3,
@@ -1396,5 +1475,6 @@ static const unsigned char rodata_8024D030_8025D060[] = {
     0x6F, 0x75, 0x72, 0x63, 0x65, 0x2F, 0x61, 0x30, 0x35, 0x5F, 0x73, 0x31, 0x30, 0x66, 0x69, 0x72,
     0x65, 0x64, 0x65, 0x6D, 0x6F, 0x2E, 0x63, 0x00,
 };
+/* hh-placed-function func_8024E79C */
 /* hh-placed-function func_8024EE8C */
-/* hh-rodata-layout [672,[[0,408,60],[60,0,408],[468,468,204]]] */
+/* hh-rodata-layout [672,[[0,604,4],[4,408,60],[64,0,408],[472,468,4],[480,472,132],[616,608,56]]] */

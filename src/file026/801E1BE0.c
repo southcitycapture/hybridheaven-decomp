@@ -8242,8 +8242,288 @@ s32 func_801F2458(s32 arg0, s32 arg1) {
     return 0xC;
 }
 
-/* hh-block asm/nonmatchings/file026/801E1BE0/_mrg_keep_tail_f724662991a85afd.s {"functions":["func_801F26C0"],"rodata":[],"rodata_bytes":[2149568344,7257944,228]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/_mrg_keep_tail_f724662991a85afd.s")
+/* hh-block asm/nonmatchings/file026/801E1BE0/_ro_regular_7094d95e97eb437a.s {"functions":[],"rodata":[],"rodata_bytes":[2149568368,7257968,204],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file026/801E1BE0/_ro_regular_7094d95e97eb437a.s")
+
+#define D_801DAB14 D_801DAB14__func_801F26C0
+#define D_801FCF70 D_801FCF70__func_801F26C0
+#define D_801FCF74 D_801FCF74__func_801F26C0
+#define D_801FCF78 D_801FCF78__func_801F26C0
+#define D_801FCF7C D_801FCF7C__func_801F26C0
+#define D_801FCF80 D_801FCF80__func_801F26C0
+#define D_801FCF84 D_801FCF84__func_801F26C0
+#define D_801FCF88 D_801FCF88__func_801F26C0
+#define D_801FCF8C D_801FCF8C__func_801F26C0
+#define D_801FCF90 D_801FCF90__func_801F26C0
+#define D_801FCF94 D_801FCF94__func_801F26C0
+#define D_801FCF98 D_801FCF98__func_801F26C0
+#define D_801FCF9C D_801FCF9C__func_801F26C0
+#define D_801FCFA0 D_801FCFA0__func_801F26C0
+#define D_801FCFA4 D_801FCFA4__func_801F26C0
+#define D_801FCFA8 D_801FCFA8__func_801F26C0
+#define D_801FCFAC D_801FCFAC__func_801F26C0
+#define D_801FCFB0 D_801FCFB0__func_801F26C0
+#define D_801FCFB4 D_801FCFB4__func_801F26C0
+#define D_801FCFB8 D_801FCFB8__func_801F26C0
+#define D_801FCFBC D_801FCFBC__func_801F26C0
+#define D_801FCFC0 D_801FCFC0__func_801F26C0
+#define D_801FCFC4 D_801FCFC4__func_801F26C0
+#define D_801FCFC8 D_801FCFC8__func_801F26C0
+#define D_801FCFCC D_801FCFCC__func_801F26C0
+#define D_801FCFD0 D_801FCFD0__func_801F26C0
+#define D_801FCFD4 D_801FCFD4__func_801F26C0
+#define D_801FCFD8 D_801FCFD8__func_801F26C0
+#define D_801FCFDC D_801FCFDC__func_801F26C0
+#define D_801FCFE0 D_801FCFE0__func_801F26C0
+#define D_801FCFE4 D_801FCFE4__func_801F26C0
+#define D_801FCFE8 D_801FCFE8__func_801F26C0
+#define D_801FCFEC D_801FCFEC__func_801F26C0
+#define D_801FCFF0 D_801FCFF0__func_801F26C0
+#define D_801FCFF4 D_801FCFF4__func_801F26C0
+#define D_801FCFF8 D_801FCFF8__func_801F26C0
+#define D_801FCFFC D_801FCFFC__func_801F26C0
+#define D_801FD000 D_801FD000__func_801F26C0
+#define D_801FD004 D_801FD004__func_801F26C0
+#define D_801FD008 D_801FD008__func_801F26C0
+#define D_801FD00C D_801FD00C__func_801F26C0
+#define D_801FD010 D_801FD010__func_801F26C0
+#define D_801FD014 D_801FD014__func_801F26C0
+#define D_801FD018 D_801FD018__func_801F26C0
+#define D_801FD01C D_801FD01C__func_801F26C0
+#define D_801FD020 D_801FD020__func_801F26C0
+#define D_801FD024 D_801FD024__func_801F26C0
+#define D_801FD028 D_801FD028__func_801F26C0
+#define D_801FD02C D_801FD02C__func_801F26C0
+#define D_801FD030 D_801FD030__func_801F26C0
+#define D_801FD034 D_801FD034__func_801F26C0
+#define D_801FD038 D_801FD038__func_801F26C0
+#define func_801EC5B4_Struct0 func_801EC5B4_Struct0__func_801F26C0
+#define func_801EC5B4_Struct1 func_801EC5B4_Struct1__func_801F26C0
+#define func_801EC5B4_Struct2 func_801EC5B4_Struct2__func_801F26C0
+#define func_801EC5B4_Struct3 func_801EC5B4_Struct3__func_801F26C0
+struct func_801EC5B4_Struct3 {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+};
+struct func_801EC5B4_Struct2 {
+    u8 pad0[0x2C];
+    struct func_801EC5B4_Struct3 *unk2C;
+};
+struct func_801EC5B4_Struct1 {
+    u8 pad0[0x24];
+    struct func_801EC5B4_Struct2 *unk24;
+};
+struct func_801EC5B4_Struct0 {
+    u8 pad0[8];
+    struct func_801EC5B4_Struct1 *unk8;
+};
+extern struct func_801EC5B4_Struct0 *D_801DAB14;
+
+
+extern f32 D_801FCF70;
+extern f32 D_801FCF74;
+extern f32 D_801FCF78;
+extern f32 D_801FCF7C;
+extern f32 D_801FCF80;
+extern f32 D_801FCF84;
+extern f32 D_801FCF88;
+extern f32 D_801FCF8C;
+extern f32 D_801FCF90;
+extern f32 D_801FCF94;
+extern f32 D_801FCF98;
+extern f32 D_801FCF9C;
+extern f32 D_801FCFA0;
+extern f32 D_801FCFA4;
+extern f32 D_801FCFA8;
+extern f32 D_801FCFAC;
+extern f32 D_801FCFB0;
+extern f32 D_801FCFB4;
+extern f32 D_801FCFB8;
+extern f32 D_801FCFBC;
+extern f32 D_801FCFC0;
+extern f32 D_801FCFC4;
+extern f32 D_801FCFC8;
+extern f32 D_801FCFCC;
+extern f32 D_801FCFD0;
+extern f32 D_801FCFD4;
+extern f32 D_801FCFD8;
+extern f32 D_801FCFDC;
+extern f32 D_801FCFE0;
+extern f32 D_801FCFE4;
+extern f32 D_801FCFE8;
+extern f32 D_801FCFEC;
+extern f32 D_801FCFF0;
+extern f32 D_801FCFF4;
+extern f32 D_801FCFF8;
+extern f32 D_801FCFFC;
+extern f32 D_801FD000;
+extern f32 D_801FD004;
+extern f32 D_801FD008;
+extern f32 D_801FD00C;
+extern f32 D_801FD010;
+extern f32 D_801FD014;
+extern f32 D_801FD018;
+extern f32 D_801FD01C;
+extern f32 D_801FD020;
+extern f32 D_801FD024;
+extern f32 D_801FD028;
+extern f32 D_801FD02C;
+extern f32 D_801FD030;
+extern f32 D_801FD034;
+extern f32 D_801FD038;
+
+struct func_801F26C0_StructLeaf {
+    u8 pad[4];
+    f32 x, y, z;
+    u8 pad10[2];
+    s16 angle;
+};
+struct func_801F26C0_StructNode {
+    u8 pad[8];
+    struct func_801F26C0_StructNode *next;
+    u8 padC[0x18];
+    struct func_801F26C0_StructNode *child;
+    u8 pad28[4];
+    struct func_801F26C0_StructLeaf *leaf;
+};
+#define ROOT26 (*(struct func_801F26C0_StructNode **)&D_801DAB14)
+
+s32 func_801F26C0(s32 arg0, s32 arg1) {
+    f32 shared0, shared1, shared2, shared3, case3a;
+    switch (D_801FB7F8) {
+    case 0:
+        case3a = D_801FCF70;
+        if (D_8038C17C(0.0f, D_801FCF74, -53.7f, -12.1f,
+            case3a, D_801FCF78, D_801FCF7C, D_801FCF80,
+            case3a, D_801FCF84, D_801FCF88, D_801FCF8C,
+            D_801FCF90, D_801FCF94, 13.5f, D_801FCF98)) {
+            D_8038C158();
+            D_801FB7F8 = 1;
+        }
+        break;
+    case 1:
+        if (D_8038C17C(0.0f, D_801FCF9C, -10.3f, 34.3f,
+            D_801FCFA0, D_801FCFA4, 7.0f, D_801FCFA8,
+            D_801FCFAC, D_801FCFB0, D_801FCFB4, D_801FCFB8,
+            13.0f, D_801FCFBC, 41.5f, 41.5f)) {
+            D_8038C158();
+            D_801FB7F8 = 2;
+        }
+        break;
+    case 2:
+        if (D_8038C17C(0.0f, D_801FCFC0, -7.7f, -3.3f,
+            D_801FCFC4, D_801FCFC8, D_801FCFCC, D_801FCFD0,
+            D_801FCFD4, 17.0f, D_801FCFD8, D_801FCFDC,
+            14.5f, -14.5f, 19.0f, 19.0f)) {
+            D_8038C158();
+            D_801FB7F8 = 3;
+        }
+        break;
+    case 3:
+        shared0 = D_801FCFE0;
+        case3a = D_801FCFE4;
+        if (D_8038C17C(0.0f, D_801FCFE8, 10.7f, 31.5f,
+            D_801FCFEC, D_801FCFF0, D_801FCFF4, 29.0f,
+            case3a, D_801FCFF8, -12.0f, D_801FCFFC,
+            D_801FD000, D_801FD004, shared0, shared0)) {
+            D_8038C158();
+            D_801FB7F8 = 4;
+        }
+        break;
+    case 4:
+        shared0 = D_801FD008;
+        shared1 = D_801FD00C;
+        shared2 = D_801FD010;
+        shared3 = D_801FD014;
+        if (D_8038C17C(0.0f, D_801FD018, 2.5f, 103.5f,
+            D_801FD01C, 1.0f, 30.5f, -1.5f,
+            shared0, shared1, shared2, shared0,
+            shared1, shared2, shared3, shared3)) {
+            D_801FB7F8 = 5;
+        }
+        break;
+    case 5:
+        if (func_801C0B8C(0x36746DF)) {
+            func_8038BE98(D_801FD020);
+            func_8038BD50(D_801FD024, D_801FD028, -5.7f);
+            D_8038BD88(D_801FD02C, D_801FD030, 6.8f);
+            ROOT26->next->child->leaf->x = -2.0f;
+            ROOT26->next->child->leaf->y = 0.0f;
+            ROOT26->next->child->leaf->z = D_801FD034;
+            ROOT26->next->child->leaf->angle = 0x999;
+            D_801CC470(0, 0x2A80018, 0, 0x1000, 3.0f);
+            ROOT26->next->next->child->leaf->x = 5120.0f;
+            ROOT26->next->next->child->leaf->y = 0.0f;
+            ROOT26->next->next->child->leaf->z = D_801FD038;
+            ROOT26->next->next->child->leaf->angle = 0x1800;
+            D_801CC470(1, 0x1900001, 0, 0x100, 1.0f);
+            return 14;
+        }
+        break;
+    }
+    return 13;
+}
+#undef ROOT26
+#undef D_801DAB14
+#undef D_801FCF70
+#undef D_801FCF74
+#undef D_801FCF78
+#undef D_801FCF7C
+#undef D_801FCF80
+#undef D_801FCF84
+#undef D_801FCF88
+#undef D_801FCF8C
+#undef D_801FCF90
+#undef D_801FCF94
+#undef D_801FCF98
+#undef D_801FCF9C
+#undef D_801FCFA0
+#undef D_801FCFA4
+#undef D_801FCFA8
+#undef D_801FCFAC
+#undef D_801FCFB0
+#undef D_801FCFB4
+#undef D_801FCFB8
+#undef D_801FCFBC
+#undef D_801FCFC0
+#undef D_801FCFC4
+#undef D_801FCFC8
+#undef D_801FCFCC
+#undef D_801FCFD0
+#undef D_801FCFD4
+#undef D_801FCFD8
+#undef D_801FCFDC
+#undef D_801FCFE0
+#undef D_801FCFE4
+#undef D_801FCFE8
+#undef D_801FCFEC
+#undef D_801FCFF0
+#undef D_801FCFF4
+#undef D_801FCFF8
+#undef D_801FCFFC
+#undef D_801FD000
+#undef D_801FD004
+#undef D_801FD008
+#undef D_801FD00C
+#undef D_801FD010
+#undef D_801FD014
+#undef D_801FD018
+#undef D_801FD01C
+#undef D_801FD020
+#undef D_801FD024
+#undef D_801FD028
+#undef D_801FD02C
+#undef D_801FD030
+#undef D_801FD034
+#undef D_801FD038
+#undef func_801EC5B4_Struct0
+#undef func_801EC5B4_Struct1
+#undef func_801EC5B4_Struct2
+#undef func_801EC5B4_Struct3
 
 
 s32 func_801F2C5C(s32 arg0, s32 arg1) {
@@ -11410,6 +11690,7 @@ s32 func_801FA1D4(s32 arg0, s32 arg1) {
 
 
 
+
 static const unsigned char rodata_801E1BE0_801FBCB0[] = {
     0x42, 0xD2, 0xCC, 0xCD, 0xC0, 0xC3, 0x33, 0x33, 0xC1, 0x63, 0x33, 0x33, 0xBB, 0x83, 0x12, 0x6F,
     0x3D, 0xB7, 0xA3, 0x28, 0x3F, 0x51, 0x68, 0x73, 0x3C, 0xF3, 0x07, 0x82, 0x3B, 0xA3, 0xD7, 0x0A,
@@ -11570,4 +11851,5 @@ static const unsigned char rodata_801E1BE0_801FC580[] = {
 /* hh-placed-function func_801E6C80 */
 /* hh-placed-function func_801E8044 */
 /* hh-placed-function func_801E8D6C */
-/* hh-rodata-layout [6000,[[0,0,752],[752,788,32],[784,848,8],[792,960,684],[1476,1716,476],[1952,2256,296],[2248,752,36],[2284,820,28],[2312,856,104],[2416,1644,72],[2488,2192,64],[2552,2552,3448]]] */
+/* hh-placed-function func_801F26C0 */
+/* hh-rodata-layout [6000,[[0,4800,204],[204,0,752],[956,788,32],[988,848,8],[996,960,684],[1680,1716,476],[2156,2256,296],[2452,752,36],[2488,820,28],[2516,856,104],[2620,1644,72],[2696,2192,64],[2760,2552,2248],[5008,5004,180],[5192,5184,816]]] */
