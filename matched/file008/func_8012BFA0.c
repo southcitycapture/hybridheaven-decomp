@@ -1,4 +1,14 @@
-#include "context.h"
+#include "common.h"
+extern u8 D_801BBBF0[];
+typedef struct func_8012A774_Vec {
+    u8 pad0[0x12];
+    s16 unk12;
+} func_8012A774_Vec;
+typedef struct func_8012A774_Obj {
+    u8 pad0[0x2C];
+    func_8012A774_Vec *unk2C;
+} func_8012A774_Obj;
+
 
 typedef struct func_8012BFA0_Struct {
     u8 pad0[0x24];
@@ -11,12 +21,11 @@ typedef struct func_8012BFA0_Struct {
     u8 pad48[0x10];
     s32 unk58;
 } func_8012BFA0_Struct;
-
-extern s32 func_8012B85C();
+extern s16 func_8012B85C();
 extern s32 D_8001EF38(f32, f32, void *);
 
 void func_8012BFA0(func_8012BFA0_Struct *arg0) {
-    s32 r;
+    s16 r;
     u32 v;
     s32 y;
     u16 a;
@@ -30,8 +39,8 @@ void func_8012BFA0(func_8012BFA0_Struct *arg0) {
         arg0->unk30 &= ~4;
         arg0->unk30 &= ~0xD8;
         r = func_8012B85C();
+        v = r;
         arg0->unk58 = *(s32 *)(D_801BBBF0 + 0xD2C);
-        v = r * 1;
         if (r != 0) {
             if (v & 0x21F) {
                 arg0->unk30 |= 4;

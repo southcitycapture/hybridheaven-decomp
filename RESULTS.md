@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-20: **90.94% of the code** (15663 of 15935 functions, including duplicates).
+Progress as of 2026-11-20: **90.95% of the code** (15664 of 15935 functions, including duplicates).
 
-**25150 model runs, $7757.38 API-equivalent in total** (local and cloud). Of the **15521 functions now in C**, **7394 were matched by AI workers** (≈ $1.049 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 281 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25173 model runs, $7757.38 API-equivalent in total** (local and cloud). Of the **15522 functions now in C**, **7395 were matched by AI workers** (≈ $1.049 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 281 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -605,7 +605,6 @@ Progress as of 2026-11-20: **90.94% of the code** (15663 of 15935 functions, inc
 | `fableM0` | fableM0 | saved attempt (Fable wall study: in-file match today) | 2 | 2 | 100% | $0.00 | – |  |
 | `unify_loop0363` | unify_loop0363 | unify (no model) | 15 | 0 | 0% | $0.00 | – |  |
 | `opus_stubs` | opus_stubs | saved-attempt | 22 | 22 | 100% | $0.00 | – |  |
-| `terraHonest4` | terraHonest4 | openai/gpt-6.1-terra | 1 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0364` | unify_loop0364 | unify (no model) | 18 | 0 | 0% | $0.00 | – |  |
 | `opus_ro2` | opus_ro2 | saved-attempt | 8 | 8 | 100% | $0.00 | – |  |
 | `giantA1` | giantA1 | openai/gpt-6.2-astra | 2 | 0 | 0% | $0.00 | – |  |
@@ -613,7 +612,13 @@ Progress as of 2026-11-20: **90.94% of the code** (15663 of 15935 functions, inc
 | `giantA3` | giantA3 | openai/gpt-6.2-astra | 1 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0365` | unify_loop0365 | unify (no model) | 11 | 3 | 27% | $0.00 | – |  |
 | `unify_loop0366` | unify_loop0366 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
-| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 52 | 6 | 12% | $0.00 | – |  |
 | `unify_loop0367` | unify_loop0367 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0368` | unify_loop0368 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0369` | unify_loop0369 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0370` | unify_loop0370 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0371` | unify_loop0371 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0372` | unify_loop0372 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 58 | 7 | 12% | $0.00 | – |  |
+| `terraHonest4` | terraHonest4 | openai/gpt-6.1-terra | 18 | 5 | 28% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

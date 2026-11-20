@@ -917,8 +917,35 @@ typedef struct func_8012BFA0_Struct {
 extern s32 func_8012B85C();
 extern s32 D_8001EF38(f32, f32, void *);
 
+#define func_8012A774_Obj func_8012A774_Obj__func_8012BFA0
+#define func_8012A774_Vec func_8012A774_Vec__func_8012BFA0
+#define func_8012B85C func_8012B85C__func_8012BFA0
+#define func_8012BFA0_Struct func_8012BFA0_Struct__func_8012BFA0
+typedef struct func_8012A774_Vec {
+    u8 pad0[0x12];
+    s16 unk12;
+} func_8012A774_Vec;
+typedef struct func_8012A774_Obj {
+    u8 pad0[0x2C];
+    func_8012A774_Vec *unk2C;
+} func_8012A774_Obj;
+
+
+typedef struct func_8012BFA0_Struct {
+    u8 pad0[0x24];
+    func_8012A774_Obj *unk24;
+    u8 pad28[4];
+    s32 unk2C;
+    s32 unk30;
+    u8 pad34[0x10];
+    f32 unk44;
+    u8 pad48[0x10];
+    s32 unk58;
+} func_8012BFA0_Struct;
+extern s16 func_8012B85C();
+
 void func_8012BFA0(func_8012BFA0_Struct *arg0) {
-    s32 r;
+    s16 r;
     u32 v;
     s32 y;
     u16 a;
@@ -932,8 +959,8 @@ void func_8012BFA0(func_8012BFA0_Struct *arg0) {
         arg0->unk30 &= ~4;
         arg0->unk30 &= ~0xD8;
         r = func_8012B85C();
+        v = r;
         arg0->unk58 = *(s32 *)(D_801BBBF0 + 0xD2C);
-        v = r * 1;
         if (r != 0) {
             if (v & 0x21F) {
                 arg0->unk30 |= 4;
@@ -960,6 +987,10 @@ void func_8012BFA0(func_8012BFA0_Struct *arg0) {
         }
     }
 }
+#undef func_8012A774_Obj
+#undef func_8012A774_Vec
+#undef func_8012B85C
+#undef func_8012BFA0_Struct
 
 
 s32 func_8010843C(f32, f32, s32, s32, f32, f32);
