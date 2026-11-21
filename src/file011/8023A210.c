@@ -126,14 +126,31 @@ extern s8 D_8023A398(void *, s32);
 #define func_8023A398 func_8023A398__merge_frozen
 
 
-s32 func_8023A3C4(s32 arg0) {
+#define D_80240880 D_80240880__func_8023A3C4
+#define func_8023A2BC_Struct func_8023A2BC_Struct__func_8023A3C4
+struct func_8023A2BC_Struct {
+    u8 pad0[0x10];
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    s16 unk16;
+    u8 unk18;
+    u8 unk19;
+    u8 unk1A;
+    u8 pad1B[0x6A - 0x1B];
+    u8 unk6A;
+    u8 unk6B;
+};
+extern struct func_8023A2BC_Struct D_80240880;
+
+
+s32 func_8023A3C4(u8 arg0) {
     s32 i;
     s32 n;
 
-    arg0 = *(u32 *)&arg0 & 0xFF;
     n = ((u8 *)&D_80240880)[0x23];
     for (i = 0; i < n; i = (i + 1) & 0xFF) {
-        if (arg0 * 1 == ((u8 *)&D_80240880)[0x51 + i]) {
+        if (arg0 == ((u8 *)&D_80240880)[0x51 + i]) {
             break;
         }
     }
@@ -142,6 +159,8 @@ s32 func_8023A3C4(s32 arg0) {
     }
     return i;
 }
+#undef D_80240880
+#undef func_8023A2BC_Struct
 
 
 extern s32 func_802333FC(s32, u8);

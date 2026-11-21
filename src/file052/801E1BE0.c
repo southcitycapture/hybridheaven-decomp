@@ -179,6 +179,94 @@ extern struct func_801E2B54_Struct_A *D_8038D8D0;
 #define SCALE(i) DATA(i)->unk18 = 1.0f; DATA(i)->unk1C = 1.0f; DATA(i)->unk20 = 1.0f
 #define COLOR(i,r,g,b,a) DATA(i)->unk48 = r; DATA(i)->unk49 = g; DATA(i)->unk4A = b; DATA(i)->unk4B = a
 
+#undef COLOR
+#undef DATA
+#undef HANDLE
+#undef NODE
+#undef POS
+#undef SCALE
+#define D_801D96C8 D_801D96C8__func_801E2054
+#define D_801D9768 D_801D9768__func_801E2054
+#define D_801D9908 D_801D9908__func_801E2054
+#define D_801DA058 D_801DA058__func_801E2054
+#define D_801DA0B8 D_801DA0B8__func_801E2054
+#define D_801E5738 D_801E5738__func_801E2054
+#define D_801E5748 D_801E5748__func_801E2054
+#define D_801E5758 D_801E5758__func_801E2054
+#define D_801E5768 D_801E5768__func_801E2054
+#define D_801E5778 D_801E5778__func_801E2054
+#define D_801E5788 D_801E5788__func_801E2054
+#define D_801E5798 D_801E5798__func_801E2054
+#define D_801E57A8 D_801E57A8__func_801E2054
+#define D_8038D8D0 D_8038D8D0__func_801E2054
+#define func_801E2054_StructData func_801E2054_StructData__func_801E2054
+#define func_801E2054_StructInit func_801E2054_StructInit__func_801E2054
+#define func_801E2054_StructNode func_801E2054_StructNode__func_801E2054
+#define func_801E2054_StructRoot func_801E2054_StructRoot__func_801E2054
+#define func_801E2B54_Struct_A func_801E2B54_Struct_A__func_801E2054
+#define func_801E2B54_Struct_B func_801E2B54_Struct_B__func_801E2054
+#define func_801E2B54_Struct_C func_801E2B54_Struct_C__func_801E2054
+#define NODE(i) (((func_801E2054_StructRoot *)D_8038D8D0)->nodes[i])
+#define DATA(i) (NODE(i)->unk30)
+#define COLOR(i,r,g,b,a) DATA(i)->unk48 = r; DATA(i)->unk49 = g; DATA(i)->unk4A = b; DATA(i)->unk4B = a
+#define HANDLE D_8038D8CC
+#define POS(i,z) DATA(i)->unk4 = 0.0f; DATA(i)->unk8 = 0.0f; DATA(i)->unkC = z; DATA(i)->unk12 = 0
+#define SCALE(i) DATA(i)->unk18 = 1.0f; DATA(i)->unk1C = 1.0f; DATA(i)->unk20 = 1.0f
+struct func_801E2B54_Struct_C {
+    u8 pad[0x18];
+    f32 unk18;
+    f32 unk1C;
+};
+struct func_801E2B54_Struct_B {
+    u8 pad[0x22];
+    u8 unk22;
+    u8 pad2[0xD];
+    struct func_801E2B54_Struct_C *unk30;
+};
+struct func_801E2B54_Struct_A {
+    u8 pad[0x24];
+    struct func_801E2B54_Struct_B *unk24;
+};
+
+
+typedef struct func_801E2054_StructInit { s32 w[4]; } func_801E2054_StructInit;
+typedef struct func_801E2054_StructData {
+    s16 unk0; u8 pad2[2];
+    f32 unk4, unk8, unkC;
+    s16 unk10, unk12, unk14; u8 pad16[2];
+    f32 unk18, unk1C, unk20;
+    s32 unk24; void *unk28; s16 unk2C; u8 pad2E[2];
+    s32 unk30; u8 pad34[0x14];
+    u8 unk48, unk49, unk4A, unk4B, unk4C, unk4D, unk4E, unk4F;
+} func_801E2054_StructData;
+typedef struct func_801E2054_StructNode {
+    u8 pad[0x22]; u8 unk22; u8 pad23[0xD];
+    func_801E2054_StructData *unk30;
+} func_801E2054_StructNode;
+typedef struct func_801E2054_StructRoot {
+    func_801E2054_StructNode *nodes[10];
+} func_801E2054_StructRoot;
+extern u8 D_801D96C8[];
+extern u8 D_801D9768[];
+extern u8 D_801D9908[];
+extern u8 D_801DA058[];
+extern u8 D_801DA0B8[];
+extern func_801E2054_StructInit D_801E5738;
+extern func_801E2054_StructInit D_801E5748;
+extern func_801E2054_StructInit D_801E5758;
+extern func_801E2054_StructInit D_801E5768;
+extern func_801E2054_StructInit D_801E5778;
+extern func_801E2054_StructInit D_801E5788;
+extern func_801E2054_StructInit D_801E5798;
+extern func_801E2054_StructInit D_801E57A8;
+extern struct func_801E2B54_Struct_A *D_8038D8D0;
+#define HANDLE D_8038D8CC
+#define NODE(i) (((func_801E2054_StructRoot *)D_8038D8D0)->nodes[i])
+#define DATA(i) (NODE(i)->unk30)
+#define POS(i,z) DATA(i)->unk4 = 0.0f; DATA(i)->unk8 = 0.0f; DATA(i)->unkC = z; DATA(i)->unk12 = 0
+#define SCALE(i) DATA(i)->unk18 = 1.0f; DATA(i)->unk1C = 1.0f; DATA(i)->unk20 = 1.0f
+#define COLOR(i,r,g,b,a) DATA(i)->unk48 = r; DATA(i)->unk49 = g; DATA(i)->unk4A = b; DATA(i)->unk4B = a
+
 s32 func_801E2054(s32 arg0, s32 arg1) {
     func_801E2054_StructInit sp98 = D_801E5738;
     func_801E2054_StructInit sp88 = D_801E5748;
@@ -188,7 +276,8 @@ s32 func_801E2054(s32 arg0, s32 arg1) {
     func_801E2054_StructInit sp48 = D_801E5788;
     func_801E2054_StructInit sp38 = D_801E5798;
     func_801E2054_StructInit sp28 = D_801E57A8;
-    u8 pad[8];
+    s32 mode = arg0;
+    s32 flag = arg1;
     func_80005E44(HANDLE, &sp88);
     func_80005E44(HANDLE, &sp88);
     func_80005E44(HANDLE, &sp88);
@@ -257,6 +346,39 @@ s32 func_801E2054(s32 arg0, s32 arg1) {
     NODE(9)->unk22 = 0;
     return 2;
 }
+#undef NODE
+#undef DATA
+#undef COLOR
+#undef HANDLE
+#undef POS
+#undef SCALE
+#undef D_801D96C8
+#undef D_801D9768
+#undef D_801D9908
+#undef D_801DA058
+#undef D_801DA0B8
+#undef D_801E5738
+#undef D_801E5748
+#undef D_801E5758
+#undef D_801E5768
+#undef D_801E5778
+#undef D_801E5788
+#undef D_801E5798
+#undef D_801E57A8
+#undef D_8038D8D0
+#undef func_801E2054_StructData
+#undef func_801E2054_StructInit
+#undef func_801E2054_StructNode
+#undef func_801E2054_StructRoot
+#undef func_801E2B54_Struct_A
+#undef func_801E2B54_Struct_B
+#undef func_801E2B54_Struct_C
+#define COLOR(i,r,g,b,a) DATA(i)->unk48 = r; DATA(i)->unk49 = g; DATA(i)->unk4A = b; DATA(i)->unk4B = a
+#define DATA(i) (NODE(i)->unk30)
+#define HANDLE D_8038D8CC
+#define NODE(i) (((func_801E2054_StructRoot *)D_8038D8D0)->nodes[i])
+#define POS(i,z) DATA(i)->unk4 = 0.0f; DATA(i)->unk8 = 0.0f; DATA(i)->unkC = z; DATA(i)->unk12 = 0
+#define SCALE(i) DATA(i)->unk18 = 1.0f; DATA(i)->unk1C = 1.0f; DATA(i)->unk20 = 1.0f
 
 
 extern s32 D_801E57B8;

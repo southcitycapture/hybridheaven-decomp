@@ -1,3 +1,17 @@
+#include "common.h"
+extern u16 D_80010068(u16, void *, u16, void *, void *, void *, u16 *, u16 *);
+extern u8 D_800631F0[];
+typedef struct func_800101D8_Ent {
+    s16 a, b, c, pad;
+    f32 x, y, z;
+} func_800101D8_Ent;
+extern func_800101D8_Ent D_80063670[];
+extern func_800101D8_Ent D_80063A30[];
+extern u16 D_80063DF0[];
+typedef struct func_80010454_StructVec {
+    s32 x, y, z;
+} func_80010454_StructVec;
+extern func_80010454_StructVec D_801BC028;
 #define func_80010D08 D_80010D08
 #include "ctx_probe.h"
 #undef func_80010D08
@@ -45,17 +59,17 @@ u16 func_80010D08(func_80010D08_Obj **arg0, func_80010D08_StructArg1 *arg1,
     u16 sp74;
     u16 m;
     u16 m0;
-    s32 n;
+    u16 j;
 
     r = 0;
     bits = arg6;
     m0 = D_8000FE48(arg0, arg1->unkC, D_800631F0, D_80063DF0);
-    i = 0;
+    j = 0;
     if (m0 > 0) {
         do {
-            D_80010068(i, arg0, arg1->unkC, D_80063DF0, D_800631F0, D_80063670, &sp76, &sp74);
-            i++;
-        } while (i < m0);
+            D_80010068(j, arg0, arg1->unkC, D_80063DF0, D_800631F0, D_80063670, &sp76, &sp74);
+            j++;
+        } while (j < m0);
     }
     D_8000FF80(arg0, arg1->unkC, D_80063430, D_80063E50, arg2);
     m = D_80010068(0, arg0, arg1->unkC, D_80063E50, D_80063430, D_80063A30, &sp76, &sp74);

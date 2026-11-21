@@ -223,6 +223,128 @@ extern void func_80228FD0(void *, void *, s32);
 extern s32 func_802291FC(void *, void *, void *, s32);
 extern void func_802292D0(void *, void *);
 
+#undef D_801BBBF0
+#undef D_801BBC8C
+#undef D_801BBCAC
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef GLOBAL
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_80228C20
+#undef func_80228D90
+#undef func_80228FD0
+#undef func_802291FC
+#undef func_802292D0
+#undef func_8038CFF4_StructArg
+#undef func_8038CFF4_StructGlobal
+#undef func_8038CFF4_StructInner
+#undef func_8038CFF4_StructOut
+#undef func_8038CFF4_StructState
+#undef func_8038D660_StructG
+#define D_801BBBF0 D_801BBBF0__func_8038CFF4_0ad0f531
+#define D_801BBC8C D_801BBC8C__func_8038CFF4_0ad0f531
+#define D_801BBCAC D_801BBCAC__func_8038CFF4_0ad0f531
+#define D_801BC03C D_801BC03C__func_8038CFF4_0ad0f531
+#define D_801BC3D8 D_801BC3D8__func_8038CFF4_0ad0f531
+#define func_8001EAD0 func_8001EAD0__func_8038CFF4_0ad0f531
+#define func_8001EB64 func_8001EB64__func_8038CFF4_0ad0f531
+#define func_80228C20 func_80228C20__func_8038CFF4_0ad0f531
+#define func_80228D90 func_80228D90__func_8038CFF4_0ad0f531
+#define func_80228FD0 func_80228FD0__func_8038CFF4_0ad0f531
+#define func_802291FC func_802291FC__func_8038CFF4_0ad0f531
+#define func_802292D0 func_802292D0__func_8038CFF4_0ad0f531
+#define func_8038CFF4_StructArg func_8038CFF4_StructArg__func_8038CFF4_0ad0f531
+#define func_8038CFF4_StructGlobal func_8038CFF4_StructGlobal__func_8038CFF4_0ad0f531
+#define func_8038CFF4_StructInner func_8038CFF4_StructInner__func_8038CFF4_0ad0f531
+#define func_8038CFF4_StructOut func_8038CFF4_StructOut__func_8038CFF4_0ad0f531
+#define func_8038CFF4_StructState func_8038CFF4_StructState__func_8038CFF4_0ad0f531
+#define func_8038D660_StructG func_8038D660_StructG__func_8038CFF4_0ad0f531
+struct func_8038D660_StructG { u8 pad[0xDC]; s32 unkDC; u8 pad2[0x1031-0xE0]; u8 unk1031; };
+
+extern struct func_8038D660_StructG D_801BBBF0;
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+
+
+struct func_8038CFF4_StructInner {
+    u8 pad[0xC];
+    s32 unkC;
+};
+
+struct func_8038CFF4_StructArg {
+    u8 pad0[0xC];
+    struct func_8038CFF4_StructInner *unkC;
+    u8 pad1[0x91 - 0x10];
+    u8 unk91;
+    u8 unk92;
+    u8 pad2[0x95 - 0x93];
+    u8 unk95;
+    u8 pad3[0x9C - 0x96];
+    u32 unk9C;
+};
+
+struct func_8038CFF4_StructGlobal {
+    u8 pad0[0xDC];
+    s32 unkDC;
+    u8 pad1[0x232 - 0xE0];
+    s16 unk232;
+    u8 pad2[0xB90 - 0x234];
+    f32 unkB90;
+    u8 pad3[0x1031 - 0xB94];
+    u8 unk1031;
+};
+
+struct func_8038CFF4_StructState {
+    u8 pad0[6];
+    s16 unk6;
+    u8 pad1[0x30 - 8];
+    union {
+        u32 word;
+        struct {
+            u16 half;
+            u8 byte;
+            u8 last;
+        } parts;
+        struct {
+            u32 pad0:3;
+            u32 type:4;
+            u32 pad1:2;
+            u32 motion:2;
+            u32 pad2:21;
+        } flags;
+    } unk30;
+    u8 pad2[4];
+    struct {
+        u32 unused:1;
+        u32 bits:2;
+        u32 rest:29;
+    } unk38;
+    u8 pad3[0x2D1 - 0x3C];
+    u8 unk2D1;
+    u8 pad4[0x388 - 0x2D2];
+    u8 unk388;
+};
+
+struct func_8038CFF4_StructOut {
+    u8 pad[4];
+    u16 unk4;
+    s16 unk6;
+    s16 unk8;
+};
+
+#define GLOBAL (*(struct func_8038CFF4_StructGlobal *)&D_801BBBF0)
+
+extern u8 D_801BBC8C[];
+extern u8 D_801BBCAC[];
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern s32 func_80228C20(void *);
+extern u32 func_80228D90(void *);
+extern void func_80228FD0(void *, void *, s32);
+extern s32 func_802291FC(void *, void *, void *, s32);
+extern void func_802292D0(void *, void *);
+
 void func_8038CFF4(struct func_8038CFF4_StructArg *arg0, s32 arg1) {
     s16 sp36;
     s16 pad34;
@@ -235,7 +357,6 @@ void func_8038CFF4(struct func_8038CFF4_StructArg *arg0, s32 arg1) {
     s16 temp_v0_6;
     s32 temp_v1_2;
     s16 temp_v1_3;
-    s32 temp_v0;
     s32 temp_v0_3;
     s32 temp_v1;
     u32 var_v0;
@@ -360,6 +481,44 @@ void func_8038CFF4(struct func_8038CFF4_StructArg *arg0, s32 arg1) {
         }
     }
 }
+#undef GLOBAL
+#undef D_801BBBF0
+#undef D_801BBC8C
+#undef D_801BBCAC
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_80228C20
+#undef func_80228D90
+#undef func_80228FD0
+#undef func_802291FC
+#undef func_802292D0
+#undef func_8038CFF4_StructArg
+#undef func_8038CFF4_StructGlobal
+#undef func_8038CFF4_StructInner
+#undef func_8038CFF4_StructOut
+#undef func_8038CFF4_StructState
+#undef func_8038D660_StructG
+#define D_801BBBF0 D_801BBBF0__func_8038CFF4_7ecf9f40
+#define D_801BBC8C D_801BBC8C__func_8038CFF4_7ecf9f40
+#define D_801BBCAC D_801BBCAC__func_8038CFF4_7ecf9f40
+#define D_801BC03C D_801BC03C__func_8038CFF4_7ecf9f40
+#define D_801BC3D8 D_801BC3D8__func_8038CFF4_7ecf9f40
+#define GLOBAL (*(struct func_8038CFF4_StructGlobal *)&D_801BBBF0)
+#define func_8001EAD0 func_8001EAD0__func_8038CFF4_7ecf9f40
+#define func_8001EB64 func_8001EB64__func_8038CFF4_7ecf9f40
+#define func_80228C20 func_80228C20__func_8038CFF4_7ecf9f40
+#define func_80228D90 func_80228D90__func_8038CFF4_7ecf9f40
+#define func_80228FD0 func_80228FD0__func_8038CFF4_7ecf9f40
+#define func_802291FC func_802291FC__func_8038CFF4_7ecf9f40
+#define func_802292D0 func_802292D0__func_8038CFF4_7ecf9f40
+#define func_8038CFF4_StructArg func_8038CFF4_StructArg__func_8038CFF4_7ecf9f40
+#define func_8038CFF4_StructGlobal func_8038CFF4_StructGlobal__func_8038CFF4_7ecf9f40
+#define func_8038CFF4_StructInner func_8038CFF4_StructInner__func_8038CFF4_7ecf9f40
+#define func_8038CFF4_StructOut func_8038CFF4_StructOut__func_8038CFF4_7ecf9f40
+#define func_8038CFF4_StructState func_8038CFF4_StructState__func_8038CFF4_7ecf9f40
+#define func_8038D660_StructG func_8038D660_StructG__func_8038CFF4_7ecf9f40
 #undef GLOBAL
 #undef D_801BBBF0
 #undef D_801BBC8C

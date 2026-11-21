@@ -143,17 +143,89 @@ extern s16 D_80388A70;
 #define SINP func_8001EAD0(P->unk12)
 #define COSP func_8001EB64(P->unk12)
 
+#undef COSP
+#undef G
+#undef P
+#undef SINP
+#undef func_8037BBF0
+#undef func_8037C8F8
+#define D_801BBBF0 D_801BBBF0__func_8037BE10_39da8f43
+#define D_80216B90 D_80216B90__func_8037BE10_39da8f43
+#define func_80011140 func_80011140__func_8037BE10_39da8f43
+#define func_8037BBF0 func_8037BBF0__func_8037BE10_39da8f43
+#define func_8037BE10_StructAnim func_8037BE10_StructAnim__func_8037BE10_39da8f43
+#define func_8037BE10_StructGlob func_8037BE10_StructGlob__func_8037BE10_39da8f43
+#define func_8037BE10_StructInput func_8037BE10_StructInput__func_8037BE10_39da8f43
+#define func_8037BE10_StructObj func_8037BE10_StructObj__func_8037BE10_39da8f43
+#define func_8037C8F8 func_8037C8F8__func_8037BE10_39da8f43
+#define func_8037C8F8_StructArg func_8037C8F8_StructArg__func_8037BE10_39da8f43
+#define func_8037D1DC_E0 func_8037D1DC_E0__func_8037BE10_39da8f43
+#define func_8037D1DC_E0S func_8037D1DC_E0S__func_8037BE10_39da8f43
+#define G ((func_8037BE10_StructGlob *)&D_801BBBF0)
+#define P (G->obj->unk2C)
+#define COSP func_8001EB64(P->unk12)
+#define SINP func_8001EAD0(P->unk12)
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_8037C8F8_StructArg;
+extern func_8037C8F8_StructArg D_80216B90;
+extern void func_80011140(s32, void *, func_8037C8F8_StructArg, s32);
+s32 func_8037BBF0(f32 arg0, f32 arg1, u8 arg2);
+void func_8037C8F8(void *arg0, s32 arg1, void *arg2, s32 arg3);
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_8037D1DC_E0S;
+typedef struct {
+    u8 pad0[0x2C];
+    func_8037D1DC_E0S *unk2C;
+} func_8037D1DC_E0;
+
+
+typedef struct func_8037BE10_StructInput {
+    u8 pad[6]; s16 x; s16 y;
+} func_8037BE10_StructInput;
+typedef struct func_8037BE10_StructAnim {
+    u8 pad[0x18]; s16 timer; u8 pad1[2]; s32 id;
+} func_8037BE10_StructAnim;
+typedef struct func_8037BE10_StructObj {
+    u8 pad[0x2C]; u32 flags; u8 pad30[0x10];
+    f32 vx, vy, vz; u8 pad4C[8]; s32 state; u8 pad58[4];
+    func_8037BE10_StructAnim *anim; u8 pad60[8];
+    func_8037BE10_StructInput *input;
+} func_8037BE10_StructObj;
+typedef struct func_8037BE10_StructGlob {
+    u8 pad[0xE0]; func_8037D1DC_E0 *obj;
+    u8 padE4[0x230-0xE4]; u8 flag; u8 pad231; s16 angle;
+    u8 pad234[0x35A-0x234]; u8 type;
+    u8 pad35B[0xEE4-0x35B]; f32 x,y,z; u16 flags;
+    u8 padEF2[3]; u8 mode; u8 padEF6[2]; s32 active; s32 state;
+} func_8037BE10_StructGlob;
+extern func_8037BE10_StructGlob D_801BBBF0;
+
+#define G (&D_801BBBF0)
+#define P (G->obj->unk2C)
+#define SINP func_8001EAD0(P->unk12)
+#define COSP func_8001EB64(P->unk12)
+
 void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
 {
     func_8037BE10_StructAnim *anim;
     func_8037BE10_StructInput *input;
     u8 action;
     f32 x, y;
-    u8 unused[4];
+    f32 dist;
     s16 angle;
-    s16 unusedAngle;
+    s16 dir;
     s16 relative;
-    f32 pad6C;
+    s16 facing;
+    f32 gx;
     f32 pos[3];
 
     anim = arg0->anim;
@@ -162,7 +234,8 @@ void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
     angle = (s16)(0x2800 - G->angle) & 0x1FFF;
     x = -input->x / 20.0;
     y = input->y / 20.0;
-    relative = (s16)(func_8001EF38(x, y) + angle) - P->unk12;
+    dir = func_8001EF38(x, y);
+    relative = (s16)(dir + angle) - P->unk12;
     relative &= 0x1FFF;
     G->flag = 0;
     if (G->active == 0) {
@@ -181,9 +254,11 @@ void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
                 SINP * 10.0 + P->unk4, P->unk8 + 16.5, COSP * 10.0 + P->unkC)) {
             if (G->mode == 10 || G->mode == 11) {
                 pos[2] = G->z;
-                pos[0] = G->x;
+                gx = G->x;
+                pos[0] = gx;
                 pos[1] = G->y;
-                D_8038A94C = (s16)(func_8001EF38(-pos[2], pos[0]) + 0x1800) & 0x1FFF;
+                facing = func_8001EF38(-pos[2], gx);
+                D_8038A94C = (s16)(facing + 0x1800) & 0x1FFF;
                 D_8038A944 = P->unk8;
                 func_8037BBF0(P->unk4, P->unkC, (u8)(G->mode - 10));
                 func_801F11C0(D_8038A940, D_8038A944, D_8038A948, 3.0f, D_8038A94C);
@@ -320,7 +395,8 @@ void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
                 return;
             }
             if (action != 3) {
-                if (x * x + y * y > 1.0) {
+                dist = x * x + y * y;
+                if (dist > 1.0) {
                     if (relative >= 0x400 && relative < 0xC00) {
                         action = 0;
                     } else if (relative >= 0xC00 && relative < 0x1400) {
@@ -337,6 +413,28 @@ void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
         break;
     }
 }
+#undef G
+#undef P
+#undef COSP
+#undef SINP
+#undef D_801BBBF0
+#undef D_80216B90
+#undef func_80011140
+#undef func_8037BBF0
+#undef func_8037BE10_StructAnim
+#undef func_8037BE10_StructGlob
+#undef func_8037BE10_StructInput
+#undef func_8037BE10_StructObj
+#undef func_8037C8F8
+#undef func_8037C8F8_StructArg
+#undef func_8037D1DC_E0
+#undef func_8037D1DC_E0S
+#define COSP func_8001EB64(P->unk12)
+#define G ((func_8037BE10_StructGlob *)&D_801BBBF0)
+#define P (G->obj->unk2C)
+#define SINP func_8001EAD0(P->unk12)
+#define func_8037BBF0 func_8037BBF0__func_8037BE10
+#define func_8037C8F8 func_8037C8F8__func_8037BE10
 #undef func_8037BBF0
 #undef func_8037C8F8
 
@@ -647,6 +745,7 @@ void func_8037CFE8(s32 arg0, s32 arg1) {
 #undef func_8037D1DC_E8S
 #undef func_8037D1DC_Glob
 
+/* hh-block asm/nonmatchings/file056/8037BBF0/_ro_func_8037D0F8.s {"functions":[],"rodata":[[".rodata","asm/nonmatchings/file056/8037BBF0/func_8037D0F8.s","D_80389854"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file056/8037BBF0/_ro_func_8037D0F8.s")
 
 #define func_8037D1DC func_8037D1DC__func_8037D0F8

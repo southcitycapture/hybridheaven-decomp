@@ -11,7 +11,6 @@ extern struct func_803822F0_StructGlobal *D_8017257C;
 extern u8 D_80389BB4[];
 extern void func_80146088(void *, void *, s8 *);
 
-
 extern u8 D_80172578[];
 
 struct func_803821B0_StructLocal {
@@ -24,12 +23,11 @@ struct func_803821B0_StructLocal {
     s32 image;
     u8 pad20[8];
     s16 w2, h2, x2, y2, w3, h3;
+    u8 pad50[8];
 };
-
 
 void func_803821B0(void *arg0, s16 arg1, s16 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6, s8 *arg7)
 {
-    s32 pad[2];
     struct func_803821B0_StructLocal l;
 
     l.x = arg1;

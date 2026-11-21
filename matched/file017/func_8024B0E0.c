@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 typedef struct func_8024B0E0_Struct {
     u8 pad[0x3C];
     u16 unk3C;
@@ -16,8 +17,7 @@ extern void func_8024B2A4();
 void func_8024B0E0(func_8024B0E0_Struct *arg0) {
     f32 sp4C;
     f32 sp48;
-    u8 pad[12];
-    s32 sp38;
+    s32 sp38[4];
     f32 sp34;
     s32 sp30;
     s32 t;
@@ -41,8 +41,8 @@ void func_8024B0E0(func_8024B0E0_Struct *arg0) {
         t = (s32)sp4C;
         sp30 = (s16)t;
         sp34 = func_8001EAD0((s16)t);
-        sp38 = D_8012C6B4(0x64);
-        func_80380F94((f32)((f64)(sp34 * sp48) + -128.0), (f32)(((f64)(f32)sp38 / 10.0) + 10.0f), (f32)((f64)(func_8001EB64(*(s16 *)((u8 *)&sp30 + 2)) * sp48) + D_8025CFE0), 0.0f, 0.0f, 0.0f, 9);
+        sp38[0] = D_8012C6B4(0x64);
+        func_80380F94((f32)((f64)(sp34 * sp48) + -128.0), (f32)(((f64)(f32)sp38[0] / 10.0) + 10.0f), (f32)((f64)(func_8001EB64(*(s16 *)((u8 *)&sp30 + 2)) * sp48) + D_8025CFE0), 0.0f, 0.0f, 0.0f, 9);
     }
     if (s >= 0x28) {
         arg0->unk3C = 0;

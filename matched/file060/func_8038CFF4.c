@@ -1,5 +1,6 @@
 #include "common.h"
 struct func_8038D660_StructG { u8 pad[0xDC]; s32 unkDC; u8 pad2[0x1031-0xE0]; u8 unk1031; };
+
 extern struct func_8038D660_StructG D_801BBBF0;
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
@@ -95,7 +96,6 @@ void func_8038CFF4(struct func_8038CFF4_StructArg *arg0, s32 arg1) {
     s16 temp_v0_6;
     s32 temp_v1_2;
     s16 temp_v1_3;
-    s32 temp_v0;
     s32 temp_v0_3;
     s32 temp_v1;
     u32 var_v0;

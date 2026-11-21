@@ -1137,13 +1137,53 @@ extern u8 D_802590AC[];
 
 extern s32 D_8011AAF4(void *, s32, void *, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
 
+#undef GG
+#undef func_8024A3B4
+#define D_801BBBF0 D_801BBBF0__func_8024A224_a15ad61a
+#define func_8024A120_G func_8024A120_G__func_8024A224_a15ad61a
+#define func_8024A120_Obj func_8024A120_Obj__func_8024A224_a15ad61a
+#define func_8024A3B4 func_8024A3B4__func_8024A224_a15ad61a
+#define func_8024A434_StructBBF0 func_8024A434_StructBBF0__func_8024A224_a15ad61a
+#define func_8024A434_Sub func_8024A434_Sub__func_8024A224_a15ad61a
+#define GG ((func_8024A120_G *)&D_801BBBF0)
+struct func_8024A434_Sub {
+    u8 pad[0x40];
+    f32 unk40;
+    u8 pad2[4];
+    f32 unk48;
+};
+struct func_8024A434_StructBBF0 {
+    u8 pad[0xDC];
+    struct func_8024A434_Sub *unkDC;
+};
+extern struct func_8024A434_StructBBF0 D_801BBBF0;
+typedef struct func_8024A120_G {
+    u8 pad[0x1E8];
+    f32 unk1E8;
+    f32 unk1EC;
+    f32 unk1F0;
+    f32 unk1F4;
+    f32 unk1F8;
+    f32 unk1FC;
+} func_8024A120_G;
+#define GG ((func_8024A120_G *)&D_801BBBF0)
+typedef struct func_8024A120_Obj {
+    u8 pad[0x5C];
+    s32 unk5C;
+    u8 pad2[0x3C];
+    u16 unk9C;
+} func_8024A120_Obj;
+void func_8024A3B4(s32 arg0, s32 arg1);
+
+
 void func_8024A224(func_8024A120_Obj *arg0, s32 arg1) {
-    s32 pad;
+    s32 res;
     s32 sp58;
     s32 t = arg0->unk5C;
     if (arg0->unk9C++ >= 0xA) {
         sp58 = func_80010550(arg1, t);
-        if (D_8011AAF4(D_802590AC, 0x3E0, arg0, 0, 2, 1.10300004f, GG->unk1E8, GG->unk1EC, GG->unk1F0, 1.37399995f, GG->unk1F4, GG->unk1F8, GG->unk1FC, 0.0f, 35.0f, -1, -1) == 0 && sp58 != 0) {
+        res = D_8011AAF4(D_802590AC, 0x3E0, arg0, 0, 2, 1.10300004f, GG->unk1E8, GG->unk1EC, GG->unk1F0, 1.37399995f, GG->unk1F4, GG->unk1F8, GG->unk1FC, 0.0f, 35.0f, -1, -1);
+        if (res == 0 && sp58 != 0) {
             func_80020718(0x1BB);
             func_80129FB8(120.0f, -190.0f, -440.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0xFF, 0xFF, 0xFF, 0, 0x80, 0x80, 0x80, -4, 0.100000001f, 0, 0);
             func_80133980(0x73);
@@ -1151,6 +1191,15 @@ void func_8024A224(func_8024A120_Obj *arg0, s32 arg1) {
         }
     }
 }
+#undef GG
+#undef D_801BBBF0
+#undef func_8024A120_G
+#undef func_8024A120_Obj
+#undef func_8024A3B4
+#undef func_8024A434_StructBBF0
+#undef func_8024A434_Sub
+#define GG ((func_8024A120_G *)&D_801BBBF0)
+#define func_8024A3B4 func_8024A3B4__func_8024A224
 #undef func_8024A3B4
 
 

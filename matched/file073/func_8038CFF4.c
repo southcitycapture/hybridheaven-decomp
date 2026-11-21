@@ -12,6 +12,7 @@ extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 
 
+
 struct func_8038CFF4_StructGlobal {
     u8 pad0[0x232];
     s16 angle;
@@ -94,7 +95,6 @@ void func_8038CFF4(struct func_8038CFF4_StructObj *arg0, s32 arg1)
     void *opponent;
     f32 x;
     f64 distance;
-    u8 oldTimer;
     s16 angleValue;
     s32 angleValue2;
 

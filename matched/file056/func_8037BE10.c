@@ -1,10 +1,22 @@
 #include "common.h"
 typedef struct {
-    u8 pad0[0x40];
-    f32 unk40;
-    f32 unk44;
-    f32 unk48;
-} func_8037D1DC_DC;
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_8037C8F8_StructArg;
+extern func_8037C8F8_StructArg D_80216B90;
+extern s16 D_80388A70;
+extern f32 D_8038A940;
+extern f32 D_8038A948;
+extern void func_800058DC(s32, void (*)(void));
+extern void func_80011140(s32, void *, func_8037C8F8_StructArg, s32);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern s16 func_8001EF38(f32, f32);
+extern void func_801C4A5C(void *, s32);
+extern void func_801E5010(void);
+s32 func_8037BBF0(f32 arg0, f32 arg1, u8 arg2);
+void func_8037C8F8(void *arg0, s32 arg1, void *arg2, s32 arg3);
 typedef struct {
     u8 pad0[0x4];
     f32 unk4;
@@ -17,34 +29,6 @@ typedef struct {
     u8 pad0[0x2C];
     func_8037D1DC_E0S *unk2C;
 } func_8037D1DC_E0;
-typedef struct {
-    u8 pad0[0x24];
-    f32 unk24;
-} func_8037D1DC_E8S;
-typedef struct {
-    u8 pad0[0x2C];
-    func_8037D1DC_E8S *unk2C;
-} func_8037D1DC_E8;
-typedef struct {
-    u8 pad0[0xDC];
-    func_8037D1DC_DC *unkDC;
-    func_8037D1DC_E0 *unkE0;
-    u8 padE4[4];
-    func_8037D1DC_E8 *unkE8;
-    u8 padEC[0xEF0 - 0xEC];
-    u16 unkEF0;
-} func_8037D1DC_Glob;
-extern func_8037D1DC_Glob D_801BBBF0;
-extern f32 D_8038A940;
-extern f32 D_8038A948;
-extern void func_800058DC(s32, void (*)(void));
-extern void func_801C4A5C(void *, s32);
-s32 func_8037BBF0(f32 arg0, f32 arg1, u8 arg2);
-typedef struct {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-} func_8037D1DC_Arg;
 
 
 typedef struct func_8037BE10_StructInput {
@@ -66,25 +50,18 @@ typedef struct func_8037BE10_StructGlob {
     u8 pad35B[0xEE4-0x35B]; f32 x,y,z; u16 flags;
     u8 padEF2[3]; u8 mode; u8 padEF6[2]; s32 active; s32 state;
 } func_8037BE10_StructGlob;
-extern s16 func_8001EF38(f32, f32);
-extern f32 func_8001EAD0(s16);
-extern f32 func_8001EB64(s16);
-extern void func_801E5010(void);
-extern void func_8037C8F8(void *, s32, void *, s32);
+extern func_8037BE10_StructGlob D_801BBBF0;
 extern s32 func_801C5A1C(f32,f32,f32,f32,f32,f32);
 extern s32 func_801F11C0(f32,f32,f32,f32,s16);
 extern void func_801E4F60(s32);
-extern void func_80011140(s32,void *,func_8037D1DC_Arg,s32);
 extern void func_801BF1A0(s32);
 extern void func_801EBCC4(void *,s32,void *,u8);
 extern void func_801ED2D4(void *,s32,void *,u8);
 extern void func_801C89D8(void);
-extern func_8037D1DC_Arg D_80216B90;
 extern f32 D_8038A944;
 extern s16 D_8038A94C;
-extern s16 D_80388A70;
 
-#define G ((func_8037BE10_StructGlob *)&D_801BBBF0)
+#define G (&D_801BBBF0)
 #define P (G->obj->unk2C)
 #define SINP func_8001EAD0(P->unk12)
 #define COSP func_8001EB64(P->unk12)
@@ -95,11 +72,12 @@ void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
     func_8037BE10_StructInput *input;
     u8 action;
     f32 x, y;
-    u8 unused[4];
+    f32 dist;
     s16 angle;
-    s16 unusedAngle;
+    s16 dir;
     s16 relative;
-    f32 pad6C;
+    s16 facing;
+    f32 gx;
     f32 pos[3];
 
     anim = arg0->anim;
@@ -108,7 +86,8 @@ void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
     angle = (s16)(0x2800 - G->angle) & 0x1FFF;
     x = -input->x / 20.0;
     y = input->y / 20.0;
-    relative = (s16)(func_8001EF38(x, y) + angle) - P->unk12;
+    dir = func_8001EF38(x, y);
+    relative = (s16)(dir + angle) - P->unk12;
     relative &= 0x1FFF;
     G->flag = 0;
     if (G->active == 0) {
@@ -127,9 +106,11 @@ void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
                 SINP * 10.0 + P->unk4, P->unk8 + 16.5, COSP * 10.0 + P->unkC)) {
             if (G->mode == 10 || G->mode == 11) {
                 pos[2] = G->z;
-                pos[0] = G->x;
+                gx = G->x;
+                pos[0] = gx;
                 pos[1] = G->y;
-                D_8038A94C = (s16)(func_8001EF38(-pos[2], pos[0]) + 0x1800) & 0x1FFF;
+                facing = func_8001EF38(-pos[2], gx);
+                D_8038A94C = (s16)(facing + 0x1800) & 0x1FFF;
                 D_8038A944 = P->unk8;
                 func_8037BBF0(P->unk4, P->unkC, (u8)(G->mode - 10));
                 func_801F11C0(D_8038A940, D_8038A944, D_8038A948, 3.0f, D_8038A94C);
@@ -266,7 +247,8 @@ void func_8037BE10(func_8037BE10_StructObj *arg0, s32 arg1)
                 return;
             }
             if (action != 3) {
-                if (x * x + y * y > 1.0) {
+                dist = x * x + y * y;
+                if (dist > 1.0) {
                     if (relative >= 0x400 && relative < 0xC00) {
                         action = 0;
                     } else if (relative >= 0xC00 && relative < 0x1400) {

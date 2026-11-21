@@ -247,31 +247,107 @@ typedef struct func_80015680_Arg {
 } func_80015680_Arg;
 
 /* GGA: picDecode16 */
-s32 func_80015680(s32 arg0, func_80015680_Arg arg1, func_80015680_Struct *arg2) {
-    s32 sp54;
-    s32 pad[2];
-    s32 temp_t3;
-    s32 temp_lo;
-    s32 var_s0;
-    s32 var_s1;
-    s32 var_s3;
+#undef D_8008DFB4
+#undef ZP
+#undef ZQ
+#undef func_80016058
+#undef func_80016058_Struct
+#undef func_80016B6C
+#undef func_80016BA0
+#undef func_8001F540
+#define D_8008DFB4 D_8008DFB4__func_80015680_83aff683
+#define func_80015680_Arg func_80015680_Arg__func_80015680_83aff683
+#define func_80015680_Struct func_80015680_Struct__func_80015680_83aff683
+#define func_80016058 func_80016058__func_80015680_83aff683
+#define func_80016058_Struct func_80016058_Struct__func_80015680_83aff683
+#define func_80016B6C func_80016B6C__func_80015680_83aff683
+#define func_80016BA0 func_80016BA0__func_80015680_83aff683
+#define func_80017014 func_80017014__func_80015680_83aff683
+#define func_80017384 func_80017384__func_80015680_83aff683
+#define func_8001F540 func_8001F540__func_80015680_83aff683
+#define ZQ(p, l) p##_##l
+#define ZP(p, l) ZQ(p, l)
+unsigned short func_80017014(int arg0);
+int func_80017384(int arg0, unsigned short arg1);
+#define ZQ(a, b) a##_##b
+#define ZP(a, b) ZQ(a, b)
+extern s32 D_8008DFB4;
+#define ZQ(p, l) p##_##l
+#define ZP(p, l) ZQ(p, l)
+typedef struct func_80016058_Struct {
+    s32 unk0;
+    s32 unk4;
+    u8 pad8[0x1C];
+    void (*unk24)(struct func_80016058_Struct *, s32, s32, s32);
+} func_80016058_Struct;
+void func_80016058(struct func_80016058_Struct *arg0);
+s32 func_80016B6C(s32 arg0, s32 arg1);
+s32 *func_80016BA0(u32 arg0, s32 *arg1);
+extern s32 func_8001F540();
 
-    sp54 = 0;
-    arg2->unk1C = D_8008DFAC = arg1.p;
-    temp_lo = arg2->unk0 * arg2->unk4;
-    D_8008DFB4 = (s32)func_80016BA0(((temp_lo / 8) + 7) & ~7, &sp54);
+
+typedef struct func_80015680_Struct {
+    s32 unk0;
+    s32 unk4;
+    u8 pad8[0x14];
+    s32 unk1C;
+} func_80015680_Struct;
+
+typedef struct func_80015680_Arg {
+    s32 p;
+} func_80015680_Arg;
+
+/* GGA: picDecode16 */
+s32 func_80015680(s32 arg0, func_80015680_Arg arg1, func_80015680_Struct *arg2) {
+    s32 allocated;
+    s32 src;
+    s32 bytes;
+    s32 buf;
+    s32 pixels;
+    s32 half;
+    s32 i;
+    s32 prev;
+
+    allocated = 0;
+    src = arg1.p;
+    arg2->unk1C = D_8008DFAC = src;
+    pixels = arg2->unk0 * arg2->unk4;
+    half = pixels / 8;
+    bytes = (half + 7) & ~7;
+    buf = (s32)func_80016BA0(bytes, &allocated);
+    D_8008DFB4 = buf;
     func_80016058((void *)arg2);
-    for (var_s1 = 0; var_s1 < temp_lo; var_s1++) {
-        if (func_80016B6C(D_8008DFB4, var_s1) != 0) {
-            var_s3 = ((u16 *)D_8008DFAC)[var_s1];
+    for (i = 0; i < pixels; i++) {
+        if (func_80016B6C(D_8008DFB4, i) != 0) {
+            prev = ((u16 *)D_8008DFAC)[i];
         }
-        ((u16 *)D_8008DFAC)[var_s1] = var_s3;
+        ((u16 *)D_8008DFAC)[i] = prev;
     }
-    if (sp54 != 0) {
+    if (allocated != 0) {
         func_8001F540(D_8008DFB4);
     }
     return arg1.p;
 }
+#undef ZQ
+#undef ZP
+#undef D_8008DFB4
+#undef func_80015680_Arg
+#undef func_80015680_Struct
+#undef func_80016058
+#undef func_80016058_Struct
+#undef func_80016B6C
+#undef func_80016BA0
+#undef func_80017014
+#undef func_80017384
+#undef func_8001F540
+#define D_8008DFB4 D_8008DFB4__func_80015680
+#define ZP(p, l) ZQ(p, l)
+#define ZQ(p, l) p##_##l
+#define func_80016058 func_80016058__func_80015680
+#define func_80016058_Struct func_80016058_Struct__func_80015680
+#define func_80016B6C func_80016B6C__func_80015680
+#define func_80016BA0 func_80016BA0__func_80015680
+#define func_8001F540 func_8001F540__func_80015680
 #undef ZQ
 #undef ZP
 #undef XC2
@@ -1628,20 +1704,29 @@ s32 func_800174CC(s32 arg0) {
 extern u16 D_8008E7C0[];
 extern s16 D_8008E9C0[];
 
-s32 func_8001752C(u16 arg0)
+#undef D_8008E7C0
+#define D_8008E7C0 D_8008E7C0__func_8001752C_8e3a5150
+#define func_80017014 func_80017014__func_8001752C_8e3a5150
+#define func_80017384 func_80017384__func_8001752C_8e3a5150
+unsigned short func_80017014(int);
+int func_80017384(int, unsigned short);
+extern s16 D_8008E7C0[];
+
+
+s32 func_8001752C(u16 arg0, s32 arg1)
 {
-  {
-    extern s32 func_80016EAC();
-    func_80016EAC(arg0);
-  }
-  D_8008E7C0[D_800892B0[0x217E]] = arg0;
-  D_8008E9C0[D_800892B0[0x217E]]++;
-  D_800892B0[0x217E]++;
-  if (D_800892B0 && D_800892B0)
-  {
-  }
+  D_80016EAC(arg0, arg1);
+  do {
+    D_8008E7C0[D_800892B0[0x217E]] = arg0;
+    D_8008E9C0[D_800892B0[0x217E]]++;
+    D_800892B0[0x217E]++;
+  } while (0);
   return 1;
 }
+#undef D_8008E7C0
+#undef func_80017014
+#undef func_80017384
+#define D_8008E7C0 D_8008E7C0__func_8001752C
 #undef D_8008E7C0
 
 

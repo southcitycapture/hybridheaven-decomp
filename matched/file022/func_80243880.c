@@ -1,11 +1,4 @@
 #include "common.h"
-f32 func_80242A20(f32 arg0);
-f32 func_80242A68(f32 arg0, u16 arg1, f32 arg2, u16 arg3);
-s32 func_80242AB8(u16 arg0);
-s32 func_80242B3C(u16 arg0);
-void func_802432FC(s32 arg0, u16 arg1);
-
-
 typedef struct {
     u8 pad[0x22];
     u8 unk22;
@@ -26,18 +19,24 @@ typedef struct {
     u8 unkF21;
     u8 unkF22;
 } func_80243880_Struct;
-typedef struct {
-    u8 pad[0x30];
-    f32 *unk30;
-} func_80243880_Inner;
-
 extern func_80243880_Struct D_801BBBF0;
-extern s16 D_801BCAE0;
 extern u16 D_802528A0[];
 extern f32 D_802528B0[];
 extern u8 D_802528C0;
 extern u8 D_802528C1;
 extern u8 D_802528C2;
+void func_802432FC(s32 arg0, u16 arg1);
+typedef struct {
+    u8 pad[0x30];
+    f32 *unk30;
+} func_80243880_Inner;
+
+f32 func_80242A20(f32 arg0);
+f32 func_80242A68(f32 arg0, u16 arg1, f32 arg2, u16 arg3);
+s32 func_80242AB8(u16 arg0);
+s32 func_80242B3C(u16 arg0);
+
+extern s16 D_801BCAE0;
 extern void func_80020718();
 extern void func_801FBB30();
 extern void func_801C3B2C();
@@ -80,16 +79,19 @@ void func_80243880(s32 arg0, func_80243880_Inner **arg1) {
                 D_802528A0[1] = 1;
             }
             for (i = 0; i < 4; i++) {
-                                if (D_802528A0[i] >= 0xA1) {
+                if (D_802528A0[i] >= 0xA1) {
                     D_802528B0[i] = func_80242A20(D_802528B0[i]);
                     arg1[i]->unk30[2] += D_802528B0[i];
                     D_802528A0[i]++;
                 } else if (D_802528A0[i] >= 0x15) {
-                    arg1[i]->unk30[2] = func_80242A68(arg1[i]->unk30[2], D_802528A0[i] - 0x14, 1.0f, 0x800);
-                    D_802528A0[i]++;
-                } else if (D_802528A0[i] > 0) {
+                    v = D_802528A0[i] - 0x14;
+                    arg1[i]->unk30[2] = func_80242A68(arg1[i]->unk30[2], v, 1.0f, 0x800);
                     D_802528A0[i]++;
                 } else {
+                    if (D_802528A0[i] <= 0) {
+                        continue;
+                    }
+                    D_802528A0[i]++;
                 }
             }
             if ((D_802528A0[4] >= 0x96 && D_802528A0[4] < 0x12C) || D_802528A0[4] >= 0x12C) {

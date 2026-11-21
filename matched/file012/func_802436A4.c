@@ -1,4 +1,5 @@
 #include "common.h"
+
 extern s32 func_800058DC(s32, void *);
 extern void func_80243DDC();
 
@@ -25,7 +26,7 @@ void func_802436A4(func_802436A4_Struct_A *arg0, s32 arg1) {
     u8 *p;
     u8 *q1;
     u8 *q2;
-    s32 pad;
+    s32 d;
   {
     u16 sp2A;
     u8 sp29;
@@ -35,13 +36,14 @@ void func_802436A4(func_802436A4_Struct_A *arg0, s32 arg1) {
     sp2A = arg0->unk3E;
     q1 = &arg0->unk40;
     q2 = &arg0->unk41;
-    arg0->unk42++;
     p = &arg0->unk42;
-    if (arg0->unk42 >= 0x1F) {
+    (*p)++;
+    if (*p >= 0x1F) {
         *p = 0x14;
         D_80243588(sp2A, &sp29, &sp28, arg0);
-        if (sp29 != *q1) {
-            if ((sp29 - *q1 + 4) % 4 < 3) {
+        d = sp29;
+        if (d != *q1) {
+            if ((d - *q1 + 4) % 4 < 3) {
                 b->unkC = 0x100;
                 *q1 = (*q1 + 1) % 4;
             } else {

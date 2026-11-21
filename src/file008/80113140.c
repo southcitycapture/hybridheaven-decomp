@@ -835,6 +835,276 @@ extern u8 D_801882FC[];
 extern u8 D_80188304[];
 extern u8 D_80188308[];
 
+#undef D_8011A148
+#undef D_80163800
+#undef D_80163804
+#undef D_80163808
+#undef D_8016380C
+#undef D_80163810
+#undef D_80163814
+#undef D_80163818
+#undef D_8016381C
+#undef D_80163820
+#undef D_80163824
+#undef D_80163828
+#undef D_8016382C
+#undef D_80163830
+#undef D_80163834
+#undef D_80163838
+#undef D_8016383C
+#undef D_80163840
+#undef D_80163844
+#undef D_80163848
+#undef D_8016384C
+#undef D_80163850
+#undef D_80163854
+#undef D_80163858
+#undef D_8016385C
+#undef D_80163860
+#undef D_80163864
+#undef D_80163868
+#undef D_8016386C
+#undef D_80163870
+#undef D_80163874
+#undef D_80163878
+#undef D_8016387C
+#undef D_80163880
+#undef D_80163884
+#undef D_80163A10
+#undef D_80163A14
+#undef D_80163A90
+#undef D_8018828C
+#undef D_801882AC
+#undef D_801882B0
+#undef D_801882B4
+#undef D_801882B8
+#undef D_801882BC
+#undef D_801882C0
+#undef D_801882C4
+#undef D_801882C8
+#undef D_801882CC
+#undef D_801882D0
+#undef D_801882D4
+#undef D_801882DC
+#undef D_801882E0
+#undef D_801882E4
+#undef D_801882EC
+#undef D_801882F0
+#undef D_801882F4
+#undef D_801882FC
+#undef D_80188304
+#undef D_80188308
+#undef D_801BBBF0
+#undef X
+#undef func_8001DFFC
+#undef func_8001EF38
+#undef func_80113148_Struct
+#undef func_80113148_StructO
+#undef func_801147C0_S1
+#undef func_801147C0_S4
+#undef func_801147C0_S5
+#undef func_80119F9C
+#undef func_8011A0F0
+#define D_8011A148 D_8011A148__func_801149C4_370f798a
+#define D_80163800 D_80163800__func_801149C4_370f798a
+#define D_80163804 D_80163804__func_801149C4_370f798a
+#define D_80163808 D_80163808__func_801149C4_370f798a
+#define D_8016380C D_8016380C__func_801149C4_370f798a
+#define D_80163810 D_80163810__func_801149C4_370f798a
+#define D_80163814 D_80163814__func_801149C4_370f798a
+#define D_80163818 D_80163818__func_801149C4_370f798a
+#define D_8016381C D_8016381C__func_801149C4_370f798a
+#define D_80163820 D_80163820__func_801149C4_370f798a
+#define D_80163824 D_80163824__func_801149C4_370f798a
+#define D_80163828 D_80163828__func_801149C4_370f798a
+#define D_8016382C D_8016382C__func_801149C4_370f798a
+#define D_80163830 D_80163830__func_801149C4_370f798a
+#define D_80163834 D_80163834__func_801149C4_370f798a
+#define D_80163838 D_80163838__func_801149C4_370f798a
+#define D_8016383C D_8016383C__func_801149C4_370f798a
+#define D_80163840 D_80163840__func_801149C4_370f798a
+#define D_80163844 D_80163844__func_801149C4_370f798a
+#define D_80163848 D_80163848__func_801149C4_370f798a
+#define D_8016384C D_8016384C__func_801149C4_370f798a
+#define D_80163850 D_80163850__func_801149C4_370f798a
+#define D_80163854 D_80163854__func_801149C4_370f798a
+#define D_80163858 D_80163858__func_801149C4_370f798a
+#define D_8016385C D_8016385C__func_801149C4_370f798a
+#define D_80163860 D_80163860__func_801149C4_370f798a
+#define D_80163864 D_80163864__func_801149C4_370f798a
+#define D_80163868 D_80163868__func_801149C4_370f798a
+#define D_8016386C D_8016386C__func_801149C4_370f798a
+#define D_80163870 D_80163870__func_801149C4_370f798a
+#define D_80163874 D_80163874__func_801149C4_370f798a
+#define D_80163878 D_80163878__func_801149C4_370f798a
+#define D_8016387C D_8016387C__func_801149C4_370f798a
+#define D_80163880 D_80163880__func_801149C4_370f798a
+#define D_80163884 D_80163884__func_801149C4_370f798a
+#define D_80163A10 D_80163A10__func_801149C4_370f798a
+#define D_80163A14 D_80163A14__func_801149C4_370f798a
+#define D_80163A90 D_80163A90__func_801149C4_370f798a
+#define D_8018828C D_8018828C__func_801149C4_370f798a
+#define D_801882AC D_801882AC__func_801149C4_370f798a
+#define D_801882B0 D_801882B0__func_801149C4_370f798a
+#define D_801882B4 D_801882B4__func_801149C4_370f798a
+#define D_801882B8 D_801882B8__func_801149C4_370f798a
+#define D_801882BC D_801882BC__func_801149C4_370f798a
+#define D_801882C0 D_801882C0__func_801149C4_370f798a
+#define D_801882C4 D_801882C4__func_801149C4_370f798a
+#define D_801882C8 D_801882C8__func_801149C4_370f798a
+#define D_801882CC D_801882CC__func_801149C4_370f798a
+#define D_801882D0 D_801882D0__func_801149C4_370f798a
+#define D_801882D4 D_801882D4__func_801149C4_370f798a
+#define D_801882DC D_801882DC__func_801149C4_370f798a
+#define D_801882E0 D_801882E0__func_801149C4_370f798a
+#define D_801882E4 D_801882E4__func_801149C4_370f798a
+#define D_801882EC D_801882EC__func_801149C4_370f798a
+#define D_801882F0 D_801882F0__func_801149C4_370f798a
+#define D_801882F4 D_801882F4__func_801149C4_370f798a
+#define D_801882FC D_801882FC__func_801149C4_370f798a
+#define D_80188304 D_80188304__func_801149C4_370f798a
+#define D_80188308 D_80188308__func_801149C4_370f798a
+#define D_801BBBF0 D_801BBBF0__func_801149C4_370f798a
+#define func_8001DFFC func_8001DFFC__func_801149C4_370f798a
+#define func_8001EF38 func_8001EF38__func_801149C4_370f798a
+#define func_80113148_Struct func_80113148_Struct__func_801149C4_370f798a
+#define func_80113148_StructO func_80113148_StructO__func_801149C4_370f798a
+#define func_801147C0_S1 func_801147C0_S1__func_801149C4_370f798a
+#define func_801147C0_S4 func_801147C0_S4__func_801149C4_370f798a
+#define func_801147C0_S5 func_801147C0_S5__func_801149C4_370f798a
+#define func_801149C4_StructD func_801149C4_StructD__func_801149C4_370f798a
+#define func_801149C4_StructE func_801149C4_StructE__func_801149C4_370f798a
+#define func_801149C4_StructG func_801149C4_StructG__func_801149C4_370f798a
+#define func_801149C4_StructP func_801149C4_StructP__func_801149C4_370f798a
+#define func_80119F9C func_80119F9C__func_801149C4_370f798a
+#define func_8011A0F0 func_8011A0F0__func_801149C4_370f798a
+extern s16 D_80163A10;
+extern s16 D_80163A14;
+typedef struct func_80113148_StructO { u8 pad0[0x24]; struct func_80113148_StructO *unk24; u8 pad28[4]; f32 *unk2C; } func_80113148_StructO;
+typedef struct func_80113148_Struct {
+    u8 pad0[0x54]; func_80113148_StructO *unk54;
+    u8 pad58[0xE0-0x58]; func_80113148_StructO *unkE0; func_80113148_StructO *unkE4; func_80113148_StructO *unkE8;
+    u8 padEC[4]; s32 unkF0; u8 padF4; u8 unkF5;
+    u8 padF6[0x299-0xF6]; u8 unk299; u8 pad29A[2]; f32 unk29C; f32 unk2A0;
+    u8 pad2A4[0x448-0x2A4]; func_80113148_StructO **unk448;
+    u8 pad44C[0x1031-0x44C]; u8 unk1031;
+} func_80113148_Struct;
+extern func_80113148_Struct D_801BBBF0;
+extern s32 func_8001EF38(f32, f32);
+typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; u8 pad10[8]; f32 unk18; f32 unk1C; f32 unk20; } func_801147C0_S4;
+typedef struct { u8 pad0[0x22]; u8 unk22; u8 pad23[0xD]; func_801147C0_S4 *unk30; } func_801147C0_S5;
+typedef struct { u8 pad0[4]; func_801147C0_S5 *unk4; } func_801147C0_S1;
+extern void func_80119F9C(s16 *, s16 *);
+extern void func_8011A0F0(s16 *);
+
+
+typedef struct func_801149C4_StructP {
+    u8 pad0[0x1C];
+    f32 unk1C;
+    u8 pad20[4];
+    f32 unk24;
+    f32 unk28;
+    u8 pad2C[4];
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+    f32 unk3C;
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    f32 unk4C;
+    f32 unk50;
+} func_801149C4_StructP;
+
+typedef struct func_801149C4_StructE {
+    u8 pad0[0x2C];
+    func_801149C4_StructP *unk2C;
+} func_801149C4_StructE;
+
+typedef struct func_801149C4_StructG {
+    u8 pad0[0x7E];
+    u16 unk7E;
+    u16 unk80;
+    u8 pad82[6];
+    u16 unk88;
+    u8 pad8A[0xE8 - 0x8A];
+    func_801149C4_StructE *unkE8;
+    u8 padEC[0x232 - 0xEC];
+    s16 unk232;
+    u8 pad234[0x29C - 0x234];
+    f32 unk29C;
+    f32 unk2A0;
+    u8 pad2A4[0x2AD - 0x2A4];
+    u8 unk2AD;
+    u8 pad2AE[0x2B5 - 0x2AE];
+    u8 unk2B5;
+} func_801149C4_StructG;
+
+typedef struct func_801149C4_StructD {
+    s32 a[7];
+} func_801149C4_StructD;
+
+#define X (*(func_801149C4_StructG *)&D_801BBBF0)
+extern void func_8001DFFC();
+extern s32 D_8011A148(s16, s16, s16, f32 *, f32 *, f32 *);
+extern func_801149C4_StructD D_80163A90;
+extern u8 D_80163800[];
+extern u8 D_80163804[];
+extern u8 D_80163808[];
+extern u8 D_8016380C[];
+extern u8 D_80163810[];
+extern u8 D_80163814[];
+extern u8 D_80163818[];
+extern u8 D_8016381C[];
+extern u8 D_80163820[];
+extern u8 D_80163824[];
+extern u8 D_80163828[];
+extern u8 D_8016382C[];
+extern u8 D_80163830[];
+extern u8 D_80163834[];
+extern u8 D_80163838[];
+extern u8 D_8016383C[];
+extern u8 D_80163840[];
+extern u8 D_80163844[];
+extern u8 D_80163848[];
+extern u8 D_8016384C[];
+extern u8 D_80163850[];
+extern u8 D_80163854[];
+extern u8 D_80163858[];
+extern u8 D_8016385C[];
+extern u8 D_80163860[];
+extern u8 D_80163864[];
+extern u8 D_80163868[];
+extern u8 D_8016386C[];
+extern u8 D_80163870[];
+extern u8 D_80163874[];
+extern u8 D_80163878[];
+extern u8 D_8016387C[];
+extern u8 D_80163880[];
+extern u8 D_80163884[];
+
+extern u8 D_8018828C[];
+extern u8 D_801882AC[];
+extern u8 D_801882B0[];
+extern u8 D_801882B4[];
+extern u8 D_801882B8[];
+extern u8 D_801882BC[];
+extern u8 D_801882C0[];
+extern u8 D_801882C4[];
+extern u8 D_801882C8[];
+extern u8 D_801882CC[];
+extern u8 D_801882D0[];
+extern u8 D_801882D4[];
+extern u8 D_801882DC[];
+extern u8 D_801882E0[];
+extern u8 D_801882E4[];
+extern u8 D_801882EC[];
+extern u8 D_801882F0[];
+extern u8 D_801882F4[];
+extern u8 D_801882FC[];
+extern u8 D_80188304[];
+extern u8 D_80188308[];
+
 void func_801149C4(s32 arg0, func_801147C0_S1 *arg1) {
     func_801149C4_StructD sp44;
     f32 var_fv0;
@@ -1012,9 +1282,156 @@ void func_801149C4(s32 arg0, func_801147C0_S1 *arg1) {
     func_80119F9C(&D_80163A10, &D_80163A14);
     p = X.unkE8->unk2C;
     D_8011A148(D_80163A10, D_80163A14, D_80163A18, &p->unk48, &p->unk4C, &p->unk50);
-    if ((X.unk80 & 0x20) && (X.unk80 & 0x40) && (X.unk80 & 0x80)) {
+    if (X.unk80 & 0x20) {
+        if (X.unk80 & 0x40) {
+            abc = X.unk88;
+        }
     }
 }
+#undef X
+#undef D_8011A148
+#undef D_80163800
+#undef D_80163804
+#undef D_80163808
+#undef D_8016380C
+#undef D_80163810
+#undef D_80163814
+#undef D_80163818
+#undef D_8016381C
+#undef D_80163820
+#undef D_80163824
+#undef D_80163828
+#undef D_8016382C
+#undef D_80163830
+#undef D_80163834
+#undef D_80163838
+#undef D_8016383C
+#undef D_80163840
+#undef D_80163844
+#undef D_80163848
+#undef D_8016384C
+#undef D_80163850
+#undef D_80163854
+#undef D_80163858
+#undef D_8016385C
+#undef D_80163860
+#undef D_80163864
+#undef D_80163868
+#undef D_8016386C
+#undef D_80163870
+#undef D_80163874
+#undef D_80163878
+#undef D_8016387C
+#undef D_80163880
+#undef D_80163884
+#undef D_80163A10
+#undef D_80163A14
+#undef D_80163A90
+#undef D_8018828C
+#undef D_801882AC
+#undef D_801882B0
+#undef D_801882B4
+#undef D_801882B8
+#undef D_801882BC
+#undef D_801882C0
+#undef D_801882C4
+#undef D_801882C8
+#undef D_801882CC
+#undef D_801882D0
+#undef D_801882D4
+#undef D_801882DC
+#undef D_801882E0
+#undef D_801882E4
+#undef D_801882EC
+#undef D_801882F0
+#undef D_801882F4
+#undef D_801882FC
+#undef D_80188304
+#undef D_80188308
+#undef D_801BBBF0
+#undef func_8001DFFC
+#undef func_8001EF38
+#undef func_80113148_Struct
+#undef func_80113148_StructO
+#undef func_801147C0_S1
+#undef func_801147C0_S4
+#undef func_801147C0_S5
+#undef func_801149C4_StructD
+#undef func_801149C4_StructE
+#undef func_801149C4_StructG
+#undef func_801149C4_StructP
+#undef func_80119F9C
+#undef func_8011A0F0
+#define D_8011A148 D_8011A148__func_801149C4
+#define D_80163800 D_80163800__func_801149C4
+#define D_80163804 D_80163804__func_801149C4
+#define D_80163808 D_80163808__func_801149C4
+#define D_8016380C D_8016380C__func_801149C4
+#define D_80163810 D_80163810__func_801149C4
+#define D_80163814 D_80163814__func_801149C4
+#define D_80163818 D_80163818__func_801149C4
+#define D_8016381C D_8016381C__func_801149C4
+#define D_80163820 D_80163820__func_801149C4
+#define D_80163824 D_80163824__func_801149C4
+#define D_80163828 D_80163828__func_801149C4
+#define D_8016382C D_8016382C__func_801149C4
+#define D_80163830 D_80163830__func_801149C4
+#define D_80163834 D_80163834__func_801149C4
+#define D_80163838 D_80163838__func_801149C4
+#define D_8016383C D_8016383C__func_801149C4
+#define D_80163840 D_80163840__func_801149C4
+#define D_80163844 D_80163844__func_801149C4
+#define D_80163848 D_80163848__func_801149C4
+#define D_8016384C D_8016384C__func_801149C4
+#define D_80163850 D_80163850__func_801149C4
+#define D_80163854 D_80163854__func_801149C4
+#define D_80163858 D_80163858__func_801149C4
+#define D_8016385C D_8016385C__func_801149C4
+#define D_80163860 D_80163860__func_801149C4
+#define D_80163864 D_80163864__func_801149C4
+#define D_80163868 D_80163868__func_801149C4
+#define D_8016386C D_8016386C__func_801149C4
+#define D_80163870 D_80163870__func_801149C4
+#define D_80163874 D_80163874__func_801149C4
+#define D_80163878 D_80163878__func_801149C4
+#define D_8016387C D_8016387C__func_801149C4
+#define D_80163880 D_80163880__func_801149C4
+#define D_80163884 D_80163884__func_801149C4
+#define D_80163A10 D_80163A10__func_801149C4
+#define D_80163A14 D_80163A14__func_801149C4
+#define D_80163A90 D_80163A90__func_801149C4
+#define D_8018828C D_8018828C__func_801149C4
+#define D_801882AC D_801882AC__func_801149C4
+#define D_801882B0 D_801882B0__func_801149C4
+#define D_801882B4 D_801882B4__func_801149C4
+#define D_801882B8 D_801882B8__func_801149C4
+#define D_801882BC D_801882BC__func_801149C4
+#define D_801882C0 D_801882C0__func_801149C4
+#define D_801882C4 D_801882C4__func_801149C4
+#define D_801882C8 D_801882C8__func_801149C4
+#define D_801882CC D_801882CC__func_801149C4
+#define D_801882D0 D_801882D0__func_801149C4
+#define D_801882D4 D_801882D4__func_801149C4
+#define D_801882DC D_801882DC__func_801149C4
+#define D_801882E0 D_801882E0__func_801149C4
+#define D_801882E4 D_801882E4__func_801149C4
+#define D_801882EC D_801882EC__func_801149C4
+#define D_801882F0 D_801882F0__func_801149C4
+#define D_801882F4 D_801882F4__func_801149C4
+#define D_801882FC D_801882FC__func_801149C4
+#define D_80188304 D_80188304__func_801149C4
+#define D_80188308 D_80188308__func_801149C4
+#define D_801BBBF0 D_801BBBF0__func_801149C4
+#define X (*(func_801149C4_StructG *)&D_801BBBF0)
+#define func_8001DFFC func_8001DFFC__func_801149C4
+#define func_8001EF38 func_8001EF38__func_801149C4
+#define func_80113148_Struct func_80113148_Struct__func_801149C4
+#define func_80113148_StructO func_80113148_StructO__func_801149C4
+#define func_801147C0_S1 func_801147C0_S1__func_801149C4
+#define func_801147C0_S4 func_801147C0_S4__func_801149C4
+#define func_801147C0_S5 func_801147C0_S5__func_801149C4
+#define func_80119F9C func_80119F9C__func_801149C4
+#define func_8011A0F0 func_8011A0F0__func_801149C4
 #undef X
 #undef D_8011A148
 #undef D_80163800

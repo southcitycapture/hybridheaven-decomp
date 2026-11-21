@@ -1,10 +1,23 @@
+#include "common.h"
+unsigned short func_80017014(int arg0);
+int func_80017384(int arg0, unsigned short arg1);
 #define ZQ(a, b) a##_##b
 #define ZP(a, b) ZQ(a, b)
-#define func_800158C0 ZP(zA, __LINE__)
-#define func_80015680 func_80015680_ctx
-#include "context.h"
-#undef func_800158C0
-#undef func_80015680
+extern s32 D_8008DFAC;
+extern s32 D_8008DFB4;
+#define ZQ(p, l) p##_##l
+#define ZP(p, l) ZQ(p, l)
+typedef struct func_80016058_Struct {
+    s32 unk0;
+    s32 unk4;
+    u8 pad8[0x1C];
+    void (*unk24)(struct func_80016058_Struct *, s32, s32, s32);
+} func_80016058_Struct;
+void func_80016058(struct func_80016058_Struct *arg0);
+s32 func_80016B6C(s32 arg0, s32 arg1);
+s32 *func_80016BA0(u32 arg0, s32 *arg1);
+extern s32 func_8001F540();
+
 
 typedef struct func_80015680_Struct {
     s32 unk0;
@@ -19,26 +32,31 @@ typedef struct func_80015680_Arg {
 
 /* GGA: picDecode16 */
 s32 func_80015680(s32 arg0, func_80015680_Arg arg1, func_80015680_Struct *arg2) {
-    s32 sp54;
-    s32 pad[2];
-    s32 temp_t3;
-    s32 temp_lo;
-    s32 var_s0;
-    s32 var_s1;
-    s32 var_s3;
+    s32 allocated;
+    s32 src;
+    s32 bytes;
+    s32 buf;
+    s32 pixels;
+    s32 half;
+    s32 i;
+    s32 prev;
 
-    sp54 = 0;
-    arg2->unk1C = D_8008DFAC = arg1.p;
-    temp_lo = arg2->unk0 * arg2->unk4;
-    D_8008DFB4 = (s32)func_80016BA0(((temp_lo / 8) + 7) & ~7, &sp54);
+    allocated = 0;
+    src = arg1.p;
+    arg2->unk1C = D_8008DFAC = src;
+    pixels = arg2->unk0 * arg2->unk4;
+    half = pixels / 8;
+    bytes = (half + 7) & ~7;
+    buf = (s32)func_80016BA0(bytes, &allocated);
+    D_8008DFB4 = buf;
     func_80016058((void *)arg2);
-    for (var_s1 = 0; var_s1 < temp_lo; var_s1++) {
-        if (func_80016B6C(D_8008DFB4, var_s1) != 0) {
-            var_s3 = ((u16 *)D_8008DFAC)[var_s1];
+    for (i = 0; i < pixels; i++) {
+        if (func_80016B6C(D_8008DFB4, i) != 0) {
+            prev = ((u16 *)D_8008DFAC)[i];
         }
-        ((u16 *)D_8008DFAC)[var_s1] = var_s3;
+        ((u16 *)D_8008DFAC)[i] = prev;
     }
-    if (sp54 != 0) {
+    if (allocated != 0) {
         func_8001F540(D_8008DFB4);
     }
     return arg1.p;

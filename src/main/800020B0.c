@@ -67,11 +67,41 @@ extern u8 D_8005CE68[];
 extern func_800021B4_Out D_80089474[];
 extern u8 D_801BBBF0[];
 
+#define D_8005CE50 D_8005CE50__func_800021B4
+#define D_80089474 D_80089474__func_800021B4
+#define func_800021B4_In func_800021B4_In__func_800021B4
+#define func_800021B4_Out func_800021B4_Out__func_800021B4
+#define func_8000242C func_8000242C__func_800021B4
+#define func_80151DA4 func_80151DA4__func_800021B4
+
+
+typedef struct func_800021B4_Out {
+    u8 pad0[2];
+    u16 u2;
+    u16 u4;
+    s16 u6;
+    s16 u8;
+    u16 uA;
+    u16 uC;
+    u8 padE[2];
+    s32 u10;
+    u8 pad14[0xC];
+} func_800021B4_Out;
+
+typedef struct func_800021B4_In {
+    u16 u0;
+    s8 u2;
+    s8 u3;
+    u8 pad4[2];
+} func_800021B4_In;
+extern void func_8000242C();
+extern void func_80151DA4(func_800021B4_Out *);
+extern func_800021B4_In D_8005CE50[];
+extern func_800021B4_Out D_80089474[];
+
 void func_800021B4(void) {
     func_800021B4_Out *o;
     func_800021B4_In *i;
-    u16 t;
-    u16 t2;
     u16 v;
     s32 s;
     s32 n;
@@ -92,6 +122,7 @@ void func_800021B4(void) {
                 func_80151DA4(o);
                 s = o->u4;
                 if (s & 0x4000) {
+                    v = 1;
                 }
             } else {
                 func_801521C8();
@@ -109,6 +140,12 @@ void func_800021B4(void) {
         if (o->u10 != 0) func_8000242C((void *)o);
     }
 }
+#undef D_8005CE50
+#undef D_80089474
+#undef func_800021B4_In
+#undef func_800021B4_Out
+#undef func_8000242C
+#undef func_80151DA4
 
 extern u8 D_800692B0[];
 

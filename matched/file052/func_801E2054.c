@@ -1,4 +1,20 @@
-#include "context.h"
+#include "common.h"
+struct func_801E2B54_Struct_C {
+    u8 pad[0x18];
+    f32 unk18;
+    f32 unk1C;
+};
+struct func_801E2B54_Struct_B {
+    u8 pad[0x22];
+    u8 unk22;
+    u8 pad2[0xD];
+    struct func_801E2B54_Struct_C *unk30;
+};
+struct func_801E2B54_Struct_A {
+    u8 pad[0x24];
+    struct func_801E2B54_Struct_B *unk24;
+};
+
 
 typedef struct func_801E2054_StructInit { s32 w[4]; } func_801E2054_StructInit;
 typedef struct func_801E2054_StructData {
@@ -22,9 +38,19 @@ extern void func_80006214(s32);
 extern void func_8012C89C(s32, s32, s32, s32);
 extern void func_8012CF8C(s32, void *, s32, s32);
 extern s32 func_8038D8B8[];
-extern u8 D_801D96C8[], D_801D9768[], D_801D9908[], D_801DA058[], D_801DA0B8[];
-extern func_801E2054_StructInit D_801E5738, D_801E5748, D_801E5758, D_801E5768;
-extern func_801E2054_StructInit D_801E5778, D_801E5788, D_801E5798, D_801E57A8;
+extern u8 D_801D96C8[];
+extern u8 D_801D9768[];
+extern u8 D_801D9908[];
+extern u8 D_801DA058[];
+extern u8 D_801DA0B8[];
+extern func_801E2054_StructInit D_801E5738;
+extern func_801E2054_StructInit D_801E5748;
+extern func_801E2054_StructInit D_801E5758;
+extern func_801E2054_StructInit D_801E5768;
+extern func_801E2054_StructInit D_801E5778;
+extern func_801E2054_StructInit D_801E5788;
+extern func_801E2054_StructInit D_801E5798;
+extern func_801E2054_StructInit D_801E57A8;
 extern s32 D_8038D8CC;
 extern struct func_801E2B54_Struct_A *D_8038D8D0;
 #define HANDLE D_8038D8CC
@@ -43,7 +69,8 @@ s32 func_801E2054(s32 arg0, s32 arg1) {
     func_801E2054_StructInit sp48 = D_801E5788;
     func_801E2054_StructInit sp38 = D_801E5798;
     func_801E2054_StructInit sp28 = D_801E57A8;
-    u8 pad[8];
+    s32 mode = arg0;
+    s32 flag = arg1;
     func_80005E44(HANDLE, &sp88);
     func_80005E44(HANDLE, &sp88);
     func_80005E44(HANDLE, &sp88);

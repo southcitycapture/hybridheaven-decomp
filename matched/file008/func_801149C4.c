@@ -309,6 +309,9 @@ void func_801149C4(s32 arg0, func_801147C0_S1 *arg1) {
     func_80119F9C(&D_80163A10, &D_80163A14);
     p = X.unkE8->unk2C;
     D_8011A148(D_80163A10, D_80163A14, D_80163A18, &p->unk48, &p->unk4C, &p->unk50);
-    if ((X.unk80 & 0x20) && (X.unk80 & 0x40) && (X.unk80 & 0x80)) {
+    if (X.unk80 & 0x20) {
+        if (X.unk80 & 0x40) {
+            abc = X.unk88;
+        }
     }
 }

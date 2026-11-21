@@ -2,66 +2,77 @@
 #include "common.h"
 #define ZQ(a, b) a##_##b
 #define ZP(a, b) ZQ(a, b)
-#define zU_14 u16
-#define zU_15 u16
-#define zU_16 u16
-#define zU_33 u16
-#define zU_34 u16
-#define zU_35 u16
-#define zU_47 u16
-#define zU_48 u16
-#define zU_49 u16
-#define zU_65 u16
-#define zU_105 u16
-#define zU_116 u16
-#define zU_120 u16
-#define zU_156 u16
-#define zU_168 u16
-#define zU_183 u16
-#define zU_249 u16
-#define zU_263 u16
-#define zU_294 u16
+#define zU_11 u16
+#define zU_12 u16
+#define zU_13 u16
+#define zU_19 u16
+#define zU_20 u16
+#define zU_21 u16
+#define zU_36 u16
+#define zU_37 u16
+#define zU_38 u16
+#define zU_58 u16
+#define zU_59 u16
+#define zU_60 u16
+#define zU_72 u16
+#define zU_73 u16
+#define zU_74 u16
+#define zU_99 u16
+#define zU_139 u16
+#define zU_150 u16
+#define zU_154 u16
+#define zU_190 u16
+#define zU_202 u16
+#define zU_217 u16
+#define zU_283 u16
 #define zU_297 u16
-#define zU_298 u16
-#define zU_299 u16
-#define zU_305 u16
-#define zU_349 u16
-#define zU_350 u16
-#define zU_351 u16
-#define zU_352 u16
-#define zU_356 u16
-#define zU_358 u16
-#define zU_359 u16
-#define zU_366 u16
-#define zU_367 u16
-#define zU_408 u8
-#define zU_409 u8
-#define zU_410 u8
-#define zU_411 u8
-#define zU_412 u8
-#define zU_413 u16
-#define zU_419 u16
-#define zU_420 u16
-#define zU_425 u16
-#define zU_430 u16
-#define zU_431 u16
-#define zU_432 u16
-#define zU_436 u16
-#define zU_437 u16
-#define zU_438 u16
-#define zU_439 u16
-#define zU_488 u16
-#define zU_496 u16
-#define zU_497 u16
-#define zU_498 u16
-#define zU_572 u16
-#define zU_574 u16
-#define zU_591 u16
-#define zU_592 u16
-#define zU_593 u16
-#define zU_607 u16
-#define zU_608 u16
-#define zU_625 u16
+#define zU_328 u16
+#define zU_331 u16
+#define zU_332 u16
+#define zU_333 u16
+#define zU_339 u16
+#define zU_383 u16
+#define zU_384 u16
+#define zU_385 u16
+#define zU_386 u16
+#define zU_390 u16
+#define zU_392 u16
+#define zU_393 u16
+#define zU_400 u16
+#define zU_401 u16
+#define zU_442 u8
+#define zU_443 u8
+#define zU_444 u8
+#define zU_445 u8
+#define zU_446 u8
+#define zU_447 u16
+#define zU_453 u16
+#define zU_454 u16
+#define zU_459 u16
+#define zU_464 u16
+#define zU_465 u16
+#define zU_466 u16
+#define zU_470 u16
+#define zU_471 u16
+#define zU_472 u16
+#define zU_473 u16
+#define zU_523 u16
+#define zU_530 u16
+#define zU_542 u16
+#define zU_550 u16
+#define zU_551 u16
+#define zU_552 u16
+#define zU_626 u16
+#define zU_628 u16
+#define zU_666 u16
+#define zU_667 u16
+#define zU_668 u16
+#define zU_682 u16
+#define zU_683 u16
+#define zU_684 u16
+#define zU_709 u16
+#define zU_710 u16
+#define zU_727 u16
 #define u16 ZP(zU, __LINE__)
 typedef struct func_8001ADD4_Blk700 { u8 d[0x700]; } func_8001ADD4_Blk700;
 extern func_8001ADD4_Blk700 D_800F51C0[];
@@ -77,7 +88,7 @@ extern func_8001C0B0_Struct D_80044640;
 void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
     s32 i;
     s32 j;
-    s32 pad;
+    s32 idx;
     func_8001C0B0_Struct a = D_80044638;
     func_8001C0B0_Struct b = D_80044640;
     s32 k;
@@ -94,8 +105,9 @@ void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
             for (i = 0; i < 13; i++) {
                 for (j = 0; j < n; j++) {
                     dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
-                    dst[i * 0x80 + j]&= 0x33;
-                    dst[i * 0x80 + j]|= src[k] & 0xCC;
+                    idx = i * 0x80;
+                    dst[idx + j]&= 0x33;
+                    dst[idx + j]|= src[k] & 0xCC;
                     k++;
                 }
             }
@@ -103,8 +115,9 @@ void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
             for (i = 0; i < 13; i++) {
                 for (j = 0; j < n; j++) {
                     dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
-                    dst[i * 0x80 + j]&= 0x33;
-                    dst[i * 0x80 + j]|= (src[k] & 0x33) << 2;
+                    idx = i * 0x80;
+                    dst[idx + j]&= 0x33;
+                    dst[idx + j]|= (src[k] & 0x33) << 2;
                     k++;
                 }
             }
@@ -114,8 +127,9 @@ void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
             for (i = 0; i < 13; i++) {
                 for (j = 0; j < n; j++) {
                     dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
-                    dst[i * 0x80 + j]&= 0xCC;
-                    dst[i * 0x80 + j]|= (src[k] & 0xCC) >> 2;
+                    idx = i * 0x80;
+                    dst[idx + j]&= 0xCC;
+                    dst[idx + j]|= (src[k] & 0xCC) >> 2;
                     k++;
                 }
             }
@@ -123,8 +137,9 @@ void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
             for (i = 0; i < 13; i++) {
                 for (j = 0; j < n; j++) {
                     dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
-                    dst[i * 0x80 + j]&= 0xCC;
-                    dst[i * 0x80 + j]|= src[k] & 0x33;
+                    idx = i * 0x80;
+                    dst[idx + j]&= 0xCC;
+                    dst[idx + j]|= src[k] & 0x33;
                     k++;
                 }
             }

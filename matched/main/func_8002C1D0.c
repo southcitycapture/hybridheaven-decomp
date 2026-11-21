@@ -1,4 +1,6 @@
-#include "context.h"
+#include "common.h"
+extern void func_800268C0(s32, void *);
+
 
 struct func_8002C1D0_StructB {
     u8 pad0[4];
@@ -40,6 +42,11 @@ struct func_8002C1D0_StructA {
     s32 unk48;
 };
 
+struct func_8002C1D0_Bufs {
+    u8 *a;
+    u8 *b;
+    u8 *c;
+};
 extern void func_8002CF08(u8 *, u8 *, s32);
 extern void func_8002CF5C(u8 *, u8 *, s32);
 extern void func_8002CFB0(u8 *);
@@ -62,9 +69,7 @@ void func_8002C1D0(struct func_8002C1D0_StructA *arg0, struct func_8002C1D0_Stru
     u8 *s0;
     u8 *n;
     struct func_8002C1D0_StructN *e;
-    u8 *sp5C;
-    s32 pad1;
-    s32 pad2;
+    struct func_8002C1D0_Bufs bufs;
 
     s7 = arg1->unk14;
     arg0->unk0 = 0;
@@ -74,9 +79,9 @@ void func_8002C1D0(struct func_8002C1D0_StructA *arg0, struct func_8002C1D0_Stru
     arg0->unk44 = arg1->unk18;
     arg0->unk48 = 0xA0;
     arg0->unk24 = arg1->unk10;
-    sp5C = func_80034A10(0, 0, s7, 1, 0x1C);
-    func_8002CFB0(sp5C);
-    arg0->unk38 = sp5C;
+    bufs.c = func_80034A10(0, 0, s7, 1, 0x1C);
+    func_8002CFB0(bufs.c);
+    arg0->unk38 = bufs.c;
     arg0->unk34 = func_80034A10(0, 0, s7, 1, 0x4C);
     arg0->unk40 = 1;
     func_8002CF08(arg0->unk34, func_80034A10(0, 0, s7, arg1->unk4, 4), arg1->unk4);
@@ -110,7 +115,7 @@ void func_8002C1D0(struct func_8002C1D0_StructA *arg0, struct func_8002C1D0_Stru
         e->unkC = e->unk8C;
     }
     s4 = 0;
-    func_8003089C(sp5C, 1, arg0->unk30);
+    func_8003089C(bufs.c, 1, arg0->unk30);
     v1 = func_80034A10(0, 0, s7, arg1->unk8, 0x1C);
     arg0->unk2C = 0;
     if (arg1->unk8 > 0) {

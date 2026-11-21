@@ -1,15 +1,13 @@
 #include "common.h"
+
 extern s32 D_801E8178;
 extern s32 D_801E81C8;
 extern s32 func_801C0B8C(u64);
 extern s32 func_801C86FC(s32, f32, s32, f32, f32, f32, s32);
 
 
-struct func_801E5610_Struct {
-    s32 state;
-};
-
 s32 func_801E5610(s32 arg0, s32 arg1) {
+    s32 result;
     switch ((u32)D_801E8178) {
     case 0:
         if (func_801C0B8C(0x989680) != 0) {
@@ -34,8 +32,8 @@ s32 func_801E5610(s32 arg0, s32 arg1) {
         if (func_801C0B8C(0xA1BE40) != 0) {
             func_801C86FC(0, -29.0f, 0xC1400000, 29.0f, 7.0f, 7.0f, 0x28);
             do {} while (0);
-            if (&D_801E8178) {}
-            D_801E8178 += 1;
+            result = (s32)&D_801E8178;
+            (*(s32 *)result)++;
         }
         break;
     case 4:
@@ -49,7 +47,7 @@ s32 func_801E5610(s32 arg0, s32 arg1) {
         if (func_801C0B8C(0xAF79E0) != 0) {
             func_801C86FC(0, -32.0f, 0xC1B80000, 34.0f, 8.0f, 8.0f, 0x28);
             do {} while (0);
-            ((struct func_801E5610_Struct *)&D_801E8178)->state += 1;
+            D_801E8178 += 1;
         }
         break;
     case 6:

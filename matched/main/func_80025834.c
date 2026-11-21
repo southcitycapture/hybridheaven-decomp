@@ -1,4 +1,12 @@
-#include "context.h"
+#include "common.h"
+struct func_800243F0_Struct {
+    u8 pad[0x18];
+    s16 unk18;
+    u8 pad2[0x1D - 0x1A];
+    u8 unk1D;
+};
+extern struct func_800243F0_Struct *D_800CBDA4;
+
 
 struct func_80025834_Struct {
     u8 pad0[6];
@@ -16,11 +24,10 @@ struct func_80025834_Struct {
 #define S ((struct func_80025834_Struct *)D_800CBDA4)
 
 /* GGA: sndCmdGlideTick */
-void func_80025834(void **arg0) {
+void func_80025834() {
     s32 diff;
     u32 step;
 
-    if (arg0) {}
     S->unk6 |= 2;
     diff = S->unk80 - S->unk28;
     step = diff;

@@ -1,4 +1,5 @@
-#include "context.h"
+#include "common.h"
+
 
 typedef struct func_800021B4_Out {
     u8 pad0[2];
@@ -19,7 +20,6 @@ typedef struct func_800021B4_In {
     s8 u3;
     u8 pad4[2];
 } func_800021B4_In;
-
 extern void func_8000242C();
 extern void func_800266B0(void *, s32, s32);
 extern void func_800283B0(void *);
@@ -37,8 +37,6 @@ extern u8 D_801BBBF0[];
 void func_800021B4(void) {
     func_800021B4_Out *o;
     func_800021B4_In *i;
-    u16 t;
-    u16 t2;
     u16 v;
     s32 s;
     s32 n;
@@ -59,6 +57,7 @@ void func_800021B4(void) {
                 func_80151DA4(o);
                 s = o->u4;
                 if (s & 0x4000) {
+                    v = 1;
                 }
             } else {
                 func_801521C8();

@@ -1444,19 +1444,146 @@ extern func_80010884_Vec D_800631C8;
 extern func_80010884_Vec D_800631D4;
 extern u32 D_800631E4;
 
+#define D_800631B0 D_800631B0__func_80010884
+#define D_800631BC D_800631BC__func_80010884
+#define D_800631D4 D_800631D4__func_80010884
+#define func_8000DDB0 func_8000DDB0__func_80010884
+#define func_8000E58C func_8000E58C__func_80010884
+#define func_8000E748 func_8000E748__func_80010884
+#define func_8000E748_Struct func_8000E748_Struct__func_80010884
+#define func_8000F458_StructArg func_8000F458_StructArg__func_80010884
+#define func_80010884_Arg1 func_80010884_Arg1__func_80010884
+#define func_80010884_Key func_80010884_Key__func_80010884
+#define func_80010884_Obj func_80010884_Obj__func_80010884
+#define func_80010884_Sub func_80010884_Sub__func_80010884
+#define func_80010884_Vec func_80010884_Vec__func_80010884
+#define HHC2(x, y) x##y
+#define HHC(x, y) HHC2(x, y)
+#define func_8000F458_StructArg HHC(HHX_, __LINE__)
+#define HHX_233 func_8000F458_StructArg
+#define HHX_242 func_8000F458_StructArg
+#define HHX_243 func_8000F458_StructArg
+#define HHX_301 * hha301 ) ( void
+#define HHX_307 * hha307 ) ( void
+#define arg1 HHC(HHR_, __LINE__)
+#define HHR_301
+#define HHR_307
+#define HHR_14 arg1
+#define HHR_77 arg1
+#define HHR_103 arg1
+#define HHR_127 arg1
+#define HHR_131 arg1
+#define HHR_137 arg1
+#define HHR_153 arg1
+#define HHR_154 arg1
+#define HHR_166 arg1
+#define HHR_178 arg1
+#define HHR_243 arg1
+#define HHR_244 arg1
+#define HHR_259 arg1
+#define HHR_266 arg1
+#define HHR_275 arg1
+#define HHR_278 arg1
+#define HHR_290 arg1
+#define HHR_291 arg1
+#define HHR_296 arg1
+#define HHR_300 arg1
+#define HHR_304 arg1
+#define HHR_340 arg1
+#define HHR_355 arg1
+#define HHR_368 arg1
+#define HHR_378 arg1
+#define HHR_379 arg1
+#define HHR_386 arg1
+#define HHR_427 arg1
+#define HHR_459 arg1
+#define HHR_467 arg1
+#define HHR_483 arg1
+#define HHR_486 arg1
+#define HHR_490 arg1
+#define HHR_494 arg1
+#define HHR_498 arg1
+#define HHR_502 arg1
+#define HHR_506 arg1
+#define HHR_510 arg1
+#define HHR_514 arg1
+#define HHR_542 arg1
+typedef struct func_80010884_Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+} func_80010884_Vec;
+extern func_80010884_Vec D_800631B0[4];
+void func_8000DDB0(u32 a0, void *a1, s32 a2);
+s64 func_8000E58C(s32 arg0);
+typedef struct func_8000E748_Struct {
+    s32 unk0;
+    u16 unk4;
+    u16 unk6;
+    f32 unk8;
+} func_8000E748_Struct;
+f32 func_8000E748(func_8000E748_Struct *arg0, f32 *arg1, f32 *arg2, s16 *arg3, u16 *arg4);
+typedef struct func_80010884_Key {
+    s32 unk0;
+    u16 unk4;
+    u16 unk6;
+    s32 unk8;
+} func_80010884_Key;
+typedef struct func_8000F458_StructArg {
+    u8 pad[0x1C];
+    func_80010884_Key key;
+    func_80010884_Vec pos;
+    f32 scale;
+    func_80010884_Vec delta;
+    func_80010884_Vec rotated;
+    u8 pad50[0x26];
+    u8 reset;
+} func_8000F458_StructArg;
+
+#undef arg1
+#undef func_8000F458_StructArg
+
+typedef struct func_80010884_Sub {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[0x50 - 0x10];
+    f32 unk50;
+    u8 pad54[0x5C - 0x54];
+    func_80010884_Key unk5C;
+} func_80010884_Sub;
+
+typedef struct func_80010884_Obj {
+    u8 pad0[0x2C];
+    func_80010884_Sub *unk2C;
+} func_80010884_Obj;
+
+typedef struct func_80010884_Arg1 {
+    u8 pad0[0x1C];
+    func_80010884_Key unk1C;
+    u8 pad28[0x34 - 0x28];
+    f32 unk34;
+    u8 pad38[0x44 - 0x38];
+    f32 unk44;
+    f32 unk48;
+    f32 unk4C;
+} func_80010884_Arg1;
+
+extern func_80010884_Vec D_800631BC;
+extern func_80010884_Vec D_800631D4;
+
 void func_80010884(func_80010884_Obj **arg0, func_80010884_Arg1 *arg1, func_80010884_Key arg2, u16 arg5) {
     func_80010884_Sub *obj;
     func_80010884_Sub *sub;
     f32 t;
     f32 y;
     u64 off;
-    u8 pad[28];
-    f32 time[2];
-    s32 unk64[2];
-    u8 pad2[4];
+    f32 time[9];
+    f32 unk60[3];
     u16 flags[2];
     u16 b[2];
-    u16 a[2];
+    s16 a[2];
     u32 addr;
     func_80010884_Key *key;
     func_80010884_Key tmp;
@@ -1474,7 +1601,7 @@ void func_80010884(func_80010884_Obj **arg0, func_80010884_Arg1 *arg1, func_8001
         }
     }
     off = func_8000E58C(arg2.unk0);
-    func_8000E748(&arg2, &time[0], &unk64[0], &a[0], &b[0]);
+    func_8000E748((func_8000E748_Struct *)&arg2, &time[0], &unk60[1], &a[0], &b[0]);
     addr = off + ((s64)(((u16)time[0] * 0x18) + D_800631E4) & 0xFFFFFF);
     func_8000DDB0(addr, D_800631B0, 0x18);
     key = &arg1->unk1C;
@@ -1485,7 +1612,7 @@ void func_80010884(func_80010884_Obj **arg0, func_80010884_Arg1 *arg1, func_8001
         D_800631B0[3].x *= -1.0f;
     }
     off = func_8000E58C(key->unk0);
-    func_8000E748(key, &time[1], &unk64[1], &a[1], &b[1]);
+    func_8000E748((func_8000E748_Struct *)key, &time[1], &unk60[2], &a[1], &b[1]);
     addr = off + ((s64)(((u16)time[1] * 0x18) + D_800631E4) & 0xFFFFFF);
     func_8000DDB0(addr, D_800631B0, 0x18);
     if (flags[1] & 0x10) {
@@ -1509,6 +1636,68 @@ void func_80010884(func_80010884_Obj **arg0, func_80010884_Arg1 *arg1, func_8001
     *key = tmp;
     obj->unk50 = sub->unk50;
 }
+#undef HHC2
+#undef HHC
+#undef HHX_233
+#undef HHX_242
+#undef HHX_243
+#undef HHX_301
+#undef HHX_307
+#undef HHR_301
+#undef HHR_307
+#undef HHR_14
+#undef HHR_77
+#undef HHR_103
+#undef HHR_127
+#undef HHR_131
+#undef HHR_137
+#undef HHR_153
+#undef HHR_154
+#undef HHR_166
+#undef HHR_178
+#undef HHR_243
+#undef HHR_244
+#undef HHR_259
+#undef HHR_266
+#undef HHR_275
+#undef HHR_278
+#undef HHR_290
+#undef HHR_291
+#undef HHR_296
+#undef HHR_300
+#undef HHR_304
+#undef HHR_340
+#undef HHR_355
+#undef HHR_368
+#undef HHR_378
+#undef HHR_379
+#undef HHR_386
+#undef HHR_427
+#undef HHR_459
+#undef HHR_467
+#undef HHR_483
+#undef HHR_486
+#undef HHR_490
+#undef HHR_494
+#undef HHR_498
+#undef HHR_502
+#undef HHR_506
+#undef HHR_510
+#undef HHR_514
+#undef HHR_542
+#undef D_800631B0
+#undef D_800631BC
+#undef D_800631D4
+#undef func_8000DDB0
+#undef func_8000E58C
+#undef func_8000E748
+#undef func_8000E748_Struct
+#undef func_8000F458_StructArg
+#undef func_80010884_Arg1
+#undef func_80010884_Key
+#undef func_80010884_Obj
+#undef func_80010884_Sub
+#undef func_80010884_Vec
 
 #define D_8000FE48 D_8000FE48__func_80010D08
 #define D_8000FF80 D_8000FF80__func_80010D08
@@ -1518,6 +1707,73 @@ void func_80010884(func_80010884_Obj **arg0, func_80010884_Arg1 *arg1, func_8001
 #define D_80063A30 D_80063A30__func_80010D08
 #define D_80063E50 D_80063E50__func_80010D08
 extern func_800101D8_Ent D_80063A30[];
+#define func_80010D08 D_80010D08
+#undef func_80010D08
+
+typedef struct func_80010D08_Vec {
+    s32 x, y, z;
+} func_80010D08_Vec;
+
+typedef struct func_80010D08_Sub {
+    u8 pad0[0x50];
+    f32 unk50;
+    u8 pad54[0x62 - 0x54];
+    u16 unk62;
+} func_80010D08_Sub;
+
+typedef struct func_80010D08_Obj {
+    u8 pad0[0x2C];
+    func_80010D08_Sub *unk2C;
+} func_80010D08_Obj;
+
+typedef struct func_80010D08_StructArg1 {
+    u8 pad0[0xC];
+    u16 unkC;
+    u8 padE[0x44 - 0xE];
+    func_80010D08_Vec unk44;
+    u8 pad50[0x76 - 0x50];
+    u8 unk76;
+} func_80010D08_StructArg1;
+
+extern u8 D_80063430[];
+extern u16 D_80063E50[];
+extern u16 D_8000FE48(void *, u16, void *, void *);
+extern void D_8000FF80(void *, u16, void *, void *, func_80010D08_Vec);
+extern void D_8001061C(func_80010D08_Obj *, func_80010D08_Vec, u16, f32, s32, s32, u32);
+extern void D_80010884(void *, void *, func_80010D08_Vec, u16);
+
+#undef D_8000FE48
+#undef D_8000FF80
+#undef D_8001061C
+#undef D_80010884
+#undef D_80063430
+#undef D_80063A30
+#undef D_80063E50
+#define D_8000FE48 D_8000FE48__func_80010D08_a5938164
+#define D_8000FF80 D_8000FF80__func_80010D08_a5938164
+#define D_8001061C D_8001061C__func_80010D08_a5938164
+#define D_80010884 D_80010884__func_80010D08_a5938164
+#define D_80063430 D_80063430__func_80010D08_a5938164
+#define D_80063670 D_80063670__func_80010D08_a5938164
+#define D_80063A30 D_80063A30__func_80010D08_a5938164
+#define D_80063E50 D_80063E50__func_80010D08_a5938164
+#define D_801BC028 D_801BC028__func_80010D08_a5938164
+#define func_800101D8_Ent func_800101D8_Ent__func_80010D08_a5938164
+#define func_80010454_StructVec func_80010454_StructVec__func_80010D08_a5938164
+#define func_80010D08_Obj func_80010D08_Obj__func_80010D08_a5938164
+#define func_80010D08_StructArg1 func_80010D08_StructArg1__func_80010D08_a5938164
+#define func_80010D08_Sub func_80010D08_Sub__func_80010D08_a5938164
+#define func_80010D08_Vec func_80010D08_Vec__func_80010D08_a5938164
+typedef struct func_800101D8_Ent {
+    s16 a, b, c, pad;
+    f32 x, y, z;
+} func_800101D8_Ent;
+extern func_800101D8_Ent D_80063670[];
+extern func_800101D8_Ent D_80063A30[];
+typedef struct func_80010454_StructVec {
+    s32 x, y, z;
+} func_80010454_StructVec;
+extern func_80010454_StructVec D_801BC028;
 #define func_80010D08 D_80010D08
 #undef func_80010D08
 
@@ -1564,17 +1820,17 @@ u16 func_80010D08(func_80010D08_Obj **arg0, func_80010D08_StructArg1 *arg1,
     u16 sp74;
     u16 m;
     u16 m0;
-    s32 n;
+    u16 j;
 
     r = 0;
     bits = arg6;
     m0 = D_8000FE48(arg0, arg1->unkC, D_800631F0, D_80063DF0);
-    i = 0;
+    j = 0;
     if (m0 > 0) {
         do {
-            D_80010068(i, arg0, arg1->unkC, D_80063DF0, D_800631F0, D_80063670, &sp76, &sp74);
-            i++;
-        } while (i < m0);
+            D_80010068(j, arg0, arg1->unkC, D_80063DF0, D_800631F0, D_80063670, &sp76, &sp74);
+            j++;
+        } while (j < m0);
     }
     D_8000FF80(arg0, arg1->unkC, D_80063430, D_80063E50, arg2);
     m = D_80010068(0, arg0, arg1->unkC, D_80063E50, D_80063430, D_80063A30, &sp76, &sp74);
@@ -1622,6 +1878,28 @@ u16 func_80010D08(func_80010D08_Obj **arg0, func_80010D08_StructArg1 *arg1,
     }
     return r;
 }
+#undef D_8000FE48
+#undef D_8000FF80
+#undef D_8001061C
+#undef D_80010884
+#undef D_80063430
+#undef D_80063670
+#undef D_80063A30
+#undef D_80063E50
+#undef D_801BC028
+#undef func_800101D8_Ent
+#undef func_80010454_StructVec
+#undef func_80010D08_Obj
+#undef func_80010D08_StructArg1
+#undef func_80010D08_Sub
+#undef func_80010D08_Vec
+#define D_8000FE48 D_8000FE48__func_80010D08
+#define D_8000FF80 D_8000FF80__func_80010D08
+#define D_8001061C D_8001061C__func_80010D08
+#define D_80010884 D_80010884__func_80010D08
+#define D_80063430 D_80063430__func_80010D08
+#define D_80063A30 D_80063A30__func_80010D08
+#define D_80063E50 D_80063E50__func_80010D08
 #undef D_8000FE48
 #undef D_8000FF80
 #undef D_8001061C

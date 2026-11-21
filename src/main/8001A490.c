@@ -1217,10 +1217,103 @@ typedef struct func_8001C0B0_Struct { u8 d[6]; } func_8001C0B0_Struct;
 extern func_8001C0B0_Struct D_80044638;
 extern func_8001C0B0_Struct D_80044640;
 
+#undef D_800F51C0
+#undef ZP
+#undef ZQ
+#undef func_8001ADD4_Blk700
+#undef zU_297
+#define D_80044638 D_80044638__func_8001C0B0_2a5e689d
+#define D_80044640 D_80044640__func_8001C0B0_2a5e689d
+#define D_800F51C0 D_800F51C0__func_8001C0B0_2a5e689d
+#define func_8001ADD4_Blk700 func_8001ADD4_Blk700__func_8001C0B0_2a5e689d
+#define func_8001C0B0_Struct func_8001C0B0_Struct__func_8001C0B0_2a5e689d
+#define ZQ(a, b) a##_##b
+#define ZP(a, b) ZQ(a, b)
+#define zU_11 u16
+#define zU_12 u16
+#define zU_13 u16
+#define zU_19 u16
+#define zU_20 u16
+#define zU_21 u16
+#define zU_36 u16
+#define zU_37 u16
+#define zU_38 u16
+#define zU_58 u16
+#define zU_59 u16
+#define zU_60 u16
+#define zU_72 u16
+#define zU_73 u16
+#define zU_74 u16
+#define zU_99 u16
+#define zU_139 u16
+#define zU_150 u16
+#define zU_154 u16
+#define zU_190 u16
+#define zU_202 u16
+#define zU_217 u16
+#define zU_283 u16
+#define zU_297 u16
+#define zU_328 u16
+#define zU_331 u16
+#define zU_332 u16
+#define zU_333 u16
+#define zU_339 u16
+#define zU_383 u16
+#define zU_384 u16
+#define zU_385 u16
+#define zU_386 u16
+#define zU_390 u16
+#define zU_392 u16
+#define zU_393 u16
+#define zU_400 u16
+#define zU_401 u16
+#define zU_442 u8
+#define zU_443 u8
+#define zU_444 u8
+#define zU_445 u8
+#define zU_446 u8
+#define zU_447 u16
+#define zU_453 u16
+#define zU_454 u16
+#define zU_459 u16
+#define zU_464 u16
+#define zU_465 u16
+#define zU_466 u16
+#define zU_470 u16
+#define zU_471 u16
+#define zU_472 u16
+#define zU_473 u16
+#define zU_523 u16
+#define zU_530 u16
+#define zU_542 u16
+#define zU_550 u16
+#define zU_551 u16
+#define zU_552 u16
+#define zU_626 u16
+#define zU_628 u16
+#define zU_666 u16
+#define zU_667 u16
+#define zU_668 u16
+#define zU_682 u16
+#define zU_683 u16
+#define zU_684 u16
+#define zU_709 u16
+#define zU_710 u16
+#define zU_727 u16
+#define u16 ZP(zU, __LINE__)
+typedef struct func_8001ADD4_Blk700 { u8 d[0x700]; } func_8001ADD4_Blk700;
+extern func_8001ADD4_Blk700 D_800F51C0[];
+
+#undef u16
+
+typedef struct func_8001C0B0_Struct { u8 d[6]; } func_8001C0B0_Struct;
+extern func_8001C0B0_Struct D_80044638;
+extern func_8001C0B0_Struct D_80044640;
+
 void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
     s32 i;
     s32 j;
-    s32 pad;
+    s32 idx;
     func_8001C0B0_Struct a = D_80044638;
     func_8001C0B0_Struct b = D_80044640;
     s32 k;
@@ -1237,8 +1330,9 @@ void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
             for (i = 0; i < 13; i++) {
                 for (j = 0; j < n; j++) {
                     dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
-                    dst[i * 0x80 + j]&= 0x33;
-                    dst[i * 0x80 + j]|= src[k] & 0xCC;
+                    idx = i * 0x80;
+                    dst[idx + j]&= 0x33;
+                    dst[idx + j]|= src[k] & 0xCC;
                     k++;
                 }
             }
@@ -1246,8 +1340,9 @@ void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
             for (i = 0; i < 13; i++) {
                 for (j = 0; j < n; j++) {
                     dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
-                    dst[i * 0x80 + j]&= 0x33;
-                    dst[i * 0x80 + j]|= (src[k] & 0x33) << 2;
+                    idx = i * 0x80;
+                    dst[idx + j]&= 0x33;
+                    dst[idx + j]|= (src[k] & 0x33) << 2;
                     k++;
                 }
             }
@@ -1257,8 +1352,9 @@ void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
             for (i = 0; i < 13; i++) {
                 for (j = 0; j < n; j++) {
                     dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
-                    dst[i * 0x80 + j]&= 0xCC;
-                    dst[i * 0x80 + j]|= (src[k] & 0xCC) >> 2;
+                    idx = i * 0x80;
+                    dst[idx + j]&= 0xCC;
+                    dst[idx + j]|= (src[k] & 0xCC) >> 2;
                     k++;
                 }
             }
@@ -1266,14 +1362,98 @@ void func_8001C0B0(u8 arg0, u16 arg1, u8 arg2, u16 arg3) {
             for (i = 0; i < 13; i++) {
                 for (j = 0; j < n; j++) {
                     dst = (u8 *)D_800F51C0 + (arg1 / 2 + (arg0 >> 1) * 0x700);
-                    dst[i * 0x80 + j]&= 0xCC;
-                    dst[i * 0x80 + j]|= src[k] & 0x33;
+                    idx = i * 0x80;
+                    dst[idx + j]&= 0xCC;
+                    dst[idx + j]|= src[k] & 0x33;
                     k++;
                 }
             }
         }
     }
 }
+#undef ZQ
+#undef ZP
+#undef zU_11
+#undef zU_12
+#undef zU_13
+#undef zU_19
+#undef zU_20
+#undef zU_21
+#undef zU_36
+#undef zU_37
+#undef zU_38
+#undef zU_58
+#undef zU_59
+#undef zU_60
+#undef zU_72
+#undef zU_73
+#undef zU_74
+#undef zU_99
+#undef zU_139
+#undef zU_150
+#undef zU_154
+#undef zU_190
+#undef zU_202
+#undef zU_217
+#undef zU_283
+#undef zU_297
+#undef zU_328
+#undef zU_331
+#undef zU_332
+#undef zU_333
+#undef zU_339
+#undef zU_383
+#undef zU_384
+#undef zU_385
+#undef zU_386
+#undef zU_390
+#undef zU_392
+#undef zU_393
+#undef zU_400
+#undef zU_401
+#undef zU_442
+#undef zU_443
+#undef zU_444
+#undef zU_445
+#undef zU_446
+#undef zU_447
+#undef zU_453
+#undef zU_454
+#undef zU_459
+#undef zU_464
+#undef zU_465
+#undef zU_466
+#undef zU_470
+#undef zU_471
+#undef zU_472
+#undef zU_473
+#undef zU_523
+#undef zU_530
+#undef zU_542
+#undef zU_550
+#undef zU_551
+#undef zU_552
+#undef zU_626
+#undef zU_628
+#undef zU_666
+#undef zU_667
+#undef zU_668
+#undef zU_682
+#undef zU_683
+#undef zU_684
+#undef zU_709
+#undef zU_710
+#undef zU_727
+#undef D_80044638
+#undef D_80044640
+#undef D_800F51C0
+#undef func_8001ADD4_Blk700
+#undef func_8001C0B0_Struct
+#define D_800F51C0 D_800F51C0__func_8001C0B0
+#define ZP(a, b) ZQ(a, b)
+#define ZQ(a, b) a##_##b
+#define func_8001ADD4_Blk700 func_8001ADD4_Blk700__func_8001C0B0
+#define zU_297 u16
 #undef ZQ
 #undef ZP
 #undef zU_14
