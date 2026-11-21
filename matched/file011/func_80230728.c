@@ -1,5 +1,4 @@
 #include "common.h"
-u8 func_80230494(void);
 u16 func_80230500(s32 arg0, u8 arg1);
 struct func_80231B28_Struct {
     u8 pad0[0x2D8];
@@ -7,7 +6,6 @@ struct func_80231B28_Struct {
     u8 pad1[0x2DB - 0x2D9];
     u8 unk2DB;
 };
-
 
 struct func_80230728_Inner {
     u8 pad0[4];
@@ -42,26 +40,23 @@ struct func_80230728_Struct {
     u8 pad2DC[0x399 - 0x2DC];
     u8 unk399;
 };
-#define func_80230494 func_80230494__func_80230728_u32
 extern u32 func_80230494(void *);
 
 #define arg0 ((struct func_80230728_Struct *)a0)
 #define arg1 ((struct func_80230728_Struct *)a1)
 #define func_80231B28_Struct func_80231B28_Struct__func_80231B28
 void func_80230728(struct func_80231B28_Struct *a0, struct func_80231B28_Struct *a1) {
-    s16 pad;
+    s16 x;
     s16 s;
     s16 dy;
-    s16 x;
     u16 r;
     u32 r2;
     struct func_80230728_Inner *q;
     struct func_80230728_Ent *ent;
-    s32 d;
 
     r = func_80230500((s32)arg0, 1);
     dy = (s16)(arg0->unk52 - arg1->unk52);
-    s = (*(s16 *)((u8 *)arg0 + arg1->unk2D4->unkA * 6 + 0xAA)) + (arg0->unk54 - arg1->unk54) * 1
+    s = (*(s16 *)((u8 *)arg0 + arg1->unk2D4->unkA * 6 + 0xAA)) + (u32)(arg0->unk54 - arg1->unk54)
         + ((arg0->unk56 & 0x3F00) >> 8) + arg0->unk2D + dy + r;
     s = (s32)((f32)s * (f32)arg0->unk399 / 100.0f + 0.5);
     r2 = func_80230494(arg1);
@@ -87,5 +82,3 @@ void func_80230728(struct func_80231B28_Struct *a0, struct func_80231B28_Struct 
         }
     }
 }
-#undef func_80231B28_Struct
-#undef func_80230494

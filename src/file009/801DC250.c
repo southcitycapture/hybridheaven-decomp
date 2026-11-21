@@ -884,16 +884,130 @@ extern void func_801DCDBC(func_801DC510_StructA *, u16 *, f32 *, func_801DE6F4_S
 #define NORMAL() func_801DE590((s32)actor, (s32)anim, (s32)&sound, (s32)&volume)
 #define SPECIAL(n) func_801DE5E4((s32)actor, (s32 *)anim, &sound, &volume, (n))
 
+#undef D_801BBBF0
+#undef D_801BBBF4
+#undef D_801BBCD0
+#undef D_801BBF44
+#undef D_801E15E8
+#undef D_801E1F58
+#undef D_801E1F7C
+#undef FRAME
+#undef G
+#undef NORMAL
+#undef SPECIAL
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_801084C4
+#undef func_80126944
+#undef func_801DC510
+#undef func_801DC510_StructA
+#undef func_801DC510_StructB
+#undef func_801DC9C4
+#undef func_801DCDBC
+#undef func_801DE590
+#undef func_801DE5E4
+#undef func_801DE6F4
+#undef func_801DE6F4_StructVec
+#undef func_801DFE28
+#define D_801BBBF0 D_801BBBF0__func_801DE7EC_4e09eea1
+#define D_801BBBF4 D_801BBBF4__func_801DE7EC_4e09eea1
+#define D_801BBCD0 D_801BBCD0__func_801DE7EC_4e09eea1
+#define D_801BBF44 D_801BBF44__func_801DE7EC_4e09eea1
+#define D_801E15E8 D_801E15E8__func_801DE7EC_4e09eea1
+#define D_801E1F58 D_801E1F58__func_801DE7EC_4e09eea1
+#define D_801E1F7C D_801E1F7C__func_801DE7EC_4e09eea1
+#define func_8001EAD0 func_8001EAD0__func_801DE7EC_4e09eea1
+#define func_8001EB64 func_8001EB64__func_801DE7EC_4e09eea1
+#define func_801084C4 func_801084C4__func_801DE7EC_4e09eea1
+#define func_80126944 func_80126944__func_801DE7EC_4e09eea1
+#define func_801DC510 func_801DC510__func_801DE7EC_4e09eea1
+#define func_801DC510_StructA func_801DC510_StructA__func_801DE7EC_4e09eea1
+#define func_801DC510_StructB func_801DC510_StructB__func_801DE7EC_4e09eea1
+#define func_801DC9C4 func_801DC9C4__func_801DE7EC_4e09eea1
+#define func_801DCDBC func_801DCDBC__func_801DE7EC_4e09eea1
+#define func_801DCDBC_StructA func_801DCDBC_StructA__func_801DE7EC_4e09eea1
+#define func_801DCDBC_Vec func_801DCDBC_Vec__func_801DE7EC_4e09eea1
+#define func_801DE590 func_801DE590__func_801DE7EC_4e09eea1
+#define func_801DE5E4 func_801DE5E4__func_801DE7EC_4e09eea1
+#define func_801DE6F4 func_801DE6F4__func_801DE7EC_4e09eea1
+#define func_801DE6F4_StructVec func_801DE6F4_StructVec__func_801DE7EC_4e09eea1
+#define func_801DE7EC_StructActor func_801DE7EC_StructActor__func_801DE7EC_4e09eea1
+#define func_801DE7EC_StructArg func_801DE7EC_StructArg__func_801DE7EC_4e09eea1
+#define func_801DE7EC_StructG func_801DE7EC_StructG__func_801DE7EC_4e09eea1
+#define func_801DE7EC_StructObj func_801DE7EC_StructObj__func_801DE7EC_4e09eea1
+#define func_801DE7EC_StructPos func_801DE7EC_StructPos__func_801DE7EC_4e09eea1
+#define func_801DFE28 func_801DFE28__func_801DE7EC_4e09eea1
+typedef struct func_801DC510_StructA { s32 id; u16 k; u8 pad6[2]; f32 scale; } func_801DC510_StructA;
+typedef struct func_801DC510_StructB { s32 id; u16 a; u16 b; u16 c; u8 pad[2]; } func_801DC510_StructB;
+u16 func_801DC510(func_801DC510_StructA *arg0, func_801DC510_StructB *arg1);
+typedef struct func_801DCDBC_StructA {
+    s32 id;
+    u16 k;
+    u16 flags;
+    f32 scale;
+} func_801DCDBC_StructA;
+typedef struct func_801DCDBC_Vec {
+    f32 x, y, z;
+} func_801DCDBC_Vec;
+void func_801DCDBC(func_801DCDBC_StructA *anim, u16 *arg1, f32 *arg2, func_801DCDBC_Vec pos);
+typedef struct func_801DE6F4_StructVec {
+    f32 x, y, z;
+} func_801DE6F4_StructVec;
+u16 func_801DE6F4(s32 arg0, func_801DE6F4_StructVec arg1, f32 *arg4, u8 arg5);
+
+extern u8 D_801BBBF0[];
+extern u16 D_801BBBF4;
+extern void func_801DC9C4(func_801DE6F4_StructVec, u16, f32);
+void func_801DE590(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+void func_801DE5E4(s32 arg0, s32 *arg1, u16 *arg2, f32 *arg3, u8 arg4);
+u8 func_801DFE28(s32 arg0);
+
+
+typedef struct func_801DE7EC_StructPos {
+    u8 pad0[4]; f32 x, y, z; u8 pad10[2]; s16 angle;
+    u8 pad14[0x1C]; f32 px, py, pz;
+} func_801DE7EC_StructPos;
+typedef struct func_801DE7EC_StructObj {
+    u8 pad0[0x2C]; func_801DE7EC_StructPos *pos;
+} func_801DE7EC_StructObj;
+typedef struct func_801DE7EC_StructActor {
+    u8 pad0[0x24]; func_801DE7EC_StructObj *obj;
+    u8 pad28[0x44]; s32 key; u16 frame;
+} func_801DE7EC_StructActor;
+typedef struct func_801DE7EC_StructArg {
+    u8 pad0[0xE]; u16 id; u8 pad10[0xC];
+    func_801DC510_StructA anim;
+    u8 pad28[0x4C]; u8 mode;
+} func_801DE7EC_StructArg;
+typedef struct func_801DE7EC_StructG {
+    u8 pad0[4]; u16 unk4; u8 pad6[0x26]; u16 unk2C; u8 pad2E[0xBA];
+    func_801DE7EC_StructObj *unkE8;
+} func_801DE7EC_StructG;
+extern func_801DE7EC_StructObj *D_801BBCD0;
+extern u8 D_801BBF44[];
+extern u16 D_801E15E8[][8];
+extern func_801DC510_StructB D_801E1F7C[];
+extern func_801DC510_StructB D_801E1F58[];
+extern s32 func_801084C4(f32, f32, f32, f32, f32, f32);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern s32 func_80126944(void);
+#define DCDBC() func_801DCDBC((func_801DCDBC_StructA *)anim, &sound, &volume, *(func_801DCDBC_Vec *)&pos)
+
+#define G ((func_801DE7EC_StructG *)D_801BBBF0)
+#define FRAME(n) func_80011590((u32)(anim->scale * (n)) & 0xFFFF)
+#define NORMAL() func_801DE590((s32)actor, (s32)anim, (s32)&sound, (s32)&volume)
+#define SPECIAL(n) func_801DE5E4((s32)actor, (s32 *)anim, &sound, &volume, (n))
+
 void func_801DE7EC(func_801DE7EC_StructActor *actor, func_801DE7EC_StructArg *arg)
 {
-    s32 pad0;
+    s32 hit;
     f32 scale;
-    s32 pad1;
+    func_801DC510_StructA *anim = &arg->anim;
     u16 sound = 0;
     f32 volume;
     func_801DE6F4_StructVec pos;
     f32 d, c, b, a;
-    func_801DC510_StructA *anim = &arg->anim;
 
     if (G->unk4 >= 220) return;
     pos.x = actor->obj->pos->x;
@@ -905,8 +1019,9 @@ void func_801DE7EC(func_801DE7EC_StructActor *actor, func_801DE7EC_StructArg *ar
     if (anim->id != 0x19100CF && anim->id != 0x1910016 && anim->id != 0x1910008 &&
         (arg->mode == 3 || arg->mode == 4) && arg->id != 0x32 && arg->id != 0x33 &&
         arg->id != 0x34 && (arg->id & 0x7FFF) != 0xF8 && arg->id != 0x149 && G->unk2C != 10) {
-        if (func_801084C4(G->unkE8->pos->px, G->unkE8->pos->py,
-                         G->unkE8->pos->pz, pos.x, pos.y + 1.0, pos.z)) return;
+        hit = func_801084C4(G->unkE8->pos->px, G->unkE8->pos->py,
+                            G->unkE8->pos->pz, pos.x, pos.y + 1.0, pos.z);
+        if (hit) return;
     }
     scale = anim->scale;
     volume = 1.0f;
@@ -937,12 +1052,12 @@ void func_801DE7EC(func_801DE7EC_StructActor *actor, func_801DE7EC_StructArg *ar
     case 0x11B:
     case 0x11C:
         if (func_80126944() == 1) NORMAL();
-        else if (func_80126944() == 0) func_801DCDBC(anim, &sound, &volume, pos);
+        else if (func_80126944() == 0) DCDBC();
         break;
     case 0x50:
         if (func_80126944() == 1) SPECIAL(2);
         else {
-            func_801DCDBC(anim, &sound, &volume, pos);
+            DCDBC();
             if (sound && sound != 0x672 && sound != 0x674 && sound != 0x673 &&
                 sound != 0x675 && sound != 0x68C && sound != 0x68D) sound = 0x654;
         }
@@ -1021,6 +1136,64 @@ void func_801DE7EC(func_801DE7EC_StructActor *actor, func_801DE7EC_StructArg *ar
     }
     if (sound) func_801DC9C4(pos, sound, volume);
 }
+#undef DCDBC
+#undef G
+#undef FRAME
+#undef NORMAL
+#undef SPECIAL
+#undef D_801BBBF0
+#undef D_801BBBF4
+#undef D_801BBCD0
+#undef D_801BBF44
+#undef D_801E15E8
+#undef D_801E1F58
+#undef D_801E1F7C
+#undef func_8001EAD0
+#undef func_8001EB64
+#undef func_801084C4
+#undef func_80126944
+#undef func_801DC510
+#undef func_801DC510_StructA
+#undef func_801DC510_StructB
+#undef func_801DC9C4
+#undef func_801DCDBC
+#undef func_801DCDBC_StructA
+#undef func_801DCDBC_Vec
+#undef func_801DE590
+#undef func_801DE5E4
+#undef func_801DE6F4
+#undef func_801DE6F4_StructVec
+#undef func_801DE7EC_StructActor
+#undef func_801DE7EC_StructArg
+#undef func_801DE7EC_StructG
+#undef func_801DE7EC_StructObj
+#undef func_801DE7EC_StructPos
+#undef func_801DFE28
+#define D_801BBBF0 D_801BBBF0__func_801DE7EC
+#define D_801BBBF4 D_801BBBF4__func_801DE7EC
+#define D_801BBCD0 D_801BBCD0__func_801DE7EC
+#define D_801BBF44 D_801BBF44__func_801DE7EC
+#define D_801E15E8 D_801E15E8__func_801DE7EC
+#define D_801E1F58 D_801E1F58__func_801DE7EC
+#define D_801E1F7C D_801E1F7C__func_801DE7EC
+#define FRAME(n) func_80011590((u32)(anim->scale * (n)) & 0xFFFF)
+#define G ((func_801DE7EC_StructG *)D_801BBBF0)
+#define NORMAL() func_801DE590((s32)actor, (s32)anim, (s32)&sound, (s32)&volume)
+#define SPECIAL(n) func_801DE5E4((s32)actor, (s32 *)anim, &sound, &volume, (n))
+#define func_8001EAD0 func_8001EAD0__func_801DE7EC
+#define func_8001EB64 func_8001EB64__func_801DE7EC
+#define func_801084C4 func_801084C4__func_801DE7EC
+#define func_80126944 func_80126944__func_801DE7EC
+#define func_801DC510 func_801DC510__func_801DE7EC
+#define func_801DC510_StructA func_801DC510_StructA__func_801DE7EC
+#define func_801DC510_StructB func_801DC510_StructB__func_801DE7EC
+#define func_801DC9C4 func_801DC9C4__func_801DE7EC
+#define func_801DCDBC func_801DCDBC__func_801DE7EC
+#define func_801DE590 func_801DE590__func_801DE7EC
+#define func_801DE5E4 func_801DE5E4__func_801DE7EC
+#define func_801DE6F4 func_801DE6F4__func_801DE7EC
+#define func_801DE6F4_StructVec func_801DE6F4_StructVec__func_801DE7EC
+#define func_801DFE28 func_801DFE28__func_801DE7EC
 #undef G
 #undef FRAME
 #undef NORMAL

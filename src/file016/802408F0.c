@@ -495,16 +495,104 @@ extern func_80241164_Step D_8024996C[];
 extern u8 D_8024EB98[];
 
 
-void func_80241164(func_80241164_Self *arg0, func_80241164_Obj **arg1, s32 arg2, s32 arg3, s32 idx) {
+#undef func_80240A6C_Actor
+#undef func_80240A6C_Global
+#undef func_80240A6C_Pos
+#undef func_80240A6C_Step
+#undef func_80241F1C
+#undef func_80241FD0
+#define D_801BBBF0 D_801BBBF0__func_80241164_b8117166
+#define D_80249880 D_80249880__func_80241164_b8117166
+#define D_80249958 D_80249958__func_80241164_b8117166
+#define D_8024996C D_8024996C__func_80241164_b8117166
+#define func_80240A6C_Actor func_80240A6C_Actor__func_80241164_b8117166
+#define func_80240A6C_Global func_80240A6C_Global__func_80241164_b8117166
+#define func_80240A6C_Pos func_80240A6C_Pos__func_80241164_b8117166
+#define func_80240A6C_Step func_80240A6C_Step__func_80241164_b8117166
+#define func_80240A6C_StructObj func_80240A6C_StructObj__func_80241164_b8117166
+#define func_80240A6C_StructSelf func_80240A6C_StructSelf__func_80241164_b8117166
+#define func_80240A6C_StructSub func_80240A6C_StructSub__func_80241164_b8117166
+#define func_80240A6C_StructVec func_80240A6C_StructVec__func_80241164_b8117166
+#define func_80241F1C func_80241F1C__func_80241164_b8117166
+#define func_80241FD0 func_80241FD0__func_80241164_b8117166
+typedef struct func_80240A6C_Pos {
+    u8 pad0[0x4];
+    f32 unk4;
+} func_80240A6C_Pos;
+typedef struct func_80240A6C_Actor {
+    u8 pad0[0x2C];
+    func_80240A6C_Pos *unk2C;
+} func_80240A6C_Actor;
+typedef struct func_80240A6C_Global {
+    u8 pad0[0xE0];
+    func_80240A6C_Actor *unkE0;
+    u8 padE4[0x2A4 - 0xE4];
+    f32 unk2A4;
+    f32 unk2A8;
+    u8 pad2AC[0xF36 - 0x2AC];
+    u8 unkF36;
+    u8 unkF37;
+    u8 unkF38;
+    u8 unkF39;
+    u8 unkF3A;
+    u8 unkF3B;
+    s8 unkF3C;
+    s8 unkF3D;
+    s8 unkF3E;
+    u8 unkF3F;
+    u8 unkF40;
+    u8 unkF41;
+    s8 unkF42;
+    s8 unkF43;
+    s8 unkF44;
+    u8 unkF45;
+    u8 unkF46;
+    u8 unkF47;
+    u8 unkF48;
+} func_80240A6C_Global;
+extern func_80240A6C_Global D_801BBBF0;
+typedef struct func_80240A6C_Step {
+    u8 unk0;
+    u8 unk1;
+    u16 unk2;
+} func_80240A6C_Step;
+extern func_80240A6C_Step D_80249958[20];
+typedef struct func_80240A6C_StructSub {
+    u8 pad0[0x4D];
+    u8 unk4D;
+} func_80240A6C_StructSub;
+typedef struct func_80240A6C_StructObj {
+    u8 pad0[0x30];
+    func_80240A6C_StructSub *unk30;
+} func_80240A6C_StructObj;
+typedef struct func_80240A6C_StructSelf {
+    u8 pad0[0x3C];
+    u16 unk3C;
+    u8 pad1[0x52];
+    u16 unk90;
+    u16 unk92;
+    u8 unk94;
+    u8 pad2[0x8];
+    u8 unk9D;
+} func_80240A6C_StructSelf;
+typedef struct func_80240A6C_StructVec {
+    f32 x;
+    f32 y;
+    f32 z;
+} func_80240A6C_StructVec;
+void *func_80241F1C(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
+void *func_80241FD0(f32 arg0, f32 arg1, f32 arg2, u8 arg3);
+
+
+extern func_80240A6C_StructVec D_80249880[];
+extern func_80240A6C_Step D_8024996C[];
+
+void func_80241164(func_80240A6C_StructSelf *arg0, func_80240A6C_StructObj **arg1) {
     s32 sp8C;
     f32 x;
-    func_80241164_Step *step;
+    s32 idx;
     s32 sp80;
 
-    if (arg2) {
-    }
-    if (arg3) {
-    }
     sp8C = arg0->unk3C++;
     switch (arg0->unk94) {
     case 0:
@@ -514,10 +602,8 @@ void func_80241164(func_80241164_Self *arg0, func_80241164_Obj **arg1, s32 arg2,
             if (x > 180.0f) {
                 x = 180.0f;
             }
-            if ((-295.0f)) {
-            }
-            func_8011AAF4(D_8024EB98, 0x22C, arg0, 0, 1, 0.0f, 180.100006f, 110.0f, (-295.0f), 0.0f,
-                          x, 20.0f, (-295.0f), 0.0f, 35.0f, -1, -1);
+            func_8011AAF4(D_8024EB98, 0x22C, arg0, 0, 1, 0.0f, 180.1f, 110.0f, -295.0f, 0.0f,
+                          x, 20.0f, -295.0f, 0.0f, 35.0f, -1, -1);
         }
         break;
     case 1:
@@ -529,9 +615,7 @@ void func_80241164(func_80241164_Self *arg0, func_80241164_Obj **arg1, s32 arg2,
     case 2:
         x = D_801BBBF0.unkE0->unk2C->unk4;
         if (x < 180.0f) {
-            if ((-295.0f)) {
-            }
-            func_801C3DC8(arg0, 180.1f, 110.0f, (-295.0f), x, 20.0f, (-295.0f), 0.200000003f, 35.0f);
+            func_801C3DC8(arg0, 180.1f, 110.0f, -295.0f, x, 20.0f, -295.0f, 0.2f, 35.0f);
         }
         if (func_80150584() != 0) {
             arg0->unk94 = 3;
@@ -549,14 +633,33 @@ void func_80241164(func_80241164_Self *arg0, func_80241164_Obj **arg1, s32 arg2,
     }
     if (arg0->unk92-- == 0) {
         idx = arg0->unk9D++;
-        step = (func_80241164_Step *)((idx * 4) + (u8 *)D_8024996C);
-        if (((func_80241164_Step *)((idx * 4) + (u8 *)D_80249958))->unk2 == 0) {
-            step = (func_80241164_Step *)(((idx = (arg0->unk9D = 0)) * 4) + (u8 *)D_8024996C);
+        if (D_80249958[idx].unk2 == 0) {
+            idx = arg0->unk9D = 0;
         }
-        func_80241FD0(((func_80241164_Vec *)(D_80249880 + step->unk0 * 12))->x, ((func_80241164_Vec *)(D_80249880 + step->unk0 * 12))->y, ((func_80241164_Vec *)(D_80249880 + step->unk0 * 12))->z, ((func_80241164_Vec *)(D_80249880 + step->unk0 * 12))->z != *(f32 *)(D_80249880 + 8));
-        arg0->unk92 = step->unk2;
+        func_80241FD0(D_80249880[D_8024996C[idx].unk0].x, D_80249880[D_8024996C[idx].unk0].y, D_80249880[D_8024996C[idx].unk0].z, D_80249880[D_8024996C[idx].unk0].z != D_80249880[0].z);
+        arg0->unk92 = D_8024996C[idx].unk2;
     }
 }
+#undef D_801BBBF0
+#undef D_80249880
+#undef D_80249958
+#undef D_8024996C
+#undef func_80240A6C_Actor
+#undef func_80240A6C_Global
+#undef func_80240A6C_Pos
+#undef func_80240A6C_Step
+#undef func_80240A6C_StructObj
+#undef func_80240A6C_StructSelf
+#undef func_80240A6C_StructSub
+#undef func_80240A6C_StructVec
+#undef func_80241F1C
+#undef func_80241FD0
+#define func_80240A6C_Actor func_80240A6C_Actor__func_80241164
+#define func_80240A6C_Global func_80240A6C_Global__func_80241164
+#define func_80240A6C_Pos func_80240A6C_Pos__func_80241164
+#define func_80240A6C_Step func_80240A6C_Step__func_80241164
+#define func_80241F1C func_80241F1C__func_80241164
+#define func_80241FD0 func_80241FD0__func_80241164
 #undef func_80240A6C_Actor
 #undef func_80240A6C_Global
 #undef func_80240A6C_Pos

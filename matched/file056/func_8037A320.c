@@ -1,15 +1,4 @@
-#include "context.h"
-
-typedef struct func_8037A320_StructE {
-    u32 w0;
-    s16 h4;
-    s16 h6;
-    s32 w8;
-} func_8037A320_StructE;
-typedef struct func_8037A320_StructP {
-    u8 pad[0x1C];
-    func_8037A320_StructE e;
-} func_8037A320_StructP;
+#include "common.h"
 typedef struct func_8037A320_StructV {
     u8 pad[4];
     f32 unk4;
@@ -20,6 +9,25 @@ typedef struct func_8037A320_StructG {
     u8 pad[0x2C];
     func_8037A320_StructV *unk2C;
 } func_8037A320_StructG;
+extern func_8037A320_StructG *D_801BBCD0;
+extern u8 D_80388A6C;
+void func_800058DC(void *, void *);
+s32 func_80010550(s32, s32, s32);
+typedef struct func_8037A320_StructE {
+    u32 w0;
+    s16 h4;
+    s16 h6;
+    s32 w8;
+} func_8037A320_StructE;
+extern void func_8013A28C(s32, func_8037A320_StructE);
+extern void func_801518D4(s32, s32, s32);
+extern s32 func_801C5A1C(f32, f32, f32, f32, f32, f32);
+extern void func_801CD228(void *, s32);
+extern void func_801DFAA4(void *, s32);
+typedef struct func_8037A320_StructP {
+    u8 pad[0x1C];
+    func_8037A320_StructE e;
+} func_8037A320_StructP;
 typedef struct func_8037A320_StructA {
     u8 pad[0x30];
     u32 unk30;
@@ -30,21 +38,32 @@ typedef struct func_8037A320_StructA {
     u8 pad4[0x10];
     func_8037A320_StructP *unk5C;
 } func_8037A320_StructA;
+typedef struct func_8037A6F4_StructP {
+    u8 pad[0x1C];
+    u32 unk1C;
+    u16 unk20;
+    s16 unk22;
+    s32 unk24;
+} func_8037A6F4_StructP;
+typedef struct func_8037A6F4_StructO {
+    u8 pad[0x30];
+    u32 unk30;
+    u8 pad34[0xC];
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    u8 pad4C[0x10];
+    func_8037A6F4_StructP *unk5C;
+} func_8037A6F4_StructO;
+void func_8037A6F4(func_8037A6F4_StructO *arg0, s32 arg1);
+typedef struct func_8037AC08_StructP { u8 pad[0x20]; u16 unk20; } func_8037AC08_StructP;
+typedef struct func_8037AC08_StructO { u8 pad[0x30]; s32 unk30; u8 pad34[0xC]; f32 unk40; f32 unk44; f32 unk48; u8 pad4C[0x10]; func_8037AC08_StructP *unk5C; } func_8037AC08_StructO;
+void func_8037AC08(func_8037AC08_StructO *arg0, s32 arg1);
+typedef struct func_8037B9F0_StructB { u8 pad[0x40]; f32 unk40; f32 unk44; f32 unk48; } func_8037B9F0_StructB;
 
-void func_800058DC(void *, void *);
-struct func_8037B9F0_StructB;
-s32 func_8037B9F0(struct func_8037B9F0_StructB *arg0);
-extern s32 func_801C5A1C(f32, f32, f32, f32, f32, f32);
-extern void func_801DFAA4(void *, s32);
-extern void func_801518D4(s32, s32, s32);
-extern void func_8013A28C(s32, func_8037A320_StructE);
-extern void func_801CD228(void *, s32);
+extern s32 func_8037B9F0(struct func_8037B9F0_StructB *arg0);
 extern u16 D_801BBBF4;
-extern func_8037A320_StructG *D_801BBCD0;
 extern u8 D_801BBF44[];
-extern u8 D_80388A6C;
-extern u8 func_8037AC08[];
-extern u8 func_8037A6F4[];
 
 void func_8037A320(func_8037A320_StructA *arg0, s32 arg1) {
     func_8037A320_StructP *sp2C;
@@ -52,11 +71,12 @@ void func_8037A320(func_8037A320_StructA *arg0, s32 arg1) {
     u16 sp26;
     func_8037A320_StructV *v;
     func_8037A320_StructE *e;
-    extern s32 func_80010550();
+extern s32 func_80010550();
 
     sp2C = arg0->unk5C;
     sp26 = func_80010550(arg1, sp2C);
-    if (func_8037B9F0((struct func_8037B9F0_StructB *)arg0) == 0) {
+    sp28 = func_8037B9F0((struct func_8037B9F0_StructB *)arg0);
+    if (sp28 == 0) {
         if (arg0->unk30 & 8) {
             v = D_801BBCD0->unk2C;
             if (func_801C5A1C(v->unk4, v->unk8 + 0.5, v->unkC, v->unk4, v->unk8 - 6.0, v->unkC) == 0) {

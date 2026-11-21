@@ -1,19 +1,30 @@
 #include "common.h"
+typedef struct func_801DC510_StructA { s32 id; u16 k; u8 pad6[2]; f32 scale; } func_801DC510_StructA;
+typedef struct func_801DC510_StructB { s32 id; u16 a; u16 b; u16 c; u8 pad[2]; } func_801DC510_StructB;
+u16 func_801DC510(func_801DC510_StructA *arg0, func_801DC510_StructB *arg1);
+typedef struct func_801DCDBC_StructA {
+    s32 id;
+    u16 k;
+    u16 flags;
+    f32 scale;
+} func_801DCDBC_StructA;
+typedef struct func_801DCDBC_Vec {
+    f32 x, y, z;
+} func_801DCDBC_Vec;
+void func_801DCDBC(func_801DCDBC_StructA *anim, u16 *arg1, f32 *arg2, func_801DCDBC_Vec pos);
+typedef struct func_801DE6F4_StructVec {
+    f32 x, y, z;
+} func_801DE6F4_StructVec;
+u16 func_801DE6F4(s32 arg0, func_801DE6F4_StructVec arg1, f32 *arg4, u8 arg5);
+
 extern u8 D_801BBBF0[];
 extern u16 D_801BBBF4;
 extern u8 D_801E16A0[];
 extern u16 func_80011590();
 extern s32 func_801C5A1C(f32, f32, f32, f32, f32, f32);
-typedef struct func_801DC510_StructA { s32 id; u16 k; u8 pad6[2]; f32 scale; } func_801DC510_StructA;
-typedef struct func_801DC510_StructB { s32 id; u16 a; u16 b; u16 c; u8 pad[2]; } func_801DC510_StructB;
-u16 func_801DC510(func_801DC510_StructA *arg0, func_801DC510_StructB *arg1);
-typedef struct func_801DE6F4_StructVec {
-    f32 x, y, z;
-} func_801DE6F4_StructVec;
 extern void func_801DC9C4(func_801DE6F4_StructVec, u16, f32);
 void func_801DE590(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_801DE5E4(s32 arg0, s32 *arg1, u16 *arg2, f32 *arg3, u8 arg4);
-u16 func_801DE6F4(s32 arg0, func_801DE6F4_StructVec arg1, f32 *arg4, u8 arg5);
 u8 func_801DFE28(s32 arg0);
 
 
@@ -46,7 +57,7 @@ extern s32 func_801084C4(f32, f32, f32, f32, f32, f32);
 extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern s32 func_80126944(void);
-extern void func_801DCDBC(func_801DC510_StructA *, u16 *, f32 *, func_801DE6F4_StructVec);
+#define DCDBC() func_801DCDBC((func_801DCDBC_StructA *)anim, &sound, &volume, *(func_801DCDBC_Vec *)&pos)
 
 #define G ((func_801DE7EC_StructG *)D_801BBBF0)
 #define FRAME(n) func_80011590((u32)(anim->scale * (n)) & 0xFFFF)
@@ -55,14 +66,13 @@ extern void func_801DCDBC(func_801DC510_StructA *, u16 *, f32 *, func_801DE6F4_S
 
 void func_801DE7EC(func_801DE7EC_StructActor *actor, func_801DE7EC_StructArg *arg)
 {
-    s32 pad0;
+    s32 hit;
     f32 scale;
-    s32 pad1;
+    func_801DC510_StructA *anim = &arg->anim;
     u16 sound = 0;
     f32 volume;
     func_801DE6F4_StructVec pos;
     f32 d, c, b, a;
-    func_801DC510_StructA *anim = &arg->anim;
 
     if (G->unk4 >= 220) return;
     pos.x = actor->obj->pos->x;
@@ -74,8 +84,9 @@ void func_801DE7EC(func_801DE7EC_StructActor *actor, func_801DE7EC_StructArg *ar
     if (anim->id != 0x19100CF && anim->id != 0x1910016 && anim->id != 0x1910008 &&
         (arg->mode == 3 || arg->mode == 4) && arg->id != 0x32 && arg->id != 0x33 &&
         arg->id != 0x34 && (arg->id & 0x7FFF) != 0xF8 && arg->id != 0x149 && G->unk2C != 10) {
-        if (func_801084C4(G->unkE8->pos->px, G->unkE8->pos->py,
-                         G->unkE8->pos->pz, pos.x, pos.y + 1.0, pos.z)) return;
+        hit = func_801084C4(G->unkE8->pos->px, G->unkE8->pos->py,
+                            G->unkE8->pos->pz, pos.x, pos.y + 1.0, pos.z);
+        if (hit) return;
     }
     scale = anim->scale;
     volume = 1.0f;
@@ -106,12 +117,12 @@ void func_801DE7EC(func_801DE7EC_StructActor *actor, func_801DE7EC_StructArg *ar
     case 0x11B:
     case 0x11C:
         if (func_80126944() == 1) NORMAL();
-        else if (func_80126944() == 0) func_801DCDBC(anim, &sound, &volume, pos);
+        else if (func_80126944() == 0) DCDBC();
         break;
     case 0x50:
         if (func_80126944() == 1) SPECIAL(2);
         else {
-            func_801DCDBC(anim, &sound, &volume, pos);
+            DCDBC();
             if (sound && sound != 0x672 && sound != 0x674 && sound != 0x673 &&
                 sound != 0x675 && sound != 0x68C && sound != 0x68D) sound = 0x654;
         }

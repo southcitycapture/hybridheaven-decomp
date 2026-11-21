@@ -256,8 +256,62 @@ void func_801C0FA8(void) {
 #undef D_801DEA40
 #undef func_801C1134_Struct
 
-/* hh-block asm/nonmatchings/file025/801C0A30/_mrg_keep_text_9f5ded3065aa0a3d.s {"functions":["func_801C1000"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C0A30/_mrg_keep_text_9f5ded3065aa0a3d.s")
+#define D_801DEA38 D_801DEA38__func_801C1000
+#define D_801DEA40 D_801DEA40__func_801C1000
+#define D_801DEBC0 D_801DEBC0__func_801C1000
+#define func_801C0C7C_Struct func_801C0C7C_Struct__func_801C1000
+#define func_801C1134_Struct func_801C1134_Struct__func_801C1000
+typedef struct func_801C0C7C_Struct {
+    s32 a0, a4;
+    u64 a8;
+} func_801C0C7C_Struct;
+extern func_801C0C7C_Struct D_801DEA38[];
+struct func_801C1134_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+extern struct func_801C1134_Struct D_801DEA40[];
+extern struct func_801C1134_Struct D_801DEBC0[];
+
+
+void func_801C1000(s32 arg0, s32 arg1) {
+    struct func_801C1134_Struct *p;
+    u32 count;
+    u32 i;
+    u32 duplicates = arg0;
+    s32 empty;
+
+    i = 0;
+    count = D_801DEA38[0].a0;
+    if (count != 0) {
+        do {
+            if (D_801DEA40[i].unk0 == arg0 && D_801DEA40[i].unk4 == arg1) {
+                duplicates++;
+            }
+            i++;
+        } while (i < count);
+    }
+    empty = -1;
+    i = 0;
+loop:
+    if ((D_801DEA40[i].unk0 != empty) || (D_801DEA40[i].unk4 != empty)) {
+        i++;
+        if (D_801DEBC0 != &D_801DEA40[i]) {
+            goto loop;
+        }
+    }
+    p = &D_801DEA40[i];
+    p->unk0 = arg0;
+    p->unk4 = arg1;
+    p->unk8 = D_801D8DA8;
+    D_801DEA38[0].a0 = count + 1;
+}
+#undef D_801DEA38
+#undef D_801DEA40
+#undef D_801DEBC0
+#undef func_801C0C7C_Struct
+#undef func_801C1134_Struct
 
 struct func_801C1134_Struct {
     s32 unk0;
