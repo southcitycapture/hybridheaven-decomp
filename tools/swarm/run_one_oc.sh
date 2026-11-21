@@ -141,7 +141,14 @@ if [ -n "$HONEST" ] && [ "$v" = MATCH ] && ! HH=$HH honest_ok attempt.c; then
 fi
 mv "$LOGD"/* "$OW"/ 2>/dev/null; rmdir "$LOGD" 2>/dev/null
 mkdir -p "$(dirname "$W")"; cp -a "$OW" "$W"; cd "$W"; rm -rf "$OW"
-[ "$v" = ERROR ] && { echo "$(date -Is) $MODEL" > "$CD"; sleep ${OC_BACKOFF:-60}; }
+# 11-21: a transient server error (OpenAI 503 "upstream connect error", reset connections) is not a usage limit; it
+# stopped the Astra lane two nights running by writing a cooldown nothing clears. Only a real limit writes the cooldown;
+# a transient error backs off and lets the next run try (the ERROR row is still recorded).
+transient() { grep -hiE 'service unavailable|upstream connect|reset reason|bad gateway|gateway time-?out|"status":? ?50[234]|ECONNRESET|socket hang up' result.jsonl stderr.txt 2>/dev/null | grep -qviE 'usage.?limit|usage_limit|rate.?limit|quota|429|hit your limit'; }
+if [ "$v" = ERROR ]; then
+  if transient; then echo "$(date -Is) transient provider error, no cooldown" > transient.txt; sleep ${OC_TRANSIENT_BACKOFF:-300}
+  else echo "$(date -Is) $MODEL" > "$CD"; sleep ${OC_BACKOFF:-60}; fi
+fi
 "$HH/.venv/bin/python" - "$FUNC" "$SEG" "$MODEL" "$v" "$start" <<'PY'
 import json, sys, time, os
 f, seg, model, verdict, start = sys.argv[1:6]

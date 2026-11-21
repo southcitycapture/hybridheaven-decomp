@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-21: **91.33% of the code** (15678 of 15935 functions, including duplicates).
+Progress as of 2026-11-21: **91.34% of the code** (15679 of 15935 functions, including duplicates).
 
-**25444 model runs, $7946.44 API-equivalent in total** (local and cloud). Of the **15536 functions now in C**, **7410 were matched by AI workers** (≈ $1.072 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 280 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25562 model runs, $8039.94 API-equivalent in total** (local and cloud). Of the **15537 functions now in C**, **7411 were matched by AI workers** (≈ $1.085 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 280 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -586,8 +586,6 @@ Progress as of 2026-11-21: **91.33% of the code** (15678 of 15935 functions, inc
 | `unify_loop0354` | unify_loop0354 | unify (no model) | 14 | 0 | 0% | $0.00 | – |  |
 | `terraNear5` | terraNear5 | openai/gpt-6.1-terra | 18 | 2 | 11% | $0.00 | – |  |
 | `unify_loop0355` | unify_loop0355 | unify (no model) | 14 | 0 | 0% | $0.00 | – |  |
-| `rampO4` | rampO4 | opus-5-5 | 18 | 3 | 17% | $21.41 | $7.137 |  |
-| `rampC2` | rampC2 | opus-5-5 | 4 | 0 | 0% | $29.08 | – |  |
 | `unify_loop0356` | unify_loop0356 | unify (no model) | 15 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0357` | unify_loop0357 | unify (no model) | 15 | 0 | 0% | $0.00 | – |  |
 | `terraHonest` | terraHonest | openai/gpt-6.1-terra | 61 | 34 | 56% | $0.00 | – |  |
@@ -625,7 +623,6 @@ Progress as of 2026-11-21: **91.33% of the code** (15678 of 15935 functions, inc
 | `unify_loop0376` | unify_loop0376 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0377` | unify_loop0377 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0378` | unify_loop0378 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
-| `terraAstra1` | terraAstra1 | openai/gpt-6.2-astra | 39 | 15 | 38% | $0.00 | – |  |
 | `sonnetHonest2` | sonnetHonest2 | sonnet-5-5 | 176 | 66 | 38% | $60.76 | $0.921 |  |
 | `unify_loop0379` | unify_loop0379 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `opusGiants1` | opusGiants1 | opus-5-5 | 2 | 0 | 0% | $27.59 | – |  |
@@ -635,6 +632,15 @@ Progress as of 2026-11-21: **91.33% of the code** (15678 of 15935 functions, inc
 | `unify_loop0382` | unify_loop0382 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0383` | unify_loop0383 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0384` | unify_loop0384 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
-| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 71 | 8 | 11% | $0.00 | – |  |
+| `unify_loop0385` | unify_loop0385 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0386` | unify_loop0386 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0387` | unify_loop0387 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `rampO4` | rampO4 | opus-5-5 | 21 | 4 | 19% | $27.08 | $6.771 |  |
+| `unify_loop0388` | unify_loop0388 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `rampC2` | rampC2 | opus-5-5 | 6 | 1 | 17% | $42.51 | $42.515 |  |
+| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 75 | 8 | 11% | $0.00 | – |  |
+| `fableGiants1` | fableGiants1 | fable-5-2 | 1 | 1 | 100% | $35.99 | $35.995 |  |
+| `terraAstra1` | terraAstra1 | openai/gpt-6.2-astra | 52 | 19 | 37% | $0.00 | – |  |
+| `sonnetHonest3` | sonnetHonest3 | sonnet-5-5 | 95 | 30 | 32% | $38.40 | $1.280 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

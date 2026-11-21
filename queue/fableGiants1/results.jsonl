@@ -1,0 +1,1 @@
+{"func": "func_80121220", "segment": "file008", "model": "claude-fable-5-2", "verified": "MATCH", "claimed": "RESULT: MATCH", "checks": 8, "turns": 193, "seconds": 3642, "input_tokens": 384, "output_tokens": 335830, "cache_read": 63834151, "cache_write": 611969, "cost_usd_equiv": 35.994606199999986}
