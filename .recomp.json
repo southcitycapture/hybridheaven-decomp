@@ -1,0 +1,34 @@
+{
+  "$schema": "https://recomp.fyi/schema/v1.json",
+  "game": "Hybrid Heaven",
+  "wikidata": "Q3143650",
+  "system": "N64",
+  "type": "decomp",
+  "original": {
+    "region": "USA"
+  },
+  "project": "Hybrid Heaven decompilation",
+  "status": "in-progress",
+  "toolchain": [
+    "splat",
+    "IDO 7.1"
+  ],
+  "approach": "Matching decompilation (byte-identical ROM), also a research project on AI-assisted decompilation: model and harness comparisons, cost tracking, and fakematch gating.",
+  "maintainers": [
+    {
+      "name": "southcitycapture",
+      "link": "https://github.com/southcitycapture"
+    }
+  ],
+  "links": [
+    {
+      "label": "Progress (decomp.dev)",
+      "url": "https://decomp.dev/southcitycapture/hybridheaven-decomp"
+    },
+    {
+      "label": "ByteMatch",
+      "url": "https://bytematch.dev/southcitycapture/hybridheaven-decomp"
+    }
+  ],
+  "notes": "Over 90% of code matched; the rest is mostly register-allocation and readonly-layout walls. Bring your own ROM."
+}
