@@ -2,7 +2,7 @@
 
 Progress as of 2026-11-21: **91.33% of the code** (15678 of 15935 functions, including duplicates).
 
-**25441 model runs, $7946.44 API-equivalent in total** (local and cloud). Of the **15536 functions now in C**, **7410 were matched by AI workers** (≈ $1.072 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 280 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25444 model runs, $7946.44 API-equivalent in total** (local and cloud). Of the **15536 functions now in C**, **7410 were matched by AI workers** (≈ $1.072 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 280 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -631,7 +631,10 @@ Progress as of 2026-11-21: **91.33% of the code** (15678 of 15935 functions, inc
 | `opusGiants1` | opusGiants1 | opus-5-5 | 2 | 0 | 0% | $27.59 | – |  |
 | `unify_loop0380` | unify_loop0380 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `opusPartial1` | opusPartial1 | opus-5-5 | 32 | 3 | 9% | $100.72 | $33.573 |  |
-| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 68 | 8 | 12% | $0.00 | – |  |
 | `unify_loop0381` | unify_loop0381 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0382` | unify_loop0382 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0383` | unify_loop0383 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0384` | unify_loop0384 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
+| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 71 | 8 | 11% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
