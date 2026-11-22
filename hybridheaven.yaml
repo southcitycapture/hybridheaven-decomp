@@ -340,6 +340,8 @@ segments:
       - [0x531940, c, file008/80152230]
       - [0x531FA0, c, file008/80152890]
       - [0x532780, .data, data/file008/data_80153070]
+      - [0x542FB0, .data, file008/8010F6E0]
+      - [0x543090, .data, data/file008/data_80163980]
       - [0x562060, .rodata, file008/80107A50]
       - [0x564F50, .rodata, file008/8010DCF0]
       - [0x565410, .rodata, file008/8010E680]

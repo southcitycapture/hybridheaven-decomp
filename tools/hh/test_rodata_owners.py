@@ -41,6 +41,15 @@ class IntervalTest(unittest.TestCase):
         found = self.iv('.rodata', lines, 0x80000058)
         self.assertTrue(found is None or found[2] != 'string')
 
+    def test_a_label_running_over_unreferenced_strings_owns_its_first_string(self):
+        # splat keeps dead debug strings after a referenced one under its label; only the first is the label's object
+        image = bytearray(self.IMAGE)
+        image[0x58:0x68] = b'ab.c\x00\x00\x00\x00xyz\x00\x00\x00\x00\x00'
+        lines = ['dlabel D_80000058', '    /* 58 80000058 */ .asciz "ab.c"', '    /* 61622E6300000000 */',
+                 '.align 2', '    /* 60 80000060 */ .asciz "xyz"', '    /* 78797A0000000000 */']
+        found = rodata_owners.interval(unit(bytes(image)), 'file999', '80000000', '.rodata', lines, 0x80000058)
+        self.assertEqual(found, (0x80000058, 0x80000060, 'string'))
+
     def test_named_object_owns_its_zeros(self):
         lines = ['dlabel D_80000060', '    /* 60 80000060 00000001 */ .word 0x00000001',
                  '    /* 64 80000064 00000000 */ .word 0x00000000']

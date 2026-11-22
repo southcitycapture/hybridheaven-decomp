@@ -27,6 +27,8 @@ import kept_blocks
 import bss_layout
 
 ADDR_SYM = re.compile(r"^(?:func|D|B)_[0-9A-F]{8}$")
+# a file-scope data definition (initialized or not) of an address-named object: `u32 D_801638EC[4] = {`, `s32 B_X;`
+DATA_DEF = re.compile(r"^(?!\s*(?:extern|typedef|return)\b)\s*[A-Za-z_][\w\s]*?[\s\*]((?:D|B)_[0-9A-F]{8})\s*(?:\[[^\]]*\]\s*)*(?:=|;)")
 TAG_DEF = re.compile(r"^\s*(?:typedef\s+)?(?:struct|union|enum)\s+(\w+)\s*\{")
 PRAGMA = re.compile(r'^#pragma GLOBAL_ASM\("([^"]+)"\)\s*$')
 
@@ -352,9 +354,16 @@ def body_for(seg, cfile, name, snippet, sc, i, alias, literals=True):
     if alias in ("isolate", "shield"):
         depth = 0
         for l in full.splitlines():
-            n = S.decl_name(l, depth); depth += l.count("{") - l.count("}")
+            n = S.decl_name(l, depth)
+            # A data object the snippet defines that the file already declares (an extern of another type before it,
+            # as for storage the unit owns, data_layout.py) keeps its definition private too: the bytes stay at the
+            # same offset of the unit's section and the file's own name still links at the address in the name.
+            d = DATA_DEF.match(l) if depth == 0 else None
+            depth += l.count("{") - l.count("}")
             if n and ADDR_SYM.match(n) and n != name and not (n in declared and decl_text.get(n) == _norm_decl(l)):
                 priv.add(n)
+            if d and d.group(1) in declared:
+                priv.add(d.group(1))
     if alias == "shield":       # functions the snippet calls without declaring, which the file declares or defines
         depth = 0               # before it: the snippet sees them as it did alone (implicit `int f()`)
         called = set(re.findall(r"\b(func_[0-9A-F]{8})\s*\(", snippet)) - own - {name}
@@ -405,8 +414,19 @@ def linked_size_problem(seg, cfile, text_data, got_ro):
         return "linked size changes: .text 0x%X, .rodata 0x%X; committed file 0x%X, 0x%X" % (mine + ref)
     return None
 
+def ensure_unit(seg, cfile, text):
+    """A candidate that removes a unit's last GLOBAL_ASM keeps its readonly layout plan, which then needs the explicit
+    `hh-layout-unit` marker (rodata_layout.plan_base) because no pragma path names the unit any more (11-22: the last
+    giant, file008 func_8010FABC, matched every instruction but every isolate variant failed on this)."""
+    import rodata_layout as L
+    if L.LAYOUT.search(text) and not L.PRAGMA.search(text) and not L.UNIT.search(text) and L.FROZEN_BLOB.search(text):
+        return text + "/* hh-layout-unit %s/%s */\n" % (seg, cfile)
+    return text
+
+
 def verify(seg, cfile, text, names, td):
     """(ok, why): the file compiles, every name in `names` matches at its address, the .text keeps its size."""
+    text = ensure_unit(seg, cfile, text)
     obj, err = S.compile_file(text, td)
     if obj is None:
         errs = re.findall(r"Error: \S+ (line \d+: .*)", err) or re.findall(r"line \d+: .*", err)
@@ -416,6 +436,10 @@ def verify(seg, cfile, text, names, td):
         bss_owner = S.FILE_BSS.get((seg, cfile))
         storage = [(s.name, s['sh_size']) for s in elf.iter_sections()
                    if s.name in ('.data', '.bss', '.sdata', '.sbss') and s['sh_size']]
+        # a source-owned .data span (data_layout.py) is checked byte for byte after linking, below
+        data_at = S.file_data(seg, cfile)
+        if data_at is not None:
+            storage = [(n, size) for n, size in storage if n != '.data']
         if bss_owner:
             storage = [(n, size) for n, size in storage if n != '.bss' or size != bss_owner[1]]
             actual = elf.get_section_by_name('.bss')
@@ -435,7 +459,11 @@ def verify(seg, cfile, text, names, td):
     info = {e[0]: e for e in S.entries(seg, cfile)}
     base = min(e[4] for e in info.values()); ro = S.FILE_RODATA.get((seg, cfile))
     bss = bss_owner[0] if bss_owner else None
-    bad = [n for n in names if n not in info or not S.func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=bss)]
+    if data_at is not None:
+        why = S.data_problem(seg, cfile, obj, text)
+        if why: return False, why
+    bad = [n for n in names if n not in info or not S.func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=bss,
+                                                              data=data_at)]
     if bad: return False, "does not match: " + ", ".join(bad[:4])
     start, end = S.file_span(seg, cfile)
     with open(obj, "rb") as fh:
@@ -451,9 +479,10 @@ def verify(seg, cfile, text, names, td):
     # Checking only registered C misses an asm neighbour whose local late-rodata relocations moved, or constants
     # read through absolute D_ names. Require the whole linked file, including asm and data, to stay byte-identical.
     first = min(info.values(), key=lambda e: e[2])
-    linked = S.try_func.linked_func_bytes(obj, first[0], first[4], base, S.FILE_RODATA.get((seg, cfile)), want_file=True, bss=bss)
+    linked = S.try_func.linked_func_bytes(obj, first[0], first[4], base, S.FILE_RODATA.get((seg, cfile)), want_file=True, bss=bss,
+                                          data=data_at)
     if linked is None: return False, "cannot link whole file"
-    code, data = linked
+    code, data = linked[:2]
     if code != S.IMG[start:start + len(code)]: return False, "file .text differs (including asm neighbours)"
     if want_ro is not None:
         offset = start + S.FILE_RODATA[(seg, cfile)] - base
@@ -877,7 +906,7 @@ def integrate(seg, cfile, text, new, td=None, log=None):
     old.update({n: new[n] for n in existing})
     text, accepted, rejected = reconcile_file(seg, cfile, text, old, pending, td, log)
     accepted.update(existing)
-    return text, accepted, rejected
+    return ensure_unit(seg, cfile, text), accepted, rejected
 
 def _job(args):
     seg, cfile, items = args

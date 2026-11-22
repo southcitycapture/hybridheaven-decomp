@@ -44,6 +44,7 @@ setup:
 	rm -rf asm     # regenerated from scratch: stale per-file dirs would duplicate functions after a re-split
 	$(PYTHON) -m splat split hybridheaven.yaml
 	$(PYTHON) tools/hh/bss_layout.py --linker
+	$(PYTHON) tools/hh/data_layout.py --linker
 	@if [ -d asm/matchings ]; then cp -rn asm/matchings/. asm/nonmatchings/ && rm -rf asm/matchings; fi
 	$(PYTHON) tools/hh/gen_pads.py
 	$(PYTHON) tools/hh/gen_blocks.py
@@ -100,7 +101,7 @@ $(BUILD)/assets/%.o: assets/%.bin
 # Splat regenerates these lists during setup; the fallback generator consults
 # both, so a symbol ceasing to be undefined must invalidate both link inputs.
 AUTO_SYMS := undefined_syms_auto.txt undefined_funcs_auto.txt
-$(BUILD)/extern_syms.ld: $(C_SRC) $(AUTO_SYMS) tools/hh/gen_extern_syms.py tools/hh/bss_layout.py tools/hh/bss_splits.json tools/hh/libultra.json
+$(BUILD)/extern_syms.ld: $(C_SRC) $(AUTO_SYMS) tools/hh/gen_extern_syms.py tools/hh/bss_layout.py tools/hh/bss_splits.json tools/hh/libultra.json tools/hh/data_layout.py $(wildcard tools/hh/data_splits.json)
 	@$(PYTHON) tools/hh/gen_extern_syms.py > /dev/null
 
 $(BUILD)/hybridheaven.elf: $(ASM_O) $(C_O) $(BIN_O) hybridheaven.ld $(AUTO_SYMS) $(BUILD)/extern_syms.ld $(BUILD)/libultra_syms.ld

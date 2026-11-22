@@ -14,12 +14,12 @@ good tooling get on real work, and what it costs. Every function is checked by t
 
 | | Matched | |
 |---|---:|---|
-| **Code** | **92.34%** | 2,610,176 of 2,826,840 bytes |
-| Functions | 98.6% | 15,715 of 15,935 |
+| **Code** | **92.83%** | 2,624,020 of 2,826,840 bytes |
+| Functions | 98.6% | 15,716 of 15,935 |
 | Data | 95.40% | 1,016,912 of 1,065,936 bytes |
-| Fully linked | 38.50% | 273 of 539 source files complete |
+| Fully linked | 39.03% | 274 of 540 source files complete |
 
-_Updated 2026-11-22 09:40 UTC by the publishing loop._
+_Updated 2026-11-22 14:10 UTC by the publishing loop._
 
 ![Progress over time, with the Christmas forecast](docs/img/progress.svg)
 
@@ -28,30 +28,37 @@ the code number because one unmatched function holds back its whole file.
 
 ## When will it be done?
 
-Forecast as of 2026-11-18, re-estimated as the rate changes:
+Forecast as of 2026-11-22, re-estimated as the rate changes:
 
 | Milestone | Estimate | Why |
 |---|---|---|
 | ~~80% of code~~ | reached 2026-11-08 | Fixing a bug in our match checker landed 28 already-solved functions at once. |
-| ~~90% of code~~ | **reached 2026-11-18** | Scoring every saved attempt directly turned up near-finished work, including three giant functions (7-11 KB) that were already at 99%+. |
-| 95% of code | early to mid December | Needs most of the remaining 2-7 KB functions. Many already match every instruction and are blocked by readonly-data layout or assembler scheduling. |
-| **Christmas 2026** | **95-98%** | The steady rate, plus a planned push on the hardest functions at the start of December. |
-| 100% of code | **possible by Christmas if the last giants fall**; otherwise early 2027 | Three giant functions (7-14 KB, 1.1% of the code) are still open. |
+| ~~90% of code~~ | reached 2026-11-18 | Scoring every saved attempt directly turned up near-finished work, including three giant functions (7-11 KB) already at 99%+. |
+| ~~All six giant functions~~ | **done 2026-11-22** | The last two (8.3 KB and 13.8 KB) fell to a relay: one model building the structure run after run, another finishing the register details. |
+| 95% of code | late November | A planned multi-day push at the end of November on the remaining near-misses. |
+| **Christmas 2026** | **98-100%** | What is left is about 210 functions of ordinary size; the method that cracked the giants works on them too. |
 
-By function count we are much further along (98%) than by code size: what is left is mostly the bigger functions.
-Data and fully-linked progress follow the code: the remaining data sits in the same files as the unmatched functions.
+By function count we are much further along (98.6%) than by code size: what is left is mostly medium-sized functions.
 
-What is left, by size (share of all code): giants of 7 KB or more 1.1% (3 functions), big functions of 2-7 KB 3.0%
-(24), medium 4.7% (121), small 1.2% (164).
+What is left (share of all code): functions with a saved attempt that is 90%+ right 2.8% (59), 50-90% right 1.9% (80),
+under 50% 2.3% (70), and 0.1% reserved for the very end.
 
 **How honest is the number?** Every function counts only if the compiler reproduces it byte for byte inside its real
-file. On top of that we refuse known "fakematch" tricks at landing (`if (0)` blocks, padding variables, macros that
-redefine C keywords), and we report two kinds of scaffolding separately in `progress.py`: functions whose file's
-readonly data is placed by a checked layout plan (needed while a file is still part assembly), and functions that
-still read their own float literals through frozen bytes.
+file. On top of that we refuse known "fakematch" tricks at landing (`if (0)` blocks, padding or unused locals,
+`volatile`/`register` steering, `x = x`, `+ 0`, macros that redefine C keywords), and we report scaffolding separately
+in `progress.py`: functions whose file's readonly data is placed by a checked layout plan (needed while a file is still
+part assembly), and functions that still read their own float literals through frozen bytes.
 
 ## What we've learned so far
 
+- **Every model has a role.** After two months the division of labour is clear: one model is the best *finisher*
+  (it gets a nearly-right function past register-allocation walls nobody else could), one is the best *builder* of
+  a big function's structure, one is the best toolsmith, a cheap one does the bulk retries, and a fast one cleans up
+  source honesty. No single model beat the giants alone.
+- **Build, then finish.** The 13.8 KB final giant went 24% (two models stuck) -> 62% -> 82% -> 99% -> 100% aligned
+  in a relay where each run started from the previous best; a different model then replaced its last compiler trick
+  (`static volatile`) with honest C in nine minutes. A finisher on a function whose structure is still wrong makes it
+  worse (51% -> 34%), so the order matters.
 - **Score what you already have.** Re-checking all 36,000 saved attempts directly (not trusting what each worker
   reported) found two giant functions sitting at 99.4% and 99.8%. Short retries from those exact files matched three
   giants in one evening and pushed us past 90%.

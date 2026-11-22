@@ -3,7 +3,9 @@ file table in image order (code overlays as code segments, everything else as bi
 Per-overlay text/data split is a first guess (end of the last jr $ra)."""
 import json
 import bss_layout
+import data_layout
 BSS = bss_layout.owners()
+DATA = data_layout.owners()     # source-owned .data spans of C units (tools/hh/data_splits.json)
 img = open("build/expanded.bin", "rb").read(); man = json.load(open("build/expanded.json"))
 
 def text_end(b):
@@ -83,7 +85,7 @@ for f in files:
     L.append("    subsegments:")
     te = TEXT_ENDS[name] if name in TEXT_ENDS else text_end(b)
     L += c_lines(name, f["exp"], f["vram"], f["exp"] + te)
-    if te < len(b): L.append("      - [0x%X, data]" % (f["exp"] + te))
+    if te < len(b): L += data_layout.subsegments(name, f["exp"], f["vram"], f["exp"] + te, DATA)
     if bss > 0: L += bss_layout.subsegments(name, f['vram'] + f['exp_len'], f['vram_end'], BSS)
 L.append("  - [0x%X]" % len(img))
 # per-file .rodata subsegments (tools/hh/rodata_splits.json, from gen_rodata_splits.py), after each segment's data line

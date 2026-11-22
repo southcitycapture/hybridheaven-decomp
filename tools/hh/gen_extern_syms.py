@@ -3,8 +3,10 @@ digits) at its own address. Needed because overlays sharing a RAM slot cannot se
 other's labels. Output: build/extern_syms.ld"""
 import re, glob, os, json
 import bss_layout
+import data_layout
 import data_to_c
 BSS_INPUTS = {'asm/data/%s/%s.bss.s' % key for key in bss_layout.owners()}
+DATA_INPUTS = data_layout.asm_inputs()    # splat's dump of a C unit's own .data span: compared, not linked
 ref = set(); defined = set(); aliases = set()
 name_re = re.compile(r'((?:\.L|func_|D_|jtbl_|B_)[0-9A-F]{8})\b')
 def_re = re.compile(r'^\s*(?:glabel|dlabel|jlabel|alabel|\.L[0-9A-F]{8}:|nonmatching)\s*([.\w]+)|^(\.L[0-9A-F]{8}):', re.M)
@@ -14,8 +16,8 @@ LIB_DATA_INPUTS = {'asm/data/%s.%s.s' % (unit, section) for unit in LIBUNITS for
 for p in glob.glob("asm/**/*.s", recursive=True):
     if p.endswith(".rodata.s"): continue      # per-file rodata splat also dumps to asm/data: not linked (the C file owns it)
     if p.startswith("asm/data/data/"): continue   # splat's dump of a generated-C .data unit (data_to_c.py): not linked
-    if p in BSS_INPUTS or p in LIB_DATA_INPUTS:
-        continue  # source-owned BSS labels are comparison inputs, not linked definitions
+    if p in BSS_INPUTS or p in LIB_DATA_INPUTS or p in DATA_INPUTS:
+        continue  # source-owned BSS/.data labels are comparison inputs, not linked definitions
     s = open(p).read()
     here = set()
     for m in def_re.finditer(s):

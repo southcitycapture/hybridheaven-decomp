@@ -74,6 +74,9 @@ def _file_rodata():
 FILE_RODATA = _file_rodata()
 import bss_layout
 FILE_BSS = bss_layout.owners()
+import data_layout
+FILE_DATA = data_layout.owners()     # source-owned .data spans of C units (tools/hh/data_splits.json)
+DATA_CLAIMANT = data_layout.claimants()
 SPLITS = {k: [int(x, 16) for x in v] for k, v in json.load(open("tools/hh/file_splits.json")).items()}
 TEXT_END = _text_ends()
 LINKER_PADDING = json.load(open("tools/hh/text_padding.json"))
@@ -654,7 +657,39 @@ def file_bss(seg, cfile):
     and raised "cannot rebuild registered functions" (Task 23)."""
     return (FILE_BSS.get((seg, cfile)) or (None,))[0]
 
-def func_ok(obj, name, off, size, vram, base, rodata=None, bss=None):
+def file_data(seg, cfile):
+    """Where the file's own .data is linked (data_splits.json), or None. Function statics and file-scope objects
+    are relocated against it, so every exact check of such a unit must link it there (as file_bss for .bss)."""
+    return (FILE_DATA.get((seg, cfile)) or (None,))[0]
+
+def data_problem(seg, cfile, obj, text=None):
+    """None if obj's .data is right for its unit: no .data at all, or (a source-owned span, data_layout.py) exactly
+    the span's size and, linked at its address, the original bytes (relocated pointers included). `text` (the
+    unit's source): while the span's claiming function is not defined in it, the .data must still be empty."""
+    span = FILE_DATA.get((seg, cfile))
+    with open(obj, "rb") as fh:
+        sec = ELFFile(fh).get_section_by_name(".data")
+        size = sec["sh_size"] if sec is not None else 0
+    claimant = DATA_CLAIMANT.get((seg, cfile))
+    if span is not None and claimant and text is not None and claimant not in defined_functions(text):
+        span = None         # declared for a landing that has not happened yet
+    if span is None:
+        return "unplaced writable storage: .data=0x%X" % size if size else None
+    if size != span[1]:
+        return "source-owned .data is 0x%X bytes, its span 0x%X" % (size, span[1])
+    info = entries(seg, cfile)
+    first = min(info, key=lambda e: e[2]); base = min(e[4] for e in info)
+    try:
+        linked = try_func.linked_func_bytes(obj, first[0], first[4], base, FILE_RODATA.get((seg, cfile)),
+                                            want_file=True, bss=file_bss(seg, cfile), data=span[0])
+    except StopIteration:
+        linked = None
+    if linked is None: return "cannot link the source-owned .data"
+    start = file_span(seg, cfile)[0] + span[0] - base
+    if linked[2] != IMG[start:start + span[1]]: return "source-owned .data differs from the original"
+    return None
+
+def func_ok(obj, name, off, size, vram, base, rodata=None, bss=None, data=None):
     """Instructions must match, and every address must resolve to the original's (exact link check).
     `rodata`: where the file's .rodata really starts (its jump tables / constants must land there)."""
     try: mine, rel = try_func.func_bytes(obj, name)
@@ -662,7 +697,7 @@ def func_ok(obj, name, off, size, vram, base, rodata=None, bss=None):
     orig = IMG[off:off + size]
     while len(mine) > size and mine[-4:] == b"\0\0\0\0": mine = mine[:-4]
     if try_func.compare(mine, rel, orig)[2]: return False
-    exact = try_func.linked_func_bytes(obj, name, vram, base, rodata=rodata, bss=bss)
+    exact = try_func.linked_func_bytes(obj, name, vram, base, rodata=rodata, bss=bss, data=data)
     if exact is None: return False          # unresolved symbols OR a failed link: neither proves an exact match
     while len(exact) > size and exact[-4:] == b"\0\0\0\0": exact = exact[:-4]
     return exact == orig
@@ -695,7 +730,8 @@ def _settle(seg, cfile, snips, td, hoist):
             rejected[bad] = "compile error in file context"; snips.pop(bad); continue
         base = min(e[4] for e in info.values())        # the C file's .text starts at its first function
         ro = FILE_RODATA.get((seg, cfile))
-        wrong = [n for n in snips if not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=file_bss(seg, cfile))]
+        wrong = [n for n in snips if not func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=file_bss(seg, cfile),
+                                                 data=file_data(seg, cfile))]
         if not wrong:
             # the whole file must keep its original size, or everything after it shifts
             start, end = file_span(seg, cfile)
@@ -791,8 +827,10 @@ def existing_ok(seg, cfile, snips, td, bodies=True, asm_ok=()):
     obj, err = compile_file(text, td)
     if obj is None: return False
     base = min(e[4] for e in info.values()); ro = FILE_RODATA.get((seg, cfile))
-    if not all(n in info and func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=file_bss(seg, cfile))
+    if not all(n in info and func_ok(obj, n, info[n][2], info[n][3], info[n][4], base, ro, bss=file_bss(seg, cfile),
+                                     data=file_data(seg, cfile))
                for n in snips if n in defined): return False
+    if file_data(seg, cfile) is not None and data_problem(seg, cfile, obj, text): return False
     with open(obj, "rb") as fh:
         e = ELFFile(fh)
         if text_problem(seg, cfile, e.get_section_by_name(".text").data()): return False

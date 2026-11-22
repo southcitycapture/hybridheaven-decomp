@@ -97,10 +97,11 @@ def obj_rodata_size(obj):
         s = ELFFile(fh).get_section_by_name(".rodata")
         return s["sh_size"] if s is not None else 0
 
-def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False, want_file=False, bss=None):
+def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False, want_file=False, bss=None, data=None):
     """Link obj so `name` sits at `vram`, resolving every address-named symbol (func_XXXXXXXX,
     D_XXXXXXXX, ...) to the address in its name, and return the function's final bytes.
-    want_file returns the whole linked (.text, .rodata), including asm neighbours.
+    want_file returns the whole linked (.text, .rodata), including asm neighbours; with `data` (where the unit's own
+    .data is linked, tools/hh/data_layout.py) it returns (.text, .rodata, .data).
     Returns None if a referenced symbol has no address in its name (only the masked compare is possible)."""
     del UNRESOLVED[:]
     _, syms, undef, _ = _parsed(obj)
@@ -115,50 +116,55 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
     out = obj + ".linked"
     def link(base):
         # .rodata (jump tables, float constants, strings) goes where the original's is, so references resolve
-        st = os.stat(obj); key = (obj, st.st_ino, st.st_mtime_ns, st.st_size, base, rodata, bss, tuple(defs))
+        st = os.stat(obj); key = (obj, st.st_ino, st.st_mtime_ns, st.st_size, base, rodata, bss, data, tuple(defs))
         if key in _linked:
-            vals, addr, data, ro_b = _linked[key]
-            return (vals[name][0], addr, data, ro_b) if name in vals else None
+            vals, addr, text, ro_b, data_b = _linked[key]
+            return (vals[name][0], addr, text, ro_b, data_b) if name in vals else None
         ro = ["--section-start=.rodata=0x%X" % rodata] if rodata is not None else []
         if bss is not None: ro += ['--section-start=.bss=0x%X' % bss]
+        if data is not None: ro += ['--section-start=.data=0x%X' % data]
         r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-Ttext=0x%X" % base, "-e", "0", "--no-check-sections",
                             "-z", "muldefs"] + ro + ["-o", out, obj] + defs, capture_output=True, text=True)
-        if r.returncode or rodata is not None or base % 16 or (bss is not None and bss % 16):
+        if r.returncode or rodata is not None or base % 16 or (bss is not None and bss % 16) or data is not None:
             # The default MIPS linker script can crash on overlays even without an explicitly placed .rodata.
             # Use just the game's section placement, without the default script's segment/stub layout.
             script = obj + ".ld"
             with open(script, "w") as fh:
                 ro_addr = " 0x%X" % rodata if rodata is not None else ""
                 bss_addr = ' 0x%X' % bss if bss is not None else ''
+                # a unit's own .data (data_layout.py) only when the caller places it; otherwise ld's orphan placement
+                data_rule = '.data 0x%X : SUBALIGN(4) { *(.data) } ' % data if data is not None else ''
                 # --section-start alone rounds an input section up to its ELF
                 # sh_addralign (IDO uses 16 even for a standalone 8-aligned
                 # table). The caller supplies the original pool address; place
                 # the input there without changing its contents or internal
                 # offsets. This is a comparison link, not a ROM layout change.
-                fh.write("SECTIONS { .text 0x%X : SUBALIGN(4) { *(.text) } .rodata%s : SUBALIGN(4) { *(.rodata) } .bss%s : SUBALIGN(8) { *(.bss) *(COMMON) } "
-                         "/DISCARD/ : { *(.reginfo) *(.MIPS.abiflags) *(.pdr) *(.mdebug*) *(.comment) } }\n" % (base, ro_addr, bss_addr))
+                fh.write("SECTIONS { .text 0x%X : SUBALIGN(4) { *(.text) } .rodata%s : SUBALIGN(4) { *(.rodata) } %s.bss%s : SUBALIGN(8) { *(.bss) *(COMMON) } "
+                         "/DISCARD/ : { *(.reginfo) *(.MIPS.abiflags) *(.pdr) *(.mdebug*) *(.comment) } }\n" % (base, ro_addr, data_rule, bss_addr))
             r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-T", script, "-e", "0", "--no-check-sections",
                                 "-z", "muldefs", "-o", out, obj] + defs, capture_output=True, text=True)
         if r.returncode: return None
         with open(out, "rb") as fh:
             e = ELFFile(fh); t = e.get_section_by_name(".text"); rs = e.get_section_by_name(".rodata")
+            ds = e.get_section_by_name(".data")
             vals = {}
             for x in e.get_section_by_name(".symtab").iter_symbols():
                 if x.name and x.name not in vals: vals[x.name] = (x["st_value"],)
             _linked.clear()
-            _linked[key] = (vals, t["sh_addr"], t.data(), (rs.data() if rs is not None else b""))
+            _linked[key] = (vals, t["sh_addr"], t.data(), (rs.data() if rs is not None else b""),
+                            (ds.data() if ds is not None and data is not None else b""))
         if name not in vals: return None
-        return (vals[name][0], t["sh_addr"], _linked[key][2], _linked[key][3])
+        return (vals[name][0], t["sh_addr"], _linked[key][2], _linked[key][3], _linked[key][4])
     # Standalone tables contain absolute pointers to local code labels. Put the
     # function at its exact original address too, including functions starting
     # inside an object's .text. A supplied base is the real whole-file placement.
     got = link(base if base is not None else vram - syms[name][0])
     if not got: return None
-    v, addr, data, rodata_bytes = got
-    if want_file: return data, rodata_bytes
-    n = size or len(data) - (v - addr)
-    if want_rodata: return data[v - addr:v - addr + n], rodata_bytes
-    return data[v - addr:v - addr + n]
+    v, addr, text, rodata_bytes, data_bytes = got
+    if want_file: return (text, rodata_bytes, data_bytes) if data is not None else (text, rodata_bytes)
+    n = size or len(text) - (v - addr)
+    if want_rodata: return text[v - addr:v - addr + n], rodata_bytes
+    return text[v - addr:v - addr + n]
 
 def rodata_matches(mine, img, vram_to_off, start):
     """The object's linked .rodata must equal the original's at `start` (IDO's trailing zero padding ignored)."""

@@ -10,8 +10,11 @@ import datetime as dt, glob, json, os, sys
 
 HH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../.."))
 TOTAL_CODE = 2818696
-INK, MUTED, GRID = "#1f2933", "#6b7785", "#d9dee4"
-COLORS = {"claude": "#c96442", "openai": "#3b7ea1", "free": "#6a9a5b", "tool": "#8a6fb3"}
+# Hybrid Heaven theme (11-22, Zach: "give it a Hybrid Heaven design"): dark sci-fi HUD, palette and frame only (no game art)
+INK, MUTED, GRID = "#d4ecff", "#7d98b4", "#1c3552"
+BG, PANEL, GLOW = "#060d18", "#0b1626", "#3fd6ec"
+COLORS = {"claude": "#ffad3b", "openai": "#3fd6ec", "free": "#7be38f", "tool": "#b78cff"}
+FONT = "'Share Tech Mono','Eurostile','Bank Gothic',Consolas,'DejaVu Sans Mono',monospace"
 
 
 def batch(name, root=HH):
@@ -30,9 +33,21 @@ def esc(s): return s.replace("&", "&amp;").replace("<", "&lt;")
 
 
 def svg(w, h, body, title):
-    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" width="%d" height="%d" '
-            'font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" role="img" aria-label="%s">'
-            '<rect width="100%%" height="100%%" fill="#ffffff"/>%s</svg>\n' % (w, h, w, h, esc(title), body))
+    """A HUD panel: navy background, faint scanlines, glowing frame with corner brackets, a status tag."""
+    c = 14   # corner bracket length
+    frame = "".join('<path d="%s" fill="none" stroke="%s" stroke-width="2"/>' % (d, GLOW) for d in (
+        "M3,%d V3 H%d" % (3 + c, 3 + c), "M%d,3 H%d V%d" % (w - 3 - c, w - 3, 3 + c),
+        "M3,%d V%d H%d" % (h - 3 - c, h - 3, 3 + c), "M%d,%d H%d V%d" % (w - 3 - c, h - 3, w - 3, h - 3 - c)))
+    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" width="%d" height="%d" font-family="%s" '
+            'role="img" aria-label="%s"><defs>'
+            '<pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#ffffff" opacity="0.035"/></pattern>'
+            '<linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%s"/><stop offset="1" stop-color="%s"/></linearGradient>'
+            '</defs><rect width="100%%" height="100%%" fill="%s"/><rect x="3" y="3" width="%d" height="%d" fill="url(#panel)"/>'
+            '<rect x="3" y="3" width="%d" height="%d" fill="url(#scan)"/>'
+            '<rect x="3.5" y="3.5" width="%d" height="%d" fill="none" stroke="%s" stroke-opacity="0.25"/>%s'
+            '<text x="%d" y="22" font-size="10" fill="%s" text-anchor="end" opacity="0.8">// HH-DECOMP SYS</text>%s</svg>\n'
+            % (w, h, w, h, FONT, esc(title), PANEL, BG, BG, w - 6, h - 6, w - 6, h - 6, w - 7, h - 7, GLOW, frame,
+               w - 16, GLOW, body))
 
 
 def bars(title, rows, path, note=""):
@@ -56,7 +71,10 @@ def bars(title, rows, path, note=""):
     open(path, "w").write(svg(w, h, "".join(b), title))
 
 
-XMAS, FORECAST = dt.datetime(2026, 12, 25).timestamp(), (95, 98, 100)   # re-estimated 11-18 at 90.1%   # code % by Christmas: low, mid, high (docs/ENDGAME.md)
+XMAS, FORECAST = dt.datetime(2026, 12, 25).timestamp(), (98, 99, 100)   # re-estimated 11-22 at 92.8% (all giants done)   # code % by Christmas: low, mid, high (docs/ENDGAME.md)
+
+
+MILESTONES = [("2026-11-08", "80%"), ("2026-11-18", "90%"), ("2026-11-22", "ALL 6 GIANTS DOWN")]
 
 
 def progress(path):
@@ -102,6 +120,16 @@ def progress(path):
         b.append('<text x="%.1f" y="%d" font-size="11" fill="%s" text-anchor="end">Christmas</text>' % (X(XMAS) - 4, h - 16, MUTED))
         b.append('<text x="%.1f" y="%.1f" font-size="11" fill="%s" text-anchor="end">forecast %d-%d%%</text>'
                  % (X(XMAS) - 6, Y(hi) - 6, MUTED, lo, hi))
+    # milestones (11-22): small diamonds on the code line with a label
+    for k, (when, label) in enumerate(MILESTONES):
+        lift = 30 + 16 * (k % 2)   # stagger neighbouring labels
+        tm = dt.datetime.fromisoformat(when).replace(tzinfo=dt.timezone.utc).timestamp()
+        near = min(pts, key=lambda p: abs(p[0] - tm))
+        if abs(near[0] - tm) > 2 * 86400 or not (t0 <= tm <= t1): continue
+        mx, my = X(near[0]), Y(near[1])
+        b.append('<path d="M%.1f,%.1f l5,5 l-5,5 l-5,-5 z" fill="%s" stroke="%s"/>' % (mx, my - 5, BG, GLOW))
+        b.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-opacity="0.5" stroke-dasharray="2,2"/>' % (mx, my - 6, mx, my - lift, GLOW))
+        b.append('<text x="%.1f" y="%.1f" font-size="10" fill="%s" text-anchor="end">%s</text>' % (mx - 4, my - lift - 2, GLOW, esc(label)))
     for i, (name, c, sp) in enumerate(series):
         if not sp: continue
         line = " ".join("%.1f,%.1f" % (X(t), Y(u)) for t, u in sp)

@@ -50,8 +50,10 @@ def interval(S, seg, cfile, section, lines, address):
         rest = _image(S, seg, cfile, address + size, max(int(m[1], 16) + width.get(m[3], 4) for m in rows))
         if not any(rest):
             return address, address + size, 'f32' if size == 4 else 'f64'
-    if rows[0][3] == 'asciz' and len(rows) == 1:
-        # the hex comment line after an .asciz spells its bytes, including the padding splat attached
+    if rows[0][3] == 'asciz':
+        # the hex comment line after an .asciz spells its bytes, including the padding splat attached. When splat
+        # runs unreferenced strings on under one label (dead debug prints after a referenced one), the label's own
+        # object is its first string only; the strings after it have no user and stay frozen at their addresses.
         raw = re.search(r'^\s*/\* ([0-9A-F]+) \*/\s*$', text, re.M)
         if raw:
             data = bytes.fromhex(raw[1])

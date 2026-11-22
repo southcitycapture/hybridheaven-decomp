@@ -47,7 +47,7 @@ class LibraryBuildTests(unittest.TestCase):
             root = Path(td)
             for folder in ('tools/hh', 'asm/data/main', 'asm/nonmatchings/main/80000010', 'src/data/main'):
                 (root / folder).mkdir(parents=True, exist_ok=True)
-            for helper in ('gen_extern_syms.py', 'bss_layout.py', 'data_to_c.py'):
+            for helper in ('gen_extern_syms.py', 'bss_layout.py', 'data_layout.py', 'data_to_c.py'):
                 shutil.copy(ROOT / 'tools/hh' / helper, root / 'tools/hh' / helper)
             (root / 'tools/hh/bss_splits.json').write_text('{}')
             (root / 'tools/hh/libultra.json').write_text(json.dumps({'main/80000000':
