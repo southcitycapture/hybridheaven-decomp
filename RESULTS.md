@@ -2,7 +2,7 @@
 
 Progress as of 2026-11-22: **92.34% of the code** (15715 of 15935 functions, including duplicates).
 
-**25650 model runs, $8228.05 API-equivalent in total** (local and cloud). Of the **15595 functions now in C**, **7425 were matched by AI workers** (≈ $1.108 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25651 model runs, $8228.05 API-equivalent in total** (local and cloud). Of the **15595 functions now in C**, **7425 were matched by AI workers** (≈ $1.108 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -654,6 +654,6 @@ Progress as of 2026-11-22: **92.34% of the code** (15715 of 15935 functions, inc
 | `fableR2` | fableR2 | fable-5-2 | 1 | 0 | 0% | $42.84 | – |  |
 | `fableR3` | fableR3 | fable-5-2 | 1 | 0 | 0% | $23.44 | – |  |
 | `unify_loop0395` | unify_loop0395 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
-| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 86 | 10 | 12% | $0.00 | – |  |
+| `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 87 | 10 | 11% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
