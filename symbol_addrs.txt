@@ -45,3 +45,5 @@ func_801D449C = 0x801D449C; // type:func rom:0x6C7A0C
 func_80380E80 = 0x80380E80; // type:func rom:0x7F33E0
 func_80358B48 = 0x80358B48; // type:func rom:0x7FC768
 func_80021D48 = 0x80021D48; // type:func rom:0x22948
+// far-tier class C: the switch of func_8035A3D8 shares a return-0 tail at 0x8035A428 (a jump-table target, not a function)
+func_8035A3D8 = 0x8035A3D8; // type:func size:0x5C rom:0x7FDFF8

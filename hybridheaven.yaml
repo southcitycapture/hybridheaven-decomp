@@ -106,6 +106,7 @@ segments:
       - [0x27CB0, c, main/800270B0]
       - [0x285B0, c, main/800279B0]
       - [0x28690, c, main/80027A90]
+      - [0x28B20, c, main/80027F20]
       - [0x28E60, c, main/80028260]
       - [0x28FB0, c, main/800283B0]
       - [0x29190, c, main/80028590]
@@ -186,6 +187,7 @@ segments:
       - [0x327C0, c, main/80031BC0]
       - [0x32A30, c, main/80031E30]
       - [0x32BF0, c, main/80031FF0]
+      - [0x32E20, c, main/80032220]
       - [0x32F60, c, main/80032360]
       - [0x33260, c, main/80032660]
       - [0x332F0, c, main/800326F0]
@@ -228,6 +230,11 @@ segments:
       - [0x35C20, c, main/80035020]
       - [0x35CD0, c, main/800350D0]
       - [0x35D20, .data, data/main/data_80035120]
+      - [0x4A4F0, .data, main/800267F0]
+      - [0x4A500, .data, data/main/data_80049900]
+      - [0x4A530, .data, main/800279B0]
+      - [0x4A550, .data, data/main/data_80049950]
+      - [0x4A560, .data, main/80027F20]
       - [0x4A570, .data, main/80028B10]
       - [0x4A590, .data, data/main/data_80049990]
       - [0x4B750, .data, main/8002B410]
@@ -236,7 +243,8 @@ segments:
       - [0x4B910, .data, main/8002DEC0]
       - [0x4BA50, .data, main/8002FB60]
       - [0x4BA60, .data, main/80031220]
-      - [0x4BA70, .data, data/main/data_8004AE70]
+      - [0x4BA70, .data, main/80032220]
+      - [0x4BAE0, .data, data/main/data_8004AEE0]
       - [0x4BBD0, .data, main/80032BE0]
       - [0x4BBE0, .data, main/80034060]
       - [0x4BBF0, .data, main/800346C0]
@@ -255,7 +263,8 @@ segments:
       - [0x4D9F0, .rodata, main/8001A490]
       - [0x4DA60, .rodata, main/8001EAD0]
       - [0x4DC40, .rodata, main/800201D0]
-      - [0x4DE20, .rodata, main/800270B0]
+      - [0x4DE20, .rodata, main/800267F0]
+      - [0x4DEA0, .rodata, main/800270B0]
       - [0x4DEF0, .rodata, main/80028FF0]
       - [0x4DF00, .rodata, main/80029280]
       - [0x4DF50, .rodata, main/8002AEA0]
@@ -272,6 +281,7 @@ segments:
       - { type: bss, vram: 0x8004DBD0, name: main_bss_head }
       - { type: .bss, vram: 0x800CBE20, name: main/800269F0 }
       - { type: bss, vram: 0x800CBE60, name: main_bss_800CBE60 }
+      - { type: .bss, vram: 0x800CBF80, name: main/80027F20 }
       - { type: .bss, vram: 0x800CC010, name: main/80028B10 }
       - { type: bss, vram: 0x800CC020, name: main_bss_800CC020 }
       - { type: .bss, vram: 0x800CC1D0, name: main/8002A7D0 }

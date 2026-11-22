@@ -58,12 +58,16 @@ def refresh(t):
         if r.get("assigned"):
             if (r["segment"], r["func"]) in reg: r["status"] = "done"
             out[k] = r
+    import not_c
+    not_c_keys = not_c.keys()
     for fp, g in groups.items():
         if any((r["segment"], r["func"]) in reg for r in g): continue      # a twin is matched: propagation's job
         def ok(r):
             f = feats.get((r["segment"], r["func"]), {})
+            if (r["segment"], r["func"]) in not_c_keys: return False      # original assembly (queue/not_c.tsv)
             if f.get("nonc") or (f.get("jtbl") and r["segment"] not in ro_segs): return False
-            return (r["segment"], r["file"]) not in S.LIBFILES and S.file_of(r["segment"], r["func"])
+            cf = S.file_of(r["segment"], r["func"])     # the current layout's unit, not functions.csv's (stale after a split)
+            return bool(cf) and (r["segment"], cf) not in S.LIBFILES
         cands = [r for r in g if ok(r)]
         if not cands: continue
         if any(key(r) in out for r in cands): continue                     # this group is already assigned

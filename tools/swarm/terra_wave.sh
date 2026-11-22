@@ -32,6 +32,8 @@ for d in glob.glob("queue/terra*/functions.txt"):
         f = l.split()
         if len(f) >= 2 and (f[1], f[0]) not in terra: held.add((f[1], f[0]))
 blk = {tuple(l.split()[:2]) for l in open("queue/link_blocklist.txt") if len(l.split()) >= 2 and l[0] != "#"}
+sys.path.insert(0, "tools/hh"); import not_c
+blk |= not_c.keys()   # original assembly (queue/not_c.tsv): never a model run
 rows = [r for r in csv.DictReader(open("queue/functions.csv"))]
 pick = [r for r in rows if (r["segment"], r["func"]) not in reg | terra | held | blk
         and not (r["segment"] == "main" and int(r["func"][5:], 16) >= 0x80026300)]

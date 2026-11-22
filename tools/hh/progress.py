@@ -30,6 +30,9 @@ def lib_base(seg, funcs):
     for f in funcs:
         n = os.path.basename(f)[:-2]
         if not n.startswith("func_"): continue
+        # assembled from the SDK's .s source (queue/not_c.tsv): left under its library name, so objdiff pairs no
+        # C function with it and it stays out of the C measure (it is reported on the "original assembly" line)
+        if (seg.split("/")[0], n) in NOT_C: continue
         off = int(n[5:], 16) - start
         if off in names and names[off] != n: ren += ["--redefine-sym", "%s=%s" % (names[off], n)]
         elif off not in names:
@@ -40,6 +43,8 @@ def lib_base(seg, funcs):
     subprocess.run(["mips-linux-gnu-objcopy"] + ren + [src, out], check=True)
     return out
 
+import not_c
+NOT_C = not_c.keys()
 units = []
 sources = {}
 inputs = []
@@ -122,6 +127,16 @@ print("data: %s / %s bytes matched (%.3f%%); details: %s/data-audit.json" %
 print("fully linked: %s / %s code bytes (%.3f%%), %s / %s units" %
       (m.get("complete_code", 0), m["total_code"], m.get("complete_code_percent", 0),
        m.get("complete_units", 0), m["total_units"]))
+# original assembly (11-22, Fable 5.2 far-tier class A): functions the original game had as hand-written assembly
+# (queue/not_c.tsv). Never C: the code measures above leave them unmatched; the ones assembled byte for byte from the
+# SDK's own .s source (tools/hh/libultra.json) are counted here instead.
+_lib = json.load(open("tools/hh/libultra.json"))
+_sdk = not_c.sdk_assembled(_lib)
+_size = {(u["name"].split("/")[0], f["name"]): int(f.get("size", 0)) for u in r["units"] for f in u.get("functions", [])}
+assert not any(next((f for u in r["units"] if u["name"].split("/")[0] == s for f in u.get("functions", []) if f["name"] == n),
+                    {}).get("fuzzy_match_percent", 0) == 100 for s, n in NOT_C), "a not-C function was credited as C"
+print("original assembly: %d functions, %d bytes assembled from SDK source (not C); %d more kept as disassembly "
+      "(queue/not_c.tsv)" % (len(_sdk), sum(_size.get(k, 0) for k in _sdk), len(NOT_C - _sdk)))
 # layout-assisted (11-18, Fable review of Task 40): C files whose readonly section is placed by an hh-rodata-layout
 # plan (tools/hh/rodata_layout.py; scaffolding for part-asm files, refused once a file is fully C). Counted separately.
 import glob as _g, re as _re

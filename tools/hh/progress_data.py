@@ -17,6 +17,9 @@ from pathlib import Path
 from elftools.elf.elffile import ELFFile
 
 DATA_SECTIONS = (".data", ".rodata")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import not_c
+LIBRARY = json.load(open(os.path.join(not_c.HH, "tools/hh/libultra.json")))
 
 
 def object_data(path):
@@ -229,7 +232,13 @@ def update_report(report, libfiles, out, cc):
             if name in libfiles:
                 # libultra.json lists C translation units built directly, with
                 # no asm-processor injection (unlike the game objects).
-                ranges = {kind: [(0, inputs[obj, kind][2])] for kind in DATA_SECTIONS if (obj, kind) in inputs}
+                # Sections an assembled SDK .s part contributes are original assembly, not C (tools/hh/not_c.py):
+                # no credit; a section both kinds of part fill would need a split this accounting does not make.
+                asm = not_c.asm_sections(name, LIBRARY[name])
+                assert all(asm.get(kind, 0) in (0, inputs[obj, kind][2]) for kind in DATA_SECTIONS if (obj, kind) in inputs), \
+                    name + ": a data section mixes C and assembled SDK parts"
+                ranges = {kind: [(0, inputs[obj, kind][2])] for kind in DATA_SECTIONS
+                          if (obj, kind) in inputs and not asm.get(kind)}
             else:
                 ranges = compiler_ranges("src/" + name + ".c", obj, out + "/data/" + name, cc)
         total = matched = 0

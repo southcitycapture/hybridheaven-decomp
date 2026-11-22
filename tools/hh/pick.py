@@ -28,7 +28,7 @@ Kinds:
           most matched code nearby (a richer context.h)
   twin    a same-shape function is matched but propagation couldn't map it (struct offsets, clashes): a worker
           started from the twin's C (prep2.sh TWIN, on by default) does much better than from scratch (exp8: 77%)
-Skips functions in library files and ones with no C file. Re-measures everything on each run.
+Skips functions in library files, ones with no C file, and original assembly (queue/not_c.tsv). Re-measures everything on each run.
 """
 import collections, csv, glob, json, math, os, sys
 HH = os.path.normpath(os.path.join(os.path.dirname(__file__), "../..")); os.chdir(HH)
@@ -37,6 +37,8 @@ sys.path.insert(0, "tools/hh"); import srcbuild as S
 sys.argv = _argv
 from pick_finish import expected_complete, finish_profiles, finish_shares, score
 from pick_filters import unavailable
+import not_c
+NOT_C = not_c.keys()      # original assembly (queue/not_c.tsv): never a model pick
 BAND = 25
 TWIN_P = 0.77          # exp8: start from a >=90% twin's C
 FAIL_DECAY = 0.6
@@ -98,10 +100,11 @@ def rank(rows, by, reg, feats, stats, fails, pr, *, bonus=0, shares=None, exclud
         if r: near[(seg, r["file"])] += int(r["size"])
     RO_SEGS = set(open("tools/hh/rodata_segments.txt").read().split()) if os.path.exists("tools/hh/rodata_segments.txt") else set()          # workers are told not to write `switch` (no overlay jtbls yet)
     def buildable(r):
-        if (r["func"], r["segment"]) in excluded: return False
+        if (r["func"], r["segment"]) in excluded or (r["segment"], r["func"]) in NOT_C: return False   # queue/not_c.tsv
         f = feats.get((r["segment"], r["func"]), {})
         if f.get("nonc") or (f.get("jtbl") and not (allow_jt and r["segment"] in RO_SEGS)): return False
-        return (r["segment"], r["file"]) not in S.LIBFILES and S.file_of(r["segment"], r["func"])
+        cf = S.file_of(r["segment"], r["func"])     # the current layout's unit, not functions.csv's (stale after a split)
+        return bool(cf) and (r["segment"], cf) not in S.LIBFILES
     picks = []
     for fp, g in groups.items():
         todo = [r for r in g if (r["segment"], r["func"]) not in reg]

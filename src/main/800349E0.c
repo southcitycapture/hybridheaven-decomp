@@ -1,4 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800349E0/func_800349E0.s")
-
+/* libultra 2.0J: built from ultralib's src/os/writebackdcacheall.s (tools/hh/libultra.json) */

@@ -1,4 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/8002ABA0/func_8002ABA0.s")
-
+/* libultra 2.0J: built from ultralib's src/os/probetlb.s (tools/hh/libultra.json) */

@@ -79,6 +79,3 @@ s32 func_80031FF0(void *mq, func_80031FF0_Struct *pfs, s32 channel) {
     pfs->dir_size = 0xFF;
     return 0;
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80031FF0/func_80032220.s")
-

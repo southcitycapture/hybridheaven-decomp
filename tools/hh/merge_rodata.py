@@ -35,7 +35,7 @@ def sources(ref):
 
 
 def functions(src, libraries):
-    """Count original function identities, including C library units, excluding prototypes."""
+    """Count original function identities, including C library units, excluding prototypes and original assembly."""
     out = set()
     names_by_seg = {}
     for directory in glob.glob("asm/nonmatchings/*/*"):
@@ -47,7 +47,8 @@ def functions(src, libraries):
         out.update((seg, n) for n in defined & names_by_seg.get(seg, set()))
         if seg + "/" + cf in libraries:
             out.update((seg, n) for n, *_ in S.entries(seg, cf))
-    return out
+    import not_c
+    return out - not_c.keys()       # assembled SDK .s parts of library units are original assembly, not C
 
 
 def job(args):

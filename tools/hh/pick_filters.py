@@ -7,8 +7,10 @@ import time
 
 
 def unavailable(batch, hold_hours=12, include_rejected=False):
-    """Return (func, segment) keys, preserving the loop's historical hold rules."""
-    excluded = set()
+    """Return (func, segment) keys, preserving the loop's historical hold rules. Original assembly (queue/not_c.tsv)
+    is always unavailable: no model run is spent on it."""
+    import not_c
+    excluded = {(func, seg) for seg, func in not_c.keys(".")}     # relative, like every other input here
     for path in glob.glob("queue/*/functions.txt"):
         directory = os.path.dirname(path)
         if os.path.basename(directory) == batch or any(os.path.exists(directory + "/" + end) for end in ("DONE", "STOP")):

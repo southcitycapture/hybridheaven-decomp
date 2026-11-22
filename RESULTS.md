@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-22: **92.83% of the code** (15716 of 15935 functions, including duplicates).
+Progress as of 2026-11-22: **92.87% of the code** (15721 of 15934 functions, including duplicates).
 
-**25652 model runs, $8228.05 API-equivalent in total** (local and cloud). Of the **15596 functions now in C**, **7426 were matched by AI workers** (≈ $1.108 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25652 model runs, $8228.05 API-equivalent in total** (local and cloud). Of the **15595 functions now in C**, **7425 were matched by AI workers** (≈ $1.108 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|

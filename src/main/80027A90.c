@@ -151,10 +151,3 @@ void func_80027EB0(void) {
 void func_80027EF4(void) {
     func_80026300(D_800CBF68, 0, 0);
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80027A90/func_80027F20.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80027A90/func_80028090.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80027A90/func_80028160.s")
-

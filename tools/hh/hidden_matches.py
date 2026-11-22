@@ -55,9 +55,11 @@ def _read(p):
 def unmatched(report='build/progress/report.json'):
     """[(seg, func, size)] with fuzzy < 100, minus link_blocklist (incl. the reserved file036 functions) and minus
     functions already in the registry (matched/: built as ASM on purpose; `srcbuild add` only takes new keys) and
-    functions of files built from library source (tools/hh/libultra.json; srcbuild leaves those files alone)."""
+    functions of files built from library source (tools/hh/libultra.json; srcbuild leaves those files alone) and
+    original assembly (queue/not_c.tsv)."""
     import srcbuild as S
-    blocked = set(S.link_blocked()) | set(S.registry())
+    import not_c
+    blocked = set(S.link_blocked()) | set(S.registry()) | not_c.keys()   # + original assembly (queue/not_c.tsv)
     out = []
     for u in json.load(open(HH / report))['units']:
         seg = u['name'].split('/')[0]

@@ -1792,8 +1792,6 @@ s32 func_8035A380(u8 arg0) {
 /* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_c38f0ce62b3bed81.s {"functions":["func_8035A3D8"],"rodata":[],"rodata_bytes":[2151194624,8576032,16]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_c38f0ce62b3bed81.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/func_8035A428.s")
-
 
 typedef struct func_8035A434_Struct {
     u8 pad0[0x2D8];

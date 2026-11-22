@@ -201,12 +201,25 @@ def main():
     ap.add_argument("--cc", default="7.1"); ap.add_argument("--opt", default="-O2"); ap.add_argument("-v", action="store_true")
     ap.add_argument("--asm", help="the function's .s file (exact target)"); ap.add_argument("--seg", help="segment, e.g. file020")
     ap.add_argument("--aligned-out", help="also write the aligned similarity (0-1000, 1000 = MATCH) to this file")
+    ap.add_argument("--metrics-out", help="also write JSON {positional, aligned, shape} to this file (shape: register- and "
+                    "address-blind aligned similarity, diagnose.shape_similarity; all 1.0 on MATCH)")
     ap.add_argument("--diagnose", action="store_true", help="after a non-match, print an aligned verdict and frame map (tools/hh/diagnose.py)")
     a = ap.parse_args()
     r = _main(a)
     if a.diagnose and r != 0 and _LAST:
         import diagnose
         for line in diagnose.diagnose(_LAST[0], _LAST[1], _LAST[2] if len(_LAST) > 2 else 0): print(line)
+    if a.metrics_out:
+        import json, diagnose
+        m = dict(positional=0.0, aligned=0.0, shape=0.0)
+        if r == 0: m = dict(positional=1.0, aligned=1.0, shape=1.0)
+        elif _LAST:
+            good, n, _ = compare(_LAST[0], _LAST[3] if len(_LAST) > 3 else {}, _LAST[1])
+            linked = _LAST[4] if len(_LAST) > 4 and _LAST[4] is not None else _LAST[0]   # real addresses when linkable
+            while len(linked) > len(_LAST[1]) and linked[-4:] == b"\0\0\0\0": linked = linked[:-4]
+            m = dict(positional=good / n if n else 0.0, aligned=aligned(*_LAST[:2]),
+                     shape=min(0.999, diagnose.shape_similarity(linked, _LAST[1])))
+        open(a.metrics_out, "w").write(json.dumps(m) + "\n")
     if a.aligned_out and _LAST: open(a.aligned_out, "w").write("%d\n" % (1000 if r == 0 else min(999, int(1000 * aligned(*_LAST[:2])))))
     return r
 
@@ -228,7 +241,7 @@ def _main(a):
             exact = linked_func_bytes(o, a.func, vram)
     # IDO pads functions to 8 bytes with nops; ignore trailing padding differences
     while len(mine) > len(orig) and mine[-4:] == b"\0\0\0\0": mine = mine[:-4]
-    _LAST[:] = [mine, orig, vram]
+    _LAST[:] = [mine, orig, vram, rel, exact]
     good, n, diffs = compare(mine, rel, orig)
     if not diffs and exact is None and UNRESOLVED:
         print("score %d/%d: refers to %s, which isn't a real symbol (address-named like func_XXXXXXXX / D_XXXXXXXX, or "
