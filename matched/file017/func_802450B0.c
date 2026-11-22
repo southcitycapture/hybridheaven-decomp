@@ -1,4 +1,9 @@
-#include "context.h"
+#include "common.h"
+
+extern u8 D_80164F40[];
+extern u8 D_8017AF38[];
+extern struct func_80246214_StructGlobal *D_8025DDB0;
+extern struct func_802453F0_StructG D_801BBBF0;
 struct func_802450B0_StructG {
     u8 pad0[0x32];
     s16 unk32;
@@ -17,6 +22,19 @@ struct func_802450B0_StructG {
     u8 padF2F[3];
     u8 unkF32, unkF33, unkF34, unkF35;
 };
+#define G (*(struct func_802450B0_StructG *)&D_801BBBF0)
+extern void func_800058DC(void *, void *);
+extern void func_80005E44(void *, void *);
+extern void func_80006214(void *);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern s32 func_80126CC0(void *, void *);
+extern u8 func_80126EAC[];
+extern void func_8012C89C(void *, s32, s32, s32);
+extern void func_801339D0(s32);
+extern s32 func_80133A24(u16);
+extern void *func_80241790(f32, f32, f32, s32, s32, s32, s32, s32);
+struct func_802450B0_Sq { s32 a, b, c, d; };
 struct func_802450B0_StructO {
     u8 pad0[0x90];
     f32 unk90, unk94, unk98;
@@ -41,30 +59,8 @@ struct func_802450B0_StructN {
     struct func_802450B0_StructT *unk30;
 };
 struct func_802450B0_StructP { struct func_802450B0_StructN *unk0; };
-struct func_802450B0_Sq { s32 a, b, c, d; };
-extern f32 func_8001EB64(s16);
-extern f32 func_8001EAD0(s16);
-extern void *func_80241790(f32, f32, f32, s32, s32, s32, s32, s32);
-extern u8 D_80164F40[];
-extern u8 D_8017AF38[];
-extern u8 func_80126EAC[];
 extern void func_80245DCC();
-extern void func_800058DC(void *, void *);
-extern s32 func_80133A24(u16);
 extern void func_80246284(s32 arg0, s32 arg1);
-extern void func_801339D0(s32);
-extern s32 func_80126CC0(void *, void *);
-extern void func_8012C89C(void *, s32, s32, s32);
-extern void func_80005E44(void *, void *);
-extern void func_80006214(void *);
-extern f32 D_8025C900;
-extern f32 D_8025C904;
-struct func_802453F0_StructG;
-extern struct func_802453F0_StructG D_801BBBF0;
-struct func_80246214_StructGlobal;
-extern struct func_80246214_StructGlobal *D_8025DDB0;
-#define G (*(struct func_802450B0_StructG *)&D_801BBBF0)
-
 void func_802450B0(struct func_802450B0_StructO *arg0, struct func_802450B0_StructP *arg1) {
     struct func_802450B0_Sq sp38;
 
@@ -117,8 +113,8 @@ void func_802450B0(struct func_802450B0_StructO *arg0, struct func_802450B0_Stru
         G.unk29C = 5.0f;
         G.unk2A0 = 500.0f;
         arg0->unkA4 = 205.0f;
-        arg0->unkA8 = D_8025C900;
-        *(void **)&D_8025DDB0 = func_80241790(D_8025C904, 0.0f, 458.0f, 0x2AA, 0x118, 0x128, 0x114, 0x2A);
+        arg0->unkA8 = 355.0f;
+        *(void **)&D_8025DDB0 = func_80241790(265.0f, 0.0f, 458.0f, 0x2AA, 0x118, 0x128, 0x114, 0x2A);
         if (func_80133A24(0x118) == 0) {
             func_800058DC(arg0, func_80245DCC);
             return;

@@ -1,12 +1,10 @@
 #include "common.h"
+
 extern s32 D_80006214(void *);
 extern u8 D_8008DA88[];
 extern u16 D_801BCAE0;
-typedef struct func_801CC660_Struct {
-    u8 pad[0x4C];
-    u16 unk4C;
-    u16 unk4E;
-} func_801CC660_Struct;
+extern void *D_801CE1C8(void *, s32, s32, s32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, u16, f32, f32, f32, f32, s32);
+extern u16 D_801E0D7E;
 extern func_801CC660_Struct *D_801E4080;
 typedef struct T_func_801CC9B0_ret_801CC9EC { /* size >= 0x50 */
     /* 0x000 */ u8 pad0[0x30];
@@ -24,10 +22,6 @@ extern void func_80006214(void *);
 extern void func_80020718(s32);
 extern s32 func_80126944(void);
 extern void func_8013A334(s32 *, u8 *, s32, s32);
-void func_801CC660(s32 arg0, s32 arg1);
-extern void func_801CE330(void *, s32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32);
-
-
 struct func_801CC260_StructV { u8 pad[4]; s32 x, y; f32 z; };
 struct func_801CC260_StructN { u8 pad[0x2C]; struct func_801CC260_StructV *v; };
 struct func_801CC260_StructB {
@@ -35,16 +29,8 @@ struct func_801CC260_StructB {
     u8 pad28[0x34]; s32 data;
 };
 struct func_801CC260_StructA { u8 pad[0xC]; struct func_801CC260_StructB *b; };
-extern u16 D_801E0D7E;
-extern void *D_801CE1C8(void *, s32, s32, s32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, u16, f32, f32, f32, f32, s32);
-extern f32 D_801E3388;
-extern f32 D_801E338C;
-extern f32 D_801E3390;
-extern f32 D_801E3394;
-extern f32 D_801E3398;
-extern f32 D_801E339C;
-extern f32 D_801E33A0;
-
+void func_801CC660(s32 arg0, s32 arg1);
+extern void func_801CE330(void *, s32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32);
 void func_801CC260(struct func_801CC260_StructA *arg0, s32 arg1)
 {
     struct func_801CC260_StructV *v;
@@ -107,16 +93,16 @@ default_last:
             break;
         }
         if (func_80126944() == 0 && (D_801BCAE0 & 0x100)) {
-            scale1 = D_801E3388;
-            scale2 = D_801E338C;
+            scale1 = 0.00499999989f;
+            scale2 = 0.0199999996f;
         } else {
-            scale2 = D_801E3390;
-            scale1 = D_801E3394;
+            scale2 = 0.00999999978f;
+            scale1 = 0.00999999978f;
         }
         D_801CE1C8(arg0, 1, v->x, v->y, v->z,
             r, g, b, 255, r2, g2, b2,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 1, life,
-            D_801E3398, scale1, scale2, 0.0f, 12);
+            0.00999999978f, scale1, scale2, 0.0f, 12);
         func_80020718(0x10D);
         func_80006214(arg0->b);
         func_8013A334((s32 *)pos, D_8008DA88, data, 27);
@@ -128,10 +114,10 @@ default_last:
         crate = (u8)rate;
         func_801CE330(arg0, 2, pos[0], pos[1], pos[2],
             255, 255, 255, 255, cr, cg, cb, 0, crate,
-            l - 20, D_801E339C, 9);
+            l - 20, 0.00999999978f, 9);
         func_801CE330(arg0, 3, pos[0], pos[1] + 2.0, pos[2],
             255, 255, 255, 255, cr, cg, cb, 0, crate,
-            l - 10, D_801E33A0, 8);
+            l - 10, 0.00999999978f, 8);
         func_800058DC(arg0, func_801CC660);
     }
 }

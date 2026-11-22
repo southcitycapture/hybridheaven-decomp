@@ -1,5 +1,16 @@
-#include "context.h"
+#include "common.h"
 
+extern struct func_8024BC80_Struct4 D_80164F40;
+extern u8 D_8017AF90[];
+extern struct func_8024C5B4_Struct D_801BBBF0;
+extern void func_800058DC(void *, void *);
+extern void func_80005E44(void *, void *);
+extern void func_80006214(void *);
+extern s32 func_80126CC0(void *, void *);
+extern u8 func_80126EAC[];
+extern void func_8012C89C(void *, s32, s32, s32);
+typedef struct func_8024B090_A0 { u8 pad[0x3C]; s16 unk3C; } func_8024B090_A0;
+typedef struct func_8024B090_S4 { s32 w[4]; } func_8024B090_S4;
 typedef struct func_8024B090_SB {
     u8 pad0[4];
     f32 unk4;
@@ -17,28 +28,11 @@ typedef struct func_8024B090_SB {
     u8 unk4E;
     u8 unk4F;
 } func_8024B090_SB;
-typedef struct func_8024B090_S4 { s32 w[4]; } func_8024B090_S4;
-typedef struct func_8024B090_A0 { u8 pad[0x3C]; s16 unk3C; } func_8024B090_A0;
 typedef struct func_8024B090_SA {
     u8 pad[0x30];
     func_8024B090_SB *unk30;
 } func_8024B090_SA;
-
-extern s32 func_80126CC0(void *, void *);
-extern u8 func_80126EAC[];
-extern void func_80005E44(void *, void *);
-extern void func_80006214(void *);
-extern void func_8012C89C(void *, s32, s32, s32);
-extern void func_800058DC(void *, void *);
-struct func_8024B2D8_Struct;
 void func_8024B2D8(struct func_8024B2D8_Struct *arg0, s32 arg1);
-struct func_8024BC80_Struct4;
-extern struct func_8024BC80_Struct4 D_80164F40;
-struct func_8024C5B4_Struct;
-extern struct func_8024C5B4_Struct D_801BBBF0;
-extern u8 D_8017AF90[];
-extern f32 D_802593D8;
-
 void func_8024B090(func_8024B090_A0 *arg0, func_8024B090_SA **arg1) {
     func_8024B090_S4 sp28;
 
@@ -54,7 +48,7 @@ void func_8024B090(func_8024B090_A0 *arg0, func_8024B090_SA **arg1) {
         arg1[0]->unk30->unk30 = (u32)D_8017AF90 | 0x40000000;
         arg1[0]->unk30->unk4 = 100.0f;
         arg1[0]->unk30->unk8 = -410.0f;
-        arg1[0]->unk30->unkC = D_802593D8;
+        arg1[0]->unk30->unkC = 717.5f;
         arg1[0]->unk30->unk12 = 0x1000;
         arg1[0]->unk30->unk4C = ((u8 *)&D_801BBBF0)[0xF32];
         arg1[0]->unk30->unk4D = ((u8 *)&D_801BBBF0)[0xF33];

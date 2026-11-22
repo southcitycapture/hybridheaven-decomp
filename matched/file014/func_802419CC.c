@@ -1,4 +1,5 @@
 #include "common.h"
+
 extern void func_800058DC(void *, void *);
 extern void func_80020718(u16);
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
@@ -44,14 +45,9 @@ struct func_80241D64_Struct {
     u16 unk9C;
 };
 void func_80241D64(struct func_80241D64_Struct *arg0, s32 arg1);
-void func_80242778();
 struct func_80242778_StructC { u8 pad[0xA0]; f32 unkA0; };
+void func_80242778(struct func_80242778_StructC *arg0, s32 arg1);
 extern void func_80380F94(f32, f32, f32, f32, f32, f32, s32);
-
-extern f64 D_8024A580;
-extern f64 D_8024A588;
-extern f32 D_8024A590;
-
 void func_802419CC(struct func_80241960_StructArg0 *arg0, s32 arg1) {
     s32 t;
     f32 sp70[1];
@@ -91,7 +87,7 @@ void func_802419CC(struct func_80241960_StructArg0 *arg0, s32 arg1) {
         var_fa1 = 5.0f;
     join:
         sp60 = func_8012C6B4(0x32);
-        func_80129FB8(sp70[0],var_fa1, 310.0f, zero, zero, zero, zero, 0x60, 0x60, 0x60, 0x40, 0x40, 0x40, 0xFF, -6, (f32)(((f64)sp60 / D_8024A580) + D_8024A588), func_8012C6B4(1), 0);
+        func_80129FB8(sp70[0],var_fa1, 310.0f, zero, zero, zero, zero, 0x60, 0x60, 0x60, 0x40, 0x40, 0x40, 0xFF, -6, (f32)(((f64)sp60 / 1000.0) + 0.05), func_8012C6B4(1), 0);
     }
     if (sp68[0] == 0x1E) {
         func_80020718(0x147);
@@ -118,7 +114,7 @@ void func_802419CC(struct func_80241960_StructArg0 *arg0, s32 arg1) {
         *((u8 *)arg0 + 0x3E) = 5;
         *(f32 *)((u8 *)arg0 + 0x40) = zero;
         *(f32 *)((u8 *)arg0 + 0x44) = 2.5f;
-        *(f32 *)((u8 *)arg0 + 0x48) = D_8024A590;
+        *(f32 *)((u8 *)arg0 + 0x48) = (-2.79999995f);
         arg0->unk3C = 0;
         *(s16 *)((u8 *)arg0 + 0x9C) = 0;
         func_800058DC(arg0, func_80241D64);

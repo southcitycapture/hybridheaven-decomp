@@ -1,17 +1,25 @@
 #include "common.h"
-#define LP(p, l) LQ(p, l)
-#define LQ(p, l) p##_##l
+
+typedef struct func_801C4E6C_StructV { s32 w[4]; } func_801C4E6C_StructV;
+extern func_801C4E6C_StructV D_801DA3A0[];
+typedef struct func_801C4E6C_StructG { u32 w0, w1; } func_801C4E6C_StructG;
+extern func_801C4E6C_StructG D_801DA400[];
+extern u8 D_801DA4D4[];
 extern void *D_8038D8CC;
-#define LQ(p,l) p##_##l
-#define LP(p,l) LQ(p,l)
+extern u8 D_801DF7A0[];
+typedef struct func_801C4E6C_Entry {
+    s32 unk0;
+    u8 pad4[4];
+    func_801C4E6C_StructV a[6];
+    func_801C4E6C_StructV b[6];
+    func_801C4E6C_StructG c[40];
+    func_801C4E6C_StructG d[40];
+} func_801C4E6C_Entry;
+#define ENT ((func_801C4E6C_Entry *)D_801DF7A0)
 extern void func_800058DC(void *, void *);
 extern void func_80005E44(void *, void *);
 extern void func_80006214(void *);
 extern void func_8012CF8C(void *arg0, u8 *arg1, s32 arg2, s32 arg3);
-
-
-typedef struct func_801C4E6C_StructV { s32 w[4]; } func_801C4E6C_StructV;
-typedef struct func_801C4E6C_StructG { u32 w0, w1; } func_801C4E6C_StructG;
 typedef struct func_801C4E6C_Struct {
     u8 pad[0x90];
     f32 x, y, z, angle;
@@ -41,22 +49,7 @@ typedef struct func_801C4E6C_Struct2 {
     u8 pad0[0x30];
     func_801C4E6C_Struct3 *unk30;
 } func_801C4E6C_Struct2;
-typedef struct func_801C4E6C_Entry {
-    s32 unk0;
-    u8 pad4[4];
-    func_801C4E6C_StructV a[6];
-    func_801C4E6C_StructV b[6];
-    func_801C4E6C_StructG c[40];
-    func_801C4E6C_StructG d[40];
-} func_801C4E6C_Entry;
-extern func_801C4E6C_StructV D_801DA3A0[];
-extern func_801C4E6C_StructG D_801DA400[];
-extern u8 D_801DA4D4[];
-extern f32 D_801DD234;
-extern u8 D_801DF7A0[];
 extern void func_801C51A0();
-#define ENT ((func_801C4E6C_Entry *)D_801DF7A0)
-
 void func_801C4E6C(func_801C4E6C_Struct *arg0, func_801C4E6C_Struct2 **arg1) {
     func_801C4E6C_Entry *e;
     s32 i;
@@ -68,7 +61,7 @@ void func_801C4E6C(func_801C4E6C_Struct *arg0, func_801C4E6C_Struct2 **arg1) {
     func_80006214(arg0);
     buf = (*arg1)->unk30->unk40;
     func_8012CF8C(D_8038D8CC, buf, 0x462, 0);
-    sc = D_801DD234;
+    sc = 0.100000001f;
     (*arg1)->unk30->unk30 = 0;
     (*arg1)->unk30->unk28 = 0;
     (*arg1)->unk30->unk0 = 0;

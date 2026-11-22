@@ -1,15 +1,13 @@
-#include "context.h"
+#include "common.h"
+
+extern struct func_80380B30_SA *D_8038CFB4;
+extern s32 func_800058DC();
+extern void (*D_803897C0)(void *);
 extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
 extern s32 func_8012C6B4();
-extern s32 func_800058DC();
-extern void func_80380AF4(struct func_80380AF4_Struct *arg0, s32 arg1);
-extern f64 D_8038BDF8;
-extern f64 D_8038BE00;
-extern struct func_80380B30_SA *D_8038CFB4;
-
 typedef struct func_8038092C_Struct { u8 pad[4]; f32 unk4; f32 unk8; f32 unkC; } func_8038092C_Struct;
 typedef struct func_8038092C_Struct0 { u8 pad[0x90]; s16 unk90; } func_8038092C_Struct0;
-
+extern void func_80380AF4();
 void func_8038092C(func_8038092C_Struct0 *arg0, s32 arg1) {
     f64 k2;
     f64 k0;
@@ -18,8 +16,8 @@ void func_8038092C(func_8038092C_Struct0 *arg0, s32 arg1) {
     s32 b, c;
     s32 d;
     func_8038092C_Struct *v;
-    k2 = D_8038BDF8;
-    for (k0 = D_8038BE00, i = 0; i < 1; i++) {
+    k2 = (0.02);
+    for (k0 = (0.1), i = 0; i < 1; i++) {
         a = func_8012C6B4(10);
         b = func_8012C6B4(100);
         c = func_8012C6B4(100);

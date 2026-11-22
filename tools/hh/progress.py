@@ -85,6 +85,9 @@ def generate_report():
     return json.load(open(OUT + "/report-objdiff.json"))
 
 r = generate_report()
+import progress_linked
+proofs = progress_linked.corrections(r, {u['name']: u['base_path'] for u in units if 'base_path' in u}, sources)
+progress_linked.apply(r, proofs)
 reported = {unit["name"]: unit for unit in r["units"]}
 assert set(reported) == set(sources), "objdiff omitted a configured code unit"
 for unit in units:
@@ -94,9 +97,11 @@ for unit in units:
 matched_before = [{k: group["measures"].get(k, 0) for k in ("total_code", "matched_code", "total_functions", "matched_functions")}
                   for group in [r] + r["categories"]]
 r = generate_report()
+progress_linked.apply(r, proofs)
 assert matched_before == [{k: group["measures"].get(k, 0) for k in ("total_code", "matched_code", "total_functions", "matched_functions")}
                           for group in [r] + r["categories"]], "completion changed matching measures"
 json.dump({"objdiff_version": subprocess.check_output(["tools/bin/objdiff-cli", "--version"], text=True).strip(),
+           "rom_linked_corrections": list(proofs.values()),
            "ignored_sources": sorted(set(glob.glob("src/*/*.c")) - {"src/" + name + ".c" for name in sources}),
            "units": [dict(item, complete=unit["metadata"]["complete"]) for item, unit in zip(inputs, units)]},
           open(OUT + "/code-audit.json", "w"), indent=2)

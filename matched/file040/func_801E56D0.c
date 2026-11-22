@@ -1,8 +1,5 @@
-#include "context.h"
+#include "common.h"
 
-extern s32 func_801C7DE8(u8 *, s32, s32, s32, f32, f32, f32, f32, f32, s32, s32);
-extern f32 D_801E8854;
-extern f32 D_801E8858;
 extern u8 D_801E8990;
 extern u8 D_801E8994;
 extern u8 D_801E8998;
@@ -19,9 +16,7 @@ extern u8 D_801E89C0;
 extern u8 D_801E89C4;
 extern u8 D_801E89C8;
 extern u8 D_801E89CC;
-
-#define CALL(a, b, c, d, e, f, g, h, i, j, k) do { func_801C7DE8(a, b, c, d, e, f, g, h, i, j, k); } while (0)
-
+extern s32 func_801C7DE8(u8 *, s32, s32, s32, f32, f32, f32, f32, f32, s32, s32);
 s32 func_801E56D0(s32 arg0, s32 arg1)
 {
   u8 *new_var;
@@ -45,7 +40,7 @@ s32 func_801E56D0(s32 arg0, s32 arg1)
   while (0);
   do
   {
-    func_801C7DE8(&D_801E899C, 0x42800000, 0x42E00000, 0xC1A00000, D_801E8854, 37.0f, 270.0f, 4.0f, 2.0f, 0, 0);
+    func_801C7DE8(&D_801E899C, 0x42800000, 0x42E00000, 0xC1A00000, 283.0f, 37.0f, 270.0f, 4.0f, 2.0f, 0, 0);
   }
   while (0);
   do
@@ -55,7 +50,7 @@ s32 func_801E56D0(s32 arg0, s32 arg1)
   while (0);
   do
   {
-    func_801C7DE8(&D_801E89A4, 0x42780000, 0x42E00000, 0x422C0000, D_801E8858, 37.0f, 270.0f, 4.0f, 2.0f, 0, 0);
+    func_801C7DE8(&D_801E89A4, 0x42780000, 0x42E00000, 0x422C0000, 283.0f, 37.0f, 270.0f, 4.0f, 2.0f, 0, 0);
   }
   while (0);
   do

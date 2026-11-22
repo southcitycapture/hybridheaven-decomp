@@ -1,8 +1,9 @@
-#include "context.h"
+#include "common.h"
 
+extern s32 D_801E4D44;
+extern s32 D_801E4D48;
+extern f32 D_801E5240[];
 extern s32 func_801C8668(f32, f32, s32, f32, f32, s32);
-extern f32 D_801E51F4;
-
 void func_801E3820(void)
 {
   s32 temp_t0;
@@ -10,7 +11,7 @@ void func_801E3820(void)
   {
     if (D_801E4D44 == 0)
     {
-      func_801C8668(D_801E5240[0], D_801E5240[1], ((s32 *) D_801E5240)[2], D_801E51F4, D_801E51F4, 0x24);
+      func_801C8668(D_801E5240[0], D_801E5240[1], ((s32 *) D_801E5240)[2], 0.200000003f, 0.200000003f, 0x24);
     }
   }
   temp_t0 = (D_801E4D44 = D_801E4D44 + 1);

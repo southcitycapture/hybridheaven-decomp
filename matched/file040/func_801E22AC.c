@@ -1,21 +1,8 @@
-#include "context.h"
+#include "common.h"
 
-extern f32 D_801E8610;
-extern f32 D_801E8614;
-extern f32 D_801E8618;
-extern f32 D_801E861C;
-extern f32 D_801E8620;
-extern f32 D_801E8624;
-extern f32 D_801E8628;
-extern f32 D_801E862C;
-extern f32 D_801E8630;
-extern f32 D_801E8634;
-extern f32 D_801E8638;
-extern f32 D_801E863C;
-extern f32 D_801E8640;
-
+extern s32 D_8038C17C(f32, f32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 s32 func_801E22AC(s32 arg0, s32 arg1) {
-    if (D_8038C17C(0.0f, D_801E8610, 0xC121999A, 0x410E6666, D_801E8614, D_801E8618, D_801E861C, D_801E8620, D_801E8624, D_801E8628, D_801E862C, D_801E8630, D_801E8634, D_801E8638, D_801E863C, D_801E8640) != 0) {
+    if (D_8038C17C(0.0f, 3.80000019f, 0xC121999A, 0x410E6666, 21.7999992f, (-20.7999992f), 11.3000002f, 21.2999992f, (-28.2000008f), 13.1000004f, 28.3999996f, (-26.3999996f), 14.8000002f, 29.3999996f, 61.4000015f, 45.7999992f) != 0) {
         return 0xA;
     }
     return 9;

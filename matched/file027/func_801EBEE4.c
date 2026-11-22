@@ -1,12 +1,9 @@
-#include "context.h"
+#include "common.h"
 
-extern f32 D_801F5960;
-extern f32 D_801F5964;
-extern f32 D_801F5968;
-extern f32 D_801F596C;
-
+extern void D_8038BD88(f32, f32, s32);
+extern void func_8038BD50(f32, f32, s32);
 s32 func_801EBEE4(s32 arg0, s32 arg1) {
-    func_8038BD50(D_801F5960, D_801F5964, 0xC089999A);
-    D_8038BD88(D_801F5968, D_801F596C, 0xC1BC0000);
+    func_8038BD50(16.3999996f, 9.60000038f, 0xC089999A);
+    D_8038BD88(30.7999992f, 13.8000002f, 0xC1BC0000);
     return 6;
 }

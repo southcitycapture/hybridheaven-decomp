@@ -1,5 +1,6 @@
-#include "context.h"
+#include "common.h"
 
+extern u8 D_801BBBF0[];
 typedef struct func_801300E8_Struct {
     u8 pad0[0x30];
     u16 unk30;
@@ -15,12 +16,8 @@ typedef struct func_801300E8_Struct {
     f32 unk1148;
     f32 unk114C;
 } func_801300E8_Struct;
-
-extern void func_801518D4(s32, u8, s32);
-extern f64 D_8018D670;
-
 #define G ((func_801300E8_Struct *)D_801BBBF0)
-
+extern void func_801518D4(s32, u8, s32);
 void func_801300E8(void) {
     s32 v;
     s32 n;
@@ -57,7 +54,7 @@ void func_801300E8(void) {
             } else {
                 a = G->unk1130;
             }
-            if (a < D_8018D670) {
+            if (a < (0.001)) {
                 G->unk112C = 0;
                 G->unk324 = 0.0f;
             }

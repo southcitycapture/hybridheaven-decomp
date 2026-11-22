@@ -1,7 +1,17 @@
-#include "context.h"
-extern void func_8012CF8C(s32, s32, s32, s32);
-extern u8 D_801D9768[], D_801D9908[], D_801D9FE8[], D_801DA088[], D_801ECAD8[], D_801ECAF8[], func_801D9F00[];
-extern f32 D_801EDD08;
+#include "common.h"
+
+extern u8 func_8038D830[];
+#define A (func_8038D830 + 0x5C)
+#define B (func_8038D830 + 0x6C)
+extern u8 D_801D9768[];
+extern u8 D_801D9908[];
+extern u8 D_801D9FE8[];
+extern u8 D_801DA088[];
+extern u8 D_801ECAD8[];
+extern u8 D_801ECAF8[];
+extern s32 D_8038D8CC;
+#define Q D_8038D8CC
+extern struct func_801E4EE0_Obj *D_8038D8D0;
 struct func_801E38B4_Leaf {
     s16 unk0; u8 pad2[2];
     f32 unk4; f32 unk8; f32 unkC;
@@ -18,14 +28,17 @@ struct func_801E38B4_Mid {
 struct func_801E38B4_Obj {
     struct func_801E38B4_Mid *m0, *m4, *m8, *mC, *m10, *m14, *m18, *m1C, *m20, *m24;
 };
-struct func_801E4EE0_Obj;
-extern struct func_801E4EE0_Obj *D_8038D8D0;
 #define R ((struct func_801E38B4_Obj *)D_8038D8D0)
-extern s32 D_8038D8CC;
-#define Q D_8038D8CC
-#define A (func_8038D830 + 0x5C)
-#define B (func_8038D830 + 0x6C)
-
+extern void func_80005E44(s32, void *);
+extern void func_80006214(s32);
+extern void func_8012C89C(s32, s32, s32, s32);
+extern void func_8012CF8C(s32, s32, s32, s32);
+extern void *func_801BF6B0();
+extern u8 func_801D9F00[];
+struct func_801E1E48_Struct {
+    u8 pad0[0xC];
+    s32 unkC;
+};
 s32 func_801E38B4(s32 arg0, s32 arg1) {
     s32 var_s0;
     s32 var_s0_2;
@@ -179,7 +192,7 @@ s32 func_801E38B4(s32 arg0, s32 arg1) {
     R->m20->l->unk4E = 0xFF;
     R->m20->l->unk4F = 0xFF;
     R->m20->unk22 = 0;
-    R->m24->l->unk4 = D_801EDD08;
+    R->m24->l->unk4 = 0.100000001f;
     R->m24->l->unk8 = 0.0f;
     R->m24->l->unkC = -0.5f;
     R->m24->l->unk12 = 0;

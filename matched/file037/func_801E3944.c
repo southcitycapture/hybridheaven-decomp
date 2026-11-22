@@ -1,5 +1,11 @@
-#include "context.h"
+#include "common.h"
 
+extern f32 D_801E69B0;
+extern void *D_8038D8D0;
+extern f64 func_80034C24();
+extern s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
+extern void func_801C0EB0(s32 arg0, s32 arg1);
+extern u64 func_801C0F18(s32 arg0, s32 arg1);
 struct func_801E3944_Struct1 {
     u8 pad0[0x8];
     f32 unk8;
@@ -12,13 +18,6 @@ struct func_801E3944_Struct3 {
     u8 pad0[0x8];
     struct func_801E3944_Struct2 *unk8;
 };
-
-extern s32 func_801C0DE4(s32 arg0, s32 arg1, s32 arg2);
-extern void func_801C0EB0(s32 arg0, s32 arg1);
-extern u64 func_801C0F18(s32 arg0, s32 arg1);
-extern f64 func_80034C24();
-extern f64 D_801E6D80;
-
 s32 func_801E3944(s32 arg0, s32 arg1) {
     f64 temp_f0;
 
@@ -27,6 +26,6 @@ s32 func_801E3944(s32 arg0, s32 arg1) {
         return 3;
     }
     temp_f0 = func_80034C24(func_801C0F18(3, 2));
-    ((struct func_801E3944_Struct3 *) D_8038D8D0)->unk8->unk30->unk8 = (f32) ((((D_801E69B0 + 121.0f) - D_801E69B0) * ((f32) (temp_f0 / D_801E6D80) / 10.0f)) + D_801E69B0);
+    ((struct func_801E3944_Struct3 *) D_8038D8D0)->unk8->unk30->unk8 = (f32) ((((D_801E69B0 + 121.0f) - D_801E69B0) * ((f32) (temp_f0 / 1000000.0) / 10.0f)) + D_801E69B0);
     return 2;
 }

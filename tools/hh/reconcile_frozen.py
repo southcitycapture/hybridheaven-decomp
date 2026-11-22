@@ -24,6 +24,7 @@ else:
     sys.argv = _argv
 from elftools.elf.elffile import ELFFile
 import kept_blocks
+import bss_layout
 
 ADDR_SYM = re.compile(r"^(?:func|D|B)_[0-9A-F]{8}$")
 TAG_DEF = re.compile(r"^\s*(?:typedef\s+)?(?:struct|union|enum)\s+(\w+)\s*\{")
@@ -420,6 +421,12 @@ def verify(seg, cfile, text, names, td):
             actual = elf.get_section_by_name('.bss')
             if actual is None or actual['sh_size'] != bss_owner[1]:
                 return False, 'source-owned .bss size differs'
+            expected = bss_layout.explicit_owners().get((seg, cfile))
+            if expected is not None:
+                try:
+                    bss_layout.check_symbols(elf, bss_owner, expected)
+                except ValueError as exc:
+                    return False, str(exc)
         symtab = elf.get_section_by_name('.symtab')
         storage += [(s.name, s['st_size']) for s in symtab.iter_symbols()
                     if s['st_shndx'] == 'SHN_COMMON'] if symtab else []

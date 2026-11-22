@@ -1,8 +1,18 @@
-#include "context.h"
-extern s32 D_801ECEF0;
-extern f32 D_801EDDCC;
-extern f32 D_801EDDD0;
+#include "common.h"
 
+extern s32 D_801ECEE8;
+extern s32 D_801ECEF0;
+extern f32 D_801ECEF4;
+extern f32 D_801ECEF8;
+extern u8 D_801DAB14[];
+struct func_801E71AC_Struct { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; };
+#define SS ((struct func_801E71AC_Struct *)(*(s32 *)(*(s32 *)(*(s32 *)(*(s32 *)D_801DAB14 + 8) + 0x24) + 0x2C)))
+extern void func_801C1000(s32, s32);                       /* extern */
+extern void func_801CC470(s32, s32, s32, s32, f32);
+extern s32 func_801CC4D8(s32, s32, s32, s32, f32);
+extern s32 func_801CE274();
+extern s32 func_801CE284(void);
+extern void func_8038D28C(s32 arg0);
 s32 func_801E7A7C(s32 arg0, s32 arg1) {
     s32 s = D_801ECEE8;
     if (s == 0) goto c0;
@@ -26,8 +36,8 @@ c2:
     if (func_801CE284() != 0) {
         func_8038D28C(0x260);
         func_801C1000(4, 0);
-        D_801ECEF4 = D_801EDDCC;
-        D_801ECEF8 = D_801EDDD0;
+        D_801ECEF4 = 0.100000001f;
+        D_801ECEF8 = 0.0500000007f;
         return 0x27;
     }
 end:

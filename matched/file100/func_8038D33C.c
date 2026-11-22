@@ -1,6 +1,5 @@
 #include "common.h"
 
-
 struct func_8038D33C_StructB {
     u8 pad0[0x30];
     f32 x;
@@ -15,13 +14,10 @@ struct func_8038D33C_StructA {
     struct func_8038D33C_StructB *p;
 };
 extern struct func_8038D33C_StructA *D_801BBCD8;
-extern f32 D_8038DD4C;
-extern f64 D_8038DD50;
-extern f32 func_8002FC20(f32);
-extern s16 func_8001EF38(f32, f32);
 extern f32 func_8001EAD0(s16, s32);
+extern s16 func_8001EF38(f32, f32);
 extern void func_800207D0(u16, s32, u8);
-
+extern f32 func_8002FC20(f32);
 void func_8038D33C(f32 arg0, f32 arg1, f32 arg2, u16 arg3, f32 arg4, f32 arg5) {
     s32 close_volume;
     u8 volume;
@@ -43,7 +39,7 @@ void func_8038D33C(f32 arg0, f32 arg1, f32 arg2, u16 arg3, f32 arg4, f32 arg5) {
         volume = close_volume;
     } else {
         maximum_volume = 255.0f;
-        level = (D_8038DD4C / (distance + 178.0f)) * arg4;
+        level = (39800.0f / (distance + 178.0f)) * arg4;
         if (maximum_volume < level) {
             level = maximum_volume;
         }
@@ -58,5 +54,5 @@ void func_8038D33C(f32 arg0, f32 arg1, f32 arg2, u16 arg3, f32 arg4, f32 arg5) {
     } else {
         a = relative_angle & 0x1FFF;
     }
-    func_800207D0(arg3, (u32)((f64)func_8001EAD0(a, a) * D_8038DD50 + 64.0) & 0xFF, volume);
+    func_800207D0(arg3, (u32)((f64)func_8001EAD0(a, a) * 63.0 + 64.0) & 0xFF, volume);
 }

@@ -1,5 +1,12 @@
 #include "common.h"
+
 extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+extern u8 D_802176F0[];
+extern u8 D_803896DC[];
+extern void *func_80005670(void *, void *);
+extern void func_8023011C(u16, void *);
 u16 func_80379490(u8 *arg0, u16 arg1, u8 arg2, f32 arg3);
 struct func_803795D8_Struct {
     u8 pad[0x30];
@@ -17,8 +24,6 @@ struct func_803796E4_Struct {
 void func_803796E4(struct func_803796E4_Struct *arg0);
 u16 func_803796EC(s16 *arg0, u8 arg1, u16 arg2);
 u16 func_803797F8(s16 *arg0, u8 arg1, u16 arg2);
-
-
 typedef struct func_80379904_Struct {
     s16 hp, hpNow;
     u8 pad4[4];
@@ -40,15 +45,6 @@ typedef struct func_80379904_Struct {
     u8 padA7[0x231];
     u8 state, item;
 } func_80379904_Struct;
-
-extern u8 D_801BC3D8[];
-extern u8 D_801BC03C[];
-extern u8 D_802176F0[];
-extern u8 D_803896DC[];
-extern f64 D_8038BA78;
-extern void *func_80005670(void *, void *);
-extern void func_8023011C(u16, void *);
-
 u16 func_80379904(void *arg0, func_80379904_Struct *a)
 {
     func_80379904_Struct *out;
@@ -61,7 +57,7 @@ extern void func_803796C8();
     out = NULL;
     if ((D_801BBBF0 == (u8 *)a - 0x44C)) enemy = (func_80379904_Struct *)D_801BC3D8;
     else enemy = (func_80379904_Struct *)D_801BC03C;
-    factor = (enemy->state == 13) ? D_8038BA78 : 1.0;
+    factor = (enemy->state == 13) ? 0.6 : 1.0;
 
     switch (a->item) {
     case 1:

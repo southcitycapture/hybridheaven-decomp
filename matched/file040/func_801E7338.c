@@ -1,11 +1,11 @@
-#include "context.h"
+#include "common.h"
 
-extern u64 func_801C0F18(s32 a0, s32 a1);
-extern void func_801C0EB0(s32 a0, s32 a1);
-extern f64 func_80034C24();
 extern f32 D_801E846C;
-extern f64 D_801E8900;
-
+extern f64 func_80034C24();
+extern s32 func_801C0B8C(u64 time);
+extern void func_801C0EB0(s32 a0, s32 a1);
+extern u64 func_801C0F18(s32 a0, s32 a1);
+extern s32 func_801DAAF0[];
 s32 func_801E7338(s32 arg0, s32 arg1)
 {
   f64 new_var;
@@ -20,6 +20,6 @@ s32 func_801E7338(s32 arg0, s32 arg1)
   temp_ret = func_801C0F18(4, 1);
   four = 4.0f;
   new_var = func_80034C24(temp_ret);
-  *((f32 *) ((*((u8 **) ((*((u8 **) ((*((u8 **) ((*((u8 **) ((*((u8 **) (((u8 *) func_801DAAF0) + 0x24))) + 8))) + 8))) + 0x24))) + 0x2C))) + 8)) = (f32) (((268.0f - D_801E846C) * (((f32) (new_var / D_801E8900)) / four)) + D_801E846C);
+  *((f32 *) ((*((u8 **) ((*((u8 **) ((*((u8 **) ((*((u8 **) ((*((u8 **) (((u8 *) func_801DAAF0) + 0x24))) + 8))) + 8))) + 0x24))) + 0x2C))) + 8)) = (f32) (((268.0f - D_801E846C) * (((f32) (new_var / 1000000.0)) / four)) + D_801E846C);
   return 7;
 }

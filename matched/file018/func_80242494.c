@@ -1,4 +1,4 @@
-#include "context.h"
+#include "common.h"
 
 typedef struct func_80242494_S2 {
     u8 pad0[4];
@@ -11,9 +11,8 @@ typedef struct func_80242494_S1 {
     func_80242494_S2 *unk2C;
 } func_80242494_S1;
 extern func_80242494_S1 *D_801BBCD0;
-extern f32 D_8025BE6C;
+extern void func_800058DC(s32, void *);
 extern u8 func_80242364[];
-
 void func_80242494(s32 arg0, s32 arg1) {
     func_80242494_S2 *p;
     f32 a;
@@ -21,7 +20,7 @@ void func_80242494(s32 arg0, s32 arg1) {
     f32 c;
 
     p = D_801BBCD0->unk2C;
-    a = D_8025BE6C - p->unk4;
+    a = 495.0f - p->unk4;
     b = 300.0f - p->unk8;
     c = 276.0f - p->unkC;
     if (!(a * a + b * b + c * c < 1600.0f)) {

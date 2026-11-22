@@ -1,5 +1,10 @@
-#include "context.h"
+#include "common.h"
 
+extern u8 D_801D9110[];
+extern u8 D_8038D88C[];
+extern u8 D_8038D89C[];
+extern s32 D_8038D8CC;
+extern struct func_801E390C_Struct1 *D_8038D8D0;
 typedef struct func_801E32D4_Struct1 {
     u8 pad0[4];
     f32 unk4;
@@ -20,24 +25,14 @@ typedef struct func_801E32D4_Struct1 {
     u8 unk4A;
     u8 unk4B;
 } func_801E32D4_Struct1;
-
 typedef struct func_801E32D4_Struct0 {
     u8 pad0[0x30];
     func_801E32D4_Struct1 *unk30;
 } func_801E32D4_Struct0;
-
+#define O(i) (((func_801E32D4_Struct0 **)D_8038D8D0)[i]->unk30)
 extern void func_80005E44(s32, void *);
 extern void func_80006214(s32);
 extern void func_8012C89C(s32, s32, s32, s32);
-extern u8 D_8038D88C[];
-extern u8 D_8038D89C[];
-extern s32 D_8038D8CC;
-extern u8 D_801D9110[];
-extern f32 D_801F5804;
-extern struct func_801E390C_Struct1 *D_8038D8D0;
-
-#define O(i) (((func_801E32D4_Struct0 **)D_8038D8D0)[i]->unk30)
-
 s32 func_801E32D4(s32 arg0, s32 arg1) {
     s32 i;
     f32 s;
@@ -60,7 +55,7 @@ s32 func_801E32D4(s32 arg0, s32 arg1) {
     func_8012C89C(D_8038D8CC, 7, 0x2D4, 7);
     func_8012C89C(D_8038D8CC, 8, 0x2D4, 8);
     func_8012C89C(D_8038D8CC, 9, 0x2D3, 2);
-    s = D_801F5804;
+    s = 0.0500000007f;
     O(0)->unk4 = 0.0f;
     O(0)->unk8 = 0.0f;
     O(0)->unkC = -42.0f;

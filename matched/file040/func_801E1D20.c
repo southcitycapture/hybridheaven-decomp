@@ -1,20 +1,9 @@
-#include "context.h"
+#include "common.h"
 
+extern void D_8038C158(void);
 extern s32 D_8038C17C(f32, f32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
-extern f32 D_801E8518;
-extern f32 D_801E851C;
-extern f32 D_801E8520;
-extern f32 D_801E8524;
-extern f32 D_801E8528;
-extern f32 D_801E852C;
-extern f32 D_801E8530;
-extern f32 D_801E8534;
-extern f32 D_801E8538;
-extern f32 D_801E853C;
-extern f32 D_801E8540;
-
 s32 func_801E1D20(s32 arg0, s32 arg1) {
-    if (D_8038C17C(0.0f, D_801E8518, 0xC0133333, 0x40133333, D_801E851C, D_801E8520, D_801E8524, D_801E8528, D_801E852C, D_801E8530, D_801E8534, D_801E8538, D_801E853C, D_801E8540, 25.5f, 20.0f) != 0) {
+    if (D_8038C17C(0.0f, 2.00000024f, 0xC0133333, 0x40133333, 18.7999992f, (-1.60000002f), 5.9000001f, 13.3999996f, 8.69999981f, 18.2999992f, 0.400000006f, 8.80000019f, 18.2000008f, 0.300000012f, 25.5f, 20.0f) != 0) {
         D_8038C158();
         return 3;
     }

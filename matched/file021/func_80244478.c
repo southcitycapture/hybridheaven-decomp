@@ -1,5 +1,23 @@
-#include "context.h"
+#include "common.h"
 
+extern u8 D_80164F40[];
+extern u8 D_80250FA0[];
+extern void func_800058DC(s32, void *);
+extern void func_80005F6C(void *, void *);
+extern void func_80006214(void *);
+extern void func_8001F74C();
+extern s32 func_80126CC0(s32, void *);
+extern void func_80126EAC();
+extern void func_8012C89C(void *, s32, s32, s32);
+extern void func_8012D918(void *, s32, s32, s32, s32);
+extern s32 func_80133A24(s32 arg0);
+typedef struct func_80244478_Arg0 {
+    u8 pad0[0x9C];
+    f32 unk9C;
+} func_80244478_Arg0;
+typedef struct func_80244478_Copy {
+    s32 w[4];
+} func_80244478_Copy;
 typedef struct func_80244478_Inner {
     u8 pad0[0x24];
     s32 unk24;
@@ -12,26 +30,12 @@ typedef struct func_80244478_Inner {
     u8 unk4E;
     u8 unk4F;
 } func_80244478_Inner;
-
 typedef struct func_80244478_Outer {
     u8 pad0[0x30];
     func_80244478_Inner *unk30;
 } func_80244478_Outer;
-
-typedef struct func_80244478_Copy {
-    s32 w[4];
-} func_80244478_Copy;
-
-typedef struct func_80244478_Arg0 {
-    u8 pad0[0x9C];
-    f32 unk9C;
-} func_80244478_Arg0;
-
-extern u8 D_80250FA0[];
-extern f32 D_802570F8;
-extern void func_80244720();
 extern void func_802445E8();
-
+extern void func_80244720();
 void func_80244478(func_80244478_Arg0 *arg0, func_80244478_Outer **arg1) {
     func_80244478_Copy sp28;
 
@@ -50,7 +54,7 @@ void func_80244478(func_80244478_Arg0 *arg0, func_80244478_Outer **arg1) {
         (*arg1)->unk30->unk4D = 0;
         (*arg1)->unk30->unk4E = 0xFF;
         (*arg1)->unk30->unk4F = 0xFF;
-        arg0->unk9C = D_802570F8;
+        arg0->unk9C = 0.246000007f;
         if (func_80133A24(0x1A6) != 0) {
             func_800058DC((s32) arg0, func_80244720);
             return;

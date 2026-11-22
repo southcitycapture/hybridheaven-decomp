@@ -1,5 +1,21 @@
-#include "context.h"
+#include "common.h"
 
+typedef struct func_80247A00_StructV {
+    s32 a, b, c, d;
+} func_80247A00_StructV;
+extern func_80247A00_StructV D_80164F40;
+extern u8 D_8017AF90[];
+extern u8 D_801BBBF0[];
+extern u8 D_80258AA8[];
+extern u8 D_80258B48[];
+extern void func_800058DC(void *arg0, void *arg1);
+extern void func_80005E44(void *, void *);
+extern void func_80006214(void *);
+extern void func_8012C89C(void *, s32, s32, s32);
+extern s32 func_8012C97C(s32, s32);
+extern void func_8012D918(s32, s32, s32, s32, s32);
+extern s32 func_80133A24(s32);
+extern void func_80241854(f32, f32, f32, s32, s32, s32, s32);
 typedef struct func_80247A00_StructT {
     u8 pad0[4];
     f32 unk4;
@@ -50,31 +66,8 @@ typedef struct func_80247A00_StructO {
     s16 unk90;
     u8 unk92;
 } func_80247A00_StructO;
-typedef struct func_80247A00_StructV {
-    s32 a, b, c, d;
-} func_80247A00_StructV;
-
-extern void func_80005E44(void *, void *);
-extern void func_80006214(void *);
-extern void func_8012C89C(void *, s32, s32, s32);
-extern s32 func_8012C97C(s32, s32);
-extern void func_80241854(f32, f32, f32, s32, s32, s32, s32);
-extern func_80247A00_StructV D_80164F40;
-extern u8 D_8017AF90[];
-extern u8 D_801BBBF0[];
-extern u8 D_80258AA8[];
-extern u8 D_80258B48[];
-extern f32 D_8025CABC;
-extern f32 D_8025CAC0;
-extern u8 D_801BBBF0[];
-extern void func_800058DC(void *arg0, void *arg1);
-extern void func_8012D918(s32, s32, s32, s32, s32);
-extern s32 func_80133A24(s32);
-struct func_802482A0_StructObj;
 void func_802482A0(struct func_802482A0_StructObj *arg0, s32 arg1);
-struct func_8024836C_Struct;
 void func_8024836C(struct func_8024836C_Struct *arg0, s32 *arg1);
-
 void func_80247A00(func_80247A00_StructO *arg0, func_80247A00_StructA *arg1) {
     func_80247A00_StructV sp40;
     s32 t;
@@ -181,8 +174,8 @@ void func_80247A00(func_80247A00_StructO *arg0, func_80247A00_StructA *arg1) {
     arg1->n[7]->unk30->unk4D = D_801BBBF0[0xF33];
     arg1->n[7]->unk30->unk4E = D_801BBBF0[0xF34];
     arg1->n[7]->unk30->unk4F = D_801BBBF0[0xF35];
-    func_80241854(D_8025CABC, -200.0f, 20.0f, 0x1000, 0x2FF, 9, 0x122);
-    func_80241854(D_8025CAC0, -200.0f, -20.0f, 0, 0x2FF, 8, 0x123);
+    func_80241854((-385.0f), -200.0f, 20.0f, 0x1000, 0x2FF, 9, 0x122);
+    func_80241854((-385.0f), -200.0f, -20.0f, 0, 0x2FF, 8, 0x123);
     sp34 = func_80133A24(0x126) == 0;
     t = (func_80133A24(0x127) == 0) + sp34;
     arg0->unk92 = t;

@@ -734,6 +734,7 @@ segments:
       - [0x6C8990, c, file025/801D5420]
       - [0x6C9570, c, file025/801D6000]
       - [0x6C9BC0, c, file025/801D6650]
+      - [0x6CA1E0, pad]
       - [0x6CA1F0, c, file025/801D6C80]
       - [0x6CA7C0, c, file025/801D7250]
       - [0x6CBC70, c, file025/801D8700]
@@ -777,6 +778,8 @@ segments:
       - { type: bss, vram: 0x801E16F0, name: file025_bss_801E16F0 }
       - { type: .bss, vram: 0x801E1700, name: file025/801D6000 }
       - { type: bss, vram: 0x801E1720, name: file025_bss_801E1720 }
+      - { type: .bss, vram: 0x801E1758, name: file025/801D6650 }
+      - { type: bss, vram: 0x801E1768, name: file025_bss_801E1768 }
       - { type: .bss, vram: 0x801E1790, name: file025/801D6C80 }
       - { type: bss, vram: 0x801E17A0, name: file025_bss_801E17A0 }
   - name: file026

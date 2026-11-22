@@ -1,7 +1,4 @@
-#include "context.h"
-
-extern void func_802453E0();
-extern f64 D_80257138;
+#include "common.h"
 
 struct func_8024522C_Struct {
     u8 pad0[0x6];
@@ -9,6 +6,34 @@ struct func_8024522C_Struct {
     u8 pad1[0x10 - 0x8];
     u32 unk10;
 };
+struct func_8024522C_Struct0 {
+    u8 pad0[0x38];
+    struct func_8024522C_Struct *unk38;
+    u8 pad1[0x90 - 0x3C];
+    u16 unk90;
+};
+#define A ((struct func_8024522C_Struct0 *)arg0)
+typedef struct func_8024345C_Inner2 {
+    u8 pad0[0x22];
+    u8 unk22;
+} func_8024345C_Inner2;
+typedef struct func_8024345C_Inner {
+    u8 pad0[0x24];
+    struct func_8024345C_Inner2 *unk24;
+} func_8024345C_Inner;
+typedef struct func_8024345C_Struct {
+    u8 pad0[0xF23];
+    u8 unkF23;
+    u8 unkF24;
+    u8 unkF25;
+    u8 pad1[0x1044 - 0xF26];
+    struct func_8024345C_Inner *unk1044;
+} func_8024345C_Struct;
+extern struct func_8024345C_Struct D_801BBBF0;
+#define B(n) (((u8 *)&D_801BBBF0)[n])
+extern void func_800058DC(s32, void *);
+extern s32 func_8012AAE8(s32, s32, s32, s32, f32);
+extern s32 func_80133A24(s32 arg0);
 struct func_8024522C_Struct3 {
     u8 pad0[0x10];
     s16 unk10;
@@ -19,16 +44,7 @@ struct func_8024522C_Struct2 {
     u8 pad0[0x30];
     struct func_8024522C_Struct3 *unk30;
 };
-struct func_8024522C_Struct0 {
-    u8 pad0[0x38];
-    struct func_8024522C_Struct *unk38;
-    u8 pad1[0x90 - 0x3C];
-    u16 unk90;
-};
-
-#define A ((struct func_8024522C_Struct0 *)arg0)
-#define B(n) (((u8 *)&D_801BBBF0)[n])
-
+extern void func_802453E0();
 void func_8024522C(s32 arg0, struct func_8024522C_Struct2 **arg1) {
     s32 a;
 
@@ -36,7 +52,7 @@ void func_8024522C(s32 arg0, struct func_8024522C_Struct2 **arg1) {
         func_8012AAE8(arg0, 0x43480000, 0xC4960000, 0xC4394000, 1.0f) != 0) {
         (*arg1)->unk30->unk10 += 5;
     }
-    if (D_80257138 != (f32)A->unk38->unk6 / 10.0 && 0.5 != (f32)A->unk38->unk6 / 10.0) {
+    if (210.0 != (f32)A->unk38->unk6 / 10.0 && 0.5 != (f32)A->unk38->unk6 / 10.0) {
         B(0xF20) += 5;
         B(0xF21) += 1;
         B(0xF22) -= 2;

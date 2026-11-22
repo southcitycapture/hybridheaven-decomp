@@ -1,5 +1,8 @@
-#include "context.h"
+#include "common.h"
 
+extern void func_80005700(void *);
+extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
+extern s32 func_8012C6B4(s32);
 struct func_8024174C_Struct {
     u8 pad0[0x3C];
     u16 unk3C;
@@ -12,14 +15,6 @@ struct func_8024174C_Struct {
     f32 unk94;
     f32 unk98;
 };
-extern void func_80005700(void *);
-extern void func_80129FB8(f32, f32, f32, f32, f32, f32, f32, s32, s32, s32, s32, s32, s32, s32, s32, f32, s32, s32);
-extern s32 func_8012C6B4(s32);
-extern f64 D_8024EC08;
-extern f64 D_8024EC10;
-extern f32 D_8024EC18;
-extern f32 D_8024EC1C;
-
 void func_8024174C(struct func_8024174C_Struct *arg0, s32 arg1) {
     s32 sp74[1];
     s32 temp_v0;
@@ -38,8 +33,8 @@ void func_8024174C(struct func_8024174C_Struct *arg0, s32 arg1) {
         sp64 = func_8012C6B4(0xC8);
         sp68 = func_8012C6B4(0x64);
         sp6C = func_8012C6B4(0xC8);
-        func_80129FB8((f32) (((f64) (sp5C - 0x19) / 10.0) + (f64) arg0->unk90), arg0->unk94, (f32) (((f64) (sp60 - 0x19) / 10.0) + (f64) arg0->unk98), (f32) ((f64) (sp64 - 0x64) / 100.0), (f32) (((f64) sp68 / 100.0) + 3.0), (f32) ((f64) (sp6C - 0x64) / 100.0), -0.5f, 0xFF, 0x82, 0, 0xFF, 0, 0, 0xFF, -8, (f32) (((f64) func_8012C6B4(0x32) / D_8024EC08) + D_8024EC10), 0xD, 0);
-        func_80129FB8(arg0->unk90, arg0->unk94 + 6.0f, arg0->unk98, arg0->unk40, arg0->unk44, arg0->unk48, D_8024EC18, 0xFF, 0xE6, 0, 0xFF, 0, 0, 0xA0, -4, D_8024EC1C, 9, 0);
+        func_80129FB8((f32) (((f64) (sp5C - 0x19) / 10.0) + (f64) arg0->unk90), arg0->unk94, (f32) (((f64) (sp60 - 0x19) / 10.0) + (f64) arg0->unk98), (f32) ((f64) (sp64 - 0x64) / 100.0), (f32) (((f64) sp68 / 100.0) + 3.0), (f32) ((f64) (sp6C - 0x64) / 100.0), -0.5f, 0xFF, 0x82, 0, 0xFF, 0, 0, 0xFF, -8, (f32) (((f64) func_8012C6B4(0x32) / 1000.0) + 0.2), 0xD, 0);
+        func_80129FB8(arg0->unk90, arg0->unk94 + 6.0f, arg0->unk98, arg0->unk40, arg0->unk44, arg0->unk48, (-0.699999988f), 0xFF, 0xE6, 0, 0xFF, 0, 0, 0xA0, -4, 0.300000012f, 9, 0);
     }
     if (sp74[0] >= 8) {
         func_80005700(arg0);

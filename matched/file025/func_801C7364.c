@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern u8 D_801DA5C4[];
+extern void *D_8038D8CC;
+extern void *func_80005670(void *, void *);
 typedef struct func_801C7364_Struct {
     u8 pad[0x90];
     f32 unk90, unk94, unk98, unk9C, unkA0, unkA4;
@@ -7,14 +10,7 @@ typedef struct func_801C7364_Struct {
     f32 unkAC;
     s16 unkB0, unkB2;
 } func_801C7364_Struct;
-
-extern void *func_80005670(void *, void *);
-extern void *D_8038D8CC;
 extern f32 func_801C78F8(void);
-extern u8 D_801DA5C4[];
-extern f32 D_801DD23C;
-extern f32 D_801DD240;
-
 s32 func_801C7364(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7) {
     func_801C7364_Struct *p;
 
@@ -30,7 +26,7 @@ s32 func_801C7364(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s3
     p->unkA4 = arg5;
     p->unkA8 = 0;
     p->unkAA = arg6;
-    p->unkAC = func_801C78F8() * D_801DD23C + D_801DD240;
+    p->unkAC = func_801C78F8() * 1.39999998f + 0.100000001f;
     p->unkB0 = 0;
     p->unkB2 = arg7;
     return 1;

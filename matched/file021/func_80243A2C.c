@@ -1,5 +1,26 @@
-#include "context.h"
+#include "common.h"
 
+extern u8 D_80164F40[];
+extern u8 D_80250F40[];
+extern void func_800058DC(s32, void *);
+extern void func_80005F6C(void *, void *);
+extern void func_80006214(void *);
+extern void func_800062F8(void *, u32);
+extern void func_8001F74C();
+extern void func_8012636C(void *, s32);
+extern s32 func_80126CC0(s32, void *);
+extern void func_80126EAC();
+extern void func_8012C89C(void *, s32, s32, s32);
+extern void func_8012D918(void *, s32, s32, s32, s32);
+extern s32 func_80133A24(s32 arg0);
+typedef struct func_80243A2C_Sub {
+    u8 pad0[0x10];
+    u32 unk10;
+} func_80243A2C_Sub;
+typedef struct func_80243A2C_Arg0 {
+    u8 pad0[0x38];
+    func_80243A2C_Sub *unk38;
+} func_80243A2C_Arg0;
 typedef struct func_80243A2C_Leaf {
     u8 pad0[0x4];
     f32 unk4;
@@ -21,39 +42,19 @@ typedef struct func_80243A2C_Leaf {
     u8 unk4D;
     u8 unk4E;
 } func_80243A2C_Leaf;
-
 typedef struct func_80243A2C_Mid {
     u8 pad0[0x22];
     u8 unk22;
     u8 pad23[0x30 - 0x23];
     func_80243A2C_Leaf *unk30;
 } func_80243A2C_Mid;
-
 typedef struct func_80243A2C_Arg1 {
     func_80243A2C_Mid *unk0;
     func_80243A2C_Mid *unk4;
     func_80243A2C_Mid *unk8;
 } func_80243A2C_Arg1;
-
-typedef struct func_80243A2C_Sub {
-    u8 pad0[0x10];
-    u32 unk10;
-} func_80243A2C_Sub;
-
-typedef struct func_80243A2C_Arg0 {
-    u8 pad0[0x38];
-    func_80243A2C_Sub *unk38;
-} func_80243A2C_Arg0;
-
-struct func_802440B4_Outer;
 void func_802440B4(s32 arg0, struct func_802440B4_Outer *arg1);
 extern void func_80244458();
-extern void func_80005700();
-
-extern f64 D_802570D8;
-extern f64 D_802570E0;
-extern f64 D_802570E8;
-
 void func_80243A2C(func_80243A2C_Arg0 *arg0, func_80243A2C_Arg1 *arg1) {
     func_8001F74C();
     if (func_80126CC0((s32)arg0, func_80126EAC) != 0) {
@@ -76,7 +77,7 @@ void func_80243A2C(func_80243A2C_Arg0 *arg0, func_80243A2C_Arg1 *arg1) {
         func_8012C89C(arg0, 0, 3, 4);
         func_8012D918(arg0, 0x502, 6, 0, 0);
         arg1->unk0->unk30->unk18 = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0;
-        arg1->unk0->unk30->unk1C = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0 / D_802570D8;
+        arg1->unk0->unk30->unk1C = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0 / 1.3;
         arg1->unk0->unk30->unk20 = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0;
 
         arg1->unk4->unk30->unk24 |= 0x60300;
@@ -92,7 +93,7 @@ void func_80243A2C(func_80243A2C_Arg0 *arg0, func_80243A2C_Arg1 *arg1) {
         func_8012C89C(arg0, 1, 3, 4);
         func_8012D918(arg0, 0x502, 6, 1, 0);
         arg1->unk4->unk30->unk18 = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0;
-        arg1->unk4->unk30->unk1C = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0 / D_802570E0;
+        arg1->unk4->unk30->unk1C = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0 / 1.3;
         arg1->unk4->unk30->unk20 = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0;
         arg1->unk4->unk30->unk4 = arg1->unk0->unk30->unk4 + 3.0f;
         arg1->unk4->unk30->unkC = arg1->unk0->unk30->unkC + 3.0f;
@@ -111,7 +112,7 @@ void func_80243A2C(func_80243A2C_Arg0 *arg0, func_80243A2C_Arg1 *arg1) {
         func_8012C89C(arg0, 2, 3, 4);
         func_8012D918(arg0, 0x502, 6, 2, 0);
         arg1->unk8->unk30->unk18 = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0;
-        arg1->unk8->unk30->unk1C = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0 / D_802570E8;
+        arg1->unk8->unk30->unk1C = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0 / 1.3;
         arg1->unk8->unk30->unk20 = (f32)((u32)(arg0->unk38->unk10 >> 16) & 0xFF) / 200.0;
         arg1->unk8->unk30->unk4 = arg1->unk0->unk30->unk4 - 3.0f;
         arg1->unk8->unk30->unkC = arg1->unk0->unk30->unkC - 3.0f;

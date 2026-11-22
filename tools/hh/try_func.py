@@ -123,7 +123,7 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
         if bss is not None: ro += ['--section-start=.bss=0x%X' % bss]
         r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-Ttext=0x%X" % base, "-e", "0", "--no-check-sections",
                             "-z", "muldefs"] + ro + ["-o", out, obj] + defs, capture_output=True, text=True)
-        if r.returncode or rodata is not None or base % 16:
+        if r.returncode or rodata is not None or base % 16 or (bss is not None and bss % 16):
             # The default MIPS linker script can crash on overlays even without an explicitly placed .rodata.
             # Use just the game's section placement, without the default script's segment/stub layout.
             script = obj + ".ld"
@@ -135,7 +135,7 @@ def linked_func_bytes(obj, name, vram, base=None, rodata=None, want_rodata=False
                 # table). The caller supplies the original pool address; place
                 # the input there without changing its contents or internal
                 # offsets. This is a comparison link, not a ROM layout change.
-                fh.write("SECTIONS { .text 0x%X : SUBALIGN(4) { *(.text) } .rodata%s : SUBALIGN(4) { *(.rodata) } .bss%s : { *(.bss) *(COMMON) } "
+                fh.write("SECTIONS { .text 0x%X : SUBALIGN(4) { *(.text) } .rodata%s : SUBALIGN(4) { *(.rodata) } .bss%s : SUBALIGN(8) { *(.bss) *(COMMON) } "
                          "/DISCARD/ : { *(.reginfo) *(.MIPS.abiflags) *(.pdr) *(.mdebug*) *(.comment) } }\n" % (base, ro_addr, bss_addr))
             r = subprocess.run(["mips-linux-gnu-ld", "-EB", "-T", script, "-e", "0", "--no-check-sections",
                                 "-z", "muldefs", "-o", out, obj] + defs, capture_output=True, text=True)

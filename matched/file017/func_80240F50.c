@@ -1,8 +1,9 @@
-#include "context.h"
+#include "common.h"
 
-extern f64 D_8025C2D0;
-extern f64 D_8025C2D8;
-
+extern void func_800058DC(void *, void *);
+extern f32 func_8001EAD0(s16);
+extern f32 func_8001EB64(s16);
+extern void func_801C2F0C(s32, void *);
 struct func_80240F50_Struct {
     u8 pad[0x90];
     f32 x;
@@ -10,7 +11,6 @@ struct func_80240F50_Struct {
     f32 z;
     s16 angle;
 };
-
 struct func_80240F50_StructLocal {
     f32 x;
     f32 z;
@@ -22,13 +22,13 @@ struct func_80240F50_StructLocal {
     s16 e;
     u8 pad[4];
 };
-
+extern void func_8024102C(s32 arg0, s32 arg1);
 void func_80240F50(struct func_80240F50_Struct *arg0, void *arg1) {
     struct func_80240F50_StructLocal data;
 
     if (func_801C2FF8() != 0) {
-        data.x = (f32)(((f64)func_8001EAD0(arg0->angle) * D_8025C2D0) + (f64)arg0->x);
-        data.z = (f32)(((f64)func_8001EB64(arg0->angle) * D_8025C2D8) + (f64)arg0->z);
+        data.x = (f32)(((f64)func_8001EAD0(arg0->angle) * 8.2) + (f64)arg0->x);
+        data.z = (f32)(((f64)func_8001EB64(arg0->angle) * 8.2) + (f64)arg0->z);
         data.a = 0x1100;
         data.b = 0x0168003E;
         data.d = 0;

@@ -1,13 +1,26 @@
-#include "context.h"
+#include "common.h"
 
-extern s32 func_801D277C();
-extern f32 D_801F5A40;
-extern f32 D_801F5A44;
+extern s32 D_801F4D08;
 extern f32 D_801F5A64;
 extern f32 D_801F5A68;
-
+extern u8 *D_801DAB14;
+typedef struct func_801ED14C_Struct0 {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+} func_801ED14C_Struct0;
 #define OBJ ((func_801ED14C_Struct0 *)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)(D_801DAB14 + 8) + 8) + 8) + 0x24) + 0x2C)))
-
+extern void func_801C0D04(s32, s32);
+extern s32 func_801C0DE4(s32, s32, s32);
+extern void func_801C0EB0(s32, s32);
+extern s32 func_801CC470(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4);
+extern s32 func_801CC4D8(s32 a0, s32 a1, s32 a2, s32 a3, f32 f);
+extern s32 func_801D277C();
+extern s32 func_801D27D8(s32, s32);
+extern void func_8038D33C(f32 a0, f32 a1, s32 a2, s32 a3, f32 a4, f32 a5);
 s32 func_801F0AEC(s32 arg0, s32 arg1) {
     f32 d;
     func_801ED14C_Struct0 *o;
@@ -22,7 +35,7 @@ c0:
     n = (u32)(d * 30.0f);
     o = OBJ;
     D_801F5A64 = (31.5f - o->unk4) / (f32)n;
-    D_801F5A68 = (D_801F5A40 - o->unkC) / (f32)n;
+    D_801F5A68 = ((-22.7000008f) - o->unkC) / (f32)n;
     func_801CC470(2, 0x01680003, 0, 0x1100, 1.0f);
     func_801C0D04(4, 2);
     D_801F4D08 = 1;
@@ -36,7 +49,7 @@ c1:
     OBJ->unk4 = OBJ->unk4 + D_801F5A64;
     OBJ->unkC = OBJ->unkC + D_801F5A68;
     if (func_801D27D8(0x01680003, 0x14) != 0 || func_801D27D8(0x01680003, 0x28) != 0) {
-        func_8038D33C(OBJ->unk4, OBJ->unk8, *(s32 *)&OBJ->unkC, 0x679, D_801F5A44, 1.0f);
+        func_8038D33C(OBJ->unk4, OBJ->unk8, *(s32 *)&OBJ->unkC, 0x679, 1.20000005f, 1.0f);
         return 9;
     }
     goto done;

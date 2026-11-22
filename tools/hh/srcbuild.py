@@ -147,6 +147,17 @@ def pad_asm(seg, cfile, nbytes):
 def is_stub(off, size):
     return size == 8 and IMG[off:off + 8] == b"\x03\xe0\x00\x08\x00\x00\x00\x00"
 
+
+def registry_stub_additions(seg, cfile, additions, source):
+    """A registry-only addition for a ROM stub already defined in frozen C."""
+    stubs = {n for n, _, off, size, _ in entries(seg, cfile) if is_stub(off, size)}
+    for name, snippet in additions.items():
+        body = r'void\s+' + re.escape(name) + r'\s*\(\s*void\s*\)\s*\{\s*\}'
+        if (name not in stubs or not re.fullmatch(r'\s*#include[ \t]+"common\.h"[ \t]*\n\s*' + body + r'\s*', snippet)
+                or not re.fullmatch(body, fn_body(source, name) or '')):
+            return False
+    return True
+
 def decl_name(line, depth):
     """Name declared by a file-scope declaration line (extern or bare prototype), else None."""
     if depth: return None
@@ -963,8 +974,14 @@ def run(cands, new_keys, every_file=False):
     for (seg, cf), sn in sorted(byfile.items()):
         old = {n: blob(t) for n, t in sn.items() if (seg, n) not in new_keys}
         path = "src/%s/%s.c" % (seg, cf)
-        committed = (blocklist_ok and old == head_snips.get((seg, cf), {}) and os.path.exists(path)
-                     and blob(open(path).read()) == head.get(path))
+        previous = head_snips.get((seg, cf), {})
+        committed = False
+        if blocklist_ok and os.path.exists(path):
+            source = open(path).read()
+            if blob(source) == head.get(path):
+                committed = old == previous or (
+                    previous.items() <= old.items()
+                    and registry_stub_additions(seg, cf, {n: sn[n] for n in old.keys() - previous.keys()}, source))
         # Some HEAD registry entries already use ASM in the ROM-checked source (main/800201D0, file057/80364340).
         # Preserve that baseline after adding a neighbour too; only unchanged committed snippets get this allowance.
         asm_ok = set()

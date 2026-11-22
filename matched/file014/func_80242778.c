@@ -1,12 +1,11 @@
-#include "context.h"
+#include "common.h"
 
 struct func_80242778_StructB { u8 pad[0x30]; f32 unk30; f32 unk34; f32 unk38; f32 unk3C; f32 unk40; f32 unk44; };
 struct func_80242778_StructA { u8 pad[0x2C]; struct func_80242778_StructB *unk2C; };
-struct func_80242778_StructC { u8 pad[0xA0]; f32 unkA0; };
 extern struct func_80242778_StructA *D_801BBCD8;
 extern u8 D_8024A53C[];
-extern f64 D_8024A5D8;
-
+extern s32 func_8011AAF4(void *, s32, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s32, s32);
+struct func_80242778_StructC { u8 pad[0xA0]; f32 unkA0; };
 void func_80242778(struct func_80242778_StructC *arg0, s32 arg1) {
     f64 k;
 
@@ -15,6 +14,6 @@ void func_80242778(struct func_80242778_StructC *arg0, s32 arg1) {
     arg0->unkA0 = (f32)((f64)arg0->unkA0 * k);
     if (!(arg1 % 2)) {
     } else {
-        arg0->unkA0 = (f32)((f64)arg0->unkA0 * D_8024A5D8);
+        arg0->unkA0 = (f32)((f64)arg0->unkA0 * 0.6);
     }
 }

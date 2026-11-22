@@ -1,4 +1,5 @@
 #include "common.h"
+
 extern s32 D_801E8468;
 extern f32 D_801E846C;
 extern f64 func_80034C24();
@@ -11,11 +12,6 @@ struct func_801E71F4_StructD { u8 pad[0x2C]; struct func_801E71F4_StructE *unk2C
 struct func_801E71F4_StructC { u8 pad[0x24]; struct func_801E71F4_StructD *unk24; };
 struct func_801E71F4_StructB { u8 pad[8]; struct func_801E71F4_StructC *unk8; };
 struct func_801E71F4_StructA { u8 pad[8]; struct func_801E71F4_StructB *unk8; };
-
-
-extern f64 D_801E88E8;
-extern f32 D_801E88F0;
-
 s32 func_801E6FE4(s32 arg0, s32 arg1) {
     f64 elapsed;
 
@@ -52,7 +48,7 @@ s32 func_801E6FE4(s32 arg0, s32 arg1) {
     if (D_801E8468 < 6) {
         elapsed = func_80034C24(func_801C0F18(4, 1));
         ((struct func_801E71F4_StructA **)func_801DAAF0)[9]->unk8->unk8->unk24->unk2C->unk8 =
-            (25.0f - D_801E846C) * ((f32)(elapsed / D_801E88E8) / D_801E88F0) + D_801E846C;
+            (25.0f - D_801E846C) * ((f32)(elapsed / 1000000.0) / 9.03333282f) + D_801E846C;
     }
     return 4;
 }

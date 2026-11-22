@@ -176,7 +176,21 @@ s32 func_801D6AA8(void) {
     return D_801DB978 == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D6650/func_801D6AB8.s")
+extern u64 func_801C0B2C(void);
+extern s32 D_801DB97C;
+
+u64 D_801E1758;
+u32 D_801E1760;
+
+void func_801D6AB8(s32 arg0) {
+    if ((D_801DB950 = arg0) != 0) {
+        D_801DB97C = 0;
+        D_801E1758 = func_801C0B2C();
+        D_801E1760 = 0;
+        return;
+    }
+    func_8012D844((void *)D_801E1730, 0x28, 4);
+}
 
 
 extern s32 func_801C354C(s32);
@@ -186,5 +200,36 @@ void func_801D6B18(s32 arg0) {
     D_801DB978 = func_801C354C(arg0) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D6650/func_801D6B48.s")
+extern f64 func_80034C24(u64);
 
+typedef struct func_801D6B48_Struct {
+    f32 time;
+    s32 action;
+} func_801D6B48_Struct;
+
+extern func_801D6B48_Struct D_801DB984[];
+
+void func_801D6B48(void *arg0) {
+    u64 elapsed;
+    u64 now;
+
+    elapsed = func_801C0B2C() - D_801E1758;
+    if (D_801DB984[D_801E1760].time <= func_80034C24(elapsed) / 1000000.0) {
+        if (D_801DB984[D_801E1760].action == 0) goto action0;
+        if (D_801DB984[D_801E1760].action != 1) goto advance;
+        goto action1;
+action0:
+        func_8012D844(arg0, 0x28, 4);
+        goto advance;
+action1:
+        func_8012D844(arg0, 0x28, 5);
+        goto advance;
+advance:
+        D_801E1760++;
+        if (D_801E1760 >= 16U) {
+            now = func_801C0B2C();
+            D_801E1758 = now;
+        }
+        D_801E1760 %= 16U;
+    }
+}

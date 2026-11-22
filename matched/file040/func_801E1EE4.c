@@ -1,22 +1,10 @@
-#include "context.h"
-/* starting point: func_801E2374 (file037), whose assembly is 92% the same as this function's */
+#include "common.h"
 
-extern f32 D_801E8564;
-extern f32 D_801E8568;
-extern f32 D_801E856C;
-extern f32 D_801E8570;
-extern f32 D_801E8574;
-extern f32 D_801E8578;
-extern f32 D_801E857C;
-extern f32 D_801E8580;
-extern f32 D_801E8584;
-extern f32 D_801E8588;
-extern f32 D_801E858C;
-extern f32 D_801E8590;
-
+extern void D_8038C158(void);
+extern s32 D_8038C17C(f32, f32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 s32 func_801E1EE4(s32 arg0, s32 arg1) {
-    f32 v = D_801E8564;
-    if (D_8038C17C(0.0f, D_801E8568, 0x40ACCCCD, 0xBFB33333, D_801E856C, D_801E8570, D_801E8574, D_801E8578, D_801E857C, D_801E8580, D_801E8584, D_801E8588, D_801E858C, D_801E8590, v, v) != 0) {
+    f32 v = 43.5999985f;
+    if (D_8038C17C(0.0f, 4.00000048f, 0x40ACCCCD, 0xBFB33333, 24.7999992f, 11.8000002f, 1.29999995f, 21.8999996f, 3.70000005f, 14.6000004f, (-1.89999998f), 6.0999999f, 16.1000004f, (-1.10000002f), v, v) != 0) {
         D_8038C158();
         return 5;
     }

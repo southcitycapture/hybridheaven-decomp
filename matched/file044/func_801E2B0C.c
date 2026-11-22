@@ -1,8 +1,9 @@
-#include "context.h"
-extern f32 D_801EDCA4, D_801EDCA8, D_801EDCAC, D_801EDCB0, D_801EDCB4, D_801EDCB8, D_801EDCBC, D_801EDCC0, D_801EDCC4;
+#include "common.h"
+
+extern s32 D_8038C17C(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 s32 func_801E2B0C(s32 arg0, s32 arg1) {
-    f32 k = D_801EDCA4;
-    if (D_8038C17C(0.0f, D_801EDCA8, 63.0f, 11.1f, -1.0f, D_801EDCAC, 17.5f, D_801EDCB0, 46.0f, D_801EDCB4, D_801EDCB8, D_801EDCBC, D_801EDCC0, D_801EDCC4, k, k) != 0) {
+    f32 k = 33.2999992f;
+    if (D_8038C17C(0.0f, 0.830000043f, 63.0f, 11.1f, -1.0f, (-86.8000031f), 17.5f, 23.7000008f, 46.0f, 12.6000004f, 1.10000002f, (-132.5f), 21.7000008f, 29.1000004f, k, k) != 0) {
         return 0x2F;
     }
     return 0x2E;

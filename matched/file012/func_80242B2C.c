@@ -1,12 +1,14 @@
-#include "context.h"
+#include "common.h"
 
+extern u8 D_801BC3D8[];
+extern s32 func_802242D0(s32);
+extern void func_8022AAA8(void *);
 typedef struct func_80242B2C_StructA {
     u8 pad0[0xC];
     s32 unkC;
     u8 pad10[0x95];
     u8 unkA5;
 } func_80242B2C_StructA;
-
 typedef struct func_80242B2C_StructB {
     s16 unk0;
     s16 unk2;
@@ -24,16 +26,10 @@ typedef struct func_80242B2C_StructB {
     u8 pad3C[0x29D];
     u8 unk2D9;
 } func_80242B2C_StructB;
-
 typedef struct func_80242B2C_StructC {
     u8 pad0[0x33];
     u8 b7 : 1;
 } func_80242B2C_StructC;
-
-extern s32 func_802242D0(s32);
-extern void func_8022AAA8(void *);
-extern f64 D_802491E8;
-
 void func_80242B2C(func_80242B2C_StructA *arg0, func_80242B2C_StructB *arg1) {
     f64 b;
 
@@ -61,7 +57,7 @@ void func_80242B2C(func_80242B2C_StructA *arg0, func_80242B2C_StructB *arg1) {
         arg0->unkA5 = 2;
         arg1->unk2D9 = 0;
     }
-    if (((f64)arg1->unk2 < (f64)arg1->unk0 * D_802491E8) && (arg1->unk6 >= 100) && (arg1->unk30_9 != 0)) {
+    if (((f64)arg1->unk2 < (f64)arg1->unk0 * 0.7) && (arg1->unk6 >= 100) && (arg1->unk30_9 != 0)) {
         arg0->unkA5 = 1;
         return;
     }

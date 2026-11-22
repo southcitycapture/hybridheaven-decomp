@@ -1,0 +1,4 @@
+func_8001FEFC main
+func_80022214 main
+func_80004ADC main
+func_8000469C main

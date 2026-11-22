@@ -1,5 +1,16 @@
-#include "context.h"
+#include "common.h"
 
+typedef struct func_80243D1C_Struct {
+    u8 pad0[4];
+    u16 unk4;
+    u8 pad6[0x434 - 6];
+    u8 unk434;
+} func_80243D1C_Struct;
+extern struct func_80243D1C_Struct D_801BBBF0;
+extern void func_800058DC(void *, void *);
+extern void func_80020718(s32);
+extern s32 func_8012FE50(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void func_80133980(s32);
 struct func_802440D8_Struct {
     u8 pad[0x8];
     f32 unk8;
@@ -14,11 +25,7 @@ struct func_802440D8_Struct3 {
     u8 pad3E[0x94 - 0x3E];
     f32 unk94;
 };
-extern void func_80133980(s32);
-extern f64 D_80246C48;
-extern f64 D_80246C50;
-void func_80244248(s32 arg0, s32 arg1);
-
+extern void func_80244248(s32 arg0, s32 arg1);
 void func_802440D8(struct func_802440D8_Struct3 *arg0, struct func_802440D8_Struct2 **arg1) {
     s32 t;
     struct func_802440D8_Struct *p;
@@ -26,9 +33,9 @@ void func_802440D8(struct func_802440D8_Struct3 *arg0, struct func_802440D8_Stru
     t = arg0->unk3C++;
     if (t >= 0x1E) {
         if (t < 0x5A) {
-            arg0->unk94 = arg0->unk94 - D_80246C48;
+            arg0->unk94 = arg0->unk94 - 0.008333333333333333;
         } else if (t >= 0xF0 && t < 0x12D) {
-            arg0->unk94 = arg0->unk94 + D_80246C50;
+            arg0->unk94 = arg0->unk94 + 0.008333333333333333;
         }
     }
     if (t == 0x12C) {

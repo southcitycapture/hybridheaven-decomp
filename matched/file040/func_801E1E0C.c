@@ -1,22 +1,15 @@
-#include "context.h"
+#include "common.h"
 
-extern f32 D_801E8544;
-extern f32 D_801E8548;
-extern f32 D_801E854C;
-extern f32 D_801E8550;
-extern f32 D_801E8554;
-extern f32 D_801E8558;
-extern f32 D_801E855C;
-extern f32 D_801E8560;
-
+extern void D_8038C158(void);
+extern s32 D_8038C17C(f32, f32, s32, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 s32 func_801E1E0C(s32 arg0, s32 arg1)
 {
-  f32 a = D_801E8544;
+  f32 a = 4.9000001f;
   f32 b;
   int new_var;
   if (1)
   {
-    new_var = D_8038C17C(0.0f, D_801E8548, 0x41B00000, 0x40666666, D_801E854C, D_801E8550, D_801E8554, 4.5f, a, b = 20.5f, D_801E8558, a, b, D_801E855C, 19.0f, D_801E8560) != 0;
+    new_var = D_8038C17C(0.0f, 0.666666508f, 0x41B00000, 0x40666666, 5.69999981f, 21.7000008f, 4.30000019f, 4.5f, a, b = 20.5f, 0.600000024f, a, b, 1.20000005f, 19.0f, 16.3999996f) != 0;
     if (new_var)
     {
       D_8038C158();

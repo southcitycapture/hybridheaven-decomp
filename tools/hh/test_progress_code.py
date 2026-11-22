@@ -9,9 +9,19 @@ import unittest
 from elftools.elf.elffile import ELFFile
 
 from progress_code import source_units, target_source, unit_complete, c_only_source
+from progress_linked import same_function
 
 
 class CodeProgressTests(unittest.TestCase):
+    def test_linked_c_credit_requires_original_address_and_bytes(self):
+        target = b'\x03\xe0\x00\x08' + b'\0' * 12
+        expected = (0, 8, 0x80000008)
+        placement = (0x80000008, 16)
+        self.assertTrue(same_function(target, target, expected, (0, 16), placement, 8))
+        self.assertFalse(same_function(target, target, expected, (4, 8), placement, 8))
+        self.assertFalse(same_function(target, b'\0' * 16, expected, (0, 16), placement, 8))
+        self.assertFalse(same_function(target, target[:8] + b'x' * 8, expected, (0, 16), placement, 8))
+
     def test_c_only_compile_preserves_line_number_aliases(self):
         source = '#define NAME CAT(private_, __LINE__)\n#pragma GLOBAL_ASM("first.s")\n\nint NAME;\n  #pragma GLOBAL_ASM("last.s")'
         result = c_only_source(source)

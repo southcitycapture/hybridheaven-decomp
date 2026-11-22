@@ -43,6 +43,7 @@ setup:
 	$(PYTHON) tools/hh/gen_splat.py
 	rm -rf asm     # regenerated from scratch: stale per-file dirs would duplicate functions after a re-split
 	$(PYTHON) -m splat split hybridheaven.yaml
+	$(PYTHON) tools/hh/bss_layout.py --linker
 	@if [ -d asm/matchings ]; then cp -rn asm/matchings/. asm/nonmatchings/ && rm -rf asm/matchings; fi
 	$(PYTHON) tools/hh/gen_pads.py
 	$(PYTHON) tools/hh/gen_blocks.py
@@ -52,6 +53,13 @@ expanded: $(BUILD)/expanded.out.bin
 $(BUILD)/asm/%.o: asm/%.s
 	@mkdir -p $(dir $@)
 	@$(AS) $(ASFLAGS) -o $@ $<
+
+# The original gaps between tightly packed BSS objects need no gas end pad.
+PACKED_BSS := $(shell $(PYTHON) tools/hh/bss_layout.py --packed-segments)
+PACKED_BSS_ASM := $(foreach seg,$(PACKED_BSS),$(wildcard asm/data/$(seg)_bss_*.bss.s))
+ifneq ($(strip $(PACKED_BSS_ASM)),)
+$(patsubst asm/%.s,$(BUILD)/asm/%.o,$(PACKED_BSS_ASM)): ASFLAGS += -no-pad-sections
+endif
 
 .PHONY: pads
 pads:
@@ -73,21 +81,29 @@ $(patsubst src/%.c,$(BUILD)/src/%.o,$(RO_LAYOUT_SRC)): tools/hh/rodata_layout.py
 # a planned unit with no GLOBAL_ASM left: asm-processor must still post-process it (static symbols for frozen pieces;
 # srcbuild.asmproc_force)
 FULLC_LAYOUT_SRC := $(if $(RO_LAYOUT_SRC),$(shell grep -L '^\#pragma GLOBAL_ASM' $(RO_LAYOUT_SRC) 2>/dev/null))
+BSS_LAYOUT_O := $(addprefix $(BUILD)/src/,$(addsuffix .o,$(shell $(PYTHON) tools/hh/bss_layout.py --explicit-units)))
+ifneq ($(strip $(BSS_LAYOUT_O)),)
+$(BSS_LAYOUT_O): tools/hh/bss_layout.py tools/hh/bss_splits.json
+endif
 
 $(BUILD)/src/%.o: src/%.c $(shell find include -name '*.h') | pads
 	@mkdir -p $(dir $@)
 	@$(ASMPROC) $(if $(filter $<,$(FULLC_LAYOUT_SRC)),--force) $(IDO) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
 	@if grep -q '^/\* hh-rodata-layout ' $<; then $(PYTHON) tools/hh/rodata_layout.py $< $@ || { rm -f $@; exit 1; }; fi
+	$(if $(filter $@,$(BSS_LAYOUT_O)),@$(PYTHON) tools/hh/bss_layout.py --verify $(patsubst $(BUILD)/src/%.o,%,$@) $@ || { rm -f $@; exit 1; })
 	$(POSTFIX) $@
 
 $(BUILD)/assets/%.o: assets/%.bin
 	@mkdir -p $(dir $@)
 	@$(OBJCOPY) -I binary -O elf32-tradbigmips -B mips --rename-section .data=.data,alloc,load,data,contents $< $@
 
-$(BUILD)/extern_syms.ld: $(C_SRC) tools/hh/gen_extern_syms.py tools/hh/bss_layout.py tools/hh/libultra.json
+# Splat regenerates these lists during setup; the fallback generator consults
+# both, so a symbol ceasing to be undefined must invalidate both link inputs.
+AUTO_SYMS := undefined_syms_auto.txt undefined_funcs_auto.txt
+$(BUILD)/extern_syms.ld: $(C_SRC) $(AUTO_SYMS) tools/hh/gen_extern_syms.py tools/hh/bss_layout.py tools/hh/bss_splits.json tools/hh/libultra.json
 	@$(PYTHON) tools/hh/gen_extern_syms.py > /dev/null
 
-$(BUILD)/hybridheaven.elf: $(ASM_O) $(C_O) $(BIN_O) hybridheaven.ld $(BUILD)/extern_syms.ld $(BUILD)/libultra_syms.ld
+$(BUILD)/hybridheaven.elf: $(ASM_O) $(C_O) $(BIN_O) hybridheaven.ld $(AUTO_SYMS) $(BUILD)/extern_syms.ld $(BUILD)/libultra_syms.ld
 	$(LD) -T hybridheaven.ld -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD)/extern_syms.ld -T $(BUILD)/libultra_syms.ld \
 	      -Map $(BUILD)/hybridheaven.map --no-check-sections -z muldefs -o $@
 

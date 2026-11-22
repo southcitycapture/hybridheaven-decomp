@@ -1,5 +1,8 @@
-#include "context.h"
+#include "common.h"
 
+extern s32 func_801C0B8C(u64);
+extern s32 func_801CC470(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4);
+extern u8 func_801DAAF0[];
 struct func_801E7C00_Dev {
     u8 pad0[4];
     f32 unk4;
@@ -8,7 +11,6 @@ struct func_801E7C00_Dev {
     u8 pad1[2];
     s16 unk12;
 };
-
 struct func_801E7C00_Node {
     u8 pad0[8];
     struct func_801E7C00_Node *unk8;
@@ -17,9 +19,6 @@ struct func_801E7C00_Node {
     u8 pad2[4];
     struct func_801E7C00_Dev *unk2C;
 };
-
-extern f32 D_801F58DC;
-
 s32 func_801E7C00(s32 arg0, s32 arg1)
 {
   short new_var;
@@ -28,7 +27,7 @@ s32 func_801E7C00(s32 arg0, s32 arg1)
   {
     new_var = 9;
     pp = &((struct func_801E7C00_Node **) func_801DAAF0)[new_var];
-    (*pp)->unk8->unk8->unk8->unk8->unk24->unk2C->unk4 = D_801F58DC;
+    (*pp)->unk8->unk8->unk8->unk8->unk24->unk2C->unk4 = 30.2999992f;
     (*pp)->unk8->unk8->unk8->unk8->unk24->unk2C->unk8 = 0.0f;
     (*pp)->unk8->unk8->unk8->unk8->unk24->unk2C->unkC = -32.0f;
     (*pp)->unk8->unk8->unk8->unk8->unk24->unk2C->unk12 = 0xB8E;

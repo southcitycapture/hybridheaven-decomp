@@ -1,35 +1,8 @@
-#include "context.h"
+#include "common.h"
 
-extern f32 D_801EC548;
-extern f32 D_801EC54C;
-extern f32 D_801EC550;
-extern f32 D_801EC554;
-extern f32 D_801EC558;
-extern f32 D_801EC55C;
-extern f32 D_801EC560;
-extern f32 D_801EC564;
-extern f32 D_801EC568;
-extern f32 D_801EC56C;
-extern f32 D_801EC570;
-extern f32 D_801EC574;
-extern f32 D_801EC578;
-extern f32 D_801EC57C;
-extern f32 D_801EC580;
-extern f32 D_801EC584;
-extern f32 D_801EC588;
-extern f32 D_801EC58C;
-extern f32 D_801EC590;
-extern f32 D_801EC594;
-extern f32 D_801EC598;
-extern f32 D_801EC59C;
-extern f32 D_801EC5A0;
-extern f32 D_801EC5A4;
-extern f32 D_801EC5A8;
-extern f32 D_801EC5AC;
-extern f32 D_801EC5B0;
-extern f32 D_801EC5B4;
-extern f32 D_801EC5B8;
-
+extern s32 D_801EB580;
+extern void func_8038BED4(void);
+extern s32 func_8038BEF8(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 s32 func_801E2584(s32 arg0, s32 arg1) {
     if (D_801EB580 == 0) goto l0;
     if (D_801EB580 == 1) goto l1;
@@ -37,7 +10,7 @@ s32 func_801E2584(s32 arg0, s32 arg1) {
     return 0x19;
 l0:
     {
-        if (func_8038BEF8(0.0f, 2.0f, -43.6f, 29.9f, D_801EC548, D_801EC54C, D_801EC550, 69.0f, D_801EC554, D_801EC558, D_801EC55C, D_801EC560, D_801EC564, D_801EC568) != 0) {
+        if (func_8038BEF8(0.0f, 2.0f, -43.6f, 29.9f, 80.5999985f, (-37.9000015f), 35.7999992f, 69.0f, (-59.7000008f), 14.6000004f, 61.0999985f, (-60.7999992f), 12.6000004f, 59.9000015f) != 0) {
             D_801EB580 = 1;
             func_8038BED4();
             return 0x19;
@@ -46,7 +19,7 @@ l0:
     }
 l1:
     {
-        if (func_8038BEF8(0.0f, D_801EC56C, -52.2f, 27.5f, D_801EC570, D_801EC574, D_801EC578, D_801EC57C, D_801EC580, D_801EC584, D_801EC588, D_801EC58C, D_801EC590, D_801EC594) != 0) {
+        if (func_8038BEF8(0.0f, 0.800000012f, -52.2f, 27.5f, 44.7999992f, (-41.5999985f), 24.7999992f, 51.7999992f, (-55.2000008f), 11.8999996f, 57.7000008f, (-57.2000008f), 13.1000004f, 57.9000015f) != 0) {
             D_801EB580 = 2;
             func_8038BED4();
             return 0x19;
@@ -55,7 +28,7 @@ l1:
     }
 l2:
     {
-        if (func_8038BEF8(0.0f, 1.5f, -47.7f, -1.0f, D_801EC598, D_801EC59C, D_801EC5A0, D_801EC5A4, D_801EC5A8, D_801EC5AC, D_801EC5B0, D_801EC5B4, D_801EC5B8, 55.0f) != 0) {
+        if (func_8038BEF8(0.0f, 1.5f, -47.7f, -1.0f, 32.2000008f, (-41.2000008f), 6.69999981f, 48.7999992f, (-57.2999992f), 14.1000004f, 59.7000008f, (-53.0999985f), 13.6999998f, 55.0f) != 0) {
             return 0x1A;
         }
     }

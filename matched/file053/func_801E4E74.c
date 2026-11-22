@@ -1,4 +1,5 @@
 #include "common.h"
+
 struct func_801E5188_Struct4 {
     u8 pad0[4];
     f32 unk4;
@@ -33,6 +34,7 @@ s32 func_801C1088(s32 a0, s32 a1, s32 a2);
 void func_801C10D8(s32 a0, s32 a1);
 s32 func_801C1134(s32 a0, s32 a1);
 extern void func_801CC4D8(s32 a0, s32 a1, s32 a2, s32 a3, f32 f);
+extern s32 func_801CE2D0(s32, s32);
 struct func_801E4FE0_Struct3 {
     u8 pad0[0x4];
     f32 unk4;
@@ -40,13 +42,6 @@ struct func_801E4FE0_Struct3 {
     s32 unkC;
 };
 extern void func_8038D33C(f32, f32, s32, s32, f32, f32);
-
-extern s32 func_801CE2D0(s32 a0, s32 a1);
-extern f32 D_801E9964;
-extern f32 D_801E9968;
-extern f32 D_801E996C;
-extern f32 D_801E9970;
-
 s32 func_801E4E74(s32 arg0, s32 arg1) {
     s32 t;
     f32 fraction;
@@ -67,7 +62,7 @@ s32 func_801E4E74(s32 arg0, s32 arg1) {
     }
     if (func_801CE2D0(0x1B8001B, 0xC) != 0 || func_801CE2D0(0x1B8001B, 0x1E) != 0) {
         p = (struct func_801E4FE0_Struct3 *)G->unk8->unk24->unk2C;
-        func_8038D33C(p->unk4, p->unk8, p->unkC, 0x67B, D_801E9970, 1.0f);
+        func_8038D33C(p->unk4, p->unk8, p->unkC, 0x67B, 1.20000005f, 1.0f);
     }
     return 0x28;
 }

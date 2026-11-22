@@ -1,4 +1,21 @@
 #include "common.h"
+
+extern u8 D_801D96C8[];
+extern u8 D_801D9768[];
+extern u8 D_801DA058[];
+extern u8 D_801DA0B8[];
+typedef struct func_801E2500_Vec {
+    s32 v[4];
+} func_801E2500_Vec;
+extern func_801E2500_Vec D_801E809C;
+extern func_801E2500_Vec D_801E80AC;
+extern func_801E2500_Vec D_801E80BC;
+extern func_801E2500_Vec D_801E80CC;
+extern func_801E2500_Vec D_801E80DC;
+extern func_801E2500_Vec D_801E80EC;
+extern func_801E2500_Vec D_801E80FC;
+extern func_801E2500_Vec D_801E810C;
+extern s32 D_8038D8CC;
 struct func_801E2F88_Struct2 {
     u8 pad0[4];
     f32 unk4;
@@ -12,8 +29,6 @@ struct func_801E2F88_Struct0 {
     struct func_801E2F88_Struct1 *unk24;
 };
 extern struct func_801E2F88_Struct0 *D_8038D8D0;
-
-
 typedef struct func_801E2500_Struct2 {
     u8 pad0[4];
     f32 unk4;
@@ -38,36 +53,14 @@ typedef struct func_801E2500_Struct2 {
     u8 unk4E;
     u8 unk4F;
 } func_801E2500_Struct2;
-
 typedef struct func_801E2500_Struct1 {
     u8 pad0[0x30];
     func_801E2500_Struct2 *unk30;
 } func_801E2500_Struct1;
-
-typedef struct func_801E2500_Vec {
-    s32 v[4];
-} func_801E2500_Vec;
+#define O(i) (((func_801E2500_Struct1 **)D_8038D8D0)[i]->unk30)
 extern void func_80005E44(s32, void *);
 extern void func_80006214(s32);
 extern void func_8012C89C(s32, s32, s32, s32);
-extern s32 D_8038D8CC;
-extern u8 D_801D9768[];
-extern u8 D_801D96C8[];
-extern u8 D_801DA058[];
-extern u8 D_801DA0B8[];
-extern f32 D_801E992C;
-extern f32 D_801E9930;
-extern func_801E2500_Vec D_801E809C;
-extern func_801E2500_Vec D_801E80AC;
-extern func_801E2500_Vec D_801E80BC;
-extern func_801E2500_Vec D_801E80CC;
-extern func_801E2500_Vec D_801E80DC;
-extern func_801E2500_Vec D_801E80EC;
-extern func_801E2500_Vec D_801E80FC;
-extern func_801E2500_Vec D_801E810C;
-
-#define O(i) (((func_801E2500_Struct1 **)D_8038D8D0)[i]->unk30)
-
 s32 func_801E2500(s32 arg0, s32 arg1) {
     struct {
         s32 lo[2];
@@ -183,7 +176,7 @@ l5:
     O(7)->unk4B = 0x7F;
     O(8)->unk4 = 0.0f;
     O(8)->unk8 = 0.0f;
-    O(8)->unkC = D_801E992C;
+    O(8)->unkC = 43.0999985f;
     O(8)->unk12 = 0;
     O(8)->unk30 = (s32)D_801DA0B8 | 0x40000000;
     O(8)->unk24 = 0x300;
@@ -197,7 +190,7 @@ l5:
     O(8)->unk4F = 0;
     O(9)->unk4 = 0.0f;
     O(9)->unk8 = 0.0f;
-    O(9)->unkC = D_801E9930;
+    O(9)->unkC = (-485.0f);
     O(9)->unk12 = 0;
     O(9)->unk18 = 1.0f;
     O(9)->unk1C = 1.0f;

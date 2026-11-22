@@ -1,38 +1,32 @@
-#include "context.h"
+#include "common.h"
 
-typedef struct func_801E5178_Struct2 {
+struct func_801E4EE0_Leaf {
     u8 pad0[0x4];
     f32 unk4;
     f32 unk8;
     f32 unkC;
-    u8 pad10[0x2];
+    u8 pad1[0x2];
     s16 unk12;
-    u8 pad14[0x37];
+    u8 pad2[0x4B - 0x14];
     u8 unk4B;
-} func_801E5178_Struct2;
-
-typedef struct func_801E5178_Struct1 {
+};
+struct func_801E4EE0_Mid {
     u8 pad0[0x22];
     u8 unk22;
-    u8 pad23[0xD];
-    func_801E5178_Struct2 *unk30;
-} func_801E5178_Struct1;
-
-typedef struct func_801E5178_Struct0 {
+    u8 pad1[0x30 - 0x23];
+    struct func_801E4EE0_Leaf *unk30;
+};
+struct func_801E4EE0_Obj {
     u8 pad0[0x1C];
-    func_801E5178_Struct1 *unk1C;
-} func_801E5178_Struct0;
-
-extern func_801E5178_Struct0 *D_8038D8D0;
-extern f32 D_801EDD14;
-extern f32 D_801EDD18;
-extern f32 D_801EDD1C;
-
+    struct func_801E4EE0_Mid *unk1C;
+};
+extern struct func_801E4EE0_Obj *D_8038D8D0;
+extern void func_801C1000(s32, s32);                       /* extern */
 s32 func_801E5178(s32 arg0, s32 arg1) {
     if (func_801C0B8C(0x118C2F) != 0) {
-        D_8038D8D0->unk1C->unk30->unk4 = D_801EDD14;
-        D_8038D8D0->unk1C->unk30->unk8 = D_801EDD18;
-        D_8038D8D0->unk1C->unk30->unkC = D_801EDD1C;
+        D_8038D8D0->unk1C->unk30->unk4 = 42.7999992f;
+        D_8038D8D0->unk1C->unk30->unk8 = 11.6999998f;
+        D_8038D8D0->unk1C->unk30->unkC = 1.70000005f;
         D_8038D8D0->unk1C->unk30->unk12 = 0x878;
         D_8038D8D0->unk1C->unk30->unk4B = 0xFF;
         D_8038D8D0->unk1C->unk22 = 1;

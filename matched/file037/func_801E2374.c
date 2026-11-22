@@ -1,21 +1,10 @@
-#include "context.h"
+#include "common.h"
 
-extern f32 D_801E6C50;
-extern f32 D_801E6C54;
-extern f32 D_801E6C58;
-extern f32 D_801E6C5C;
-extern f32 D_801E6C60;
-extern f32 D_801E6C64;
-extern f32 D_801E6C68;
-extern f32 D_801E6C6C;
-extern f32 D_801E6C70;
-extern f32 D_801E6C74;
-extern f32 D_801E6C78;
-extern f32 D_801E6C7C;
-
+extern void D_8038C158(void);
+extern s32 D_8038C17C(f32 a0, f32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, f32 a7, f32 a8, f32 a9, f32 a10, f32 a11, f32 a12, f32 a13, f32 a14, f32 a15);
 s32 func_801E2374(s32 arg0, s32 arg1) {
-    f32 v = D_801E6C50;
-    if (D_8038C17C(0.0f, D_801E6C54, -10.8f, 96.0f, D_801E6C58, D_801E6C5C, D_801E6C60, D_801E6C64, D_801E6C68, D_801E6C6C, D_801E6C70, D_801E6C74, D_801E6C78, D_801E6C7C, v, v) != 0) {
+    f32 v = 61.4000015f;
+    if (D_8038C17C(0.0f, 1.20000076f, -10.8f, 96.0f, (-27.7000008f), (-28.1000004f), 86.0999985f, 32.2000008f, 34.9000015f, 113.199997f, (-9.19999981f), 12.1999998f, 117.599998f, 42.7000008f, v, v) != 0) {
         D_8038C158();
         return 0xA;
     }

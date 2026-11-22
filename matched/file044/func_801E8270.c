@@ -1,8 +1,7 @@
-#include "context.h"
+#include "common.h"
 
-extern f32 D_801EDDEC;
-extern f32 D_801EDDF0;
-
+extern u8 D_801DAB14[];
+extern void func_801CC470(s32, s32, s32, s32, f32);
 struct func_801E8270_Leaf {
     u8 pad0[4];
     f32 unk4;
@@ -27,15 +26,14 @@ struct func_801E8270_A {
     u8 pad0[8];
     struct func_801E8270_B *unk8;
 };
-
 s32 func_801E8270(s32 arg0, s32 arg1) {
     struct func_801E8270_A **pp;
 
     if (func_801C0B8C(0x629260) != 0) {
         pp = (struct func_801E8270_A **) D_801DAB14;
-        (*pp)->unk8->unk8->unk24->unk2C->unk4 = D_801EDDEC;
+        (*pp)->unk8->unk8->unk24->unk2C->unk4 = (-149.399994f);
         (*pp)->unk8->unk8->unk24->unk2C->unk8 = 0.0f;
-        (*pp)->unk8->unk8->unk24->unk2C->unkC = D_801EDDF0;
+        (*pp)->unk8->unk8->unk24->unk2C->unkC = (-3.70000005f);
         (*pp)->unk8->unk8->unk24->unk2C->unk12 = 0x800;
         func_801CC470(1, 0x02A80052, 0, 0x100, 7.0f);
         return 8;

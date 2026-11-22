@@ -1,14 +1,6 @@
-#include "context.h"
+#include "common.h"
 
 extern f32 D_801DB428[];
-extern f32 D_801DD558;
-extern f32 D_801DD55C;
-extern f32 D_801DD560;
-extern f32 D_801DD564;
-extern f32 D_801DD568;
-extern f32 D_801DD56C;
-extern f32 D_801DD570;
-
 f32 func_801D44A4(f32 arg0, f32 arg1)
 {
   f32 *p;
@@ -19,11 +11,11 @@ f32 func_801D44A4(f32 arg0, f32 arg1)
   {
     if (arg0 < 0.0f)
     {
-      return D_801DD558;
+      return 4.71238899f;
     }
     if (arg0 > 0.0f)
     {
-      return D_801DD55C;
+      return 1.57079637f;
     }
     i = 0;
   }
@@ -31,7 +23,7 @@ f32 func_801D44A4(f32 arg0, f32 arg1)
   {
     if (arg1 < 0.0f)
     {
-      return D_801DD560;
+      return 3.14159274f;
     }
     if (arg1 > 0.0f)
     {
@@ -62,19 +54,19 @@ f32 func_801D44A4(f32 arg0, f32 arg1)
   }
   if ((arg1 > 0.0f) && (arg0 > 0.0f))
   {
-    return (((f32) i) * D_801DD564) / 180.0f;
+    return (((f32) i) * 3.14159274f) / 180.0f;
   }
   if ((arg1 < 0.0f) && (arg0 > 0.0f))
   {
-    return (((f32) (0xB4 - i)) * D_801DD568) / 180.0f;
+    return (((f32) (0xB4 - i)) * 3.14159274f) / 180.0f;
   }
   if ((arg1 < 0.0f) && (arg0 < 0.0f))
   {
-    return (((f32) (i + 0xB4)) * D_801DD56C) / 180.0f;
+    return (((f32) (i + 0xB4)) * 3.14159274f) / 180.0f;
   }
   if ((arg1 > 0.0f) && (arg0 < 0.0f))
   {
-    return (((f32) (0x168 - i)) * D_801DD570) / 180.0f;
+    return (((f32) (0x168 - i)) * 3.14159274f) / 180.0f;
   }
   return 0.0f;
 }

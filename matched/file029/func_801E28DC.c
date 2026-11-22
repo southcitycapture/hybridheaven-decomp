@@ -1,19 +1,12 @@
-#include "context.h"
+#include "common.h"
 
-extern f32 D_801E6A20;
-extern f32 D_801E6A24;
-extern f32 D_801E6A28;
-extern f32 D_801E6A2C;
-extern f32 D_801E6A30;
-extern f32 D_801E6A34;
-extern f32 D_801E6A38;
-extern f32 D_801E6A3C;
-
+extern void func_8038BED4(void);
+extern s32 func_8038BEF8(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 s32 func_801E28DC(s32 arg0, s32 arg1) {
     f32 sp20;
 
-    sp20 = D_801E6A20;
-    if (func_8038BEF8(0.0f, D_801E6A24, 5.7f, 3.6f, D_801E6A28, D_801E6A2C, 3.5f, D_801E6A30, sp20, D_801E6A34, D_801E6A38, sp20, D_801E6A3C, 0.0f) != 0) {
+    sp20 = 4.19999981f;
+    if (func_8038BEF8(0.0f, 2.79999971f, 5.7f, 3.6f, (-78.4000015f), 5.5999999f, 3.5f, (-72.4000015f), sp20, 20.2999992f, (-0.300000012f), sp20, 19.2999992f, 0.0f) != 0) {
         func_8038BED4();
         return 0x1E;
     }

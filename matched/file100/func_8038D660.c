@@ -1,4 +1,5 @@
 #include "common.h"
+
 struct func_8038D5F4_Struct {
     f32 unk0;
     f32 unk4;
@@ -15,18 +16,13 @@ struct func_8038D5F4_Struct {
     s32 unk30;
 };
 extern struct func_8038D5F4_Struct D_8038E158;
-
 extern void func_8038D33C(f32 a, f32 b, f32 c, u16 d, f32 e, f32 f);
-extern f32 D_8038DD58;
-extern f32 D_8038DD5C;
-
 struct func_8038D660_Interpolation {
     f32 x;
     f32 y;
     f32 fraction;
     u16 angle;
 };
-
 s32 func_8038D660(void) {
     struct func_8038D660_Interpolation interpolation;
     f32 z;
@@ -37,10 +33,10 @@ s32 func_8038D660(void) {
         interpolation.y = (D_8038E158.unk10 - D_8038E158.unk4) * interpolation.fraction + D_8038E158.unk4;
         z = (D_8038E158.unk14 - D_8038E158.unk8) * interpolation.fraction + D_8038E158.unk8;
         if (D_8038E158.unk30 == D_8038E158.unk20) {
-            func_8038D33C(interpolation.x, interpolation.y, z, *(u16 *)((u8 *)&D_8038E158 + 0x1E), D_8038DD58, 1.0f);
+            func_8038D33C(interpolation.x, interpolation.y, z, *(u16 *)((u8 *)&D_8038E158 + 0x1E), 1.20000005f, 1.0f);
         } else if (D_8038E158.unk30 == D_8038E158.unk24) {
             interpolation.angle = *(u16 *)((u8 *)&D_8038E158 + 0x1E);
-            func_8038D33C(interpolation.x, interpolation.y, z, interpolation.angle, D_8038DD5C, 1.0f);
+            func_8038D33C(interpolation.x, interpolation.y, z, interpolation.angle, 1.20000005f, 1.0f);
         }
         D_8038E158.unk30++;
         if ((u32)D_8038E158.unk28 < (u32)D_8038E158.unk30) {
