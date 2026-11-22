@@ -2,7 +2,7 @@
 
 Progress as of 2026-11-22: **92.87% of the code** (15721 of 15934 functions, including duplicates).
 
-**25652 model runs, $8228.05 API-equivalent in total** (local and cloud). Of the **15595 functions now in C**, **7425 were matched by AI workers** (≈ $1.108 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25658 model runs, $8252.11 API-equivalent in total** (local and cloud). Of the **15595 functions now in C**, **7425 were matched by AI workers** (≈ $1.111 per function, failures included), **7578 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -635,9 +635,7 @@ Progress as of 2026-11-22: **92.87% of the code** (15721 of 15934 functions, inc
 | `unify_loop0385` | unify_loop0385 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0386` | unify_loop0386 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0387` | unify_loop0387 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
-| `rampO4` | rampO4 | opus-5-5 | 21 | 4 | 19% | $27.08 | $6.771 |  |
 | `unify_loop0388` | unify_loop0388 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
-| `rampC2` | rampC2 | opus-5-5 | 6 | 1 | 17% | $42.51 | $42.515 |  |
 | `fableGiants1` | fableGiants1 | fable-5-2 | 2 | 1 | 50% | $78.88 | $78.883 |  |
 | `unify_loop0389` | unify_loop0389 | unify (no model) | 8 | 0 | 0% | $0.00 | – |  |
 | `sonnetHonest3` | sonnetHonest3 | sonnet-5-5 | 145 | 50 | 34% | $58.22 | $1.164 |  |
@@ -657,5 +655,9 @@ Progress as of 2026-11-22: **92.87% of the code** (15721 of 15934 functions, inc
 | `localU2` | localU2 | pi/strata/qwen3.8-flash-next-iq3_xxs | 87 | 10 | 11% | $0.00 | – |  |
 | `giantA5` | giantA5 | fable-5-2 relay + openai/gpt-6.2-astra | 1 | 1 | 100% | $0.00 | – |  |
 | `unify_loop0396` | unify_loop0396 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0397` | unify_loop0397 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0398` | unify_loop0398 | unify (no model) | 7 | 0 | 0% | $0.00 | – |  |
+| `rampC2` | rampC2 | opus-5-5 | 7 | 1 | 14% | $55.01 | $55.015 |  |
+| `rampO4` | rampO4 | opus-5-5 | 26 | 4 | 15% | $38.64 | $9.661 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
