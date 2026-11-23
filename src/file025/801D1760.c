@@ -693,8 +693,33 @@ void func_801D2710(s32 arg0) {
     D_801DB27C = arg0;
 }
 
-/* hh-block asm/nonmatchings/file025/801D1760/_mrg_keep_tail_212a077c483b8700.s {"functions":["func_801D271C"],"rodata":[],"rodata_bytes":[2149438648,7146024,8]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D1760/_mrg_keep_tail_212a077c483b8700.s")
+/* hh-block asm/nonmatchings/file025/801D1760/_ro_regular_8e4961729c6a497b.s {"functions":[],"rodata":[],"rodata_bytes":[2149438648,7146024,8],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file025/801D1760/_ro_regular_8e4961729c6a497b.s")
+
+#define D_801DB270 D_801DB270__func_801D271C
+#define D_801E1430 D_801E1430__func_801D271C
+#define func_801C0B2C func_801C0B2C__func_801D271C
+extern u64 func_801C0B2C();
+extern s32 D_801DB270;
+u8 func_801D2140_bss_prefix[8];
+u64 D_801E13E8;
+u8 func_801D2140_bss_suffix[0x30];
+u8 func_801D2810_bss_prefix[8];
+u64 D_801E1428;
+extern s32 D_801E1430;
+
+void func_801D271C(s32 arg0) {
+    if ((D_801DB240 = arg0) != 0) {
+        D_801DB270 = 0;
+        D_801E1428 = func_801C0B2C();
+        D_801E1430 = 0;
+        return;
+    }
+    func_8012D844((void *)D_801E1400, 0x32, 0);
+}
+#undef D_801DB270
+#undef D_801E1430
+#undef func_801C0B2C
 
 
 
@@ -955,3 +980,5 @@ s32 func_801D2C5C(s32 arg0, u16 arg1) {
 
 /* hh-owned-pool func_801D2140 801DD4B0 801DD4B8 */
 /* hh-owned-pool func_801D2810 801DD4C0 801DD4C8 */
+/* hh-placed-function func_801D271C */
+/* hh-rodata-layout [32,[[0,8,8],[8,0,8],[16,16,16]]] */

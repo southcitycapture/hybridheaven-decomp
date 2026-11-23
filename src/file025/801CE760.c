@@ -1396,9 +1396,63 @@ void func_801D04F8(void) {
     *(u8 *)(*(u8 **)(D_8008DA88 + 0x4C) + 0x22) = 0;
 }
 
-/* hh-block asm/nonmatchings/file025/801CE760/_mrg_keep_tail_8a6d6de7f5b10957.s {"functions":["func_801D0528"],"rodata":[],"rodata_bytes":[2149438536,7145912,40]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/_mrg_keep_tail_8a6d6de7f5b10957.s")
+/* hh-block asm/nonmatchings/file025/801CE760/_ro_regular_73d3067c997e3f3e.s {"functions":[],"rodata":[],"rodata_bytes":[2149438536,7145912,24],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file025/801CE760/_ro_regular_73d3067c997e3f3e.s")
+
+#define D_801DAF48 D_801DAF48__func_801D0528
+#define D_801E12F0 D_801E12F0__func_801D0528
+#define func_80034C24 func_80034C24__func_801D0528
+#define func_801C0B2C func_801C0B2C__func_801D0528
+#define func_801D0498_Struct func_801D0498_Struct__func_801D0528
+extern s32 D_801E12F0;
+extern f64 func_80034C24();
+extern u64 func_801C0B2C();
+struct func_801D0498_Struct {
+    u8 pad[0x80];
+    u64 value;
+};
+
+typedef struct {
+    f32 time;
+    s32 type;
+} func_801D0528_Struct;
+extern func_801D0528_Struct D_801DAF48[];
+#define LAST (((struct func_801D0498_Struct *)&D_801E1268)->value)
+#define IDX (*(u32 *)&D_801E12F0)
+
+void func_801D0528(void *arg0) {
+    u64 d;
+
+    d = func_801C0B2C() - LAST;
+    if (D_801DAF48[IDX].time <= func_80034C24(d) / 1000000.0) {
+        switch (D_801DAF48[IDX].type) {
+        case 0:
+            func_8012D844(arg0, 0x57, 0);
+            break;
+        case 1:
+            func_8012D844(arg0, 0x57, 1);
+            break;
+        case 2:
+            func_8012D844(arg0, 0x57, 2);
+            break;
+        }
+        IDX += 1;
+        if (IDX >= 15) {
+            LAST = func_801C0B2C(IDX);
+        }
+        IDX = IDX % 15;
+    }
+}
+#undef LAST
+#undef IDX
+#undef D_801DAF48
+#undef D_801E12F0
+#undef func_80034C24
+#undef func_801C0B2C
+#undef func_801D0498_Struct
 
 
 /* Readonly constants retained after the last ASM donor became C. */
 /* hh-owned-pool func_801CEF20 801DD440 801DD448 */
+/* hh-placed-function func_801D0528 */
+/* hh-rodata-layout [48,[[0,8,24],[24,0,8],[32,32,16]]] */

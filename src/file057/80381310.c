@@ -1043,8 +1043,113 @@ void func_80382A78(struct func_80382A78_Struct *arg0, s32 arg1) {
     func_80005700(arg0);
 }
 
-/* hh-block asm/nonmatchings/file057/80381310/_mrg_keep_text_func_80382B2C.s {"functions":["func_80382B2C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80381310/_mrg_keep_text_func_80382B2C.s")
+#define D_8017257C D_8017257C__func_80382B2C
+#define D_80389BB4 D_80389BB4__func_80382B2C
+#define func_803822F0_StructGlobal func_803822F0_StructGlobal__func_80382B2C
+#define func_803822F0_StructInner func_803822F0_StructInner__func_80382B2C
+struct func_803822F0_StructInner {
+    u8 pad[0x38];
+    s32 unk38;
+};
+struct func_803822F0_StructGlobal {
+    u16 *unk0;
+    struct func_803822F0_StructInner *unk4;
+};
+extern struct func_803822F0_StructGlobal *D_8017257C;
+extern u8 D_80389BB4[];
+
+struct func_80382B2C_Struct {
+    s16 x24, y26, w28, h2A;
+    u8 c2C, c2D, c2E, c2F, c30, c31, c32, c33;
+    s16 s34, s36;
+    u8 pad38[4];
+    u16 s3C;
+    u8 pad3E[2];
+    s32 w40;
+    u8 pad44[8];
+    s16 s4C, s4E, s50, s52, s54, s56;
+};
+
+void func_80382B2C(arg0, arg1, arg2, arg3, arg4)
+    void *arg0; s16 arg1; s16 arg2; u8 arg3; s8 *arg4;
+{
+    if (0) {
+        u8 unused[8];
+    }
+    {
+    struct func_80382B2C_Struct l;
+    s32 pad3;
+    struct func_803822F0_StructGlobal **data;
+
+    data = &D_8017257C;
+    switch (arg3) {
+    case 0:
+        l.x24 = arg1 + 8;
+        l.y26 = arg2;
+        break;
+    case 1:
+        l.x24 = arg1 + 8;
+        l.y26 = arg2 + 0x10;
+        break;
+    case 2:
+        l.x24 = arg1;
+        l.y26 = arg2 + 0x10;
+        break;
+    case 3:
+        l.x24 = arg1 + 0x10;
+        l.y26 = arg2 + 0x10;
+        break;
+    case 4:
+        l.x24 = arg1;
+        l.y26 = arg2 + 0x30;
+        break;
+    case 5:
+        l.x24 = arg1 + 0x10;
+        l.y26 = arg2 + 0x30;
+        break;
+    default:
+        l.x24 = arg1;
+        l.y26 = arg2;
+        break;
+    }
+    if ((u32)arg3 == 0) {
+        l.s54 = l.w28 = l.s4C = 0x10;
+        l.s56 = l.h2A = l.s4E = 0x10;
+    } else if (arg3 < 6) {
+        l.s54 = l.w28 = l.s4C = 0x10;
+        l.s56 = l.h2A = l.s4E = 0x20;
+    } else if (arg3 == 6) {
+        l.s54 = l.w28 = l.s4C = 0x20;
+        l.s56 = l.h2A = l.s4E = 0x40;
+    } else if (arg3 == 7) {
+        l.s54 = l.w28 = l.s4C = 0x20;
+        l.s56 = l.h2A = l.s4E = 0x10;
+    }
+    if (arg3 < 6) {
+        l.c2C = l.c2D = l.c2E = 0xFF;
+        l.c2F = 0xFF;
+    } else {
+        l.c2C = l.c2D = l.c2E = 0xA0;
+        l.c2F = 0x80;
+    }
+    l.c32 = 0;
+    l.c31 = 0;
+    l.c30 = 0;
+    l.c33 = 0xFF;
+    l.s34 = 0x66;
+    l.s36 = 0;
+    l.s3C = *(*data)->unk0;
+    l.w40 = ((s32 *)(*data)->unk4)[(u16)(arg3 + 0xF)];
+    l.s52 = 0;
+    l.s50 = 0;
+    *(void **)(D_80389BB4 + 0xC) = &l;
+    func_80146088(arg0, D_80389BB4, arg4);
+    }
+}
+#undef D_8017257C
+#undef D_80389BB4
+#undef func_803822F0_StructGlobal
+#undef func_803822F0_StructInner
 
 #define D_80006214 D_80006214__func_80382DA0
 #define D_8008DA88 D_8008DA88__func_80382DA0
@@ -2280,6 +2385,7 @@ extern void func_80126E88();
 
 
 
+
 static const unsigned char rodata_80381310_8038BE50[] = {
     0x47, 0x6F, 0x20, 0x74, 0x6F, 0x20, 0x74, 0x68, 0x65, 0x20, 0x61, 0x74, 0x74, 0x61, 0x63, 0x6B,
     0x20, 0x73, 0x65, 0x6C, 0x65, 0x63, 0x74, 0x69, 0x6F, 0x6E, 0x00, 0x00, 0x73, 0x63, 0x72, 0x65,
@@ -2480,13 +2586,9 @@ static const unsigned char rodata_80381310_8038CB2C[] = {
     0x25, 0x66, 0xA1, 0xFC, 0x00, 0x00, 0x00, 0x00, 0x25, 0x6D, 0x25, 0x70, 0x25, 0x66, 0xA1, 0xFC,
     0x00, 0x00, 0x00, 0x00, 0x25, 0x6D, 0x25, 0x70, 0x25, 0x66, 0xA1, 0xFC, 0x00, 0x00, 0x00, 0x00,
 };
-static const unsigned char rodata_80381310_8038CB9C[] = {
-    0x80, 0x38, 0x2B, 0x78, 0x80, 0x38, 0x2B, 0x88, 0x80, 0x38, 0x2B, 0x9C, 0x80, 0x38, 0x2B, 0xAC,
-    0x80, 0x38, 0x2B, 0xC0, 0x80, 0x38, 0x2B, 0xD0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
-};
 /* hh-placed-function func_8038150C */
 /* hh-placed-function func_80382140 */
+/* hh-placed-function func_80382B2C */
 /* hh-placed-function func_80384AB4 */
 /* hh-placed-function func_80384BF8 */
 /* hh-placed-function func_8038540C */
