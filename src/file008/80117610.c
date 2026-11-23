@@ -749,7 +749,22 @@ X:
 #undef func_8011A148
 #define G ((func_801178E4_Struct *)&D_801BBBF0)
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80117610/func_801190F4.s")
+#define func_80117DA0 func_80117DA0__func_801190F4
+#define func_80117E58 func_80117E58__func_801190F4
+#define func_8011913C func_8011913C__func_801190F4
+extern s32 func_80117DA0();
+extern void func_80117E58();
+extern void func_8011913C();
+
+void func_801190F4(s32 arg0) {
+    if (func_80117DA0() == 0) {
+        func_80117E58();
+        func_800058DC(arg0, func_8011913C);
+    }
+}
+#undef func_80117DA0
+#undef func_80117E58
+#undef func_8011913C
 
 void func_80119134(void) {
 }

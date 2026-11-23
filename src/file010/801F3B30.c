@@ -1,3 +1,4 @@
+#define func_801F5630 func_801F5630__merge_frozen
 #define func_801F474C func_801F474C__merge_frozen
 #define func_801F46DC func_801F46DC__merge_frozen
 #include "common.h"
@@ -400,8 +401,64 @@ void func_801F42E4(func_801F42E4_Struct *arg0, u16 arg1) {
     }
 }
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F442C.s {"functions":["func_801F442C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F442C.s")
+#define D_801BBCD0 D_801BBCD0__func_801F442C
+#define func_801F3FFC_Node func_801F3FFC_Node__func_801F442C
+struct func_801F3FFC_Node {
+    u8 pad0[8];
+    f32 unk8;
+    u8 pad1[0x20];
+    struct func_801F3FFC_Node *unk2C;
+};
+extern struct func_801F3FFC_Node *D_801BBCD0;
+
+
+typedef struct func_801F442C_Pos {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+} func_801F442C_Pos;
+
+typedef struct func_801F442C_Sub {
+    u8 pad0[6];
+    s16 unk6;
+    u8 pad1[2];
+    s16 unkA;
+} func_801F442C_Sub;
+
+typedef struct func_801F442C_Obj {
+    u8 pad0[0x24];
+    struct func_801F3FFC_Node *unk24;
+    u8 pad1[0x10];
+    func_801F442C_Sub *unk38;
+} func_801F442C_Obj;
+
+#define P1 ((func_801F442C_Pos *)D_801BBCD0->unk2C)
+
+s32 func_801F442C(void *arg0v, f32 arg1) {
+    func_801F442C_Obj *arg0 = arg0v;
+    f32 sum;
+    f32 q1;
+    f32 q2;
+
+    q1 = (f32)arg0->unk38->unk6 / 10.0;
+    q2 = (f32)arg0->unk38->unkA / 10.0;
+    sum = (P1->unk4 - q1) * (P1->unk4 - q1) + (P1->unkC - q2) * (P1->unkC - q2);
+    if (sum < arg1 * arg1) {
+        if (D_801BBCD0->unk2C->unk8 < arg0->unk24->unk2C->unk8) {
+            sum = -(D_801BBCD0->unk2C->unk8 - arg0->unk24->unk2C->unk8);
+        } else {
+            sum = D_801BBCD0->unk2C->unk8 - arg0->unk24->unk2C->unk8;
+        }
+        if (sum < 25.0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+#undef P1
+#undef D_801BBCD0
+#undef func_801F3FFC_Node
 
 
 typedef struct func_801F4514_StructSub {
@@ -2116,8 +2173,49 @@ s32 func_801F55EC(func_801F55EC_Struct *arg0) {
     return var_v0;
 }
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_0cd9c0ca9152643b.s {"functions":["func_801F5630"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_0cd9c0ca9152643b.s")
+#undef func_801F5630
+#define func_80150584 func_80150584__func_801F5630
+#define func_801505E4 func_801505E4__func_801F5630
+#define func_80150614 func_80150614__func_801F5630
+#define func_8015067C func_8015067C__func_801F5630
+extern s32 func_80150584();
+extern s32 func_801505E4();
+extern s32 func_80150614();
+extern s32 func_8015067C(s32, u16);
+
+struct func_801F5630_StructSub {
+    u8 pad[0x1E];
+    u16 unk1E;
+};
+
+struct func_801F5630_Struct {
+    u8 pad[0x38];
+    struct func_801F5630_StructSub *unk38;
+};
+
+s32 func_801F5630(struct func_801F5630_Struct *arg0) {
+    struct func_801F5630_StructSub *sub;
+    s32 unused;
+    s32 value;
+    s32 mask;
+    u16 flags;
+
+    sub = arg0->unk38;
+    if (func_80150584() != 0) {
+        value = func_80150614();
+        mask = func_8015067C(func_801505E4() & 0xFFFF, value);
+        flags = sub->unk1E;
+        if (!(flags & mask)) {
+            return 1;
+        }
+    }
+    return 0;
+}
+#undef func_80150584
+#undef func_801505E4
+#undef func_80150614
+#undef func_8015067C
+#define func_801F5630 func_801F5630__merge_frozen
 
 void func_801F5698(void) {
 }
@@ -6436,3 +6534,5 @@ static const unsigned char rodata_801F3B30_80218C28[] = {
 /* hh-placed-function func_801F9A8C */
 /* hh-placed-function func_801F9D68 */
 /* hh-rodata-layout [1408,[[0,176,60],[60,1292,4],[64,408,180],[244,1356,12],[256,648,60],[316,768,60],[376,888,120],[496,1068,60],[556,0,176],[732,236,172],[904,588,60],[964,708,60],[1024,828,60],[1084,1008,60],[1144,1128,164],[1312,1296,60],[1372,1368,36]]] */
+
+#undef func_801F5630

@@ -886,8 +886,59 @@ struct func_8036A5AC_Vec func_8036A134(s32 arg1, f32 arg2, f32 arg3) {
 #undef func_8036A5AC_Vec
 #undef func_8036D30C_Anim
 
-/* hh-block asm/nonmatchings/file057/803698D0/_mrg_keep_text_func_8036A4AC.s {"functions":["func_8036A4AC"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/803698D0/_mrg_keep_text_func_8036A4AC.s")
+#define D_8023C280 D_8023C280__func_8036A4AC
+#define func_8001EF38 func_8001EF38__func_8036A4AC
+#define func_80369C7C_Obj2 func_80369C7C_Obj2__func_8036A4AC
+#define func_80369C7C_Obj3 func_80369C7C_Obj3__func_8036A4AC
+struct func_80369C7C_Obj3 {
+    u8 pad0[0x12];
+    s16 unk12;
+};
+struct func_80369C7C_Obj2 {
+    u8 pad0[0x2C];
+    struct func_80369C7C_Obj3 *unk2C;
+};
+extern u16 func_8001EF38(f32, f32);
+extern u8 D_8023C280[];
+
+typedef struct func_8036A4AC_StructState {
+    u8 pad[0x30];
+    u32 unused0 : 9;
+    u32 mode : 2;
+    u32 unused1 : 5;
+    u32 flag : 3;
+    u32 unused2 : 13;
+} func_8036A4AC_StructState;
+
+typedef struct func_8036A4AC_StructByte {
+    u8 pad[0x30];
+    u8 flags[4];
+} func_8036A4AC_StructByte;
+
+s32 func_8036A4AC(s32 arg0, void *arg1, f32 arg2, f32 arg3, f32 arg4)
+{
+    func_8036A4AC_StructState *state;
+    s32 sector;
+    u8 result;
+    s16 angle;
+
+    state = (arg0 == D_801BBCCC) ? (func_8036A4AC_StructState *) D_801BC03C : (func_8036A4AC_StructState *) D_801BC3D8;
+    angle = (s32)((u32)(u16)(func_8001EF38(arg2, arg3) - (*(struct func_80369C7C_Obj2 **) arg1)->unk2C->unk12) << 16) >> 16;
+    sector = (0x1FFF & (s16)(u16)((s16)angle + 0x200)) / 1024;
+    result = (u16)sector;
+    if (state->mode == 3) {
+        result = (u8)((8 - (u8)sector) & 7);
+    }
+    if (arg4 > 10.0) {
+        result = (u8)(result + 8) & 0xFF;
+        ((func_8036A4AC_StructByte *)state)->flags[2] = (((func_8036A4AC_StructByte *)state)->flags[2] & 0xFF1F) | 0x40;
+    }
+    return D_8023C280[result];
+}
+#undef D_8023C280
+#undef func_8001EF38
+#undef func_80369C7C_Obj2
+#undef func_80369C7C_Obj3
 
 #undef func_8036A5AC
 #define func_802256E4 func_802256E4__func_8036A5AC

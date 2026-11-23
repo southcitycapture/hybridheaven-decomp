@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-23: **93.03% of the code** (15731 of 15934 functions, including duplicates).
+Progress as of 2026-11-23: **93.11% of the code** (15737 of 15934 functions, including duplicates).
 
-**25712 model runs, $8354.31 API-equivalent in total** (local and cloud). Of the **15605 functions now in C**, **7433 were matched by AI workers** (≈ $1.124 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25766 model runs, $8382.54 API-equivalent in total** (local and cloud). Of the **15611 functions now in C**, **7439 were matched by AI workers** (≈ $1.127 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -665,5 +665,9 @@ Progress as of 2026-11-23: **93.03% of the code** (15731 of 15934 functions, inc
 | `unify_loop0403` | unify_loop0403 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0404` | unify_loop0404 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
 | `terraHonest4` | terraHonest4 | openai/gpt-6.1-terra | 30 | 12 | 40% | $0.00 | – |  |
+| `sonnetBlast1` | sonnetBlast1 | sonnet-5-5 | 47 | 1 | 2% | $27.40 | $27.403 |  |
+| `unify_loop0405` | unify_loop0405 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
+| `orphans1` | orphans1 | orphan (saved standalone match, never integrated) | 3 | 3 | 100% | $0.00 | – |  |
+| `sonnetOrphan1` | sonnetOrphan1 | sonnet-5-5 | 4 | 2 | 50% | $0.83 | $0.416 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

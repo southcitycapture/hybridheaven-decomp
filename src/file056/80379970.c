@@ -1,7 +1,277 @@
 #include "common.h"
 
-/* hh-block asm/nonmatchings/file056/80379970/_mrg_keep_text_func_80379970.s {"functions":["func_80379970"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/80379970/_mrg_keep_text_func_80379970.s")
+#define D_80011140 D_80011140__func_80379970
+#define D_8017DC40 D_8017DC40__func_80379970
+#define D_801BBBF0 D_801BBBF0__func_80379970
+#define D_801BBCD0 D_801BBCD0__func_80379970
+#define D_801BCAE0 D_801BCAE0__func_80379970
+#define D_801E4010 D_801E4010__func_80379970
+#define D_803889C0 D_803889C0__func_80379970
+#define D_803889CC D_803889CC__func_80379970
+#define D_803889D8 D_803889D8__func_80379970
+#define D_803889E4 D_803889E4__func_80379970
+#define D_803889F0 D_803889F0__func_80379970
+#define D_803889FC D_803889FC__func_80379970
+#define D_80388A08 D_80388A08__func_80379970
+#define D_80388A14 D_80388A14__func_80379970
+#define D_80388A68 D_80388A68__func_80379970
+#define D_80388A6C D_80388A6C__func_80379970
+#define D_8038A930 D_8038A930__func_80379970
+#define D_8038A93D D_8038A93D__func_80379970
+#define D_8038A93E D_8038A93E__func_80379970
+#define func_800058DC func_800058DC__func_80379970
+#define func_80011198 func_80011198__func_80379970
+#define func_800113D0 func_800113D0__func_80379970
+#define func_8001EF38 func_8001EF38__func_80379970
+#define func_801518D4 func_801518D4__func_80379970
+#define func_801BF1A0 func_801BF1A0__func_80379970
+#define func_801C4A5C func_801C4A5C__func_80379970
+#define func_801DFE50 func_801DFE50__func_80379970
+#define func_80379F04 func_80379F04__func_80379970
+#define func_80379F04_StructA func_80379F04_StructA__func_80379970
+#define func_8037A320_StructE func_8037A320_StructE__func_80379970
+#define func_8037A320_StructG func_8037A320_StructG__func_80379970
+#define func_8037A320_StructP func_8037A320_StructP__func_80379970
+#define func_8037A320_StructV func_8037A320_StructV__func_80379970
+#define func_8037AA80_Struct func_8037AA80_Struct__func_80379970
+#define func_8037AB08_B func_8037AB08_B__func_80379970
+#define func_8037AB08_O func_8037AB08_O__func_80379970
+#define func_8037AB08_P func_8037AB08_P__func_80379970
+#define func_8037B240 func_8037B240__func_80379970
+#define func_8037B86C_Struct func_8037B86C_Struct__func_80379970
+#define func_8037BAEC_StructA930 func_8037BAEC_StructA930__func_80379970
+#define func_8037BAEC_StructBBBF0 func_8037BAEC_StructBBBF0__func_80379970
+typedef void func_8037B86C_Struct;
+typedef struct func_8037AA80_Struct { s32 a; s32 b; s32 c; } func_8037AA80_Struct;
+extern s32 D_80011140(s32, s32, func_8037AA80_Struct, s32);
+extern u16 D_8017DC40[2];
+typedef struct func_8037BAEC_StructBBBF0 {
+    u8 pad[0xEF0];
+    u16 unkEF0;
+} func_8037BAEC_StructBBBF0;
+extern func_8037BAEC_StructBBBF0 D_801BBBF0;
+typedef struct func_8037A320_StructV {
+    u8 pad[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+} func_8037A320_StructV;
+typedef struct func_8037A320_StructG {
+    u8 pad[0x2C];
+    func_8037A320_StructV *unk2C;
+} func_8037A320_StructG;
+extern func_8037A320_StructG *D_801BBCD0;
+extern u16 D_801BCAE0;
+extern func_8037AA80_Struct D_803889C0;
+extern func_8037AA80_Struct D_803889CC;
+extern func_8037AA80_Struct D_803889D8;
+extern func_8037AA80_Struct D_803889E4;
+extern func_8037AA80_Struct D_803889F0;
+extern func_8037AA80_Struct D_803889FC;
+extern func_8037AA80_Struct D_80388A08;
+extern func_8037AA80_Struct D_80388A14;
+extern s16 D_80388A68;
+extern u8 D_80388A6C;
+typedef struct func_8037BAEC_StructA930 {
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+} func_8037BAEC_StructA930;
+extern func_8037BAEC_StructA930 D_8038A930;
+extern u8 D_8038A93E;
+void func_800058DC(void *, void *);
+extern void func_801518D4(s32, s32, s32);
+extern void func_801C4A5C(void *, s32);
+typedef struct func_8037A320_StructE {
+    u32 w0;
+    s16 h4;
+    s16 h6;
+    s32 w8;
+} func_8037A320_StructE;
+typedef struct func_8037A320_StructP {
+    u8 pad[0x1C];
+    func_8037A320_StructE e;
+} func_8037A320_StructP;
+typedef struct func_80379F04_StructA {
+    u8 pad[0x2C];
+    s32 unk2C;
+    u8 pad2[0x10];
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    u8 pad3[0x10];
+    func_8037A320_StructP *unk5C;
+} func_80379F04_StructA;
+void func_80379F04(func_80379F04_StructA *arg0, s32 arg1);
+typedef struct func_8037AB08_B { u8 pad[0x230]; u8 unk230; u8 pad2[0xEF0-0x231]; u16 unkEF0; u8 pad3[0xEFC-0xEF2]; s32 unkEFC; } func_8037AB08_B;
+typedef struct func_8037AB08_P { u8 pad[0x1C]; s32 unk1C; } func_8037AB08_P;
+typedef struct func_8037AB08_O { u8 pad[0x2C]; s32 unk2C; u8 pad2[0x24]; s32 unk54; u8 pad3[4]; func_8037AB08_P *unk5C; } func_8037AB08_O;
+extern void func_8037B240(void);
+extern void func_801BF1A0(s32);
+extern void func_801DFE50(void *, s32);
+extern void func_800113D0(s32, u16 *);
+extern void func_80011198(s32, void *);
+extern s32 func_8001EF38(f32, f32);
+extern u8 D_801E4010;
+extern s8 D_8038A93D;
+
+typedef struct func_80379970_StructV { u8 pad[0x12]; s16 unk12; } func_80379970_StructV;
+typedef struct func_80379970_StructE {
+    s32 w0;
+    u16 h4;
+    u16 h6;
+    s32 w8;
+} func_80379970_StructE;
+typedef struct func_80379970_StructP {
+    u8 pad[0x1C];
+    func_80379970_StructE e;
+} func_80379970_StructP;
+
+void func_80379970(func_8037AB08_O *arg0, s32 arg1) {
+    func_80379970_StructP *s0;
+    func_80379970_StructE *p;
+    s32 var_a1;
+    s32 temp_v0;
+    u16 temp_v1_2;
+
+    s0 = (func_80379970_StructP *) arg0->unk5C;
+    p = &s0->e;
+    D_8038A93E = ((func_8037AB08_B *) &D_801BBBF0)->unk230;
+    ((func_8037AB08_B *) &D_801BBBF0)->unk230 = 1;
+    if (D_80388A68 >= (s32) D_8017DC40[1]) {
+        var_a1 = 5;
+    } else {
+        if (((f64) (u32) D_8017DC40[0] * 0.05) < (f64) D_80388A68) {
+            var_a1 = 4;
+        } else {
+            var_a1 = 3;
+        }
+    }
+    func_801DFE50(arg0, var_a1);
+    if ((p->w0 == 0x01680017) || (p->w0 == 0x01680015)) {
+        if (p->w0 == 0x01680017) {
+            if (p->h6 & 0x10) {
+                D_8038A93D = 1;
+            } else {
+                D_8038A93D = 0;
+            }
+        } else if (p->h6 & 0x10) {
+            if (p->h4 < 0xF) {
+                D_8038A93D = 1;
+            } else {
+                D_8038A93D = 0;
+            }
+        } else if (p->h4 < 0xF) {
+            D_8038A93D = 0;
+        } else {
+            D_8038A93D = 1;
+        }
+        func_800113D0(arg1, &p->h6);
+        func_80011198(arg1, s0);
+        func_800058DC(arg0, &func_8037B240);
+        return;
+    }
+    func_800113D0(arg1, &p->h6);
+    D_801BCAE0 = D_801BBBF0.unkEF0 & 0xFEFF;
+    if (D_801E4010 != 0) {
+        func_801BF1A0(0xD);
+    }
+    arg0->unk2C |= 0x40;
+    arg0->unk2C |= 0x20;
+    arg0->unk2C &= ~0x80;
+    temp_v1_2 = (s16) (((func_80379970_StructV *) D_801BBCD0->unk2C)->unk12 -
+        (s16) ((func_8001EF38(D_8038A930.unk0, D_8038A930.unk8) + 0x1000) & 0xFFFF)) & 0x1FFF;
+    if (temp_v1_2 < 0x400) {
+        D_80388A6C = 0;
+    } else if (temp_v1_2 < 0xC00) {
+        D_80388A6C = 3;
+    } else if (temp_v1_2 < 0x1400) {
+        D_80388A6C = 1;
+    } else if (temp_v1_2 < 0x1C00) {
+        D_80388A6C = 2;
+    } else {
+        D_80388A6C = 0;
+    }
+    if ((f64) ((D_8038A930.unk0 * D_8038A930.unk0) + (D_8038A930.unk8 * D_8038A930.unk8)) < 1.0) {
+        D_80388A6C += 4;
+    }
+    arg0->unk54 = 0x1F;
+    func_801C4A5C(arg0, 0);
+    if ((s32) D_80388A6C < 4) {
+        func_801518D4(0, 7, 8);
+    } else {
+        func_801518D4(0, 3, 5);
+    }
+    func_80011198(arg1, s0);
+    switch (D_80388A6C) {
+    case 0:
+        D_80011140(arg1, (s32) s0, D_803889C0, 2);
+        break;
+    case 1:
+        D_80011140(arg1, (s32) s0, D_803889CC, 2);
+        break;
+    case 2:
+        D_80011140(arg1, (s32) s0, D_803889D8, 2);
+        break;
+    case 3:
+        D_80011140(arg1, (s32) s0, D_803889E4, 2);
+        break;
+    case 4:
+        D_80011140(arg1, (s32) s0, D_803889F0, 2);
+        break;
+    case 5:
+        D_80011140(arg1, (s32) s0, D_803889FC, 2);
+        break;
+    case 6:
+        D_80011140(arg1, (s32) s0, D_80388A08, 2);
+        break;
+    case 7:
+        D_80011140(arg1, (s32) s0, D_80388A14, 2);
+        break;
+    }
+    func_800058DC(arg0, &func_80379F04);
+}
+#undef D_80011140
+#undef D_8017DC40
+#undef D_801BBBF0
+#undef D_801BBCD0
+#undef D_801BCAE0
+#undef D_801E4010
+#undef D_803889C0
+#undef D_803889CC
+#undef D_803889D8
+#undef D_803889E4
+#undef D_803889F0
+#undef D_803889FC
+#undef D_80388A08
+#undef D_80388A14
+#undef D_80388A68
+#undef D_80388A6C
+#undef D_8038A930
+#undef D_8038A93D
+#undef D_8038A93E
+#undef func_800058DC
+#undef func_80011198
+#undef func_800113D0
+#undef func_8001EF38
+#undef func_801518D4
+#undef func_801BF1A0
+#undef func_801C4A5C
+#undef func_801DFE50
+#undef func_80379F04
+#undef func_80379F04_StructA
+#undef func_8037A320_StructE
+#undef func_8037A320_StructG
+#undef func_8037A320_StructP
+#undef func_8037A320_StructV
+#undef func_8037AA80_Struct
+#undef func_8037AB08_B
+#undef func_8037AB08_O
+#undef func_8037AB08_P
+#undef func_8037B240
+#undef func_8037B86C_Struct
+#undef func_8037BAEC_StructA930
+#undef func_8037BAEC_StructBBBF0
 
 #define D_80011140 D_80011140__func_80379F04
 #define D_8017DC40 D_8017DC40__func_80379F04
@@ -1605,6 +1875,7 @@ s32 func_8037BB4C(s16 arg0, f32 arg1, f32 arg2, s16 arg3) {
 /* hh-owned-pool func_80379F04 803897E0 80389800 */
 /* hh-owned-pool func_8037A6F4 80389800 80389808 */
 
+
 static const unsigned char rodata_80379970_80389530[] = {
     0x66, 0x75, 0x74, 0x74, 0x6F, 0x62, 0x69, 0x5F, 0x64, 0x61, 0x6D, 0x61, 0x67, 0x65, 0x5F, 0x69,
     0x6E, 0x69, 0x74, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x66, 0x75, 0x74, 0x74, 0x6F, 0x62, 0x69, 0x5F,
@@ -1646,9 +1917,9 @@ static const unsigned char rodata_80379970_80389530[] = {
     0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0xA5, 0xC0, 0xA5, 0xE1, 0xA1, 0xBC, 0xA5, 0xB8, 0x25, 0x64,
     0x00, 0x00, 0x00, 0x00, 0x32, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E,
     0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0xA5, 0xC0, 0xA5, 0xE1, 0xA1, 0xBC, 0xA5, 0xB8, 0x25, 0x64,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xA9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9A,
-    0x80, 0x37, 0x9C, 0xEC, 0x80, 0x37, 0x9D, 0x2C, 0x80, 0x37, 0x9D, 0x6C, 0x80, 0x37, 0x9D, 0xAC,
-    0x80, 0x37, 0x9D, 0xEC, 0x80, 0x37, 0x9E, 0x2C, 0x80, 0x37, 0x9E, 0x6C, 0x80, 0x37, 0x9E, 0xAC,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+/* hh-layout-unit file056/80379970 */
+/* hh-placed-function func_80379970 */
 /* hh-placed-function func_8037B240 */
 /* hh-rodata-layout [736,[[0,0,736]]] */
