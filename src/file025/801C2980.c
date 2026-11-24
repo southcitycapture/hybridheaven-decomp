@@ -699,7 +699,85 @@ s32 func_801C3808(u8 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6,
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C2980/func_801C38BC.s")
+#define D_801DA2AC D_801DA2AC__func_801C38BC
+#define D_801DA2D0 D_801DA2D0__func_801C38BC
+#define D_801DEF90 D_801DEF90__func_801C38BC
+#define func_801C2A1C_Struct2 func_801C2A1C_Struct2__func_801C38BC
+#define func_801C2A1C_Struct3 func_801C2A1C_Struct3__func_801C38BC
+#define func_801C3940 func_801C3940__func_801C38BC
+#define func_801C3940_Struct func_801C3940_Struct__func_801C38BC
+#define func_801C39E0_StructGfx func_801C39E0_StructGfx__func_801C38BC
+typedef struct func_801C39E0_StructGfx {
+    u32 w0;
+    u32 w1;
+} func_801C39E0_StructGfx;
+extern func_801C39E0_StructGfx *D_801DA2AC;
+extern func_801C39E0_StructGfx D_801DEF90[];
+typedef struct func_801C2A1C_Struct3 {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+    u8 pad14[4];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    s32 unk24;
+    u8 pad28[8];
+    s32 unk30;
+    u8 pad34[0x14];
+    u8 unk48;
+    u8 unk49;
+    u8 unk4A;
+    u8 unk4B;
+} func_801C2A1C_Struct3;
+typedef struct func_801C2A1C_Struct2 {
+    u8 pad0[0x30];
+    func_801C2A1C_Struct3 *unk30;
+} func_801C2A1C_Struct2;
+typedef struct func_801C3940_Struct {
+    u8 pad[0x90];
+    u8 unk90;
+    u8 unk91;
+    u8 unk92;
+    u8 unk93;
+    u8 unk94;
+    u8 unk95;
+    u8 unk96;
+    u8 unk97;
+    u16 unk98;
+    u8 pad9A[2];
+    u16 unk9C;
+} func_801C3940_Struct;
+void func_801C3940(func_801C3940_Struct *arg0, s32 arg1);
+
+
+extern u8 D_801DA2D0[];
+
+void func_801C38BC(s32 arg0, func_801C2A1C_Struct2 **arg1) {
+    s32 tagged;
+    func_801C39E0_StructGfx *start, *g;
+    func_80005E44((void *)arg0, D_801DA2D0);
+    func_80006214((void *)arg0);
+    D_801DA2AC = D_801DEF90;
+    start = D_801DA2AC;
+    g = D_801DA2AC++;
+    start->w0 = 0xDF000000;
+    g->w1 = 0;
+    tagged = 0x40000000 | (s32)D_801DEF90;
+    (*arg1)->unk30->unk30 = tagged;
+    func_800058DC((void *)arg0, func_801C3940);
+}
+#undef D_801DA2AC
+#undef D_801DA2D0
+#undef D_801DEF90
+#undef func_801C2A1C_Struct2
+#undef func_801C2A1C_Struct3
+#undef func_801C3940
+#undef func_801C3940_Struct
+#undef func_801C39E0_StructGfx
 
 #define func_801C39E0 func_801C39E0__func_801C3940
 

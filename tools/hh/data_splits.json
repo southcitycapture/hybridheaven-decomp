@@ -1,3 +1,4 @@
 {
-  "file008/8010F6E0": {"span": ["0x801638A0", "0xE0"], "function": "func_8010FABC"}
+  "file008/8010F6E0": {"span": ["0x801638A0", "0xE0"], "function": "func_8010FABC"},
+  "file025/801C1860": {"span": ["0x801D8DE0", "0x10"], "function": "func_801C1D60"}
 }

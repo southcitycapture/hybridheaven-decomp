@@ -1789,8 +1789,37 @@ s32 func_8035A380(u8 arg0) {
 }
 #define func_8035A380 func_8035A380__decl
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_c38f0ce62b3bed81.s {"functions":["func_8035A3D8"],"rodata":[],"rodata_bytes":[2151194624,8576032,16]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_c38f0ce62b3bed81.s")
+
+
+
+
+s32 func_8035A3D8(u8 arg0, void *arg1) {
+    s32 code;
+    if (arg1 == NULL) {
+        code = arg0;
+    } else {
+        code = arg0;
+    }
+    switch (code) {
+    case 0:
+    case 5:
+        return 1;
+    case 1:
+    case 6:
+        return 2;
+    case 2:
+    case 7:
+        goto zero;
+    case 3:
+        return 3;
+    case 4:
+        return 4;
+    default:
+        return 0;
+    }
+zero:
+    return code - code;
+}
 
 
 typedef struct func_8035A434_Struct {
@@ -2118,8 +2147,10 @@ void func_8035A914(s32 arg0, s32 arg1) {
 }
 #undef func_8035A7F4
 
-/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_tail_88632a094b3e8f00.s {"functions":["func_8035A938"],"rodata":[],"rodata_bytes":[2151194640,8576048,36]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_tail_88632a094b3e8f00.s")
+/* hh-block asm/nonmatchings/file057/80358820/_ro_regular_ef38fe8d831e991e.s {"functions":[],"rodata":[],"rodata_bytes":[2151194656,8576064,20],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_ro_regular_ef38fe8d831e991e.s")
+/* hh-block asm/nonmatchings/file057/80358820/_mrg_keep_text_92cde26d37da9b4e.s {"functions":["func_8035A938"],"rodata":[]} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file057/80358820/_mrg_keep_text_92cde26d37da9b4e.s")
 
 
 
@@ -3536,8 +3567,10 @@ L3CC:
 /* hh-owned-pool func_8035BD6C 8038A0A8 8038A0B4 */
 /* hh-owned-pool func_8035C230 8038A0B4 8038A0E0 */
 
+
 static const unsigned char rodata_80358820_80389E60[] = {
     0x64, 0x0A, 0x00, 0x00,
 };
 /* hh-placed-function func_80358A80 */
-/* hh-rodata-layout [640,[[0,0,640]]] */
+/* hh-placed-function func_8035A3D8 */
+/* hh-rodata-layout [640,[[0,448,20],[20,0,116],[136,120,328],[464,468,80],[544,552,88]]] */

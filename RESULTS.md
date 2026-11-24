@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-23: **93.11% of the code** (15737 of 15934 functions, including duplicates).
+Progress as of 2026-11-24: **93.55% of the code** (15751 of 15934 functions, including duplicates).
 
-**25766 model runs, $8382.54 API-equivalent in total** (local and cloud). Of the **15611 functions now in C**, **7439 were matched by AI workers** (≈ $1.127 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25800 model runs, $8388.33 API-equivalent in total** (local and cloud). Of the **15632 functions now in C**, **7460 were matched by AI workers** (≈ $1.124 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 268 came from decomp-permuter and 324 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -669,5 +669,11 @@ Progress as of 2026-11-23: **93.11% of the code** (15737 of 15934 functions, inc
 | `unify_loop0405` | unify_loop0405 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
 | `orphans1` | orphans1 | orphan (saved standalone match, never integrated) | 3 | 3 | 100% | $0.00 | – |  |
 | `sonnetOrphan1` | sonnetOrphan1 | sonnet-5-5 | 4 | 2 | 50% | $0.83 | $0.416 |  |
+| `unify_loop0406` | unify_loop0406 | unify (no model) | 5 | 0 | 0% | $0.00 | – |  |
+| `auditWins1` | auditWins1 | easy-wins audit (saved attempt; /home/claude/work/hybrid-heaven-decomp/queue/zarch_armE6/work/func_8020D5DC/atte), easy-wins audit (saved attempt; /home/claude/work/hybrid-heaven-decomp/queue/zarch_terraP2/work/func_8035A3D8/at), easy-wins audit (saved attempt; /tmp/1000/-home-work/f5d3bce6-4627-5f77-a2a1-1ce125bf2da0/scratchp) | 7 | 7 | 100% | $0.00 | – |  |
+| `terraAstraEasy1` | terraAstraEasy1 | openai/gpt-6.2-astra | 11 | 4 | 36% | $0.00 | – |  |
+| `sonnetAudit1` | sonnetAudit1 | sonnet-5-5 | 12 | 3 | 25% | $5.79 | $1.931 |  |
+| `opuseasy1` | opuseasy1 | orphan honest repair (Opus 5.5, from a saved standalone match) | 4 | 4 | 100% | $0.00 | – |  |
+| `unify_loop0407` | unify_loop0407 | unify (no model) | 2 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

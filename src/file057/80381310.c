@@ -1776,8 +1776,44 @@ block_5:
     func_80005700(arg0);
 }
 
-/* hh-block asm/nonmatchings/file057/80381310/_mrg_keep_text_func_803845BC.s {"functions":["func_803845BC"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80381310/_mrg_keep_text_func_803845BC.s")
+#define D_8008DA88 D_8008DA88__func_803845BC
+#define D_801BBBF0 D_801BBBF0__func_803845BC
+#define D_801BBC20 D_801BBC20__func_803845BC
+#define func_80383414_Struct func_80383414_Struct__func_803845BC
+#define func_80383414_StructB func_80383414_StructB__func_803845BC
+#define func_80385208_Globals func_80385208_Globals__func_803845BC
+extern u8 D_8008DA88[];
+typedef struct func_80385208_Globals {
+    u8 pad0[0xA0];
+    u16 unkA0;
+    u8 pad1[6];
+    u16 unkA8;
+    u8 pad2[0x16];
+    u16 unkC0;
+    u8 pad3[6];
+    u16 unkC8;
+} func_80385208_Globals;
+extern struct func_80385208_Globals D_801BBBF0;
+typedef struct func_80383414_Struct { u8 pad0[0xC]; void *unkC; u8 pad10[0x99]; u8 unkA9; u8 pad1[0xB0 - 0xAA]; s16 unkB0; } func_80383414_Struct;
+typedef struct func_80383414_StructB { u8 pad0[0x30]; u8 *unk30; } func_80383414_StructB;
+extern u16 D_801BBC20;
+typedef struct func_803845BC_StructB { u8 pad[0x30]; u16 unk30; } func_803845BC_StructB;
+
+void func_803845BC(func_80383414_Struct *arg0, s32 arg1) {
+    func_80383414_StructB **table = (func_80383414_StructB **)D_8008DA88;
+
+    func_80006214(arg0->unkC);
+    table[arg0->unkA9]->unk30[9] = table[arg0->unkA9]->unk30[0xA] =
+        (func_8001EAD0(((func_803845BC_StructB *)&D_801BBBF0)->unk30 << 7) < 0.0f ?
+        -func_8001EAD0(((func_803845BC_StructB *)&D_801BBBF0)->unk30 << 7) :
+        func_8001EAD0(((func_803845BC_StructB *)&D_801BBBF0)->unk30 << 7)) * 192.0f;
+}
+#undef D_8008DA88
+#undef D_801BBBF0
+#undef D_801BBC20
+#undef func_80383414_Struct
+#undef func_80383414_StructB
+#undef func_80385208_Globals
 
 #define func_803847DC func_803847DC__func_80384718
 

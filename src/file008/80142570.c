@@ -819,8 +819,57 @@ extern void func_8001A804();
 /* hh-block asm/nonmatchings/file008/80142570/_mrg_keep_tail_61b4754fd43cc838.s {"functions":["func_8014456C"],"rodata":[],"rodata_bytes":[2149120036,5697332,28]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80142570/_mrg_keep_tail_61b4754fd43cc838.s")
 
-/* hh-block asm/nonmatchings/file008/80142570/_mrg_keep_text_func_80144A4C.s {"functions":["func_80144A4C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80142570/_mrg_keep_text_func_80144A4C.s")
+#define D_8001A804 D_8001A804__func_80144A4C
+#define D_8018F7D4 D_8018F7D4__func_80144A4C
+#define func_8001B194 func_8001B194__func_80144A4C
+
+extern void D_8001A804(u8, void *, s32, s32, s32);
+extern void func_8001B194(u8, s16, s16, u8);
+extern u8 D_8018F7D4[];
+
+void func_80144A4C(a0, a1, a2, a3, a4)
+u8 a0; s16 a1; s16 a2; s16 a3; s16 a4;
+{
+    s32 n = 0x23;
+    s32 v;
+    s32 y = a2;
+    if (a2 < a3) {
+        n = (a2 - a3) + 0x23;
+        y = a3;
+    }
+    if (a4 < y + n) {
+        n = a4 - y;
+    }
+    if (n <= 0) {
+        n = 0;
+        y = 0;
+    }
+    D_8001A804(a0, D_8018F7D4, a1, y, n);
+    do {} while (0);
+    v = 0;
+    if (a2 < a3 + 2) v = a2 - a3 - 2;
+    n = a4 - 1;
+    y = a0 << 2;
+    do {} while (0);
+    y = (s16)(4 + a1);
+    if (n < a2 + 10) v = (u32)(a2 + 10) - a4 + 1;
+    func_8001B194(a0 << 2, 4 + a1, a2 - 2, v);
+    v = 0;
+    y = a2 + 12;
+    if (y < a3 + 2) v = y - a3 - 2;
+    n = y + 10;
+    if (a4 - 1 < n) v = n - a4 + 1;
+    func_8001B194((a0 << 2) + 1, 4 + a1, a2 + 10, v);
+    v = 0;
+    y = a2 + 24;
+    if (y < a3 + 2) v = y - a3 - 2;
+    n = y + 10;
+    if (a4 - 1 < n) v = n - a4 + 1;
+    func_8001B194((a0 << 2) + 2, 4 + a1, a2 + 22, v);
+}
+#undef D_8001A804
+#undef D_8018F7D4
+#undef func_8001B194
 
 void func_80144C40(u8 **arg0) { typedef struct { u16 a; u8 b; u8 c; u16 d; } func_80144C40_StructDelta; typedef struct { u8 b[0x9C]; u16 h; } func_80144C40_StructA; typedef struct { u8 b[7]; } func_80144C40_StructB; typedef struct { u8 a; u8 pad; u16 h; u8 c; u8 pad2; } func_80144C40_StructC; typedef struct { u8 pad[4]; u8 b; u8 pad2[3]; } func_80144C40_StructD; typedef struct { u8 pad[2]; u8 b; } func_80144C40_StructE; extern func_80144C40_StructDelta func_80181580; extern func_80144C40_StructDelta func_8017DDA4; extern func_80144C40_StructB func_8017DF14[]; extern func_80144C40_StructD func_8017E004[]; extern func_80144C40_StructC func_80183CE0[]; extern u8 func_8017DC40[]; extern u8 func_8017DD7C[];
     u8 i;

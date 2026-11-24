@@ -150,22 +150,25 @@ class PreservationTests(unittest.TestCase):
         self.assertEqual(set(kept), {'func_80000000'})
         self.assertIsNone(problem)
 
-    def snapshot(self, snippets=None, source=None, new_keys=None, blocklist="", every_file=False):
+    def snapshot(self, snippets=None, source=None, new_keys=None, blocklist="", every_file=False, head_blocklist="",
+                 job=False):
         original = {"func_80000000": "void func_80000000(void) {}\n",
                     "func_80000008": "void func_80000008(void) {}\n"}
         src = '#include "common.h"\n' + "".join(original.values())
         head = {"matched/main/%s.c" % n: blob(t) for n, t in original.items()}
-        head.update({"src/main/file.c": blob(src), S.LINK_BLOCKLIST: blob("")})
+        head.update({"src/main/file.c": blob(src), S.LINK_BLOCKLIST: blob(head_blocklist)})
         tree = "".join("100644 blob %s\t%s\n" % (oid, p) for p, oid in head.items())
         captured = []
         pool = MagicMock()
         pool.__enter__.return_value.imap_unordered.side_effect = lambda fn, jobs: captured.extend(jobs) or []
         def opened(path, *args, **kwargs):
+            if path.startswith("matched/main/"): return io.StringIO(original[os.path.basename(path)[:-2]])
             return io.StringIO(blocklist if path == S.LINK_BLOCKLIST else src if source is None else source)
         with patch.object(S, "file_of", return_value="file"), patch.object(S, "added_times", return_value={}), \
              patch.object(S, 'code_layout', return_value={('main', 'file')}), \
-             patch.object(S, "link_blocked", return_value=set()), patch.object(S, "LIBFILES", set()), \
-             patch.object(S.subprocess, "check_output", side_effect=lambda cmd, **kw: tree if cmd[1] == "ls-tree" else src), \
+             patch.object(S, "link_blocked", return_value=S.parse_blocklist(blocklist)), patch.object(S, "LIBFILES", set()), \
+             patch.object(S.subprocess, "check_output", side_effect=lambda cmd, **kw: tree if cmd[1] == "ls-tree"
+                          else head_blocklist if cmd[-1] == "HEAD:" + S.LINK_BLOCKLIST else src), \
              patch.object(S, "Pool", return_value=pool), \
              patch.object(S.glob, "glob", side_effect=lambda p: ['asm/nonmatchings/main/file']
                           if p == 'asm/nonmatchings/*/*' else ['src/main/file.c']), \
@@ -174,7 +177,7 @@ class PreservationTests(unittest.TestCase):
              patch.object(S, "open", side_effect=opened, create=True):
             S.run({("main", n): t for n, t in (original if snippets is None else snippets).items()},
                   new_keys or set(), every_file=every_file)
-        return captured[0][-2]
+        return captured[0] if job else captured[0][-2]
 
     def test_unchanged_committed_inputs(self):
         self.assertTrue(self.snapshot())
@@ -194,6 +197,30 @@ class PreservationTests(unittest.TestCase):
 
     def test_blocklist_change_invalidates_snapshot(self):
         self.assertFalse(self.snapshot(blocklist="main func_80000000\n"))
+
+    def test_blocklist_change_in_another_unit_keeps_snapshot(self):
+        # removing two file028 lines once sent every unit through the rebuild path (file016 raised "cannot rebuild")
+        self.assertTrue(self.snapshot(blocklist="file028 func_801F8008\n",
+                                      head_blocklist="file028 func_801F8008\nfile028 func_801FC490\n"))
+
+    def test_comment_only_blocklist_change_keeps_snapshot(self):
+        self.assertTrue(self.snapshot(blocklist="# a note\n"))
+
+    def test_unblocked_function_invalidates_its_unit(self):
+        job = self.snapshot(head_blocklist="main func_80000000\n", job=True)
+        self.assertFalse(job[-2])
+        self.assertIn("func_80000000", job[2])
+
+    def test_blocked_function_in_committed_source_stays_registered(self):
+        # file016 func_802429F8: blocklisted, then landed and ROM-checked; a rebuild of its unit must protect it
+        snippets = {"func_80000008": "void func_80000008(void) {}\n"}    # registry() leaves blocked entries out
+        job = self.snapshot(snippets, blocklist="main func_80000000\n", head_blocklist="main func_80000000\n", job=True)
+        self.assertTrue(job[-2])
+        self.assertIn("func_80000000", job[2])
+
+    def test_new_blocklist_entry_is_not_held(self):
+        job = self.snapshot(blocklist="main func_80000000\n", job=True)
+        self.assertNotIn("func_80000000", job[2])
 
     def test_new_candidate_preserves_committed_baseline(self):
         self.assertTrue(self.snapshot({"func_80000000": "void func_80000000(void) {}\n",

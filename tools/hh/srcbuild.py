@@ -913,11 +913,14 @@ def build_one(args):
 
 LINK_BLOCKLIST = "queue/link_blocklist.txt"   # "seg func" per line: matches in-file but breaks the full link
 
+def parse_blocklist(text):
+    return {tuple(l.split()[:2]) for l in text.splitlines() if len(l.split()) >= 2 and not l.startswith("#")}
+
 def link_blocked():
     """Functions whose C passes every in-file check but breaks the whole-ROM link ("jump to a non-instruction-aligned
     address", 2026-10-19/20): never built into src/, whatever step (unify, propagate, re-offers) puts them back."""
     if not os.path.exists(LINK_BLOCKLIST): return set()
-    return {tuple(l.split()[:2]) for l in open(LINK_BLOCKLIST) if len(l.split()) >= 2 and not l.startswith("#")}
+    return parse_blocklist(open(LINK_BLOCKLIST).read())
 
 def registry():
     reg, blocked = {}, link_blocked()
@@ -960,12 +963,47 @@ def code_layout():
     return {tuple(m.groups()) for line in open('hybridheaven.yaml')
             for m in [re.match(r'\s+- \[0x[0-9A-F]+, c, (\w+)/(\w+)\]', line)] if m}
 
+def held_blocked(blocked, head):
+    """The blocked functions that HEAD's ROM-checked source already builds as C: blocked in HEAD's and the working
+    blocklist alike, registered in HEAD, and defined by HEAD's committed source of their unit. They stay registered
+    C for that unit like any other (protected, checked at their address), so a rebuild of the unit reproduces what
+    the committed snapshot keeps instead of treating their definition as an unregistered extra and failing.
+    file016 func_802429F8: blocklisted 2026-10-22, landed by inmatch 2026-10-26 (55dbfc3844) and in every
+    matching ROM since. A newly added blocklist line is never held: it means "take it out" and rebuilds the unit."""
+    out, sources = set(), {}
+    for seg, name in sorted(blocked):
+        cf = file_of(seg, name)
+        path = "src/%s/%s.c" % (seg, cf)
+        if not cf or "matched/%s/%s.c" % (seg, name) not in head or path not in head: continue
+        if path not in sources:
+            sources[path] = defined_functions(subprocess.check_output(["git", "show", "HEAD:" + path], text=True))
+        if name in sources[path]: out.add((seg, name))
+    return out
+
 def run(cands, new_keys, every_file=False):
     """cands: {(seg, name): text}. Builds every affected file; returns (kept keys, rejected {key: why}).
     Files built from library source (tools/hh/libultra.json) are left alone. every_file (srcbuild all): also process
     C files with no matched function through the committed-input guard, and delete src files the asm layout no
     longer has. Uncommitted/changed-input files still rebuild: after a re-split their old GLOBAL_ASM paths can
     point at the old layout and stop the build."""
+    # Snapshot HEAD once, before forking. Compare the whole per-file registry, including declarations and removals,
+    # not just fn_body: reconciled src text need not be a literal rendering of its snippets.
+    head = {}
+    for line in subprocess.check_output(["git", "ls-tree", "-r", "HEAD", "--", "matched", "src", LINK_BLOCKLIST], text=True).splitlines():
+        meta, path = line.split("\t", 1); head[path] = meta.split()[2]
+    # Each side of that comparison drops the functions ITS blocklist blocks (HEAD's registry minus HEAD's blocklist,
+    # the working registry minus the working blocklist), so a blocklist edit invalidates exactly the units whose
+    # registered set it changes. Comparing the whole blocklist file instead sent every unit down the rebuild path
+    # whenever any line changed (removing two file028 lines made file016/80242080 raise "cannot rebuild").
+    blocked = link_blocked()
+    head_blocked = parse_blocklist(subprocess.check_output(["git", "show", "HEAD:" + LINK_BLOCKLIST], text=True)) \
+        if LINK_BLOCKLIST in head else set()
+    held = held_blocked(blocked & head_blocked, head)
+    blocked, head_blocked = blocked - held, head_blocked - held
+    cands = {k: t for k, t in cands.items() if k not in blocked}
+    for seg, name in sorted(held - set(cands)):
+        if os.path.exists("matched/%s/%s.c" % (seg, name)):
+            cands[(seg, name)] = open("matched/%s/%s.c" % (seg, name)).read()
     byfile, unbuildable = {}, {}
     for (seg, name), text in cands.items():
         cf = file_of(seg, name)
@@ -994,27 +1032,21 @@ def run(cands, new_keys, every_file=False):
     if new_keys:
         touched = {(seg, file_of(seg, n)) for seg, n in new_keys}
         byfile = {k: v for k, v in byfile.items() if k in touched}
-    # Snapshot HEAD once, before forking. Compare the whole per-file registry, including declarations and removals,
-    # not just fn_body: reconciled src text need not be a literal rendering of its snippets.
-    head = {}
-    for line in subprocess.check_output(["git", "ls-tree", "-r", "HEAD", "--", "matched", "src", LINK_BLOCKLIST], text=True).splitlines():
-        meta, path = line.split("\t", 1); head[path] = meta.split()[2]
-    head_snips, blocked = {}, link_blocked()
+    head_snips = {}
     for path, oid in head.items():
         if path.startswith("matched/") and path.endswith(".c"):
             _, seg, name = path.split("/"); name = name[:-2]
-            if (seg, name) in blocked: continue       # registry() excludes these too
+            if (seg, name) in head_blocked: continue   # registry() excludes these too
             head_snips.setdefault((seg, file_of(seg, name)), {})[name] = oid
     def blob(text):
         data = text.encode(); return hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
-    blocklist_ok = (blob(open(LINK_BLOCKLIST).read()) if os.path.exists(LINK_BLOCKLIST) else None) == head.get(LINK_BLOCKLIST)
     jobs = []
     for (seg, cf), sn in sorted(byfile.items()):
         old = {n: blob(t) for n, t in sn.items() if (seg, n) not in new_keys}
         path = "src/%s/%s.c" % (seg, cf)
         previous = head_snips.get((seg, cf), {})
         committed = False
-        if blocklist_ok and os.path.exists(path):
+        if os.path.exists(path):
             source = open(path).read()
             if blob(source) == head.get(path):
                 committed = old == previous or (

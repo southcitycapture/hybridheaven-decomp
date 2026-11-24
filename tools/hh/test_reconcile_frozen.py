@@ -396,6 +396,37 @@ extern int D_80000008;
         self.assertIn('Vec', private)
         self.assertIn('D_80000004', private)
 
+    def _isolate_body(self, declared, snippet, alias='isolate'):
+        sc = R.Scan(declared)
+        with patch.object(S, 'late_literals', side_effect=lambda p, t: t), \
+             patch.object(S, 'kept_rodata_block', return_value=None), \
+             patch.object(S, 'missing_decls', return_value=[]):
+            return R.body_for('test', 'file', 'func_80000000', snippet, sc, len(sc.lines), alias)
+
+    def test_same_type_data_definition_stays_public_under_isolate(self):
+        # file025 func_801C1D60 defines the u64 its unit owns (data_splits.json); later neighbours that store both
+        # halves with one lui must see that definition, so a private alias would cost them their match
+        snippet = 'u64 D_80000010 = 0;\nvoid func_80000000(void) { D_80000010 = 0; }\n'
+        body, private = self._isolate_body('extern u64 D_80000010;\n', snippet)
+        self.assertNotIn('D_80000010', private)
+        self.assertIn('u64 D_80000010 = 0;', body)
+        _, private = self._isolate_body('extern u64 D_80000010;\n', snippet, 'isolate-own')
+        self.assertIn('D_80000010', private)
+
+    def test_other_type_data_definition_stays_private_under_isolate(self):
+        _, private = self._isolate_body('extern s32 D_80000010;\n',
+                                        'u64 D_80000010 = 0;\nvoid func_80000000(void) { D_80000010 = 0; }\n')
+        self.assertIn('D_80000010', private)
+
+    def test_hoist_drops_redeclarations_of_names_the_file_already_declares(self):
+        body = ['extern f32 D_80000010;', 'extern s32 D_80000020;', 'u64 D_80000030;',
+                'void func_80000000(void) {', '    D_80000020 = D_80000010;', '}']
+        decls, rest = R.hoist_split(body, {'D_80000010', 'D_80000030'}, set(), 'func_80000000')
+        self.assertEqual(decls, ['extern s32 D_80000020;'])
+        self.assertNotIn('extern f32 D_80000010;', rest)
+        self.assertIn('u64 D_80000030;', rest)          # a definition stays
+        self.assertIn('void func_80000000(void) {', rest)
+
     def test_mixed_block_is_recreated_without_generated_asm(self):
         asm = '.section .late_rodata\nnonmatching D_80000008\ndlabel D_80000008\n/* 000008 80000008 3F800000 */ .float 1.0\nenddlabel D_80000008\n.section .text\nglabel func_80000004\n    nop\n'
         recipe = dict(functions=['func_80000004'], rodata=[['.late_rodata', 'original.s', 'D_80000008']])

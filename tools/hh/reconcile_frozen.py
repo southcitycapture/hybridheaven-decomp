@@ -35,6 +35,10 @@ PRAGMA = re.compile(r'^#pragma GLOBAL_ASM\("([^"]+)"\)\s*$')
 def _norm_decl(line):
     return " ".join(re.sub(r"/\*.*?\*/|//.*$", "", line).replace("extern ", "").split())
 
+def _uninitialized(line):
+    """A one-line data definition as the declaration of the same object (`u64 D_X = 0;` -> `u64 D_X;`), normalized."""
+    return _norm_decl(line.split("=")[0].rstrip() + ";") if "=" in line else _norm_decl(line)
+
 def _def_head(line):
     """A definition's signature as a normalized declaration (`s32 f(s32 a) {` -> `s32 f(s32 a);`)."""
     return _norm_decl(line.split("{")[0].rstrip() + ";")
@@ -351,18 +355,23 @@ def body_for(seg, cfile, name, snippet, sc, i, alias, literals=True):
     md = S.missing_decls(snippet, declared)
     full = "\n".join(md) + "\n" + snippet
     priv = private_names(full, decl_text, file_defs, name) if alias else set()
-    if alias in ("isolate", "shield"):
+    if alias in ("isolate", "isolate-own", "shield"):
         depth = 0
         for l in full.splitlines():
             n = S.decl_name(l, depth)
             # A data object the snippet defines that the file already declares (an extern of another type before it,
             # as for storage the unit owns, data_layout.py) keeps its definition private too: the bytes stay at the
             # same offset of the unit's section and the file's own name still links at the address in the name.
+            # "isolate" leaves a definition public when the file's declaration has exactly its type (`extern u64 X;`
+            # then `u64 X = 0;` is one object): later snippets that need to see the definition (IDO shares one lui
+            # for both halves of a u64 it knows is defined) then can. "isolate-own" keeps every definition private.
             d = DATA_DEF.match(l) if depth == 0 else None
             depth += l.count("{") - l.count("}")
-            if n and ADDR_SYM.match(n) and n != name and not (n in declared and decl_text.get(n) == _norm_decl(l)):
+            same = n in declared and (decl_text.get(n) == _norm_decl(l) or
+                                      (alias == "isolate" and d is not None and decl_text.get(n) == _uninitialized(l)))
+            if n and ADDR_SYM.match(n) and n != name and not same:
                 priv.add(n)
-            if d and d.group(1) in declared:
+            if d and d.group(1) in declared and not (alias == "isolate" and decl_text.get(d.group(1)) == _uninitialized(l)):
                 priv.add(d.group(1))
     if alias == "shield":       # functions the snippet calls without declaring, which the file declares or defines
         depth = 0               # before it: the snippet sees them as it did alone (implicit `int f()`)
@@ -824,21 +833,33 @@ def _insert_variants(seg, cfile, lines0, name, snippet, loc0, literals=True):
             if m: active.pop(m.group(1), None)
         own = set(Scan(snippet).decl_text) | set(re.findall(r"(?m)^#define\s+(\w+)", snippet))
         masked = sorted(own & set(active))
-        for alias in ("isolate", False, True, "shield"):
+        for alias in ("isolate", "isolate-own", False, True, "shield"):
             body, priv = body_for(seg, cfile, name, snippet, sc, i, alias, literals)
             if tuple(sorted(priv)) in seen: continue
             seen.add(tuple(sorted(priv)))
             body = ["#undef %s" % n for n in masked] + body + [active[n] for n in masked]
-            yield (alias if alias in ("isolate", "shield") else "alias" if alias else "plain") + tag, "\n".join(lines[:i] + pre + body + post + lines[i + 1:]) + "\n"
+            yield (alias if alias in ("isolate", "isolate-own", "shield") else "alias" if alias else "plain") + tag, "\n".join(lines[:i] + pre + body + post + lines[i + 1:]) + "\n"
         # the snippet's declarations at the top (a name it uses may only be declared further down the file)
         body, priv = body_for(seg, cfile, name, snippet, sc, 0, False, literals)
-        decls, rest, depth = [], [], 0
-        for l in body:
-            n = S.decl_name(l, depth); depth += l.count("{") - l.count("}")
-            (decls if n and n not in sc.declared_at[i] and n not in priv and not l.startswith("#pragma") else rest).append(l)
+        decls, rest = hoist_split(body, sc.declared_at[i], priv, name)
         if decls:
             top = next((k + 1 for k, l in enumerate(lines) if l.startswith("#include")), 0)
             yield "hoist-own" + tag, "\n".join(lines[:top] + decls + lines[top:i] + pre + rest + post + lines[i + 1:]) + "\n"
+
+def hoist_split(body, declared, priv, name):
+    """(declarations to hoist to the top of the file, lines to keep at the snippet's place) for a body rendered from
+    line 0. `declared`: names the file declares before the snippet's place. Rendered from line 0, the body also
+    redeclares (with context.h's type) names the file already declares before the snippet; there the file's own
+    declaration is in scope, so the duplicate is dropped as the in-place variants drop it (file027 func_801EF550:
+    `extern f32 D_801F4888;` after the file's `extern s32 D_801F4888;` was a redeclaration in every hoist-own
+    candidate). Definitions are never dropped."""
+    decls, rest, depth = [], [], 0
+    for l in body:
+        n = S.decl_name(l, depth); depth += l.count("{") - l.count("}")
+        if n and n in declared and n not in priv and n != name and not l.startswith("#pragma") and not DATA_DEF.match(l):
+            continue
+        (decls if n and n not in declared and n not in priv and not l.startswith("#pragma") else rest).append(l)
+    return decls, rest
 
 def rerender_variants(seg, cfile, snips):
     for mode in (False, True, "unproto"):

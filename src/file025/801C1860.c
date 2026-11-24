@@ -269,7 +269,16 @@ void func_801C1D3C(void) {
     } while ((u32)&D_801DEF70 != (u32)p);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1D60.s")
+
+
+u64 D_801D8DE0 = 0;
+
+void func_801C1D60(void) {
+    D_801D8DD0 = 0;
+    D_801D8DD4 = 0;
+    D_801D8DD8 = D_801D8DDC = 0;
+    D_801D8DE0 = 0;
+}
 
 
 
@@ -283,9 +292,22 @@ s32 func_801C1DA8(u32 arg0) {
     return D_801D8DD0 >= arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1DBC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C1860/func_801C1E00.s")
+
+
+void func_801C1DBC(void) {
+    D_801D8DD4 = 1;
+    D_801D8DD8 = D_801D8DDC = 0;
+    D_801D8DE0 = func_801C0C08();
+}
+
+
+
+
+void func_801C1E00(void) {
+    D_801D8DD4 = 0;
+    D_801D8DE0 = 0;
+}
 
 
 

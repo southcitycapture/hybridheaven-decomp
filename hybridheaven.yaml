@@ -751,6 +751,8 @@ segments:
       - [0x6CA7C0, c, file025/801D7250]
       - [0x6CBC70, c, file025/801D8700]
       - [0x6CC170, .data, data/file025/data_801D8C00]
+      - [0x6CC350, .data, file025/801C1860]
+      - [0x6CC360, .data, data/file025/data_801D8DF0]
       - [0x6D0330, .rodata, file025/801BF1A0]
       - [0x6D03E0, .rodata, file025/801C0A30]
       - [0x6D0450, .rodata, file025/801C2980]
