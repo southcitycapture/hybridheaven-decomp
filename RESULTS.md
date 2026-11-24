@@ -680,5 +680,6 @@ Progress as of 2026-11-24: **93.69% of the code** (15759 of 15934 functions, inc
 | `terraAstraHonest1` | terraAstraHonest1 | openai/gpt-6.2-astra | 5 | 1 | 20% | $0.00 | – |  |
 | `terraAstraEasy1` | terraAstraEasy1 | openai/gpt-6.2-astra | 19 | 4 | 21% | $0.00 | – |  |
 | `unify_loop0411` | unify_loop0411 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0412` | unify_loop0412 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

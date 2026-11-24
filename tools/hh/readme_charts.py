@@ -212,6 +212,7 @@ def main(out):
         bars("Same local model, different harness", rows, os.path.join(out, "harness.svg"),
              "Qwen 3.8 Flash on one workstation GPU, same 20 functions. Pi: %.1f matches per GPU-hour, OpenCode: %.1f."
              % (per_h.get("Pi", 0), per_h.get("OpenCode", 0)))
+    import readme_effort; readme_effort.effort(os.path.join(out, "effort.svg"))   # 11-24: usage + difficulty per model
     print("%.1f%% of code after %.0f days" % (v, days))
 
 

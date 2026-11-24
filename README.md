@@ -19,7 +19,7 @@ good tooling get on real work, and what it costs. Every function is checked by t
 | Data | 95.44% | 1,017,348 of 1,065,936 bytes |
 | Fully linked | 40.50% | 283 of 545 source files complete |
 
-_Updated 2026-11-24 21:55 UTC by the publishing loop._
+_Updated 2026-11-24 22:54 UTC by the publishing loop._
 
 ![Progress over time, with the Christmas forecast](docs/img/progress.svg)
 
@@ -108,6 +108,12 @@ part assembly), and functions that still read their own float literals through f
   about 1 in 8 of the leftovers it was given, at no API cost.
 - **Running a swarm is an operations problem too.** Usage pacing across the week, failure recovery, integration checks
   and a privacy scan on every publish decided as much of the progress as model choice did.
+
+**Which models did the work, and how hard it was.** A cheap fast model did the volume (most of its matches were
+~100-byte functions nobody had tried yet); the strongest models arrived late and only got what others had already failed on
+7-9 times, including the 4-14 KB giants. Every model had a role.
+
+![Which models did the work, and how hard it was](docs/img/effort.svg)
 
 ![Same local model, different harness](docs/img/harness.svg)
 ![Big functions: one lead, many helpers](docs/img/bigfunc.svg)
