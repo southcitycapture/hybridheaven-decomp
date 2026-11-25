@@ -77,6 +77,7 @@ rec = dict(func=f, segment=seg, model=model, verified=verdict,
            cache_read=u.get("cache_read_input_tokens"), cache_write=u.get("cache_creation_input_tokens"),
            cost_usd_equiv=r.get("total_cost_usd"))
 rec["claimed"] = rec["claimed"][0]
+rec["start_ts"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(int(start))); rec["ts"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())   # 11-25: exact times for the research report
 open(os.path.join(os.environ.get("HH_ROOT") or os.path.expanduser("$HH"), "queue/%s/results.jsonl" % os.environ.get("BATCH", "pilot")), "a").write(json.dumps(rec) + "\n")
 print(json.dumps(rec))
 PY

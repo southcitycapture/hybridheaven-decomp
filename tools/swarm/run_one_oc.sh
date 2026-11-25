@@ -171,6 +171,7 @@ rec = dict(func=f, segment=seg, model=model, verified=verdict, claimed=claimed[0
            checks=int(open(".checks").read()) if os.path.exists(".checks") else 0,
            turns=steps, seconds=int(time.time()) - int(start), input_tokens=inp, output_tokens=out,
            exit=open("exit.txt").read().strip(), cost_usd_equiv=0.0)
+rec["start_ts"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(int(start))); rec["ts"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())   # 11-25: exact times for the research report
 open(os.path.expanduser("$HH/queue/%s/results.jsonl" % os.environ.get("BATCH", "ocpilot")), "a").write(json.dumps(rec) + "\n")
 print(json.dumps(rec))
 PY

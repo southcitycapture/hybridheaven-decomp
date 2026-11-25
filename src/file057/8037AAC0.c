@@ -1024,11 +1024,180 @@ void func_8037D088(struct func_8037D088_StructA *arg0, s32 arg1) {
 }
 #undef func_8037C554
 
-/* hh-block asm/nonmatchings/file057/8037AAC0/_mrg_keep_text_func_8037D218.s {"functions":["func_8037D218"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/8037AAC0/_mrg_keep_text_func_8037D218.s")
+#define D_80172574 D_80172574__func_8037D218
+#define D_80181A84 D_80181A84__func_8037D218
+#define func_8037AD08_Struct0 func_8037AD08_Struct0__func_8037D218
+#define func_8037B5A0_Struct0 func_8037B5A0_Struct0__func_8037D218
+#define func_8037B5A0_Struct1 func_8037B5A0_Struct1__func_8037D218
+#define func_8037B5A0_Struct2 func_8037B5A0_Struct2__func_8037D218
+struct func_8037B5A0_Struct1 {
+    u8 pad[0x44];
+    s32 unk44;
+};
+struct func_8037B5A0_Struct0 {
+    u16 *unk0;
+    struct func_8037B5A0_Struct1 *unk4;
+};
+extern struct func_8037B5A0_Struct0 *D_80172574;
+struct func_8037B5A0_Struct2 {
+    u8 pad[0xC];
+    void *unkC;
+};
+extern struct func_8037B5A0_Struct2 D_80181A84;
+struct func_8037AD08_Struct0 {
+    u16 *unk0;
+    s32 *unk4;
+};
 
-/* hh-block asm/nonmatchings/file057/8037AAC0/_mrg_keep_text_func_8037D320.s {"functions":["func_8037D320"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/8037AAC0/_mrg_keep_text_func_8037D320.s")
+
+struct func_8037D218_Struct {
+    s16 x;
+    s16 y;
+    s16 w;
+    s16 h;
+    u8 c0[4];
+    u8 c1[4];
+    s16 a;
+    s16 b;
+    u8 pad2[4];
+    u16 f34;
+    u8 pad36[2];
+    s32 f38;
+    u8 pad3C[8];
+    s16 s44;
+    s16 s46;
+    s16 s48;
+    s16 s4A;
+    s16 s4C;
+    s16 s4E;
+    u8 pad50[8];
+};
+
+void func_8037D218(void *arg0, s16 arg1, s16 arg2, u8 arg3, u8 *arg4) {
+    struct func_8037D218_Struct s;
+    struct func_8037B5A0_Struct0 **tex;
+
+    tex = &D_80172574;
+    s.x = arg1;
+    s.y = arg2;
+    s.w = 0x100;
+    s.h = 0x10;
+    s.s4C = s.s44 = 0x80;
+    s.s4E = s.s46 = 0x10;
+    if (arg3 == 0) {
+        s.c0[0] = 0;
+        s.c0[1] = 0xA0;
+        s.c0[2] = 0;
+        s.c0[3] = 0xFF;
+    } else {
+        s.c0[0] = 0xA0;
+        s.c0[1] = 0;
+        s.c0[2] = 0;
+        s.c0[3] = 0xFF;
+    }
+    s.c1[0] = 0;
+    s.c1[1] = 0;
+    s.c1[2] = 0;
+    s.c1[3] = 0xFF;
+    s.a = 0xE6;
+    s.b = 0;
+    s.f34 = *D_80172574->unk0;
+    s.f38 = ((struct func_8037AD08_Struct0 *)*tex)->unk4[6];
+    s.s4A = s.s48 = 0;
+    D_80181A84.unkC = &s;
+    func_80146088(arg0, &D_80181A84, (s32)arg4);
+}
+#undef D_80172574
+#undef D_80181A84
+#undef func_8037AD08_Struct0
+#undef func_8037B5A0_Struct0
+#undef func_8037B5A0_Struct1
+#undef func_8037B5A0_Struct2
+
+#define D_80184140 D_80184140__func_8037D320
+#define D_80389754 D_80389754__func_8037D320
+#define D_8038BBD0 D_8038BBD0__func_8037D320
+#define D_8038BBD8 D_8038BBD8__func_8037D320
+#define D_8038BBE8 D_8038BBE8__func_8037D320
+#define D_8038BBF4 D_8038BBF4__func_8037D320
+#define func_8013D5F4 func_8013D5F4__func_8037D320
+extern u8 *func_8013D5F4(u8);
+extern u8 *D_80184140[];
+extern u8 *D_80389754[];
+extern u8 D_8038BBD0[];
+extern u8 D_8038BBD8[];
+extern u8 D_8038BBE8[];
+extern u8 D_8038BBF4[];
+
+struct func_8037D320_Struct {
+    u8 pad91[0x91];
+    u8 unk91;
+    u8 unk92;
+    u8 unk93;
+    u8 unk94;
+    u8 unk95;
+    u8 pad96[0xAC - 0x96];
+    u8 unkAC;
+    u8 unkAD;
+};
+
+struct func_8037D320_Tab { u8 *p[10]; };
+union func_8037D320_Suffix { u8 bytes[8]; u32 words[2]; };
+
+#define A ((struct func_8037D320_Struct *)arg0)
+
+s32 func_8037D320(void *arg0, u8 arg1)
+{
+    u8 buf[0x22] = "";
+    u8 i;
+    struct func_8037D320_Tab tab = *(struct func_8037D320_Tab *)D_80389754;
+    union func_8037D320_Suffix nm = *(union func_8037D320_Suffix *)D_8038BBD0;
+    u8 *result;
+    u8 n;
+
+    if (arg1 == 0) {
+        if (A->unk93 == 0xB || A->unk93 == 0xC) {
+            result = func_8013D5F4(A->unk94);
+        } else if (A->unk93 == 0x13) {
+            result = tab.p[A->unk93 - 0xB];
+        } else {
+            result = D_80184140[A->unk94];
+        }
+    } else if (A->unk95 != 0 || A->unk91 == 0 || A->unk91 == 1 || A->unk91 == 2 || A->unk91 == 0xA || A->unk91 == 9) {
+        if (A->unk91 == 0x13) {
+            result = D_8038BBD8;
+        } else {
+            result = D_80184140[A->unk92];
+        }
+    } else if (A->unkAC != 0 || A->unk91 - 0xB == 9) {
+        if (A->unkAD != 0 && A->unk91 == 0xE) {
+            result = D_8038BBE8;
+        } else {
+            result = tab.p[A->unk91 - 0xB];
+        }
+    } else {
+        if (A->unkAD != 0 && A->unk91 == 0xE) {
+            return (s32)D_8038BBF4;
+        }
+        for (i = 0; tab.p[A->unk91 - 0xB][i] != 0; i++) {
+            buf[i] = tab.p[A->unk91 - 0xB][i];
+        }
+        n = i;
+        for (i = 0; nm.bytes[i] != 0; i++) {
+            buf[n + i] = nm.bytes[i];
+        }
+        return (s32)buf;
+    }
+    return (s32)result;
+}
+#undef A
+#undef D_80184140
+#undef D_80389754
+#undef D_8038BBD0
+#undef D_8038BBD8
+#undef D_8038BBE8
+#undef D_8038BBF4
+#undef func_8013D5F4
 
 
 void func_8037D5B4(arg0, arg1)
@@ -2288,19 +2457,18 @@ void func_8037F3D4(s32 arg0, s32 arg1) {
 
 
 
-static const unsigned char rodata_8037AAC0_8038BB50[] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x49, 0x54, 0x45, 0x4D, 0x00, 0x00, 0x00, 0x00, 0x57, 0x45, 0x41, 0x50,
-    0x4F, 0x4E, 0x20, 0x49, 0x54, 0x45, 0x4D, 0x00, 0x47, 0x55, 0x41, 0x52, 0x44, 0x00, 0x00, 0x00,
-    0x53, 0x54, 0x45, 0x50, 0x00, 0x00, 0x00, 0x00, 0x43, 0x4F, 0x55, 0x4E, 0x54, 0x45, 0x52, 0x00,
-    0x52, 0x45, 0x56, 0x45, 0x52, 0x53, 0x41, 0x4C, 0x00, 0x00, 0x00, 0x00, 0x45, 0x53, 0x43, 0x41,
-    0x50, 0x45, 0x00, 0x00, 0x54, 0x41, 0x4B, 0x45, 0x20, 0x46, 0x41, 0x4C, 0x4C, 0x00, 0x00, 0x00,
-    0x53, 0x50, 0x45, 0x43, 0x49, 0x41, 0x4C, 0x00, 0x4E, 0x4F, 0x54, 0x48, 0x49, 0x4E, 0x47, 0x00,
-    0x20, 0x46, 0x41, 0x49, 0x4C, 0x45, 0x44, 0x00, 0xA3, 0xD3, 0xA3, 0xD0, 0xA3, 0xC5, 0xA3, 0xC3,
-    0xA3, 0xC9, 0xA3, 0xC1, 0xA3, 0xCC, 0x00, 0x00, 0xA3, 0xD2, 0xA3, 0xCF, 0xA3, 0xCC, 0xA3, 0xCC,
-    0x00, 0x00, 0x00, 0x00, 0xA3, 0xD2, 0xA3, 0xCF, 0xA3, 0xCC, 0xA3, 0xCC, 0x20, 0xA3, 0xC6, 0xA3,
-    0xC1, 0xA3, 0xC9, 0xA3, 0xCC, 0xA3, 0xC5, 0xA3, 0xC4, 0x00, 0x00, 0x00,
+
+static const unsigned char rodata_8037AAC0_8038BB74[] = {
+    0x49, 0x54, 0x45, 0x4D, 0x00, 0x00, 0x00, 0x00, 0x57, 0x45, 0x41, 0x50, 0x4F, 0x4E, 0x20, 0x49,
+    0x54, 0x45, 0x4D, 0x00, 0x47, 0x55, 0x41, 0x52, 0x44, 0x00, 0x00, 0x00, 0x53, 0x54, 0x45, 0x50,
+    0x00, 0x00, 0x00, 0x00, 0x43, 0x4F, 0x55, 0x4E, 0x54, 0x45, 0x52, 0x00, 0x52, 0x45, 0x56, 0x45,
+    0x52, 0x53, 0x41, 0x4C, 0x00, 0x00, 0x00, 0x00, 0x45, 0x53, 0x43, 0x41, 0x50, 0x45, 0x00, 0x00,
+    0x54, 0x41, 0x4B, 0x45, 0x20, 0x46, 0x41, 0x4C, 0x4C, 0x00, 0x00, 0x00, 0x53, 0x50, 0x45, 0x43,
+    0x49, 0x41, 0x4C, 0x00, 0x4E, 0x4F, 0x54, 0x48, 0x49, 0x4E, 0x47, 0x00, 0x20, 0x46, 0x41, 0x49,
+    0x4C, 0x45, 0x44, 0x00, 0xA3, 0xD3, 0xA3, 0xD0, 0xA3, 0xC5, 0xA3, 0xC3, 0xA3, 0xC9, 0xA3, 0xC1,
+    0xA3, 0xCC, 0x00, 0x00, 0xA3, 0xD2, 0xA3, 0xCF, 0xA3, 0xCC, 0xA3, 0xCC, 0x00, 0x00, 0x00, 0x00,
+    0xA3, 0xD2, 0xA3, 0xCF, 0xA3, 0xCC, 0xA3, 0xCC, 0x20, 0xA3, 0xC6, 0xA3, 0xC1, 0xA3, 0xC9, 0xA3,
+    0xCC, 0xA3, 0xC5, 0xA3, 0xC4, 0x00, 0x00, 0x00,
 };
 static const unsigned char rodata_8037AAC0_8038BC34[] = {
     0x00, 0x00, 0x00, 0x00,
@@ -2309,10 +2477,11 @@ static const unsigned char rodata_8037AAC0_8038BC64[] = {
     0x80, 0x37, 0xC0, 0x0C, 0x80, 0x37, 0xC0, 0x18, 0x80, 0x37, 0xC0, 0x2C, 0x80, 0x37, 0xC0, 0x3C,
     0x80, 0x37, 0xC0, 0x50, 0x80, 0x37, 0xC0, 0x60,
 };
+/* hh-placed-function func_8037D320 */
 /* hh-placed-function func_8037D68C */
 /* hh-placed-function func_8037D93C */
 /* hh-placed-function func_8037DAE0 */
 /* hh-placed-function func_8037DEE4 */
 /* hh-placed-function func_8037E0A4 */
 /* hh-placed-function func_8037E1C4 */
-/* hh-rodata-layout [320,[[0,188,40],[40,232,44],[84,0,188],[272,228,4],[276,276,44]]] */
+/* hh-rodata-layout [320,[[0,0,36],[36,188,40],[76,232,44],[120,36,152],[272,228,4],[276,276,44]]] */

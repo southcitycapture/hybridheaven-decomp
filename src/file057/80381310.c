@@ -581,8 +581,87 @@ void func_80381E78(struct func_80381E78_Struct *arg0, s32 arg1) {
     func_80005700(arg0);
 }
 
-/* hh-block asm/nonmatchings/file057/80381310/_mrg_keep_text_func_80381F40.s {"functions":["func_80381F40"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80381310/_mrg_keep_text_func_80381F40.s")
+#define D_8017257C D_8017257C__func_80381F40
+#define D_80389BB4 D_80389BB4__func_80381F40
+#define func_803822F0_StructGlobal func_803822F0_StructGlobal__func_80381F40
+#define func_803822F0_StructInner func_803822F0_StructInner__func_80381F40
+struct func_803822F0_StructInner {
+    u8 pad[0x38];
+    s32 unk38;
+};
+struct func_803822F0_StructGlobal {
+    u16 *unk0;
+    struct func_803822F0_StructInner *unk4;
+};
+extern struct func_803822F0_StructGlobal *D_8017257C;
+extern u8 D_80389BB4[];
+
+
+struct func_80381F40_Struct {
+    s16 x24, y26, w28, h2A;
+    u8 c2C, c2D, c2E, c2F, c30, c31, c32, c33;
+    s16 s34, s36;
+    u8 pad38[4];
+    u16 s3C;
+    u8 pad3E[2];
+    s32 w40;
+    u8 pad44[8];
+    s16 s4C, s4E, s50, s52, s54, s56;
+    u8 pad58[8];
+};
+
+void func_80381F40(void *arg0, s16 arg1, s16 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6, s8 *arg7)
+{
+    struct func_80381F40_Struct l;
+    struct func_803822F0_StructGlobal **data;
+    u16 id;
+
+    data = &D_8017257C;
+    l.x24 = arg1;
+    l.y26 = arg2;
+    if (arg6 == 0xC) {
+        l.s4C = 0x20; l.w28 = 0x20; l.s54 = 0x20;
+        l.s4E = 0x10; l.h2A = 0x10; l.s56 = 0x10;
+    } else if (arg6 == 0xD) {
+        l.s4C = 0x50; l.w28 = 0x50; l.s54 = 0x50;
+        l.s4E = 0x10; l.h2A = 0x10; l.s56 = 0x10;
+    } else if (arg6 == 0x19) {
+        l.s4C = 0x80; l.w28 = 0x80; l.s54 = 0x80;
+        l.s4E = 0x10; l.h2A = 0x10; l.s56 = 0x10;
+    } else if (arg6 == 0x17) {
+        l.w28 = 0x100;
+        l.s4C = 0x80; l.s54 = 0x80;
+        l.h2A = 0x10; l.s4E = 0x10; l.s56 = 0x10;
+    } else {
+        l.s4C = 0x40; l.w28 = 0x40; l.s54 = 0x40;
+        l.s4E = 0x10; l.h2A = 0x10; l.s56 = 0x10;
+    }
+    l.c2D = arg4;
+    l.c2E = arg5;
+    l.c2C = arg3;
+    l.c2F = 0xFF;
+    l.c32 = 0;
+    l.c31 = 0;
+    l.c30 = 0;
+    l.c33 = 0xFF;
+    if (arg6 != 0x17) {
+        l.s34 = 0x66;
+    } else {
+        l.s34 = 0xE6;
+    }
+    id = arg6;
+    l.s36 = 0;
+    l.s3C = *(*data)->unk0;
+    l.w40 = ((s32 *)(*data)->unk4)[id];
+    l.s52 = 0;
+    l.s50 = 0;
+    *(void **)(D_80389BB4 + 0xC) = &l;
+    func_80146088(arg0, D_80389BB4, arg7);
+}
+#undef D_8017257C
+#undef D_80389BB4
+#undef func_803822F0_StructGlobal
+#undef func_803822F0_StructInner
 
 
 
@@ -1628,6 +1707,7 @@ typedef struct func_803840A4_Obj {
 
 extern func_803840A4_Globals D_8017DC40;
 extern void func_80384514();
+#define func_80381F40 func_80381F40__decl1630
 extern void func_80381F40(void *a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, u8 *a7);
 extern void func_80384228(void *, s32);
 
@@ -1655,6 +1735,7 @@ void func_803840A4(func_803840A4_Obj *arg0, s32 arg1) {
     arg0->unkB0 = 0xA;
     func_800058DC(arg0, func_80384228);
 }
+#undef func_80381F40
 #undef func_80384228
 #undef func_80384514
 
@@ -2629,3 +2710,4 @@ static const unsigned char rodata_80381310_8038CB2C[] = {
 /* hh-placed-function func_80384BF8 */
 /* hh-placed-function func_8038540C */
 /* hh-rodata-layout [3440,[[0,2604,308],[308,3040,12],[320,3280,12],[332,3388,16],[348,0,2604],[2952,2912,128],[3080,3052,228],[3308,3292,96],[3404,3404,36]]] */
+/* hh-layout-unit file057/80381310 */
