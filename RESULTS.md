@@ -692,5 +692,10 @@ Progress as of 2026-11-25: **93.87% of the code** (15767 of 15934 functions, inc
 | `unify_loop0420` | unify_loop0420 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `opusLand1` | opusLand1 | opus-5-5 | 1 | 1 | 100% | $0.00 | – |  |
 | `unify_loop0421` | unify_loop0421 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0422` | unify_loop0422 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0423` | unify_loop0423 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0424` | unify_loop0424 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0425` | unify_loop0425 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0426` | unify_loop0426 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
