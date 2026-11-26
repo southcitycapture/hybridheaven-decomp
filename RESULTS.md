@@ -2,7 +2,7 @@
 
 Progress as of 2026-11-26: **94.86% of the code** (15782 of 15934 functions, including duplicates).
 
-**25944 model runs, $8578.13 API-equivalent in total** (local and cloud). Of the **15655 functions now in C**, **7505 were matched by AI workers** (≈ $1.143 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 244 came from decomp-permuter and 326 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**25954 model runs, $8578.13 API-equivalent in total** (local and cloud). Of the **15655 functions now in C**, **7505 were matched by AI workers** (≈ $1.143 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 244 came from decomp-permuter and 326 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -727,5 +727,15 @@ Progress as of 2026-11-26: **94.86% of the code** (15782 of 15934 functions, inc
 | `stray13` | stray13 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
 | `unify_loop0441` | unify_loop0441 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `stray14` | stray14 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0442` | unify_loop0442 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray15` | stray15 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0443` | unify_loop0443 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray16` | stray16 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0444` | unify_loop0444 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray17` | stray17 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0445` | unify_loop0445 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray18` | stray18 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0446` | unify_loop0446 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray19` | stray19 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
