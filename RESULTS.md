@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-27: **94.86% of the code** (15782 of 15934 functions, including duplicates).
+Progress as of 2026-11-27: **94.88% of the code** (15783 of 15934 functions, including duplicates).
 
-**25983 model runs, $8604.96 API-equivalent in total** (local and cloud). Of the **15655 functions now in C**, **7505 were matched by AI workers** (≈ $1.147 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 244 came from decomp-permuter and 326 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**26030 model runs, $8712.87 API-equivalent in total** (local and cloud). Of the **15656 functions now in C**, **7506 were matched by AI workers** (≈ $1.161 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 244 came from decomp-permuter and 326 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -700,7 +700,6 @@ Progress as of 2026-11-27: **94.86% of the code** (15782 of 15934 functions, inc
 | `unify_loop0428` | unify_loop0428 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `unify_loop0429` | unify_loop0429 | unify (no model) | 3 | 0 | 0% | $0.00 | – |  |
 | `stray1` | stray1 | opus-5-5 | 1 | 1 | 100% | $1.97 | $1.975 |  |
-| `permute` | decomp-permuter on near-misses | , decomp-permuter | 2270 | 294 | 13% | $0.00 | – |  |
 | `unify_loop0430` | unify_loop0430 | unify (no model) | 3 | 0 | 0% | $0.00 | – |  |
 | `stray2` | stray2 | opus-5-5 | 1 | 1 | 100% | $0.83 | $0.832 |  |
 | `unify_loop0431` | unify_loop0431 | unify (no model) | 3 | 0 | 0% | $0.00 | – |  |
@@ -746,8 +745,21 @@ Progress as of 2026-11-27: **94.86% of the code** (15782 of 15934 functions, inc
 | `unify_loop0450` | unify_loop0450 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `stray23` | stray23 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
 | `unify_loop0451` | unify_loop0451 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
-| `blastOpusRelay` | blastOpusRelay | opus-5-5 | 4 | 0 | 0% | $13.81 | – |  |
-| `blastSonnetRepair` | blastSonnetRepair | sonnet-5-5 | 15 | 3 | 20% | $13.03 | $4.343 |  |
 | `stray24` | stray24 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0452` | unify_loop0452 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray25` | stray25 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0453` | unify_loop0453 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray26` | stray26 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `permute` | decomp-permuter on near-misses | , decomp-permuter | 2271 | 294 | 13% | $0.00 | – |  |
+| `unify_loop0454` | unify_loop0454 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray27` | stray27 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0455` | unify_loop0455 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray28` | stray28 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `blastSonnetRepair` | blastSonnetRepair | sonnet-5-5 | 37 | 9 | 24% | $28.17 | $3.130 |  |
+| `blastOpusRelay` | blastOpusRelay | opus-5-5 | 12 | 0 | 0% | $44.58 | – |  |
+| `unify_loop0456` | unify_loop0456 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray29` | stray29 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `blastLand1` | blastLand1 | fable-5-2 | 1 | 1 | 100% | $7.75 | $7.748 |  |
+| `blastFableStruct` | blastFableStruct | fable-5-2 | 6 | 3 | 50% | $54.25 | $18.084 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

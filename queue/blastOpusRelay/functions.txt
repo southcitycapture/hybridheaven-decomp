@@ -1,11 +1,3 @@
-func_8013B5B4 file008
-func_80019898 main
-func_80365410 file057
-func_8035A938 file057
-func_801D59A8 file009
-func_80239A5C file011
-func_80107B60 file008
-func_80242ED4 file012
 func_8000919C main
 func_801EA6F0 file026
 func_80372F8C file057
@@ -35,3 +27,11 @@ func_8010C21C file008
 func_80148044 file008
 func_801E34D8 file047
 func_8037D598 file056
+func_8013B5B4 file008
+func_80019898 main
+func_80365410 file057
+func_8035A938 file057
+func_801D59A8 file009
+func_80239A5C file011
+func_80107B60 file008
+func_80242ED4 file012
