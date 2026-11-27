@@ -29,6 +29,25 @@ import argparse, fcntl, glob, hashlib, json, os, re, shutil, signal, subprocess,
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import blast_policy as P
 
+
+def _project_env():
+    """11-27: the lander's honest_swap/integrate need the project toolchain (mips binutils, IDO, venv) on PATH; a
+    supervisor started from a plain shell (cron, ensure) lacked it and every repair swap failed. Mirror env.sh here
+    so children inherit it whatever started us."""
+    hh = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../.."))
+    home = os.path.expanduser("~")
+    os.environ.setdefault("HH", hh)
+    pre = [os.path.join(hh, "tools/bin"), os.path.join(home, ".local/opt/decomp/usr/bin"), os.path.join(hh, ".venv/bin")]
+    cur = os.environ.get("PATH", "").split(":")
+    os.environ["PATH"] = ":".join([d for d in pre if d not in cur] + cur)
+    lib = os.path.join(home, ".local/opt/decomp/usr/lib/x86_64-linux-gnu")
+    if lib not in os.environ.get("LD_LIBRARY_PATH", "").split(":"):
+        os.environ["LD_LIBRARY_PATH"] = lib + ((":" + os.environ["LD_LIBRARY_PATH"]) if os.environ.get("LD_LIBRARY_PATH") else "")
+    os.environ.setdefault("IDO53", os.path.join(hh, "tools/ido/5.3")); os.environ.setdefault("IDO71", os.path.join(hh, "tools/ido/7.1"))
+
+
+_project_env()
+
 TOOL_REPO = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../.."))
 HOME = os.path.expanduser("~")
 WRAPPERS = ("run_one_from.sh", "run_one3.sh", "run_one_oc.sh")

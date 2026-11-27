@@ -1,5 +1,4 @@
-#include "context.h"
-
+#include "common.h"
 typedef struct func_8012D064_StructV {
     u8 pad0[0x38];
     u16 unk38;
@@ -10,7 +9,6 @@ typedef struct func_8012D064_StructV {
     u16 unk3E;
     s32 unk40;
 } func_8012D064_StructV;
-
 typedef struct func_8012D064_StructO {
     u8 pad0[0x22];
     u8 unk22;
@@ -18,6 +16,20 @@ typedef struct func_8012D064_StructO {
     func_8012D064_StructV *unk2C;
     func_8012D064_StructV *unk30;
 } func_8012D064_StructO;
+extern func_8012D064_StructO *B_8008DA88[];
+typedef struct func_8012C784_StructE {
+    u16 *unk0;
+    s32 *unk4;
+} func_8012C784_StructE;
+extern func_8012C784_StructE *D_80171CF0[];
+extern int func_80005204(unsigned short);
+extern void func_80017064(u16, u8 *, u8 *, u8 *);
+typedef struct func_8012D064_Elem {
+    s32 unk0;
+    u8 unk4;
+    u8 pad5[3];
+} func_8012D064_Elem;
+
 
 typedef struct func_8012D064_StructB {
     u8 pad0[0x2C];
@@ -29,33 +41,21 @@ typedef struct func_8012D064_StructA {
     func_8012D064_StructB *unk24;
 } func_8012D064_StructA;
 
-typedef struct func_8012D064_Elem {
-    s32 unk0;
-    u8 unk4;
-    u8 pad5[3];
-} func_8012D064_Elem;
-
-extern void func_80017064(u16, u8 *, u8 *, u8 *);
-extern s32 func_80005204(u16);
-
 void func_8012D064(void *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     s32 w0;
-    u16 pad;
+    u16 n;
     u16 id;
     func_8012D064_StructO **o;
-    func_8012D064_StructV *v;
     func_8012D064_Elem *e;
-    s32 *p40;
     u8 *p3C;
+    s32 *p40;
     u8 *p3B;
     u8 *p3A;
     u16 *p38;
     u16 *p3E;
     u8 *p3D;
-    f64 one;
-    u32 n;
 
-    o = (func_8012D064_StructO **)&D_8008DA88[(u8)arg5];
+    o = (func_8012D064_StructO **)&B_8008DA88[(u8)arg5];
     (*o)->unk22 = 1;
     if (((func_8012D064_StructA *)arg0)->unk24->unk2C != 0) {
         (*o)->unk2C->unk38 = arg4;
@@ -84,13 +84,12 @@ void func_8012D064(void *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5)
     if (arg3 == 2) {
         *p3E |= 4;
     }
-    one = 2.0 - 1.0;
-    *p3D = arg2 * 10.0 * one;
+    *p3D = arg2 * 10.0 * (2.0 - 1.0);
     *p3B = 0;
     e = *p3B + ((func_8012D064_Elem **)D_80171CF0[*p38 - 1]->unk4)[arg1];
     w0 = e->unk0;
     n = e->unk4;
-    *p3C = (f32)(u32)*p3D * (f32)n / 10.0;
+    *p3C = (f32)(u32)*p3D * (f32)(u32)n / 10.0;
     if (*p3C == 0) {
         *p3C = 1;
     }

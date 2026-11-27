@@ -26,7 +26,7 @@ typedef struct {
 } func_8038D000_Glob;
 extern func_8038D000_Glob D_801BBBF0;
 extern u8 D_801BC03C[];
-extern u8 D_801BC3D8[];
+extern f32 D_801BC3D8[];
 extern void *func_800058DC(void *, void *);
 void func_8038D470(void *arg0, void *arg1, void *arg2);
 
@@ -67,9 +67,6 @@ extern u8 D_8038D5BC[];
 void func_8038D5BC(func_8038D5BC_Obj *arg0, s32 arg1) {
     func_8038D5BC_P *a1;
     func_8038D5BC_P *a2;
-    u32 c;
-    u32 t;
-    s32 flag;
 
     a1 = (D_801BBBF0.unkDC == arg0->unkC) ? (func_8038D5BC_P *)D_801BC03C : (func_8038D5BC_P *)D_801BC3D8;
     a2 = (D_801BBBF0.unkDC == arg0->unkC) ? (func_8038D5BC_P *)D_801BC3D8 : (func_8038D5BC_P *)D_801BC03C;
@@ -92,39 +89,32 @@ void func_8038D5BC(func_8038D5BC_Obj *arg0, s32 arg1) {
         func_8038D470(arg0, a1, a2);
         return;
     }
-    c = a2->u30.bf.b;
-    if (c) {}
-    if ((c != 0) && !(arg0->unk9A & 8)) {
+    if (a2->u30.bf.b && !(arg0->unk9A & 8)) {
         func_8038D470(arg0, a1, a2);
         return;
     }
-#define v (arg0->unk9A)
-    t = a1->b31;
-    flag = !(v & 2);
-    if (flag & t) {
+    if (!(arg0->unk9A & 2) & a1->b31) {
         func_8038D470(arg0, a1, a2);
         return;
     }
-    if ((D_801BBBF0.unkB90 > 20.0f) && (v == 0)) {
-        arg0->unk9A = v | 0x100;
+    if ((D_801BBBF0.unkB90 > 20.0f) && (arg0->unk9A == 0)) {
+        arg0->unk9A |= 0x100;
         func_8038D470(arg0, a1, a2);
         return;
     }
-    if ((D_801BBBF0.unkB90 <= 18.0f) && (v & 0x100)) {
-        arg0->unk9A = v ^ 0x100;
+    if ((D_801BBBF0.unkB90 <= 18.0f) && (arg0->unk9A & 0x100)) {
+        arg0->unk9A ^= 0x100;
         func_8038D470(arg0, a1, a2);
         return;
     }
-    flag = (t == 0);
-    if (flag) {}
-    if (flag & v & 2) {
-        arg0->unk9A = v & 0xFD;
+    if (arg0->unk9A & !a1->b31 & 2) {
+        arg0->unk9A &= 0xFD;
         arg0->unk92 = arg0->unk93;
         func_8038D470(arg0, a1, a2);
         return;
     }
-    if ((c == 0) && (v & 8)) {
-        arg0->unk9A = v ^ 8;
+    if (!a2->u30.bf.b && (arg0->unk9A & 8)) {
+        arg0->unk9A ^= 8;
         func_8038D470(arg0, a1, a2);
     }
 }

@@ -653,14 +653,39 @@ extern func_8024965C_StructA *D_801BBCD8;
 extern u8 D_801BC3D8[];
 extern u8 D_80258F90[];
 
-void func_8024965C(s32 arg0, s32 arg1) {
-    u8 pad[4];
-    f32 sp50;
+#undef func_80249810
+#define D_801BBCD0 D_801BBCD0__func_8024965C_8216114b
+#define D_801BBCD8 D_801BBCD8__func_8024965C_8216114b
+#define func_8024965C_StructA func_8024965C_StructA__func_8024965C_8216114b
+#define func_8024965C_StructB func_8024965C_StructB__func_8024965C_8216114b
+#define func_80249810 func_80249810__func_8024965C_8216114b
 
-    sp50 = func_8001EAD0(D_801BBCD0->p->s12);
-    if (func_801C3DC8(arg0, (f32)((f64)D_801BBCD0->p->f4 - (f64)sp50 * 40.0), D_801BBCD0->p->f8 + 20.0f,
-                      (f32)((f64)D_801BBCD0->p->fC - (f64)func_8001EB64(D_801BBCD0->p->s12) * 40.0),
-                      D_801BBCD0->p->f4, D_801BBCD0->p->f8 + 17.0f, D_801BBCD0->p->fC, 0.200000003f, 35.0f) == 0) {
+
+typedef struct func_8024965C_StructB {
+    u8 pad0[4];
+    f32 f4, f8, fC;
+    u8 pad10[2];
+    s16 s12;
+    u8 pad14[0x1C];
+    f32 f30, f34, f38, f3C, f40, f44;
+} func_8024965C_StructB;
+typedef struct func_8024965C_StructA {
+    u8 pad[0x2C];
+    func_8024965C_StructB *p;
+} func_8024965C_StructA;
+extern void func_80249810(s32, s32);
+extern func_8024965C_StructA *D_801BBCD0;
+extern func_8024965C_StructA *D_801BBCD8;
+
+void func_8024965C(s32 arg0, s32 arg1) {
+    s32 hit;
+    f32 sinAngle;
+
+    sinAngle = func_8001EAD0(D_801BBCD0->p->s12);
+    hit = func_801C3DC8(arg0, (f32)((f64)D_801BBCD0->p->f4 - (f64)sinAngle * 40.0), D_801BBCD0->p->f8 + 20.0f,
+                        (f32)((f64)D_801BBCD0->p->fC - (f64)func_8001EB64(D_801BBCD0->p->s12) * 40.0),
+                        D_801BBCD0->p->f4, D_801BBCD0->p->f8 + 17.0f, D_801BBCD0->p->fC, 0.200000003f, 35.0f);
+    if (hit == 0) {
         func_8011AAF4(D_80258F90, 0x2BD, (void *)arg0, 2, 1, 0.0f, D_801BBCD8->p->f30, D_801BBCD8->p->f34, D_801BBCD8->p->f38, 0.0f, D_801BBCD8->p->f3C, D_801BBCD8->p->f40, D_801BBCD8->p->f44, 0.0f, 35.0f, -1, -1);
         func_801C2F0C(1, 0);
         func_801FBB20();
@@ -670,6 +695,12 @@ void func_8024965C(s32 arg0, s32 arg1) {
         func_800058DC((void *)arg0, (void *)func_80249810);
     }
 }
+#undef D_801BBCD0
+#undef D_801BBCD8
+#undef func_8024965C_StructA
+#undef func_8024965C_StructB
+#undef func_80249810
+#define func_80249810 func_80249810__func_8024965C
 #undef func_80249810
 
 

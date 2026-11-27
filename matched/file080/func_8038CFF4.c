@@ -67,8 +67,6 @@ void func_8038CFF4(struct func_8038CFF4_StructO *arg0, s32 arg1) {
     s32 t;
     struct func_8038CFF4_StructB *a1;
     struct func_8038CFF4_StructB *v1;
-    unsigned long v;
-    s32 two;
     f64 distance;
 
     sp34 = (s16)(0x2800 - *(s16 *)(G8 + 0x232)) & 0x1FFF;
@@ -120,7 +118,6 @@ void func_8038CFF4(struct func_8038CFF4_StructO *arg0, s32 arg1) {
                         return;
                     }
                     if (arg0->unk92 == 2) {
-                        two = 2;
                         if ((a1->flags.byte[2] & 3) == 2U) {
                             arg0->unk92 = 3;
                         }

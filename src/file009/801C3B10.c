@@ -973,30 +973,179 @@ s32 func_801C5A1C__func_801C5A5C(f32, f32, f32, f32, f32, f32);
     if (fs4 < 0.0f) { fv0 = -fs4; } else { fv0 = fs4; } \
     if (fv0 < fs2) { fs4 = H->unk370; }
 
+#undef COLLISION
+#undef D_801BBBF0
+#undef D_801E0B30
+#undef FABS
+#undef H
+#undef SQRT_TWO
+#undef UPD_X
+#undef UPD_Z
+#undef func_801C3D90_StructA
+#undef func_801C3D90_StructB
+#undef func_801C4A5C_StructEntry
+#define D_801BBBF0 D_801BBBF0__func_801C5A5C_2d60ddce
+#define D_801E0B30 D_801E0B30__func_801C5A5C_2d60ddce
+#define func_801C3B20 func_801C3B20__func_801C5A5C_2d60ddce
+#define func_801C3B48 func_801C3B48__func_801C5A5C_2d60ddce
+#define func_801C3B7C func_801C3B7C__func_801C5A5C_2d60ddce
+#define func_801C3D90_StructA func_801C3D90_StructA__func_801C5A5C_2d60ddce
+#define func_801C3D90_StructB func_801C3D90_StructB__func_801C5A5C_2d60ddce
+#define func_801C4A5C_StructEntry func_801C4A5C_StructEntry__func_801C5A5C_2d60ddce
+#define func_801C5A1C func_801C5A1C__func_801C5A5C_2d60ddce
+#define func_801C5A5C_StructArg func_801C5A5C_StructArg__func_801C5A5C_2d60ddce
+#define func_801C5A5C_StructFlag func_801C5A5C_StructFlag__func_801C5A5C_2d60ddce
+#define func_801C5A5C_StructGlobal func_801C5A5C_StructGlobal__func_801C5A5C_2d60ddce
+#define func_801C5A5C_StructIn1 func_801C5A5C_StructIn1__func_801C5A5C_2d60ddce
+#define func_801C5A5C_StructIn2 func_801C5A5C_StructIn2__func_801C5A5C_2d60ddce
+#define func_801C5A5C_StructMid func_801C5A5C_StructMid__func_801C5A5C_2d60ddce
+#define func_801C5A5C_StructNode func_801C5A5C_StructNode__func_801C5A5C_2d60ddce
+#define func_801C5A5C_StructResult func_801C5A5C_StructResult__func_801C5A5C_2d60ddce
+struct func_801C3D90_StructB {
+    u8 pad[0x63];
+    u8 unk63;
+};
+struct func_801C3D90_StructA {
+    u8 pad[0xDC];
+    struct func_801C3D90_StructB *unkDC;
+    s32 unkE0;
+};
+extern struct func_801C3D90_StructA D_801BBBF0;
+typedef struct func_801C4A5C_StructEntry { u16 flag, index; } func_801C4A5C_StructEntry;
+extern func_801C4A5C_StructEntry D_801E0B30[];
+u16 func_801C3B20(void);
+s32 func_801C3B48(s32 arg0);
+void func_801C3B7C(s32 arg0);
+s32 func_801C5A1C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+
+struct func_801C5A5C_StructIn2 {
+    u8 pad[0x1C];
+    s32 unk1C;
+};
+struct func_801C5A5C_StructIn1 {
+    u8 pad[0x5C];
+    struct func_801C5A5C_StructIn2 *unk5C;
+};
+struct func_801C5A5C_StructNode {
+    u8 pad[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[2];
+    s16 unk12;
+};
+struct func_801C5A5C_StructMid {
+    u8 pad[0x2C];
+    struct func_801C5A5C_StructNode *unk2C;
+    struct func_801C5A5C_StructNode *unk30;
+};
+struct func_801C5A5C_StructArg {
+    u8 pad[0x24];
+    struct func_801C5A5C_StructMid *unk24;
+    u8 pad28[4];
+    s32 unk2C;
+    u8 pad30[0x40 - 0x30];
+    f32 unk40;
+    u8 pad44[4];
+    f32 unk48;
+};
+struct func_801C5A5C_StructGlobal {
+    u8 pad0[0x28];
+    u8 unk28;
+    u8 pad29[0xDC - 0x29];
+    struct func_801C5A5C_StructIn1 *unkDC;
+    struct func_801C5A5C_StructMid *unkE0;
+    u8 padE4[0x35A - 0xE4];
+    u8 unk35A;
+    u8 pad35B;
+    f32 unk35C;
+    f32 unk360;
+    f32 unk364;
+    f32 unk368;
+    f32 unk36C;
+    f32 unk370;
+    u8 pad374[0x380 - 0x374];
+    f32 unk380;
+    f32 unk384;
+    f32 unk388;
+    s32 unk38C;
+    u8 pad390[0xD40 - 0x390];
+    f32 unkD40[16];
+    f32 unkD80[16];
+    f32 unkDC0[16];
+    f32 unkE00[16];
+    f32 unkE40[16];
+    f32 unkE80[16];
+    u32 unkEC0;
+    s32 unkEC4;
+    u8 padEC8[0xED8 - 0xEC8];
+    f32 unkED8;
+    f32 unkEDC;
+    f32 unkEE0;
+    f32 unkEE4;
+    f32 unkEE8;
+    f32 unkEEC;
+    u16 unkEF0;
+    u16 unkEF2;
+    u8 padEF4;
+    u8 unkEF5;
+    u8 unkEF6;
+    u8 unkEF7;
+    s32 unkEF8;
+};
+struct func_801C5A5C_StructResult {
+    u8 pad[0xEC6];
+    u16 flags;
+};
+struct func_801C5A5C_StructFlag {
+    unsigned int flag : 16;
+    unsigned int index : 16;
+};
+
+#define H ((struct func_801C5A5C_StructGlobal *)&D_801BBBF0)
+/* its own private alias of func_801C5A1C (6 float args), not func_801C7B18's */
+#define COLLISION func_801C5A1C__func_801C5A5C
+#define SQRT_TWO(x, y) func_8002FC20(x)
+#define FABS(x) ((x) < 0.0f ? -(x) : (x))
+
+#define UPD_X() \
+    if (H->unk368 < 0.0f) { fs2 = -H->unk368; } else { fs2 = H->unk368; } \
+    if (fs5 < 0.0f) { fv0 = -fs5; } else { fv0 = fs5; } \
+    if (fv0 < fs2) { fs5 = H->unk368; }
+#define UPD_Z() \
+    if (H->unk370 < 0.0f) { fs2 = -H->unk370; } else { fs2 = H->unk370; } \
+    if (fs4 < 0.0f) { fv0 = -fs4; } else { fv0 = fs4; } \
+    if (fv0 < fs2) { fs4 = H->unk370; }
+/* copy the three floats at unk35C..unk364 */
+#define COPY_VEC35C(x, y, z) \
+    do { \
+        x = H->unk35C; \
+        y = H->unk360; \
+        z = H->unk364; \
+    } while (0)
+
 u16 func_801C5A5C(void *a0) {
     struct func_801C5A5C_StructArg *arg0 = a0;
-    s32 padA, padB;
+    struct func_801C5A5C_StructMid *m;
+    struct func_801C5A5C_StructIn2 *s6;
     f32 spA8;
-    s32 padC, padD;
+    u16 *p;
+    s32 t;
     f32 *sp9C;
     f32 *sp98;
     f32 *sp94;
     u8 sp93;
-    s32 padE, padF, padG;
+    s32 s1;
+    f32 fs0;
+    f32 fs1;
     f32 sp80;
     f32 sp7C;
     f32 sp78;
     f32 sp74;
-    s32 padH;
-    f32 fs0, fs1, fs2, fa0, fv0;
+    f32 fs2, fa0, fv0;
     f32 fs4;
     f32 fs5;
-    struct func_801C5A5C_StructIn2 *s6;
-    u16 *p;
-    struct func_801C5A5C_StructMid *m;
     u8 v;
-    s32 s1;
-    s32 t;
 
     s6 = H->unkDC->unk5C;
     H->unkEC4 = 0;
@@ -1041,8 +1190,8 @@ u16 func_801C5A5C(void *a0) {
                                     H->unk368 = H->unk380 - H->unkE00[p[1]];
                                     H->unk370 = H->unk388 - H->unkE80[p[1]];
                                 }
-                                UPD_X();
-                                UPD_Z();
+                                UPD_X()
+                                UPD_Z()
                                 if ((H->unk368 != 0.0f) || (H->unk370 != 0.0f)) {
                                     H->unkEC4 |= 0x40;
                                 }
@@ -1078,9 +1227,7 @@ u16 func_801C5A5C(void *a0) {
                                 }
                                 if (H->unk35A != 9) {
                                     if ((f64) SQRT_TWO((H->unk35C * H->unk35C) + (H->unk360 * H->unk360) + (H->unk364 * H->unk364), H->unk360) != 0.0) {
-                                        H->unkED8 = H->unk35C;
-                                        H->unkEDC = H->unk360;
-                                        H->unkEE0 = H->unk364;
+                                        COPY_VEC35C(H->unkED8, H->unkEDC, H->unkEE0);
                                     }
                                     if ((f64) H->unk36C >= 1.0) {
                                         H->unk36C = (f32) ((f64) H->unk384 - ((f64) H->unkE40[p[1]] - 1.0));
@@ -1105,7 +1252,6 @@ u16 func_801C5A5C(void *a0) {
                                 H->unkEF6 = 0;
                             }
                         }
-                        p = (u16 *)((u32)p | 0);
                         break;
                     case 0x2:
                         if (H->unkEF0 & 1) { break; }
@@ -1113,17 +1259,15 @@ u16 func_801C5A5C(void *a0) {
                             if (COLLISION(H->unkD40[p[1]], H->unkD80[p[1]], H->unkDC0[p[1]], H->unkE00[p[1]], H->unkE40[p[1]] + spA8, H->unkE80[p[1]]) != 0) {
                                 H->unkEF7 = H->unk35A;
                                 if (H->unk35A == 0x12) {
-                                    p = (u16 *)((u32)p | 0); break;
+                                    break;
                                 } else if (H->unk35A == 0x21) {
-                                    p = (u16 *)((u32)p | 0); break;
+                                    break;
                                 } else {
                                     if ((f64) SQRT_TWO((H->unk35C * H->unk35C) + (H->unk360 * H->unk360) + (H->unk364 * H->unk364), H->unk360) != 0.0) {
-                                        H->unkEE4 = H->unk35C;
-                                        H->unkEE8 = H->unk360;
-                                        H->unkEEC = H->unk364;
+                                        COPY_VEC35C(H->unkEE4, H->unkEE8, H->unkEEC);
                                     }
-                                    UPD_X();
-                                    UPD_Z();
+                                    UPD_X()
+                                    UPD_Z()
                                     if ((H->unk368 != 0.0f) || (H->unk370 != 0.0f)) {
                                         H->unkEC4 |= *p;
                                     }
@@ -1141,7 +1285,6 @@ u16 func_801C5A5C(void *a0) {
                                                 break;
                                             }
                                         } else if (H->unk35A == 0x15) {
-                                            p = (u16 *)((u32)p | 0);
                                             break;
                                         } else if ((H->unk35A == 0xB) && (H->unkEC4 & 1)) {
                                             s1 = 0;
@@ -1259,9 +1402,9 @@ u16 func_801C5A5C(void *a0) {
                         {
                             if (COLLISION(H->unkD40[p[1]], H->unkD80[p[1]], H->unkDC0[p[1]], H->unkE00[p[1]], H->unkE40[p[1]] + spA8, H->unkE80[p[1]]) != 0) {
                                 if (H->unk35A == 0x12) {
-                                    p = (u16 *)((u32)p | 0); break;
+                                    break;
                                 } else if (H->unk35A == 0x21) {
-                                    p = (u16 *)((u32)p | 0); break;
+                                    break;
                                 } else if (!(H->unkEF0 & 0x1000) && !(H->unkEF0 & 0x8000) && (H->unk35A == 0x1AU)) {
                                     if ((s32) D_8017DC42 > 0) {
                                         t = s6->unk1C;
@@ -1276,12 +1419,10 @@ u16 func_801C5A5C(void *a0) {
                                 }
                                 {
                                     if ((f64) SQRT_TWO((H->unk35C * H->unk35C) + (H->unk360 * H->unk360) + (H->unk364 * H->unk364), H->unk360) != 0.0) {
-                                        H->unkEE4 = H->unk35C;
-                                        H->unkEE8 = H->unk360;
-                                        H->unkEEC = H->unk364;
+                                        COPY_VEC35C(H->unkEE4, H->unkEE8, H->unkEEC);
                                     }
-                                    UPD_X();
-                                    UPD_Z();
+                                    UPD_X()
+                                    UPD_Z()
                                     if ((H->unk368 != 0.0f) || (H->unk370 != 0.0f)) {
                                         H->unkEC4 |= *p;
                                     }
@@ -1294,13 +1435,10 @@ u16 func_801C5A5C(void *a0) {
                         sp74 = fs4;
                         if (COLLISION(H->unkD40[p[1]], H->unkD80[p[1]], H->unkDC0[p[1]], H->unkE00[p[1]], H->unkE40[p[1]] + spA8, H->unkE80[p[1]]) != 0) {
                             if (H->unk35A == 0x12) {
-                                p = (u16 *)((u32)p | 0);
                                 break;
                             } else if (H->unk35A == 0x21) {
-                                p = (u16 *)((u32)p | 0);
                                 break;
                             } else if (H->unk35A == 0x1A) {
-                                p = (u16 *)((u32)p | 0);
                                 break;
                             } else {
                                 if (H->unk368 < 0.0f) { fs2 = -H->unk368; } else { fs2 = H->unk368; }
@@ -1311,11 +1449,10 @@ u16 func_801C5A5C(void *a0) {
                                 if (fv0 < fs2) { sp7C = H->unk370; }
                                 H->unk368 = H->unk380 - H->unkE00[p[1]];
                                 H->unk370 = H->unk388 - H->unkE80[p[1]];
-                                UPD_X();
-                                UPD_Z();
+                                UPD_X()
+                                UPD_Z()
                                 if ((H->unk368 != 0.0f) || (H->unk370 != 0.0f)) {
                                     H->unkEC4 |= *p;
-                                } else {
                                 }
                             }
                         }
@@ -1323,13 +1460,10 @@ u16 func_801C5A5C(void *a0) {
                     case 0x800:
                         if (COLLISION(H->unkD40[p[1]], H->unkD80[p[1]], H->unkDC0[p[1]], H->unkE00[p[1]], H->unkE40[p[1]] + spA8, H->unkE80[p[1]]) != 0) {
                             if (H->unk35A == 0x12) {
-                                p = (u16 *)((u32)p | 0);
                                 break;
                             } else if (H->unk35A == 0x21) {
-                                p = (u16 *)((u32)p | 0);
                                 break;
                             } else if (H->unk35A == 0x1A) {
-                                p = (u16 *)((u32)p | 0);
                                 break;
                             } else {
                                 {s32 w = H->unkEC4;
@@ -1337,8 +1471,8 @@ u16 func_801C5A5C(void *a0) {
                                     H->unk368 = H->unk380 - H->unkE00[p[1]];
                                     H->unk370 = H->unk388 - H->unkE80[p[1]];
                                 }
-                                UPD_X();
-                                UPD_Z();
+                                UPD_X()
+                                UPD_Z()
                                 if ((H->unk368 != 0.0f) || (H->unk370 != 0.0f)) {
                                     H->unkEC4 = w | ((struct func_801C5A5C_StructFlag *)p)->flag;
                                 }
@@ -1366,7 +1500,6 @@ u16 func_801C5A5C(void *a0) {
                                 spA8 = H->unk36C;
                             }
                             H->unkEC4 |= *p;
-                        } else {
                         }
                         break;
                     case 0x40:
@@ -1380,8 +1513,8 @@ u16 func_801C5A5C(void *a0) {
                                     H->unk368 = H->unk380 - H->unkE00[p[1]];
                                     H->unk370 = H->unk388 - H->unkE80[p[1]];
                                 }
-                                UPD_X();
-                                UPD_Z();
+                                UPD_X()
+                                UPD_Z()
                                 if ((H->unk368 != 0.0f) || (H->unk370 != 0.0f)) {
                                     H->unkEC4 |= *p;
                                 }
@@ -1406,7 +1539,6 @@ u16 func_801C5A5C(void *a0) {
                         }
                         break;
                     }
-                    next: if (*p == 0) {}
                 }
             }
         }
@@ -1428,6 +1560,41 @@ u16 func_801C5A5C(void *a0) {
     }
     return 0;
 }
+#undef H
+#undef COLLISION
+#undef SQRT_TWO
+#undef FABS
+#undef UPD_X
+#undef UPD_Z
+#undef COPY_VEC35C
+#undef D_801BBBF0
+#undef D_801E0B30
+#undef func_801C3B20
+#undef func_801C3B48
+#undef func_801C3B7C
+#undef func_801C3D90_StructA
+#undef func_801C3D90_StructB
+#undef func_801C4A5C_StructEntry
+#undef func_801C5A1C
+#undef func_801C5A5C_StructArg
+#undef func_801C5A5C_StructFlag
+#undef func_801C5A5C_StructGlobal
+#undef func_801C5A5C_StructIn1
+#undef func_801C5A5C_StructIn2
+#undef func_801C5A5C_StructMid
+#undef func_801C5A5C_StructNode
+#undef func_801C5A5C_StructResult
+#define COLLISION func_801C5A1C__func_801C5A5C
+#define D_801BBBF0 D_801BBBF0__func_801C5A5C
+#define D_801E0B30 D_801E0B30__func_801C5A5C
+#define FABS(x) ((x) < 0.0f ? -(x) : (x))
+#define H ((struct func_801C5A5C_StructGlobal *)&D_801BBBF0)
+#define SQRT_TWO(x, y) func_8002FC20(x)
+#define UPD_X() \
+#define UPD_Z() \
+#define func_801C3D90_StructA func_801C3D90_StructA__func_801C5A5C
+#define func_801C3D90_StructB func_801C3D90_StructB__func_801C5A5C
+#define func_801C4A5C_StructEntry func_801C4A5C_StructEntry__func_801C5A5C
 #undef H
 #undef COLLISION
 #undef SQRT_TWO

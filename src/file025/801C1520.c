@@ -152,22 +152,30 @@ struct func_801C157C_Struct {
     s32 unk8;
 };
 
-void func_801C1834(struct func_801C157C_Struct *arg0, s32 arg1) {
-    struct func_801C157C_Struct *p;
-    s32 i;
+#undef func_801C157C_Struct
+#define D_801DEBF0 D_801DEBF0__func_801C1834_f6bb5715
+#define func_801C157C_Struct func_801C157C_Struct__func_801C1834_f6bb5715
+struct func_801C157C_Struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+extern struct func_801C157C_Struct D_801DEBF0[];
 
-    if (arg0) {
-    }
-    if (arg1) {
-    }
-    i = 0;
-loop:
-    p = &D_801DEBF0[i * 4];
-    if (p->unk0) {
-    }
-    if (++i < 8) goto loop;
-    if (p) {
+
+void func_801C1834(void) {
+    s32 i;
+    s32 count;
+
+    count = 0;
+    for (i = 0; i < 32; i++) {
+        if (D_801DEBF0[i].unk0 != -1) {
+            count++;
+        }
     }
 }
+#undef D_801DEBF0
+#undef func_801C157C_Struct
+#define func_801C157C_Struct func_801C157C_Struct__func_801C1834
 #undef func_801C157C_Struct
 

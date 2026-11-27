@@ -1,15 +1,10 @@
 #include "common.h"
-extern u8 D_801BC03C[];
-extern u8 D_801BC3D8[];
-
-
 typedef struct func_8038CFF4_StructB {
     u8 pad0[0xC];
     s32 unkC;
     u8 pad10[0x98 - 0x10];
     s16 unk98;
 } func_8038CFF4_StructB;
-
 typedef struct func_8038CFF4_StructA {
     u8 pad0[0xC];
     func_8038CFF4_StructB *unkC;
@@ -21,7 +16,6 @@ typedef struct func_8038CFF4_StructA {
     s16 unk96;
     s16 unk98;
 } func_8038CFF4_StructA;
-
 typedef struct func_8038CFF4_StructO {
     u8 pad0[6];
     s16 unk6;
@@ -44,9 +38,13 @@ typedef struct func_8038CFF4_StructO {
     s16 unk312;
 } func_8038CFF4_StructO;
 
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+
+
 typedef struct func_8038CFF4_StructP {
     u8 pad0[0x2C];
-    struct func_8038CFF4_StructV {
+    struct func_8038CFF4_StructVec {
         f32 unk0;
         f32 unk4;
         f32 unk8;
@@ -87,26 +85,21 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, func_8038CFF4_StructO *arg1) {
     s16 sp4E;
     s16 sp4C;
     s16 *sp48;
-    s32 sp44;
-    u8 *a1p;
-    u8 *t1p;
-#define a1 ((func_8038CFF4_StructO *)a1p)
-#define t1 ((func_8038CFF4_StructO *)t1p)
-    func_8038CFF4_StructP *sp38;
-    s32 sp34;
-    struct func_8038CFF4_StructV *p;
-    f32 sp2C;
     s32 v1;
+    func_8038CFF4_StructO *a1;
+    func_8038CFF4_StructO *t1;
+    func_8038CFF4_StructP *sp38;
     s32 v0;
-#define q (sp38->unk2C)
     s16 s0;
+    f32 sp2C;
+#define q (sp38->unk2C)
 
     sp4C = (s16)(0x2800 - G.unk232) & 0x1FFF;
     v1 = arg0->unkC->unkC;
     v0 = G.unkDC;
     sp48 = (v0 == v1) ? (s16 *)D_801BBC8C : (s16 *)D_801BBCAC;
-    a1p = (v0 == v1) ? D_801BC03C : D_801BC3D8;
-    t1p = (v0 == v1) ? D_801BC3D8 : D_801BC03C;
+    a1 = (func_8038CFF4_StructO *)((v0 == v1) ? D_801BC03C : D_801BC3D8);
+    t1 = (func_8038CFF4_StructO *)((v0 == v1) ? D_801BC3D8 : D_801BC03C);
     sp38 = (v0 == v1) ? G.unkE0 : G.unkF0;
     if (arg0->unk91 == 1 && G.unk1031 == 7) {
         arg0->unk91 = 2;
@@ -215,3 +208,5 @@ void func_8038CFF4(func_8038CFF4_StructA *arg0, func_8038CFF4_StructO *arg1) {
     }
     }
 }
+#undef q
+#undef G

@@ -2153,8 +2153,7 @@ void func_801EACA4(func_801E74DC_Arg0 *arg0, s32 arg1, func_801EACA4_Arg2 *arg2,
 
 /* hh-block asm/nonmatchings/file010/801E4F60/_ro_regular_329f7177f9df4cb3.s {"functions":[],"rodata":[],"rodata_bytes":[2149680584,6067656,16],"rodata_section":".rodata"} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file010/801E4F60/_ro_regular_329f7177f9df4cb3.s")
-/* hh-block asm/nonmatchings/file010/801E4F60/_ro_regular_bdf501d9e2e690d7.s {"functions":[],"rodata":[],"rodata_bytes":[2149680752,6067824,72],"rodata_section":".rodata"} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801E4F60/_ro_regular_bdf501d9e2e690d7.s")
+
 #define D_801BBCD0 D_801BBCD0__func_801EB7A8
 #define D_801BBF74 D_801BBF74__func_801EB7A8
 #define D_801BCAE0 D_801BCAE0__func_801EB7A8
@@ -3207,8 +3206,330 @@ void func_801ED2D4(func_801ED2D4_StructObj *input, s32 arg1, s32 arg2, s32 arg3)
 #undef func_801E5010
 #undef func_801E74DC_Sub
 
-/* hh-block asm/nonmatchings/file010/801E4F60/_mrg_keep_text_func_801ED72C.s {"functions":["func_801ED72C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801E4F60/_mrg_keep_text_func_801ED72C.s")
+#define D_801BBBF0 D_801BBBF0__func_801ED72C
+#define D_80216B90 D_80216B90__func_801ED72C
+#define D_8021AFB4 D_8021AFB4__func_801ED72C
+#define D_8021AFB8 D_8021AFB8__func_801ED72C
+#define D_8021AFBC D_8021AFBC__func_801ED72C
+#define D_8021AFC0 D_8021AFC0__func_801ED72C
+#define func_80011140 func_80011140__func_801ED72C
+#define func_8001EF38 func_8001EF38__func_801ED72C
+#define func_8013A28C func_8013A28C__func_801ED72C
+#define func_801BF1A0 func_801BF1A0__func_801ED72C
+#define func_801C5A1C func_801C5A1C__func_801ED72C
+#define func_801E4F60 func_801E4F60__func_801ED72C
+#define func_801E74DC_Sub func_801E74DC_Sub__func_801ED72C
+#define func_801E7C30_G func_801E7C30_G__func_801ED72C
+#define func_801E8BD0_G func_801E8BD0_G__func_801ED72C
+#define func_801E8BD0_In func_801E8BD0_In__func_801ED72C
+#define func_801E8BD0_Mid func_801E8BD0_Mid__func_801ED72C
+#define func_801EFD14_Table func_801EFD14_Table__func_801ED72C
+#define func_801F13B8 func_801F13B8__func_801ED72C
+#define func_801F152C_In func_801F152C_In__func_801ED72C
+#define func_801F152C_Obj func_801F152C_Obj__func_801ED72C
+#define func_801F152C_Struct func_801F152C_Struct__func_801ED72C
+#define G ((func_801F152C_Struct *)&D_801BBBF0)
+#define p (G->unkE0->unk2C)
+#define FLAGS(p) (*(u16 *)&(p)->f.unk4 + 0)
+#define P G.obj->pos
+#define SUBV (*(func_801E74DC_Sub *)sub)
+#define g ((func_801E7C30_G *)&D_801BBBF0)
+extern u8 D_801BBBF0[];
+typedef struct func_801EFD14_Table {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_801EFD14_Table;
+extern func_801EFD14_Table D_80216B90;
+extern f32 D_8021AFB4;
+extern f32 D_8021AFB8;
+extern f32 D_8021AFBC;
+extern s16 D_8021AFC0;
+typedef struct func_801F152C_In { u8 pad0[4]; f32 unk4; f32 unk8; f32 unkC; u8 pad1[2]; s16 unk12; } func_801F152C_In;
+typedef struct func_801F152C_Obj { u8 pad[0x22]; u8 unk22; u8 pad1[9]; func_801F152C_In *unk2C; } func_801F152C_Obj;
+typedef struct func_801F152C_Struct { u8 pad[0xE0]; func_801F152C_Obj *unkE0; u8 pad1[0xF4 - 0xE4]; u8 unkF4; u8 pad2[2]; u8 unkF7; } func_801F152C_Struct;
+#define G ((func_801F152C_Struct *)&D_801BBBF0)
+typedef struct func_801E8BD0_In {
+    u8 pad0[4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad1[2];
+    s16 unk12;
+} func_801E8BD0_In;
+typedef struct func_801E8BD0_Mid {
+    u8 pad[0x2C];
+    func_801E8BD0_In *unk2C;
+} func_801E8BD0_Mid;
+typedef struct func_801E7C30_G {
+    u8 pad0[0xE0];
+    func_801E8BD0_Mid *unkE0;
+    u8 pad1[0x232 - 0xE4];
+    s16 unk232;
+    u8 pad2[0x35A - 0x234];
+    u8 unk35A;
+    u8 pad3;
+    f32 unk35C;
+    f32 unk360;
+    f32 unk364;
+    u8 pad4[0x380 - 0x368];
+    f32 unk380;
+    f32 unk384;
+    f32 unk388;
+    u8 pad5[0xEC4 - 0x38C];
+    s32 unkEC4;
+    u8 pad6[0xEF0 - 0xEC8];
+    u16 unkEF0;
+    u8 pad7[4];
+    u8 unkEF6;
+    u8 pad8[5];
+    s32 unkEFC;
+} func_801E7C30_G;
+#define g ((func_801E7C30_G *)&D_801BBBF0)
+#define P (g->unkE0->unk2C)
+typedef struct func_801E74DC_Sub {
+    s32 unk0;
+    s32 unk4;
+    f32 unk8;
+} func_801E74DC_Sub;
+#define SUBV (*(func_801E74DC_Sub *)sub)
+extern void func_80011140(s32, void *, func_801EFD14_Table, s32);
+extern s32 func_8001EF38(f32, f32);
+extern void func_8013A28C(s32, func_801E74DC_Sub);
+extern void func_801BF1A0(s32);
+extern s32 func_801C5A1C(f32, f32, f32, f32, f32, f32);
+void func_801E4F60(u16 arg0);
+typedef struct func_801E8BD0_G {
+    u8 pad0[0xE0];
+    func_801E8BD0_Mid *unkE0;
+    u8 pad1[0x232 - 0xE4];
+    s16 unk232;
+    u8 pad2[0x35A - 0x234];
+    u8 unk35A;
+    u8 pad3;
+    f32 unk35C;
+    f32 unk360;
+    f32 unk364;
+    u8 pad4[0x380 - 0x368];
+    f32 unk380;
+    f32 unk384;
+    f32 unk388;
+    u8 pad5[0xEF0 - 0x38C];
+    u16 unkEF0;
+    u8 pad6[4];
+    u8 unkEF6;
+    u8 pad7[5];
+    s32 unkEFC;
+} func_801E8BD0_G;
+
+#undef g
+#undef P
+#undef G
+#undef SUBV
+typedef struct func_801ED72C_StructA {
+    u8 pad[0x2C]; u32 flags; u8 pad2[0x10];
+    f32 x, y, z; u8 pad3[8]; s32 unk54;
+} func_801ED72C_StructA;
+typedef union func_801ED72C_StructSub {
+    struct { u32 id; s16 frame; u16 flags; f32 speed; } fields;
+    func_801E74DC_Sub value;
+} func_801ED72C_StructSub;
+typedef struct func_801ED72C_StructB {
+    u8 pad[0x1C]; func_801ED72C_StructSub anim;
+} func_801ED72C_StructB;
+#define g ((func_801E8BD0_G *)D_801BBBF0)
+#define P (g->unkE0->unk2C)
+#define SUBV(v) ((v)->value)
+#define FLAGS g->unkEF0
+#define LAST (*(u16 *)(D_801BBBF0 + 0xEFE))
+extern void func_801F13B8(f32, f32, f32, f32, s16);
+
+s32 func_801ED72C(func_801ED72C_StructA *arg0, s32 arg1, func_801ED72C_StructB *arg2, u16 arg3) {
+    func_801ED72C_StructSub *sub;
+    f32 sp48[3];
+    f32 c, x;
+    f32 sp3C;
+    f32 z;
+    s32 st;
+    f32 sp30;
+extern void func_801C4A5C();
+
+    sub = &arg2->anim;
+    switch (arg2->anim.fields.id) {
+    case 0x1680023:
+        arg0->flags |= 0x80;
+        if (arg3 != 0) {
+            func_80011140(arg1, arg2, *(func_801EFD14_Table *)&D_80216B90, 10);
+            arg0->flags |= 0x60;
+            func_801E4F60(LAST);
+            FLAGS &= 0xFFF9;
+        }
+        break;
+    case 0x1680026:
+        arg0->flags |= 0x80;
+        if (arg3 != 0) {
+            sub->fields.id = 0x168003E;
+            sub->fields.frame = 0x1D;
+            sub->fields.flags = 0;
+            sub->fields.speed = 1.0f;
+            func_8013A28C(arg1, SUBV(sub));
+            arg0->flags |= 0x60;
+            func_801E4F60(LAST);
+            FLAGS &= 0xFFF9;
+        }
+        break;
+    case 0x1680031:
+        arg0->flags |= 0x80;
+        if (arg3 != 0) {
+            if (sub->fields.flags & 2) {
+                arg0->flags |= 0x60;
+                arg0->flags &= ~0x80;
+                arg0->z = 0.0f;
+                arg0->y = 0.0f;
+                arg0->x = 0.0f;
+                sub->fields.id = 0x1680053;
+                sub->fields.frame = 0;
+                sub->fields.flags = 0;
+                sub->fields.speed = 1.0f;
+                func_8013A28C(arg1, SUBV(sub));
+                FLAGS &= 0xFAFF;
+                func_801E4F60(g->unkEFC | 4 | 8);
+            } else {
+                sub->fields.id = 0x1680017;
+                sub->fields.frame = 0;
+                sub->fields.flags = 0;
+                sub->fields.speed = 1.0f;
+                func_8013A28C(arg1, SUBV(sub));
+                arg0->unk54 = 0xF181;
+                func_801C4A5C(arg0, 0);
+                arg0->flags |= 0x40;
+                FLAGS &= 0xFFF9;
+                arg0->x = 0.0f;
+                arg0->z = 0.0f;
+                arg0->y = 0.0f;
+            }
+        }
+        break;
+    case 0x1680024:
+    case 0x1680025:
+        arg0->flags |= 0x80;
+        if (arg3 != 0) {
+            arg0->flags |= 0x20;
+            sp3C = func_8001EAD0(P->unk12);
+            c = func_8001EB64(P->unk12);
+            x = P->unk4;
+            z = P->unkC;
+            func_801C5A1C(x, P->unk8 + 1.0, z, sp3C * 5.0 + x, P->unk8 + 1.0, c * 5.0 + z);
+            st = g->unk35A;
+            if (st != 15 && st != 16 && st == 34) {
+                func_801BF1A0(6);
+                FLAGS |= 0x100;
+                sub->fields.id = 0x1680031;
+                sub->fields.frame = 0;
+                sub->fields.flags = 0;
+                func_8013A28C(arg1, SUBV(sub));
+            } else {
+                P->unk8 -= 0.4;
+                sub->fields.id = 0x1680026;
+                sub->fields.frame = 0;
+                sub->fields.flags = 0;
+                func_8013A28C(arg1, SUBV(sub));
+            }
+        } else {
+            func_801F13B8(D_8021AFB4, D_8021AFB8, D_8021AFBC, 1.0f, D_8021AFC0);
+        }
+        break;
+    default:
+        sp3C = func_8001EAD0(P->unk12);
+        c = func_8001EB64(P->unk12);
+        x = P->unk4;
+        z = P->unkC;
+        if (func_801C5A1C(x, P->unk8 + 28.0, z, sp3C * 8.0 + x, P->unk8 + 28.0, c * 8.0 + z) == 0) {
+            sp30 = func_8001EAD0(P->unk12);
+            c = func_8001EB64(P->unk12);
+            x = P->unk4;
+            z = P->unkC;
+            if (func_801C5A1C(x, P->unk8 + 1.0, z, sp30 * 5.0 + x, P->unk8 + 1.0, c * 5.0 + z) != 0) {
+                st = g->unk35A;
+                if (st == 14 || st == 15 || st == 16 || st == 34) {
+                    sp48[2] = g->unk364;
+                    sp48[0] = g->unk35C;
+                    sp48[1] = g->unk360;
+                    D_8021AFC0 = (s16)(func_8001EF38(-sp48[2], sp48[0]) + 0x1800) & 0x1FFF;
+                    arg0->x = 0.0f;
+                    arg0->y = 0.0f;
+                    arg0->z = 0.0f;
+                    st = g->unk35A;
+                    if (st == 14) goto c14;
+                    if (st == 15) goto c15;
+                    if (st == 16) goto c16;
+                    if (st == 34) goto c16;
+                    sub = &arg2->anim;
+                    goto done;
+                c14:
+                    sub->fields.id = 0x1680023;
+                    sub = &arg2->anim;
+                    func_801E4F60(14);
+                    P->unk4 = g->unk380 - func_8001EAD0(P->unk12) * 3.0f;
+                    P->unkC = g->unk388 - func_8001EB64(P->unk12) * 3.0f;
+                    goto done;
+                c15:
+                    sub->fields.id = 0x1680024;
+                    sub = &arg2->anim;
+                    func_801E4F60(12);
+                    D_8021AFB4 = g->unk380;
+                    D_8021AFBC = g->unk388;
+                    goto done;
+                c16:
+                    sub->fields.id = 0x1680025;
+                    sub = &arg2->anim;
+                    if (g->unk35A == 16) func_801E4F60(12);
+                    else func_801E4F60(0);
+                    D_8021AFB4 = g->unk380;
+                    D_8021AFBC = g->unk388;
+                done:
+                    sub->fields.frame = 0;
+                    sub->fields.flags = 0;
+                    func_8013A28C(arg1, SUBV(sub));
+                    arg0->flags &= ~0x40;
+                    arg0->flags &= ~0x20;
+                    arg0->z = 0.0f;
+                    arg0->y = 0.0f;
+                    arg0->x = 0.0f;
+                    break;
+                }
+                return 0;
+            }
+        }
+        return 0;
+    }
+    return 1;
+}
+#undef p
+#undef FLAGS
+#undef LAST
+#undef D_801BBBF0
+#undef D_80216B90
+#undef D_8021AFB4
+#undef D_8021AFB8
+#undef D_8021AFBC
+#undef D_8021AFC0
+#undef func_80011140
+#undef func_8001EF38
+#undef func_8013A28C
+#undef func_801BF1A0
+#undef func_801C5A1C
+#undef func_801E4F60
+#undef func_801E74DC_Sub
+#undef func_801E7C30_G
+#undef func_801E8BD0_G
+#undef func_801E8BD0_In
+#undef func_801E8BD0_Mid
+#undef func_801EFD14_Table
+#undef func_801F13B8
+#undef func_801F152C_In
+#undef func_801F152C_Obj
+#undef func_801F152C_Struct
 
 #define D_801BBBF0 D_801BBBF0__func_801EDF0C
 #define D_801E4011 D_801E4011__func_801EDF0C
@@ -6069,6 +6390,7 @@ s32 func_801F1888(void) {
 
 
 
+
 static const unsigned char rodata_801E4F60_80218120[] = {
     0x2F, 0x68, 0x64, 0x69, 0x73, 0x6B, 0x31, 0x2F, 0x75, 0x2F, 0x6E, 0x75, 0x36, 0x34, 0x2F, 0x72,
     0x7A, 0x30, 0x31, 0x31, 0x5F, 0x75, 0x73, 0x61, 0x2F, 0x6D, 0x61, 0x69, 0x6E, 0x2F, 0x67, 0x61,
@@ -6134,4 +6456,5 @@ static const unsigned char rodata_801E4F60_80218120[] = {
 /* hh-placed-function func_801E6BCC */
 /* hh-placed-function func_801EBCC4 */
 /* hh-placed-function func_801ED2D4 */
-/* hh-rodata-layout [1696,[[0,1192,16],[16,1360,72],[88,0,1192],[1280,1208,152],[1432,1432,264]]] */
+/* hh-placed-function func_801ED72C */
+/* hh-rodata-layout [1696,[[0,1192,16],[16,0,1192],[1208,1208,488]]] */

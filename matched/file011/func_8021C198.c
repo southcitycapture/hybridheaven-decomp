@@ -1,4 +1,5 @@
 #include "common.h"
+
 extern u8 D_80089474[];
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
@@ -11,7 +12,7 @@ extern s32 func_80236C9C();
 
 typedef struct func_8021C198_StructActor {
     u8 pad0[0x30]; u32 unk30;
-    u8 pad1[0x9A-0x34]; s16 unk9A;
+    u8 pad1[0x9A-0x34]; u16 unk9A;
     u8 pad2[0x2D4-0x9C]; void *unk2D4;
     u8 unk2D8, unk2D9; s8 unk2DA; u8 unk2DB, unk2DC, unk2DD, unk2DE, unk2DF;
     u8 unk2E0[8]; u8 unk2E8;
@@ -33,7 +34,6 @@ typedef struct func_8021C198_StructFlags {
     u8 rest:7;
     u8 pad2[2];
 } func_8021C198_StructFlags;
-typedef struct func_8021C198_StructW { u32 b:1; } func_8021C198_StructW;
 typedef struct func_8021C198_StructGlobal {
     u8 pad0[0x2C]; u16 mode;
     u8 pad1[0x47C-0x2E]; func_8021C198_StructFlags f1;
@@ -57,12 +57,10 @@ typedef struct func_8021C198_StructS2 { u8 pad[0x819]; s8 f:1; } func_8021C198_S
 #define F2 (&H->f2)
 
 void func_8021C198(func_8021C198_StructObj *arg0, s32 arg1) {
-    s32 pad;
+    func_8021C198_StructObj *obj;
     func_8021C198_StructActor *a;
     func_8021C198_StructActor *b;
-    s32 i;
-    u8 *p;
-    func_8021C198_StructObj *obj;
+    u8 i;
 
     a = (H->side == 0) ? (void *)D_801BC03C : (void *)D_801BC3D8;
     b = (H->side == 0) ? (void *)D_801BC3D8 : (void *)D_801BC03C;
@@ -79,23 +77,19 @@ void func_8021C198(func_8021C198_StructObj *arg0, s32 arg1) {
         F1->lo = F2->lo = 1;
         F1->secondhi = F2->secondhi = 0;
         F1->hi = F2->hi = 1;
-        b->unk2DB = 1;
-        a->unk2DB = b->unk2DB;
-        b->unk2DE = 0; a->unk2DE = 0;
-        b->unk2E8 = 0; a->unk2E8 = 0;
-        b->unk2F8 = 0; a->unk2F8 = 0;
-        b->unk9A = 0; a->unk9A = 0;
-        b->unk2F0 = 0; a->unk2F0 = 0;
-        b->unk2DD = 0; a->unk2DD = 0;
-        b->unk304 = 0; a->unk304 = 0;
-        b->unk2FA = 0; a->unk2FA = 0;
-        b->unk375 = 0; a->unk375 = 0;
+        a->unk2DB = b->unk2DB = 1;
+        a->unk2DE = b->unk2DE = 0;
+        a->unk2E8 = b->unk2E8 = 0;
+        a->unk2F8 = b->unk2F8 = 0;
+        a->unk9A = b->unk9A = 0;
+        a->unk2F0 = b->unk2F0 = 0;
+        a->unk2DD = b->unk2DD = 0;
+        a->unk304 = b->unk304 = 0;
+        a->unk2FA = b->unk2FA = 0;
+        a->unk375 = b->unk375 = 0;
         func_802321FC(a, b);
-        for (i = 0; i < 8; i = (i + 1) & 0xFF) {
-            p = b->unk2E0 + i;
-            *p = 0;
-            a->unk2E0[i] = 0;
-            if (p) {}
+        for (i = 0; i < 8; i++) {
+            a->unk2E0[i] = b->unk2E0[i] = 0;
         }
         func_80231CEC(a, b);
         func_80231B28();

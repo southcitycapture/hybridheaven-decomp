@@ -299,8 +299,196 @@ u8 func_80376D48(void) {
 #undef func_80376D10
 #undef func_8037865C_Struct
 
-/* hh-block asm/nonmatchings/file057/80376D10/_mrg_keep_text_func_8037797C.s {"functions":["func_8037797C"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file057/80376D10/_mrg_keep_text_func_8037797C.s")
+#define D_801BBBF0 D_801BBBF0__func_8037797C
+#define D_801BC03C D_801BC03C__func_8037797C
+#define D_801BC3D8 D_801BC3D8__func_8037797C
+#define D_80240730 D_80240730__func_8037797C
+#define D_80388D56 D_80388D56__func_8037797C
+#define D_80388E1C D_80388E1C__func_8037797C
+#define D_80388EE2 D_80388EE2__func_8037797C
+#define D_80388FA8 D_80388FA8__func_8037797C
+#define D_8038906E D_8038906E__func_8037797C
+#define D_80389134 D_80389134__func_8037797C
+#define func_80376D10 func_80376D10__func_8037797C
+extern u8 D_801BBBF0[];
+extern u8 D_801BC03C[];
+extern u8 D_801BC3D8[];
+
+u16 func_80376D10();
+
+extern u8 D_80240730[];
+extern u16 D_80388D56[];
+extern u16 D_80388E1C[];
+extern u16 D_80388EE2[];
+extern u16 D_80388FA8[];
+extern u16 D_8038906E[];
+extern u16 D_80389134[];
+
+struct func_8037797C_StructItem {
+    u8 pad[0xB];
+    u8 mask;
+};
+
+struct func_8037797C_StructActor {
+    u8 pad00[0x30];
+    u32 flags;
+    u8 pad34[0x36];
+    u16 exp[6];
+    u8 pad76[0xC];
+    u16 level[6];
+    u8 pad8E[0x246];
+    struct func_8037797C_StructItem *item;
+    u8 state;
+    u8 kind;
+    u8 pad2DA[0x26];
+    u16 count;
+    u8 pad302[0x95];
+    u8 locked;
+};
+
+struct func_8037797C_StructResult {
+    u8 before[3];
+    u8 value;
+    u8 after[8];
+};
+
+struct func_8037797C_StructStats {
+    u8 pad00[0x14];
+    u8 counts[6];
+    u8 pad1A[7];
+    u8 total;
+};
+
+#define STATS ((struct func_8037797C_StructStats *)D_80240730)
+#define BYTE(p, o) (*(u8 *)((u8 *)(p) + (o)))
+#define HALF(p, o) (*(u16 *)((u8 *)(p) + (o)))
+#define WORD(p, o) (*(u32 *)((u8 *)(p) + (o)))
+u8 func_8037797C(struct func_8037797C_StructActor *arg0)
+{
+    struct func_8037797C_StructActor **argp = &arg0;
+    struct func_8037797C_StructResult result;
+    u8 *other;
+    u16 increment;
+    u16 i;
+    u8 mask[0x10];
+    u8 *base = (u8 *)*argp - 0x44C;
+    u16 *level;
+    u16 *exp;
+    u32 bits;
+    struct func_8037797C_StructActor *current;
+    u8 active;
+
+    result.value = 0;
+    if (base == D_801BBBF0) other = (u8 *)&D_801BC3D8;
+    else other = (u8 *)&D_801BC03C;
+    if (HALF(D_801BBBF0, 0x2C) == 10 || HALF(D_801BBBF0, 0x2C) == 15 || HALF(D_801BBBF0, 0x2C) == 11) return 0;
+    if ((*argp)->count >= 80 || (*argp)->state == 10) {
+        if (BYTE(other, 0x2DB) || BYTE(other, 0x2F8) == 1) increment = 1;
+        else increment = 2;
+    } else return 0;
+    if (arg0 == (struct func_8037797C_StructActor *)((u32)D_801BBBF0 + 0x7E8)) increment <<= 1;
+    if ((*argp)->kind == 0x3E || (*argp)->kind == 0x3F || (*argp)->kind == 0x52 || (*argp)->kind == 0x54 || (*argp)->kind == 0x55) {
+        bits = ((*argp)->flags << 9) >> 30;
+        if (bits == 2) mask[7] = (*argp)->item->mask;
+        else if (bits == 3) mask[7] = (*argp)->item->mask << 1;
+    } else if ((*argp)->kind == 0x53) {
+        bits = ((*argp)->flags << 9) >> 30;
+        if (bits == 2) mask[7] = 0x20;
+        else if (bits == 3) mask[7] = 0x10;
+    } else mask[7] = (*argp)->item->mask;
+    exp = (*argp)->exp;
+    active = mask[7];
+    for (i = 0; i < 6; i++) {
+        if ((active & (1 << i)) && !((*argp)->locked & (1 << i))) {
+            switch (i) {
+            case 0: if (exp[0] < 0xFFFD) exp[0] += increment; break;
+            case 1: if (exp[1] < 0xFFFD) exp[1] += increment; break;
+            case 2: if (exp[2] < 0xFFFD) exp[2] += increment; break;
+            case 3: if (exp[3] < 0xFFFD) exp[3] += increment; break;
+            case 4: if (exp[4] < 0xFFFD) exp[4] += increment; break;
+            case 5: if (exp[5] < 0xFFFD) exp[5] += increment; break;
+            }
+        }
+    }
+    level = (*argp)->level;
+    if (exp[0] >= D_80388D56[level[0]] && level[0] < func_80376D10() + 1) {
+        {
+            result.value = 1;
+            level[0]++;
+            if (base == D_801BBBF0) {
+                STATS->counts[0]++;
+                STATS->total++;
+            }
+        }
+    } else { skip0:; }
+    if (exp[1] >= D_80388E1C[level[1]] && !((*argp)->locked & 0x2) && level[1] < func_80376D10() + 1) {
+        {
+            result.value |= 0x2;
+            level[1]++;
+            if (base == D_801BBBF0) {
+                STATS->counts[1]++;
+                STATS->total++;
+            }
+        }
+    } else { skip1:; }
+    if (exp[2] >= D_80388EE2[level[2]] && !((*argp)->locked & 0x4) && level[2] < func_80376D10() + 1) {
+        {
+            result.value |= 0x4;
+            level[2]++;
+            if (base == D_801BBBF0) {
+                STATS->counts[2]++;
+                STATS->total++;
+            }
+        }
+    } else { skip2:; }
+    if (exp[3] >= D_80388FA8[level[3]] && !((*argp)->locked & 0x8) && level[3] < func_80376D10() + 1) {
+        {
+            result.value |= 0x8;
+            level[3]++;
+            if (base == D_801BBBF0) {
+                STATS->counts[3]++;
+                STATS->total++;
+            }
+        }
+    } else { skip3:; }
+    if (exp[4] >= D_8038906E[level[4]] && !((*argp)->locked & 0x10) && level[4] < func_80376D10() + 1) {
+        {
+            result.value |= 0x10;
+            level[4]++;
+            if (base == D_801BBBF0) {
+                STATS->counts[4]++;
+                STATS->total++;
+            }
+        }
+    } else { skip4:; }
+    if (exp[5] >= D_80389134[level[5]] && !((*argp)->locked & 0x20)) {
+        s32 maximum = func_80376D10() + 1;
+        if (level[5] < maximum) {
+            result.value |= 0x20;
+            level[5]++;
+            if (base == D_801BBBF0) {
+                STATS->counts[5]++;
+                STATS->total++;
+            }
+        }
+    }
+    return result.value;
+}
+#undef STATS
+#undef BYTE
+#undef HALF
+#undef WORD
+#undef D_801BBBF0
+#undef D_801BC03C
+#undef D_801BC3D8
+#undef D_80240730
+#undef D_80388D56
+#undef D_80388E1C
+#undef D_80388EE2
+#undef D_80388FA8
+#undef D_8038906E
+#undef D_80389134
+#undef func_80376D10
 
 #define D_801BBBF0 D_801BBBF0__func_80378020
 #define D_801BC03C D_801BC03C__func_80378020
@@ -1070,6 +1258,7 @@ void func_80379054(u8 *arg0) {
 /* hh-owned-pool func_80378D84 8038B96C 8038B984 */
 /* hh-owned-pool func_80378E3C 8038B984 8038B9A0 */
 
+
 static const unsigned char rodata_80376D10_8038B850[] = {
     0xC0, 0xB5, 0xCC, 0xCC, 0xC4, 0xCF, 0xA4, 0xDF, 0x00, 0x00, 0x00, 0x00, 0xC7, 0xD8, 0xB8, 0xE5,
     0xC4, 0xCF, 0xA4, 0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1085,9 +1274,9 @@ static const unsigned char rodata_80376D10_8038B850[] = {
     0xA3, 0xB0, 0x0A, 0x00, 0xB9, 0xB6, 0xB7, 0xE2, 0xA5, 0xA2, 0xA5, 0xA4, 0xA5, 0xC6, 0xA5, 0xE0,
     0xC4, 0xF1, 0xB9, 0xB3, 0xCE, 0xCF, 0xA4, 0xCE, 0xA5, 0xA2, 0xA5, 0xC3, 0xA5, 0xD7, 0x0A, 0x00,
     0xA5, 0xB9, 0xA5, 0xDA, 0xA5, 0xB7, 0xA5, 0xE3, 0xA5, 0xEB, 0xA4, 0xCE, 0xC4, 0xF1, 0xB9, 0xB3,
-    0xCE, 0xCF, 0xA4, 0xCE, 0xA5, 0xA2, 0xA5, 0xC3, 0xA5, 0xD7, 0x0A, 0x00, 0x80, 0x37, 0x7B, 0x6C,
-    0x80, 0x37, 0x7B, 0x84, 0x80, 0x37, 0x7B, 0x9C, 0x80, 0x37, 0x7B, 0xB4, 0x80, 0x37, 0x7B, 0xCC,
-    0x80, 0x37, 0x7B, 0xE4,
+    0xCE, 0xCF, 0xA4, 0xCE, 0xA5, 0xA2, 0xA5, 0xC3, 0xA5, 0xD7, 0x0A, 0x00,
 };
+/* hh-layout-unit file057/80376D10 */
+/* hh-placed-function func_8037797C */
 /* hh-placed-function func_80378020 */
 /* hh-rodata-layout [336,[[0,0,336]]] */

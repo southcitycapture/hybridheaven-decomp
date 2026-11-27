@@ -73,33 +73,39 @@ s32 func_801C1974(void) {
 }
 
 
-void func_801C1998(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+#define func_801C1CF0 func_801C1CF0__func_801C1998
+s32 func_801C1CF0(s32 arg0, s32 arg1, s32 arg2);
+
+
+typedef char *func_801C1998_VaList;
+#define func_801C1998_VaStart(list, last) (list = (func_801C1998_VaList) (&last + 1))
+#define func_801C1998_VaArg(list, mode) ((mode *) (list = (char *) ((((s32) list + 3) & ~3) + sizeof(mode))))[-1]
+
+typedef struct {
+    s32 first;
+    s32 second;
+    s32 value;
+    s32 active;
+} func_801C1998_Struct;
+
+#define func_801C1998_Entries ((func_801C1998_Struct *) D_801DED70)
+
+void func_801C1998(s32 arg0, ...)
 {
-  s32 *ap;
-  s32 *p;
+  func_801C1998_VaList ap;
   s32 i;
-  s32 v;
-  ap = (&arg0) + 1;
-  i = 0;
-  if (arg0 > 0)
+
+  func_801C1998_VaStart(ap, arg0);
+  for (i = 0; i < arg0; i++)
   {
-    if ((p && p) && p)
-    {
-    }
-    p = D_801DED70;
-    do
-    {
-      ap = (s32 *) ((((s32) ap) + 3) & (~3));
-      v = *ap;
-      ap++;
-      p[2] = v;
-      func_801C1CF0(p[0], p[1], v);
-      i++;
-      p += 4;
-    }
-    while (i < arg0);
+    func_801C1CF0(func_801C1998_Entries[i].first, func_801C1998_Entries[i].second,
+                  func_801C1998_Entries[i].value = func_801C1998_VaArg(ap, s32));
   }
 }
+#undef func_801C1998_VaStart
+#undef func_801C1998_VaArg
+#undef func_801C1998_Entries
+#undef func_801C1CF0
 
 
 typedef struct func_801C1A2C_Struct {
@@ -352,13 +358,20 @@ s32 func_801C1E94() {
 
 
 
-s32 func_801C1F4C() {
-    u64 r;
-    s32 a;
+#define func_80026E58 func_80026E58__func_801C1F4C
+#define func_80026F58 func_80026F58__func_801C1F4C
+extern u64 func_80026E58();
+extern u64 func_80026F58();
 
-    r = func_80026E58(func_80026F58(func_801C0C08() - D_801D8DE0, 0x40), 0xBB8);
-    a = r >= 0xBEBC200ULL;
-    if (a) {}
-    return a;
+s32 func_801C1F4C() {
+    u64 elapsed;
+    s32 timedOut = 0;
+
+    /* timer ticks * 64 / 3000 = microseconds */
+    elapsed = func_80026E58(func_80026F58(func_801C0C08() - D_801D8DE0, 0x40ULL), 0xBB8ULL);
+    timedOut |= elapsed >= 200000000ULL;
+    return timedOut;
 }
+#undef func_80026E58
+#undef func_80026F58
 

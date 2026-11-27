@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-27: **94.89% of the code** (15784 of 15934 functions, including duplicates).
+Progress as of 2026-11-27: **95.09% of the code** (15788 of 15934 functions, including duplicates).
 
-**26075 model runs, $8756.89 API-equivalent in total** (local and cloud). Of the **15657 functions now in C**, **7507 were matched by AI workers** (≈ $1.166 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 244 came from decomp-permuter and 326 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**26160 model runs, $8869.96 API-equivalent in total** (local and cloud). Of the **15661 functions now in C**, **7512 were matched by AI workers** (≈ $1.181 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 244 came from decomp-permuter and 325 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -758,7 +758,6 @@ Progress as of 2026-11-27: **94.89% of the code** (15784 of 15934 functions, inc
 | `unify_loop0456` | unify_loop0456 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `stray29` | stray29 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
 | `blastLand1` | blastLand1 | fable-5-2 | 1 | 1 | 100% | $7.75 | $7.748 |  |
-| `blastFableStruct` | blastFableStruct | fable-5-2 | 6 | 3 | 50% | $54.25 | $18.084 |  |
 | `unify_loop0457` | unify_loop0457 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `stray30` | stray30 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
 | `unify_loop0458` | unify_loop0458 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
@@ -770,8 +769,23 @@ Progress as of 2026-11-27: **94.89% of the code** (15784 of 15934 functions, inc
 | `unify_loop0460` | unify_loop0460 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `stray33` | stray33 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
 | `unify_loop0461` | unify_loop0461 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
-| `blastSonnetRepair` | blastSonnetRepair | sonnet-5-5 | 60 | 18 | 30% | $43.52 | $2.418 |  |
 | `stray34` | stray34 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
-| `blastOpusRelay` | blastOpusRelay | opus-5-5 | 22 | 2 | 9% | $71.74 | $35.871 |  |
+| `unify_loop0462` | unify_loop0462 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray35` | stray35 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `blastLand4` | blastLand4 | fable-5-2 | 1 | 1 | 100% | $0.75 | $0.753 |  |
+| `xerjSmoke` | xerjSmoke | opencode/deepseek-v4.1-flash-free | 1 | 1 | 100% | $0.00 | – |  |
+| `unify_loop0463` | unify_loop0463 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `unify_loop0464` | unify_loop0464 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `xerjA` | xerjA | opencode/deepseek-v4.1-flash-free | 1 | 1 | 100% | $0.00 | – |  |
+| `xerjB` | xerjB | opencode/deepseek-v4.1-flash-free | 1 | 1 | 100% | $0.00 | – |  |
+| `unify_loop0465` | unify_loop0465 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `blastTerraRepair` | blastTerraRepair | openai/gpt-6.1-terra | 13 | 0 | 0% | $0.00 | – |  |
+| `blastAstraRelay` | blastAstraRelay | openai/gpt-6.2-astra | 9 | 0 | 0% | $0.00 | – |  |
+| `blastAstraBig` | blastAstraBig | openai/gpt-6.2-astra | 10 | 0 | 0% | $0.00 | – |  |
+| `blastSonnetRepair` | blastSonnetRepair | sonnet-5-5 | 94 | 31 | 33% | $64.70 | $2.087 |  |
+| `blastOpusRelay` | blastOpusRelay | opus-5-5 | 30 | 3 | 10% | $103.56 | $34.519 |  |
+| `unify_loop0466` | unify_loop0466 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `blastFableStruct` | blastFableStruct | fable-5-2 | 9 | 5 | 56% | $103.87 | $20.773 |  |
+| `blastLand5` | blastLand5 | fable-5-2, opus-5-5 | 2 | 2 | 100% | $9.71 | $4.854 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.

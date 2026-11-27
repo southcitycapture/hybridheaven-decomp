@@ -297,6 +297,7 @@ struct func_8038D420_StructObj {
 extern s32 func_8022DA7C(s32, s32);
 extern u8 D_801BCC21;
 struct func_8038D4D8_Obj;
+#define func_8038D4D8 func_8038D4D8__decl299
 void func_8038D4D8(struct func_8038D4D8_Obj *arg0, s32 arg1);
 
 void func_8038D420(struct func_8038D420_StructObj *arg0, s32 arg1) {
@@ -322,6 +323,7 @@ void func_8038D420(struct func_8038D420_StructObj *arg0, s32 arg1) {
         }
     }
 }
+#undef func_8038D4D8
 
 
 struct func_8038D4D8_Obj {
@@ -343,15 +345,53 @@ struct func_8038D4D8_Global {
 };
 
 
+#define D_801BBBF0 D_801BBBF0__func_8038D4D8
+#define func_8038D2C0 func_8038D2C0__func_8038D4D8
+#define func_8038D420 func_8038D420__func_8038D4D8
+#define func_8038D420_StructObj func_8038D420_StructObj__func_8038D4D8
+#define func_8038D4D8_Global func_8038D4D8_Global__func_8038D4D8
+#define func_8038D4D8_Obj func_8038D4D8_Obj__func_8038D4D8
+struct func_8038D4D8_Obj {
+    u8 pad0[0xC];
+    struct func_8038D4D8_Obj *unkC;
+    u8 pad1[0x8A];
+    u16 unk9A;
+    u8 pad2[0x5];
+    u8 unkA1;
+    u8 unkA2;
+};
+struct func_8038D4D8_Global {
+    u8 pad0[0xDC];
+    struct func_8038D4D8_Obj *unkDC;
+    u8 pad1[0x1030 - 0xE0];
+    u8 unk1030;
+    u8 unk1031;
+};
+extern struct func_8038D4D8_Global D_801BBBF0;
+extern void func_8038D2C0();
+struct func_8038D420_StructObj {
+    u8 pad0[0xC];
+    s32 unkC;
+    u8 pad1[0x8A];
+    s16 unk9A;
+};
+void func_8038D420(struct func_8038D420_StructObj *arg0, s32 arg1);
+
+
+struct func_8038D4D8_StructTarget {
+    u8 pad0[0x2D8];
+    u8 unk2D8;
+    u8 unk2D9;
+};
+
 void func_8038D4D8(struct func_8038D4D8_Obj *arg0, s32 arg1) {
-    u8 *var_v1;
+    struct func_8038D4D8_StructTarget *target;
     s32 var_v0;
 
-    var_v1 = D_801BC3D8;
     if (D_801BBBF0.unkDC == arg0->unkC) {
-        var_v1 = D_801BC03C;
+        target = (struct func_8038D4D8_StructTarget *) D_801BC03C;
     } else {
-        var_v1 = D_801BC3D8;
+        target = (struct func_8038D4D8_StructTarget *) D_801BC3D8;
     }
     if (arg0 == D_801BBBF0.unkDC) {
         var_v0 = 0;
@@ -361,14 +401,20 @@ void func_8038D4D8(struct func_8038D4D8_Obj *arg0, s32 arg1) {
     arg0->unk9A = 0;
     if (D_801BBBF0.unk1031 == 5) {
         if (var_v0 != D_801BBBF0.unk1030) {
-            var_v1[0x2D8] = arg0->unkA1;
-            var_v1[0x2D9] = arg0->unkA2;
+            target->unk2D8 = arg0->unkA1;
+            target->unk2D9 = arg0->unkA2;
             func_800058DC((s32) arg0, (void *) func_8038D420);
         } else {
             func_800058DC((s32) arg0, (void *) func_8038D2C0);
         }
     }
 }
+#undef D_801BBBF0
+#undef func_8038D2C0
+#undef func_8038D420
+#undef func_8038D420_StructObj
+#undef func_8038D4D8_Global
+#undef func_8038D4D8_Obj
 
 
 struct func_8038D584_StructAngle {

@@ -35,6 +35,7 @@ typedef struct func_8000433C_Struct {
 
 s32 func_80004484(s32, s32);
 s32 func_800045E8(s32, s32);
+#define func_80004ADC func_80004ADC__decl37
 void func_80004ADC(u16, s32);
 s32 func_80016F90();
 s32 func_80017014(s32);
@@ -94,6 +95,7 @@ join:
     }
     D_8008946D = 0;
 }
+#undef func_80004ADC
 
 extern s32 D_801BBC10;
 
@@ -223,7 +225,61 @@ s32 func_80004664(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/main/80004310/func_80004838.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/main/80004310/func_80004ADC.s")
+#define D_80037744 D_80037744__func_80004ADC
+#define D_80037A30 D_80037A30__func_80004ADC
+#define D_80037A32 D_80037A32__func_80004ADC
+#define D_800429B8 D_800429B8__func_80004ADC
+#define func_80004D20 func_80004D20__func_80004ADC
+#define DPRINT(args) ((void)(args))
+extern u16 D_80037A30[];
+u8 func_80004D20(s32 arg0, u8 *arg1);
+
+
+extern u16 D_80037A32[];
+
+typedef struct func_80004ADC_Node {
+    s32 unk0;
+    u8 *unk4;
+} func_80004ADC_Node;
+
+extern func_80004ADC_Node *D_800429B8[];
+extern u8 D_80037744[];
+
+/* stripped debug print: the flag test stays in the source, the print itself compiles to nothing */
+#define DPRINT(args) ((void)(args))
+
+s32 func_80004ADC(u16 arg0, s32 arg1) {
+    s32 i;
+    func_80004ADC_Node *p;
+    s32 v;
+    s32 off;
+
+    i = 0;
+    p = D_800429B8[arg0];
+    if (D_80037744[0] != 0) {
+        DPRINT((arg0, arg1));
+    }
+    while (arg0 >= D_80037A30[i]) {
+        i += 2;
+        if (D_80037A30[i] == 0) {
+            return 0;
+        }
+    }
+    v = p->unk0;
+    off = arg1 - (D_80037A32[i] << 24);
+    while (v != 0) {
+        func_80004D20(v, p->unk4 + off);
+        v = p[1].unk0;
+        p++;
+    }
+    return 1;
+}
+#undef DPRINT
+#undef D_80037744
+#undef D_80037A30
+#undef D_80037A32
+#undef D_800429B8
+#undef func_80004D20
 
 #define D_80037744 D_80037744__func_80004BB0
 #define D_80037A30 D_80037A30__func_80004BB0
@@ -430,42 +486,43 @@ u8 func_80004D20(s32 arg0, u8 *arg1) {
 extern void func_80001FE8(s32, s32, s32);
 extern s8 D_8008DC18;
 
-s32 func_80004EE8(u32 arg0, s32 arg1)
+#define func_80004F98 func_80004F98__func_80004EE8
+#define DPRINT(args) ((void)(args))
+#define DPRINT(args) ((void)(args))
+extern s32 func_80004F98(u32, s32 *);
+
+u8 *func_80004EE8(s32 arg0, u8 *arg1)
 {
   s32 sp2C;
   u8 i;
   s32 size;
   s32 end;
-  if (arg0 >= 0x8B8AU)
+  if ((u32)arg0 >= 0x8B8AU)
   {
     return arg1;
   }
-  if (arg0 >= 0x8000U)
+  if ((u32)arg0 >= 0x8000U)
   {
-    size = func_80004F98(arg0, &sp2C);
-    end = arg1 + size;
+    size = func_80004F98(arg0, (s32)&sp2C);
+    end = (s32)arg1 + size;
     i = 0x10;
-    arg0 = (u32) (&D_8008DC18);
     if (size != 0)
     {
-      if (arg0 != 0)
-      {
-      }
-      *((u8 *) arg0) = 1;
-      if ((arg0 && arg0) && arg0)
-      {
-      }
-      func_80001FE8(sp2C, arg1, size);
+      if (D_8008DC18 != 0) DPRINT(D_8008DC18);
+      D_8008DC18 = 1;
+      func_80001FE8(sp2C, (s32)arg1, size);
       while (i--)
       {
       }
 
       D_8008DC18 = 0;
     }
-    return end;
+    return (u8 *)end;
   }
-  return 0, func_8000469C(arg0, arg1);
+  return (u8 *)func_8000469C(arg0, (s32)arg1);
 }
+#undef DPRINT
+#undef func_80004F98
 
 #define D_800399B8 D_800399B8__func_80004F98
 #define D_80039A78 D_80039A78__func_80004F98

@@ -544,13 +544,95 @@ typedef struct func_8021C198_StructS2 { u8 pad[0x819]; s8 f:1; } func_8021C198_S
 #define F1 (&H->f1)
 #define F2 (&H->f2)
 
+#undef B_801BBBF0
+#undef D_800058DC
+#undef D_801842A0
+#undef F1
+#undef F2
+#undef H
+#undef func_8021BF74
+#undef func_8021C4C0
+#undef func_8021D8B8
+#undef func_8022C0A0
+#undef func_80231B28
+#undef func_80231CEC
+#undef func_802321FC
+#undef func_80236788
+#undef func_8037C50C
+#define B_801BBBF0 B_801BBBF0__func_8021C198_83c3397c
+#define D_800058DC D_800058DC__func_8021C198_83c3397c
+#define D_801842A0 D_801842A0__func_8021C198_83c3397c
+#define func_8021BF74 func_8021BF74__func_8021C198_83c3397c
+#define func_8021C198_StructActor func_8021C198_StructActor__func_8021C198_83c3397c
+#define func_8021C198_StructFlags func_8021C198_StructFlags__func_8021C198_83c3397c
+#define func_8021C198_StructGlobal func_8021C198_StructGlobal__func_8021C198_83c3397c
+#define func_8021C198_StructObj func_8021C198_StructObj__func_8021C198_83c3397c
+#define func_8021C198_StructS1 func_8021C198_StructS1__func_8021C198_83c3397c
+#define func_8021C198_StructS2 func_8021C198_StructS2__func_8021C198_83c3397c
+#define func_8021C4C0 func_8021C4C0__func_8021C198_83c3397c
+#define func_8021D8B8 func_8021D8B8__func_8021C198_83c3397c
+#define func_8022C0A0 func_8022C0A0__func_8021C198_83c3397c
+#define func_80231B28 func_80231B28__func_8021C198_83c3397c
+#define func_80231CEC func_80231CEC__func_8021C198_83c3397c
+#define func_802321FC func_802321FC__func_8021C198_83c3397c
+#define func_80236788 func_80236788__func_8021C198_83c3397c
+#define func_8037C50C func_8037C50C__func_8021C198_83c3397c
+
+void func_8021BF74(u8 *arg0, s32 arg1);
+void func_8021D8B8(s32 arg0, s32 arg1);
+
+
+typedef struct func_8021C198_StructActor {
+    u8 pad0[0x30]; u32 unk30;
+    u8 pad1[0x9A-0x34]; u16 unk9A;
+    u8 pad2[0x2D4-0x9C]; void *unk2D4;
+    u8 unk2D8, unk2D9; s8 unk2DA; u8 unk2DB, unk2DC, unk2DD, unk2DE, unk2DF;
+    u8 unk2E0[8]; u8 unk2E8;
+    u8 pad3[7]; u8 unk2F0;
+    u8 pad4[7]; u8 unk2F8, unk2F9, unk2FA;
+    u8 pad5[9]; u8 unk304;
+    u8 pad6[0x375-0x305]; u8 unk375;
+} func_8021C198_StructActor;
+typedef struct func_8021C198_StructObj {
+    u8 pad0[0x94]; u8 unk94, unk95; u8 pad1[2]; u8 unk98;
+    u8 pad2[3]; s32 unk9C; u8 pad3[4]; void *unkA4;
+    u8 pad4[0xB3-0xA8]; u8 unkB3;
+} func_8021C198_StructObj;
+typedef struct func_8021C198_StructFlags {
+    u8 hi:1;
+    u8 pad:6;
+    u8 lo:1;
+    u8 secondhi:1;
+    u8 rest:7;
+    u8 pad2[2];
+} func_8021C198_StructFlags;
+typedef struct func_8021C198_StructGlobal {
+    u8 pad0[0x2C]; u16 mode;
+    u8 pad1[0x47C-0x2E]; func_8021C198_StructFlags f1;
+    u8 pad2[0x818-0x480]; func_8021C198_StructFlags f2;
+    u8 pad3[0x1030-0x81C]; u8 side, state, active;
+} func_8021C198_StructGlobal;
+extern func_8021C198_StructGlobal B_801BBBF0;
+#define H (&B_801BBBF0)
+extern u8 D_801842A0[];
+extern void func_8021C4C0();
+extern void func_8037C50C();
+extern void func_802321FC();
+extern void func_80231CEC();
+extern void func_80231B28();
+extern void func_8022C0A0();
+extern s32 func_80236788();
+extern void D_800058DC();
+typedef struct func_8021C198_StructS1 { u8 pad[0x47D]; s8 f:1; } func_8021C198_StructS1;
+typedef struct func_8021C198_StructS2 { u8 pad[0x819]; s8 f:1; } func_8021C198_StructS2;
+#define F1 (&H->f1)
+#define F2 (&H->f2)
+
 void func_8021C198(func_8021C198_StructObj *arg0, s32 arg1) {
-    s32 pad;
+    func_8021C198_StructObj *obj;
     func_8021C198_StructActor *a;
     func_8021C198_StructActor *b;
-    s32 i;
-    u8 *p;
-    func_8021C198_StructObj *obj;
+    u8 i;
 
     a = (H->side == 0) ? (void *)D_801BC03C : (void *)D_801BC3D8;
     b = (H->side == 0) ? (void *)D_801BC3D8 : (void *)D_801BC03C;
@@ -567,23 +649,19 @@ void func_8021C198(func_8021C198_StructObj *arg0, s32 arg1) {
         F1->lo = F2->lo = 1;
         F1->secondhi = F2->secondhi = 0;
         F1->hi = F2->hi = 1;
-        b->unk2DB = 1;
-        a->unk2DB = b->unk2DB;
-        b->unk2DE = 0; a->unk2DE = 0;
-        b->unk2E8 = 0; a->unk2E8 = 0;
-        b->unk2F8 = 0; a->unk2F8 = 0;
-        b->unk9A = 0; a->unk9A = 0;
-        b->unk2F0 = 0; a->unk2F0 = 0;
-        b->unk2DD = 0; a->unk2DD = 0;
-        b->unk304 = 0; a->unk304 = 0;
-        b->unk2FA = 0; a->unk2FA = 0;
-        b->unk375 = 0; a->unk375 = 0;
+        a->unk2DB = b->unk2DB = 1;
+        a->unk2DE = b->unk2DE = 0;
+        a->unk2E8 = b->unk2E8 = 0;
+        a->unk2F8 = b->unk2F8 = 0;
+        a->unk9A = b->unk9A = 0;
+        a->unk2F0 = b->unk2F0 = 0;
+        a->unk2DD = b->unk2DD = 0;
+        a->unk304 = b->unk304 = 0;
+        a->unk2FA = b->unk2FA = 0;
+        a->unk375 = b->unk375 = 0;
         func_802321FC(a, b);
-        for (i = 0; i < 8; i = (i + 1) & 0xFF) {
-            p = b->unk2E0 + i;
-            *p = 0;
-            a->unk2E0[i] = 0;
-            if (p) {}
+        for (i = 0; i < 8; i++) {
+            a->unk2E0[i] = b->unk2E0[i] = 0;
         }
         func_80231CEC(a, b);
         func_80231B28();
@@ -612,6 +690,42 @@ void func_8021C198(func_8021C198_StructObj *arg0, s32 arg1) {
         D_800058DC(arg0, func_8021D8B8, H);
     }
 }
+#undef H
+#undef F1
+#undef F2
+#undef B_801BBBF0
+#undef D_800058DC
+#undef D_801842A0
+#undef func_8021BF74
+#undef func_8021C198_StructActor
+#undef func_8021C198_StructFlags
+#undef func_8021C198_StructGlobal
+#undef func_8021C198_StructObj
+#undef func_8021C198_StructS1
+#undef func_8021C198_StructS2
+#undef func_8021C4C0
+#undef func_8021D8B8
+#undef func_8022C0A0
+#undef func_80231B28
+#undef func_80231CEC
+#undef func_802321FC
+#undef func_80236788
+#undef func_8037C50C
+#define B_801BBBF0 B_801BBBF0__func_8021C198
+#define D_800058DC D_800058DC__func_8021C198
+#define D_801842A0 D_801842A0__func_8021C198
+#define F1 (&H->f1)
+#define F2 (&H->f2)
+#define H (&B_801BBBF0)
+#define func_8021BF74 func_8021BF74__func_8021C198
+#define func_8021C4C0 func_8021C4C0__func_8021C198
+#define func_8021D8B8 func_8021D8B8__func_8021C198
+#define func_8022C0A0 func_8022C0A0__func_8021C198
+#define func_80231B28 func_80231B28__func_8021C198
+#define func_80231CEC func_80231CEC__func_8021C198
+#define func_802321FC func_802321FC__func_8021C198
+#define func_80236788 func_80236788__func_8021C198
+#define func_8037C50C func_8037C50C__func_8021C198
 #undef H
 #undef F1
 #undef F2

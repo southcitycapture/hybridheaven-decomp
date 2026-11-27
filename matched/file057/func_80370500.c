@@ -1,4 +1,9 @@
 #include "common.h"
+extern void func_80011258();
+#define func_80011140(a, b, c, d) func_80011140()
+typedef struct func_8036EA80_Vec { s32 x; s32 y; s32 z; } func_8036EA80_Vec;
+extern s32 func_80011140(s32, void *, func_8036EA80_Vec, s32);
+
 
 
 typedef struct func_80370500_StructA { u8 pad0[0x24]; struct func_80370500_StructB *unk24; } func_80370500_StructA;
@@ -15,9 +20,9 @@ extern func_80370500_StructD *D_801BBCD8;
 void func_80370500(void *arg0) {
     func_80370500_StructPos *a;
     func_80370500_StructC *b;
-    s16 sp1E;
+    s16 angle;
     f32 d;
-    s16 v;
+    s16 angle2;
     u8 t;
     s32 tmp;
 
@@ -40,21 +45,14 @@ void func_80370500(void *arg0) {
     }
     func_8002096C(0x5C3, 1, t);
     b = D_801BBCD8->unk2C;
-    tmp = func_8001EF38(a->coords[2] - b->coords[2], a->coords[0] - b->coords[0]);
+    angle = func_8001EF38(a->coords[2] - b->coords[2], a->coords[0] - b->coords[0]);
     b = D_801BBCD8->unk2C;
-    {
-        f32 z, x;
-        z = b->unk44 - b->coords[2];
-        x = b->unk3C - b->coords[0];
-        sp1E = tmp;
-        tmp = func_8001EF38(z, x);
-        if (sp1E) {}
-        v = sp1E - tmp;
-    }
-    if (v & 0x1000) {
-        v = ((v & 0x1FFF) - 0x2000);
+    angle2 = func_8001EF38(b->unk44 - b->coords[2], b->unk3C - b->coords[0]);
+    /* wrap the 16-bit difference into the signed 13-bit range */
+    if ((s16)(angle - angle2) & 0x1000) {
+        angle = ((s16)(angle - angle2) & 0x1FFF) - 0x2000;
     } else {
-        v = (v & 0x1FFF);
+        angle = (s16)(angle - angle2) & 0x1FFF;
     }
-    func_8002096C(0x5C3, 2, (s16)((u32)((f64)func_8001EAD0(v) * 63.0 + 64.0) & 0xFF));
+    func_8002096C(0x5C3, 2, (s16)((u32)((f64)func_8001EAD0(angle) * 63.0 + 64.0) & 0xFF));
 }

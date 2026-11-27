@@ -1,70 +1,9 @@
 #include "common.h"
-#define HHCAT2(x, y) x##y
-#define HHCAT(x, y) HHCAT2(x, y)
-#define func_8036153C_StructB HHCAT(HHSB_, __LINE__)
-#define HHSB_924 func_8036153C_StructB_tag
-#define HHSB_929 func_8036153C_StructB_t
-#define HHSB_985 HHEAT ( (
-#define HHSB_1169 HHEAT ( (
-#define HHSB_1180 HHEAT ( (
-#define HHSB_1471 HHEAT ( (
-#define HHEAT(x) xbz))
 extern void D_8013AE20(void *, s32, s32);
 extern u8 D_801BBBF0[];
 extern u8 D_801BC03C[];
 extern u8 D_801BC3D8[];
 extern s8 D_80360588(s32, s32);
-typedef struct func_80363340_StructFlags {
-    u8 pad0[2];
-    u16 unk2;
-} func_80363340_StructFlags;
-typedef struct func_80363340_StructValue {
-    s32 unk0;
-    u16 unk4;
-    u16 unk6;
-    f32 unk8;
-} func_80363340_StructValue;
-typedef struct func_80363340_StructSub {
-    u8 pad0[0x1C];
-    func_80363340_StructValue unk1C;
-    u8 pad28[0x7C - 0x28];
-    s32 unk7C;
-    u16 unk80;
-    u8 pad82[2];
-    u8 unk84;
-} func_80363340_StructSub;
-typedef struct func_80363340_StructActor {
-    u8 pad0[0x36];
-    u16 unk36;
-    u8 pad38[0x5C - 0x38];
-    func_80363340_StructSub *unk5C;
-    u8 pad60[8];
-    func_80363340_StructFlags *unk68;
-} func_80363340_StructActor;
-typedef struct func_80363340_StructEffect {
-    u8 pad0[0x5C];
-    u16 unk5C;
-} func_80363340_StructEffect;
-typedef struct func_80363340_StructGlobals {
-    u8 pad0[0x1B];
-    u8 unk1B;
-    u8 pad1C[0xDC - 0x1C];
-    func_80363340_StructActor *unkDC;
-    u8 padE0[0xEC - 0xE0];
-    func_80363340_StructActor *unkEC;
-    u8 padF0[0x1030 - 0xF0];
-    u8 unk1030;
-    u8 pad1031[0x1118 - 0x1031];
-    func_80363340_StructEffect *unk1118;
-} func_80363340_StructGlobals;
-#define G ((func_80363340_StructGlobals *)D_801BBBF0)
-typedef struct func_8036153C_StructB {
-    s32 unk0;
-    u16 unk4;
-    u8 pad6[2];
-    f32 unk8;
-} func_8036153C_StructB;
-#define b ((func_8036153C_StructB *)arg0)
 extern void func_800058DC();
 extern u16 func_80011590();
 extern s32 func_801DB480(void *, s32, f32, u8);
@@ -84,7 +23,7 @@ typedef struct func_8036153C_Obj {
     u8 *unk5C;
 } func_8036153C_Obj;
 f32 func_8036153C(func_8036153C_Obj *arg0);
-extern void func_80361910(void *, s32, void *, void *, void *);
+void func_80361910(void *arg0, s32 arg1, void *arg2, void *arg3, void *arg4);
 typedef struct func_80361B50_Struct {
     u8 pad0[0x2DE];
     u8 unk2DE;
@@ -118,8 +57,6 @@ extern void func_80364D2C();
 extern void func_803673B4(void *, s32, s32);
 extern void func_80374F04(void *, f32);
 
-#undef b
-#undef G
 
 typedef struct func_80361BCC_Val {
     s32 unk0;
@@ -210,13 +147,13 @@ extern void D_800112B0(s32, void *);
 void func_80361BCC(func_80361BCC_Obj *arg0, s32 arg1) {
     func_80361BCC_Obj *sp5C;
     func_80361BCC_Sub *sp58;
-    s32 pad54;
-    s32 flag;
+    func_80361BCC_Val *v;
+    func_80361BCC_State *s;
     func_80361BCC_State *sp4C;
     func_80361BCC_Res *sp48;
-    func_80361BCC_State *s;
     f32 f;
-    func_80361BCC_Val *v;
+    s32 flag;
+    s32 done;
 
     if (arg0 == GL->unkDC) {
         sp5C = GL->unkEC;
@@ -273,8 +210,11 @@ void func_80361BCC(func_80361BCC_Obj *arg0, s32 arg1) {
     }
     func_80360400((void *)s->unk314, (s32)arg0, arg1);
     f = (s->unk2D9 < 0xE) ? s->unk18 : s->unk1C;
-    f = (f == 0.0) ? s->unk10 : f;
-    if (func_801DB480(arg0, arg1, f, flag = (s->mode == 3) ? 1 : 0) != 0) {
+    if (f == 0.0) {
+        f = s->unk10;
+    }
+    done = func_801DB480(arg0, arg1, f, flag = (s->mode == 3) ? 1 : 0);
+    if (done != 0) {
         if (s->unk2E8 >= 2) {
             func_80361B50((s32)arg0, arg1, (void *)s);
             D_8013AE20(arg0, arg1, 0);

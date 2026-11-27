@@ -1,0 +1,1 @@
+{"func": "func_8013C6FC", "segment": "file008", "model": "opencode/deepseek-v4.1-flash-free", "verified": "MATCH", "claimed": "RESULT: MATCH", "checks": 5, "turns": 27, "seconds": 570, "input_tokens": 37129, "output_tokens": 5696, "exit": "0", "cost_usd_equiv": 0.0, "start_ts": "2026-11-27T18:41:40Z", "ts": "2026-11-27T18:51:10Z"}

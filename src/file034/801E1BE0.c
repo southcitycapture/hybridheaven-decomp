@@ -2842,8 +2842,8 @@ s32 func_801E6024(s32 arg0, s32 arg1) {
 
 /* hh-block asm/nonmatchings/file034/801E1BE0/_ro_regular_c40d2635b1ac310b.s {"functions":[],"rodata":[],"rodata_bytes":[2149488280,7719368,8],"rodata_section":".rodata"} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/_ro_regular_c40d2635b1ac310b.s")
-/* hh-block asm/nonmatchings/file034/801E1BE0/_ro_regular_02200ca1f0501960.s {"functions":[],"rodata":[],"rodata_bytes":[2149488340,7719428,16],"rodata_section":".rodata"} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/_ro_regular_02200ca1f0501960.s")
+/* hh-block asm/nonmatchings/file034/801E1BE0/_ro_regular_d4fd413a34da9626.s {"functions":[],"rodata":[],"rodata_bytes":[2149488340,7719428,4],"rodata_section":".rodata"} */
+#pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/_ro_regular_d4fd413a34da9626.s")
 /* hh-block asm/nonmatchings/file034/801E1BE0/_ro_regular_87915d215dfca632.s {"functions":[],"rodata":[],"rodata_bytes":[2149488420,7719508,12],"rodata_section":".rodata"} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file034/801E1BE0/_ro_regular_87915d215dfca632.s")
 
@@ -3062,9 +3062,20 @@ typedef struct func_801E65C4_S2 { u8 pad[0x24]; func_801E65C4_S3 *unk24; } func_
 typedef struct func_801E65C4_S1 { u8 pad[8]; func_801E65C4_S2 *unk8; } func_801E65C4_S1;
 typedef struct func_801E65C4_S0 { u8 pad[8]; func_801E65C4_S1 *unk8; } func_801E65C4_S0;
 
+#define func_801E65C4_S0 func_801E65C4_S0__func_801E65C4
+#define func_801E65C4_S1 func_801E65C4_S1__func_801E65C4
+#define func_801E65C4_S2 func_801E65C4_S2__func_801E65C4
+#define func_801E65C4_S3 func_801E65C4_S3__func_801E65C4
+#define func_801E65C4_S4 func_801E65C4_S4__func_801E65C4
+typedef struct func_801E65C4_S4 { u8 pad[0x12]; s16 unk12; } func_801E65C4_S4;
+typedef struct func_801E65C4_S3 { u8 pad[0x2C]; func_801E65C4_S4 *unk2C; } func_801E65C4_S3;
+typedef struct func_801E65C4_S2 { u8 pad[0x24]; func_801E65C4_S3 *unk24; } func_801E65C4_S2;
+typedef struct func_801E65C4_S1 { u8 pad[8]; func_801E65C4_S2 *unk8; } func_801E65C4_S1;
+typedef struct func_801E65C4_S0 { u8 pad[8]; func_801E65C4_S1 *unk8; } func_801E65C4_S0;
+
 s32 func_801E65C4(s32 arg0, s32 arg1)
 {
-  u64 t;
+  f32 time;
   if (D_801E8DF8 == 0)
   {
     if (func_801C0DE4(4, 1, 0x40000000) != 0)
@@ -3075,11 +3086,16 @@ s32 func_801E65C4(s32 arg0, s32 arg1)
       func_801CF4B0(1);
       return 0x20;
     }
-    t = func_801C0F18(4, 1);
-    (*((func_801E65C4_S0 **) (func_801DAAF0 + 0x24)))->unk8->unk8->unk24->unk2C->unk12 = (s16) ((s32) ((((180.0f * ((f32) ((func_80034C24(t) / D_801E96D8) / 2))) + D_801E96E0) * 2048.0f) / ((0, 90.0f))));
+    time = func_80034C24(func_801C0F18(4, 1)) / 1000000.0 / 2;
+    (*((func_801E65C4_S0 **) (func_801DAAF0 + 0x24)))->unk8->unk8->unk24->unk2C->unk12 = ((180.0f * time) + 316.6f) * 2048.0f / 90.0f;
   }
   return 0x1F;
 }
+#undef func_801E65C4_S0
+#undef func_801E65C4_S1
+#undef func_801E65C4_S2
+#undef func_801E65C4_S3
+#undef func_801E65C4_S4
 
 
 typedef struct func_801E66E0_Struct {
@@ -4493,6 +4509,7 @@ s32 func_801E844C(s32 arg0, s32 arg1) {
 
 
 
+
 static const unsigned char rodata_801E1BE0_801E9410[] = {
     0xC3, 0x37, 0x80, 0x01, 0xC2, 0x90, 0x66, 0x66, 0xC3, 0xE4, 0x40, 0x00, 0x43, 0x3D, 0xB3, 0x32,
     0x43, 0xA1, 0x26, 0x66, 0xC2, 0xAA, 0x33, 0x33, 0xC3, 0xE3, 0x0C, 0xCD,
@@ -4549,10 +4566,11 @@ static const unsigned char rodata_801E1BE0_801E9670[] = {
 /* hh-placed-function func_801E6270 */
 /* hh-placed-function func_801E6334 */
 /* hh-placed-function func_801E651C */
+/* hh-placed-function func_801E65C4 */
 /* hh-placed-function func_801E6800 */
 /* hh-placed-function func_801E6A84 */
 /* hh-placed-function func_801E6B88 */
 /* hh-placed-function func_801E6CF8 */
 /* hh-placed-function func_801E6E68 */
 /* hh-placed-function func_801E6FD8 */
-/* hh-rodata-layout [880,[[0,728,8],[8,788,16],[24,868,12],[36,80,28],[64,316,4],[68,332,4],[72,568,4],[76,580,8],[84,636,44],[128,688,32],[160,0,80],[240,108,208],[448,320,12],[464,336,232],[696,572,8],[704,588,48],[752,680,8],[760,720,8],[768,736,52],[820,804,64]]] */
+/* hh-rodata-layout [880,[[0,728,8],[8,788,4],[12,868,12],[24,80,28],[52,316,4],[56,332,4],[60,568,4],[64,580,8],[72,636,44],[116,688,32],[148,0,80],[228,108,208],[440,320,12],[456,336,232],[688,572,8],[696,588,48],[744,680,8],[752,720,8],[760,736,52],[816,792,76]]] */

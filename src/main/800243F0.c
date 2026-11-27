@@ -578,27 +578,25 @@ void func_80024B4C(void) {
 extern u8 D_800CBDA8[];
 extern u8 D_800CBDAF[];
 
-void func_80024C84(void) {
-    s32 a;
-    s32 b;
-    u8 c;
-    u8 *p;
-    s32 i;
 
-    a = *D_800CBDA0++;
-    b = *D_800CBDA0++;
-    if (a != 0) {
-        i = a;
-        p = D_800CBDA8 + a;
-        a = a * 1;
-        c = p[-1];
-        if (c != 0) {
-            if (b != 0) {
-                D_800CBDAF[a] = a + 0xF0;
-                return;
-            }
-            D_800CBDAF[i] = c;
-            p[-1] = 0;
+
+void func_80024C84(void) {
+    u8 id;
+    u8 arg;
+    s32 index;
+
+    id = *D_800CBDA0++;
+    arg = *D_800CBDA0++;
+    if (!id) {
+        return;
+    }
+    index = id;
+    if (D_800CBDA8[index - 1] != 0) {
+        if (arg != 0) {
+            D_800CBDAF[id] = id + 0xF0;
+        } else {
+            D_800CBDAF[index] = D_800CBDA8[index - 1];
+            D_800CBDA8[index - 1] = 0;
         }
     }
 }
