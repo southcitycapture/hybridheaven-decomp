@@ -1,8 +1,8 @@
 # Research results
 
-Progress as of 2026-11-27: **94.88% of the code** (15783 of 15934 functions, including duplicates).
+Progress as of 2026-11-27: **94.89% of the code** (15784 of 15934 functions, including duplicates).
 
-**26030 model runs, $8712.87 API-equivalent in total** (local and cloud). Of the **15656 functions now in C**, **7506 were matched by AI workers** (≈ $1.161 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 244 came from decomp-permuter and 326 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
+**26075 model runs, $8756.89 API-equivalent in total** (local and cloud). Of the **15657 functions now in C**, **7507 were matched by AI workers** (≈ $1.166 per function, failures included), **7580 were placed by propagation** (a match copied onto identical-shape code), 244 came from decomp-permuter and 326 from other sources (libultra built from source, early hand work). In the table below, *Matched* counts verified results per batch, so a function matched in several experiments is counted in each.
 
 | Batch | What | Model | Runs | Matched | Rate | API-equiv cost | Per match | Weekly usage |
 |---|---|---|---|---|---|---|---|---|
@@ -755,11 +755,23 @@ Progress as of 2026-11-27: **94.88% of the code** (15783 of 15934 functions, inc
 | `stray27` | stray27 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
 | `unify_loop0455` | unify_loop0455 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `stray28` | stray28 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
-| `blastSonnetRepair` | blastSonnetRepair | sonnet-5-5 | 37 | 9 | 24% | $28.17 | $3.130 |  |
-| `blastOpusRelay` | blastOpusRelay | opus-5-5 | 12 | 0 | 0% | $44.58 | – |  |
 | `unify_loop0456` | unify_loop0456 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
 | `stray29` | stray29 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
 | `blastLand1` | blastLand1 | fable-5-2 | 1 | 1 | 100% | $7.75 | $7.748 |  |
 | `blastFableStruct` | blastFableStruct | fable-5-2 | 6 | 3 | 50% | $54.25 | $18.084 |  |
+| `unify_loop0457` | unify_loop0457 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray30` | stray30 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0458` | unify_loop0458 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray31` | stray31 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `blastLand2` | blastLand2 | fable-5-2 | 1 | 1 | 100% | $0.75 | $0.753 |  |
+| `unify_loop0459` | unify_loop0459 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray32` | stray32 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `blastLand3` | blastLand3 | fable-5-2 | 1 | 1 | 100% | $0.75 | $0.753 |  |
+| `unify_loop0460` | unify_loop0460 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `stray33` | stray33 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `unify_loop0461` | unify_loop0461 | unify (no model) | 4 | 0 | 0% | $0.00 | – |  |
+| `blastSonnetRepair` | blastSonnetRepair | sonnet-5-5 | 60 | 18 | 30% | $43.52 | $2.418 |  |
+| `stray34` | stray34 | openai/gpt-6.2-astra | 2 | 2 | 100% | $0.00 | – |  |
+| `blastOpusRelay` | blastOpusRelay | opus-5-5 | 22 | 2 | 9% | $71.74 | $35.871 |  |
 
 Every match counted here passed the independent exact check (instructions and resolved addresses). `Weekly usage` is the Claude subscription's weekly meter at the start and end of each batch; batches overlapped, so readings are shared. Raw per-run data: `queue/<batch>/results.jsonl`.
