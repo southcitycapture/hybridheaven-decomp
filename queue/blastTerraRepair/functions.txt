@@ -1,3 +1,6 @@
+func_80125968 file008
+func_80126198 file008
+func_80126570 file008
 func_801133D0 file008
 func_8011E480 file008
 func_80130F74 file008
@@ -5,7 +8,6 @@ func_8013C8F0 file008
 func_8015032C file008
 func_80150794 file008
 func_801BF1C0 file009
-func_801C5A5C file009
 func_801C8E84 file009
 func_801D9F00 file009
 func_801DE5E4 file009
@@ -14,17 +16,11 @@ func_801FF438 file010
 func_80222C30 file011
 func_8022C478 file011
 func_8022F248 file011
-func_80231D84 file011
 func_80232008 file011
-func_80232D08 file011
 func_802417E4 file012
-func_80244410 file012
 func_8024470C file015
-func_802477B0 file015
-func_80247B60 file015
 func_8024A7C8 file015
 func_80243F68 file018
-func_80245C58 file018
 func_80246410 file018
 func_80241518 file022
 func_801C133C file025

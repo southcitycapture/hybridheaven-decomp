@@ -6,8 +6,8 @@ extern s32 func_80126944(void);
 extern void func_801C3B2C(s32);
 extern void func_801C3B10(s32);
 extern void func_801FBB30(void);
-extern void func_800058DC(s32, void *);
-extern void func_80250B54();
+extern void func_800058DC();
+extern void func_80250B54(func_80250B54_StructObj *arg0);
 
 void func_80250AE8(s32 arg0) {
     func_80251750();

@@ -3065,60 +3065,102 @@ extern u8 D_8017DD92;
 extern u16 D_801BBC1C;
 extern s32 D_8022B640(u16, u8 *);
 
-s32 func_80231D84(f32 arg0, f32 arg1, s32 arg2, s16 arg3, u8 arg4) {
-    s32 s0;
-    s32 s1;
+#define func_8013D4A0 func_8013D4A0__func_80231D84
+#define func_8013D5F4 func_8013D5F4__func_80231D84
+#define func_8014ADB4 func_8014ADB4__func_80231D84
+#define func_80230728_Inner func_80230728_Inner__func_80231D84
+#define func_80230728_Struct func_80230728_Struct__func_80231D84
+#define arg0 ((struct func_80230728_Struct *)a0)
+struct func_80230728_Inner {
+    u8 pad0[4];
+    u8 unk4;
+    u8 pad5[5];
+    u8 unkA;
+    u8 pad0B[0x15 - 0xB];
+    s8 unk15[1];
+};
+struct func_80230728_Struct {
+    u8 pad0[0x2D];
+    s8 unk2D;
+    u8 pad2E[0x38 - 0x2E];
+    u32 unk38;
+    u8 pad3C[0x52 - 0x3C];
+    u16 unk52;
+    u16 unk54;
+    s16 unk56;
+    u8 pad58[0xAA - 0x58];
+    s16 unkAA;
+    u8 unkAC;
+    u8 pad_AD[0x2D4 - 0xAD];
+    struct func_80230728_Inner *unk2D4;
+    u8 pad2D8[2];
+    u8 unk2DA;
+    u8 unk2DB;
+    u8 pad2DC[0x399 - 0x2DC];
+    u8 unk399;
+};
+#define arg0 ((struct func_80230728_Struct *)a0)
+extern s32 func_8013D4A0(u8, s32);
+extern void func_8013D5F4(u8);
+extern s32 func_8014ADB4(f32, f32, s32, s16, s32, u8, s32);
+
+u8 func_80231D84(f32 x, f32 y, s32 z, s16 angle, u8 spawn) {
+    u8 tries;
+    u8 id;
     s32 v;
     s32 t;
-    s32 r;
 
-    s0 = 0;
+    tries = 0;
     if (D_801BBBF0[0x74B] < 2) {
         if ((*(u16 *)&D_801BBBF0[0x2C] != 0xA && *(u16 *)&D_801BBBF0[0x2C] != 0xB &&
              *(u16 *)&D_801BBBF0[4] != 0x21 && *(u16 *)&D_801BBBF0[4] != 0x1B &&
              *(u16 *)&D_801BBBF0[4] != 0x5F && *(u16 *)&D_801BBBF0[4] < 0xB5) || D_8017DD92 != 0) {
             if (D_801BBBF0[0x74B] == 0) {
                 t = D_8022B640(0x25, D_801BBBF0) + 1;
-                s1 = t & 0xFF;
-                while (func_80379230(D_801BC03C, t) != 0 && s0 < 0x64) {
-                    func_8013D5F4(s1 & 0xFF);
+                id = t;
+                while (func_80379230(D_801BC03C, t) != 0 && tries < 0x64) {
+                    func_8013D5F4(id);
                     t = func_8022B640(0x25) + 1;
-                    s1 = t & 0xFF;
-                    s0 = (s0 + 1) & 0xFF;
+                    id = t;
+                    tries++;
                 }
-                if (s0 >= 0x64) {
-                    s1 = 0xA;
+                if (tries >= 0x64) {
+                    id = 0xA;
                     func_8013D5F4(0xA);
                 } else {
-                    func_8013D5F4(s1 & 0xFF);
+                    func_8013D5F4(id);
                 }
             } else {
                 v = *(s16 *)D_801BC03C;
                 if (v < 0x1F4) {
-                    if ((func_8022B640(v / 100) & 0xFF) < 3) s1 = 1; else s1 = 2;
+                    if ((func_8022B640(v / 100) & 0xFF) < 3) id = 1; else id = 2;
                 } else if (v < 0x3E8) {
-                    if ((func_8022B640(v / 100 - 4) & 0xFF) < 2) s1 = 2; else s1 = 3;
+                    if ((func_8022B640(v / 100 - 4) & 0xFF) < 2) id = 2; else id = 3;
                 } else {
-                    if ((func_8022B640(v / 100 - 9) & 0xFF) < 2) s1 = 3; else s1 = 4;
+                    if ((func_8022B640(v / 100 - 9) & 0xFF) < 2) id = 3; else id = 4;
                 }
-                func_8013D5F4(s1 & 0xFF);
+                func_8013D5F4(id);
             }
-            if (s1 != 0 && s1 < 0x26) {
-                r = s1;
-                if (func_8013D4A0(s1 & 0xFF, 1) < 0x63) {
-                    if (arg4 != 0 && D_801BBC1C != 5) {
-                        func_8014B36C(func_8014ADB4(arg0, arg1, arg2, arg3, 0, s1, 0) & 0xFFFF);
+            if (id && id < 0x26) {
+                if (func_8013D4A0(id, 1) < 0x63) {
+                    if (spawn != 0 && D_801BBC1C != 5) {
+                        func_8014B36C(func_8014ADB4(x, y, z, angle, 0, id, 0) & 0xFFFF);
                         return 0;
                     }
-                    D_801BC03C[r + 0x337]++;
-                    s1 = s1 * 1;
-                    return s1;
+                    D_801BC03C[id + 0x337]++;
+                    return id;
                 }
             }
         }
     }
     return 0;
 }
+#undef arg0
+#undef func_8013D4A0
+#undef func_8013D5F4
+#undef func_8014ADB4
+#undef func_80230728_Inner
+#undef func_80230728_Struct
 
 
 typedef struct func_80232008_Inner {
@@ -3460,41 +3502,46 @@ struct func_80232D08_Struct {
 };
 extern u8 D_801842AB[];
 
-void func_80232D08(struct func_80232D08_Struct *arg0, u16 arg1) {
-    s32 mask;
+#define func_80232D08_Struct func_80232D08_Struct__func_80232D08
+struct func_80232D08_Struct {
+    u8 pad0[0x82];
+    u16 unk82;
+    u16 a[5];
+    u8 pad1[0x2B8 - 0x8E];
+    s16 w[6];
+    u8 pad2[0x2D9 - 0x2C4];
+    u8 unk2D9;
+    u8 pad3[0x397 - 0x2DA];
+    u8 unk397;
+};
+
+
+
+void func_80232D08(struct func_80232D08_Struct *obj, u16 amount) {
+    u8 mask;
     u8 cnt;
     u8 avg;
-    s32 m2;
-    s32 i;
-    s32 k;
+    u8 i;
 
     mask = 0;
     cnt = 0;
-    avg = (arg0->a[1] + arg0->a[2] + arg0->a[3] + arg0->a[4] + arg0->a[0]) / 5;
-    for (i = 0; i < 5; i = (i + 1) & 0xFF) {
-        if (avg + 5 < arg0->a[i]) {
+    avg = (obj->a[1] + obj->a[2] + obj->a[3] + obj->a[4] + obj->a[0]) / 5;
+    for (i = 0; i < 5; i++) {
+        if (avg + 5 < obj->a[i]) {
             mask |= 1 << (i + 1);
-            mask &= 0xFF;
             cnt++;
         }
     }
-    if (mask != 0 && (D_801842AB[arg0->unk2D9 * 0x1C] & mask)) {
-        {
-            m2 = mask;
-            mask = mask * 1;
-            i = 0;
-            k = 0;
-            do {
-                if ((u32)m2 & (1 << k)) {
-                    arg0->w[i] -= (arg1 * (&arg0->unk82)[i]) / (cnt * (arg0->a[0] + arg0->a[1] + arg0->a[2] + arg0->a[3] + arg0->a[4]));
-                }
-                i = (i + 1) & 0xFF;
-                k = i;
-            } while (i < 6);
+    if (mask && (D_801842AB[obj->unk2D9 * 0x1C] & mask)) {
+        for (i = 0; i < 6; i++) {
+            if (mask & (1 << i)) {
+                obj->w[i] -= (amount * (&obj->unk82)[i]) / (cnt * (obj->a[0] + obj->a[1] + obj->a[2] + obj->a[3] + obj->a[4]));
+            }
         }
     }
-    arg0->unk397 = mask;
+    obj->unk397 = mask;
 }
+#undef func_80232D08_Struct
 
 #define func_8022F0E0 func_8022F0E0__func_80232E94
 #define func_80232D08 func_80232D08__func_80232E94

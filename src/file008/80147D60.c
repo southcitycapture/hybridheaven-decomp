@@ -309,8 +309,21 @@ s32 func_80147E34(void *arg0, u16 arg1, u8 arg2, f32 arg3, f32 arg4, f32 arg5, s
 #undef func_801170DC
 #undef func_801451C0
 
-/* hh-block asm/nonmatchings/file008/80147D60/_mrg_keep_text_func_80148044.s {"functions":["func_80148044"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file008/80147D60/_mrg_keep_text_func_80148044.s")
+#define D_801BBC1C D_801BBC1C__func_80148044
+
+
+extern u16 D_801BBC1C;
+
+s32 func_80148044(void) {
+    if (D_801BBC1C == 0x11) {
+        return 1;
+    }
+    return 0;
+}
+#undef D_801BBC1C
+
+void func_8014806C(void) {
+}
 
 
 typedef struct func_80148074_Struct {

@@ -1,0 +1,1 @@
+{"func": "func_8021B280", "segment": "file011", "model": "openai/gpt-6.2-astra", "verified": "MATCH", "claimed": "blast lander: blastAstraRelay MATCH not landed by the loop", "checks": 62, "turns": 21, "seconds": 210, "input_tokens": 81918, "output_tokens": 4170, "exit": "0", "cost_usd_equiv": 0.0, "start_ts": "2026-11-28T11:05:09Z", "ts": "2026-11-28T11:08:39Z"}

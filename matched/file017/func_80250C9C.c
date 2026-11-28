@@ -65,7 +65,7 @@ typedef struct func_80251750_StructE {
     func_80251750_StructD *unk10;
     func_80251750_StructB *unk14;
 } func_80251750_StructE;
-void func_80251750(func_80251750_StructA *arg0, func_80251750_StructE *arg1);
+extern void func_80251750();
 
 
 typedef struct func_80250C9C_Struct {
@@ -83,7 +83,7 @@ typedef struct func_80250C9C_Struct2 {
 } func_80250C9C_Struct2;
 
 extern u8 D_802592E0[];
-extern u8 func_80250F04[];
+extern void func_80250F04(func_80250F04_StructA *arg0, func_80250F04_StructNode **arg1);
 void func_80250C9C(func_80250C9C_Struct *a0, func_8024F4F0_Args *arg1) {
     func_80250C9C_Struct2 sp38;
     s32 sp34;

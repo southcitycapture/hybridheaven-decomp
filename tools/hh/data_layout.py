@@ -10,6 +10,14 @@ gen_splat.py splits the segment's generic `[rom, data]` subsegment around it, so
 VRAM between two generic data units (tools/hh/data_to_c.py generates both). Every span is 16-aligned at both ends:
 IDO gives .data 16-byte alignment and rounds the section size up to it.
 
+A unit whose span is shared by several of its functions (file-scope objects that more than one function reads or
+writes) names a storage file instead of one function: {"span": [...], "storage": "tools/hh/data_storage/SEG/FILE.c"}.
+That file holds the span's C definitions (initialized file-scope objects, in address order); srcbuild renders it at the
+top of the unit, right after `#include "common.h"`, so every function of the unit, C or still GLOBAL_ASM, references
+the same defined storage, and IDO compiles each C function against a definition rather than an `extern` (u64 stores
+share one %hi, for instance). The span is taken from the start (asm functions link against the C symbols by name),
+and the unit's source must contain the storage block verbatim (storage_problem).
+
 The checks never trust the C: the unit's .data must have exactly SIZE bytes and, linked at VRAM, equal the original
 image byte for byte (relocated pointers included); the linker script asserts the start and end addresses.
 """
@@ -39,6 +47,35 @@ def claimants(path=SPLITS):
     """{(seg, cfile): function} for the spans that name the function bringing their storage."""
     return {tuple(key.split('/')): value['function'] for key, value in placements(path).items()
             if isinstance(value, dict) and value.get('function')}
+
+
+def storage(path=SPLITS):
+    """{(seg, cfile): storage file} for the spans whose definitions are unit-level (shared by several functions)."""
+    out = {}
+    for key, value in placements(path).items():
+        if isinstance(value, dict) and value.get('storage'):
+            if value.get('function'):
+                raise ValueError('a .data span names either its function or its storage file, not both: ' + key)
+            out[tuple(key.split('/'))] = value['storage']
+    return out
+
+
+def storage_blocks(path=SPLITS, root='.'):
+    """{(seg, cfile): the storage definitions' text (stripped)}."""
+    return {unit: (Path(root) / f).read_text().strip() for unit, f in storage(path).items()}
+
+
+def storage_lines(block):
+    """The storage block as source lines, wrapped in markers so a frozen source can be checked for it."""
+    return ['/* hh-data-storage begin (tools/hh/data_splits.json) */'] + block.splitlines() + ['/* hh-data-storage end */']
+
+
+def storage_problem(text, block):
+    """None if `text` (a unit's source) holds the storage block verbatim, once, before its first function."""
+    want = '\n'.join(storage_lines(block))
+    if text.count(want) != 1:
+        return "source lacks the unit's .data storage block (tools/hh/data_splits.json)"
+    return None
 
 
 def subsegments(segment, start_rom, vram, data_rom, layout):

@@ -3,7 +3,7 @@
 extern void func_80126968();
 extern void func_801268CC(s32);
 extern void func_80020744(s32);
-extern void func_800058DC(s32, void *);
+extern void func_800058DC();
 extern s16 D_801BBF90[];
 extern void func_80250AE8(s32 arg0);
 

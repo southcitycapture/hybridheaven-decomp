@@ -40,6 +40,26 @@ class SplitTest(unittest.TestCase):
             self.assertEqual(data_layout.owners(str(path)), self.LAYOUT)
             self.assertEqual(data_layout.claimants(str(path)), {('file999', '80000000'): 'func_80000000'})
 
+    def test_unit_level_storage_for_a_shared_span(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / 'store.c').write_text('u64 D_80000060 = 0;\ns32 D_80000068 = 0;\n')
+            path = root / 'splits.json'
+            path.write_text(json.dumps({'file999/80000000': {'span': ['0x80000060', '0x20'], 'storage': 'store.c'}}))
+            self.assertEqual(data_layout.owners(str(path)), self.LAYOUT)
+            self.assertEqual(data_layout.claimants(str(path)), {})          # no claimant: the span is taken at once
+            blocks = data_layout.storage_blocks(str(path), root=td)
+            block = blocks[('file999', '80000000')]
+            self.assertEqual(block, 'u64 D_80000060 = 0;\ns32 D_80000068 = 0;')
+            source = '#include "common.h"\n\n' + '\n'.join(data_layout.storage_lines(block)) + '\n\nvoid f(void) {}\n'
+            self.assertIsNone(data_layout.storage_problem(source, block))
+            self.assertIn('lacks', data_layout.storage_problem('#include "common.h"\n' + block + '\n', block))
+            self.assertIn('lacks', data_layout.storage_problem(source.replace('= 0;\ns32', '= 1;\ns32'), block))
+            path.write_text(json.dumps({'file999/80000000': {'span': ['0x80000060', '0x20'], 'storage': 'store.c',
+                                                             'function': 'func_80000000'}}))
+            with self.assertRaisesRegex(ValueError, 'not both'):
+                data_layout.storage(str(path))
+
     def test_linker_asserts_start_and_end(self):
         script = '        build/src/file999/80000000.o(.data);\n'
         linked = data_layout.linker_layout(script, self.LAYOUT)

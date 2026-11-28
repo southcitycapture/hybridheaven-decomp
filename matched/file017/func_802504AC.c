@@ -7,7 +7,7 @@ extern f32 func_8001EAD0(s16);
 extern f32 func_8001EB64(s16);
 extern void func_80020718(s32);
 extern void func_801515B0(s32, u8, s32);
-extern s32 func_801516CC(s32);
+extern s32 func_801516CC(s32 arg0);
 typedef struct func_8024F4F0_Inner {
     u8 pad0[4];
     f32 unk4;
@@ -66,7 +66,7 @@ struct func_802503CC_Struct {
 typedef struct func_80250730_StructB { u8 pad[0x4B]; u8 unk4B; } func_80250730_StructB;
 typedef struct func_80250730_StructA { u8 pad[0x22]; u8 unk22; u8 pad23[0xD]; func_80250730_StructB *unk30; } func_80250730_StructA;
 typedef struct func_80250730_StructC { u8 pad[0x1C]; func_80250730_StructA *unk1C; } func_80250730_StructC;
-void func_80250730(struct func_802503CC_Struct *arg0, func_80250730_StructC *arg1);
+extern void func_80250730(struct func_802503CC_Struct__func_802504AC *arg0, func_80250730_StructC *arg1);
 extern void func_80251574();
 typedef struct func_80251574_Struct {
     u8 pad[0x96];

@@ -15,9 +15,7 @@ func_801EF550 file027
 func_801E8324 file026
 func_801E1C94 file045
 func_80374260 file057
-func_8035E89C file057
 func_801166C8 file008
-func_8000C768 main
 func_800332C0 main
 func_8037E438 file057
 func_803639F0 file057
@@ -26,5 +24,3 @@ func_8022038C file011
 func_8037BFB8 file057
 func_8010A6A0 file008
 func_801E5010 file010
-func_8038CFF4 file088
-func_80116150 file008

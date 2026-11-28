@@ -1,0 +1,28 @@
+Hybrid Heaven's pfschecker.c object (main/800332C0) is a revision mix that no single BUILD_VERSION builds:
+osPfsChecker is the 2.0J code (oldbank, the J-only bank loop: matches only with VERSION_J), while
+corrupted_init still computes the inode-map index the 2.0I way, without J's `& 0x7F` page mask (with the mask the
+function is one instruction longer and every later byte of the unit shifts). corrupted() is the same in both.
+This patch keeps the J build and selects only corrupted_init's pre-J expression. Compiled whole at IDO 5.3 -O2
+(tools/hh/libultra.json), the unit is byte-exact against the ROM.
+
+--- a/src/io/pfschecker.c
++++ b/src/io/pfschecker.c
+@@ -2,6 +2,9 @@
+ #include "PR/os_internal.h"
+ #include "PRinternal/controller.h"
+ 
++/* Hybrid Heaven: osPfsChecker is the 2.0J code, corrupted_init the 2.0I code (no 0x7F page mask) */
++#define HH_CORRUPTED_INIT_2_0I
++
+ s32 corrupted_init(OSPfs* pfs, __OSInodeCache* cache);
+ s32 corrupted(OSPfs* pfs, __OSInodeUnit fpage, __OSInodeCache* cache);
+ 
+@@ -204,7 +207,7 @@
+             tpage = tmp_inode.inode_page[i];
+ 
+             if (tpage.ipage >= pfs->inode_start_page && tpage.inode_t.bank != bank) {
+-#if BUILD_VERSION >= VERSION_J
++#if BUILD_VERSION >= VERSION_J && !defined(HH_CORRUPTED_INIT_2_0I)
+                 n = ((tpage.inode_t.page & 0x7F) / PFS_SECTOR_SIZE) +
+                     ((tpage.inode_t.bank % PFS_BANK_LAPPED_BY) * BLOCKSIZE);
+ #else

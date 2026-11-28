@@ -1,5 +1,15 @@
 #include "common.h"
 
+/* hh-data-storage begin (tools/hh/data_splits.json) */
+u64 D_801D8D80 = 0;
+u64 D_801D8D88 = 0;
+s32 D_801D8D90 = 0;
+s32 D_801D8D94 = 0;
+s32 D_801D8D98 = 0;
+u64 D_801D8DA0 = 0;
+u32 D_801D8DA8 = 0;
+/* hh-data-storage end */
+
 extern s32 D_801D8D90;
 extern s32 D_801D8D94;
 extern s32 D_801D8D98;
@@ -19,9 +29,22 @@ extern u64 func_801C0C08(void);
 extern u8 D_801DCE70[];
 extern u8 D_801DCE90[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C0A30/func_801C0A30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C0A30/func_801C0A68.s")
+
+
+void func_801C0A30(void) {
+    D_801D8D88 = 0;
+    D_801D8D80 = func_801C0C08();
+}
+
+
+
+
+void func_801C0A68(void) {
+    if (D_801D8D90 != 0) {
+        D_801D8D88 += func_801C0C08() - D_801D8DA0;
+    }
+}
 
 #define func_801C0C08 func_801C0C08__func_801C0AE4
 
@@ -371,11 +394,35 @@ s32 func_801C1134(s32 arg0, s32 arg1)
   return D_801D8DA8 - var_v1->unk8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C0A30/func_801C117C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C0A30/func_801C11B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file025/801C0A30/func_801C11F4.s")
+
+void func_801C117C(void) {
+    D_801D8D90 = 0;
+    D_801D8D98 = 0;
+    D_801D8D94 = D_801D8D98;
+    D_801D8DA0 = 0;
+}
+
+
+
+
+void func_801C11B0(void) {
+    D_801D8D98 = 0;
+    D_801D8D94 = D_801D8D98;
+    D_801D8D90 = 1;
+    D_801D8DA0 = func_801C0C08();
+}
+
+#define func_801C0A68 func_801C0A68__func_801C11F4
+extern void func_801C0A68(void);
+
+void func_801C11F4(void) {
+    D_801D8D90 = 0;
+    func_801C0A68();
+    D_801D8DA0 = 0;
+}
+#undef func_801C0A68
 
 
 

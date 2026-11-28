@@ -41,7 +41,7 @@ extern f64 D_8025D4F8;
 extern f64 D_8025D500;
 extern f64 D_8025D508;
 extern s32 D_8025DE00;
-extern void func_8024FEC4();
+extern void func_8024FEC4(func_8024FEC4_Struct *arg0, s32 arg1);
 
 void func_8024FC74(func_8024FC74_Arg *arg0, s32 arg1) {
     u16 sp66;

@@ -1,6 +1,16 @@
-#define func_80382B2C func_80382B2C__ctx
-#include "context.h"
-#undef func_80382B2C
+#include "common.h"
+struct func_803822F0_StructInner {
+    u8 pad[0x38];
+    s32 unk38;
+};
+struct func_803822F0_StructGlobal {
+    u16 *unk0;
+    struct func_803822F0_StructInner *unk4;
+};
+extern struct func_803822F0_StructGlobal *D_8017257C;
+extern u8 D_80389BB4[];
+extern void func_80146088(void *, void *, s8 *);
+
 
 struct func_80382B2C_Struct {
     s16 x24, y26, w28, h2A;
@@ -12,20 +22,14 @@ struct func_80382B2C_Struct {
     s32 w40;
     u8 pad44[8];
     s16 s4C, s4E, s50, s52, s54, s56;
+    u8 pad58[8];
 };
 
-void func_80382B2C(arg0, arg1, arg2, arg3, arg4)
-    void *arg0; s16 arg1; s16 arg2; u8 arg3; s8 *arg4;
+void func_80382B2C(void *arg0, s16 arg1, s16 arg2, u8 arg3, s8 *arg4)
 {
-    if (0) {
-        u8 unused[8];
-    }
-    {
     struct func_80382B2C_Struct l;
-    s32 pad3;
-    struct func_803822F0_StructGlobal **data;
+    struct func_803822F0_StructGlobal **global = &D_8017257C;
 
-    data = &D_8017257C;
     switch (arg3) {
     case 0:
         l.x24 = arg1 + 8;
@@ -56,7 +60,7 @@ void func_80382B2C(arg0, arg1, arg2, arg3, arg4)
         l.y26 = arg2;
         break;
     }
-    if ((u32)arg3 == 0) {
+    if (!arg3) {
         l.s54 = l.w28 = l.s4C = 0x10;
         l.s56 = l.h2A = l.s4E = 0x10;
     } else if (arg3 < 6) {
@@ -82,11 +86,10 @@ void func_80382B2C(arg0, arg1, arg2, arg3, arg4)
     l.c33 = 0xFF;
     l.s34 = 0x66;
     l.s36 = 0;
-    l.s3C = *(*data)->unk0;
-    l.w40 = ((s32 *)(*data)->unk4)[(u16)(arg3 + 0xF)];
+    l.s3C = *(*global)->unk0;
+    l.w40 = ((s32 *)(*global)->unk4)[(u16)(arg3 + 0xF)];
     l.s52 = 0;
     l.s50 = 0;
     *(void **)(D_80389BB4 + 0xC) = &l;
     func_80146088(arg0, D_80389BB4, arg4);
-    }
 }

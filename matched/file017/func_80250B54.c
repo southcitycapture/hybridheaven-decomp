@@ -4,7 +4,7 @@
 extern s32 func_801C42DC(s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, f32, f32, s32, f32);
 extern s32 func_801C3DC8(void *, s32, s32, s32, f32, f32, f32, f32, f32);
 extern f32 D_8025D56C;
-extern void func_80250C9C();
+extern void func_80250C9C(func_80250C9C_Struct *a0, func_8024F4F0_Args *arg1);
 
 typedef struct func_80250B54_StructObj {
     u8 pad[0x3C];

@@ -71,7 +71,17 @@ s32 func_8037D508(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file056/8037D3A0/func_8037D598.s")
+
+
+s32 func_8037D598(void) {
+    if (D_80388C60 == 0) {
+        return 1;
+    }
+    return 0;
+}
+
+void func_8037D5BC(void) {
+}
 
 
 extern u8 func_80006214(void);

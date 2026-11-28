@@ -77,6 +77,7 @@ FILE_BSS = bss_layout.owners()
 import data_layout
 FILE_DATA = data_layout.owners()     # source-owned .data spans of C units (tools/hh/data_splits.json)
 DATA_CLAIMANT = data_layout.claimants()
+DATA_STORAGE = data_layout.storage_blocks()   # unit-level definitions of a span shared by several functions
 SPLITS = {k: [int(x, 16) for x in v] for k, v in json.load(open("tools/hh/file_splits.json")).items()}
 TEXT_END = _text_ends()
 LINKER_PADDING = json.load(open("tools/hh/text_padding.json"))
@@ -560,10 +561,17 @@ def private_names(text, decl_text, file_defs, own):
                 if tn in decl_text and decl_text[tn] != ("type", own): out.add(tn)
     return out
 
+DATA_DEF_NAME = re.compile(r"^\s*(?!extern\b)[A-Za-z_][\w\s\*]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*=")
+
 def render(seg, cfile, snips, pad=0, keep_ro=True, hoist=False):
     """Return (text, line ranges per snippet function). hoist=True puts one declaration per name at the top."""
     lines = ['#include "common.h"', ""]; ranges = {}; declared = set()
     decl_text = {}                             # name -> first declaration (normalized) or ("type", owner)
+    if (seg, cfile) in DATA_STORAGE:           # the unit's shared .data definitions (data_layout.py), before every function
+        lines += data_layout.storage_lines(DATA_STORAGE[(seg, cfile)]) + [""]
+        for l in DATA_STORAGE[(seg, cfile)].splitlines():
+            m = DATA_DEF_NAME.match(l)
+            if m: declared.add(m.group(1)); decl_text.setdefault(m.group(1), _norm_decl(l))
     file_defs = {}                             # function defined in this file -> the snippet that defines it
     for n, t in snips.items():
         for l in t.splitlines():
@@ -673,6 +681,9 @@ def data_problem(seg, cfile, obj, text=None):
     claimant = DATA_CLAIMANT.get((seg, cfile))
     if span is not None and claimant and text is not None and claimant not in defined_functions(text):
         span = None         # declared for a landing that has not happened yet
+    if span is not None and text is not None and (seg, cfile) in DATA_STORAGE:
+        why = data_layout.storage_problem(text, DATA_STORAGE[(seg, cfile)])
+        if why: return why
     if span is None:
         return "unplaced writable storage: .data=0x%X" % size if size else None
     if size != span[1]:

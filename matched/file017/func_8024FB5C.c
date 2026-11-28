@@ -34,7 +34,7 @@ extern s32 func_80126944(void);
 extern void func_801C3B2C(s32);
 extern void func_801C3B10(s32);
 extern void func_801FBB30(void);
-extern void func_8024FC74();
+extern void func_8024FC74(func_8024FC74_Arg *arg0, s32 arg1);
 
 void func_8024FB5C(func_8024FB5C_Ctx *arg0, func_8024FB5C_Args *arg1) {
     if (func_80126944() == 0) {

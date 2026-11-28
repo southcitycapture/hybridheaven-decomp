@@ -152,8 +152,12 @@ s32 func_801F3C90(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
 #undef func_801F7928_A
 #undef func_801F7928_B
 
-/* hh-block asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F3F60.s {"functions":["func_801F3F60"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file010/801F3B30/_mrg_keep_text_func_801F3F60.s")
+
+void func_801F3F60(void) {
+}
+
+void func_801F3F68(void) {
+}
 
 
 

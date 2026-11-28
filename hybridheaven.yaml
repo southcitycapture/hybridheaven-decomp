@@ -233,7 +233,7 @@ segments:
       - [0x4A4F0, .data, main/800267F0]
       - [0x4A500, .data, data/main/data_80049900]
       - [0x4A530, .data, main/800279B0]
-      - [0x4A550, .data, data/main/data_80049950]
+      - [0x4A550, .data, main/80027A90]
       - [0x4A560, .data, main/80027F20]
       - [0x4A570, .data, main/80028B10]
       - [0x4A590, .data, data/main/data_80049990]
@@ -280,7 +280,7 @@ segments:
       - [0x4E0F0, rodata]
       - { type: bss, vram: 0x8004DBD0, name: main_bss_head }
       - { type: .bss, vram: 0x800CBE20, name: main/800269F0 }
-      - { type: bss, vram: 0x800CBE60, name: main_bss_800CBE60 }
+      - { type: .bss, vram: 0x800CBE60, name: main/80027A90 }
       - { type: .bss, vram: 0x800CBF80, name: main/80027F20 }
       - { type: .bss, vram: 0x800CC010, name: main/80028B10 }
       - { type: bss, vram: 0x800CC020, name: main_bss_800CC020 }
@@ -751,6 +751,8 @@ segments:
       - [0x6CA7C0, c, file025/801D7250]
       - [0x6CBC70, c, file025/801D8700]
       - [0x6CC170, .data, data/file025/data_801D8C00]
+      - [0x6CC2F0, .data, file025/801C0A30]
+      - [0x6CC320, .data, data/file025/data_801D8DB0]
       - [0x6CC350, .data, file025/801C1860]
       - [0x6CC360, .data, data/file025/data_801D8DF0]
       - [0x6D0330, .rodata, file025/801BF1A0]

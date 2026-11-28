@@ -55,6 +55,14 @@
   "additional": [{"src": "src/libc/bzero.s", "opt": "-O2"}],
   "storage": {".data": ["0x80049930", "0x20"]}
  },
+ "main/80027A90": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/motor.c",
+  "flags": "-DNDEBUG",
+  "additional": [{"src": "src/io/siacs.c"}],
+  "storage": {".data": ["0x80049950", "0x10"], ".bss": ["0x800CBE60", "0x120"]}
+ },
  "main/80027F20": {
   "mips": "-mips2 -o32",
   "opt": "-O1",
@@ -479,6 +487,12 @@
   "opt": "-O2",
   "src": "src/io/pfsdeletefile.c"
  },
+ "main/80031E30": {
+  "mips": "-mips2 -o32",
+  "opt": "-O3",
+  "src": "src/gu/ortho.c",
+  "flags": "-DNDEBUG"
+ },
  "main/80032220": {
   "mips": "-mips2 -o32",
   "opt": "-O1",
@@ -551,6 +565,14 @@
   "mips": "-mips2 -o32",
   "opt": "-O2",
   "src": "src/io/pfsfilestate.c"
+ },
+ "main/800332C0": {
+  "mips": "-mips2 -o32",
+  "opt": "-O2",
+  "src": "src/io/pfschecker.c",
+  "patch": "tools/hh/ultralib_patches/pfschecker-corrupted_init-2.0I.patch",
+  "flags": "-DNDEBUG",
+  "additional": [{"src": "src/io/aigetlen.c"}]
  },
  "main/80033C70": {
   "mips": "-mips2 -o32",

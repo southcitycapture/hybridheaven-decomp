@@ -62,7 +62,7 @@ extern void func_80006214(void *);
 extern void func_8001F74C(void *);
 extern void func_8012CF8C(void *, void *, s32, s32);
 extern s32 func_8012C97C(s32, s32);
-extern void func_8024FB5C();
+extern void func_8024FB5C(func_8024FB5C_Ctx *arg0, func_8024FB5C_Args *arg1);
 extern func_8024F4F0_V D_80164F40;
 extern u8 D_801BBBF0[];
 extern u8 D_8017AF38[];

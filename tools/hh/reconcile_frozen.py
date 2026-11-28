@@ -428,6 +428,7 @@ def ensure_unit(seg, cfile, text):
     `hh-layout-unit` marker (rodata_layout.plan_base) because no pragma path names the unit any more (11-22: the last
     giant, file008 func_8010FABC, matched every instruction but every isolate variant failed on this)."""
     import rodata_layout as L
+    text = L.expire(text)        # nothing frozen and no GLOBAL_ASM left: an identity plan has expired (G3)
     if L.LAYOUT.search(text) and not L.PRAGMA.search(text) and not L.UNIT.search(text) and L.FROZEN_BLOB.search(text):
         return text + "/* hh-layout-unit %s/%s */\n" % (seg, cfile)
     return text

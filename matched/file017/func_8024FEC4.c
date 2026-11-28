@@ -8,7 +8,7 @@ extern void func_80020718(s32);
 extern s32 func_801512CC(s32, f32, f32, f32);
 extern void func_80151430(s32, s32);
 extern void func_801515B0(s32, u8, s32);
-extern s32 func_801516CC(s32);
+extern s32 func_801516CC(s32 arg0);
 extern void D_80151700(s32, u8, void *);
 extern s32 func_801517CC(s32);
 extern u8 D_8017BAD8[];
@@ -18,7 +18,7 @@ extern f64 D_8025D520;
 extern f64 D_8025D528;
 extern f64 D_8025D530;
 extern s32 D_8025DE00;
-extern u8 func_8025006C[];
+extern void func_8025006C(func_8025022C_Struct *arg0, s32 arg1);
 
 void func_8024FEC4(func_8024FEC4_Struct *arg0, s32 arg1) {
     s32 i;

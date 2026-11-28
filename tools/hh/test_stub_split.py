@@ -34,6 +34,34 @@ class TrailingStubTests(unittest.TestCase):
         words = [0x10800003, NOP, 0x24020001, JR, NOP, JR, NOP]
         self.assertEqual(S.trailing_stubs(words), (5, 0, "frameless"))
 
+    def test_independent_instruction_scheduled_before_the_return(self):
+        # file045 func_801E4598: lw ra; addiu sp,+0x18; addiu v0,zero,1; jr ra; nop; jr ra; nop
+        words = [PRO, SW_RA, JAL, NOP, LW_RA, EPI, 0x24020001, JR, NOP, JR, NOP]
+        self.assertEqual(S.trailing_stubs(words), (9, 1, "ok"))
+        # a branch between the restore and the return is not an epilogue
+        words = [PRO, SW_RA, JAL, NOP, LW_RA, EPI, 0x10000002, JR, NOP, JR, NOP]
+        self.assertEqual(S.trailing_stubs(words)[1:], (0, "epilogue not at a return"))
+
+    def test_frameless_candidates(self):
+        ret1 = [0x15C10003, NOP, JR, 0x24020001, JR, NOP]          # bne .L; nop; jr ra; li v0,1; .L: jr ra; nop
+        self.assertEqual(S.frameless_stubs(ret1 + [JR, NOP]), 2)   # scan then keeps the targeted .L pair
+        self.assertEqual(S.frameless_stubs(ret1 + [JR, NOP, JR, NOP]), 3)
+        self.assertEqual(S.frameless_stubs([JR, NOP, JR, NOP]), 1)  # two empty functions
+        self.assertEqual(S.frameless_stubs([JR, NOP]), 0)
+        self.assertEqual(S.frameless_stubs([0x24020001, JR, NOP]), 0)
+        # a return that follows other code can be reached by falling through
+        self.assertEqual(S.frameless_stubs([0x24020001, 0x24030001, JR, NOP]), 0)
+        # a jr in a branch's delay slot is not an unconditional return
+        self.assertEqual(S.frameless_stubs([0x24020001, 0x10800002, JR, NOP, JR, NOP]), 0)
+        # framed functions are trailing_stubs' business
+        self.assertEqual(S.frameless_stubs([PRO, LW_RA, EPI, JR, NOP, JR, NOP]), 0)
+
+    def test_frameless_rows_need_opt_in(self):
+        rows = [{"seg": "t", "func": "func_80000040", "status": "frameless-ok", "stubs": ["func_80000060"], "roms": ["0x1060"]}]
+        self.assertEqual(S.symbol_lines(rows), [])
+        self.assertEqual(S.symbol_lines(rows, frameless=True), ["func_80000060 = 0x80000060; // type:func rom:0x1060"])
+        self.assertEqual(S.symbol_lines(rows, only={("t", "func_80000040")}), ["func_80000060 = 0x80000060; // type:func rom:0x1060"])
+
     def test_branch_and_jump_targets(self):
         self.assertEqual(S.branch_target(0x80000000, 0x10000003), 0x80000010)     # b +3
         self.assertEqual(S.branch_target(0x80000020, 0x1000FFFF), 0x80000020)     # b -1

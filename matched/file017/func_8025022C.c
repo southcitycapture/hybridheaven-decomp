@@ -5,7 +5,7 @@ typedef struct func_8025022C_Struct {
     u16 unk3C;
 } func_8025022C_Struct;
 
-extern void func_802502F0();
+extern void func_802502F0(struct func_802503CC_Struct *arg0);
 extern void func_80251574();
 extern void func_801C4058(void *, s32, f32, s32);
 extern void func_80020718(s32);

@@ -1511,7 +1511,16 @@ s32 func_801E4588(s32 arg0, s32 arg1) {
     return 12;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/file045/801E1BE0/func_801E4598.s")
+
+
+s32 func_801E4598(s32 arg0, s32 arg1) {
+    func_801CD044();
+    D_801CCF48(D_801DABB8, D_801DABBC);
+    return 1;
+}
+
+void func_801E45D4(void) {
+}
 
 
 extern s32 D_801E833C;

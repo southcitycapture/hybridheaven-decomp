@@ -11,7 +11,7 @@ extern f64 D_8025D558;
 extern f64 D_8025D560;
 extern f32 D_8025D568;
 extern void func_80251750();
-extern void func_80250A98();
+extern void func_80250A98(s32 arg0, s32 arg1);
 
 void func_802508F0(struct func_802503CC_Struct *arg0, void *arg1) {
     f32 sp44;

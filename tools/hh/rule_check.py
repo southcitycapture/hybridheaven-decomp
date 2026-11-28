@@ -35,7 +35,8 @@ def body_of(text):
 def unused_locals(body):
     """locals declared at the top of a block (`T name;`, `T name[N];`) that are never used again, or only written"""
     out = []
-    for m in re.finditer(r'(?:^|[;{}])\s*(?:const\s+|static\s+)?(?:struct\s+\w+\s*\**|%s\s*\**)\s*(\w+)\s*(\[[^\]]*\])?\s*;' % TYPE, body):
+    # 11-28 (Fable re-baseline): look behind for the delimiter; consuming it skipped every second adjacent declaration
+    for m in re.finditer(r'(?:^|(?<=[;{}]))\s*(?:const\s+|static\s+)?(?:struct\s+\w+\s*\**|%s\s*\**)\s*(\w+)\s*(\[[^\]]*\])?\s*;' % TYPE, body):
         name = m.group(1)
         if name in ('void',): continue
         # a member inside a struct/union body declared in the function is not a local

@@ -45,8 +45,66 @@ void func_80242F70(u8 *arg0) {
     *(u16 *) (arg0 + 0x6) = *(u16 *) (arg0 + 0x6) & 0xFFEF;
 }
 
-/* hh-block asm/nonmatchings/file013/80242F60/_mrg_keep_text_func_80242F80.s {"functions":["func_80242F80"],"rodata":[]} */
-#pragma GLOBAL_ASM("asm/nonmatchings/file013/80242F60/_mrg_keep_text_func_80242F80.s")
+#define func_80242F60 func_80242F60__func_80242F80
+#define func_80242F60_Struct func_80242F60_Struct__func_80242F80
+#define func_80242F70 func_80242F70__func_80242F80
+#define func_80242FD0_StructB func_80242FD0_StructB__func_80242F80
+#define func_80242FD0_StructC func_80242FD0_StructC__func_80242F80
+#define func_8024310C_Struct func_8024310C_Struct__func_80242F80
+#define func_8024310C_StructE func_8024310C_StructE__func_80242F80
+typedef struct func_80242F60_Struct {
+    u8 pad0[6];
+    u16 unk6;
+} func_80242F60_Struct;
+void func_80242F60(func_80242F60_Struct *arg0);
+void func_80242F70(u8 *arg0);
+typedef struct func_80242FD0_StructB {
+    u8 pad0[4];
+    f32 unk4;
+    u8 pad8[4];
+    f32 unkC;
+} func_80242FD0_StructB;
+typedef struct func_80242FD0_StructC {
+    u8 pad0[0x2C];
+    func_80242FD0_StructB *unk2C;
+} func_80242FD0_StructC;
+typedef struct func_8024310C_StructE {
+    u8 pad0[0x78];
+    u16 unk78;
+} func_8024310C_StructE;
+typedef struct func_8024310C_Struct {
+    u8 pad0[0x24];
+    func_80242FD0_StructC *unk24;
+    u8 pad28[0x5C - 0x28];
+    func_8024310C_StructE *unk5C;
+    u8 pad60[0x90 - 0x60];
+    u8 unk90;
+    u8 pad91[3];
+    u8 unk94;
+    u8 unk95;
+    u8 unk96;
+    u8 unk97;
+    u8 pad98[4];
+    s16 unk9C;
+    u8 pad9E[2];
+    s16 unkA0;
+} func_8024310C_Struct;
+
+
+void func_80242F80(void *arg0, void *arg1) {
+    if (((func_8024310C_Struct *)arg0)->unk95 == 1) {
+        func_80242F70(arg1);
+        return;
+    }
+    func_80242F60(arg1);
+}
+#undef func_80242F60
+#undef func_80242F60_Struct
+#undef func_80242F70
+#undef func_80242FD0_StructB
+#undef func_80242FD0_StructC
+#undef func_8024310C_Struct
+#undef func_8024310C_StructE
 
 void func_80242FC0(void) {
 }
@@ -1004,8 +1062,3 @@ void func_80243C6C(func_80243C6C_Struct *arg0, s32 arg1) {
 
 
 
-/* hh-placed-function func_802431C4 */
-/* hh-placed-function func_80243688 */
-/* hh-placed-function func_8024373C */
-/* hh-placed-function func_80243930 */
-/* hh-rodata-layout [48,[[0,0,48]]] */

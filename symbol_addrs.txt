@@ -47,3 +47,12 @@ func_80358B48 = 0x80358B48; // type:func rom:0x7FC768
 func_80021D48 = 0x80021D48; // type:func rom:0x22948
 // far-tier class C: the switch of func_8035A3D8 shares a return-0 tail at 0x8035A428 (a jump-table target, not a function)
 func_8035A3D8 = 0x8035A3D8; // type:func size:0x5C rom:0x7FDFF8
+func_8014806C = 0x8014806C; // type:func rom:0x52777C
+func_80152238 = 0x80152238; // type:func rom:0x531948
+func_801F3F68 = 0x801F3F68; // type:func rom:0x5A4F68
+func_802363C8 = 0x802363C8; // type:func rom:0x5E7228
+func_802363D0 = 0x802363D0; // type:func rom:0x5E7230
+func_801E45D4 = 0x801E45D4; // type:func rom:0x7A35B4
+func_8037D5BC = 0x8037D5BC; // type:func rom:0x7EFB1C
+func_8038C8BC = 0x8038C8BC; // type:func rom:0x85167C
+func_8038C8C4 = 0x8038C8C4; // type:func rom:0x851684

@@ -874,3 +874,9 @@ struct func_8038C600_StructC *func_8038C778(void)
 
 /* hh-block asm/nonmatchings/file100/8038B7E0/_mrg_keep_0fbcc99ba97a41b1.s {"functions":["func_8038C824"],"rodata":[[".late_rodata","asm/nonmatchings/file100/8038B7E0/func_8038C17C.s","D_8038DD08"]]} */
 #pragma GLOBAL_ASM("asm/nonmatchings/file100/8038B7E0/_mrg_keep_0fbcc99ba97a41b1.s")
+void func_8038C8BC(void) {
+}
+
+void func_8038C8C4(void) {
+}
+

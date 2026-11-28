@@ -4,8 +4,13 @@
   gen_libultra.py --stubs    also (re)write the src/<file>.c stubs that mark those files
 
 tools/hh/libultra.json maps "main/<file>" to its ultralib source and the flags ultralib's ido.mk uses for it
-(IDO 5.3, libultra_rom, default version J; optional version/flags/additional/storage fields). Those files aren't C from the registry: srcbuild leaves them alone, and the
+(IDO 5.3, libultra_rom, default version J; optional version/flags/additional/storage/patch fields). Those files aren't C from the registry: srcbuild leaves them alone, and the
 progress report counts their functions as matched (the object is built straight from ultralib's source).
+
+A part may carry "patch": a unified diff under tools/hh/ultralib_patches/ applied to a copy of the ultralib source in
+$(BUILD)/ultralib_patched/ (tools/ultralib itself is never modified). It is for a ROM whose SDK object is a real
+revision mix that no single BUILD_VERSION produces (each patch says which code it takes from which revision); the
+patched copy is still compiled whole, with the same flags, like any other part.
 
 A part whose src is an ultralib .s file is assembled the way ultralib's ido.mk assembles it (ASFLAGS, its own "opt"
 = ido.mk's ASOPTFLAGS). Those functions were hand-written assembly in the original game: they are listed in
@@ -29,10 +34,16 @@ for unit, e in sorted(LIB.items()):
     # them separately with their own flags, then concatenate via a normal
     # relocatable link; no source/instruction rewriting is involved.
     parts = [e] + e.get("additional", [])
-    deps = " ".join("$(ULTRALIB)/" + part["src"] for part in parts)
+    deps = " ".join("$(ULTRALIB)/" + part["src"] + (" " + part["patch"] if "patch" in part else "") for part in parts)
     out += ["$(BUILD)/src/%s.o: %s tools/hh/libultra.json" % (unit, deps), "\t@mkdir -p $(dir $@)"]
     for index, part in enumerate(parts):
         src = "$(ULTRALIB)/" + part["src"]
+        if "patch" in part:   # revision-mix SDK file: compile a patched copy, never the ultralib tree itself
+            assert part["patch"].startswith("tools/hh/ultralib_patches/") and part["patch"].endswith(".patch"), part
+            patched = "$(BUILD)/ultralib_patched/" + part["src"]
+            out += ["\t@mkdir -p $(dir %s)" % patched,
+                    "\t@patch -s -f -o %s %s %s" % (patched, src, part["patch"])]
+            src = patched
         version = part.get("version", e.get("version", "J"))
         flags = (ASFLAGS if src.endswith(".s") else FLAGS).replace("VERSION_J", "VERSION_" + version).replace("2.0J", "2.0" + version)
         target = "$(abspath $@)" if len(parts) == 1 else "$(abspath $@).part%d" % index
@@ -62,7 +73,8 @@ for unit, e in sorted(LIB.items()):
 os.makedirs("build", exist_ok=True); open("build/libultra.mk", "w").write("\n".join(out))
 if "--stubs" in sys.argv:
     for unit, e in LIB.items():
-        sources = ", ".join(part["src"] for part in [e] + e.get("additional", []))
+        sources = ", ".join(part["src"] + (" + " + part["patch"] if "patch" in part else "")
+                            for part in [e] + e.get("additional", []))
         version = e.get("version", "J")
         open("src/%s.c" % unit, "w").write("/* libultra 2.0%s: built from ultralib's %s (tools/hh/libultra.json) */\n" % (version, sources))
 print("libultra: %d files" % len(LIB))

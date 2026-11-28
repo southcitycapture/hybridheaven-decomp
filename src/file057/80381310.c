@@ -1149,18 +1149,45 @@ struct func_80382B2C_Struct {
     s16 s4C, s4E, s50, s52, s54, s56;
 };
 
-void func_80382B2C(arg0, arg1, arg2, arg3, arg4)
-    void *arg0; s16 arg1; s16 arg2; u8 arg3; s8 *arg4;
-{
-    if (0) {
-        u8 unused[8];
-    }
-    {
-    struct func_80382B2C_Struct l;
-    s32 pad3;
-    struct func_803822F0_StructGlobal **data;
+#undef D_8017257C
+#undef D_80389BB4
+#undef func_803822F0_StructGlobal
+#undef func_803822F0_StructInner
+#define D_8017257C D_8017257C__func_80382B2C_a1fb3f30
+#define D_80389BB4 D_80389BB4__func_80382B2C_a1fb3f30
+#define func_803822F0_StructGlobal func_803822F0_StructGlobal__func_80382B2C_a1fb3f30
+#define func_803822F0_StructInner func_803822F0_StructInner__func_80382B2C_a1fb3f30
+#define func_80382B2C_Struct func_80382B2C_Struct__func_80382B2C_a1fb3f30
+struct func_803822F0_StructInner {
+    u8 pad[0x38];
+    s32 unk38;
+};
+struct func_803822F0_StructGlobal {
+    u16 *unk0;
+    struct func_803822F0_StructInner *unk4;
+};
+extern struct func_803822F0_StructGlobal *D_8017257C;
+extern u8 D_80389BB4[];
 
-    data = &D_8017257C;
+
+struct func_80382B2C_Struct {
+    s16 x24, y26, w28, h2A;
+    u8 c2C, c2D, c2E, c2F, c30, c31, c32, c33;
+    s16 s34, s36;
+    u8 pad38[4];
+    u16 s3C;
+    u8 pad3E[2];
+    s32 w40;
+    u8 pad44[8];
+    s16 s4C, s4E, s50, s52, s54, s56;
+    u8 pad58[8];
+};
+
+void func_80382B2C(void *arg0, s16 arg1, s16 arg2, u8 arg3, s8 *arg4)
+{
+    struct func_80382B2C_Struct l;
+    struct func_803822F0_StructGlobal **global = &D_8017257C;
+
     switch (arg3) {
     case 0:
         l.x24 = arg1 + 8;
@@ -1191,7 +1218,7 @@ void func_80382B2C(arg0, arg1, arg2, arg3, arg4)
         l.y26 = arg2;
         break;
     }
-    if ((u32)arg3 == 0) {
+    if (!arg3) {
         l.s54 = l.w28 = l.s4C = 0x10;
         l.s56 = l.h2A = l.s4E = 0x10;
     } else if (arg3 < 6) {
@@ -1217,14 +1244,22 @@ void func_80382B2C(arg0, arg1, arg2, arg3, arg4)
     l.c33 = 0xFF;
     l.s34 = 0x66;
     l.s36 = 0;
-    l.s3C = *(*data)->unk0;
-    l.w40 = ((s32 *)(*data)->unk4)[(u16)(arg3 + 0xF)];
+    l.s3C = *(*global)->unk0;
+    l.w40 = ((s32 *)(*global)->unk4)[(u16)(arg3 + 0xF)];
     l.s52 = 0;
     l.s50 = 0;
     *(void **)(D_80389BB4 + 0xC) = &l;
     func_80146088(arg0, D_80389BB4, arg4);
-    }
 }
+#undef D_8017257C
+#undef D_80389BB4
+#undef func_803822F0_StructGlobal
+#undef func_803822F0_StructInner
+#undef func_80382B2C_Struct
+#define D_8017257C D_8017257C__func_80382B2C
+#define D_80389BB4 D_80389BB4__func_80382B2C
+#define func_803822F0_StructGlobal func_803822F0_StructGlobal__func_80382B2C
+#define func_803822F0_StructInner func_803822F0_StructInner__func_80382B2C
 #undef D_8017257C
 #undef D_80389BB4
 #undef func_803822F0_StructGlobal

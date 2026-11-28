@@ -2,6 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/file008/80152230/func_80152230.s")
 
+void func_80152238(void) {
+}
+
 
 typedef struct { s16 b[0x4F]; } func_80152240_S9E;
 typedef struct { u8 b[7]; } func_80152240_S7;

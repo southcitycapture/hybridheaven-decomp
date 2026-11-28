@@ -7,11 +7,19 @@ predecessor. Each one gets its own `func_<ADDR> = 0x<ADDR>; // type:func rom:0x<
 (the rom attribute scopes it to its overlay: overlays sharing a RAM slot reuse addresses), so the next
 `make setup` splits it off; srcbuild then renders it as the empty C stub it already emits for 8-byte returns.
 
-Frameless functions are only reported: their trailing `jr $ra; nop` is usually a real branch-target return, and
-without a frame there is no epilogue to anchor on.
+IDO may schedule an independent instruction (`addiu $v0,$zero,1`) between the epilogue's restore and its `jr $ra`;
+that form is the same epilogue.
+
+Frameless functions have no epilogue to anchor on, so they use a narrower rule: the function ends in k >= 1 bare
+`jr $ra; nop` pairs, each directly after another return (`jr $ra` + its delay slot, not itself in a branch's delay
+slot), so none of them can be reached by falling through; the trailing pairs that no branch, jump or data word
+targets (checked from the end; the first targeted pair, typically a `.L` return label, stays in the function) are
+separate empty functions. A 16-byte `jr $ra; nop; jr $ra; nop` is two empty functions the same way. Frameless rows
+are listed as "frameless-ok" and written only with --frameless or --only.
 
   stub_split.py scan [--json OUT]           list candidates (ok and skipped, with the reason)
-  stub_split.py write [--only SEG:FUNC,..]  append the ok stubs to symbol_addrs.txt (idempotent)
+  stub_split.py write [--only SEG:FUNC,..] [--frameless]
+                                            append the ok stubs to symbol_addrs.txt (idempotent)
   stub_split.py check                       after make setup: every src file includes every function of its unit
   stub_split.py insert                      write the missing split-off stubs into src (after their predecessor)
 """
@@ -51,12 +59,35 @@ def trailing_stubs(words):
     # the delay-slot form first: in `jr $ra; addiu; jr $ra; nop` the jr after the addiu is already the stub
     if i >= 1 and words[i - 1] == JR_RA: end = i + 1                       # jr $ra; addiu (delay slot)
     elif i + 2 < len(words) and words[i + 1] == JR_RA: end = i + 3        # addiu; jr $ra; <delay>
-    else: return len(words), 0, "epilogue not at a return"
+    else:
+        # addiu; <scheduled independent instructions>; jr $ra; <delay>: IDO fills the gap with e.g. the return value
+        j = next((j for j in range(i + 1, min(i + 4, len(words))) if words[j] == JR_RA), None)
+        if j is None or j + 1 >= len(words) or any(branch_target(0, w) is not None or is_jump_reg(w)
+                                                   for w in words[i + 1:j]):
+            return len(words), 0, "epilogue not at a return"
+        end = j + 2
     tail = words[end:]
     if not tail: return len(words), 0, "no trailing return"
     if len(tail) % 2 or any(tail[j:j + 2] != [JR_RA, NOP] for j in range(0, len(tail), 2)):
         return len(words), 0, "words after the epilogue are not bare returns"
     return end, len(tail) // 2, "ok"
+
+
+def is_jump_reg(w):
+    """jr / jalr."""
+    return (w >> 26) == 0 and (w & 0x3F) in (8, 9)
+
+
+def frameless_stubs(words):
+    """Frameless candidates: the largest k such that the last k (jr $ra; nop) pairs each follow a return (jr $ra plus
+    its delay slot, the jr not in a branch's delay slot). The caller drops trailing pairs that are referenced."""
+    if any(sp_adjust(w) is not None and sp_adjust(w) < 0 for w in words): return 0
+    k = 0
+    while True:
+        end = len(words) - 2 * (k + 1)          # start of the next candidate pair; the body would be words[:end]
+        if end < 2 or words[end:end + 2] != [JR_RA, NOP] or words[end - 2] != JR_RA: return k
+        if end >= 3 and (branch_target(0, words[end - 3]) is not None or is_jump_reg(words[end - 3])): return k
+        k += 1
 
 
 def branch_target(pc, w):
@@ -124,17 +155,21 @@ def scan():
         if seg not in segs: continue
         ins = parse_asm(p)
         if not ins: continue
-        body, k, why = trailing_stubs([w for _, _, w in ins])
+        words = [w for _, _, w in ins]
+        body, k, why = trailing_stubs(words)
+        if why in ("too short", "frameless"):
+            # no epilogue to anchor on: the trailing bare returns that follow a return and that nothing targets
+            # (from the end; the first targeted pair is the function's own return label)
+            reach = [x for n in text for x in text[n]] if seg == "main" else text[seg] + text["main"]
+            n = frameless_stubs(words)
+            # the largest n whose pairs, through the function's end, nothing targets (the ranges nest)
+            while n and referenced([(ins[len(ins) - 2 * n][1], ins[-1][1] + 4)], reach, data[seg]): n -= 1
+            if not n: continue
+            body, k, why = len(words) - 2 * n, n, "frameless-ok"
         if why in ("too short", "no trailing return", "no epilogue", "epilogue not at a return",
-                   "words after the epilogue are not bare returns"): continue
+                   "words after the epilogue are not bare returns", "frameless"): continue
         name = os.path.basename(p)[:-2]
         row = {"seg": seg, "cfile": p.split(os.sep)[-2], "func": name, "size": 4 * len(ins), "status": why}
-        if why == "frameless":
-            # reported only: without a frame there is no epilogue to anchor on; a reviewer can verify a frameless
-            # case by compiling its attempt plus the stub and comparing every word
-            last = ins[-2][1]
-            if referenced([(last, last + 8)], text[seg], data[seg]): continue
-            row["stubs"] = ["func_%08X" % last]; row["roms"] = ["0x%X" % ins[-2][0]]
         if k:
             stubs = [(ins[body + 2 * j][1], ins[body + 2 * j][0]) for j in range(k)]
             row["stubs"] = ["func_%08X" % v for v, _ in stubs]; row["roms"] = ["0x%X" % r for _, r in stubs]
@@ -147,10 +182,12 @@ def scan():
     return rows
 
 
-def symbol_lines(rows, only=None):
+def symbol_lines(rows, only=None, frameless=False):
+    """Symbols for the ok rows (framed); frameless-ok rows only when named in `only` or with frameless=True."""
     out = []
     for r in rows:
-        if r["status"] != "ok" or (only and (r["seg"], r["func"]) not in only): continue
+        if only and (r["seg"], r["func"]) not in only: continue
+        if not (r["status"] == "ok" or (r["status"] == "frameless-ok" and (only or frameless))): continue
         for n, rom in zip(r["stubs"], r["roms"]):
             out.append("%s = 0x%s; // type:func rom:%s" % (n, n[5:], rom))
     return out
@@ -250,16 +287,17 @@ def main(argv):
         for r in rows:
             print("%-8s %-14s %5d  %s  %s" % (r["seg"], r["func"], r["size"], r["status"], " ".join(r.get("stubs", []))))
         ok = [r for r in rows if r["status"] == "ok"]
-        print("%d framed functions with trailing stubs (%d stubs); %d skipped (referenced); %d frameless (reported only)" % (
+        fl = [r for r in rows if r["status"] == "frameless-ok"]
+        print("%d framed functions with trailing stubs (%d stubs); %d skipped (referenced); %d frameless (%d stubs)" % (
             len(ok), sum(len(r["stubs"]) for r in ok), sum(r["status"].startswith("referenced") for r in rows),
-            sum(r["status"] == "frameless" for r in rows)))
+            len(fl), sum(len(r["stubs"]) for r in fl)))
         if "--json" in argv: json.dump(rows, open(argv[argv.index("--json") + 1], "w"), indent=1)
     elif argv[:1] == ["write"]:
         only = None
         if "--only" in argv: only = {tuple(x.split(":")) for x in argv[argv.index("--only") + 1].split(",")}
         path = os.path.join(HH, "symbol_addrs.txt")
         have = open(path).read()
-        new = [l for l in symbol_lines(rows, only) if l not in have.splitlines()]
+        new = [l for l in symbol_lines(rows, only, "--frameless" in argv) if l not in have.splitlines()]
         with open(path, "a") as fh:
             if new and not have.endswith("\n"): fh.write("\n")
             fh.write("".join(l + "\n" for l in new))

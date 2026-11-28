@@ -22,7 +22,7 @@ extern s32 func_801516CC(s32 arg0);
 extern void func_80151700(s32, s32, void *);
 extern u8 D_8017BAD8[];
 extern s32 D_8025DE00;
-extern u8 func_802504AC[];
+extern void func_802504AC(func_8024FB5C_Ctx *arg0, func_8024F4F0_Args *arg1);
 
 void func_802503CC(struct func_802503CC_Struct *arg0, struct func_802503CC_Arg1 *arg1) {
     s32 var_s0;

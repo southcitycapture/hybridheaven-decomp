@@ -1,9 +1,3 @@
-func_80361910 file057
-func_80014CCC main
-func_8000EC9C main
-func_8037797C file057
-func_80109560 file008
-func_8010CC68 file008
 func_80108868 file008
 func_8010A1AC file008
 func_80004838 main
@@ -13,3 +7,5 @@ func_801F3F60 file010
 func_8002FC20 main
 func_801E292C file037
 func_8023639C file011
+func_8000EC9C main
+func_80109560 file008

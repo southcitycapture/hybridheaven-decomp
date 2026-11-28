@@ -161,6 +161,25 @@ def check_plan(text, raw, size, spans, base, symbols, ro_index, refs, runs, alig
     return spans
 
 
+PLACED = re.compile(r'^/\* hh-placed-function \S+ \*/\n?', re.M)
+
+
+def expire(text):
+    """G3 for a candidate that removes a unit's last GLOBAL_ASM when the unit has no frozen readonly bytes either: the
+    plan is scaffolding with nothing left to place. An identity plan (one span, input +0 -> output +0, the whole
+    section) is then a no-op on the compiler's own order, so it is removed with its hh-placed-function and
+    hh-layout-unit markers and the file compiles as plain C. A non-identity plan is kept (and is then refused by
+    check_plan): live compiler output that would still need reordering is not something to drop silently. Whether the
+    plan-free object still links to the original bytes is decided by the normal in-file checks, as for any candidate."""
+    plans = LAYOUT.findall(text)
+    if len(plans) != 1 or PRAGMA.search(text) or FROZEN_BLOB.search(text):
+        return text
+    size, spans = json.loads(plans[0])
+    if [list(x) for x in spans] != [[0, 0, size]]:
+        return text
+    return UNIT.sub('', PLACED.sub('', LAYOUT.sub('', text)))
+
+
 def plan_base(text, source=None):
     m = PRAGMA.search(text)
     if m is None:

@@ -109,6 +109,28 @@ class GuardrailTest(unittest.TestCase):
                 rodata_layout.plan_base(text.splitlines()[1] + '\n')
 
 
+class ExpiryTest(unittest.TestCase):
+    """G3: once a unit's last GLOBAL_ASM goes and nothing is frozen, an identity plan expires (file013 func_80242F80)."""
+    PLAN = ('/* hh-placed-function func_80000010 */\n/* hh-layout-unit file999/80000000 */\n'
+            '/* hh-rodata-layout [48,[[0,0,48]]] */\n')
+
+    def test_identity_plan_without_asm_or_frozen_bytes_expires(self):
+        text = 'void func_80000000(void) {\n}\n' + self.PLAN
+        self.assertEqual(rodata_layout.expire(text), 'void func_80000000(void) {\n}\n')
+
+    def test_plan_is_kept_while_asm_or_frozen_bytes_remain(self):
+        asm = '#pragma GLOBAL_ASM("asm/nonmatchings/file999/80000000/func_80000000.s")\n' + self.PLAN
+        self.assertEqual(rodata_layout.expire(asm), asm)
+        frozen = 'static const unsigned char rodata_80000000[] = {0x01, 0x02, 0x03, 0x04};\n' + self.PLAN
+        self.assertEqual(rodata_layout.expire(frozen), frozen)
+
+    def test_reordering_plan_never_expires(self):
+        text = 'int x;\n/* hh-rodata-layout [48,[[0,16,16],[16,0,16],[32,32,16]]] */\n'
+        self.assertEqual(rodata_layout.expire(text), text)
+        text = 'int x;\n/* hh-rodata-layout [64,[[0,0,48]]] */\n'       # pads the section: not a no-op
+        self.assertEqual(rodata_layout.expire(text), text)
+
+
 class AuditTest(unittest.TestCase):
     """Every committed plan passes the guardrails on its pre-layout object (Fable: --audit in the test suite)."""
     @unittest.skipUnless(shutil.which('mips-linux-gnu-as'), 'needs MIPS binutils')

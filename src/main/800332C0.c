@@ -1,13 +1,1 @@
-#include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800332C0/func_800332C0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800332C0/func_800337F8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/main/800332C0/func_80033AC4.s")
-
-
-s32 func_80033C60(void) {
-    return *(s32 *)0xA4500004;
-}
-
+/* libultra 2.0J: built from ultralib's src/io/pfschecker.c + tools/hh/ultralib_patches/pfschecker-corrupted_init-2.0I.patch, src/io/aigetlen.c (tools/hh/libultra.json) */
