@@ -1,0 +1,1 @@
+{"func": "func_8035E89C", "segment": "file057", "model": "openai/gpt-6.2-astra", "verified": "MATCH", "claimed": "blast lander: blastAstraBig MATCH not landed by the loop", "checks": 5, "turns": 14, "seconds": 120, "input_tokens": 78681, "output_tokens": 3380, "exit": "0", "cost_usd_equiv": 0.0, "start_ts": "2026-11-28T02:05:50Z", "ts": "2026-11-28T02:07:50Z"}

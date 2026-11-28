@@ -1589,6 +1589,92 @@ typedef struct func_80245C58_Struct {
 } func_80245C58_Struct;
 extern s32 D_8012A7F4(void *, f32, f32, s32);
 
+#undef D_80258F48
+#undef func_80244AB0
+#undef func_80245D78
+#undef func_80245D78_Struct
+#define D_80258F48 D_80258F48__func_80245C58_df51a15e
+#define func_8012CE9C func_8012CE9C__func_80245C58_df51a15e
+#define func_80244AB0 func_80244AB0__func_80245C58_df51a15e
+#define func_80244AB0_Mid func_80244AB0_Mid__func_80245C58_df51a15e
+#define func_80244AB0_Node func_80244AB0_Node__func_80245C58_df51a15e
+#define func_80244AB0_Struct func_80244AB0_Struct__func_80245C58_df51a15e
+#define func_80245B90_StructInner func_80245B90_StructInner__func_80245C58_df51a15e
+#define func_80245C58_Struct func_80245C58_Struct__func_80245C58_df51a15e
+#define func_80245D78 func_80245D78__func_80245C58_df51a15e
+#define func_80245D78_Struct func_80245D78_Struct__func_80245C58_df51a15e
+#define func_80245D78_StructMid func_80245D78_StructMid__func_80245C58_df51a15e
+#define func_80245D78_StructNode func_80245D78_StructNode__func_80245C58_df51a15e
+#define func_80246E60_StructGlobal func_80246E60_StructGlobal__func_80245C58_df51a15e
+#define func_802474E4_StructMid func_802474E4_StructMid__func_80245C58_df51a15e
+#define func_802474E4_StructNode func_802474E4_StructNode__func_80245C58_df51a15e
+typedef struct func_80246E60_StructGlobal {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} func_80246E60_StructGlobal;
+extern struct func_80246E60_StructGlobal D_80258F48;
+extern s32 func_8012CE9C(s32, void *, func_80246E60_StructGlobal, s32);
+typedef struct func_80244AB0_Node {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_80244AB0_Node;
+typedef struct func_80244AB0_Mid {
+    u8 pad0[0x2C];
+    func_80244AB0_Node *unk2C;
+} func_80244AB0_Mid;
+typedef struct func_80244AB0_Struct {
+    u8 pad0[0x24];
+    func_80244AB0_Mid *unk24;
+} func_80244AB0_Struct;
+s32 func_80244AB0(func_80244AB0_Struct *arg0);
+typedef struct func_80245B90_StructInner {
+    u8 pad0[0x78];
+    s16 unk78;
+} func_80245B90_StructInner;
+typedef struct func_80245D78_StructNode {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    s32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_80245D78_StructNode;
+typedef struct func_80245D78_StructMid {
+    u8 pad0[0x2C];
+    func_80245D78_StructNode *unk2C;
+} func_80245D78_StructMid;
+typedef struct func_80245D78_Struct {
+    u8 pad0[0x24];
+    func_80245D78_StructMid *unk24;
+    u8 pad28[0x34];
+    func_80245B90_StructInner *unk5C;
+} func_80245D78_Struct;
+void func_80245D78(struct func_80245D78_Struct *arg0, s32 arg1);
+typedef struct func_802474E4_StructNode {
+    u8 pad0[0x4];
+    f32 unk4;
+    u8 pad8[0x4];
+    f32 unkC;
+    u8 pad10[0x2];
+    s16 unk12;
+} func_802474E4_StructNode;
+typedef struct func_802474E4_StructMid {
+    u8 pad0[0x2C];
+    func_802474E4_StructNode *unk2C;
+} func_802474E4_StructMid;
+
+typedef struct func_80245C58_Struct {
+    u8 pad0[0x24];
+    func_802474E4_StructMid *unk24;
+    u8 pad28[0x34];
+    void *unk5C;
+} func_80245C58_Struct;
+
 void func_80245C58(func_80245C58_Struct *arg0, s32 arg1) {
     void *sp24;
     func_802474E4_StructNode *n;
@@ -1620,10 +1706,29 @@ void func_80245C58(func_80245C58_Struct *arg0, s32 arg1) {
     }
     if (b + a < 40.0f) {
         func_800058DC(arg0, func_80245D78);
-        return;
     } else {
+        return;
     }
 }
+#undef D_80258F48
+#undef func_8012CE9C
+#undef func_80244AB0
+#undef func_80244AB0_Mid
+#undef func_80244AB0_Node
+#undef func_80244AB0_Struct
+#undef func_80245B90_StructInner
+#undef func_80245C58_Struct
+#undef func_80245D78
+#undef func_80245D78_Struct
+#undef func_80245D78_StructMid
+#undef func_80245D78_StructNode
+#undef func_80246E60_StructGlobal
+#undef func_802474E4_StructMid
+#undef func_802474E4_StructNode
+#define D_80258F48 D_80258F48__func_80245C58
+#define func_80244AB0 func_80244AB0__decl
+#define func_80245D78 func_80245D78__func_80245C58
+#define func_80245D78_Struct func_80245D78_Struct__func_80245C58
 #undef D_80258F48
 #undef func_80245D78
 #undef func_80245D78_Mid
